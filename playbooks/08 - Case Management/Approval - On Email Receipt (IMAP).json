@@ -1,0 +1,120 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Approval - On Email Receipt (IMAP)",
+    "aliasName": null,
+    "tag": null,
+    "description": "This playbook is triggered whenever an email is received via IMAP and it checks whether the received email is an approval mail along with its approval status.",
+    "isActive": false,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/3c3b049e-5ecb-464a-83f6-5af6a230c0ed",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/76e91822-ef7d-478f-8094-d707eb7134fd",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Process Each Email",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.steps.Get_Unread_Emails.data}}",
+                    "condition": ""
+                },
+                "arguments": {
+                    "approvalEmail": "{{ vars.item }}"
+                },
+                "apply_async": true,
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/8d909e25-6142-4df1-85a5-9036e1c1b037"
+            },
+            "status": null,
+            "top": "200",
+            "left": "371",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "930de9ef-e3fc-411a-a303-5cedccca51c4"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Unread Emails",
+            "description": null,
+            "arguments": {
+                "name": "IMAP",
+                "params": {
+                    "limit_count": 30
+                },
+                "version": "3.5.1",
+                "connector": "imap",
+                "operation": "fetch_email_new",
+                "operationTitle": "Fetch Email(s)",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "110",
+            "left": "211",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "639cc20e-3419-43b0-9319-499762c8f68c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "approval_listener_imap",
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "api_body": "{{vars.request.data}}"
+                        }
+                    }
+                },
+                "authentication_methods": [
+                    ""
+                ]
+            },
+            "status": null,
+            "top": "40",
+            "left": "40",
+            "stepType": "\/api\/3\/workflow_step_types\/df26c7a2-4166-4ca5-91e5-548e24c01b5f",
+            "uuid": "76e91822-ef7d-478f-8094-d707eb7134fd"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Unread Emails -> Process Each Email",
+            "targetStep": "\/api\/3\/workflow_steps\/930de9ef-e3fc-411a-a303-5cedccca51c4",
+            "sourceStep": "\/api\/3\/workflow_steps\/639cc20e-3419-43b0-9319-499762c8f68c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "30e3885d-bec5-4d4c-a916-12cb9f263692"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Unread Emails",
+            "targetStep": "\/api\/3\/workflow_steps\/639cc20e-3419-43b0-9319-499762c8f68c",
+            "sourceStep": "\/api\/3\/workflow_steps\/76e91822-ef7d-478f-8094-d707eb7134fd",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "6874d362-6fb2-4e5d-8f73-eef3b89a100c"
+        }
+    ],
+    "priority": null,
+    "uuid": "9a318057-9354-4a57-9c12-97a3d35b58bd",
+    "recordTags": [
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0"
+    ],
+    "id": "183",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508354.757863,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508354.757863,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

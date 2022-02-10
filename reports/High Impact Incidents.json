@@ -1,0 +1,363 @@
+{
+    "@context": "\/api\/3\/contexts\/Reporting",
+    "@type": "Reporting",
+    "uuid": "c01a20f1-2cc8-4294-accf-9f93ad152ad0",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508360.362207,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644509818.354138,
+    "recordTags": [
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0"
+    ],
+    "displayName": "High Impact Incidents",
+    "type": "rows",
+    "templateType": "reporting",
+    "roles": [
+        "\/api\/3\/roles\/17562d60-b841-4ed7-912b-1ebaf063c8c9",
+        "\/api\/3\/roles\/21d7a7c6-9d68-438f-b732-e8950c5f745b",
+        "\/api\/3\/roles\/a501c11e-15af-49a6-a3a4-88605f32f016",
+        "\/api\/3\/roles\/aada6692-fbf4-4a02-a580-f8a200962365",
+        "\/api\/3\/roles\/c5ff8174-b3fa-41c5-b781-2b890b426a80"
+    ],
+    "parentTemplateId": null,
+    "config": {
+        "wid": "1a859705-373e-434a-800a-2f4ff4074cff",
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "rows",
+                                "config": {
+                                    "wid": "eed0db05-b04b-4b02-b023-2edf178ec5d6",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "sectionHeader",
+                                                            "config": {
+                                                                "wid": "d67e9a46-35bb-4df6-bd5d-8f0ebdb1d126",
+                                                                "query": {
+                                                                    "filters": [],
+                                                                    "sort": [],
+                                                                    "limit": 10
+                                                                },
+                                                                "sectionText": "<p style=\"text-align: center; background: #4e94d0; width: 100%;\"><span style=\"font-size: 20pt;\"><strong><span style=\"color: #efefee;\">High Impact Incidents<\/span><\/strong><\/span><\/p>"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ],
+                                            "wid": "8632b94a-d1e8-49f5-b31d-4d06b0a5752b"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "2565a10b-598c-4c61-8aaa-710f6a18085b",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "sectionText": "<h4 style=\"background: #404142; padding: 5px; text-align: left;\"><span style=\"font-size: 12pt; color: #ffffff;\"><strong> Summary <\/strong><\/span><\/h4>"
+                                }
+                            },
+                            {
+                                "type": "cardCount",
+                                "config": {
+                                    "wid": "1b1a65d6-02d8-4dfb-8063-a6ad5298997f",
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "field": "severity.orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ],
+                                        "limit": 30,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "createDate",
+                                                "value": "{{incidentCreateDate}}",
+                                                "operator": "lte",
+                                                "type": "datetime"
+                                            },
+                                            {
+                                                "field": "status",
+                                                "operator": "neq",
+                                                "value": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae",
+                                                "_value": {
+                                                    "display": "Resolved",
+                                                    "itemValue": "Resolved",
+                                                    "@id": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae"
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "logic": "OR",
+                                                "filters": [
+                                                    {
+                                                        "field": "severity",
+                                                        "operator": "eq",
+                                                        "value": "\/api\/3\/picklists\/7efa2220-39bb-44e4-961f-ac368776e3b0",
+                                                        "_value": {
+                                                            "display": "Critical",
+                                                            "itemValue": "Critical",
+                                                            "@id": "\/api\/3\/picklists\/7efa2220-39bb-44e4-961f-ac368776e3b0"
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    {
+                                                        "field": "severity",
+                                                        "operator": "eq",
+                                                        "value": "\/api\/3\/picklists\/40187287-89fc-4e9c-b717-e9443d57eedb",
+                                                        "_value": {
+                                                            "display": "High",
+                                                            "itemValue": "High",
+                                                            "@id": "\/api\/3\/picklists\/40187287-89fc-4e9c-b717-e9443d57eedb"
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "aggregates": [
+                                            {
+                                                "operator": "countdistinct",
+                                                "field": "*",
+                                                "alias": "total"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "severity",
+                                                "field": "severity.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "color",
+                                                "field": "severity.color"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "orderIndex",
+                                                "field": "severity.orderIndex"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "assignedToPerson": "",
+                                        "fieldName": "severity"
+                                    },
+                                    "aggregate": true,
+                                    "resource": "incidents",
+                                    "title": "Incidents"
+                                }
+                            },
+                            {
+                                "type": "readonlyFormGroup",
+                                "config": {
+                                    "wid": "5419899f-8254-4ca5-92ba-ff7375aaeced",
+                                    "gridColumns": [],
+                                    "displayType": "card-view",
+                                    "widgetAlwaysDisplay": true,
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 10,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "createDate",
+                                                "value": "{{incidentCreateDate}}",
+                                                "operator": "lte",
+                                                "type": "datetime"
+                                            },
+                                            {
+                                                "field": "status",
+                                                "operator": "neq",
+                                                "value": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae",
+                                                "_value": {
+                                                    "itemValue": "Resolved",
+                                                    "@id": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae"
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "logic": "OR",
+                                                "filters": [
+                                                    {
+                                                        "field": "severity",
+                                                        "operator": "eq",
+                                                        "value": "\/api\/3\/picklists\/40187287-89fc-4e9c-b717-e9443d57eedb",
+                                                        "_value": {
+                                                            "itemValue": "High",
+                                                            "@id": "\/api\/3\/picklists\/40187287-89fc-4e9c-b717-e9443d57eedb"
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    {
+                                                        "field": "severity",
+                                                        "operator": "eq",
+                                                        "value": "\/api\/3\/picklists\/7efa2220-39bb-44e4-961f-ac368776e3b0",
+                                                        "_value": {
+                                                            "itemValue": "Critical",
+                                                            "@id": "\/api\/3\/picklists\/7efa2220-39bb-44e4-961f-ac368776e3b0"
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "recordTitle": {
+                                        "type": "sectionHeader",
+                                        "wid": "473a6cbc-7965-47b7-a136-373bd36ab5e6",
+                                        "clone": false,
+                                        "remove": false
+                                    },
+                                    "relatedTemplate": {
+                                        "type": "rows",
+                                        "rows": [
+                                            {
+                                                "columns": [
+                                                    {
+                                                        "widgets": [
+                                                            {
+                                                                "type": "simpleGrid",
+                                                                "config": {
+                                                                    "wid": "c6ea9810-6976-4dad-b329-cd648bcdf10c",
+                                                                    "widgetAlwaysDisplay": true,
+                                                                    "query": {
+                                                                        "sort": [],
+                                                                        "limit": 5,
+                                                                        "logic": "AND",
+                                                                        "filters": []
+                                                                    },
+                                                                    "mapping": {
+                                                                        "assignedToPerson": ""
+                                                                    },
+                                                                    "columns": [
+                                                                        "content"
+                                                                    ],
+                                                                    "module": "comments",
+                                                                    "title": "Latest 5 comments"
+                                                                }
+                                                            }
+                                                        ],
+                                                        "style": "col-lg-12"
+                                                    }
+                                                ],
+                                                "wid": "431fbb7f-518a-47b0-b9e6-a2b2c02103e2"
+                                            }
+                                        ],
+                                        "wid": "317a2b87-3941-40f7-bcda-d12edef0acb6"
+                                    },
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "id",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        },
+                                                        {
+                                                            "name": "severity",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        },
+                                                        {
+                                                            "name": "status",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        },
+                                                        {
+                                                            "name": "incidentLead",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        },
+                                                        {
+                                                            "name": "name",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        },
+                                                        {
+                                                            "name": "businessImpact",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        },
+                                                        {
+                                                            "name": "recordTags",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "resource": "incidents",
+                                    "style": "display-inline-block"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "448c3392-962e-4326-bf6f-da4b2f53a0f5"
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "93aee8c9-713d-4926-8388-4c8ee6fcd0db",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "sectionText": "<p style=\"text-align: center;\"><span style=\"font-size: 10pt;\">Report Generated By FortiSOAR&trade;<\/span><\/p>"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "wid": "373e84f7-6eed-42e4-8e77-eed4ce986457"
+            }
+        ],
+        "readOnlyFlag": true,
+        "refreshInterval": 10
+    },
+    "filterArray": [
+        {
+            "key": "incidentCreateDate",
+            "open": true,
+            "type": "datetime",
+            "label": "Incident Create Date",
+            "value": "",
+            "required": true,
+            "expression": "{{incidentCreateDate}}",
+            "defaultValue": ""
+        }
+    ],
+    "updateDate": null
+}

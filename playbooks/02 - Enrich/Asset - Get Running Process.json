@@ -1,0 +1,138 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Asset - Get Running Process",
+    "aliasName": null,
+    "tag": "#ManualAction #EDR",
+    "description": "Retrieves a list of all processes that are running on the specified host.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/2af3fbf7-41e6-4e16-9b33-8fc1786943e6",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "30c1a0b5-ec43-4e77-802b-c7220a809f50",
+                "title": "Get Running Process",
+                "resources": [
+                    "assets"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "records": "{{vars.input.records}}"
+                    },
+                    "useMockOutput": "true"
+                },
+                "displayConditions": {
+                    "assets": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "uuid": "2af3fbf7-41e6-4e16-9b33-8fc1786943e6"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Note for Running Process List",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "assets": "['{{vars.request.data.records[0]['@id']}}']",
+                    "content": "<table border-color: #ffffff;\" border=\"1\">\n<thead>\n<tr>\n<th width=\"70\">PID<\/th>\n<th width=\"250\">Path<\/th>\n<th width=\"180\">User Name<\/th>\n<th width=\"600\">Command Line<\/th>\n<\/tr>\n<\/thead>\n<tbody>\n<tr>\n<td>{% for each_dict in vars.steps.Get_Running_Process.data %}<\/td> \n<\/tr>\n<tr>\n<td>{{ each_dict['pid'] }}<\/td>\n<td>{{ each_dict['path'] }}<\/td>\n<td>{{ each_dict['username'] }}<\/td>\n<td>{{ each_dict['command_line'] }}<\/td>\n<\/tr>\n<tr>\n<td>{% endfor %}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>",
+                    "__replace": ""
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "uuid": "14e6a47f-d808-4868-99f7-e07381269ce2"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Running Process",
+            "description": null,
+            "arguments": {
+                "name": "CarbonBlack Response",
+                "params": {
+                    "value": "{{vars.request.data.records[0].hostname}}",
+                    "input_type": "Hostname"
+                },
+                "version": "2.0.1",
+                "connector": "carbonblack-response",
+                "operation": "get_process_list",
+                "mock_result": "{\"data\": [\n        {\n          \"parent_guid\": \"\",\n          \"parent\": \"\",\n          \"command_line\": \"\",\n          \"proc_guid\": \"\",\n          \"create_time\": \"\",\n          \"pid\": \"42141\",\n          \"username\": \"abc\",\n          \"sid\": \"\",\n          \"path\": \"\/tmp\/ada.exe\"\n        }]\n}",
+                "operationTitle": "Get All Processes",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "ad34507d-bf88-45fb-9f0a-ff552e4c341d"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Running Process",
+            "targetStep": "\/api\/3\/workflow_steps\/ad34507d-bf88-45fb-9f0a-ff552e4c341d",
+            "sourceStep": "\/api\/3\/workflow_steps\/2af3fbf7-41e6-4e16-9b33-8fc1786943e6",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e72c073b-ed56-462b-a035-07f6f6dad443"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Running Process -> Note for Running Process List",
+            "targetStep": "\/api\/3\/workflow_steps\/14e6a47f-d808-4868-99f7-e07381269ce2",
+            "sourceStep": "\/api\/3\/workflow_steps\/ad34507d-bf88-45fb-9f0a-ff552e4c341d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "11844b62-f43e-46f9-b146-12ab8a828d63"
+        }
+    ],
+    "priority": null,
+    "uuid": "5e76fb21-5ecc-4ffe-b00a-2ca721028f48",
+    "recordTags": [
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0",
+        "ManualAction",
+        "EDR"
+    ],
+    "id": "67",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508349.772372,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508349.772372,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

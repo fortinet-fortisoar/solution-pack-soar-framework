@@ -1,0 +1,169 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "IP Stack - IP Reputation",
+    "aliasName": null,
+    "tag": null,
+    "description": "Retrieves the geolocation of indicators of type 'IP Address' using IP Stack.",
+    "isActive": false,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "indicator_value"
+    ],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/b135c052-e170-4cff-8cc7-9a4bfe607ccb",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/69e2b2d2-a44a-47e0-a0e0-7549c567d4f9",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Configurations",
+            "description": null,
+            "arguments": {
+                "googleMapAPIkey": "AIzaSyDy4tlleelMlMRB-HuBbgxeBMrfUJQF2ZE",
+                "indicator_value": "{{vars.input.params['indicator_value']}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "16c882e6-4edc-4a21-b66a-0b7a8f86e13f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Geo Locate IP",
+            "description": null,
+            "arguments": {
+                "name": "IPStack",
+                "config": "0022176c-57c0-4120-a8d2-ac03990bc318",
+                "params": {
+                    "query": "{{vars.indicator_value}}",
+                    "fields": "",
+                    "enable_hostname": false,
+                    "enable_security": false
+                },
+                "version": "1.0.0",
+                "connector": "ipstack",
+                "operation": "ip_locate",
+                "ignore_errors": true,
+                "operationTitle": "Geolocate IP",
+                "step_variables": {
+                    "foundIpStackReputation": "{{ ( vars.result.data and (vars.result.data | length > 0) ) | ternary(true,false) }}"
+                }
+            },
+            "status": null,
+            "top": "300",
+            "left": "126",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "1427fd8a-e45b-421e-b3f8-5a52cff252ff"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "uuid": "69e2b2d2-a44a-47e0-a0e0-7549c567d4f9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Compute IP Stack Summary",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "value": "<p><span style=\"font-size: 11pt;\"><strong>{% if vars.foundIpStackReputation%}<\/strong><\/span><\/p>\n<p><span style=\"font-size: 11pt;\"><strong>Location&nbsp;Summary:<\/strong><\/span><\/p>\n<table style=\"width: 700px;\" border=\"1px\">\n<tbody>\n<tr style=\"height: 16px;\">\n<td style=\"border: 1px solid white; text-align: left; width: 100px; height: 16px;\"><span style=\"font-size: 10pt;\">Country<\/span><\/td>\n<td style=\"border: 1px solid white; text-align: left; width: 600px; height: 16px;\"><span style=\"font-size: 10pt;\">{{vars.steps.Geo_Locate_IP.data[0]['country_name']}}<\/span><\/td>\n<\/tr>\n<tr style=\"height: 16px;\">\n<td style=\"border: 1px solid white; text-align: left; width: 100px; height: 16px;\"><span style=\"font-size: 10pt;\">City<\/span><\/td>\n<td style=\"border: 1px solid white; text-align: left; width: 600px; height: 16px;\"><span style=\"font-size: 10pt;\">{{vars.steps.Geo_Locate_IP.data[0].city}}<\/span><\/td>\n<\/tr>\n<tr style=\"height: 16px;\">\n<td style=\"border: 1px solid white; text-align: left; width: 100px; height: 16.9034px;\"><span style=\"font-size: 10pt;\">Latitude<\/span><\/td>\n<td style=\"border: 1px solid white; text-align: left; width: 600px; height: 16.9034px;\"><span style=\"font-size: 10pt;\">{{vars.steps.Geo_Locate_IP.data[0].latitude}}<\/span><\/td>\n<\/tr>\n<tr style=\"height: 16px;\">\n<td style=\"border: 1px solid white; text-align: left; width: 100px; height: 16px;\"><span style=\"font-size: 10pt;\">Longitude<\/span><\/td>\n<td style=\"border: 1px solid white; text-align: left; width: 600px; height: 16.9034px;\"><span style=\"font-size: 11pt;\">{{vars.steps.Geo_Locate_IP.data[0].longitude}}<\/span><\/td>\n<\/tr>\n<\/tbody>\n<\/table>\n<p>&nbsp;<\/p>\n<p><span style=\"font-size: 11pt;\"><strong>Location Map:<\/strong><\/span><\/p>\n<p><span style=\"font-size: 11pt;\"><strong><img src=\"https:\/\/maps.googleapis.com\/maps\/api\/staticmap?key={{vars.googleMapAPIkey}}&center={{vars.steps.Geo_Locate_IP.data[0]['country_name']}}&zoom=12&format=png&maptype=roadmap&style=element:geometry%7Ccolor:0x242f3e&style=element:labels.text.fill%7Ccolor:0x746855&style=element:labels.text.stroke%7Ccolor:0x242f3e&style=feature:administrative.locality%7Celement:labels.text.fill%7Ccolor:0xd59563&style=feature:poi%7Celement:labels.text.fill%7Ccolor:0xd59563&style=feature:poi.park%7Celement:geometry%7Ccolor:0x263c3f&style=feature:poi.park%7Celement:labels.text.fill%7Ccolor:0x6b9a76&style=feature:road%7Celement:geometry%7Ccolor:0x38414e&style=feature:road%7Celement:geometry.stroke%7Ccolor:0x212a37&style=feature:road%7Celement:labels.text.fill%7Ccolor:0x9ca5b3&style=feature:road.highway%7Celement:geometry%7Ccolor:0x746855&style=feature:road.highway%7Celement:geometry.stroke%7Ccolor:0x1f2835&style=feature:road.highway%7Celement:labels.text.fill%7Ccolor:0xf3d19c&style=feature:transit%7Celement:geometry%7Ccolor:0x2f3948&style=feature:transit.station%7Celement:labels.text.fill%7Ccolor:0xd59563&style=feature:water%7Celement:geometry%7Ccolor:0x17263c&style=feature:water%7Celement:labels.text.fill%7Ccolor:0x515c6d&style=feature:water%7Celement:labels.text.stroke%7Ccolor:0x17263c&size=600x300&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C{{vars.steps.Geo_Locate_IP.data[0]['country_name']}}\" alt=\"\" width=\"700\" height=\"350\" \/><\/strong><\/span><\/p>\n{% endif %}<\/strong><\/span><\/p>"
+                },
+                "version": "3.0.2",
+                "connector": "cyops_utilities",
+                "operation": "format_richtext",
+                "operationTitle": "Utils: Format as RichText",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "uuid": "db56491b-b4b9-4841-8894-1d34d6584c28"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "enrichment_summary",
+            "description": null,
+            "arguments": {
+                "tags": "None",
+                "source": "IP Stack",
+                "enrichmentSummary": "{{vars.steps.Compute_IP_Stack_Summary.data['formatted_string']}}"
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "752b8b21-538f-416d-a999-52a80983de48"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configurations",
+            "targetStep": "\/api\/3\/workflow_steps\/16c882e6-4edc-4a21-b66a-0b7a8f86e13f",
+            "sourceStep": "\/api\/3\/workflow_steps\/69e2b2d2-a44a-47e0-a0e0-7549c567d4f9",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "90b6f5ff-2150-4a1d-b8a0-7e0b3ae51598"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configurations -> Geo Locate IP",
+            "targetStep": "\/api\/3\/workflow_steps\/1427fd8a-e45b-421e-b3f8-5a52cff252ff",
+            "sourceStep": "\/api\/3\/workflow_steps\/16c882e6-4edc-4a21-b66a-0b7a8f86e13f",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "6b255acf-1205-4144-b310-3124e775d021"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Compute IP Stack Summary -> enrichment_summary",
+            "targetStep": "\/api\/3\/workflow_steps\/752b8b21-538f-416d-a999-52a80983de48",
+            "sourceStep": "\/api\/3\/workflow_steps\/db56491b-b4b9-4841-8894-1d34d6584c28",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "eb084ad8-643e-477f-9ec4-31ef94f54165"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Geo Locate IP -> Compute IP Stack Summary",
+            "targetStep": "\/api\/3\/workflow_steps\/db56491b-b4b9-4841-8894-1d34d6584c28",
+            "sourceStep": "\/api\/3\/workflow_steps\/1427fd8a-e45b-421e-b3f8-5a52cff252ff",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "43a8d9a7-00c2-4e9e-9348-2637bd5b6ac6"
+        }
+    ],
+    "priority": null,
+    "uuid": "72b345a6-f0d8-4c60-a78f-eb3599255699",
+    "recordTags": [
+        "Subroutine",
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0"
+    ],
+    "id": "102",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508351.19226,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508351.19226,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

@@ -1,0 +1,182 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Pause SLA - Alerts",
+    "aliasName": null,
+    "tag": null,
+    "description": "Pauses the alert's acknowledgement or response when its respective SLA status is changed to 'Awaiting Action'.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/3c3b049e-5ecb-464a-83f6-5af6a230c0ed",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/f4f22472-868e-496f-b3e2-34a87896192e",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "78b11276-163d-402f-9ee9-caf61cdc12d7",
+                "title": "Pause SLA",
+                "resources": [
+                    "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "displayConditions": {
+                    "alerts": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    },
+                    "assets": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "uuid": "f4f22472-868e-496f-b3e2-34a87896192e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Pause Ack SLA",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.input.records[0].ackSlaStatus.itemValue == \"Awaiting Action\"}}",
+                "resource": {
+                    "status": "{{\"AlertStatus\" | picklist(vars.sla_time_list.altPauseSLAOn, \"@id\")}}",
+                    "ackSlaStatus": "{% if vars.input.records[0].dueBy < vars.input.records[0].modifyDate%}{{\"SLAState\" | picklist(\"Missed\", \"@id\")}}{%else%}{{\"SLAState\" | picklist(\"Paused\", \"@id\")}}{%endif%}",
+                    "ackSLApausedon": "{{globalVars.Current_Date}}",
+                    "alertRemainingAckSLA": "{{((vars.input.records[0].dueBy - vars.input.records[0].modifyDate)\/60) | round | int}}"
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/alerts",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "98eb470d-c9ec-4657-a6ec-cfd8e09c3882"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get SLA Details",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "tenant_iri": "{{vars.input.records[0].tenant['@id'] | ternary(vars.input.records[0].tenant['@id'], none)}}",
+                    "inc_severity": "{{vars.input.records[0].severity.itemValue}}"
+                },
+                "apply_async": false,
+                "step_variables": {
+                    "sla_time_list": "{{vars.result.sla_time_list}}"
+                },
+                "workflowReference": "\/api\/3\/workflows\/45096dd1-6f64-4f86-937f-711a1054d436"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "6a852995-0ce7-4a3c-bdb2-d2e30d1979f0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Pause Response SLA",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.input.records[0].respSlaStatus.itemValue == \"Awaiting Action\"}}",
+                "resource": {
+                    "status": "{{\"AlertStatus\" | picklist(vars.sla_time_list.altPauseSLAOn, \"@id\")}}",
+                    "respSlaStatus": "{%if vars.input.records[0].respDueDate < vars.input.records[0].modifyDate %}{{\"SLAState\" | picklist(\"Missed\", \"@id\")}}{%else%}{{\"SLAState\" | picklist(\"Paused\", \"@id\")}}{%endif%}",
+                    "ackSLApausedon": "{{globalVars.Current_Date}}",
+                    "respSLApausedon": "{{globalVars.Current_Date}}",
+                    "alertRemainingRespSLA": "{{((vars.input.records[0].respDueDate - vars.input.records[0].modifyDate)\/60) | round | int}}"
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/alerts",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "e94fbb43-80df-482b-94b7-4807e98654f2"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get SLA Details -> Pause Ack SLA",
+            "targetStep": "\/api\/3\/workflow_steps\/98eb470d-c9ec-4657-a6ec-cfd8e09c3882",
+            "sourceStep": "\/api\/3\/workflow_steps\/6a852995-0ce7-4a3c-bdb2-d2e30d1979f0",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "b62b89bd-1e9d-4f2c-ab39-59f1fd0eaec1"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get SLA Details",
+            "targetStep": "\/api\/3\/workflow_steps\/6a852995-0ce7-4a3c-bdb2-d2e30d1979f0",
+            "sourceStep": "\/api\/3\/workflow_steps\/f4f22472-868e-496f-b3e2-34a87896192e",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "64406e34-8c15-4236-96fd-d115763058c4"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Pause Ack SLA -> Copy  of Pause Ack SLA",
+            "targetStep": "\/api\/3\/workflow_steps\/e94fbb43-80df-482b-94b7-4807e98654f2",
+            "sourceStep": "\/api\/3\/workflow_steps\/98eb470d-c9ec-4657-a6ec-cfd8e09c3882",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "07ce6e67-a521-45d1-810a-4ec47eb96627"
+        }
+    ],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "34fe4ad3-d00b-48f0-9935-2a3ab2eb1e51",
+    "recordTags": [
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0"
+    ],
+    "id": "208",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508354.766268,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508354.766268,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

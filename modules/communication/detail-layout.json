@@ -1,0 +1,242 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "rows",
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "editableFormGroup",
+                                "config": {
+                                    "wid": "8afcb0ff-58d7-469d-b3b0-883b214cdeb6",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "from",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "to",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "bcc",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "cc",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "type": "editableFormGroup",
+                                "config": {
+                                    "wid": "0124468c-3384-4f23-b9c3-b43300488e10",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "subject",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "body",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false,
+                                                            "viewRenderWidget": "iframe-sandbox"
+                                                        },
+                                                        {
+                                                            "name": "recordTags",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "type": "editableFormGroup",
+                                "config": {
+                                    "wid": "49c155db-212b-40cf-9152-7b1cefe8ecab",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "includeFiles",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "file1",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "file2",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "file",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "file3",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "file4",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "6da2f56a-2425-46fc-bf9a-1bf6b9f09457",
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "tabs",
+                                "config": {
+                                    "tabs": [
+                                        {
+                                            "title": "Correlations",
+                                            "widget": {
+                                                "type": "relationship.subtab",
+                                                "config": {
+                                                    "excludes": [
+                                                        "notes",
+                                                        "comments",
+                                                        "attachments",
+                                                        "owners"
+                                                    ],
+                                                    "wid": "43433fbd-5834-4739-a11d-0f74060b73ce",
+                                                    "expandableCol": []
+                                                }
+                                            },
+                                            "show": true,
+                                            "icon": "fa fa-exchange"
+                                        },
+                                        {
+                                            "title": "Access Control",
+                                            "active": 0,
+                                            "widget": {
+                                                "type": "relationship.subtab",
+                                                "config": {
+                                                    "wid": "e54802f5-1760-4e32-9151-b34fa0596fad",
+                                                    "excludes": [
+                                                        "notes",
+                                                        "comments",
+                                                        "attachments",
+                                                        "incidents",
+                                                        "alerts"
+                                                    ],
+                                                    "expandableCol": []
+                                                }
+                                            },
+                                            "icon": "icon icon-access-control",
+                                            "show": false
+                                        },
+                                        {
+                                            "title": "Audit",
+                                            "active": 0,
+                                            "widget": {
+                                                "type": "timeline",
+                                                "config": {
+                                                    "wid": "9d14fefb-6c54-49d1-85d0-82081a46acd4"
+                                                }
+                                            },
+                                            "icon": "icon icon-audit-log",
+                                            "show": false
+                                        }
+                                    ],
+                                    "wid": "3dd8b114-7b5d-4091-bba9-731829f2c49d"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "3052fdb9-7a39-4353-87bd-5069a55a3469",
+                "_collapsed": false
+            }
+        ],
+        "wid": "6a2e02cf-bd6e-4659-9dff-18590978fe04",
+        "actionButtons": [
+            {
+                "id": "\/api\/3\/workflows\/afe78882-4ef5-4a35-bd63-0cd9023169cb",
+                "name": "Notify > Email Reply",
+                "icon": "icon icon-send-email"
+            },
+            {
+                "id": "\/api\/3\/workflows\/fa735cd5-6194-4975-b3c1-a33060cf53d1",
+                "name": "Manual Send Notification",
+                "icon": "icon icon-send-email"
+            }
+        ]
+    },
+    "uuid": "modules-communication-detail"
+}

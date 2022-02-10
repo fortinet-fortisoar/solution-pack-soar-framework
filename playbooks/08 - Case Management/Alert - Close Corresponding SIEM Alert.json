@@ -1,0 +1,202 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Alert - Close Corresponding SIEM Alert",
+    "aliasName": null,
+    "tag": null,
+    "description": "Closes the alert on the corresponding SIEM when an alert is closed in FortiSOAR.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/3c3b049e-5ecb-464a-83f6-5af6a230c0ed",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/b43919ee-1393-4fa7-8def-d5f3a6a319c7",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "alerts",
+                "resources": [
+                    "alerts"
+                ],
+                "step_variables": {
+                    "input": {
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    }
+                },
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "status",
+                            "value": null,
+                            "_value": {
+                                "@id": null,
+                                "display": "",
+                                "itemValue": ""
+                            },
+                            "operator": "changed"
+                        },
+                        {
+                            "type": "object",
+                            "field": "status",
+                            "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                                "itemValue": "Closed"
+                            },
+                            "operator": "eq"
+                        }
+                    ]
+                }
+            },
+            "status": null,
+            "top": "31",
+            "left": "220",
+            "stepType": "\/api\/3\/workflow_step_types\/9300bf69-5063-486d-b3a6-47eb9da24872",
+            "uuid": "b43919ee-1393-4fa7-8def-d5f3a6a319c7"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Close SIEM Alert",
+            "description": null,
+            "arguments": {
+                "type": "DecisionBased",
+                "input": {
+                    "schema": {
+                        "title": "Close SIEM Alert",
+                        "description": "<p>Closing corresponding alert on SIEM.<\/p>\n<p>*Consider changing this step to automation using a connector. That would accelerate your response time and allow you to focus on advanced threats<\/p>",
+                        "inputVariables": []
+                    }
+                },
+                "record": "{{ vars.input.records[0][\"@id\"] }}",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Close SIEM Alert",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/d1b19181-e491-42da-82cb-e575072c24c4"
+                        },
+                        {
+                            "option": "Do Nothing",
+                            "step_iri": "\/api\/3\/workflow_steps\/1547a4d0-6f1b-4468-b04b-966b572b8ae3"
+                        }
+                    ],
+                    "duplicateOption": false
+                }
+            },
+            "status": null,
+            "top": "220",
+            "left": "220",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "uuid": "7526bb30-b6cc-4f88-b7d0-afcd6959c47e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Add Clossure note",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "alerts": "{{vars.input.records[0]['@id']}}",
+                    "content": "The corresponding alert on SIEM has been closed. ",
+                    "__replace": ""
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "380",
+            "left": "407",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "uuid": "d1b19181-e491-42da-82cb-e575072c24c4"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Add No Change Note",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "alerts": "{{vars.input.records[0]['@id']}}",
+                    "content": "The status of  corresponding alert on SIEM is not changed to closed. ",
+                    "__replace": ""
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "386",
+            "left": "11",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "uuid": "1547a4d0-6f1b-4468-b04b-966b572b8ae3"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Close SIEM Alert -> Add No Change Note",
+            "targetStep": "\/api\/3\/workflow_steps\/1547a4d0-6f1b-4468-b04b-966b572b8ae3",
+            "sourceStep": "\/api\/3\/workflow_steps\/7526bb30-b6cc-4f88-b7d0-afcd6959c47e",
+            "label": "Do Nothing",
+            "isExecuted": false,
+            "uuid": "41a4f19c-0b5f-4c90-9d49-9b031c0154a7"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Close SIEM Alert",
+            "targetStep": "\/api\/3\/workflow_steps\/7526bb30-b6cc-4f88-b7d0-afcd6959c47e",
+            "sourceStep": "\/api\/3\/workflow_steps\/b43919ee-1393-4fa7-8def-d5f3a6a319c7",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "257cc923-5aa7-4767-b78c-6fa76f51192a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Close SIEM Alert -> Add Clossure note",
+            "targetStep": "\/api\/3\/workflow_steps\/d1b19181-e491-42da-82cb-e575072c24c4",
+            "sourceStep": "\/api\/3\/workflow_steps\/7526bb30-b6cc-4f88-b7d0-afcd6959c47e",
+            "label": "Close SIEM Alert",
+            "isExecuted": false,
+            "uuid": "41847ea7-0309-4509-9fd0-8405788d463d"
+        }
+    ],
+    "priority": null,
+    "uuid": "11ca0960-376d-4406-90c0-877b92a2d7b0",
+    "recordTags": [
+        "PostUpdate",
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0"
+    ],
+    "id": "172",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508354.747751,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508354.747751,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

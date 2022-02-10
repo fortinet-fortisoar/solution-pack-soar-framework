@@ -1,0 +1,243 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Action - File - Unblock (Specified by User)",
+    "aliasName": null,
+    "tag": null,
+    "description": "Creates indicators for the file specified by the user, unblocks the file on the firewall, and also mark the status of the indicator as unblocked. The indicator is also linked to the record on which the playbook is triggered.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/2d150b7b-ee6b-4686-a249-3c2cfa99f657",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/84187aa1-4ce0-4129-88fc-2710b81d7e2c",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Link Indicator On Triggered Record",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "{{vars.input.records[0]['@id']}}",
+                    "body": "{\"__link\":{\"indicators\":[\"{{vars.result['@id']}}\"]}}"
+                },
+                "version": "3.0.4",
+                "connector": "cyops_utilities",
+                "operation": "update_cyops_resource",
+                "operationTitle": "CyOPs: Update Record",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "uuid": "8494c17e-8d5b-4e65-89f2-9512f9c6cbd9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Domain Indicator _ Deduplicated",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "file": "{{vars.input.params.filePath}}",
+                    "value": "{{vars.input.params.fileName}}",
+                    "__replace": "true",
+                    "typeofindicator": {
+                        "id": 73,
+                        "@id": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                        "icon": null,
+                        "@type": "Picklist",
+                        "color": null,
+                        "display": "File",
+                        "listName": "\/api\/3\/picklist_names\/50ee5bfa-e18f-49ba-8af9-dcca25b0f9c0",
+                        "itemValue": "File",
+                        "orderIndex": 3
+                    }
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/upsert\/indicators",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "uuid": "66b94b96-0185-48fb-99f9-59bb06b8fddc"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Unblock File",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "inputActionReasons": "{{vars.input.params.reasonsToUnblock}}",
+                    "inputIndicatorValue": "{{vars.input.params.fileName}}",
+                    "inputIndicatorRecordIRI": "{{vars.steps.Create_Domain_Indicator___Deduplicated['@id']}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/548016b2-7012-4011-a455-4e31e9732ed5"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "2cbb1ea5-157c-46ed-bb8e-90a1d173d106"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "95cdb386-ed1e-4aee-9ece-a1274fc4d9e1",
+                "title": "Unblock Specified File",
+                "resources": [
+                    "incidents"
+                ],
+                "inputVariables": [
+                    {
+                        "name": "filePath",
+                        "type": "string",
+                        "label": "File",
+                        "title": "File Field",
+                        "usable": true,
+                        "tooltip": "Given File will also be created as indicator, and linked to this record",
+                        "dataType": "file",
+                        "formType": "file",
+                        "required": true,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "dataSource": {
+                            "model": "files"
+                        },
+                        "searchable": false,
+                        "templateUrl": "app\/components\/form\/fields\/file.html",
+                        "_nameTouched": true,
+                        "defaultValue": null,
+                        "lengthConstraint": true,
+                        "allowedEncryption": false,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "fileName",
+                        "type": "string",
+                        "label": "File Name",
+                        "tooltip": "",
+                        "dataType": "text",
+                        "formType": "text",
+                        "required": true,
+                        "_expanded": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "reasonsToUnblock",
+                        "type": "string",
+                        "label": "Reasons to unblock",
+                        "tooltip": "Specify reasons for unblocking the File indicator. The reason would be added in Indicator Record for future reference",
+                        "dataType": "text",
+                        "formType": "text",
+                        "required": false,
+                        "_expanded": true,
+                        "_nameTouched": true,
+                        "defaultValue": "Asked by User:",
+                        "useRecordFieldDefault": false
+                    }
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "fileName": "{{vars.request.data[\"fileName\"]}}",
+                            "filePath": "{{vars.request.data[\"filePath\"]}}",
+                            "reasonsToUnblock": "{{vars.request.data[\"reasonsToUnblock\"]}}"
+                        },
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "_promptexpanded": true,
+                "displayConditions": {
+                    "alerts": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    },
+                    "assets": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    },
+                    "incidents": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    }
+                },
+                "executeButtonText": "Unblock",
+                "noRecordExecution": false,
+                "singleRecordExecution": false
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "uuid": "84187aa1-4ce0-4129-88fc-2710b81d7e2c"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Create IP Indicator _ Deduplicated",
+            "targetStep": "\/api\/3\/workflow_steps\/66b94b96-0185-48fb-99f9-59bb06b8fddc",
+            "sourceStep": "\/api\/3\/workflow_steps\/84187aa1-4ce0-4129-88fc-2710b81d7e2c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "2cad22c6-c17f-4756-a7be-587d061203b0"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create IP Indicator _ Deduplicated -> Unblock IP Address",
+            "targetStep": "\/api\/3\/workflow_steps\/2cbb1ea5-157c-46ed-bb8e-90a1d173d106",
+            "sourceStep": "\/api\/3\/workflow_steps\/66b94b96-0185-48fb-99f9-59bb06b8fddc",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "d3202411-66c0-462f-82df-8fc53371515e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Block IP Address -> Link Indicator On Triggered Record",
+            "targetStep": "\/api\/3\/workflow_steps\/8494c17e-8d5b-4e65-89f2-9512f9c6cbd9",
+            "sourceStep": "\/api\/3\/workflow_steps\/2cbb1ea5-157c-46ed-bb8e-90a1d173d106",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "bfd067d7-6489-494b-b58a-24e7d409b247"
+        }
+    ],
+    "priority": null,
+    "uuid": "ccdfb478-994c-4a28-bb06-234d3601b5fe",
+    "recordTags": [
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0",
+        "ManualAction",
+        "Mitigation"
+    ],
+    "id": "147",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508352.898157,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508352.898157,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

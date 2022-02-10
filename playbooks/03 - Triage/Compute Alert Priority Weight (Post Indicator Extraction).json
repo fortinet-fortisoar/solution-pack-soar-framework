@@ -1,0 +1,328 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Compute Alert Priority Weight (Post Indicator Extraction)",
+    "aliasName": null,
+    "tag": null,
+    "description": "Computes and sets the priority weight for an alert, when the alert is updated. The priority weight is calculated based on indicators related to the alert.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "alert_iri"
+    ],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/4a9adb3a-1a68-4b28-8096-ea12210dfeab",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/1c83cf4c-2f61-4299-b0da-5d81edf355b8",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "alerts",
+                "resources": [
+                    "alerts"
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "alert_iri": "{{ vars.alert_iri }}"
+                        },
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    }
+                },
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "state",
+                            "value": null,
+                            "_value": {
+                                "@id": null,
+                                "display": "",
+                                "itemValue": ""
+                            },
+                            "operator": "changed"
+                        },
+                        {
+                            "type": "object",
+                            "field": "state",
+                            "value": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                                "display": "Indicator Extracted",
+                                "itemValue": "Indicator Extracted"
+                            },
+                            "operator": "eq"
+                        }
+                    ]
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/9300bf69-5063-486d-b3a6-47eb9da24872",
+            "uuid": "1c83cf4c-2f61-4299-b0da-5d81edf355b8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Malicious Indicators",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "alerts.uuid",
+                            "value": "{{vars.alert_iri | basename}}",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        },
+                        {
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "type": "object",
+                                    "field": "reputation",
+                                    "value": "\/api\/3\/picklists\/50bfd06c-9aff-4f7d-b6d9-821339e31fe7",
+                                    "_value": {
+                                        "@id": "\/api\/3\/picklists\/50bfd06c-9aff-4f7d-b6d9-821339e31fe7",
+                                        "itemValue": "Suspicious"
+                                    },
+                                    "operator": "eq"
+                                },
+                                {
+                                    "type": "object",
+                                    "field": "reputation",
+                                    "value": "\/api\/3\/picklists\/7074e547-7785-4979-be32-c6d0c863e4bd",
+                                    "_value": {
+                                        "@id": "\/api\/3\/picklists\/7074e547-7785-4979-be32-c6d0c863e4bd",
+                                        "itemValue": "Malicious"
+                                    },
+                                    "operator": "eq"
+                                }
+                            ]
+                        }
+                    ],
+                    "__selectFields": [
+                        "value",
+                        "typeofindicator",
+                        "reputation"
+                    ]
+                },
+                "module": "indicators?$limit=30",
+                "checkboxFields": true,
+                "step_variables": {
+                    "malicious_ind_count": "{{vars.result | json_query('[*][reputation][?itemValue ==\\'Malicious\\'][]') | length | int }}",
+                    "suspicious_ind_count": "{{vars.result | json_query('[*][reputation][?itemValue ==\\'Suspicious\\'][]') | length | int}}"
+                }
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "uuid": "e7db1987-df59-4690-a9fb-ea4de9ec4f5f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "alert_iri": "{{vars.input.params['alert_iri'] | ternary(vars.input.params['alert_iri'],vars.input.records[0]['@id'])}}",
+                "malicious_indicator_weight": "20",
+                "suspicious_indicator_weight": "10"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "a2c309c4-d780-4fab-8f2b-7833762b76e4"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Calculate Priority Weight",
+            "description": null,
+            "arguments": {
+                "pri_weight": "{{(vars.malicious_ind_count |int * vars.malicious_indicator_weight | int) + (vars.suspicious_ind_count | int  * vars.suspicious_indicator_weight | int) }}"
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "691e0271-2905-46a1-9620-b465f2db4ee3"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Priority weight",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.pri_weight | int > 0}}",
+                "resource": {
+                    "priorityWeight": "{{vars.pri_weight | int}}"
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.alert_iri}}",
+                "collectionType": "\/api\/3\/alerts",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "bc65c7bc-a68e-4d68-922e-8031982964d6"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Severity if Malicious",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.malicious_ind_count > 0 and (vars.alert_iri | fromIRI).severity.itemValue != 'Critical'}}",
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "content": "<span class=\"fa fa-exclamation-triangle\"  style=\"font-size: 15px; color: #DE7A13;\"><\/span>&nbsp; Alert severity updated to  <\/strong><span class=\"badge badge-pill badge-danger\"  style=\"background:#e31b1d; color: #fff;\">Critical<\/span> due to malicious indicator",
+                    "records": "{{vars.alert_iri}}"
+                },
+                "resource": {
+                    "severity": {
+                        "id": 119,
+                        "@id": "\/api\/3\/picklists\/7efa2220-39bb-44e4-961f-ac368776e3b0",
+                        "icon": null,
+                        "@type": "Picklist",
+                        "color": "#e31b1d",
+                        "display": "Critical",
+                        "listName": "\/api\/3\/picklist_names\/4e80cba3-032f-48b4-ac03-17e3ec247aac",
+                        "itemValue": "Critical",
+                        "orderIndex": 4
+                    }
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.alert_iri}}",
+                "collectionType": "\/api\/3\/alerts",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "c69b922e-2156-4318-938b-681c6ff3d8ba"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Reset Priority Weight",
+            "description": "This step will execute only when alert has no linked malicious or suspicious indicator",
+            "arguments": {
+                "when": "{{vars.steps.Get_Malicious_Indicators | length == 0}}",
+                "resource": {
+                    "priorityWeight": 1
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.alert_iri}}",
+                "collectionType": "\/api\/3\/alerts",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "61c3d7fc-6094-4763-8da6-4abc1ba0e425"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Malicious Indicators -> Calculate Priority Weight",
+            "targetStep": "\/api\/3\/workflow_steps\/691e0271-2905-46a1-9620-b465f2db4ee3",
+            "sourceStep": "\/api\/3\/workflow_steps\/e7db1987-df59-4690-a9fb-ea4de9ec4f5f",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "b379eb9f-4838-4a61-b483-2f9433c7abe4"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Calculate Priority Weight -> Update Priority weight",
+            "targetStep": "\/api\/3\/workflow_steps\/bc65c7bc-a68e-4d68-922e-8031982964d6",
+            "sourceStep": "\/api\/3\/workflow_steps\/691e0271-2905-46a1-9620-b465f2db4ee3",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "997b8f0a-da9b-4e86-a8c8-7264bde47a53"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/a2c309c4-d780-4fab-8f2b-7833762b76e4",
+            "sourceStep": "\/api\/3\/workflow_steps\/1c83cf4c-2f61-4299-b0da-5d81edf355b8",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "1710bdcf-59fe-4677-be87-da5e2213ffa7"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get Malicious Indicators",
+            "targetStep": "\/api\/3\/workflow_steps\/e7db1987-df59-4690-a9fb-ea4de9ec4f5f",
+            "sourceStep": "\/api\/3\/workflow_steps\/a2c309c4-d780-4fab-8f2b-7833762b76e4",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "407b9dda-2c55-4e78-a4cf-064b8cd78222"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Priority weight -> Update Severity if Malicious",
+            "targetStep": "\/api\/3\/workflow_steps\/c69b922e-2156-4318-938b-681c6ff3d8ba",
+            "sourceStep": "\/api\/3\/workflow_steps\/bc65c7bc-a68e-4d68-922e-8031982964d6",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "bd486dfa-bf69-4a01-86c2-89a806485fc6"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Severity if Malicious -> Copy  of Update Priority weight",
+            "targetStep": "\/api\/3\/workflow_steps\/61c3d7fc-6094-4763-8da6-4abc1ba0e425",
+            "sourceStep": "\/api\/3\/workflow_steps\/c69b922e-2156-4318-938b-681c6ff3d8ba",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "b918bc23-0ee2-4f95-b861-07bf000a97ef"
+        }
+    ],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "ad668d50-04f7-4d59-a57b-0b7ab4077c8f",
+    "recordTags": [
+        "system",
+        "PostUpdate",
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0"
+    ],
+    "id": "125",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508352.310674,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508352.310674,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

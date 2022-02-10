@@ -1,0 +1,911 @@
+{
+    "@context": "\/api\/3\/contexts\/StagingModelMetadata",
+    "@id": "\/api\/3\/staging_model_metadatas\/c258db4f-f1cd-4f07-9b04-3ea10d308a8d",
+    "@type": "StagingModelMetadata",
+    "type": "sla_template",
+    "parentType": null,
+    "tableName": "sla_template",
+    "ownable": true,
+    "userOwnable": false,
+    "queueable": false,
+    "trackable": true,
+    "taggable": true,
+    "peerReplicable": true,
+    "defaultSort": [],
+    "uniqueConstraint": [
+        {
+            "sla_template_unique": {
+                "columns": [
+                    "incSeverity",
+                    "tenant"
+                ]
+            }
+        }
+    ],
+    "indexable": true,
+    "writable": true,
+    "attributes": [
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/a9bfbf44-3970-4dc2-9fc6-14fd26fc67e2",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "incPauseSLAOn",
+            "length": 0,
+            "orderIndex": 1,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "IncidentStatus"
+                        }
+                    ],
+                    "sort": [
+                        {
+                            "field": "orderIndex",
+                            "direction": "ASC"
+                        }
+                    ]
+                },
+                "displayConditions": {
+                    "bb73fade-f699-11e7-8c3f-9a214cf093ae": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "bb73fd5e-f699-11e7-8c3f-9a214cf093ae": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "bb73fe9e-f699-11e7-8c3f-9a214cf093ae": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "bb7402d6-f699-11e7-8c3f-9a214cf093ae": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "bb74042a-f699-11e7-8c3f-9a214cf093ae": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "\/api\/3\/picklists\/bb74042a-f699-11e7-8c3f-9a214cf093ae",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/c258db4f-f1cd-4f07-9b04-3ea10d308a8d",
+            "uuid": "a9bfbf44-3970-4dc2-9fc6-14fd26fc67e2",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ incPauseSLAOn }}",
+            "descriptions": {
+                "singular": "Pause Incident SLA On"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/1521a0b6-1fa8-4245-8534-65b30c41e959",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "altPauseSLAOn",
+            "length": 0,
+            "orderIndex": 2,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "AlertStatus"
+                        }
+                    ],
+                    "sort": [
+                        {
+                            "field": "orderIndex",
+                            "direction": "ASC"
+                        }
+                    ]
+                },
+                "displayConditions": {
+                    "758925e7-629c-46d8-89db-fb36f5fbe88a": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "7de816ff-7140-4ee5-bd05-93ce22002146": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "891fb9d5-556c-44c6-9f7d-94a27dec732e": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "a53d5465-75a6-4b7a-8144-4eccc23cea4a": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "fac53e73-8d16-4189-98d5-95fbd1555232": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "\/api\/3\/picklists\/a53d5465-75a6-4b7a-8144-4eccc23cea4a",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/c258db4f-f1cd-4f07-9b04-3ea10d308a8d",
+            "uuid": "1521a0b6-1fa8-4245-8534-65b30c41e959",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ altPauseSLAOn }}",
+            "descriptions": {
+                "singular": "Pause Alert SLA On"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/8fa3cd73-f7b1-4a7b-bccb-d9e558d793e2",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "incSeverity",
+            "length": 0,
+            "orderIndex": 4,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "Severity"
+                        }
+                    ],
+                    "sort": [
+                        {
+                            "field": "orderIndex",
+                            "direction": "ASC"
+                        }
+                    ]
+                },
+                "displayConditions": {
+                    "0d609b08-45e0-469f-8910-41145c0b7c03": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "58d0753f-f7e4-403b-953c-b0f521eab759": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "b3c20a3a-ecfd-4adc-a225-0205968e6793": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "40187287-89fc-4e9c-b717-e9443d57eedb": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "7efa2220-39bb-44e4-961f-ac368776e3b0": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "Select Severity and specify the SLA times (in minutes) for incident and Alert",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/c258db4f-f1cd-4f07-9b04-3ea10d308a8d",
+            "uuid": "8fa3cd73-f7b1-4a7b-bccb-d9e558d793e2",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ incSeverity }}",
+            "descriptions": {
+                "singular": "Severity"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/486c2360-c7b3-4cde-91ec-c10eab6de52c",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "ackSlaTime",
+            "length": 0,
+            "orderIndex": 3,
+            "formType": "text",
+            "dataSource": [],
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "0",
+            "tooltip": "Enter time in minutes",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/c258db4f-f1cd-4f07-9b04-3ea10d308a8d",
+            "uuid": "486c2360-c7b3-4cde-91ec-c10eab6de52c",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ ackSlaTime }}",
+            "descriptions": {
+                "singular": "Incident Ack Time"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/8edbfc3d-b86c-4b46-b1e5-f1961e40347d",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "resTime",
+            "length": 0,
+            "orderIndex": 5,
+            "formType": "text",
+            "dataSource": [],
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "0",
+            "tooltip": "Enter time in minutes",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/c258db4f-f1cd-4f07-9b04-3ea10d308a8d",
+            "uuid": "8edbfc3d-b86c-4b46-b1e5-f1961e40347d",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ resTime }}",
+            "descriptions": {
+                "singular": "Incident Response Time"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/9b05915f-72c4-4a78-875b-0c29fe49e753",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "slaTrackedOn",
+            "length": 0,
+            "orderIndex": 6,
+            "formType": "picklist",
+            "dataSource": {
+                "displayConditions": {
+                    "bb73fade-f699-11e7-8c3f-9a214cf093ae": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "bb73fd5e-f699-11e7-8c3f-9a214cf093ae": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "bb73fe9e-f699-11e7-8c3f-9a214cf093ae": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "bb7402d6-f699-11e7-8c3f-9a214cf093ae": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "bb74042a-f699-11e7-8c3f-9a214cf093ae": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    }
+                },
+                "model": "picklists",
+                "query": {
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "IncidentStatus"
+                        }
+                    ],
+                    "logic": "AND",
+                    "sort": [
+                        {
+                            "direction": "ASC",
+                            "field": "orderIndex"
+                        }
+                    ]
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "\/api\/3\/picklists\/bb7402d6-f699-11e7-8c3f-9a214cf093ae",
+            "tooltip": "Select a status that marks the incident state as acknowledged",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/c258db4f-f1cd-4f07-9b04-3ea10d308a8d",
+            "uuid": "9b05915f-72c4-4a78-875b-0c29fe49e753",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ slaTrackedOn }}",
+            "descriptions": {
+                "singular": "Incident Ack SLA Tracked on"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/289cac4d-75f0-4a3a-91c2-7b7629663994",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "resSlaTrackedOn",
+            "length": 0,
+            "orderIndex": 7,
+            "formType": "picklist",
+            "dataSource": {
+                "displayConditions": {
+                    "bb73fade-f699-11e7-8c3f-9a214cf093ae": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "bb73fd5e-f699-11e7-8c3f-9a214cf093ae": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "bb73fe9e-f699-11e7-8c3f-9a214cf093ae": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "bb7402d6-f699-11e7-8c3f-9a214cf093ae": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "bb74042a-f699-11e7-8c3f-9a214cf093ae": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    }
+                },
+                "model": "picklists",
+                "query": {
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "IncidentStatus"
+                        }
+                    ],
+                    "logic": "AND",
+                    "sort": [
+                        {
+                            "direction": "ASC",
+                            "field": "orderIndex"
+                        }
+                    ]
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae",
+            "tooltip": "Select a status that marks the incident state as responded",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/c258db4f-f1cd-4f07-9b04-3ea10d308a8d",
+            "uuid": "289cac4d-75f0-4a3a-91c2-7b7629663994",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ resSlaTrackedOn }}",
+            "descriptions": {
+                "singular": "Incident Response SLA Tracked on"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/a9157377-9457-43e9-8424-780c988a6a2a",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "alertAckTime",
+            "length": 0,
+            "orderIndex": 8,
+            "formType": "text",
+            "dataSource": [],
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "0",
+            "tooltip": "Enter time in minutes",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/c258db4f-f1cd-4f07-9b04-3ea10d308a8d",
+            "uuid": "a9157377-9457-43e9-8424-780c988a6a2a",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ alertAckTime }}",
+            "descriptions": {
+                "singular": "Alert Ack Time"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/4c657008-9309-4b4e-b14e-39e712b718dc",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "alertResTime",
+            "length": 0,
+            "orderIndex": 9,
+            "formType": "text",
+            "dataSource": [],
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "0",
+            "tooltip": "Enter time in minutes",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/c258db4f-f1cd-4f07-9b04-3ea10d308a8d",
+            "uuid": "4c657008-9309-4b4e-b14e-39e712b718dc",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ alertResTime }}",
+            "descriptions": {
+                "singular": "Alert Response Time"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/2db31c5f-e4ec-4a46-bb13-f737f7f94891",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "alertAckTrackedOn",
+            "length": 0,
+            "orderIndex": 10,
+            "formType": "picklist",
+            "dataSource": {
+                "displayConditions": {
+                    "4f76f6be-764b-4d5d-a788-9a7da8f1529f": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "758925e7-629c-46d8-89db-fb36f5fbe88a": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "7de816ff-7140-4ee5-bd05-93ce22002146": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "891fb9d5-556c-44c6-9f7d-94a27dec732e": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "a53d5465-75a6-4b7a-8144-4eccc23cea4a": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "fac53e73-8d16-4189-98d5-95fbd1555232": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    }
+                },
+                "model": "picklists",
+                "query": {
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "AlertStatus"
+                        }
+                    ],
+                    "logic": "AND",
+                    "sort": [
+                        {
+                            "direction": "ASC",
+                            "field": "orderIndex"
+                        }
+                    ]
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "\/api\/3\/picklists\/758925e7-629c-46d8-89db-fb36f5fbe88a",
+            "tooltip": "Select a status that marks the alert state as acknowledged",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/c258db4f-f1cd-4f07-9b04-3ea10d308a8d",
+            "uuid": "2db31c5f-e4ec-4a46-bb13-f737f7f94891",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ alertAckTrackedOn }}",
+            "descriptions": {
+                "singular": "Alert Ack Tracked On"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/ff0e2c62-efcb-4001-a46f-48cb58a8a064",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "alertResTrackedOn",
+            "length": 0,
+            "orderIndex": 11,
+            "formType": "picklist",
+            "dataSource": {
+                "displayConditions": {
+                    "4f76f6be-764b-4d5d-a788-9a7da8f1529f": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "758925e7-629c-46d8-89db-fb36f5fbe88a": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "7de816ff-7140-4ee5-bd05-93ce22002146": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "891fb9d5-556c-44c6-9f7d-94a27dec732e": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "a53d5465-75a6-4b7a-8144-4eccc23cea4a": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "fac53e73-8d16-4189-98d5-95fbd1555232": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    }
+                },
+                "model": "picklists",
+                "query": {
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "AlertStatus"
+                        }
+                    ],
+                    "logic": "AND",
+                    "sort": [
+                        {
+                            "direction": "ASC",
+                            "field": "orderIndex"
+                        }
+                    ]
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+            "tooltip": "Select a status that marks the alert state as responded",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/c258db4f-f1cd-4f07-9b04-3ea10d308a8d",
+            "uuid": "ff0e2c62-efcb-4001-a46f-48cb58a8a064",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ alertResTrackedOn }}",
+            "descriptions": {
+                "singular": "Alert Response Tracked On"
+            }
+        }
+    ],
+    "system": false,
+    "module": "sla_template",
+    "softDeleteable": false,
+    "archivable": false,
+    "paused": false,
+    "partitionBy": "modifyDate",
+    "archivalCriteria": {
+        "keep_primary_data_for": 24,
+        "delete_primary_data_after": 60
+    },
+    "archivalFilters": [],
+    "uuid": "c258db4f-f1cd-4f07-9b04-3ea10d308a8d",
+    "recordTags": [
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0",
+        "fortiSOAREssentials-1.0.0"
+    ],
+    "displayName": "SLA Template",
+    "descriptions": {
+        "plural": "SLA Templates",
+        "singular": "SLA Template"
+    }
+}

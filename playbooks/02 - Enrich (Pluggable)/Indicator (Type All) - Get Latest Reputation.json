@@ -1,0 +1,498 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Indicator (Type All) - Get Latest Reputation",
+    "aliasName": null,
+    "tag": "#ManualAction",
+    "description": "Based on the type of indicator, this playbook retrieves the reputation of indicators using configured threat intelligence tools.",
+    "isActive": false,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "indicator_value",
+        "indicator_type",
+        "indicator_IRI",
+        "indicator_file_IRI",
+        "indicator_file_name"
+    ],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/b135c052-e170-4cff-8cc7-9a4bfe607ccb",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/7fddaffd-8f2e-4b97-89a9-0714bfaf5c81",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Enrich URL Reputation",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "indicator_value": "{{vars.indicator_value}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/7c77932c-eaac-46da-aea6-499c98203b65"
+            },
+            "status": null,
+            "top": "740",
+            "left": "453",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "2718bb27-b58b-4b20-b9e0-30ed2296d28c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Enrich Domain Reputation",
+            "description": "",
+            "arguments": {
+                "arguments": {
+                    "VT_Reputation": "",
+                    "indicator_value": "{{vars.indicator_value}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/9bf00d2b-4bdd-4d49-8d7a-df255f5ffdc3"
+            },
+            "status": null,
+            "top": "34",
+            "left": "429",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "c45e8a99-634e-439a-b1d4-5573c33734e5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Enrich Email Reputation",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "indicator_value": "{{vars.indicator_value}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/eb05b5bf-72de-4c39-9702-c1ad2aa62081"
+            },
+            "status": null,
+            "top": "573",
+            "left": "612",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "2e2de4a7-0e4a-4602-adda-ad49fc683191"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "No op",
+            "description": null,
+            "arguments": {
+                "script": "\/wf\/workflow\/tasks\/no_op",
+                "arguments": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "900",
+            "left": "160",
+            "stepType": "\/api\/3\/workflow_step_types\/ee73e569-2188-43fe-a7f0-1964ba82a4de",
+            "uuid": "0e2e8c9e-5d3e-443a-b1a7-5a7e4a387109"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Enrich Host Reputation",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "indicator_value": "{{vars.indicator_value}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/200693b0-26cf-44a7-9b6b-bc99a2d1d6ef"
+            },
+            "status": null,
+            "top": "413",
+            "left": "673",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "6fcf6ae5-3704-49fa-8452-8b8f29e27d29"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Indicator",
+            "description": null,
+            "arguments": {
+                "when": "{{(vars.result and (vars.result.reputation != None or vars.result.asset_iri != None) )}}",
+                "resource": {
+                    "__link": {
+                        "assets": "{%if vars.result.asset_iri %}{{vars.result.asset_iri}}{%else%}None{%endif%}"
+                    },
+                    "reputation": "{%if vars.result.reputation_iri %}{{vars.result.reputation_iri }}{%else%}{{(\"IndicatorReputation\" | picklist(\"No Reputation Available\"))[\"@id\"]}}{%endif%}",
+                    "description": "<p>{{vars.result.enrichment_summary}}<\/p>\n<h6><strong>{% if \"Malicious\" in vars.result.Reputation %} Seems&nbsp;<\/strong><span style=\"color: red;\">{{vars.result.Reputation}}<\/span><\/h6>\n<h6><strong>{% elif \"Good\" in vars.result.Reputation %}&nbsp; Seems&nbsp;<\/strong><span style=\"color: green;\">{{vars.result.Reputation}}<\/span><\/h6>\n<h6><strong>{% elif \"No Reputation Available\" in vars.result.Reputation %} Seems&nbsp;<\/strong>{{vars.result.Reputation}}<\/h6>\n<h6><strong>{%endif%}<\/strong><\/h6>"
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.input.params['indicator_IRI']}}",
+                "tagsOperation": "OverwriteTags",
+                "collectionType": "\/api\/3\/indicators",
+                "fieldOperation": {
+                    "tags": "Overwrite",
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "413",
+            "left": "1140",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "dea51f21-3f49-45b3-8782-7cc31588ec10"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Enrich Process Reputation",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "indicator_value": "{{vars.indicator_value}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/2e5bb6ea-cb7b-465d-8b55-5051f6336af7"
+            },
+            "status": null,
+            "top": "840",
+            "left": "373",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "318ecce4-fc94-426a-9b32-798510e2c842"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Enrich File Reputation",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "indicator_file_IRI": "{{vars.indicator_file_IRI}}",
+                    "indicator_file_name": "{{vars.indicator_file_name}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/79c52107-e0c0-41b8-a409-5fa577c31a21"
+            },
+            "status": null,
+            "top": "660",
+            "left": "560",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "4ea6e95f-c39e-4d0e-ba76-862658c8790b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Check type of Indicator",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Filehash",
+                        "step_iri": "\/api\/3\/workflow_steps\/777e1b4c-04ee-4af7-b9c1-b5b6a3ab2f51",
+                        "condition": "{{ ((vars.indicator_type == 'FileHash-SHA256') or (vars.indicator_type == 'FileHash-MD5' )or(vars.indicator_type == 'FileHash-SHA1' )) }}"
+                    },
+                    {
+                        "option": "Other",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/0e2e8c9e-5d3e-443a-b1a7-5a7e4a387109"
+                    },
+                    {
+                        "option": "Domain",
+                        "step_iri": "\/api\/3\/workflow_steps\/c45e8a99-634e-439a-b1d4-5573c33734e5",
+                        "condition": "{{ vars.indicator_type == 'Domain' }}"
+                    },
+                    {
+                        "option": "IP",
+                        "step_iri": "\/api\/3\/workflow_steps\/04e9457f-4f6d-482b-be3f-9056490ba269",
+                        "condition": "{{ vars.indicator_type == 'IP Address' }}"
+                    },
+                    {
+                        "option": "Host",
+                        "step_iri": "\/api\/3\/workflow_steps\/6fcf6ae5-3704-49fa-8452-8b8f29e27d29",
+                        "condition": "{{ vars.indicator_type == 'Host' }}"
+                    },
+                    {
+                        "option": "URL",
+                        "step_iri": "\/api\/3\/workflow_steps\/2718bb27-b58b-4b20-b9e0-30ed2296d28c",
+                        "condition": "{{ vars.indicator_type == 'URL' }}"
+                    },
+                    {
+                        "step_iri": "\/api\/3\/workflow_steps\/2e2de4a7-0e4a-4602-adda-ad49fc683191",
+                        "condition": "{{ vars.indicator_type == 'Email Address' }}"
+                    },
+                    {
+                        "option": "File",
+                        "step_iri": "\/api\/3\/workflow_steps\/4ea6e95f-c39e-4d0e-ba76-862658c8790b",
+                        "condition": "{{ vars.indicator_type == 'File' }}"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "414",
+            "left": "40",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "62b96fa3-53da-4d2f-a7f6-4c555ad53bd9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configurations",
+            "description": null,
+            "arguments": {
+                "indicator_IRI": "{{vars.input.params['indicator_IRI']}}",
+                "indicator_type": "{{vars.input.params['indicator_type']}}",
+                "indicator_value": "{{vars.input.params['indicator_value']}}",
+                "indicator_file_IRI": "{{vars.input.params['indicator_file_IRI']}}",
+                "indicator_file_name": "{{vars.input.params['indicator_file_name']}}"
+            },
+            "status": null,
+            "top": "231",
+            "left": "40",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "632ec394-b4fb-4c37-91f4-b0f751629580"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Enrich File Hash Reputation",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "indicator_value": "{{vars.indicator_value}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/1123a7b0-77fc-4038-9032-6de0a398568a"
+            },
+            "status": null,
+            "top": "120",
+            "left": "560",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "777e1b4c-04ee-4af7-b9c1-b5b6a3ab2f51"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Enrich IP Reputation",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "indicator_value": "{{vars.indicator_value}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/bfaeff3e-bfbf-4639-aea7-3aa3638f5922"
+            },
+            "status": null,
+            "top": "240",
+            "left": "609",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "04e9457f-4f6d-482b-be3f-9056490ba269"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "indicator_IRI": "{{ vars.indicator_IRI }}",
+                            "indicator_type": "{{ vars.indicator_type }}",
+                            "indicator_value": "{{ vars.indicator_value }}",
+                            "indicator_file_IRI": "{{ vars.indicator_file_IRI }}",
+                            "indicator_file_name": "{{ vars.indicator_file_name }}"
+                        }
+                    }
+                }
+            },
+            "status": null,
+            "top": "40",
+            "left": "40",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "uuid": "7fddaffd-8f2e-4b97-89a9-0714bfaf5c81"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Enrich URL Reputation -> Update Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/dea51f21-3f49-45b3-8782-7cc31588ec10",
+            "sourceStep": "\/api\/3\/workflow_steps\/2718bb27-b58b-4b20-b9e0-30ed2296d28c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "8a01fdd5-6794-4163-a609-a8764a7dd57d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check type of Indicator -> Enrich Host Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/6fcf6ae5-3704-49fa-8452-8b8f29e27d29",
+            "sourceStep": "\/api\/3\/workflow_steps\/62b96fa3-53da-4d2f-a7f6-4c555ad53bd9",
+            "label": "Host",
+            "isExecuted": false,
+            "uuid": "c6c98458-d18f-4822-a68c-74fec5d27d49"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Enrich File Hash Reputation -> Update Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/dea51f21-3f49-45b3-8782-7cc31588ec10",
+            "sourceStep": "\/api\/3\/workflow_steps\/777e1b4c-04ee-4af7-b9c1-b5b6a3ab2f51",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "30a1ff24-cbd9-49b4-b028-8fbbe53cf1fc"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check type of Indicator -> Enrich Process Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/318ecce4-fc94-426a-9b32-798510e2c842",
+            "sourceStep": "\/api\/3\/workflow_steps\/62b96fa3-53da-4d2f-a7f6-4c555ad53bd9",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "a8d75b64-07c5-40f5-8cbc-b5f4c65236af"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check type of Indicator -> Get File Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/4ea6e95f-c39e-4d0e-ba76-862658c8790b",
+            "sourceStep": "\/api\/3\/workflow_steps\/62b96fa3-53da-4d2f-a7f6-4c555ad53bd9",
+            "label": "File",
+            "isExecuted": false,
+            "uuid": "4a361469-91ac-4faf-a690-a36f15c33f76"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check type of Indicator -> Enrich Hash Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/777e1b4c-04ee-4af7-b9c1-b5b6a3ab2f51",
+            "sourceStep": "\/api\/3\/workflow_steps\/62b96fa3-53da-4d2f-a7f6-4c555ad53bd9",
+            "label": "Filehash",
+            "isExecuted": false,
+            "uuid": "22dc0ed6-cba0-4104-bff0-8d65ab80696e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Enrich Process Reputation -> Update Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/dea51f21-3f49-45b3-8782-7cc31588ec10",
+            "sourceStep": "\/api\/3\/workflow_steps\/318ecce4-fc94-426a-9b32-798510e2c842",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "2afc2f9a-6eed-475b-91ec-b1dcf09c56fd"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check type of Indicator -> Enrich Email Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/2e2de4a7-0e4a-4602-adda-ad49fc683191",
+            "sourceStep": "\/api\/3\/workflow_steps\/62b96fa3-53da-4d2f-a7f6-4c555ad53bd9",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "008c8922-27c6-4b8f-930e-5b31aa0ceca6"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configurations",
+            "targetStep": "\/api\/3\/workflow_steps\/632ec394-b4fb-4c37-91f4-b0f751629580",
+            "sourceStep": "\/api\/3\/workflow_steps\/7fddaffd-8f2e-4b97-89a9-0714bfaf5c81",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "955da83f-611a-44df-bf0d-211ba5f7a666"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check type of Indicator -> No op",
+            "targetStep": "\/api\/3\/workflow_steps\/0e2e8c9e-5d3e-443a-b1a7-5a7e4a387109",
+            "sourceStep": "\/api\/3\/workflow_steps\/62b96fa3-53da-4d2f-a7f6-4c555ad53bd9",
+            "label": "Other",
+            "isExecuted": false,
+            "uuid": "c57685a1-04b5-4053-a7e4-4311dca7c5f1"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check type of Indicator -> Enrich Domain Reputation new",
+            "targetStep": "\/api\/3\/workflow_steps\/c45e8a99-634e-439a-b1d4-5573c33734e5",
+            "sourceStep": "\/api\/3\/workflow_steps\/62b96fa3-53da-4d2f-a7f6-4c555ad53bd9",
+            "label": "Domain",
+            "isExecuted": false,
+            "uuid": "b2054a94-50ed-49a3-8123-db83e58c4095"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Enrich File Reputation -> Update Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/dea51f21-3f49-45b3-8782-7cc31588ec10",
+            "sourceStep": "\/api\/3\/workflow_steps\/4ea6e95f-c39e-4d0e-ba76-862658c8790b",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "513b3da7-0e33-4549-8d27-43b0519870a8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check type of Indicator -> Enrich IP Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/04e9457f-4f6d-482b-be3f-9056490ba269",
+            "sourceStep": "\/api\/3\/workflow_steps\/62b96fa3-53da-4d2f-a7f6-4c555ad53bd9",
+            "label": "IP",
+            "isExecuted": false,
+            "uuid": "fc0e5d83-42b3-4ba3-9a22-a92b0c0e847f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Enrich Email Reputation -> Update Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/dea51f21-3f49-45b3-8782-7cc31588ec10",
+            "sourceStep": "\/api\/3\/workflow_steps\/2e2de4a7-0e4a-4602-adda-ad49fc683191",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "7683d43e-c23c-46d8-bbf9-67a03c0bcbc3"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configurations -> Check type of Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/62b96fa3-53da-4d2f-a7f6-4c555ad53bd9",
+            "sourceStep": "\/api\/3\/workflow_steps\/632ec394-b4fb-4c37-91f4-b0f751629580",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "3b17b79d-6913-4631-bdcd-a12fdd87fec3"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check type of Indicator -> Enrich URL Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/2718bb27-b58b-4b20-b9e0-30ed2296d28c",
+            "sourceStep": "\/api\/3\/workflow_steps\/62b96fa3-53da-4d2f-a7f6-4c555ad53bd9",
+            "label": "URL",
+            "isExecuted": false,
+            "uuid": "90627076-7f7e-4a97-ba2d-1761a6041a1b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Enrich Domain Reputation -> Update Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/dea51f21-3f49-45b3-8782-7cc31588ec10",
+            "sourceStep": "\/api\/3\/workflow_steps\/c45e8a99-634e-439a-b1d4-5573c33734e5",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "a6f371ce-74a9-4794-83e5-88e75eff2ffa"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Enrich Host Reputation -> Update Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/dea51f21-3f49-45b3-8782-7cc31588ec10",
+            "sourceStep": "\/api\/3\/workflow_steps\/6fcf6ae5-3704-49fa-8452-8b8f29e27d29",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "6c88a12e-5e9e-435a-ac8e-ee57dec75c22"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Enrich IP Reputation -> Update Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/dea51f21-3f49-45b3-8782-7cc31588ec10",
+            "sourceStep": "\/api\/3\/workflow_steps\/04e9457f-4f6d-482b-be3f-9056490ba269",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "6e424f3d-9b92-406d-8f72-5ecd9d45c916"
+        }
+    ],
+    "priority": null,
+    "uuid": "73b9fe7a-a4c8-4119-8452-1401c69d56fb",
+    "recordTags": [
+        "Subroutine",
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0"
+    ],
+    "id": "109",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508351.195798,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508351.195798,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

@@ -1,0 +1,130 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Incident - [06] Check for Ack SLA violations",
+    "aliasName": null,
+    "tag": "#Schedule  #system",
+    "description": "Notifies users of violation of Acknowledgement SLA.",
+    "isActive": false,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/e3b9c59f-d600-4ad2-b256-ed1452c64aef",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/6c082b78-5cbf-4eee-b52a-a155672070d6",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": [],
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "uuid": "6c082b78-5cbf-4eee-b52a-a155672070d6"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Retrieve all New incidents",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "datetime",
+                            "field": "ackDueDate",
+                            "value": "false",
+                            "operator": "isnull"
+                        },
+                        {
+                            "type": "object",
+                            "field": "slaState",
+                            "value": "\/api\/3\/picklists\/090115d7-90fc-4dc6-97ca-27950fc30c1c",
+                            "_value": {
+                                "display": "Met",
+                                "itemValue": "Met"
+                            },
+                            "operator": "eq"
+                        }
+                    ]
+                },
+                "module": "incidents?$limit=30",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "uuid": "b5a51c88-0329-4222-b285-1d34006d87ac"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Check and Notify SLA Violations",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.steps.Retrieve_all_New_incidents | length !=0}}",
+                "for_each": {
+                    "item": "{{vars.steps.Retrieve_all_New_incidents}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "arguments": {
+                    "severity": "{{vars.item.severity.itemValue}}",
+                    "incident_IRI": "{{vars.item['@id']}}",
+                    "incident_createdDate": "{{vars.item.createDate}}"
+                },
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/c293c365-bd34-4eb0-b5c5-512fc5a5297c"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "ff28199a-12fa-400b-812a-f4dc5272e613"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Retrieve all New incidents -> Check and Notify SLA Violations",
+            "targetStep": "\/api\/3\/workflow_steps\/ff28199a-12fa-400b-812a-f4dc5272e613",
+            "sourceStep": "\/api\/3\/workflow_steps\/b5a51c88-0329-4222-b285-1d34006d87ac",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "91c2fb87-a11c-42f6-bf83-38d9dcfa82ff"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Retrieve all New incidents",
+            "targetStep": "\/api\/3\/workflow_steps\/b5a51c88-0329-4222-b285-1d34006d87ac",
+            "sourceStep": "\/api\/3\/workflow_steps\/6c082b78-5cbf-4eee-b52a-a155672070d6",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "43223f6d-c0b7-4791-bc3c-cd83695d2971"
+        }
+    ],
+    "priority": null,
+    "uuid": "7d278c39-166e-4659-b28c-c979a4eb2df2",
+    "recordTags": [
+        "system",
+        "SLA",
+        "Subroutine",
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0"
+    ],
+    "id": "212",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508356.01225,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508356.01225,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

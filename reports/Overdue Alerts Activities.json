@@ -1,0 +1,210 @@
+{
+    "@context": "\/api\/3\/contexts\/Reporting",
+    "@type": "Reporting",
+    "uuid": "515dec79-7800-44c8-a46d-e3230882baef",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508360.527604,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644509818.466124,
+    "recordTags": [
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0"
+    ],
+    "displayName": "Overdue Alerts Activities",
+    "type": "rows",
+    "templateType": "reporting",
+    "roles": [
+        "\/api\/3\/roles\/17562d60-b841-4ed7-912b-1ebaf063c8c9",
+        "\/api\/3\/roles\/21d7a7c6-9d68-438f-b732-e8950c5f745b",
+        "\/api\/3\/roles\/a501c11e-15af-49a6-a3a4-88605f32f016",
+        "\/api\/3\/roles\/aada6692-fbf4-4a02-a580-f8a200962365",
+        "\/api\/3\/roles\/c5ff8174-b3fa-41c5-b781-2b890b426a80"
+    ],
+    "parentTemplateId": null,
+    "config": {
+        "wid": "a5ba8b93-4f28-429a-b09f-82d1383aa857",
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "6d032fc4-5f94-4a12-a513-cd64b0a8d52e",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "sectionText": "<p style=\"text-align: center; background: #4e94d0; padding-top: 5px;\"><span style=\"font-size: 14pt;\"><strong><span style=\"color: #efefee;\">Overdue Alerts Activities<\/span>&nbsp;<\/strong><\/span><\/p>"
+                                }
+                            },
+                            {
+                                "type": "rows",
+                                "config": {
+                                    "wid": "0a64f546-1cd6-44ec-9b19-a544535e0381",
+                                    "rows": []
+                                }
+                            },
+                            {
+                                "type": "cardCount",
+                                "config": {
+                                    "wid": "24e820aa-16b5-4513-89f1-4e7cc22b648e",
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "field": "severity.orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ],
+                                        "limit": 30,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "status",
+                                                "operator": "neq",
+                                                "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                                                "_value": {
+                                                    "itemValue": "Closed",
+                                                    "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "logic": "AND",
+                                                "filters": [
+                                                    {
+                                                        "field": "respDueDate",
+                                                        "operator": "lte",
+                                                        "value": "{{getRelativeDate(0,0,0,0,1,\"end\")}}",
+                                                        "type": "datetime"
+                                                    }
+                                                ],
+                                                "_field": "respDueDate",
+                                                "_value": {
+                                                    "differenceType": "mins",
+                                                    "differenceValue": 1
+                                                },
+                                                "_operator": "lte",
+                                                "type": "datetime"
+                                            }
+                                        ],
+                                        "aggregates": [
+                                            {
+                                                "operator": "countdistinct",
+                                                "field": "*",
+                                                "alias": "total"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "severity",
+                                                "field": "severity.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "color",
+                                                "field": "severity.color"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "orderIndex",
+                                                "field": "severity.orderIndex"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "assignedToPerson": "",
+                                        "fieldName": "severity"
+                                    },
+                                    "aggregate": true,
+                                    "resource": "alerts",
+                                    "title": "Severity based Open Alerts"
+                                }
+                            },
+                            {
+                                "type": "cardList",
+                                "config": {
+                                    "wid": "11a2d71d-5474-4bd5-9434-af825876217b",
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 30,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "status",
+                                                "operator": "neq",
+                                                "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                                                "_value": {
+                                                    "itemValue": "Closed",
+                                                    "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "logic": "AND",
+                                                "filters": [
+                                                    {
+                                                        "field": "respDueDate",
+                                                        "operator": "lte",
+                                                        "value": "{{getRelativeDate(0,0,0,0,1,\"end\")}}",
+                                                        "type": "datetime"
+                                                    }
+                                                ],
+                                                "_field": "respDueDate",
+                                                "_value": {
+                                                    "differenceType": "mins",
+                                                    "differenceValue": 1
+                                                },
+                                                "_operator": "lte",
+                                                "type": "datetime"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "templateView": "cardView",
+                                        "assignedToPerson": "",
+                                        "picklistBar": "severity",
+                                        "title": "id",
+                                        "subTitle": "name",
+                                        "subTitle3": "severity",
+                                        "subTitle4": "respDate"
+                                    },
+                                    "module": "alerts",
+                                    "title": "Open Alerts"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "72e28cbf-5a41-4c45-89a3-573ebb656ea5"
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "5da62782-b4a4-4bb4-af69-5de14276ed74",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "sectionText": "<p style=\"text-align: center;\"><span style=\"font-size: 10pt;\">Report Generated By FortiSOAR&trade;<\/span><\/p>"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "wid": "f05cda2f-9210-4633-b8e5-fcc03d0b386c"
+            }
+        ],
+        "readOnlyFlag": true,
+        "refreshInterval": 10
+    },
+    "filterArray": [],
+    "updateDate": null
+}

@@ -1,0 +1,175 @@
+{
+    "@context": "\/api\/3\/contexts\/Reporting",
+    "@type": "Reporting",
+    "uuid": "d6d9fe68-f4cd-43c8-8049-0440496e90ad",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508360.696747,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644509818.495382,
+    "recordTags": [
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0"
+    ],
+    "displayName": "Unhandled Activities",
+    "type": "rows",
+    "templateType": "reporting",
+    "roles": [
+        "\/api\/3\/roles\/17562d60-b841-4ed7-912b-1ebaf063c8c9",
+        "\/api\/3\/roles\/21d7a7c6-9d68-438f-b732-e8950c5f745b",
+        "\/api\/3\/roles\/a501c11e-15af-49a6-a3a4-88605f32f016",
+        "\/api\/3\/roles\/aada6692-fbf4-4a02-a580-f8a200962365",
+        "\/api\/3\/roles\/c5ff8174-b3fa-41c5-b781-2b890b426a80"
+    ],
+    "parentTemplateId": null,
+    "config": {
+        "wid": "5556563c-3ffd-48dc-ae58-88976c7b68fd",
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "f7bbf4e0-91fa-43b6-9309-8fbfde5f97e6",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "sectionText": "<p style=\"text-align: center; background: #4e94d0; padding-top: 5px;\"><span style=\"font-size: 14pt;\"><strong><span style=\"color: #efefee;\">Unassigned Alerts<\/span>&nbsp;<\/strong><\/span><\/p>"
+                                }
+                            },
+                            {
+                                "type": "cardList",
+                                "config": {
+                                    "wid": "e5a315ce-fa44-4d7b-9e98-18da4f48e589",
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 10,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "assignedTo",
+                                                "operator": "isnull",
+                                                "value": "true",
+                                                "_value": {
+                                                    "display": "",
+                                                    "itemValue": "",
+                                                    "@id": "true"
+                                                },
+                                                "type": "object"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "templateView": "cardView",
+                                        "assignedToPerson": "",
+                                        "picklistBar": "severity",
+                                        "title": "id",
+                                        "subTitle": "name",
+                                        "subTitle3": "severity",
+                                        "subTitle4": "createDate"
+                                    },
+                                    "module": "alerts",
+                                    "title": "Unassigned Alerts"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "2e12bd7d-13f9-4009-ae88-bb032bee531f"
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "e1dc8611-984f-405d-b584-57771046b122"
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "238b4f6b-e025-4c2d-9e9b-63c9cb234c01",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "sectionText": "<p style=\"text-align: center; background: #4e94d0; padding-top: 5px;\"><span style=\"font-size: 14pt;\"><strong><span style=\"color: #efefee;\">Unassigned Incidents<\/span><\/strong><\/span><\/p>"
+                                }
+                            },
+                            {
+                                "type": "cardList",
+                                "config": {
+                                    "wid": "ec7b6303-c6d8-4bc6-923b-b42c8d78d5ac",
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 10,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "incidentLead",
+                                                "operator": "isnull",
+                                                "value": "true",
+                                                "_value": {
+                                                    "display": "true",
+                                                    "itemValue": "",
+                                                    "@id": "true"
+                                                },
+                                                "type": "object"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "templateView": "cardView",
+                                        "assignedToPerson": "",
+                                        "picklistBar": "severity",
+                                        "title": "id",
+                                        "subTitle": "name",
+                                        "subTitle3": "severity",
+                                        "subTitle4": "createDate"
+                                    },
+                                    "module": "incidents",
+                                    "title": "Unassigned Incidents"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "153dbbed-894c-4d22-9c9c-6fe185ec2e80"
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "a235fe91-22d1-4b54-8c56-f4c35bebc03a",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "sectionText": "<p style=\"text-align: center;\"><span style=\"font-size: 10pt;\">Report Generated By FortiSOAR&trade;<\/span><\/p>"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "wid": "d6f3f36d-c631-4933-a2bb-f1af7e93fa54"
+            }
+        ]
+    },
+    "filterArray": [],
+    "updateDate": null
+}

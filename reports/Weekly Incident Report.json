@@ -1,0 +1,570 @@
+{
+    "@context": "\/api\/3\/contexts\/Reporting",
+    "@type": "Reporting",
+    "uuid": "f14dd5c1-3d1c-4336-b12d-443321de28c7",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644330869.481388,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644509818.550007,
+    "recordTags": [],
+    "displayName": "Weekly Incident Report",
+    "type": "rows",
+    "templateType": "reporting",
+    "roles": [
+        "\/api\/3\/roles\/17562d60-b841-4ed7-912b-1ebaf063c8c9",
+        "\/api\/3\/roles\/21d7a7c6-9d68-438f-b732-e8950c5f745b",
+        "\/api\/3\/roles\/a501c11e-15af-49a6-a3a4-88605f32f016",
+        "\/api\/3\/roles\/aada6692-fbf4-4a02-a580-f8a200962365",
+        "\/api\/3\/roles\/c5ff8174-b3fa-41c5-b781-2b890b426a80"
+    ],
+    "parentTemplateId": null,
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "sectionText": "<p style=\"text-align: left;\">&nbsp;<\/p>\n<p style=\"text-align: left;\"><span style=\"font-size: 18pt;\"><strong><img style=\"float: right;\" src=\"data:image\/png;base64,iVBORw0KGgoAAAANSUhEUgAAAooAAABkCAYAAAABpRFXAAAXvElEQVR4Ae2di5cU1Z2A\/QPyB0RcWHnNiDzk7SOJL9C4iaAgBjbJZjWJi6\/EbAQ860ZR1A0qRDBqzlFJIgFE0QDGI4Qj5igBzqxR2cOshtcMweExKI8BhmGGmf7tuZ1trFtdXa97q6qb+uqcOtO3Hrdvf\/fX937zq+6uc4QFAhCAAAQgAAEIQAACHgTO8djGJghAAAIQgAAEIAABCAiiSBBAAAIQgAAEIAABCHgSQBQ9sbARAhCAAAQgAAEIQABRJAYgAAEIQAACEIAABDwJIIqeWNgIAQhAAAIQgAAEIIAoEgMQgAAEIAABCEAAAp4EEEVPLGyEAAQgAAEIQAACEEAUiQEIQAACEIAABCAAAU8CiKInFjZCAAIQgAAEIAABCCCKxAAEIAABCEAAAhCAgCcBRNETCxshAAEIQAACEIAABBBFYgACEIAABCAAAQhAwJMAouiJhY0QgAAEIAABCEAAAojiWRADhZ4eKXR3G62+GNrbpfvTltTWwqlTlZtTKBi9ziKnnp7K9bMHAhCAAAQgAIEzBKyJYmvrAWENz6C7u\/tMJ8R5oISnffVK2Tt1quysG2a8Fo4dq9iM9hWrZOeXhqa2dm5+v2JbTu9tMX6titfeadOk\/Y3VoiTb9vLJxx\/LmjVrzqp1\/dtvy6aNG4vrRx9+KLt27ZJDhw5JTwL8KvVHS0vLWcU0aoycPHmyEpridhtxt7u52fc5vHZGfR21dPzatWtk8+bNsmPHDmlvb\/d6+als+\/CDD3Id++6YUf3htxxra8s1r9YDB\/zwRN5nTRR79fqysIZnoCa9uEvnx\/8rn06abEWYSpKZN1Esve6WSZOl66+fxO0Kz\/MefOAB6XXul3Ox9j6vl4wdM1qmTLlJ7rtvlixf\/rJs375dCoWCJxuTja8sX54LppViZ8+ePb74bMTd888\/7\/scXjsrtfds235er3PlkovHyg++f6ssWvRiMc69eCSx7dZbbsl17Ltjad68J30xNzY25pqXEmubC6KYkeDGFUWVRdw1ZKRVSVTSlFdRVK9917BRxeyirTeWjQnbPTDWWnn0qJHywM9+Jh999JEtrIIoIorV9j647NJL5Rfz58vBgwetxblXRYii\/o83oqjzcL8vEMWMxM52tjSOKB5\/dbl1QSxl1vIsiiUGx1e84jVGR96GKOqD2I03TJT33ns3Mkf3CYgiouieEKul3KdPb5k1a6bYvuRXeg8givqYgijqPNzvA0Qxp6LY8af1snPQcETR0mcUS3Ko\/R00XDosCA2i6D2I3T59ulHmBVFEFN0TYrWV6wYOkN\/+5jfWP3qBKOpjCqKo83C\/DxDFHIpi97690nTJZYlJopIlMop\/\/0KQ4ty9b1\/pH\/lYfxHFyoPY8IuGifpgfpwFUUQU3RNitZa\/f+stcuLEiThh7nkOoqiPKYiizsP9PkAUcyiK+2\/\/t0QlEVHUvzV+4M47PAfrsBsRRf9BrF\/f84vfJA3Ls3QcoogouifEai5f9\/Vr5fPPPy+Fr9FfRFEfUxBFnYf7fYAo5kwUi5ecLfz8jXaJ1aM+Moq6LJpcgkYU\/QcxNahdUF8nUX+KBVFEFN0TYrWXx48bJ8ePHzeSRHUyoqiPKYiizsP9PkAU8ySKhYK0TJmSeDaRjKIuiYpHy803xx7cEUX\/Qaw0qE2cMCHSZ7kQRUSxFDu19Pe2H\/4g9lhSOhFR1McURFHn4X4\/IIo5EsVTmzamIomIYrkoKianGhpK43Skv4ii\/yDmHNSWLFkSmi2iiCg6Y6eWHq949dXQce51IKKojymIos7D\/V5AFHMkiq0z\/h1RdI2atu7MokQwaD143wzXs4crIor+g5hzUBszepScPn06FFhEEVF0xk4tPR42dIgcPXo0VJx7HYQo6mMKoqjzcL8XEMW8iGJXpzSNvDhQZoJkJ+x+PqNYLo5Noy8R6eryGrd9tyGK\/oOYe1B7Y\/VqX56lnYgiouiOnVoqP\/boo6VQjvwXUdTHFERR5+F+HyCKORHFjg3vpiaJSiYRxXJRVFzU5f+oC6LoP4i5BzV1S7QwC6KIKLpjp5bKA\/r3E3UP4jgLoqiPKYiizsP9PkAUcyKKhx7\/OaLoMaKmeelZieLh+f73FPVooiCK\/oOYe1BTE2hXiMwtoogoumOn1spx7qWtxhhEUR9TEEWdh\/t9gCjmRBT33fKviKKHhaUtivtCZrucTUUU\/Qcx96CmymHuCY0oIopesVNL264ZP845VIR+jCjqYwqiqPNwvwcQxZyIYvOYSxFFj2E0bVFUd2qJuiCK\/oOYe1BT5cUvvRSIGVFEFL1ip9a2NTc3Bca6+wBEUR9TEEWdh\/s9cNaK4oAB\/WTTpo25WU+dOuUeC7Ry2C+h2DqOzyh6f0ZR8Y262BDF++\/\/D9m0cWNVruvW\/VF+t3ix3HffLBk4oL+4B6k45YcffigQc2trqxEPxTRO25zn3HPPj43aYNKnQWOGjbiLc2nUySfu48bGRqnGtaGhQZYuXSKTbrzBOHZKbOIwtiGK6nlN4q+azt2zx\/+fJnX7RJP2Klal\/or7V\/3YukkbTM49dOhQ4Hga5YBzohzsd2wvw0xffX2dX\/X52lcopJpNVDKEKFaXKMaZTLJ4k2zfvl2GDhlsPKjedtsPE2++jcE\/KJOR+IvweYJaFkWfl1U1u5YtWyp9+vQ2jvWwX95yvnAboqjEgyUcAcUqriCWzrtp8qRwT1YDRyGKVdpJR371nKS5FjorZzi7Pv5Eji58JrW1+9OWir2ihDZNLuq5oi5ZTdhR22nreJVxKQ2Ocf+mMagiiv6Xq1TfxfkHJW6fO8+zFYtJ17NwwQLjWB9+UfSrFIhi0j2r148o6jwQRZ0HJQgYE8ibKKrLQM5JP85jdZkm6QVRrF5RLBQKSXe\/lfrVfZv79T3fON4PHz4cqT2IYiRcxgcjijpCRFHnQQkCxgTyJoptbW3GE+fFY8cYcw+qAFGsXlFUMVQry5QpNxnHu\/rsY5QFUYxCy\/xYRFFniCjqPChBwJgAohgsJO6s49gxo425B1WAKAb3S1aXnmtJFG18KWrVqpVB4artRxQ1HIkXEEUdMaKo86AEAWMCiGKwkCCKxmFWVkFWcefuyzjlWhLF+fPmGWcUX3jh+bL+89uAKPrRsb8PUdSZIoo6D0oQMCaQ1YRt3PCYFdi49ExGMSZ8x2lZxV0cMXSfU0uimEVmGlF0BHoKDxFFHTKiqPOgBAFjAllN2MYNj1nB\/v37jTMsiGJM+I7Tsoo7t\/TFKedNFP\/rscccPRf8EFEMZmTzCERRp4ko6jwoQcCYQFYTtnHDY1bw1ltvIYox2dk8Lau4iyOG7nPyJoqqr6IsiGIUWubHIoo6Q0RR51EVpZ4DrdJy7eRUVzlxoipee1AjaoFNVhN2ELsk9h9ra5OrrrwCUUwCbsQ6s4o7t\/TFKSOK\/p2NKPrzsb0XUdSJIoo6j6ooqR+c3vmloamufndmqQoo\/9+IWmCT1YSdZD+dPHlS1GSu1s8++0y2bt0qr732mlx91ZXGkqjEgkvP5r2XVdzFEUP3OYiif\/8jiv58bO9FFHWiVSOKprcArLbz1X1L4y61IENxX5vpebXAxsaE7Z5Iz\/by1VdfZRoagedn8SWEwEZZPMBG3PHzOMEdYiOOVF9FWWyIYjWNIWn8YxiFr\/tYRFEngiga3qO6kqAiinqg2SohitF\/eqaaJohKbZk2daqtEKlYj40Jnns9l+Ot1KdRtpNRLOfq3IIoOmkk\/xhR1Bkjiohi8RI3l54rX+qPysZGZifKJHs2HPvQQ7P1kSmBEqIY\/E8GGcXgwLMRR2QUk\/+B\/eCerHwEoqizQRQRRUQx4POgiGKwYJjK6tq1a\/SRKYGSjQmejGJ5x5j2vTqfjGI5V+cWMopOGsk\/RhR1xogioogoIopWvpASVxj69T1fOjo69JEpgRKiGCz8ZBSDA89GHJFRJKMYHGnVcwSiiCgiiohipqI4c8a9qYyINiZ4MorlXRX3HwTneWQUy7k6t5BRdNJI\/jEZRZ0xoogoIoqIYmai2PsfzpNt27bpo1JCJUSRjKKN0LIRR2QUySjaiMW06kAUEUVEEVHMTBRnzZyR1lgnNiZ4Morl3eXMDMZ9TEaxnKtzCxlFJ43kH5NR1BkjiogioogoZiKKI0cMl6NHj+ojUoIlRJGMoo3wshFHZBTJKNqIxbTqQBQRRUQRUUxdFPv06S2bN29Oa5wrPo+NCZ6MYnmXxc0iOs8jo1jO1bmFjKKTRvKPySjqjBFFRBFRRBRTFcXe5\/WSlSt\/r49EKZQQRTKKNsLMRhyRUSSjaCMW06oDUUQUEUVEMVVRnP1gtNuX2RoMbUzwZBTLe8OZGYz7mIxiOVfnFjKKThrJPyajqDNGFBFFRBFRTFUUlUzcPn26HGtr00ejhEuIIhlFGyFmI47IKJJRtBGLadWBKCKKiCKimLooKlm8\/vpvSldXV1pjHd96PhdRtBFsiGJwHAVllseOQRRtxGJadSCKiCKiiChmIopqMnn88blpjXWIIqJoJdYQRUQxSITV\/psmT7ISb9VQSdWIYn19XTXwqIo2dH\/aUpS3nQECY3N\/1PsZZwWqFtioy0phBhK\/Y9RkVE1LZ2dn8X686rNke\/bskfff\/2957tlnZfCFg4xea9\/z\/1FaW1tTeak2Jng+o1jeVX5xHHYfn1Es5+rcYuMziupzdyzhCPAZRZ0ToqjzqIpSz8HPZP+3bk11lfb2qnjtQY2oBTZnoyhW6pempl1SXzfQSBYXLlxQqXqr2xHF4ExQnH9Qwsqg33GIon+oI4r+fGzvRRR1ooiizoMSBIwJ5EkUFaxHHpljJIo3TJxgzDxMBYgiohgmToKOsRFHWXyZhYxiUM9+sR9R\/IKFeoQo6jwoQcCYQN5EcdWqlUaiOKB\/P2PmYSqwMcFz6bmctF+mMOw+MorlXJ1byCg6aST\/GFHUGSOKOg9KEDAmkDdRXLNmjZEoKplIQxQQRTKKxm9uEStfiiKjaKMnkqsDUdTZIoo6D0oQMCaAKAYLiTvTpL4gk\/SCKAb3i2IUdXH3ZZxyGv8oRH1dlY63EUeIYiW61bEdUdT7AVHUeVCCgDEBRDFYSNwygSgah51kFXfuvoxTRhT9+59Lz\/58bO9FFHWiiKLOgxIEjAlkNWEbNzxmBTYuPSOKMeE7Tssq7uKIofscRNHRkR4PEUUPKAluQhR1uIiizoMSBIwJZDVhGzc8ZgWIYkxwlk\/LKu7c0henjCj6BwOi6M\/H9l5EUSeKKOo8qqZ06Im5kuZaOHWq4mvv+p+tcnjO3NTW07v\/VrEthbajqXJRfRB1yWrCjtpOW8cjirZImtWTVdzFEUP3OYiif98jiv58bO9FFHWiiKLOozpKhYLsrBuW6up3Z5b2FatSvVNM5+b3K\/bD6b0tqXJR\/RB1yWrCjtpOW8cjirZImtWTVdy5pS9OGVH073tE0Z+P7b3VJoqFQkG2bNkiv3ruOZk9+8Hib9e++OILsn37dtsv3bM+RNETS8YbEcWKHYAoVkST2Q5EMTP02hMjihqOxAq1+q3npUuXSGNj41mxbtu2LbH+VRVXkyiuXbtGLv\/aV2XUyBFy709\/KgueekqefPIJufuuO2XQBfVy\/fXflIaGhkR5IIqJ4o1fedNFY1LNnJFR9M7gNo28OHInZjVhR26opRMQRUsgDavJKu7iZBDd55BR9O98GxlFN\/NaLo8dM9ofmOHeahDF7u5umTVzhowcMVzeWL1aVFbRvZzu6pJf\/3qRXFBfJ08\/vdC921oZUbSG0m5Fe6dORRQ9kKadUdz33e94tMJ\/U1YTtn+rktuLKCbHNkrNWcWdDeFAFP17GlHUf3IrD6L4n\/ffL9deM15aW1vl9OnTxZsSqPdJae3q6joTNDt27JDRo0aKuhydxIIoJkHVQp2fP\/wgoujBMW1RPPToHI9W+G\/KasL2b1VyexHF5NhGqTmruEMUdYkJw0P1VZQFUdQZn+2i+OcNG2TokMFy4MD+YphUynBecfnXZOvWrcVj1McK6usGSnNzU5TQCnUsohgKU\/oHta9biyh6YE9bFE++vc6jFf6bspqw\/VuV3F5EMTm2UWrOKu7CiFHQMWQU\/XsaUcyXKE6cMEF+t3jxmaAoiWIpm6j+7m5ulptvnlJcSwfOmfOw\/PhHd5eK1v4iitZQ2q2ocPy47LpwRGqyyGcUyz+juGvYKJH2E5E7NqsJO3JDLZ2AKFoCaVhNVnEXJIFh9iOK\/p2PKOZHFPfu3SsDB\/SXU46frCuJojtK1BeUnNnVlpYWGdC\/n3R2droPNSojikb4kj15\/\/TbEEUX4jQzigfuutP17OGKWU3Y4Vpn\/yhE0T7TODVmFXdhRDDoGETRv8cRxfyIovriyrf\/eZoWEF6iqL7ccucdd8h3v\/Nt7divfuUy+ejDD7VtpgVE0ZRggud3\/Gk9oujim6Yodmx41\/Xs4YpZTdjhWmf\/KETRPtM4NWYVd0ESGGY\/oujf44hifkRx0aIXZeaMe7WAKIni+HHjpLQOv2iY1A0cICoD6VymTZ0q69b90bnJ+DGiaIwwwQp6euRvX78uFVnk0rN+6XnPdd8Q6emJ1blZTdixGmvhJETRAkQLVWQVd2FEMOgYRNE\/ABDF\/Iji4pdeKvucYUkU1VhbWl9+eZkMGXyhzJ37cy14bpg4Qd555x1tm2kBUTQlmPD5x19fgSg6GKeVUTyx6veOZ432MKsJO1or7R2NKNpjaVJTVnEXJIFh9iOK\/j2PKOZHFNevX1\/8EW1nRJRE0blNPZ794AMyedKNZzary9Eq02j7ji2I4hnE1fmg0N0tLVOmJC6LZBS\/yCju\/dbU2NlEFUVZTdhZRTCimBV5\/XmzirswIhh0DKKo96W7hCjmRxRPnDgh\/fqeLwcPHjwTBpVE8dlnn5GrrrzizHEf\/OUvxd9TPLPB0gNE0RLIJKvp\/ORj2TVkZKKyiCj+XRTVN527tv3VqDuzmrCNGm1wMqJoAM\/iqVnFXZAEhtmPKPoHAqKYH1FUkfCTn9xTTDiUoqKSKL7++uvF2\/ipH+RWy\/e+9y\/yi\/nzS6dZ+4soWkOZbEXHli1BFEUk6UvPx19dbtyRWU3Yxg2PWQGiGBOc5dOyirswIhh0DKLoHwyIYr5EUf3MTX19nWzY8F4xMNT7Q8mieyltV1nIZcuWFm\/3px7bXhBF20QTrO\/QE3MTk0UyisPk8FPzrPReVhO2lcbHqARRjAEtgVOyirsgCQyzH1H0DwhEMV+iqKLhzTffLGYL1WcWg5YlS5YUxdL2z+KUnhdRLJGohb+FghxZ8FQisph3UTzyy6dFPG66Hicsspqw47TVxjmIog2K5nVkFXdhRDDoGETRv\/8RxfyJoooI9TM3gy8cJD+6+64zt+orRUp3d7ds2rSp+JuLY0aPki1btpR2Wf+LKFpHmnyFJ9etlebLLrcqjHkVxeavXCFxbtPn18tZTdh+bUpyH6KYJN3wdWcVd0ESGGY\/oujfz4hiPkVRRcXhw4fl0UcekRHDh8uwoUPkG\/90nVx7zXi5oL5O1I9rP\/PML6Wjo8M\/gAz3WhNFdSNqk3X37t2GLyVfp\/ccPSJHnl5gTRjzJopKtBW\/QttR64Gj0v+vLF9utG7bts16u5KqUH2exvT1JvG5GvfrVUxN29nY2OiutmrKWcWdKVN1fldXV9VwDGqIjTiKeonwzxs2GMeujX6qljre\/MMfgrrJaH9ra6sxb9u\/Zah++qapaVfxs4oNDQ2ixt20FmuimFaDeR4IQAACEIAABCAAgXQIIIrpcOZZIAABCEAAAhCAQM0RQBRrrstoMAQgAAEIQAACEEiHAKKYDmeeBQIQgAAEIAABCNQcAUSx5rqMBkMAAhCAAAQgAIF0CCCK6XDmWSAAAQhAAAIQgEDNEUAUa67LaDAEIAABCEAAAhBIhwCimA5nngUCEIAABCAAAQjUHAFEsea6jAZDAAIQgAAEIACBdAggiulw5lkgAAEIQAACEIBAzRFAFGuuy2gwBCAAAQhAAAIQSIcAopgOZ54FAhCAAAQgAAEI1BwBRLHmuowGQwACEIAABCAAgXQIIIrpcOZZIAABCEAAAhCAQM0R+D+e0xfG2LrEtgAAAABJRU5ErkJggg==\" width=\"170\" height=\"24\" \/>Weekly&nbsp;Incident<\/strong>&nbsp;<strong>Report<br \/><\/strong><span style=\"font-size: 12pt;\">Summary of Incidents in past 7 days<\/span><strong><br \/><\/strong><\/span><\/p>",
+                                    "wid": "0824e8dc-e69d-4b37-a0cb-60e7965c7ef7"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "55f18f20-1671-4c6d-b3f8-e3e91acbefac"
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "chart",
+                                "config": {
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "field": "severity.orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ],
+                                        "limit": 2147483647,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "logic": "AND",
+                                                "filters": [
+                                                    {
+                                                        "field": "createDate",
+                                                        "operator": "gte",
+                                                        "value": "{{getRelativeDate(0,0,-7,\"start\",\"start\",\"start\")}}",
+                                                        "type": "primitive"
+                                                    },
+                                                    {
+                                                        "field": "createDate",
+                                                        "operator": "lte",
+                                                        "value": "{{getRelativeDate(0,0,-1,\"end\",\"end\",\"end\")}}",
+                                                        "type": "primitive"
+                                                    }
+                                                ],
+                                                "_field": "createDate",
+                                                "_value": {
+                                                    "differenceType": "days",
+                                                    "differenceValue": -7
+                                                },
+                                                "_operator": "date",
+                                                "type": "datetime"
+                                            }
+                                        ],
+                                        "aggregates": [
+                                            {
+                                                "operator": "countdistinct",
+                                                "field": "*",
+                                                "alias": "total"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "severity",
+                                                "field": "severity.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "color",
+                                                "field": "severity.color"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "orderIndex",
+                                                "field": "severity.orderIndex"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "assignedToPerson": "",
+                                        "fieldName": "severity"
+                                    },
+                                    "aggregate": true,
+                                    "resource": "incidents",
+                                    "title": "New Incidents Added",
+                                    "chart": "pie",
+                                    "wid": "c2b20689-310c-4c64-8767-6354e52b03d7"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-6"
+                    },
+                    {
+                        "widgets": [
+                            {
+                                "type": "chart",
+                                "config": {
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "field": "category.orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ],
+                                        "limit": 2147483647,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "logic": "AND",
+                                                "filters": [
+                                                    {
+                                                        "field": "resolveddate",
+                                                        "operator": "gte",
+                                                        "value": "{{getRelativeDate(0,0,-7,\"start\",\"start\",\"start\")}}",
+                                                        "type": "primitive"
+                                                    },
+                                                    {
+                                                        "field": "resolveddate",
+                                                        "operator": "lte",
+                                                        "value": "{{getRelativeDate(0,0,-1,\"end\",\"end\",\"end\")}}",
+                                                        "type": "primitive"
+                                                    }
+                                                ],
+                                                "_field": "resolveddate",
+                                                "_value": {
+                                                    "differenceType": "days",
+                                                    "differenceValue": -7
+                                                },
+                                                "_operator": "date",
+                                                "type": "datetime"
+                                            }
+                                        ],
+                                        "aggregates": [
+                                            {
+                                                "operator": "countdistinct",
+                                                "field": "*",
+                                                "alias": "total"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "category",
+                                                "field": "category.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "color",
+                                                "field": "category.color"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "orderIndex",
+                                                "field": "category.orderIndex"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "assignedToPerson": "",
+                                        "fieldName": "category"
+                                    },
+                                    "aggregate": true,
+                                    "resource": "incidents",
+                                    "title": "Incidents Resolved",
+                                    "chart": "pie",
+                                    "wid": "9bdc7376-63bb-412d-a823-9b81d5cf135f"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-6"
+                    }
+                ],
+                "wid": "63b666fa-532a-4b78-a8c6-6c2a9ed07e45"
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "cardCount",
+                                "config": {
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "field": "category.orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ],
+                                        "limit": 30,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "logic": "AND",
+                                                "filters": [
+                                                    {
+                                                        "field": "createDate",
+                                                        "operator": "gte",
+                                                        "value": "{{getRelativeDate(0,0,-7,\"start\",\"start\",\"start\")}}",
+                                                        "type": "primitive"
+                                                    },
+                                                    {
+                                                        "field": "createDate",
+                                                        "operator": "lte",
+                                                        "value": "{{getRelativeDate(0,0,-1,\"end\",\"end\",\"end\")}}",
+                                                        "type": "primitive"
+                                                    }
+                                                ],
+                                                "_field": "createDate",
+                                                "_value": {
+                                                    "differenceType": "days",
+                                                    "differenceValue": -7
+                                                },
+                                                "_operator": "date",
+                                                "type": "datetime"
+                                            },
+                                            {
+                                                "field": "status",
+                                                "operator": "neq",
+                                                "value": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae",
+                                                "_value": {
+                                                    "itemValue": "Resolved"
+                                                },
+                                                "type": "object"
+                                            }
+                                        ],
+                                        "aggregates": [
+                                            {
+                                                "operator": "countdistinct",
+                                                "field": "*",
+                                                "alias": "total"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "category",
+                                                "field": "category.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "color",
+                                                "field": "category.color"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "orderIndex",
+                                                "field": "category.orderIndex"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "assignedToPerson": "",
+                                        "fieldName": "category"
+                                    },
+                                    "aggregate": true,
+                                    "resource": "incidents",
+                                    "title": "Open Incidents By Type",
+                                    "wid": "acda7b7d-f5e8-44c1-9770-0e9659535e26"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "d9e411a9-e1d4-4bf1-a631-788d2eae6fa2"
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "cardCount",
+                                "config": {
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "field": "incidentLead.firstname",
+                                                "direction": "ASC"
+                                            },
+                                            {
+                                                "field": "incidentLead.lastname",
+                                                "direction": "ASC"
+                                            }
+                                        ],
+                                        "limit": 30,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "logic": "AND",
+                                                "filters": [
+                                                    {
+                                                        "field": "createDate",
+                                                        "operator": "gte",
+                                                        "value": "{{getRelativeDate(0,0,-7,\"start\",\"start\",\"start\")}}",
+                                                        "type": "primitive"
+                                                    },
+                                                    {
+                                                        "field": "createDate",
+                                                        "operator": "lte",
+                                                        "value": "{{getRelativeDate(0,0,-1,\"end\",\"end\",\"end\")}}",
+                                                        "type": "primitive"
+                                                    }
+                                                ],
+                                                "_field": "createDate",
+                                                "_value": {
+                                                    "differenceType": "days",
+                                                    "differenceValue": -7
+                                                },
+                                                "_operator": "date",
+                                                "type": "datetime"
+                                            }
+                                        ],
+                                        "aggregates": [
+                                            {
+                                                "operator": "countdistinct",
+                                                "field": "*",
+                                                "alias": "total"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "uuid",
+                                                "field": "incidentLead.uuid"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "firstname",
+                                                "field": "incidentLead.firstname"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "lastname",
+                                                "field": "incidentLead.lastname"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "assignedToPerson": "",
+                                        "displayValues": [
+                                            "firstname",
+                                            "lastname"
+                                        ],
+                                        "fieldName": "incidentLead"
+                                    },
+                                    "aggregate": true,
+                                    "resource": "incidents",
+                                    "title": "Incident Assignment Distribution",
+                                    "wid": "e2dd96db-3656-4a05-9cd6-46bb9465ac82"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-6"
+                    },
+                    {
+                        "widgets": [
+                            {
+                                "type": "cardCount",
+                                "config": {
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "field": "status.orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ],
+                                        "limit": 30,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "logic": "AND",
+                                                "filters": [
+                                                    {
+                                                        "field": "createDate",
+                                                        "operator": "gte",
+                                                        "value": "{{getRelativeDate(0,0,-7,\"start\",\"start\",\"start\")}}",
+                                                        "type": "primitive"
+                                                    },
+                                                    {
+                                                        "field": "createDate",
+                                                        "operator": "lte",
+                                                        "value": "{{getRelativeDate(0,0,-1,\"end\",\"end\",\"end\")}}",
+                                                        "type": "primitive"
+                                                    }
+                                                ],
+                                                "_field": "createDate",
+                                                "_value": {
+                                                    "differenceType": "days",
+                                                    "differenceValue": -7
+                                                },
+                                                "_operator": "date",
+                                                "type": "datetime"
+                                            }
+                                        ],
+                                        "aggregates": [
+                                            {
+                                                "operator": "countdistinct",
+                                                "field": "*",
+                                                "alias": "total"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "status",
+                                                "field": "status.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "color",
+                                                "field": "status.color"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "orderIndex",
+                                                "field": "status.orderIndex"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "assignedToPerson": "",
+                                        "fieldName": "status"
+                                    },
+                                    "aggregate": true,
+                                    "resource": "incidents",
+                                    "title": "Incidents By Status",
+                                    "wid": "6c6c7209-c986-46cc-a460-c03116738f52"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-6"
+                    }
+                ],
+                "wid": "181112ef-04d3-4396-8a3e-868b6c59ab9d"
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "simpleGrid",
+                                "config": {
+                                    "widgetAlwaysDisplay": true,
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 10,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "status",
+                                                "operator": "eq",
+                                                "value": "\/api\/3\/picklists\/bb73fe9e-f699-11e7-8c3f-9a214cf093ae",
+                                                "_value": {
+                                                    "itemValue": "Open"
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "logic": "OR",
+                                                "filters": [
+                                                    {
+                                                        "field": "severity",
+                                                        "operator": "eq",
+                                                        "value": "\/api\/3\/picklists\/40187287-89fc-4e9c-b717-e9443d57eedb",
+                                                        "_value": {
+                                                            "itemValue": "High"
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    {
+                                                        "field": "severity",
+                                                        "operator": "eq",
+                                                        "value": "\/api\/3\/picklists\/7efa2220-39bb-44e4-961f-ac368776e3b0",
+                                                        "_value": {
+                                                            "itemValue": "Critical"
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "logic": "AND",
+                                                "filters": [
+                                                    {
+                                                        "field": "createDate",
+                                                        "operator": "gte",
+                                                        "value": "{{getRelativeDate(0,0,-7,\"start\",\"start\",\"start\")}}",
+                                                        "type": "primitive"
+                                                    },
+                                                    {
+                                                        "field": "createDate",
+                                                        "operator": "lte",
+                                                        "value": "{{getRelativeDate(0,0,-1,\"end\",\"end\",\"end\")}}",
+                                                        "type": "primitive"
+                                                    }
+                                                ],
+                                                "_field": "createDate",
+                                                "_value": {
+                                                    "differenceType": "days",
+                                                    "differenceValue": -7
+                                                },
+                                                "_operator": "date",
+                                                "type": "datetime"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "assignedToPerson": ""
+                                    },
+                                    "columns": [
+                                        "severity",
+                                        "name",
+                                        "phase",
+                                        "status",
+                                        "category",
+                                        "incidentLead",
+                                        "dueby"
+                                    ],
+                                    "wid": "45c3168b-93f2-4438-800f-0453464504c8",
+                                    "title": "High Severity Open Incidents",
+                                    "module": "incidents"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "3a41c0c9-fa7b-4f49-9458-9c8ba3ac3110"
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "d91f08d6-3ca3-4673-affe-e16526197062",
+                                    "sectionText": "<p style=\"text-align: center;\"><span style=\"font-size: 10pt;\">Report Generated By FortiSOAR\u2122<\/span><\/p>"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "5c5b1b17-b82b-4dc4-96fc-cc40ef602b03"
+            }
+        ],
+        "wid": "74f4cfde-57af-4033-8b15-3adb899212e2"
+    },
+    "filterArray": [],
+    "updateDate": null
+}
