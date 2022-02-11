@@ -1,0 +1,267 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Get Related IOCs For An IP",
+    "aliasName": null,
+    "tag": null,
+    "description": "Retrieves related IOCs for a specified IP address from threat intel sources.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "indicatorIRI",
+        "indicatorValue",
+        "alertIRI"
+    ],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/f5ea0d7a-affc-4efb-bfa7-0ad3c2267de2",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "7d20c635-2fb6-4b87-9fbf-8d1d9bf66cd4",
+                "resources": [
+                    "indicators"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "alertIRI": "{{ vars.alertIRI }}",
+                            "indicatorIRI": "{{ vars.indicatorIRI }}",
+                            "indicatorValue": "{{ vars.indicatorValue }}"
+                        },
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "displayConditions": {
+                    "indicators": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "type": "object",
+                                "field": "typeofindicator",
+                                "value": "\/api\/3\/picklists\/c0beeda4-2c7a-4214-b7e5-53ba1649539c",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/c0beeda4-2c7a-4214-b7e5-53ba1649539c",
+                                    "itemValue": "IP Address"
+                                },
+                                "operator": "eq"
+                            }
+                        ]
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "30",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "uuid": "f5ea0d7a-affc-4efb-bfa7-0ad3c2267de2"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Additional Info From Relations",
+            "description": null,
+            "arguments": {
+                "detected_urls": "{{vars.steps.Get_Relations.data.detected_urls | sort(attribute='scan_date',reverse=True) | sort(attribute='aggregate',reverse=True) | first }}",
+                "detected_referrer_samples": "{{vars.steps.Get_Relations.data.detected_referrer_samples  | sort(attribute='scan_date',reverse=True)  | sort(attribute='positives',reverse=True)  | first}}",
+                "detected_communicating_samples": "{{vars.steps.Get_Relations.data.detected_communicating_samples  | sort(attribute='scan_date',reverse=True)  | sort(attribute='positives',reverse=True)  | first}}"
+            },
+            "status": null,
+            "top": "528",
+            "left": "480",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "3d92e655-0308-4f5b-af34-163aa0cc868e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "alertIRI": "{{vars.input.params.alertIRI}}",
+                "indicatorIRI": "{{vars.input.params['indicatorIRI'] | ternary(vars.input.params['indicatorIRI'],vars.input.records[0]['@id'])}}",
+                "indicatorValue": "{{vars.input.params['indicatorValue'] | ternary(vars.input.params['indicatorValue'],vars.input.records[0].value)}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "3c1d2265-8cd3-4785-b344-d2f22b5903c6"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "If relations exists",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/3d92e655-0308-4f5b-af34-163aa0cc868e",
+                        "condition": "{{ vars.steps.Get_Relations.data['detected_urls'] | length > 0 or vars.steps.Get_Relations.data['detected_referrer_samples'] | length > 0  or vars.steps.Get_Relations.data['detected_referrer_samples'] | length > 0 }}",
+                        "step_name": "Additional Info From Relations"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/158b30b4-2fc3-4648-a602-b281eab12e96",
+                        "step_name": "No Relations Found"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "400",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "63bf8c13-68a9-45aa-ac2c-e02c11013069"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "No Relations Found",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.0.3",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "529",
+            "left": "111",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "uuid": "158b30b4-2fc3-4648-a602-b281eab12e96"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Note For Additional Info",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "__link": {
+                        "alerts": "{{vars.alertIRI}}",
+                        "indicators": "{{vars.indicatorIRI}}"
+                    },
+                    "content": "<span class=\"fa fa-exclamation-triangle\"  style=\"font-size: 15px; color: yellow;\"><\/span>&nbsp;<span style=\"font-size: 8pt;\"><strong>Below are the list of Indicator of Compromise for IP Address <span class=\"badge badge-pill badge-danger\"  style=\"background:#e31b1d; color: #fff;\">{{vars.input.params.indicatorValue}}<\/span><\/strong><\/span>\n<br>\n\n<table style=\"width: auto; border-color: #ffffff;\" border=\"1\">\n<tbody>\n<tr>\n    <td style=\"width: auto;\">URL<\/td><td style=\"width: auto;\">{{vars.detected_urls.url}}<\/td>\n<\/tr>\n <tr>\n     <td style=\"width: auto;\">SHA256<\/td><td style=\"width: auto;\">{{vars.detected_referrer_samples.sha256}}<\/td>\n<\/tr>\n <tr>\n <td style=\"width: auto;\">SHA256<\/td><td style=\"width: auto;\">{{vars.detected_communicating_samples.sha256}}<\/td>\n<\/tr>   \n<\/tbody>\n<\/table>\n<br>\n<i>Note : These are IOC's fetched from only first record sorted by date and aggregate, to get more IOC's  you can modify the playbook<\/i>\n\n\n\n\n",
+                    "__replace": ""
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "\/api\/3\/comments",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "640",
+            "left": "480",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "uuid": "417bf808-23f3-434e-adf1-f24fa49979bd"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Relations",
+            "description": null,
+            "arguments": {
+                "name": "VirusTotal",
+                "config": "2b518f8c-a08a-4216-9524-6af1c9173b03",
+                "params": {
+                    "ip": "{{vars.indicatorValue}}"
+                },
+                "version": "1.0.2",
+                "connector": "virustotal",
+                "operation": "query_ip",
+                "operationTitle": "Get IP Reputation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "280",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "65e24056-9bb3-41c5-adc6-25aebe4c39d2"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get Relations",
+            "targetStep": "\/api\/3\/workflow_steps\/65e24056-9bb3-41c5-adc6-25aebe4c39d2",
+            "sourceStep": "\/api\/3\/workflow_steps\/3c1d2265-8cd3-4785-b344-d2f22b5903c6",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "2e942b4c-b2ed-40ac-8e02-cde3a3df4669"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Relations -> If relations exists",
+            "targetStep": "\/api\/3\/workflow_steps\/63bf8c13-68a9-45aa-ac2c-e02c11013069",
+            "sourceStep": "\/api\/3\/workflow_steps\/65e24056-9bb3-41c5-adc6-25aebe4c39d2",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "5ceb815f-c632-4a80-a3e0-7e0e10030f9d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Additional Info From Relations -> Note For Additional Info",
+            "targetStep": "\/api\/3\/workflow_steps\/417bf808-23f3-434e-adf1-f24fa49979bd",
+            "sourceStep": "\/api\/3\/workflow_steps\/3d92e655-0308-4f5b-af34-163aa0cc868e",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "aa825880-f778-4b20-b678-18e602784dd8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "If relations exists -> Additional Info From Relations",
+            "targetStep": "\/api\/3\/workflow_steps\/3d92e655-0308-4f5b-af34-163aa0cc868e",
+            "sourceStep": "\/api\/3\/workflow_steps\/63bf8c13-68a9-45aa-ac2c-e02c11013069",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "2ea4c90a-81cb-4a9a-b87c-f507e8b4e9c9"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/3c1d2265-8cd3-4785-b344-d2f22b5903c6",
+            "sourceStep": "\/api\/3\/workflow_steps\/f5ea0d7a-affc-4efb-bfa7-0ad3c2267de2",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "8aa4b731-b9e4-489f-b19a-dc2d63356b26"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "If relations exists -> No Relations Found",
+            "targetStep": "\/api\/3\/workflow_steps\/158b30b4-2fc3-4648-a602-b281eab12e96",
+            "sourceStep": "\/api\/3\/workflow_steps\/63bf8c13-68a9-45aa-ac2c-e02c11013069",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "e8e4b267-28a7-43e7-be74-dec632fd2f96"
+        }
+    ],
+    "priority": null,
+    "uuid": "f5ce5840-2a9a-445d-9db9-3bd28efd0748",
+    "recordTags": [
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0",
+        "ManualTrigger"
+    ],
+    "id": "73",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508349.778162,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508349.778162,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

@@ -1,0 +1,2034 @@
+{
+    "@context": "\/api\/3\/contexts\/StagingModelMetadata",
+    "@id": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+    "@type": "StagingModelMetadata",
+    "type": "indicators",
+    "parentType": null,
+    "tableName": "indicators",
+    "ownable": true,
+    "userOwnable": true,
+    "queueable": false,
+    "trackable": true,
+    "taggable": true,
+    "peerReplicable": true,
+    "defaultSort": [],
+    "uniqueConstraint": [
+        {
+            "indicators_unique": {
+                "columns": [
+                    "typeofindicator",
+                    "value",
+                    "tenant"
+                ]
+            }
+        }
+    ],
+    "indexable": true,
+    "writable": true,
+    "attributes": [
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/411545ce-e2f6-473a-ab3e-bb15c14ee33e",
+            "@type": "AttributeMetadata",
+            "type": "people",
+            "name": "persons",
+            "length": null,
+            "orderIndex": 28,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "people"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": true,
+            "validation": {
+                "maxlength": -1,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "411545ce-e2f6-473a-ab3e-bb15c14ee33e",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ persons }}",
+            "descriptions": {
+                "singular": "People"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/4f774fff-3b0b-4a21-bdb6-2a1849edac73",
+            "@type": "AttributeMetadata",
+            "type": "integer",
+            "name": "lastSeen",
+            "length": 0,
+            "orderIndex": 6,
+            "formType": "datetime",
+            "dataSource": [],
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "4f774fff-3b0b-4a21-bdb6-2a1849edac73",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ lastSeen }}",
+            "descriptions": {
+                "singular": "Last Seen"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/49bb7cb2-a6c7-48ed-a343-69839a4aa8b6",
+            "@type": "AttributeMetadata",
+            "type": "integer",
+            "name": "firstSeen",
+            "length": 0,
+            "orderIndex": 7,
+            "formType": "datetime",
+            "dataSource": [],
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "49bb7cb2-a6c7-48ed-a343-69839a4aa8b6",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ firstSeen }}",
+            "descriptions": {
+                "singular": "First Seen"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/aa0dabf9-8f5f-4942-a90d-bbbe15a7491d",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "uuid",
+            "length": 36,
+            "orderIndex": 11,
+            "formType": null,
+            "dataSource": [],
+            "searchable": false,
+            "peerReplicable": true,
+            "system": true,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": 1024,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": true,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "aa0dabf9-8f5f-4942-a90d-bbbe15a7491d",
+            "recordTags": [
+                "FSRSolutionPack",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ uuid }}",
+            "descriptions": {
+                "singular": "UUID"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/bc1b87cf-beb1-40e1-880b-681e1fcd8829",
+            "@type": "AttributeMetadata",
+            "type": "campaigns",
+            "name": "campaigns",
+            "length": 0,
+            "orderIndex": 9,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "campaigns"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": true,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": [],
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "bc1b87cf-beb1-40e1-880b-681e1fcd8829",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ campaigns }}",
+            "descriptions": {
+                "singular": "Campaigns"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/3eda92c9-6c04-493b-a101-8931f97f02a5",
+            "@type": "AttributeMetadata",
+            "type": "integer",
+            "name": "expiryDate",
+            "length": null,
+            "orderIndex": 5,
+            "formType": "datetime",
+            "dataSource": null,
+            "searchable": true,
+            "peerReplicable": false,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": null,
+            "orphanRemoval": null,
+            "readable": null,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "3eda92c9-6c04-493b-a101-8931f97f02a5",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ expiryDate }}",
+            "descriptions": {
+                "singular": "Expires On"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/3be6bfaf-e8d0-4c94-91e0-ea1238f394c8",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "expiredStatus",
+            "length": null,
+            "orderIndex": 4,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "IndicatorExpiryStatus"
+                        }
+                    ],
+                    "sort": [
+                        {
+                            "field": "orderIndex",
+                            "direction": "ASC"
+                        }
+                    ]
+                },
+                "displayConditions": {
+                    "de7e9f06-45aa-43e1-b88d-1989a56d9eae": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "d4ca4a72-7974-4b93-843e-da9efa235c6e": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                }
+            },
+            "searchable": false,
+            "peerReplicable": false,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": true,
+                "buttonText": "Change Expiry Status",
+                "buttonIcon": "fa fa-clock-o",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": null,
+            "orphanRemoval": null,
+            "readable": null,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "3be6bfaf-e8d0-4c94-91e0-ea1238f394c8",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ expiredStatus }}",
+            "descriptions": {
+                "singular": "Expired"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/94396425-68a2-42a8-8fb9-0b53aa64f029",
+            "@type": "AttributeMetadata",
+            "type": "hunt",
+            "name": "hunts",
+            "length": 0,
+            "orderIndex": 10,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "hunt"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": true,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": [],
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "94396425-68a2-42a8-8fb9-0b53aa64f029",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ hunts }}",
+            "descriptions": {
+                "singular": "Hunts"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/c2160317-8515-4a4b-bd24-85725fc724bc",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "tlp",
+            "length": null,
+            "orderIndex": 3,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "TrafficLightProtocol"
+                        }
+                    ],
+                    "sort": [
+                        {
+                            "field": "orderIndex",
+                            "direction": "ASC"
+                        }
+                    ]
+                },
+                "displayConditions": {
+                    "0472d368-bd15-4f52-a119-d403470cbe43": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "7bff95b7-6438-4b01-b23a-0fe8cb5b33d3": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "47004ad3-721e-43e0-b729-2ad8ee6441c0": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                }
+            },
+            "searchable": false,
+            "peerReplicable": false,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": true,
+                "buttonText": "",
+                "buttonIcon": "fa fa-lightbulb-o",
+                "buttonClass": "btn btn-warning btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": "\/api\/3\/picklists\/7bff95b7-6438-4b01-b23a-0fe8cb5b33d3",
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": null,
+            "orphanRemoval": null,
+            "readable": null,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "c2160317-8515-4a4b-bd24-85725fc724bc",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ tlp }}",
+            "descriptions": {
+                "singular": "TLP"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/c1aabc9b-2ead-4aeb-a25f-b4dfd6453835",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "sourceID",
+            "length": null,
+            "orderIndex": 2,
+            "formType": "text",
+            "dataSource": null,
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": "",
+            "tooltip": null,
+            "visibility": [
+                {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "sourceID",
+                            "operator": "isnull",
+                            "_operator": "isnull",
+                            "value": "false",
+                            "type": "primitive"
+                        }
+                    ]
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "c1aabc9b-2ead-4aeb-a25f-b4dfd6453835",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ sourceID }}",
+            "descriptions": {
+                "singular": "Source ID"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/effb7e97-a3b6-4b0a-87ea-515e01595fe6",
+            "@type": "AttributeMetadata",
+            "type": "integer",
+            "name": "confidence",
+            "length": null,
+            "orderIndex": 1,
+            "formType": "integer",
+            "dataSource": null,
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": -2147483648,
+                "maxlength": 10485761
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": [
+                {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "confidence",
+                            "operator": "neq",
+                            "_operator": "neq",
+                            "value": 0,
+                            "type": "primitive"
+                        }
+                    ]
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "effb7e97-a3b6-4b0a-87ea-515e01595fe6",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ confidence }}",
+            "descriptions": {
+                "singular": "Confidence"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/755e4c09-c91a-463b-ba32-578f7d8b93ea",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "indicatorStatus",
+            "length": 0,
+            "orderIndex": 8,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "IndicatorStatus"
+                        }
+                    ],
+                    "logic": "AND",
+                    "sort": [
+                        {
+                            "direction": "ASC",
+                            "field": "orderIndex"
+                        }
+                    ]
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": [],
+            "dataSourceFilters": [],
+            "defaultValue": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "755e4c09-c91a-463b-ba32-578f7d8b93ea",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ indicatorStatus }}",
+            "descriptions": {
+                "singular": "Status"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/5ac8fdd7-c1ca-4141-bebe-fb020f2bf554",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "typeofindicator",
+            "length": null,
+            "orderIndex": 12,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "IndicatorType"
+                        }
+                    ],
+                    "sort": [
+                        {
+                            "field": "orderIndex",
+                            "direction": "ASC"
+                        }
+                    ]
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": -1
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "5ac8fdd7-c1ca-4141-bebe-fb020f2bf554",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ typeofindicator }}",
+            "descriptions": {
+                "singular": "Type"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/64721c9a-2ef4-4718-9f3d-cde01ab3c7d6",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "value",
+            "length": 255,
+            "orderIndex": 15,
+            "formType": "text",
+            "dataSource": [],
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": [
+                    {
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "field": "typeofindicator",
+                                "operator": "neq",
+                                "value": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                                "_value": {
+                                    "display": "File",
+                                    "itemValue": "File"
+                                },
+                                "type": "object"
+                            }
+                        ]
+                    }
+                ],
+                "minlength": 0,
+                "maxlength": 1024
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "64721c9a-2ef4-4718-9f3d-cde01ab3c7d6",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ value }}",
+            "descriptions": {
+                "singular": "Value"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/452cf485-85a5-42c4-aa13-62dac6825b02",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "file",
+            "length": null,
+            "orderIndex": 11,
+            "formType": "file",
+            "dataSource": {
+                "model": "files"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": -1,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": [
+                {
+                    "filters": [
+                        {
+                            "_value": {
+                                "itemValue": "File"
+                            },
+                            "field": "typeofindicator",
+                            "operator": "eq",
+                            "type": "object",
+                            "value": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd"
+                        }
+                    ],
+                    "limit": 30,
+                    "logic": "AND"
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "452cf485-85a5-42c4-aa13-62dac6825b02",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ file }}",
+            "descriptions": {
+                "singular": "File"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/c672e825-23e9-4b7b-b504-f1862026a378",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "reputation",
+            "length": null,
+            "orderIndex": 13,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "IndicatorReputation"
+                        }
+                    ],
+                    "logic": "AND",
+                    "sort": [
+                        {
+                            "direction": "ASC",
+                            "field": "orderIndex"
+                        }
+                    ]
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": -1,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": true,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "fa fa-pencil",
+                "buttonText": "Update Reputation"
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "c672e825-23e9-4b7b-b504-f1862026a378",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ reputation }}",
+            "descriptions": {
+                "singular": "Reputation"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/b10f1a6f-45dd-4161-ada1-262d44da060f",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "description",
+            "length": null,
+            "orderIndex": 16,
+            "formType": "richtext",
+            "dataSource": [],
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": -1,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "b10f1a6f-45dd-4161-ada1-262d44da060f",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ description }}",
+            "descriptions": {
+                "singular": "Description"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/49763a65-427e-4d05-8fea-a0d7ee2cb072",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "sources",
+            "length": 1024,
+            "orderIndex": 17,
+            "formType": "text",
+            "dataSource": [],
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": 1024,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": [
+                {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "sources",
+                            "operator": "isnull",
+                            "_operator": "isnull",
+                            "value": "false",
+                            "type": "primitive"
+                        }
+                    ]
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "49763a65-427e-4d05-8fea-a0d7ee2cb072",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ sources }}",
+            "descriptions": {
+                "singular": "Sources"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/074003f0-7c86-4eea-92df-3f5e11ea77d2",
+            "@type": "AttributeMetadata",
+            "type": "emails",
+            "name": "emails",
+            "length": null,
+            "orderIndex": 18,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "emails"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": true,
+            "validation": {
+                "_enableRange": false,
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": [],
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "074003f0-7c86-4eea-92df-3f5e11ea77d2",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ emails }}",
+            "descriptions": {
+                "singular": "Emails"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/49f996fc-485e-4b03-8070-8d01f6699644",
+            "@type": "AttributeMetadata",
+            "type": "events",
+            "name": "events",
+            "length": null,
+            "orderIndex": 19,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "events"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": -1,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "49f996fc-485e-4b03-8070-8d01f6699644",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ events }}",
+            "descriptions": {
+                "singular": "Events"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/162be53a-93cc-48c4-82ce-0146cc4c59ee",
+            "@type": "AttributeMetadata",
+            "type": "alerts",
+            "name": "alerts",
+            "length": null,
+            "orderIndex": 20,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "alerts"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": true,
+            "validation": {
+                "maxlength": -1,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "162be53a-93cc-48c4-82ce-0146cc4c59ee",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ alerts }}",
+            "descriptions": {
+                "singular": "Alerts"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/57e0a4f7-a021-40a4-948d-327e882e5848",
+            "@type": "AttributeMetadata",
+            "type": "assets",
+            "name": "assets",
+            "length": null,
+            "orderIndex": 21,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "assets"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": true,
+            "validation": {
+                "maxlength": -1,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "57e0a4f7-a021-40a4-948d-327e882e5848",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ assets }}",
+            "descriptions": {
+                "singular": "Assets"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/91d51911-9760-4126-8bb5-110212925522",
+            "@type": "AttributeMetadata",
+            "type": "companies",
+            "name": "companies",
+            "length": null,
+            "orderIndex": 22,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "companies"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": true,
+            "validation": {
+                "maxlength": -1,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "91d51911-9760-4126-8bb5-110212925522",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ companies }}",
+            "descriptions": {
+                "singular": "Companies"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/c84d2374-1ef7-4267-bc75-c101ed1bfaa9",
+            "@type": "AttributeMetadata",
+            "type": "incidents",
+            "name": "incidents",
+            "length": null,
+            "orderIndex": 23,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "incidents"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": -1,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "c84d2374-1ef7-4267-bc75-c101ed1bfaa9",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ incidents }}",
+            "descriptions": {
+                "singular": "Incidents"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/3b8f950b-328b-446e-8870-f283f53e3761",
+            "@type": "AttributeMetadata",
+            "type": "attachments",
+            "name": "attachments",
+            "length": null,
+            "orderIndex": 24,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "attachments"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": true,
+            "validation": {
+                "maxlength": -1,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "3b8f950b-328b-446e-8870-f283f53e3761",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ attachments }}",
+            "descriptions": {
+                "singular": "Attachments"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/60a2ba6f-ae84-48d8-8e0c-c76031691dac",
+            "@type": "AttributeMetadata",
+            "type": "notes",
+            "name": "notes",
+            "length": null,
+            "orderIndex": 25,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "notes"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": true,
+            "validation": {
+                "maxlength": -1,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "60a2ba6f-ae84-48d8-8e0c-c76031691dac",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ notes }}",
+            "descriptions": {
+                "singular": "Notes"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/ac208ee5-88b7-47b8-9971-7f245910adfb",
+            "@type": "AttributeMetadata",
+            "type": "comments",
+            "name": "comments",
+            "length": null,
+            "orderIndex": 26,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "comments"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": true,
+            "validation": {
+                "maxlength": -1,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "ac208ee5-88b7-47b8-9971-7f245910adfb",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ comments }}",
+            "descriptions": {
+                "singular": "Comments"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/4910fab9-b33b-448d-9a18-59c1dcfdb539",
+            "@type": "AttributeMetadata",
+            "type": "vulnerabilities",
+            "name": "vulnerabilities",
+            "length": null,
+            "orderIndex": 27,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "vulnerabilities"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": -1,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "4910fab9-b33b-448d-9a18-59c1dcfdb539",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ vulnerabilities }}",
+            "descriptions": {
+                "singular": "Vulnerabilities"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/ec2f33a3-de22-4717-b5e6-6ca9bb7bcdb9",
+            "@type": "AttributeMetadata",
+            "type": "indicators",
+            "name": "indicators",
+            "length": 0,
+            "orderIndex": 29,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "indicators"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": true,
+            "validation": {
+                "_enableRange": false,
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": [],
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "ec2f33a3-de22-4717-b5e6-6ca9bb7bcdb9",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ indicators }}",
+            "descriptions": {
+                "singular": "Indicators"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/cc414e37-e052-409d-83ea-e2094243af90",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "filehashMD5",
+            "length": 0,
+            "orderIndex": 30,
+            "formType": "filehash",
+            "dataSource": [],
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": [
+                {
+                    "filters": [
+                        {
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                                "itemValue": "File"
+                            },
+                            "field": "typeofindicator",
+                            "operator": "eq",
+                            "type": "object",
+                            "value": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd"
+                        }
+                    ],
+                    "limit": 30,
+                    "logic": "AND",
+                    "sort": []
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "cc414e37-e052-409d-83ea-e2094243af90",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ filehashMD5 }}",
+            "descriptions": {
+                "singular": "FileHash MD5"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/d6a77574-5eda-4841-b8cc-d2f12bc5ff56",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "filehashSHA1",
+            "length": 0,
+            "orderIndex": 31,
+            "formType": "filehash",
+            "dataSource": [],
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": [
+                {
+                    "filters": [
+                        {
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                                "itemValue": "File"
+                            },
+                            "field": "typeofindicator",
+                            "operator": "eq",
+                            "type": "object",
+                            "value": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd"
+                        }
+                    ],
+                    "limit": 30,
+                    "logic": "AND",
+                    "sort": []
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "d6a77574-5eda-4841-b8cc-d2f12bc5ff56",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ filehashSHA1 }}",
+            "descriptions": {
+                "singular": "FileHash SHA1"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/aacbe001-7f83-4aa6-a4e9-4b1bf6f2003a",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "filehashSHA256",
+            "length": 0,
+            "orderIndex": 32,
+            "formType": "filehash",
+            "dataSource": [],
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": [
+                {
+                    "filters": [
+                        {
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                                "display": "File",
+                                "itemValue": "File"
+                            },
+                            "field": "typeofindicator",
+                            "operator": "eq",
+                            "type": "object",
+                            "value": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd"
+                        }
+                    ],
+                    "limit": 30,
+                    "logic": "AND",
+                    "sort": []
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "aacbe001-7f83-4aa6-a4e9-4b1bf6f2003a",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ filehashSHA256 }}",
+            "descriptions": {
+                "singular": "FileHash SHA256"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/1bc9bca5-5643-4afe-ad08-dcef70d8c114",
+            "@type": "AttributeMetadata",
+            "type": "warrooms",
+            "name": "warrooms",
+            "length": 0,
+            "orderIndex": 33,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "warrooms"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": true,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": [],
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "1bc9bca5-5643-4afe-ad08-dcef70d8c114",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ warrooms }}",
+            "descriptions": {
+                "singular": "War Rooms"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/2faf4320-6596-43aa-a2a3-b3ee970ddf11",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "country",
+            "length": 0,
+            "orderIndex": 34,
+            "formType": "richtext",
+            "dataSource": [],
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": [
+                {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "OR",
+                    "filters": [
+                        {
+                            "field": "typeofindicator",
+                            "operator": "eq",
+                            "value": "\/api\/3\/picklists\/c0beeda4-2c7a-4214-b7e5-53ba1649539c",
+                            "_value": {
+                                "itemValue": "IP Address",
+                                "@id": "\/api\/3\/picklists\/c0beeda4-2c7a-4214-b7e5-53ba1649539c"
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "field": "typeofindicator",
+                            "operator": "eq",
+                            "value": "\/api\/3\/picklists\/5a5a7d42-be27-4903-858a-19909ebfa1eb",
+                            "_value": {
+                                "display": "Domain",
+                                "itemValue": "Domain",
+                                "@id": "\/api\/3\/picklists\/5a5a7d42-be27-4903-858a-19909ebfa1eb"
+                            },
+                            "type": "object"
+                        }
+                    ]
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+            "uuid": "2faf4320-6596-43aa-a2a3-b3ee970ddf11",
+            "recordTags": [
+                "FSRSolutionPack",
+                "incidentResponse-1.0.0",
+                "fortiSOAREssentials-1.0.0"
+            ],
+            "displayName": "{{ country }}",
+            "descriptions": {
+                "singular": "Country"
+            }
+        }
+    ],
+    "system": false,
+    "module": "indicators",
+    "softDeleteable": false,
+    "archivable": false,
+    "paused": false,
+    "partitionBy": "modifyDate",
+    "archivalCriteria": {
+        "keep_primary_data_for": 24,
+        "delete_primary_data_after": 60
+    },
+    "archivalFilters": [],
+    "uuid": "67558c20-fe29-4789-b3f7-2e3c9e902c96",
+    "recordTags": [
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0",
+        "fortiSOAREssentials-1.0.0"
+    ],
+    "displayName": "{{ value }}",
+    "descriptions": {
+        "plural": "Indicators",
+        "singular": "Indicator"
+    }
+}

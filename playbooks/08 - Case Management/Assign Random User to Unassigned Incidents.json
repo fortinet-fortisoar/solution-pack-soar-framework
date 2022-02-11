@@ -1,0 +1,164 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Assign Random User to Unassigned Incidents",
+    "aliasName": null,
+    "tag": null,
+    "description": "Auto assigns incidents if their assignments were missing during incident creation.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/3c3b049e-5ecb-464a-83f6-5af6a230c0ed",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/55706598-2538-4712-88b6-8530fbecb667",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "incidents",
+                "resources": [
+                    "incidents"
+                ],
+                "step_variables": {
+                    "input": {
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    }
+                },
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "incidentLead",
+                            "value": "true",
+                            "_value": {
+                                "@id": "true",
+                                "display": "",
+                                "itemValue": ""
+                            },
+                            "operator": "isnull"
+                        }
+                    ]
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "uuid": "55706598-2538-4712-88b6-8530fbecb667"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "assignee": "{{(vars.steps.Get_available_assignees.data['hydra:member'] | json_query('[?csActive==`true`].[\"@id\"][]') | shuffle)[0]}}"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "a4a45a49-1698-4d04-8cc5-7b0681bbfa36"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get available assignees",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/3\/people",
+                    "body": "",
+                    "method": "GET"
+                },
+                "version": "2.6.0",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "CyOPs: Make CyOPs API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "uuid": "6fc685ed-f8a7-4d03-a37a-91d7700fbf0d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Assign User",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "incidentLead": "{{vars.assignee}}"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "collectionType": "\/api\/3\/incidents",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "ff9e5c9c-8e60-4b92-b970-53b4a5bc87e9"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Assign User",
+            "targetStep": "\/api\/3\/workflow_steps\/ff9e5c9c-8e60-4b92-b970-53b4a5bc87e9",
+            "sourceStep": "\/api\/3\/workflow_steps\/a4a45a49-1698-4d04-8cc5-7b0681bbfa36",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "d987b8bd-437f-4e87-84c5-98e4892cadaf"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get available assignees -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/a4a45a49-1698-4d04-8cc5-7b0681bbfa36",
+            "sourceStep": "\/api\/3\/workflow_steps\/6fc685ed-f8a7-4d03-a37a-91d7700fbf0d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c23f404e-0237-4852-905a-80851fe04124"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get available assignees",
+            "targetStep": "\/api\/3\/workflow_steps\/6fc685ed-f8a7-4d03-a37a-91d7700fbf0d",
+            "sourceStep": "\/api\/3\/workflow_steps\/55706598-2538-4712-88b6-8530fbecb667",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "071805be-0616-4965-afe5-e39a0647dcd9"
+        }
+    ],
+    "priority": null,
+    "uuid": "596c30a9-76d4-4b73-86c3-028fb451813b",
+    "recordTags": [
+        "system",
+        "PostCreate",
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0"
+    ],
+    "id": "186",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508354.759058,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508354.759058,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

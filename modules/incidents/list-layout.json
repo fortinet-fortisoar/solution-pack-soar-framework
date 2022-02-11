@@ -1,0 +1,202 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "rows",
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "chart",
+                                "config": {
+                                    "query": {
+                                        "limit": 2147483647,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "status",
+                                                "operator": "neq",
+                                                "value": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae",
+                                                "_value": {
+                                                    "display": "Resolved",
+                                                    "itemValue": "Resolved"
+                                                },
+                                                "type": "object"
+                                            }
+                                        ],
+                                        "aggregates": [
+                                            {
+                                                "operator": "countdistinct",
+                                                "field": "*",
+                                                "alias": "total"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "severity",
+                                                "field": "severity.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "color",
+                                                "field": "severity.color"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "orderIndex",
+                                                "field": "severity.orderIndex"
+                                            }
+                                        ],
+                                        "sort": [
+                                            {
+                                                "field": "severity.orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "fieldName": "severity"
+                                    },
+                                    "aggregate": true,
+                                    "title": "Open Incidents By Severity",
+                                    "resource": "incidents",
+                                    "chart": "pie",
+                                    "wid": "68c4a8ea-6331-46ee-b77c-5663615980c5"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-6"
+                    },
+                    {
+                        "widgets": [
+                            {
+                                "type": "chart",
+                                "config": {
+                                    "query": {
+                                        "limit": 2147483647,
+                                        "logic": "OR",
+                                        "filters": [
+                                            {
+                                                "field": "status",
+                                                "operator": "neq",
+                                                "value": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae",
+                                                "_value": {
+                                                    "display": "Resolved",
+                                                    "itemValue": "Resolved"
+                                                },
+                                                "type": "object"
+                                            }
+                                        ],
+                                        "aggregates": [
+                                            {
+                                                "operator": "countdistinct",
+                                                "field": "*",
+                                                "alias": "total"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "severity",
+                                                "field": "severity.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "firstOrderIndex",
+                                                "field": "severity.orderIndex"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "category",
+                                                "field": "category.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "color",
+                                                "field": "category.color"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "secondOrderIndex",
+                                                "field": "category.orderIndex"
+                                            }
+                                        ],
+                                        "sort": [
+                                            {
+                                                "field": "severity.orderIndex",
+                                                "direction": "ASC"
+                                            },
+                                            {
+                                                "field": "category.orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "dateFormat": "yyyy-MM-dd",
+                                        "responseTimeField": "closedOn",
+                                        "createTimeField": "discoveredOn",
+                                        "firstGrouping": "severity",
+                                        "secondGrouping": "category"
+                                    },
+                                    "aggregate": true,
+                                    "title": "Unresolved Incidents By Severity By Type",
+                                    "resource": "incidents",
+                                    "chart": "bar",
+                                    "wid": "a87b41fd-32c3-4f9a-bb3c-97bbf0bfe924"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-6"
+                    }
+                ],
+                "wid": "c38cf4d3-dd27-4934-b805-716624d00325",
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "grid",
+                                "config": {
+                                    "module": "incidents",
+                                    "columns": [
+                                        "id",
+                                        "severity",
+                                        "name",
+                                        "source",
+                                        "category",
+                                        "phase",
+                                        "status",
+                                        "incidentLead",
+                                        "createDate",
+                                        "slaState",
+                                        "resSla",
+                                        "tenant"
+                                    ],
+                                    "expandableCol": [],
+                                    "relationshipField": [],
+                                    "checkboxStatus": false,
+                                    "actionButtons": [],
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 30,
+                                        "logic": "AND",
+                                        "filters": []
+                                    },
+                                    "wid": "983c83be-44e2-45a4-9877-3a1745192dd1",
+                                    "enableHorizontalScroll": true
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "f8931fc3-f148-4f25-a043-99117757eab1",
+                "_collapsed": false
+            }
+        ],
+        "wid": "2cd21966-2703-47f0-92e0-e523cc3c0193"
+    },
+    "uuid": "modules-incidents-list"
+}

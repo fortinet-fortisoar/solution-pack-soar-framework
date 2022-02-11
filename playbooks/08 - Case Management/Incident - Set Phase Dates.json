@@ -1,0 +1,145 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Incident - Set Phase Dates",
+    "aliasName": null,
+    "tag": "#PostUpdate#Incident  #system",
+    "description": "Updates an incident's phase dates based on incident phase.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "currPhaseValue",
+        "recoverydt",
+        "aftermathdt",
+        "containtmentdt",
+        "eradicationdt",
+        "confirmationdt",
+        "indenticationdt",
+        "incident_iri"
+    ],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/3c3b049e-5ecb-464a-83f6-5af6a230c0ed",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/9b43f8f3-54ab-48fa-a478-f5d3e58205eb",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Incident Phase",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "recoveryDate": "{% if vars.currentValue == \"Recovery\" and vars.recoverydate is none%} {{@Current_Date}}{% else %}{{vars.recoverydate}}{% endif %}",
+                    "aftermathDate": "{% if vars.currentValue == \"Aftermath\" and vars.aftermathdate is none%} {{@Current_Date}}{% else %}{{vars.aftermathdate}}{% endif %}",
+                    "incidentphase": "<table style=\"ellpadding: 0, cellspacing:0;\">\n<tbody>\n<tr>\n<td>{% for i in vars.picklistValues[0].picklists | sort(attribute='orderIndex') %} {% if (vars.currentValue == i.itemValue) %}\n<div style=\"background-image: url('https:\/\/update.cybersponse.com\/images\/cyops\/chevron_active_arrow.png'); padding: 19px 50px; width: 190px; height: 55px; display: inline-flex; margin-right: -31px; position: relative;\"><span style=\"font-size: 10pt; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; position: absolute; bottom: 20px;\">{{i.itemValue}}<\/span><\/div>\n{% else %}\n<div style=\"background-image: url('https:\/\/update.cybersponse.com\/images\/cyops\/chevron_inactive_arrow.png'); padding: 19px 50px; width: 190px; height: 55px; display: inline-flex; margin-right: -31px; position: relative;\"><span style=\"font-size: 10pt; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; position: absolute; bottom: 20px;\">{{i.itemValue}}<\/span><\/div>\n{% endif %} {% endfor %}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>",
+                    "containmentDate": "{% if vars.currentValue == \"Containment\" and vars.containmentdate is none%} {{@Current_Date}}{% else %}{{vars.containmentdate}}{% endif %}",
+                    "eradicationDate": "{% if vars.currentValue == \"Eradication\" and vars.eradicationdate is none %} {{@Current_Date}}{% else %}{{vars.eradicationdate}}{% endif %}",
+                    "confirmationDate": "{% if vars.currentValue == \"Confirmation\" and vars.confirmationdate is none%} {{@Current_Date}}{% else %}{{vars.confirmationdate}}{% endif %}",
+                    "identificationDate": "{% if vars.currentValue == \"Identification\" and vars.identificationdate is none%} {{@Current_Date}}{% else %}{{vars.identificationdate}}{% endif %}"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "{{vars.input.params['incident_iri']}}",
+                "__recommend": [],
+                "tagsOperation": "OverwriteTags",
+                "collectionType": "\/api\/3\/incidents",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": {
+                    "testCurrentValue": "{{vars.currentValue}}",
+                    "testPickListValues": "{{vars.picklistValues}}"
+                }
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "10261231-1f4b-4a27-a899-cd1d80b912a0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configurations",
+            "description": null,
+            "arguments": {
+                "currentValue": "{{vars.input.params.currPhaseValue}}",
+                "recoverydate": "{{vars.input.params.recoverydt}}",
+                "aftermathdate": "{{vars.input.params.aftermathdt}}",
+                "picklistValues": "{{\"IncidentPhase\" | picklist(True)}}",
+                "containmentdate": "{{vars.input.params.containtmentdt}}",
+                "eradicationdate": "{{vars.input.params.eradicationdt}}",
+                "confirmationdate": "{{vars.input.params.confirmationdt}}",
+                "identificationdate": "{{vars.input.params.indenticationdt}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "01412443-6c8e-4f55-bfb5-5c7da6663647"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "recoverydt": "{{ vars.recoverydt }}",
+                            "aftermathdt": "{{ vars.aftermathdt }}",
+                            "incident_iri": "{{ vars.incident_iri }}",
+                            "eradicationdt": "{{ vars.eradicationdt }}",
+                            "confirmationdt": "{{ vars.confirmationdt }}",
+                            "containtmentdt": "{{ vars.containtmentdt }}",
+                            "currPhaseValue": "{{ vars.currPhaseValue }}",
+                            "indenticationdt": "{{ vars.indenticationdt }}"
+                        }
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "uuid": "9b43f8f3-54ab-48fa-a478-f5d3e58205eb"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configurations -> Update Incident Phase",
+            "targetStep": "\/api\/3\/workflow_steps\/10261231-1f4b-4a27-a899-cd1d80b912a0",
+            "sourceStep": "\/api\/3\/workflow_steps\/01412443-6c8e-4f55-bfb5-5c7da6663647",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "b8cf4c84-d910-4923-9bb5-0db4c35a5fe2"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configurations",
+            "targetStep": "\/api\/3\/workflow_steps\/01412443-6c8e-4f55-bfb5-5c7da6663647",
+            "sourceStep": "\/api\/3\/workflow_steps\/9b43f8f3-54ab-48fa-a478-f5d3e58205eb",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "56e6d7c3-20aa-4589-95f0-36c8e9eb01bf"
+        }
+    ],
+    "priority": null,
+    "uuid": "f9a7d4b4-b16b-4b1b-b63a-8dd65b4437d0",
+    "recordTags": [
+        "system",
+        "Subroutine",
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0"
+    ],
+    "id": "195",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508354.762206,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508354.762206,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

@@ -1,0 +1,177 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Virustotal - IP Reputation",
+    "aliasName": null,
+    "tag": null,
+    "description": "Retrieves the reputation of indicators of type 'IP Address' using VirusTotal.",
+    "isActive": false,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "indicator_value"
+    ],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/b135c052-e170-4cff-8cc7-9a4bfe607ccb",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/e5559c1b-f84c-45b2-9923-62bfc2cf87ec",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "threshold": "5",
+                "indicator_value": "{{vars.input.params['indicator_value']}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "79620cdb-0927-4896-bcca-e6747b3f450f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "enrichment_summary",
+            "description": null,
+            "arguments": {
+                "tags": "None",
+                "source": "VirusTotal",
+                "reputation": "{% if vars.Reputation >= vars.threshold %}\"Malicious\"{% elif vars.Reputation <= vars.threshold and vars.Reputation > 0 %}\"Suspicious\"{%elif vars.Reputation == 0%}\"No Reputation Available\"{%else%}\"Good\"{%endif%}",
+                "enrichmentSummary": "{{vars.steps.Compute_VT_Summary.data['formatted_string']}}"
+            },
+            "status": null,
+            "top": "569",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "70f3417b-104f-4aeb-a9a1-301cd691eb73"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "uuid": "e5559c1b-f84c-45b2-9923-62bfc2cf87ec"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Compute VT Summary",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "value": "<div class=\"card-container-body\" style=\"width: 200px;\">\n<div class=\"card-number\"><a href=\"https:\/\/www.virustotal.com\/#\/ip-address\/{{vars.indicator_value}}\" target=\"_blank\" rel=\"noopener noreferrer\"> <span class=\"card-count\">{{vars.steps.Get_Reputation_from_VT.data.aggregate}}<\/span> <\/a>\n<div class=\"font-size-12 ng-binding\">Detected URLs: {{vars.steps.Get_Reputation_from_VT.data['detected_urls'] | length}}<\/div>\n<div class=\"font-size-14 ng-binding\"><strong>VirusTotal<\/strong><\/div>\n<\/div>\n<\/div>\n<p>&nbsp;<\/p>"
+                },
+                "version": "3.0.3",
+                "connector": "cyops_utilities",
+                "operation": "format_richtext",
+                "operationTitle": "Utils: Format as RichText",
+                "step_variables": {
+                    "Reputation": "{{vars.steps.Get_Reputation_from_VT.data.aggregate}}"
+                }
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "uuid": "5856629f-a1df-4545-8266-01d3be9b435c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Reputation from VT",
+            "description": null,
+            "arguments": {
+                "name": "VirusTotal",
+                "config": "1ba6a7ef-304a-4f78-855d-70b09bcd0b0a",
+                "params": {
+                    "ip": "{{vars.indicator_value}}"
+                },
+                "version": "1.0.1",
+                "connector": "virustotal",
+                "operation": "query_ip",
+                "operationTitle": "Get IP Reputation",
+                "step_variables": [],
+                "operationOutput": {
+                    "scans": [],
+                    "total": "",
+                    "scan_id": "",
+                    "resource": "",
+                    "aggregate": "",
+                    "permalink": "",
+                    "positives": "",
+                    "scan_date": "",
+                    "verbose_msg": ""
+                }
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "b8dc57f2-7e91-4c94-abdd-abd3e75a34d6"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/79620cdb-0927-4896-bcca-e6747b3f450f",
+            "sourceStep": "\/api\/3\/workflow_steps\/e5559c1b-f84c-45b2-9923-62bfc2cf87ec",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "87b5e0b6-95b5-46bd-a291-bcd641f59d48"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Reputation from VT -> Compute VT Summary",
+            "targetStep": "\/api\/3\/workflow_steps\/5856629f-a1df-4545-8266-01d3be9b435c",
+            "sourceStep": "\/api\/3\/workflow_steps\/b8dc57f2-7e91-4c94-abdd-abd3e75a34d6",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "2402a7a2-d412-485c-8b01-fa29c10c8721"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get Reputation from VT",
+            "targetStep": "\/api\/3\/workflow_steps\/b8dc57f2-7e91-4c94-abdd-abd3e75a34d6",
+            "sourceStep": "\/api\/3\/workflow_steps\/79620cdb-0927-4896-bcca-e6747b3f450f",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "edc7b820-f5c3-4618-b629-b8d53965d468"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Compute VT Summary -> enrichment_summary",
+            "targetStep": "\/api\/3\/workflow_steps\/70f3417b-104f-4aeb-a9a1-301cd691eb73",
+            "sourceStep": "\/api\/3\/workflow_steps\/5856629f-a1df-4545-8266-01d3be9b435c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "0d512eb7-f209-4716-aa09-2159b9dd78ac"
+        }
+    ],
+    "priority": null,
+    "uuid": "01e51dca-f516-4be6-bb49-3fc506920f15",
+    "recordTags": [
+        "Subroutine",
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0"
+    ],
+    "id": "123",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508351.200457,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508351.200457,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

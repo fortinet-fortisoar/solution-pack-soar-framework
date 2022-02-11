@@ -1,0 +1,244 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "rows",
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "chart",
+                                "config": {
+                                    "wid": "f9eb224f-b6bb-4480-a5df-f43dc0ab6d5d",
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "field": "severity.orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ],
+                                        "limit": 2147483647,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "status",
+                                                "operator": "eq",
+                                                "value": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                                                "_value": {
+                                                    "itemValue": "Open",
+                                                    "@id": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146"
+                                                },
+                                                "type": "object"
+                                            }
+                                        ],
+                                        "aggregates": [
+                                            {
+                                                "operator": "countdistinct",
+                                                "field": "*",
+                                                "alias": "total"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "severity",
+                                                "field": "severity.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "color",
+                                                "field": "severity.color"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "orderIndex",
+                                                "field": "severity.orderIndex"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "assignedToPerson": "assignedTo",
+                                        "fieldName": "severity"
+                                    },
+                                    "aggregate": true,
+                                    "title": "Open Alerts By Severity",
+                                    "resource": "alerts",
+                                    "chart": "pie",
+                                    "widgetAlwaysDisplay": true
+                                }
+                            }
+                        ],
+                        "style": "col-lg-6"
+                    },
+                    {
+                        "widgets": [
+                            {
+                                "type": "chart",
+                                "config": {
+                                    "wid": "a1d791b1-2dbe-45fb-b03e-4212f5a76b13",
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "field": "type.orderIndex",
+                                                "direction": "ASC"
+                                            },
+                                            {
+                                                "field": "status.orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ],
+                                        "limit": 2147483647,
+                                        "logic": "OR",
+                                        "filters": [
+                                            {
+                                                "field": "status",
+                                                "operator": "eq",
+                                                "value": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                                                "_value": {
+                                                    "display": "Open",
+                                                    "itemValue": "Open",
+                                                    "@id": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146"
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "field": "status",
+                                                "operator": "eq",
+                                                "value": "\/api\/3\/picklists\/758925e7-629c-46d8-89db-fb36f5fbe88a",
+                                                "_value": {
+                                                    "display": "Investigating",
+                                                    "itemValue": "",
+                                                    "@id": "\/api\/3\/picklists\/758925e7-629c-46d8-89db-fb36f5fbe88a"
+                                                },
+                                                "type": "object"
+                                            }
+                                        ],
+                                        "aggregates": [
+                                            {
+                                                "operator": "countdistinct",
+                                                "field": "*",
+                                                "alias": "total"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "type",
+                                                "field": "type.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "firstOrderIndex",
+                                                "field": "type.orderIndex"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "status",
+                                                "field": "status.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "secondOrderIndex",
+                                                "field": "status.orderIndex"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "color",
+                                                "field": "status.color"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "assignedToPerson": "assignedTo",
+                                        "secondGrouping": "status",
+                                        "firstGrouping": "type"
+                                    },
+                                    "aggregate": true,
+                                    "title": "Alerts by Type",
+                                    "resource": "alerts",
+                                    "chart": "bar",
+                                    "widgetAlwaysDisplay": true
+                                }
+                            }
+                        ],
+                        "style": "col-lg-6"
+                    }
+                ],
+                "wid": "b4c1f0c3-7ce2-4c84-9a0f-4ca76e769214",
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "grid",
+                                "config": {
+                                    "module": "alerts",
+                                    "columns": [
+                                        "id",
+                                        "priorityWeight",
+                                        "severity",
+                                        "assignedTo",
+                                        "name",
+                                        "source",
+                                        "type",
+                                        "status",
+                                        "createDate",
+                                        "escalatedtoincident",
+                                        "ackSlaStatus",
+                                        "respSlaStatus",
+                                        "tenant"
+                                    ],
+                                    "expandableCol": [],
+                                    "relationshipField": [],
+                                    "checkboxStatus": false,
+                                    "actionButtons": [
+                                        {
+                                            "id": "\/api\/3\/workflows\/a9db22f1-ceb8-4b2f-81bf-573ee59b0ee3",
+                                            "name": "Sample > Create Sample Records",
+                                            "icon": "fa fa-play"
+                                        },
+                                        {
+                                            "id": "\/api\/3\/workflows\/6e4c8e24-8786-4eaf-9b7f-723d44a2cc6e",
+                                            "name": "Escalate",
+                                            "icon": "fa fa-level-up"
+                                        },
+                                        {
+                                            "id": "\/api\/3\/workflows\/54866017-8228-4674-a9f5-fd1f1304d1db",
+                                            "name": "Resolve Alert",
+                                            "icon": "fa fa-check"
+                                        },
+                                        {
+                                            "id": "\/api\/3\/workflows\/71cf1ad8-9215-49e6-9aa2-be27c3c3ffa6",
+                                            "name": "Deploy Scenario",
+                                            "icon": "fa fa-play"
+                                        }
+                                    ],
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "direction": "DESC",
+                                                "field": "priorityWeight",
+                                                "_fieldTitle": "Priority Weight",
+                                                "_fieldName": "priorityWeight"
+                                            }
+                                        ],
+                                        "limit": 30,
+                                        "logic": "AND",
+                                        "filters": []
+                                    },
+                                    "wid": "8a9ee40f-c4f3-4606-a4ea-c7f20d49b065",
+                                    "title": ""
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "5897c386-8899-4a2d-961d-8a8888d3d099",
+                "_collapsed": false
+            }
+        ],
+        "wid": "4b82735b-8643-4878-bdf5-065e23d26fd5"
+    },
+    "uuid": "modules-alerts-list"
+}

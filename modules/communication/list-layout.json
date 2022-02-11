@@ -1,0 +1,70 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "rows",
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "grid",
+                                "config": {
+                                    "wid": "15575742-3d5e-4e0f-a252-237c9adb9bbe",
+                                    "module": "communication",
+                                    "columns": [
+                                        "msgDirection",
+                                        "type",
+                                        "to",
+                                        "from",
+                                        "subject"
+                                    ],
+                                    "expandableCol": [
+                                        {
+                                            "name": "body",
+                                            "title": "Body",
+                                            "openTab": false,
+                                            "viewRenderWidget": "iframe"
+                                        }
+                                    ],
+                                    "relationshipField": [],
+                                    "checkboxStatus": true,
+                                    "actionButtons": [
+                                        {
+                                            "id": "\/api\/3\/workflows\/afe78882-4ef5-4a35-bd63-0cd9023169cb",
+                                            "name": "Send Reply",
+                                            "icon": "icon icon-email-templates"
+                                        },
+                                        {
+                                            "id": "\/api\/3\/workflows\/fa735cd5-6194-4975-b3c1-a33060cf53d1",
+                                            "name": "Send Email",
+                                            "icon": "fa fa-envelope-o"
+                                        }
+                                    ],
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "direction": "DESC",
+                                                "field": "createDate",
+                                                "_fieldTitle": "Created On",
+                                                "_fieldName": "createDate"
+                                            }
+                                        ],
+                                        "limit": 30,
+                                        "logic": "AND",
+                                        "filters": []
+                                    }
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "24d05376-dd32-4e41-bb6a-096a5e530e84"
+            }
+        ],
+        "wid": "e441a2a0-1cdf-4021-b8c3-013d8bba0259"
+    },
+    "uuid": "modules-communication-list"
+}

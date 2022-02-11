@@ -1,0 +1,821 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Indicator (Type File) - Get Reputation",
+    "aliasName": null,
+    "tag": "#Subroutine",
+    "description": "Uploads a file to a sandbox and then retrieves its reputation using configured threat intelligence tools.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "indicator_file_IRI",
+        "indicator_file_name"
+    ],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/944b40e5-6ec9-4476-a74e-01d118221e2a",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Upload file to VirusTotal",
+            "description": null,
+            "arguments": {
+                "name": "VirusTotal",
+                "config": "1ba6a7ef-304a-4f78-855d-70b09bcd0b0a",
+                "params": {
+                    "input": "File IRI",
+                    "value": "{{vars.indicator_file_IRI}}"
+                },
+                "version": "2.0.0",
+                "connector": "virustotal",
+                "operation": "upload_sample",
+                "operationTitle": "Submit File",
+                "step_variables": [],
+                "operationOutput": {
+                    "scans": [],
+                    "total": "",
+                    "scan_id": "",
+                    "resource": "",
+                    "aggregate": "",
+                    "permalink": "",
+                    "positives": "",
+                    "scan_date": "",
+                    "verbose_msg": ""
+                }
+            },
+            "status": null,
+            "top": "200",
+            "left": "1420",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "fe1a2154-efb3-445a-98f7-962c4afd755c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Referenced",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Referenced",
+                        "step_iri": "\/api\/3\/workflow_steps\/7b1fdb83-a2a2-4f9c-89b3-5ab7206c6d7d",
+                        "condition": "{{ vars.input.params['indicator_file_IRI'] | length > 0 }}"
+                    },
+                    {
+                        "option": "Upon Create",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/270f481f-333f-4cdf-ba04-0f1aa19c7461"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "300",
+            "left": "3480",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "58dfd747-5569-4e35-8718-c25394122abf"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Submit sample to Threat Grid",
+            "description": null,
+            "arguments": {
+                "name": "Cisco Threat Grid",
+                "config": "cfbc1e19-b1da-4ab5-a513-5a5e4fb7b043",
+                "params": {
+                    "vm": "Windows 7 64-bit",
+                    "tags": "",
+                    "file_id": "{{vars.indicator_file_IRI}}",
+                    "private": true,
+                    "file_name": "{{vars.indicator_file_name}}",
+                    "location_name": "",
+                    "playbook_name": ""
+                },
+                "version": "1.2.0",
+                "connector": "cisco-threatgrid",
+                "operation": "submit_sample",
+                "ignore_errors": true,
+                "operationTitle": "Submit Sample",
+                "step_variables": {
+                    "isFileSubmitted": "{% if vars.steps.Submit_sample_to_Threat_Grid.data %}true{% else %}false{% endif %}"
+                }
+            },
+            "status": null,
+            "top": "380",
+            "left": "1420",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "ee96473f-bd1a-4aa1-9455-27f6d99db06c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": "Indicator reputation is set as 'TBD' by 'Create and Link Indicator' utility playbook. We can ignore those indicators when triggering this PB",
+            "arguments": {
+                "resource": "indicators",
+                "resources": [
+                    "indicators"
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    }
+                },
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "typeofindicator",
+                            "value": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                                "itemValue": "File"
+                            },
+                            "operator": "eq"
+                        },
+                        {
+                            "type": "object",
+                            "field": "indicatorStatus",
+                            "value": "\/api\/3\/picklists\/4218cb58-4de5-4eff-ad08-185d36ef9bab",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/4218cb58-4de5-4eff-ad08-185d36ef9bab",
+                                "itemValue": "Excluded"
+                            },
+                            "operator": "neq"
+                        },
+                        {
+                            "type": "primitive",
+                            "field": "file",
+                            "value": "false",
+                            "operator": "isnull",
+                            "_operator": "isnull"
+                        },
+                        {
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "type": "object",
+                                    "field": "reputation",
+                                    "value": "true",
+                                    "_value": {
+                                        "@id": "true",
+                                        "display": "",
+                                        "itemValue": ""
+                                    },
+                                    "operator": "isnull"
+                                },
+                                {
+                                    "type": "object",
+                                    "field": "reputation",
+                                    "value": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                                    "_value": {
+                                        "@id": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                                        "itemValue": "TBD"
+                                    },
+                                    "operator": "eq"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "status": null,
+            "top": "200",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "uuid": "944b40e5-6ec9-4476-a74e-01d118221e2a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get status of submitted sample",
+            "description": null,
+            "arguments": {
+                "name": "Cisco Threat Grid",
+                "config": "cfbc1e19-b1da-4ab5-a513-5a5e4fb7b043",
+                "params": {
+                    "sample_id": "{{vars.steps.Submit_sample_to_Threat_Grid.data.data.id}}"
+                },
+                "version": "1.3.0",
+                "do_until": {
+                    "delay": "30",
+                    "retries": "5",
+                    "condition": "{{vars.result.data.state == \"succ\"}}"
+                },
+                "connector": "cisco-threatgrid",
+                "operation": "get_status",
+                "ignore_errors": true,
+                "operationTitle": "Get Status",
+                "step_variables": {
+                    "threatGridStatus": "{{ vars.result.data | ternary(\"Finished\",\"Not Finished\")}}"
+                }
+            },
+            "status": null,
+            "top": "380",
+            "left": "1720",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "83a24bed-f7e0-4922-855a-d0eb8b6cf456"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Summary",
+            "description": null,
+            "arguments": {
+                "reputation": "{{vars.Reputation_Type_Text}}",
+                "filehash_md5": "{{vars.steps.Get_File_Details.data.meta.file_info.md5}}",
+                "filehash_sha1": "{{vars.steps.Get_File_Details.data.meta.file_info.sha1}}",
+                "reputation_iri": "{{vars.Reputation_Type_IRI}}",
+                "filehash_sha256": "{{vars.steps.Get_File_Details.data.meta.file_info.sha256}}",
+                "enrichment_summary": "{{vars.steps.Enrichment_Summary.data['formatted_string']}}"
+            },
+            "status": null,
+            "top": "420",
+            "left": "3820",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "7b1fdb83-a2a2-4f9c-89b3-5ab7206c6d7d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "indicator_file_IRI": "{{vars.input.params['indicator_file_IRI'] | ternary(vars.input.params['indicator_file_IRI'],vars.input.records[0].file['@id'] )}}",
+                "indicator_file_name": "{{vars.input.params['indicator_file_name'] | ternary(vars.input.params['indicator_file_name'],vars.input.records[0].file.filename) }}",
+                "reputation_threshold": "5"
+            },
+            "status": null,
+            "top": "300",
+            "left": "1100",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "726d4fc8-4e1f-4f2f-a00d-d3af90368eea"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Download Report",
+            "description": "",
+            "arguments": {
+                "name": "Cisco Threat Grid",
+                "when": "{{vars.threatGridStatus == \"Finished\"}}",
+                "config": "cfbc1e19-b1da-4ab5-a513-5a5e4fb7b043",
+                "params": {
+                    "download": "Report HTML",
+                    "sample_id": "{{vars.steps.Submit_sample_to_Threat_Grid.data.data.id}}"
+                },
+                "version": "1.2.0",
+                "connector": "cisco-threatgrid",
+                "operation": "download_report",
+                "ignore_errors": true,
+                "operationTitle": "Download Report",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "380",
+            "left": "2020",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "73c6fdfe-fab4-436d-9fcc-8a72f8649470"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Enrichment Summary",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "value": "<div class=\"font-size-11 ng-binding padding-bottom-sm\"><h4 style=\"background: #404142;padding: 5px;text-align: left;color: orange;background: black;\"> VirusTotal Detection Summary<\/h4><\/div>\n<table style=\"border-color: #04080c;\" border=\"1\" class=\"font-normal\">\n<tr><td>\n<table style=\"color:white;font-size:11;\" >\n<tr>\n<td>\n<html>\n  <head>\n    <title>Title of the document<\/title>\n    <style>\n      span.circle {\n        background: #2f3f51;\n        border-radius: 50%;\n        -moz-border-radius: 50%;\n        -webkit-border-radius: 50%;\n        display: inline-block;\n         font-weight: bold;\n        line-height: 100px;\n        margin-right: 5px;\n        text-align: center;\n        width: 100px;\n      font-size:15px;\n     border-color: Black;\n      }\n    <\/style>\n  <\/head>\n  <body><span class=\"circle\"><i style=\"font-size:25px;color:red \">\n   {{vars.last_analysis_stats.malicious}}<\/i>\/{{(vars.last_analysis_stats.values() | list ) [0:6] | sum}}<\/span>\n  <\/body>\n<\/html>\n<\/td>\n\n<td>\n<div class=\"font-size-14 ng-binding\">Malicious<\/div>\n<div class=\"card-container-body\" style=\"width: 100px;font-size:46px;\">\n<div class=\"card-number\"; style=\"font-size:45px;  border-left: 5px solid red;background:#141b23\">{{vars.last_analysis_stats.malicious}}<\/div>\n<\/div>\n<\/td>\n<td>\n<div class=\"font-size-14 ng-binding\">Suspicious<\/div>\n<div class=\"card-container-body\" style=\"width: 100px;\">\n<div class=\"card-number\" style=\"font-size:45px;  border-left: 5px solid orange; background:#141b23\">{{vars.last_analysis_stats.suspicious}}<\/div>\n<\/div>\n<\/td>\n<td>\n<div class=\"font-size-14 ng-binding\">Harmless<\/div>\n<div class=\"card-container-body\" style=\"width: 100px;\">\n<div class=\"card-number\" style=\"font-size:45px;  border-left: 5px solid green; background:#141b23\">{{vars.last_analysis_stats.harmless}}<\/div><\/div>\n<\/td>\n<\/tr>\n<\/table>\n\n<td style=\"vertical-align:top\">\n<table style=\"background-color: #1b2430; color:white;font-size:16;\" class=\"margin-10\">\n<tr>\n<div class=\"margin-top-md\">\n<i class=\"fa fa-group margin-left-md margin-right-sm\"><\/i> Community Votes<\/div>\n\n<td style=\"width: 100px;text-align: center;background:#141b23\">\n<i class=\"\tfa fa-thumbs-o-up\" style=\"font-size:25px;color:green\"><\/i>\n<div class=\"font-size-11 ng-binding\">Harmless {{vars.community_votes.harmless}}<\/div>\n<\/td>\n<td style=\"width: 100px;text-align: center;background:#141b23\">\n<i class=\"fa fa-thumbs-o-down\" style=\"font-size:25px;color:red \"><\/i>\n<div class=\"font-size-11 ng-binding\">Malicious {{vars.community_votes.malicious}}<\/div>\n<\/td>\n<\/tr>\n<\/table>\n<\/div>\n<\/td>\n<\/tr>\n<\/table>\n<br>"
+                },
+                "version": "3.1.1",
+                "connector": "cyops_utilities",
+                "operation": "format_richtext",
+                "operationTitle": "Utils: Format as RichText",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "3180",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "uuid": "f75e0d9f-3e2e-4359-93a8-94fa33d462d8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Record",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "reputation": "{{vars.Reputation_Type_IRI}}",
+                    "description": "{{vars.steps.Enrichment_Summary.data['formatted_string']}}",
+                    "filehashMD5": "{{vars.steps.Get_File_Details.data.meta.file_info.md5}}",
+                    "filehashSHA1": "{{vars.steps.Get_File_Details.data.meta.file_info.sha1}}",
+                    "filehashSHA256": "{{vars.steps.Get_File_Details.data.meta.file_info.sha256}}"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/indicators",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "180",
+            "left": "3800",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "270f481f-333f-4cdf-ba04-0f1aa19c7461"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get File Details",
+            "description": null,
+            "arguments": {
+                "name": "VirusTotal",
+                "config": "4a22a2c4-a1b5-4b9d-ba9b-df87a8cebce9",
+                "params": {
+                    "analysis_id": "{{vars.steps.Upload_file_to_VirusTotal.data.data.id}}"
+                },
+                "version": "2.0.0",
+                "do_until": {
+                    "delay": "30",
+                    "retries": "5",
+                    "condition": "{{vars.result.data.data.attributes.status == 'completed'}}"
+                },
+                "connector": "virustotal",
+                "operation": "analysis_file",
+                "operationTitle": "Get Analysis Details",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "200",
+            "left": "1720",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "0635a84d-79eb-427f-91f3-9c521ee29c34"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Malicious",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Malicious",
+                        "step_iri": "\/api\/3\/workflow_steps\/d703acf2-a997-4aca-b88a-adbea7977b18",
+                        "condition": "{{ vars.last_analysis_stats.malicious > 0 }}",
+                        "step_name": "Copy  of Set Malicious"
+                    },
+                    {
+                        "option": "No Reputation",
+                        "step_iri": "\/api\/3\/workflow_steps\/693a282e-b2fd-4afb-9dd8-174e120578e7",
+                        "condition": "{{ vars.last_analysis_stats.malicious == 0 or vars.last_analysis_stats.suspicious == 0 or vars.last_analysis_stats.harmless == 0 }}",
+                        "step_name": "Copy  of Set No Reputation"
+                    },
+                    {
+                        "option": "Safe",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/3d38bfc3-518e-4a66-8be7-8d05a0eaba82",
+                        "step_name": "Copy  of Set Good"
+                    },
+                    {
+                        "option": "Suspicious",
+                        "step_iri": "\/api\/3\/workflow_steps\/9d1bb741-5618-4180-aa96-d6d552036b99",
+                        "condition": "{{ vars.last_analysis_stats.suspicious > 0 }}",
+                        "step_name": "Set Suspicious"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "280",
+            "left": "2360",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "474efcaa-da7c-4131-a01f-ec3af98fae2b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Suspicious",
+            "description": null,
+            "arguments": {
+                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"Suspicious\"))[\"@id\"]}}",
+                "Reputation_Type_Text": "Suspicious"
+            },
+            "status": null,
+            "top": "440",
+            "left": "2760",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "9d1bb741-5618-4180-aa96-d6d552036b99"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set No Reputation",
+            "description": null,
+            "arguments": {
+                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"No Reputation Available\"))[\"@id\"]}}",
+                "Reputation_Type_Text": "No Reputation Available"
+            },
+            "status": null,
+            "top": "120",
+            "left": "2760",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "693a282e-b2fd-4afb-9dd8-174e120578e7"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Good",
+            "description": null,
+            "arguments": {
+                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"Good\"))[\"@id\"]}}",
+                "Reputation_Type_Text": "Good"
+            },
+            "status": null,
+            "top": "20",
+            "left": "2660",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "3d38bfc3-518e-4a66-8be7-8d05a0eaba82"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Malicious",
+            "description": null,
+            "arguments": {
+                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"Malicious\"))[\"@id\"]}}",
+                "Reputation_Type_Text": "Malicious"
+            },
+            "status": null,
+            "top": "540",
+            "left": "2680",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "d703acf2-a997-4aca-b88a-adbea7977b18"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get File Reputation from VirusTotal",
+            "description": null,
+            "arguments": {
+                "name": "VirusTotal",
+                "config": "4a22a2c4-a1b5-4b9d-ba9b-df87a8cebce9",
+                "params": {
+                    "file_hash": "{{vars.steps.Get_File_Details.data.meta.file_info.md5}}"
+                },
+                "version": "2.0.0",
+                "connector": "virustotal",
+                "operation": "file_reputation",
+                "operationTitle": "Get File Reputation",
+                "pickFromTenant": false,
+                "step_variables": {
+                    "community_votes": "{{vars.result.data.attributes['total_votes']}}",
+                    "last_analysis_stats": "{{vars.result.data.attributes['last_analysis_stats']}}"
+                }
+            },
+            "status": null,
+            "top": "200",
+            "left": "2020",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "5c6c6d2d-ab01-400b-9760-6179c6e6455d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Tenant Shared",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/726d4fc8-4e1f-4f2f-a00d-d3af90368eea",
+                        "condition": "{{ (vars.input.records[0].tenant.isDedicated == true) and (vars.input.records[0].tenant.role == 'self') }}",
+                        "step_name": "Configuration"
+                    },
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/726d4fc8-4e1f-4f2f-a00d-d3af90368eea",
+                        "condition": "{{ vars.input.records[0].tenant.isDedicated == false }}",
+                        "step_name": "Configuration"
+                    },
+                    {
+                        "option": "No",
+                        "step_iri": "\/api\/3\/workflow_steps\/5c6d390f-cb4e-41ec-b548-88f1d3a635b8",
+                        "condition": "{{ (vars.input.records[0].tenant.isDedicated == true) and (vars.input.records[0].tenant.role != 'self') }}",
+                        "step_name": "No Operation"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "100",
+            "left": "1100",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "75eb7996-c462-47ce-afb2-d1ec62438158"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "No Operation",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.0.4",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "100",
+            "left": "1420",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "uuid": "5c6d390f-cb4e-41ec-b548-88f1d3a635b8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get License Details",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/auth\/license\/?param=license_details",
+                    "body": "",
+                    "method": "GET"
+                },
+                "version": "3.1.2",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "200",
+            "left": "460",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "uuid": "1ca2570d-51de-46be-8f26-56d96c9f30fe"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is MSSP Environment",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "No",
+                        "step_iri": "\/api\/3\/workflow_steps\/726d4fc8-4e1f-4f2f-a00d-d3af90368eea",
+                        "condition": "{{ vars.steps.Get_License_Details.data.edition == 'Enterprise' }}",
+                        "step_name": "Configuration"
+                    },
+                    {
+                        "option": "Yes",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/75eb7996-c462-47ce-afb2-d1ec62438158",
+                        "step_name": "Is Tenant Shared"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "200",
+            "left": "780",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "638b731f-6e1d-4f84-b0e1-85c0163a6c23"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Upon Create -> Update Record",
+            "targetStep": "\/api\/3\/workflow_steps\/270f481f-333f-4cdf-ba04-0f1aa19c7461",
+            "sourceStep": "\/api\/3\/workflow_steps\/58dfd747-5569-4e35-8718-c25394122abf",
+            "label": "Upon Create",
+            "isExecuted": false,
+            "uuid": "dbc68097-9a45-4f32-8ea7-b19fc7cec1bf"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get status of submitted sample -> Copy  of Get status of submitted sample",
+            "targetStep": "\/api\/3\/workflow_steps\/73c6fdfe-fab4-436d-9fcc-8a72f8649470",
+            "sourceStep": "\/api\/3\/workflow_steps\/83a24bed-f7e0-4922-855a-d0eb8b6cf456",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "6c7b0af2-4d8d-4bcc-8e6e-a1c482a6b54b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Submit sample to Threat Grid -> Get status of submitted sample",
+            "targetStep": "\/api\/3\/workflow_steps\/83a24bed-f7e0-4922-855a-d0eb8b6cf456",
+            "sourceStep": "\/api\/3\/workflow_steps\/ee96473f-bd1a-4aa1-9455-27f6d99db06c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "af4bb200-4112-401b-8955-2c88f278e6ae"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Enrichment Summary -> Is Upon Create",
+            "targetStep": "\/api\/3\/workflow_steps\/58dfd747-5569-4e35-8718-c25394122abf",
+            "sourceStep": "\/api\/3\/workflow_steps\/f75e0d9f-3e2e-4359-93a8-94fa33d462d8",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "906d0690-0cfa-4197-b3a3-7dc35f0c2e7d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Upon Create -> Summary",
+            "targetStep": "\/api\/3\/workflow_steps\/7b1fdb83-a2a2-4f9c-89b3-5ab7206c6d7d",
+            "sourceStep": "\/api\/3\/workflow_steps\/58dfd747-5569-4e35-8718-c25394122abf",
+            "label": "Referenced",
+            "isExecuted": false,
+            "uuid": "6b35ad5a-82d6-4e2b-8f0d-a1ebeebd87b0"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get Domain Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/fe1a2154-efb3-445a-98f7-962c4afd755c",
+            "sourceStep": "\/api\/3\/workflow_steps\/726d4fc8-4e1f-4f2f-a00d-d3af90368eea",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "0e960b23-3b67-4a34-83e9-fc13452c2dfe"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Upload file to VirusTotal -> Get File Details",
+            "targetStep": "\/api\/3\/workflow_steps\/0635a84d-79eb-427f-91f3-9c521ee29c34",
+            "sourceStep": "\/api\/3\/workflow_steps\/fe1a2154-efb3-445a-98f7-962c4afd755c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "f668758b-96b8-435e-bc7e-61b85dddba2b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Copy  of Is Malicious -> Copy  of Set Good",
+            "targetStep": "\/api\/3\/workflow_steps\/3d38bfc3-518e-4a66-8be7-8d05a0eaba82",
+            "sourceStep": "\/api\/3\/workflow_steps\/474efcaa-da7c-4131-a01f-ec3af98fae2b",
+            "label": "Safe",
+            "isExecuted": false,
+            "uuid": "4622d289-e831-45fd-8241-601966516df8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Copy  of Is Malicious -> Copy  of Set No Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/693a282e-b2fd-4afb-9dd8-174e120578e7",
+            "sourceStep": "\/api\/3\/workflow_steps\/474efcaa-da7c-4131-a01f-ec3af98fae2b",
+            "label": "No Reputation",
+            "isExecuted": false,
+            "uuid": "8772f7cb-7223-476b-bf33-1c90482661b9"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Copy  of Is Malicious -> Set Suspicious",
+            "targetStep": "\/api\/3\/workflow_steps\/9d1bb741-5618-4180-aa96-d6d552036b99",
+            "sourceStep": "\/api\/3\/workflow_steps\/474efcaa-da7c-4131-a01f-ec3af98fae2b",
+            "label": "Suspicious",
+            "isExecuted": false,
+            "uuid": "0bf3d7b5-ce1a-4041-8821-9e1d2952424f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Copy  of Is Malicious -> Copy  of Set Malicious",
+            "targetStep": "\/api\/3\/workflow_steps\/d703acf2-a997-4aca-b88a-adbea7977b18",
+            "sourceStep": "\/api\/3\/workflow_steps\/474efcaa-da7c-4131-a01f-ec3af98fae2b",
+            "label": "Malicious",
+            "isExecuted": false,
+            "uuid": "1b44d831-8eb5-4616-9c59-9209f7c39731"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Copy  of Set Malicious -> Enrichment Summary",
+            "targetStep": "\/api\/3\/workflow_steps\/f75e0d9f-3e2e-4359-93a8-94fa33d462d8",
+            "sourceStep": "\/api\/3\/workflow_steps\/d703acf2-a997-4aca-b88a-adbea7977b18",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "656cb493-0581-414b-b5ad-912488156e17"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Copy  of Set No Reputation -> Enrichment Summary",
+            "targetStep": "\/api\/3\/workflow_steps\/f75e0d9f-3e2e-4359-93a8-94fa33d462d8",
+            "sourceStep": "\/api\/3\/workflow_steps\/693a282e-b2fd-4afb-9dd8-174e120578e7",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "acf967c5-825a-42d4-aa7d-e0a83c61ea85"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Copy  of Set Good -> Enrichment Summary",
+            "targetStep": "\/api\/3\/workflow_steps\/f75e0d9f-3e2e-4359-93a8-94fa33d462d8",
+            "sourceStep": "\/api\/3\/workflow_steps\/3d38bfc3-518e-4a66-8be7-8d05a0eaba82",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "95f59469-a145-4fef-af4c-8c169b287680"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Set Suspicious -> Enrichment Summary",
+            "targetStep": "\/api\/3\/workflow_steps\/f75e0d9f-3e2e-4359-93a8-94fa33d462d8",
+            "sourceStep": "\/api\/3\/workflow_steps\/9d1bb741-5618-4180-aa96-d6d552036b99",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c86a6849-387f-4b82-aae2-c9fd018f5ca3"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get File Details -> Get File Reputation from VirusTotal",
+            "targetStep": "\/api\/3\/workflow_steps\/5c6c6d2d-ab01-400b-9760-6179c6e6455d",
+            "sourceStep": "\/api\/3\/workflow_steps\/0635a84d-79eb-427f-91f3-9c521ee29c34",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "02615071-84b4-4f2c-bd7b-d7a7d9010c02"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get File Reputation from VirusTotal -> Is Malicious",
+            "targetStep": "\/api\/3\/workflow_steps\/474efcaa-da7c-4131-a01f-ec3af98fae2b",
+            "sourceStep": "\/api\/3\/workflow_steps\/5c6c6d2d-ab01-400b-9760-6179c6e6455d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "4c574500-b6e6-49f0-b222-697452dcbe1e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Submit sample to Threat Grid",
+            "targetStep": "\/api\/3\/workflow_steps\/ee96473f-bd1a-4aa1-9455-27f6d99db06c",
+            "sourceStep": "\/api\/3\/workflow_steps\/726d4fc8-4e1f-4f2f-a00d-d3af90368eea",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "21543b82-0772-49eb-be01-ef0b587b38ef"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Download Report -> Is Malicious",
+            "targetStep": "\/api\/3\/workflow_steps\/474efcaa-da7c-4131-a01f-ec3af98fae2b",
+            "sourceStep": "\/api\/3\/workflow_steps\/73c6fdfe-fab4-436d-9fcc-8a72f8649470",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "32cfe575-c88a-4f75-b9bc-63fec45a787e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Tenant Shared -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/5c6d390f-cb4e-41ec-b548-88f1d3a635b8",
+            "sourceStep": "\/api\/3\/workflow_steps\/75eb7996-c462-47ce-afb2-d1ec62438158",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "6f6d20a3-286a-4190-bda3-4cdd4e5ea4ac"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Tenant Shared -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/726d4fc8-4e1f-4f2f-a00d-d3af90368eea",
+            "sourceStep": "\/api\/3\/workflow_steps\/75eb7996-c462-47ce-afb2-d1ec62438158",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "e73b060b-1200-48c9-9ed4-6d2e206b88b5"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get License Details -> Is MSSP Environment",
+            "targetStep": "\/api\/3\/workflow_steps\/638b731f-6e1d-4f84-b0e1-85c0163a6c23",
+            "sourceStep": "\/api\/3\/workflow_steps\/1ca2570d-51de-46be-8f26-56d96c9f30fe",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "9a34d5fc-5b90-4be2-b2dd-cdaa8002817a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get License Details",
+            "targetStep": "\/api\/3\/workflow_steps\/1ca2570d-51de-46be-8f26-56d96c9f30fe",
+            "sourceStep": "\/api\/3\/workflow_steps\/944b40e5-6ec9-4476-a74e-01d118221e2a",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e3b17f77-f040-4466-b5dd-359046f0053b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is MSSP Environment -> Is Tenant Shared",
+            "targetStep": "\/api\/3\/workflow_steps\/75eb7996-c462-47ce-afb2-d1ec62438158",
+            "sourceStep": "\/api\/3\/workflow_steps\/638b731f-6e1d-4f84-b0e1-85c0163a6c23",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "b6d1177d-bce9-4f25-bce3-0368eb9422c8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is MSSP Environment -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/726d4fc8-4e1f-4f2f-a00d-d3af90368eea",
+            "sourceStep": "\/api\/3\/workflow_steps\/638b731f-6e1d-4f84-b0e1-85c0163a6c23",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "74295ee9-b63a-43ac-bf66-5f878d80fad9"
+        }
+    ],
+    "priority": null,
+    "uuid": "a8fff7b5-ad4a-4fb2-875a-91245f351626",
+    "recordTags": [
+        "Subroutine",
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0",
+        "Indicator (Type All) - Get Latest Reputation"
+    ],
+    "id": "81",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508349.786346,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508349.786346,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

@@ -1,0 +1,438 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Create Communication Record (Email Reply)",
+    "aliasName": null,
+    "tag": null,
+    "description": "Creates a record in the communications module based off a reply to a received email.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/d98add27-83c9-4f73-a370-16454398e317",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/8db33f93-25b4-4977-9599-99bd56d355c5",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "18945279-9e33-4f57-b284-2617838ee401",
+                "title": "Reply",
+                "resources": [
+                    "communication"
+                ],
+                "inputVariables": [
+                    {
+                        "name": "to",
+                        "type": "boolean",
+                        "label": "To",
+                        "title": "Checkbox",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "checkbox",
+                        "formType": "checkbox",
+                        "required": true,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "moduleField": "from",
+                        "templateUrl": "app\/components\/form\/fields\/checkbox.html",
+                        "defaultValue": null,
+                        "lengthConstraint": false,
+                        "allowedEncryption": false,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": true
+                    },
+                    {
+                        "name": "cc",
+                        "type": "string",
+                        "label": "CC",
+                        "tooltip": "",
+                        "dataType": "text",
+                        "formType": "text",
+                        "required": false,
+                        "_expanded": true,
+                        "moduleField": "cc",
+                        "_nameTouched": true,
+                        "useRecordFieldDefault": true
+                    },
+                    {
+                        "name": "bcc",
+                        "type": "string",
+                        "label": "BCC",
+                        "tooltip": "",
+                        "dataType": "text",
+                        "formType": "text",
+                        "required": false,
+                        "_expanded": true,
+                        "moduleField": "bcc",
+                        "_nameTouched": true,
+                        "useRecordFieldDefault": true
+                    },
+                    {
+                        "name": "emailBody",
+                        "type": "string",
+                        "label": "Email Body",
+                        "title": "Rich Text",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "text",
+                        "formType": "richtext",
+                        "required": true,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "moduleField": "body",
+                        "templateUrl": "app\/components\/form\/fields\/richtext.html",
+                        "defaultValue": null,
+                        "lengthConstraint": false,
+                        "allowedEncryption": true,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "includeEmailThread",
+                        "type": "boolean",
+                        "label": "Include Email Thread",
+                        "title": "Checkbox",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "checkbox",
+                        "formType": "checkbox",
+                        "required": false,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/checkbox.html",
+                        "defaultValue": true,
+                        "lengthConstraint": false,
+                        "allowedEncryption": false,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "file",
+                        "type": "string",
+                        "label": "File",
+                        "title": "File Field",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "file",
+                        "formType": "file",
+                        "required": false,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "dataSource": {
+                            "model": "files"
+                        },
+                        "searchable": false,
+                        "templateUrl": "app\/components\/form\/fields\/file.html",
+                        "defaultValue": null,
+                        "lengthConstraint": true,
+                        "allowedEncryption": false,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false
+                    }
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "cc": "{{vars.request.data[\"cc\"]}}",
+                            "to": "{{vars.request.data[\"to\"]}}",
+                            "bcc": "{{vars.request.data[\"bcc\"]}}",
+                            "file": "{{vars.request.data[\"file\"]}}",
+                            "emailBody": "{{vars.request.data[\"emailBody\"]}}",
+                            "includeEmailThread": "{{vars.request.data[\"includeEmailThread\"]}}"
+                        },
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "_promptexpanded": true,
+                "displayConditions": {
+                    "communication": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "type": "object",
+                                "field": "msgDirection",
+                                "value": "\/api\/3\/picklists\/c89f8eb7-0669-4535-9935-888ff46f544f",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/c89f8eb7-0669-4535-9935-888ff46f544f",
+                                    "itemValue": "Received"
+                                },
+                                "operator": "eq"
+                            }
+                        ]
+                    }
+                },
+                "executeButtonText": "Reply",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "20",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "uuid": "8db33f93-25b4-4977-9599-99bd56d355c5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Include Email Thread",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/5ae719cf-cddd-445f-9e97-e613c8062829",
+                        "condition": "{{ vars.input.params.includeEmailThread is none }}",
+                        "step_name": "Reply Email"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/53446a64-f4cb-4c72-894f-c38cb5e58078",
+                        "step_name": "Reply With Email Thread"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "300",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "a9a35132-55e1-4516-96e7-21fa6535252d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Reply With Email Thread",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "cc": "{{vars.input.params.cc}}",
+                    "to": "{{vars.input.records[0].from | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+')}}",
+                    "bcc": "{{vars.input.params.bcc}}",
+                    "body": "{{vars.input.params.emailBody}}\n<br>\n<br>\n<hr>\nEmail Thread <br>\n\n{{vars.input.records[0].body}} <\/br>\n\n\n<i>--- Do Not Edit Below This Line ---<\/i><br>\nFSR {{vars.input.records[0].body | regex_search('(?<=FSR)(.*?)(?=FSR)') | trim}} FSR",
+                    "file": "{{vars.input.params.file}}",
+                    "type": {
+                        "id": 295,
+                        "@id": "\/api\/3\/picklists\/b8e7c917-5299-4a43-9c1a-fac1d9a5438f",
+                        "icon": null,
+                        "@type": "Picklist",
+                        "color": null,
+                        "display": "Email",
+                        "listName": "\/api\/3\/picklist_names\/57d30379-dbba-4684-b126-ec3ad8766f06",
+                        "itemValue": "Email",
+                        "orderIndex": 0
+                    },
+                    "file1": "{{vars.input.params.file1}}",
+                    "__link": {
+                        "communications": "{{vars.input.records[0]['@id']}}"
+                    },
+                    "subject": "{{vars.input.records[0].subject}}",
+                    "__replace": "",
+                    "msgDirection": {
+                        "id": 304,
+                        "@id": "\/api\/3\/picklists\/9f0a2594-2390-4086-9b6f-c7165c70ce27",
+                        "icon": null,
+                        "@type": "Picklist",
+                        "color": null,
+                        "display": "Sending",
+                        "listName": "\/api\/3\/picklist_names\/09b97c81-669a-4ac8-8668-920913f3329b",
+                        "itemValue": "Sending",
+                        "orderIndex": 3
+                    }
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "\/api\/3\/communication",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": {
+                    "new_comm_iri": "{{vars.result['@id']}}"
+                }
+            },
+            "status": null,
+            "top": "440",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "uuid": "53446a64-f4cb-4c72-894f-c38cb5e58078"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Reply Email",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "cc": "{{vars.input.params.cc}}",
+                    "to": "{{vars.input.records[0].from | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+')}}",
+                    "bcc": "{{vars.input.params.bcc}}",
+                    "body": "{{vars.input.params.emailBody}}\n\n<i>--- Do Not Edit Below This Line ---<\/i><br>\nFSR {{vars.input.records[0].body | regex_search('(?<=FSR)(.*?)(?=FSR)') | trim}} FSR",
+                    "file": "{{vars.input.params.file}}",
+                    "type": {
+                        "id": 295,
+                        "@id": "\/api\/3\/picklists\/b8e7c917-5299-4a43-9c1a-fac1d9a5438f",
+                        "icon": null,
+                        "@type": "Picklist",
+                        "color": null,
+                        "display": "Email",
+                        "listName": "\/api\/3\/picklist_names\/57d30379-dbba-4684-b126-ec3ad8766f06",
+                        "itemValue": "Email",
+                        "orderIndex": 0
+                    },
+                    "__link": {
+                        "communications": "{{vars.input.records[0]['@id']}}"
+                    },
+                    "subject": "{{vars.input.records[0].subject}}",
+                    "__replace": "",
+                    "includeFiles": true,
+                    "msgDirection": {
+                        "id": 304,
+                        "@id": "\/api\/3\/picklists\/9f0a2594-2390-4086-9b6f-c7165c70ce27",
+                        "icon": null,
+                        "@type": "Picklist",
+                        "color": null,
+                        "display": "Sending",
+                        "listName": "\/api\/3\/picklist_names\/09b97c81-669a-4ac8-8668-920913f3329b",
+                        "itemValue": "Sending",
+                        "orderIndex": 3
+                    }
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "\/api\/3\/communication",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": {
+                    "new_comm_iri": "{{vars.result['@id']}}"
+                }
+            },
+            "status": null,
+            "top": "440",
+            "left": "480",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "uuid": "5ae719cf-cddd-445f-9e97-e613c8062829"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Alert IRI",
+            "description": null,
+            "arguments": {
+                "alert_iri": "{{vars.input.records[0].body | regex_search('(?<=FSR)(.*?)(?=FSR)') | trim | b64decode }}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "54609a14-7394-4ac4-bcd9-ebbf895d7105"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Link Communication to Alert",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.alert_iri}}",
+                "resource": {
+                    "__link": {
+                        "communications": "{{vars.new_comm_iri}}"
+                    }
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{% if vars.alert_iri %}{{vars.alert_iri}}{%else%}None{%endif%}",
+                "collectionType": "\/api\/3\/alerts",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "631",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "bf0b284d-1d3a-4379-8f09-dfadfe2a9484"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Include Email Thread -> Reply Email 1",
+            "targetStep": "\/api\/3\/workflow_steps\/5ae719cf-cddd-445f-9e97-e613c8062829",
+            "sourceStep": "\/api\/3\/workflow_steps\/a9a35132-55e1-4516-96e7-21fa6535252d",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "de2b3f9b-45c2-48af-a5a7-7850912d4584"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Alert IRI -> Include Email Thread",
+            "targetStep": "\/api\/3\/workflow_steps\/a9a35132-55e1-4516-96e7-21fa6535252d",
+            "sourceStep": "\/api\/3\/workflow_steps\/54609a14-7394-4ac4-bcd9-ebbf895d7105",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "3a521fbd-e29b-409a-8f3e-39709b1e458d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Reply Email -> Link Communication to Alert",
+            "targetStep": "\/api\/3\/workflow_steps\/bf0b284d-1d3a-4379-8f09-dfadfe2a9484",
+            "sourceStep": "\/api\/3\/workflow_steps\/5ae719cf-cddd-445f-9e97-e613c8062829",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "0c63f704-a7e3-422a-bd13-6961ca604ebb"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Include Email Thread -> Reply With Email Thread 1",
+            "targetStep": "\/api\/3\/workflow_steps\/53446a64-f4cb-4c72-894f-c38cb5e58078",
+            "sourceStep": "\/api\/3\/workflow_steps\/a9a35132-55e1-4516-96e7-21fa6535252d",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "ec3c0581-2dde-409f-9062-3e017597bc6c"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Alert IRI",
+            "targetStep": "\/api\/3\/workflow_steps\/54609a14-7394-4ac4-bcd9-ebbf895d7105",
+            "sourceStep": "\/api\/3\/workflow_steps\/8db33f93-25b4-4977-9599-99bd56d355c5",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "9ccbb73e-1919-49fd-9022-e38b98f3b19e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Reply With Email Thread -> Link Communication to Alert",
+            "targetStep": "\/api\/3\/workflow_steps\/bf0b284d-1d3a-4379-8f09-dfadfe2a9484",
+            "sourceStep": "\/api\/3\/workflow_steps\/53446a64-f4cb-4c72-894f-c38cb5e58078",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "5b1114f9-5f7f-4d98-88e4-31db67fe89c4"
+        }
+    ],
+    "priority": null,
+    "uuid": "afe78882-4ef5-4a35-bd63-0cd9023169cb",
+    "recordTags": [
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0",
+        "ManualTrigger"
+    ],
+    "id": "259",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508358.454283,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508358.454283,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

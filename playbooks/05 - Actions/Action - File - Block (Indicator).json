@@ -1,0 +1,325 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Action - File - Block (Indicator)",
+    "aliasName": null,
+    "tag": null,
+    "description": "Blocks the indicators of type 'File' on the firewall and marks the indicator as \"Blocked\" based on its block status.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "inputIndicatorRecordIRI",
+        "inputIndicatorValue",
+        "inputActionReasons"
+    ],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/2d150b7b-ee6b-4686-a249-3c2cfa99f657",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/ca489bcb-a95e-4f13-aecc-f1600258f317",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Mark as Blocked",
+            "description": null,
+            "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "content": "<p><span class=\"icon icon-successful text-success\"  style=\"font-size: 15px; color: green; font-weight: bold;\"><\/span>&nbsp;{{vars.indicatorValue}} has been <strong>Blocked<\/strong> as confirmed by&nbsp;{{vars.loggedInUserName}}<\/p>",
+                    "records": ""
+                },
+                "resource": {
+                    "indicatorStatus": {
+                        "id": 367,
+                        "@id": "\/api\/3\/picklists\/fa29fe48-f01e-476f-bb33-c910f5795b57",
+                        "icon": null,
+                        "@type": "Picklist",
+                        "color": null,
+                        "display": "Blocked",
+                        "listName": "\/api\/3\/picklist_names\/e6639d57-94a9-432f-a46f-b2b530402077",
+                        "itemValue": "Blocked",
+                        "orderIndex": 0
+                    }
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "{{vars.indicatorIRI}}",
+                "collectionType": "\/api\/3\/indicators",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "f7862c94-f7bb-4b3f-bee6-b24e871615f0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Manual Task to Action",
+            "description": null,
+            "arguments": {
+                "type": "DecisionBased",
+                "input": {
+                    "schema": {
+                        "title": "Block {{vars.indicatorValue}}",
+                        "description": "<p>Configure your firewall to block:&nbsp;{{vars.indicatorValue}} and Click \"Block Completed\" to confirm the status.<\/p>\n<p>*Consider changing this step to automation using a connector. That would accelerate your response time and allow you to focus on advanced threats<\/p>",
+                        "inputVariables": []
+                    }
+                },
+                "record": "{{ vars.input.records[0][\"@id\"] }}",
+                "resources": "indicators",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Block Completed",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/f7862c94-f7bb-4b3f-bee6-b24e871615f0"
+                        },
+                        {
+                            "option": "Unable to Block",
+                            "step_iri": "\/api\/3\/workflow_steps\/86bcaf58-d694-41ac-a1bc-5fdb46521e95"
+                        }
+                    ],
+                    "duplicateOption": false
+                }
+            },
+            "status": null,
+            "top": "440",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "uuid": "0b496f62-d923-4e6b-a444-4c90ca15d536"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Add note to Indicator",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "content": "<p>{{vars.loggedInUserName}}&nbsp;initiated block of {{vars.indicatorValue}} with the following reasons:&nbsp;{{vars.actionReason}}<\/p>",
+                    "__replace": "",
+                    "indicators": "{{vars.indicatorIRI}}"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "uuid": "07203201-181f-4e4b-b8e7-7ee7dd30559b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "31f66ac0-c52f-451e-ac61-58481914e65a",
+                "title": "Block File",
+                "resources": [
+                    "indicators"
+                ],
+                "inputVariables": [
+                    {
+                        "name": "actionReason",
+                        "type": "string",
+                        "label": "Reason",
+                        "tooltip": "Specify Reason for the action",
+                        "dataType": "text",
+                        "formType": "text",
+                        "required": false,
+                        "_expanded": true,
+                        "_nameTouched": true,
+                        "defaultValue": "Found malicious during investigation",
+                        "useRecordFieldDefault": false
+                    }
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "actionReason": "{{vars.request.data[\"actionReason\"]}}",
+                            "inputActionReasons": "{{ vars.inputActionReasons }}",
+                            "inputIndicatorValue": "{{ vars.inputIndicatorValue }}",
+                            "inputIndicatorRecordIRI": "{{ vars.inputIndicatorRecordIRI }}"
+                        },
+                        "records": "{{vars.input.records}}"
+                    },
+                    "loggedInUser": "{{vars.currentUser | fromIRI }}"
+                },
+                "_promptexpanded": true,
+                "displayConditions": {
+                    "indicators": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "type": "object",
+                                "field": "indicatorStatus",
+                                "value": "\/api\/3\/picklists\/fa29fe48-f01e-476f-bb33-c910f5795b57",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/fa29fe48-f01e-476f-bb33-c910f5795b57",
+                                    "itemValue": "Blocked"
+                                },
+                                "operator": "neq"
+                            },
+                            {
+                                "type": "object",
+                                "field": "typeofindicator",
+                                "value": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                                    "display": "File",
+                                    "itemValue": "File"
+                                },
+                                "operator": "eq"
+                            }
+                        ]
+                    }
+                },
+                "executeButtonText": "Block",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "30",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "uuid": "ca489bcb-a95e-4f13-aecc-f1600258f317"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Mark as TBD",
+            "description": null,
+            "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "content": "<p>{{vars.indicatorValue}} was <strong>not blocked&nbsp;<\/strong>as confirmed by&nbsp;{{vars.loggedInUserName}}<\/p>",
+                    "records": ""
+                },
+                "resource": {
+                    "indicatorStatus": {
+                        "id": 369,
+                        "@id": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
+                        "icon": null,
+                        "@type": "Picklist",
+                        "color": null,
+                        "display": "TBD",
+                        "listName": "\/api\/3\/picklist_names\/e6639d57-94a9-432f-a46f-b2b530402077",
+                        "itemValue": "TBD",
+                        "orderIndex": 2
+                    }
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "{{vars.indicatorIRI}}",
+                "collectionType": "\/api\/3\/indicators",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "570",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "86bcaf58-d694-41ac-a1bc-5fdb46521e95"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "actionReason": "{{\nvars.input.params.inputActionReasons\nif vars.input.params.inputActionReasons\nelse vars.input.params.actionReason\n}}",
+                "indicatorIRI": "{{\nvars.input.params.inputIndicatorRecordIRI \nif vars.input.params.inputIndicatorRecordIRI \nelse  \nvars.input.records[0]['@id'] \n}}",
+                "indicatorValue": "{{\nvars.input.params.inputIndicatorValue\nif vars.input.params.inputIndicatorValue\nelse \nvars.input.records[0].value\n}}",
+                "loggedInUserName": "{{vars.loggedInUser.firstname}} {{vars.loggedInUser.lastname}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "aa253938-6110-4e34-ba46-e19a0c25353e"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Add note to Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/07203201-181f-4e4b-b8e7-7ee7dd30559b",
+            "sourceStep": "\/api\/3\/workflow_steps\/aa253938-6110-4e34-ba46-e19a0c25353e",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "555ec636-4e61-49f9-b512-66eef94015f0"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Manual Task to Block -> Mark as TBD",
+            "targetStep": "\/api\/3\/workflow_steps\/86bcaf58-d694-41ac-a1bc-5fdb46521e95",
+            "sourceStep": "\/api\/3\/workflow_steps\/0b496f62-d923-4e6b-a444-4c90ca15d536",
+            "label": "Unable to Block",
+            "isExecuted": false,
+            "uuid": "96ba4e37-3bf0-4afe-a27a-e670c681625b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/aa253938-6110-4e34-ba46-e19a0c25353e",
+            "sourceStep": "\/api\/3\/workflow_steps\/ca489bcb-a95e-4f13-aecc-f1600258f317",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "4fedafb3-d2ea-4f90-acd9-1512775e4c01"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Add note to Indicator -> Manual Task to Block",
+            "targetStep": "\/api\/3\/workflow_steps\/0b496f62-d923-4e6b-a444-4c90ca15d536",
+            "sourceStep": "\/api\/3\/workflow_steps\/07203201-181f-4e4b-b8e7-7ee7dd30559b",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "91eddefc-fdc1-43d6-9abc-7d49adbaf6eb"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Manual Task to Block -> Mark as Blocked",
+            "targetStep": "\/api\/3\/workflow_steps\/f7862c94-f7bb-4b3f-bee6-b24e871615f0",
+            "sourceStep": "\/api\/3\/workflow_steps\/0b496f62-d923-4e6b-a444-4c90ca15d536",
+            "label": "Block Completed",
+            "isExecuted": false,
+            "uuid": "90f0cd25-346f-4d73-adb4-67867c593d09"
+        }
+    ],
+    "priority": null,
+    "uuid": "8ae6240e-17de-4796-8190-c5f9ff450c82",
+    "recordTags": [
+        "Subroutine",
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0",
+        "ManualAction",
+        "Action (Type All) - Block Indicators"
+    ],
+    "id": "144",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508352.897348,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508352.897348,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

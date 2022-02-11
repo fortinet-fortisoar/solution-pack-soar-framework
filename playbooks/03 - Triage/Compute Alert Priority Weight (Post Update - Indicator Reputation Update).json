@@ -1,0 +1,188 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Compute Alert Priority Weight (Post Update - Indicator Reputation Update)",
+    "aliasName": null,
+    "tag": null,
+    "description": "Computes and sets the priority weight for an alert, when the reputation of an indicator is updated. The priority weight is calculated based on indicators related to the alert.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "lastModifyDate": 1644508348,
+    "collection": "\/api\/3\/workflow_collections\/4a9adb3a-1a68-4b28-8096-ea12210dfeab",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/fc9dfd31-3e4e-4bad-a185-9e41c61bbe0e",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "indicators",
+                "resources": [
+                    "indicators"
+                ],
+                "step_variables": {
+                    "input": {
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    }
+                },
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "reputation",
+                            "value": null,
+                            "_value": {
+                                "@id": null,
+                                "display": "",
+                                "itemValue": ""
+                            },
+                            "operator": "changed"
+                        },
+                        {
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "type": "object",
+                                    "field": "reputation",
+                                    "value": "\/api\/3\/picklists\/7074e547-7785-4979-be32-c6d0c863e4bd",
+                                    "_value": {
+                                        "@id": "\/api\/3\/picklists\/7074e547-7785-4979-be32-c6d0c863e4bd",
+                                        "display": "Malicious",
+                                        "itemValue": "Malicious"
+                                    },
+                                    "operator": "eq"
+                                },
+                                {
+                                    "type": "object",
+                                    "field": "reputation",
+                                    "value": "\/api\/3\/picklists\/50bfd06c-9aff-4f7d-b6d9-821339e31fe7",
+                                    "_value": {
+                                        "@id": "\/api\/3\/picklists\/50bfd06c-9aff-4f7d-b6d9-821339e31fe7",
+                                        "display": "Suspicious",
+                                        "itemValue": "Suspicious"
+                                    },
+                                    "operator": "eq"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "status": null,
+            "top": "40",
+            "left": "120",
+            "stepType": "\/api\/3\/workflow_step_types\/9300bf69-5063-486d-b3a6-47eb9da24872",
+            "uuid": "fc9dfd31-3e4e-4bad-a185-9e41c61bbe0e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Find Related Alerts",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "indicators.id",
+                            "value": "{{vars.input.records[0].id}}",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        },
+                        {
+                            "type": "object",
+                            "field": "state",
+                            "value": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                                "display": "Indicator Extracted",
+                                "itemValue": "Indicator Extracted"
+                            },
+                            "operator": "eq"
+                        }
+                    ]
+                },
+                "module": "alerts?$limit=30",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "160",
+            "left": "280",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "uuid": "9325f897-02bf-4b4f-b972-9f8de5173188"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Compute Priority Weight",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.steps.Find_Related_Alerts}}",
+                "for_each": {
+                    "item": "{{vars.steps.Find_Related_Alerts}}",
+                    "__bulk": false,
+                    "parallel": true,
+                    "condition": ""
+                },
+                "arguments": {
+                    "alert_iri": "{{vars.item['@id']}}"
+                },
+                "apply_async": true,
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/ad668d50-04f7-4d59-a57b-0b7ab4077c8f"
+            },
+            "status": null,
+            "top": "280",
+            "left": "460",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "834d8e1f-513f-4a03-9087-0f325825248e"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Find Related Alerts",
+            "targetStep": "\/api\/3\/workflow_steps\/9325f897-02bf-4b4f-b972-9f8de5173188",
+            "sourceStep": "\/api\/3\/workflow_steps\/fc9dfd31-3e4e-4bad-a185-9e41c61bbe0e",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "166d8cba-7c76-43d5-aea9-11432a2db2cf"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Find Related Alerts -> Compute Priority Weight",
+            "targetStep": "\/api\/3\/workflow_steps\/834d8e1f-513f-4a03-9087-0f325825248e",
+            "sourceStep": "\/api\/3\/workflow_steps\/9325f897-02bf-4b4f-b972-9f8de5173188",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "45edcf44-a454-4c21-adfd-33dc91b2a9b9"
+        }
+    ],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "b365ac86-572c-4a21-89cb-48cc60f899ec",
+    "recordTags": [
+        "system",
+        "PostUpdate",
+        "FSRSolutionPack",
+        "incidentResponse-1.0.0"
+    ],
+    "id": "127",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644508352.311404,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644508352.311404,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

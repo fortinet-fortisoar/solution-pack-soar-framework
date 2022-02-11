@@ -1,0 +1,223 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "rows",
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "chart",
+                                "config": {
+                                    "query": {
+                                        "limit": 2147483647,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "reputation",
+                                                "operator": "eq",
+                                                "value": "\/api\/3\/picklists\/7074e547-7785-4979-be32-c6d0c863e4bd",
+                                                "_value": {
+                                                    "display": "Malicious",
+                                                    "itemValue": "Malicious"
+                                                },
+                                                "type": "object"
+                                            }
+                                        ],
+                                        "aggregates": [
+                                            {
+                                                "operator": "countdistinct",
+                                                "field": "*",
+                                                "alias": "total"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "typeofindicator",
+                                                "field": "typeofindicator.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "color",
+                                                "field": "typeofindicator.color"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "orderIndex",
+                                                "field": "typeofindicator.orderIndex"
+                                            }
+                                        ],
+                                        "sort": [
+                                            {
+                                                "field": "typeofindicator.orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "assignedToPerson": "",
+                                        "fieldName": "typeofindicator"
+                                    },
+                                    "aggregate": true,
+                                    "wid": "37099c78-7fc9-422b-b921-f7260c069408",
+                                    "title": "Malicious Indicators",
+                                    "resource": "indicators",
+                                    "chart": "pie"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-6"
+                    },
+                    {
+                        "widgets": [
+                            {
+                                "type": "chart",
+                                "config": {
+                                    "query": {
+                                        "limit": 2147483647,
+                                        "logic": "AND",
+                                        "filters": [],
+                                        "aggregates": [
+                                            {
+                                                "operator": "countdistinct",
+                                                "field": "*",
+                                                "alias": "total"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "typeofindicator",
+                                                "field": "typeofindicator.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "firstOrderIndex",
+                                                "field": "typeofindicator.orderIndex"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "reputation",
+                                                "field": "reputation.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "color",
+                                                "field": "reputation.color"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "secondOrderIndex",
+                                                "field": "reputation.orderIndex"
+                                            }
+                                        ],
+                                        "sort": [
+                                            {
+                                                "field": "typeofindicator.orderIndex",
+                                                "direction": "ASC"
+                                            },
+                                            {
+                                                "field": "reputation.orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "assignedToPerson": "",
+                                        "firstGrouping": "typeofindicator",
+                                        "secondGrouping": "reputation"
+                                    },
+                                    "aggregate": true,
+                                    "wid": "281f6558-343c-4623-9346-e93993735cdc",
+                                    "title": "Indicators By Type By Reputation",
+                                    "resource": "indicators",
+                                    "chart": "bar"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-6"
+                    }
+                ],
+                "wid": "261dccc7-fb03-4297-a044-9e796b49cf3d",
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "grid",
+                                "config": {
+                                    "module": "indicators",
+                                    "columns": [
+                                        "id",
+                                        "reputation",
+                                        "typeofindicator",
+                                        "value",
+                                        "country",
+                                        "indicatorStatus",
+                                        "firstSeen",
+                                        "lastSeen",
+                                        "expiryDate",
+                                        "expiredStatus",
+                                        "tlp",
+                                        "tenant"
+                                    ],
+                                    "expandableCol": [
+                                        {
+                                            "name": "description",
+                                            "title": "Description",
+                                            "type": "richtext",
+                                            "defaultSort": true,
+                                            "validation": [],
+                                            "gridColumn": false,
+                                            "visibility": true,
+                                            "bulkAction": {
+                                                "allow": false,
+                                                "buttonText": null,
+                                                "buttonIcon": null,
+                                                "buttonClass": null
+                                            },
+                                            "unique": false,
+                                            "isFormField": true,
+                                            "isRelationship": false,
+                                            "editable": true,
+                                            "ignoreTypeValidators": false,
+                                            "visible": true,
+                                            "required": false
+                                        }
+                                    ],
+                                    "relationshipField": [],
+                                    "checkboxStatus": true,
+                                    "actionButtons": [
+                                        {
+                                            "id": "\/api\/3\/workflows\/0d0a1c8b-2c22-48f6-9bde-0333fa212138",
+                                            "name": "Hunt Indicators",
+                                            "icon": "fa fa-search"
+                                        },
+                                        {
+                                            "id": "\/api\/3\/workflows\/5df2a5cb-876f-47ea-8e95-99c6e5a06b5f",
+                                            "name": "Import Bulk Indicators",
+                                            "icon": "fa fa-upload"
+                                        }
+                                    ],
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 30,
+                                        "logic": "AND",
+                                        "filters": []
+                                    },
+                                    "wid": "daf634ed-d10b-48fa-9b38-bf5b8847965a"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "0c1ca8ff-6c8f-4b91-b3d2-0e3b52a1ed8e",
+                "_collapsed": false
+            }
+        ],
+        "wid": "0f0fc2e1-81d0-4d82-9911-7007b4b66235"
+    },
+    "uuid": "modules-indicators-list"
+}

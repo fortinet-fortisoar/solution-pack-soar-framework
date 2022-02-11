@@ -1,0 +1,1270 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "rows",
+    "config": {
+        "actionButtons": [
+            {
+                "id": "\/api\/3\/workflows\/6e4c8e24-8786-4eaf-9b7f-723d44a2cc6e",
+                "icon": "fa fa-level-up",
+                "name": "Escalate"
+            },
+            {
+                "id": "\/api\/3\/workflows\/54866017-8228-4674-a9f5-fd1f1304d1db",
+                "icon": "fa fa-check",
+                "name": "Resolve Alert"
+            },
+            {
+                "id": "\/api\/3\/workflows\/992770b0-1d10-4267-94d1-5b627294bedc",
+                "name": "Notify > Email",
+                "icon": "icon icon-send-email"
+            }
+        ],
+        "wid": "9248ff8c-d05b-45b7-b1bd-61ff8e976781",
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "primaryDetail",
+                                "config": {
+                                    "titleFieldLinky": true,
+                                    "titleField": "name",
+                                    "titleFieldReadOnly": false,
+                                    "picklistFieldReadOnly": false,
+                                    "idField": "id",
+                                    "picklistField": "severity",
+                                    "wid": "8ae20167-e443-4763-bb3e-33410b2dafd1",
+                                    "featuredRelationship": {
+                                        "field": "warrooms",
+                                        "preText": "Under Investigation In",
+                                        "query": {
+                                            "sort": [],
+                                            "limit": 30,
+                                            "logic": "AND",
+                                            "filters": []
+                                        },
+                                        "statusField": "status",
+                                        "sort": []
+                                    }
+                                }
+                            },
+                            {
+                                "type": "tabs",
+                                "config": {
+                                    "wid": "35d13982-aac1-4499-b31a-9b425cddef75",
+                                    "tabs": [
+                                        {
+                                            "title": "Alert Details",
+                                            "active": 0,
+                                            "widget": {
+                                                "type": "rows",
+                                                "config": {
+                                                    "wid": "cb811977-70cd-4319-8780-950deccf45e2",
+                                                    "rows": [
+                                                        {
+                                                            "columns": [
+                                                                {
+                                                                    "widgets": [
+                                                                        {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
+                                                                                "wid": "e1a93ad1-0772-47bc-b590-2c7c26f849c6",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "dueBy",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": false,
+                                                                                                        "readOnly": true
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "respDueDate",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": false,
+                                                                                                        "readOnly": true
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-4"
+                                                                                            },
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "ackDate",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": false,
+                                                                                                        "readOnly": true
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "respDate",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": false,
+                                                                                                        "readOnly": true
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-4"
+                                                                                            },
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "ackSlaStatus",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": false,
+                                                                                                        "readOnly": true
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "respSlaStatus",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": false,
+                                                                                                        "readOnly": true
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-4"
+                                                                                            }
+                                                                                        ],
+                                                                                        "style": "display-inline-block"
+                                                                                    }
+                                                                                ],
+                                                                                "title": "SLA Details"
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "style": "col-lg-9"
+                                                                },
+                                                                {
+                                                                    "widgets": [
+                                                                        {
+                                                                            "type": "slaCountDownClock",
+                                                                            "config": {
+                                                                                "wid": "b825ec40-a4a1-44ab-93fa-f8b4608c515c",
+                                                                                "title": "Time Remaining To Ack",
+                                                                                "duedate": "dueBy",
+                                                                                "sladate": "ackDate",
+                                                                                "slaMappedOn": "ackSlaStatus",
+                                                                                "metItemvalue": "Met",
+                                                                                "stopStateTitle": "Time Taken To Ack",
+                                                                                "timeToDisplay": "consumedTime",
+                                                                                "slapaused": "ackSLApausedon",
+                                                                                "slaPausedOn": "ackSlaStatus",
+                                                                                "pausedItemvalue": "Paused"
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "type": "slaCountDownClock",
+                                                                            "config": {
+                                                                                "wid": "f122afc8-56f3-4a80-9a0f-96a53830fe39",
+                                                                                "title": "Time Remaining To Response",
+                                                                                "duedate": "respDueDate",
+                                                                                "sladate": "respDate",
+                                                                                "slaMappedOn": "respSlaStatus",
+                                                                                "metItemvalue": "Met",
+                                                                                "stopStateTitle": "Time Taken To Response",
+                                                                                "timeToDisplay": "consumedTime",
+                                                                                "slapaused": "respSLApausedon",
+                                                                                "slaPausedOn": "ackSlaStatus",
+                                                                                "pausedItemvalue": "Paused"
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "style": "col-lg-3",
+                                                                    "collapsedText": "SLA Details"
+                                                                }
+                                                            ],
+                                                            "wid": "f99f7702-bf31-4d32-8b23-b695f82837db",
+                                                            "collapsible": false,
+                                                            "collapsibleIndex": 0,
+                                                            "container": true,
+                                                            "_collapsed": false
+                                                        },
+                                                        {
+                                                            "columns": [
+                                                                {
+                                                                    "widgets": [
+                                                                        {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
+                                                                                "title": "",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": true,
+                                                                                                        "linky": true,
+                                                                                                        "renderWidget": "",
+                                                                                                        "name": "description"
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ],
+                                                                                "wid": "555af5c0-c747-458f-8fb7-3c29edee3927"
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
+                                                                                "wid": "9f1d5255-4b11-410a-a01b-39ae06191c3f",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "name": "assignedTo"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "name": "status"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "killChainPhase",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "tenant",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-4"
+                                                                                            },
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "source"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "sourceId"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "escalatedtoincident",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": true
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-4"
+                                                                                            },
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "alertDetectionDate",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": true
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "assigneddate",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "resolveddate",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "eventTime",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-4"
+                                                                                            }
+                                                                                        ],
+                                                                                        "style": "display-inline-block"
+                                                                                    }
+                                                                                ],
+                                                                                "title": "Details"
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
+                                                                                "wid": "d3fb4d59-d9b0-42a9-be45-76eb51614e74",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "closureNotes",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": false,
+                                                                                                        "readOnly": false
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-6"
+                                                                                            },
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "closureReason",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-6"
+                                                                                            }
+                                                                                        ],
+                                                                                        "style": ""
+                                                                                    }
+                                                                                ],
+                                                                                "usePlaceholder": false,
+                                                                                "title": "Closure Details"
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
+                                                                                "title": "Type Details",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "type"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "mitreTechnique"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "mitreattackid",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "sourceTool"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "fileEmail",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "state",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "bucketName",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "userName"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "sourceIp",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "destinationIp",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "url",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "filePath"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "processName"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "commandLine",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "sourceProcess"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "fileName",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "name": "deviceUID"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "processId",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "fileHash",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "registryKey",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "deviceType",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "deviceSerialNo",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-4"
+                                                                                            },
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "computerName"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "sourcePort"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "destinationPort"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "name": "targetAsset"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "targetProcess"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "parentProcessName"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "parentProcessCmdLine",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "parentProcessPid",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "linky": true,
+                                                                                                        "name": "userDetails"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "registryKeyValue",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "deviceOwner",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-4"
+                                                                                            }
+                                                                                        ],
+                                                                                        "style": "display-inline-block"
+                                                                                    }
+                                                                                ],
+                                                                                "wid": "0b602389-1065-4155-bc35-f32d37abb840"
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
+                                                                                "title": "Reporter Details",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "reporter",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "reporterEmailBody",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "viewRenderWidget": "iframe"
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-12"
+                                                                                            }
+                                                                                        ],
+                                                                                        "style": ""
+                                                                                    }
+                                                                                ],
+                                                                                "wid": "f0b6e795-df47-49e3-925d-168790795147"
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
+                                                                                "title": "Email Details",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "senderEmailAddress",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "recipientEmailAddress",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "emailSubject",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-6"
+                                                                                            },
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "emailFrom",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "senderDomain",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "returnPath",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-6"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ],
+                                                                                "wid": "2c3bd047-0481-4f0d-b786-39719a048731"
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
+                                                                                "title": "",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "emailBody",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "viewRenderWidget": "iframe"
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-6"
+                                                                                            },
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "emailHeaders",
+                                                                                                        "highlightMode": true,
+                                                                                                        "linky": true,
+                                                                                                        "readOnly": true,
+                                                                                                        "renderWidget": "json",
+                                                                                                        "renderWidgetHeight": 600
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-6"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ],
+                                                                                "wid": "a74d351a-8c0e-4efb-952f-aa6b2d4a0186"
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "style": "col-lg-12"
+                                                                }
+                                                            ],
+                                                            "wid": "ef4c1f98-cae9-479f-bf43-c9e7c801669c",
+                                                            "container": true,
+                                                            "_collapsed": false
+                                                        },
+                                                        {
+                                                            "columns": [
+                                                                {
+                                                                    "widgets": [
+                                                                        {
+                                                                            "type": "tabs",
+                                                                            "config": {
+                                                                                "tabs": [
+                                                                                    {
+                                                                                        "widget": {
+                                                                                            "type": "relationship.subtab",
+                                                                                            "config": {
+                                                                                                "excludes": [
+                                                                                                    "notes",
+                                                                                                    "comments",
+                                                                                                    "attachments",
+                                                                                                    "alerts",
+                                                                                                    "appliances",
+                                                                                                    "companies",
+                                                                                                    "assets",
+                                                                                                    "email",
+                                                                                                    "events",
+                                                                                                    "files",
+                                                                                                    "incidents",
+                                                                                                    "people",
+                                                                                                    "scans",
+                                                                                                    "system_assigned_queues",
+                                                                                                    "tasks",
+                                                                                                    "vulnerabilities",
+                                                                                                    "owners",
+                                                                                                    "persons",
+                                                                                                    "emails",
+                                                                                                    "users",
+                                                                                                    "hunts",
+                                                                                                    "campaigns",
+                                                                                                    "mitrelink",
+                                                                                                    "communications",
+                                                                                                    "warrooms",
+                                                                                                    "mitre_sub_techniques",
+                                                                                                    "mitre_techniques",
+                                                                                                    "mitremitigations",
+                                                                                                    "mitresoftware"
+                                                                                                ],
+                                                                                                "expandableCol": {
+                                                                                                    "indicators": {
+                                                                                                        "columns": [
+                                                                                                            {
+                                                                                                                "type": "richtext",
+                                                                                                                "isFormField": true,
+                                                                                                                "gridColumn": false,
+                                                                                                                "visibility": true,
+                                                                                                                "editable": true,
+                                                                                                                "ignoreTypeValidators": false,
+                                                                                                                "defaultSort": true,
+                                                                                                                "searchable": false,
+                                                                                                                "visible": true,
+                                                                                                                "title": "Description",
+                                                                                                                "required": false,
+                                                                                                                "bulkAction": {
+                                                                                                                    "buttonIcon": null,
+                                                                                                                    "buttonClass": null,
+                                                                                                                    "allow": false,
+                                                                                                                    "buttonText": null
+                                                                                                                },
+                                                                                                                "isRelationship": false,
+                                                                                                                "defaultValueChanged": false,
+                                                                                                                "defaultValue": null,
+                                                                                                                "validation": {
+                                                                                                                    "maxlength": -1,
+                                                                                                                    "required": false,
+                                                                                                                    "minlength": 0
+                                                                                                                },
+                                                                                                                "unique": false,
+                                                                                                                "name": "description"
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "checkBox": true
+                                                                                                    }
+                                                                                                },
+                                                                                                "gridsConfig": {
+                                                                                                    "companies": {
+                                                                                                        "columns": [
+                                                                                                            "name",
+                                                                                                            "url",
+                                                                                                            "status",
+                                                                                                            "type",
+                                                                                                            "industry"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "people": {
+                                                                                                        "columns": [
+                                                                                                            "firstname",
+                                                                                                            "lastname",
+                                                                                                            "title",
+                                                                                                            "phoneWork",
+                                                                                                            "company"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "assets": {
+                                                                                                        "columns": [
+                                                                                                            "hostname",
+                                                                                                            "ip",
+                                                                                                            "dateScanned",
+                                                                                                            "propertyOf",
+                                                                                                            "criticality"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "incidents": {
+                                                                                                        "columns": [
+                                                                                                            "name",
+                                                                                                            "discoveredOn",
+                                                                                                            "phase",
+                                                                                                            "status",
+                                                                                                            "confirmation",
+                                                                                                            "severity",
+                                                                                                            "category",
+                                                                                                            "incidentLead"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "alerts": {
+                                                                                                        "columns": [
+                                                                                                            "name",
+                                                                                                            "type",
+                                                                                                            "severity",
+                                                                                                            "status",
+                                                                                                            "assignedTo"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "tasks": {
+                                                                                                        "columns": [
+                                                                                                            "name",
+                                                                                                            "dueDate",
+                                                                                                            "priority",
+                                                                                                            "status",
+                                                                                                            "assignedToPerson"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "vulnerabilities": {
+                                                                                                        "columns": [
+                                                                                                            "vulnerabilityId",
+                                                                                                            "name",
+                                                                                                            "severity",
+                                                                                                            "cvss",
+                                                                                                            "lastSeenDate",
+                                                                                                            "status"
+                                                                                                        ]
+                                                                                                    }
+                                                                                                },
+                                                                                                "wid": "4f3af1c0-6727-466d-b4cc-ac57bbd5f640"
+                                                                                            }
+                                                                                        },
+                                                                                        "flag": true,
+                                                                                        "title": "Indicators",
+                                                                                        "show": true,
+                                                                                        "icon": "fa fa-star-o"
+                                                                                    },
+                                                                                    {
+                                                                                        "widget": {
+                                                                                            "type": "relationship.subtab",
+                                                                                            "config": {
+                                                                                                "excludes": [
+                                                                                                    "notes",
+                                                                                                    "comments",
+                                                                                                    "indicators",
+                                                                                                    "companies",
+                                                                                                    "persons",
+                                                                                                    "tasks",
+                                                                                                    "owners",
+                                                                                                    "vulnerabilities",
+                                                                                                    "events",
+                                                                                                    "communications"
+                                                                                                ],
+                                                                                                "gridsConfig": {
+                                                                                                    "companies": {
+                                                                                                        "columns": [
+                                                                                                            "name",
+                                                                                                            "url",
+                                                                                                            "status",
+                                                                                                            "type",
+                                                                                                            "industry"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "people": {
+                                                                                                        "columns": [
+                                                                                                            "firstname",
+                                                                                                            "lastname",
+                                                                                                            "title",
+                                                                                                            "phoneWork",
+                                                                                                            "company"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "assets": {
+                                                                                                        "columns": [
+                                                                                                            "hostname",
+                                                                                                            "ip",
+                                                                                                            "dateScanned",
+                                                                                                            "propertyOf",
+                                                                                                            "criticality"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "incidents": {
+                                                                                                        "columns": [
+                                                                                                            "name",
+                                                                                                            "discoveredOn",
+                                                                                                            "phase",
+                                                                                                            "status",
+                                                                                                            "confirmation",
+                                                                                                            "severity",
+                                                                                                            "category",
+                                                                                                            "incidentLead"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "alerts": {
+                                                                                                        "columns": [
+                                                                                                            "name",
+                                                                                                            "type",
+                                                                                                            "severity",
+                                                                                                            "status",
+                                                                                                            "assignedTo"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "tasks": {
+                                                                                                        "columns": [
+                                                                                                            "name",
+                                                                                                            "dueDate",
+                                                                                                            "priority",
+                                                                                                            "status",
+                                                                                                            "assignedToPerson"
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "vulnerabilities": {
+                                                                                                        "columns": [
+                                                                                                            "vulnerabilityId",
+                                                                                                            "name",
+                                                                                                            "severity",
+                                                                                                            "cvss",
+                                                                                                            "lastSeenDate",
+                                                                                                            "status"
+                                                                                                        ]
+                                                                                                    }
+                                                                                                },
+                                                                                                "wid": "440a9eca-b6e7-4486-990b-f2cc7407dd0d",
+                                                                                                "expandableCol": []
+                                                                                            }
+                                                                                        },
+                                                                                        "title": "Correlations",
+                                                                                        "show": false,
+                                                                                        "icon": "fa fa-exchange"
+                                                                                    },
+                                                                                    {
+                                                                                        "widget": {
+                                                                                            "type": "relationship.subtab",
+                                                                                            "config": {
+                                                                                                "excludes": [
+                                                                                                    "notes",
+                                                                                                    "comments",
+                                                                                                    "attachments",
+                                                                                                    "assets",
+                                                                                                    "companies",
+                                                                                                    "incidents",
+                                                                                                    "vulnerabilities",
+                                                                                                    "persons",
+                                                                                                    "emails",
+                                                                                                    "indicators",
+                                                                                                    "events",
+                                                                                                    "alerts",
+                                                                                                    "owners",
+                                                                                                    "users",
+                                                                                                    "hunts",
+                                                                                                    "campaigns",
+                                                                                                    "mitrelink",
+                                                                                                    "communications",
+                                                                                                    "warrooms",
+                                                                                                    "mitre_sub_techniques",
+                                                                                                    "mitre_techniques",
+                                                                                                    "mitremitigations",
+                                                                                                    "mitresoftware"
+                                                                                                ],
+                                                                                                "expandableCol": [],
+                                                                                                "wid": "21fc0315-b03d-425e-8c57-b9d03dfcd298"
+                                                                                            }
+                                                                                        },
+                                                                                        "active": 0,
+                                                                                        "title": "Tasks",
+                                                                                        "flag": true,
+                                                                                        "show": false,
+                                                                                        "icon": "fa fa-th-list"
+                                                                                    },
+                                                                                    {
+                                                                                        "widget": {
+                                                                                            "type": "rows",
+                                                                                            "config": {
+                                                                                                "wid": "d72ba76b-c7b4-4bab-8a0c-40487f58665d",
+                                                                                                "rows": [
+                                                                                                    {
+                                                                                                        "columns": [
+                                                                                                            {
+                                                                                                                "widgets": [
+                                                                                                                    {
+                                                                                                                        "type": "editableFormGroup",
+                                                                                                                        "config": {
+                                                                                                                            "wid": "446fe0b4-3fde-40d3-a96e-f54872efef31",
+                                                                                                                            "rows": [
+                                                                                                                                {
+                                                                                                                                    "columns": [
+                                                                                                                                        {
+                                                                                                                                            "fields": [
+                                                                                                                                                {
+                                                                                                                                                    "name": "sourcedata",
+                                                                                                                                                    "highlightMode": true,
+                                                                                                                                                    "linky": true,
+                                                                                                                                                    "readOnly": true,
+                                                                                                                                                    "renderWidget": "json",
+                                                                                                                                                    "renderWidgetHeight": 500
+                                                                                                                                                }
+                                                                                                                                            ]
+                                                                                                                                        }
+                                                                                                                                    ]
+                                                                                                                                }
+                                                                                                                            ]
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                ],
+                                                                                                                "style": "col-lg-12"
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "wid": "faacfc95-ec98-48b1-8afb-fb6df9b6183e"
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        },
+                                                                                        "title": "Source Data",
+                                                                                        "show": false,
+                                                                                        "icon": "fa fa-th"
+                                                                                    },
+                                                                                    {
+                                                                                        "title": "External Communications",
+                                                                                        "active": 0,
+                                                                                        "widget": {
+                                                                                            "type": "relationship.subtab",
+                                                                                            "config": {
+                                                                                                "wid": "003fe0f5-8fc3-4505-9449-fa7ac380911d",
+                                                                                                "excludes": [
+                                                                                                    "notes",
+                                                                                                    "comments",
+                                                                                                    "attachments",
+                                                                                                    "mitrelink",
+                                                                                                    "alerts",
+                                                                                                    "assets",
+                                                                                                    "campaigns",
+                                                                                                    "companies",
+                                                                                                    "emails",
+                                                                                                    "events",
+                                                                                                    "hunts",
+                                                                                                    "incidents",
+                                                                                                    "indicators",
+                                                                                                    "persons",
+                                                                                                    "tasks",
+                                                                                                    "vulnerabilities",
+                                                                                                    "owners",
+                                                                                                    "users",
+                                                                                                    "warrooms",
+                                                                                                    "mitremitigations",
+                                                                                                    "mitre_sub_techniques",
+                                                                                                    "mitre_techniques",
+                                                                                                    "mitresoftware"
+                                                                                                ],
+                                                                                                "expandableCol": {
+                                                                                                    "communications": {
+                                                                                                        "columns": [
+                                                                                                            {
+                                                                                                                "openTab": false,
+                                                                                                                "name": "body"
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "checkBox": true
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        },
+                                                                                        "icon": "icon icon-email-templates",
+                                                                                        "show": false
+                                                                                    },
+                                                                                    {
+                                                                                        "flag": true,
+                                                                                        "title": "Access Control",
+                                                                                        "show": false,
+                                                                                        "icon": "icon icon-updates",
+                                                                                        "widget": {
+                                                                                            "type": "accessControl",
+                                                                                            "config": {
+                                                                                                "wid": "b8c52a33-f48d-4859-aa06-003f96c5faad",
+                                                                                                "inlineEditor": true
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ],
+                                                                                "wid": "e8aa624b-0418-4e3a-bcd0-85d36463064d"
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "style": "col-lg-12"
+                                                                }
+                                                            ],
+                                                            "wid": "1c79178c-3d3c-4afe-ba98-02e870bd9c06",
+                                                            "_collapsed": false
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "icon": "icon icon-alert",
+                                            "show": true
+                                        },
+                                        {
+                                            "title": "Playbooks",
+                                            "active": 0,
+                                            "widget": {
+                                                "type": "executedPlaybooks",
+                                                "config": {
+                                                    "wid": "85fab5e9-42bc-4bc3-bfdc-0e1508a96652"
+                                                }
+                                            },
+                                            "icon": "icon icon-playbooks",
+                                            "show": false
+                                        },
+                                        {
+                                            "title": "Audit Logs",
+                                            "active": 0,
+                                            "icon": "fa fa-eye",
+                                            "show": false,
+                                            "widget": {
+                                                "type": "rows",
+                                                "config": {
+                                                    "wid": "d7616416-faf9-4af8-b288-3c97078d04eb",
+                                                    "rows": [
+                                                        {
+                                                            "columns": [
+                                                                {
+                                                                    "widgets": [
+                                                                        {
+                                                                            "type": "timeline",
+                                                                            "config": {
+                                                                                "wid": "2202a8cd-42e2-4ef8-8c24-1673fdf42cf4"
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "style": "col-lg-12"
+                                                                }
+                                                            ],
+                                                            "wid": "11b16df5-8280-435f-90d9-dd426b9127ab"
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "isPrimaryTab": true
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "53150722-a495-44df-94e7-753242f4d438",
+                "_collapsed": false
+            }
+        ],
+        "allowExecuteConnectorActionButton": true,
+        "workspace": {
+            "similarRecords": {
+                "enable": true,
+                "fields": [
+                    {
+                        "name": "indicators",
+                        "title": "Indicators",
+                        "type": "manyToMany",
+                        "weight": 10
+                    },
+                    {
+                        "name": "assets",
+                        "title": "Assets",
+                        "type": "manyToMany",
+                        "weight": 10
+                    },
+                    {
+                        "name": "users",
+                        "title": "Users",
+                        "type": "manyToMany",
+                        "weight": 10
+                    }
+                ],
+                "enableWeightRange": true,
+                "filter": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "logic": "AND",
+                            "filters": [
+                                {
+                                    "field": "createDate",
+                                    "operator": "gt",
+                                    "value": "{{getRelativeDate(0,0,-30,\"end\",\"end\",\"end\")}}",
+                                    "type": "datetime"
+                                }
+                            ],
+                            "_field": "createDate",
+                            "_value": {
+                                "differenceType": "days",
+                                "differenceValue": -30
+                            },
+                            "_operator": "gt",
+                            "type": "datetime"
+                        }
+                    ]
+                },
+                "playbooks": [
+                    {
+                        "@id": "\/api\/3\/workflows\/20f32ef0-5ca1-4293-b961-2cfea235d4bc",
+                        "actionTriggerName": "Link Similar Alerts"
+                    },
+                    {
+                        "@id": "\/api\/3\/workflows\/6e4c8e24-8786-4eaf-9b7f-723d44a2cc6e",
+                        "actionTriggerName": "Escalate"
+                    }
+                ],
+                "mapping": {
+                    "title": "name",
+                    "subTitle1": "type",
+                    "subTitle2": "status",
+                    "subTitle3": "assignedTo",
+                    "picklistBar": "severity"
+                }
+            },
+            "predictions": {
+                "enable": true,
+                "fields": [
+                    {
+                        "name": "senderEmailAddress",
+                        "title": "Sender Email Address",
+                        "type": "text"
+                    }
+                ],
+                "aggs": [
+                    {
+                        "name": "severity",
+                        "title": "Severity",
+                        "type": "picklist"
+                    },
+                    {
+                        "name": "assignedTo",
+                        "title": "Assigned To",
+                        "type": "lookup"
+                    }
+                ],
+                "enableWeightRange": false,
+                "filter": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                },
+                "useSimilarCriteria": true
+            }
+        }
+    },
+    "uuid": "modules-alerts-detail"
+}
