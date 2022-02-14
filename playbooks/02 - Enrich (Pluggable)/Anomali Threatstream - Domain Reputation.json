@@ -13,10 +13,10 @@
         "indicator_value"
     ],
     "synchronous": false,
-    "lastModifyDate": 1644508348,
+    "lastModifyDate": 1644855355,
     "collection": "\/api\/3\/workflow_collections\/b135c052-e170-4cff-8cc7-9a4bfe607ccb",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/4a6354d7-886d-4baf-92e2-a5b6d31571b9",
+    "triggerStep": "\/api\/3\/workflow_steps\/63e4615e-55b3-4b38-adcf-f83bd68d0092",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -36,7 +36,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "4a6354d7-886d-4baf-92e2-a5b6d31571b9"
+            "uuid": "63e4615e-55b3-4b38-adcf-f83bd68d0092"
         },
         {
             "@type": "WorkflowStep",
@@ -50,7 +50,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "b4070b65-2af2-4521-9873-4d6886b339ba"
+            "uuid": "0c60e219-605e-4fa2-8027-b4c04c77d6a1"
         },
         {
             "@type": "WorkflowStep",
@@ -80,7 +80,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "9764c976-bbd9-406c-90bb-4d501e0502f0"
+            "uuid": "e3d19fd1-fa1c-4a71-9e82-0b99a6811b49"
         },
         {
             "@type": "WorkflowStep",
@@ -96,7 +96,7 @@
             "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "38d92d05-8ad6-4229-a7d3-56f31e20bab7"
+            "uuid": "19b6ff20-84dc-4af1-8aac-fbe535b37eb7"
         },
         {
             "@type": "WorkflowStep",
@@ -118,45 +118,45 @@
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "869a60c1-efae-400d-a8f3-23070993af35"
+            "uuid": "c372b775-a115-4ed1-a032-c9df5941746c"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Configurations -> Get URL Reputation from Anomali",
-            "targetStep": "\/api\/3\/workflow_steps\/9764c976-bbd9-406c-90bb-4d501e0502f0",
-            "sourceStep": "\/api\/3\/workflow_steps\/b4070b65-2af2-4521-9873-4d6886b339ba",
+            "targetStep": "\/api\/3\/workflow_steps\/e3d19fd1-fa1c-4a71-9e82-0b99a6811b49",
+            "sourceStep": "\/api\/3\/workflow_steps\/0c60e219-605e-4fa2-8027-b4c04c77d6a1",
             "label": null,
             "isExecuted": false,
-            "uuid": "510a8def-05f1-4574-a125-07d544ed207f"
+            "uuid": "3e7bf344-4f31-422c-ade7-4940bdc29a4b"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Get IP Reputation -> Compute Anomali Summary",
-            "targetStep": "\/api\/3\/workflow_steps\/869a60c1-efae-400d-a8f3-23070993af35",
-            "sourceStep": "\/api\/3\/workflow_steps\/9764c976-bbd9-406c-90bb-4d501e0502f0",
+            "targetStep": "\/api\/3\/workflow_steps\/c372b775-a115-4ed1-a032-c9df5941746c",
+            "sourceStep": "\/api\/3\/workflow_steps\/e3d19fd1-fa1c-4a71-9e82-0b99a6811b49",
             "label": null,
             "isExecuted": false,
-            "uuid": "b6aedd63-afcf-4e9f-a27a-408baa076936"
+            "uuid": "e0394b73-c5b7-41c3-ba96-4280da16d86c"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/b4070b65-2af2-4521-9873-4d6886b339ba",
-            "sourceStep": "\/api\/3\/workflow_steps\/4a6354d7-886d-4baf-92e2-a5b6d31571b9",
+            "targetStep": "\/api\/3\/workflow_steps\/0c60e219-605e-4fa2-8027-b4c04c77d6a1",
+            "sourceStep": "\/api\/3\/workflow_steps\/63e4615e-55b3-4b38-adcf-f83bd68d0092",
             "label": null,
             "isExecuted": false,
-            "uuid": "089a9da7-f686-44c2-a5e9-7e9c42747def"
+            "uuid": "1463f364-ed3b-4216-9cb3-a93e51c3abe3"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Compute Anomali Summary -> enrichment_summary",
-            "targetStep": "\/api\/3\/workflow_steps\/38d92d05-8ad6-4229-a7d3-56f31e20bab7",
-            "sourceStep": "\/api\/3\/workflow_steps\/869a60c1-efae-400d-a8f3-23070993af35",
+            "targetStep": "\/api\/3\/workflow_steps\/19b6ff20-84dc-4af1-8aac-fbe535b37eb7",
+            "sourceStep": "\/api\/3\/workflow_steps\/c372b775-a115-4ed1-a032-c9df5941746c",
             "label": null,
             "isExecuted": false,
-            "uuid": "4dec2709-f3aa-47cc-8762-2670cfa3937e"
+            "uuid": "fd125595-d45e-40c3-b828-d8659d9836b1"
         }
     ],
     "priority": null,
@@ -164,13 +164,14 @@
     "recordTags": [
         "Subroutine",
         "FSRSolutionPack",
+        "fortiSOAREssentials-1.0.0",
         "incidentResponse-1.0.0"
     ],
-    "id": "93",
+    "id": "85",
     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1644508351.186376,
+    "createDate": 1644855358.15053,
     "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1644508351.186376,
+    "modifyDate": 1644855358.15053,
     "owners": [],
     "isPrivate": false,
     "deletedAt": null

@@ -1,0 +1,986 @@
+{
+    "@context": "\/api\/3\/contexts\/Reporting",
+    "@type": "Reporting",
+    "uuid": "60f0c032-90e8-4026-b430-176efd5560b7",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644847263.432575,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644847263.432575,
+    "recordTags": [],
+    "displayName": "War Room Summary Report",
+    "type": "rows",
+    "templateType": "reporting",
+    "roles": [
+        "\/api\/3\/roles\/17562d60-b841-4ed7-912b-1ebaf063c8c9",
+        "\/api\/3\/roles\/21d7a7c6-9d68-438f-b732-e8950c5f745b",
+        "\/api\/3\/roles\/7b56d139-7ee6-455e-8658-35727e202b8a",
+        "\/api\/3\/roles\/a501c11e-15af-49a6-a3a4-88605f32f016",
+        "\/api\/3\/roles\/aada6692-fbf4-4a02-a580-f8a200962365",
+        "\/api\/3\/roles\/c5ff8174-b3fa-41c5-b781-2b890b426a80"
+    ],
+    "parentTemplateId": null,
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "7dde165c-b423-4d31-a018-cf0399813c00",
+                                    "sectionText": "<p style=\"text-align: center;\">&nbsp;<\/p>\n<p style=\"text-align: center; background: #4e94d0; padding-top: 5px;\"><span style=\"font-size: 25pt;\"><strong><span style=\"color: #efefee;\">War Room Summary Report<\/span>&nbsp;<\/strong><\/span><\/p>\n<p style=\"background: #2a5173; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; text-align: center;\"><span style=\"font-size: 12pt; color: #efefee;\">Generated On {{todayDate}}<\/span><\/p>",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "editorType": "html"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "519727ca-5677-4a5d-954b-8c2c0de8aee5",
+                "container": false,
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "c96ab5d9-40f0-4563-bd8b-f4443626233c",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "editorType": "html",
+                                    "sectionText": "<h3><strong><span class=\"cs-richtext-field\" title=\"Warrooms ID {{warRoomID}} - Title\">{{title}}<\/span><\/strong><\/h3>",
+                                    "fieldType": "record fields",
+                                    "resource": "warrooms",
+                                    "resourceId": "{{warRoomID}}"
+                                }
+                            },
+                            {
+                                "type": "readonlyFormGroup",
+                                "config": {
+                                    "wid": "2927532b-ddf4-4188-bc6e-ddbd8ed9e4f2",
+                                    "gridColumns": [],
+                                    "displayType": "card-view",
+                                    "widgetAlwaysDisplay": true,
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 10,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "id",
+                                                "operator": "eq",
+                                                "_operator": "eq",
+                                                "value": "{{warRoomID}}",
+                                                "type": "primitive"
+                                            }
+                                        ]
+                                    },
+                                    "recordTitle": {
+                                        "type": "sectionHeader",
+                                        "wid": "f0712be2-19ce-4b71-a9ac-e1e6c2ea8af6",
+                                        "clone": false,
+                                        "remove": false
+                                    },
+                                    "relatedTemplate": {
+                                        "type": "rows",
+                                        "rows": [],
+                                        "wid": "087a984b-3489-4e23-98df-948471bac09e"
+                                    },
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "summary",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "currentStatus",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "nextSteps",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "resource": "warrooms"
+                                }
+                            },
+                            {
+                                "type": "lineItem",
+                                "config": {
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 5,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "warrooms.id",
+                                                "operator": "eq",
+                                                "_operator": "eq",
+                                                "value": "{{warRoomID}}",
+                                                "type": "primitive"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "assignedToPerson": ""
+                                    },
+                                    "columns": [
+                                        "content",
+                                        "createUser",
+                                        "createDate"
+                                    ],
+                                    "wid": "da31f18f-3d77-4a73-96cf-2016c1b4d3ff",
+                                    "title": "Latest 5 Comments",
+                                    "module": "comments"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "f207f02d-85f5-4187-9d7e-1e0ea8741217",
+                "container": true,
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "2a73fc24-3a99-46d2-bd91-9f4ade043c87",
+                                    "sectionText": "<h5 style=\"background: #404142; padding: 5px; text-align: left;\"><span style=\"font-size: 12pt; color: #ffffff;\"><strong>RELATED RECORDS<\/strong><\/span><\/h5>",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "editorType": "html"
+                                }
+                            },
+                            {
+                                "type": "rows",
+                                "config": {
+                                    "wid": "30aa756c-a024-41f3-8c3d-b4646011bd42",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "wid": "aa5fac42-0f72-49f9-b405-eafb2c45419c",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": false,
+                                                                "metricsType": "totalCount",
+                                                                "title": "Related Incidents",
+                                                                "resource": "incidents",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "warrooms.id",
+                                                                            "operator": "eq",
+                                                                            "_operator": "eq",
+                                                                            "value": "{{warRoomID}}",
+                                                                            "type": "primitive"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "timeRange": "createDate",
+                                                                "grouping": {
+                                                                    "primary": [],
+                                                                    "secondary": []
+                                                                },
+                                                                "showSavings": "dollar"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "wid": "3908fbed-7b9f-42d2-81da-c71d2cc87177",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": false,
+                                                                "metricsType": "totalCount",
+                                                                "title": "Related Alerts",
+                                                                "resource": "alerts",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "warrooms.id",
+                                                                            "operator": "eq",
+                                                                            "_operator": "eq",
+                                                                            "value": "{{warRoomID}}",
+                                                                            "type": "primitive"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "timeRange": "createDate",
+                                                                "grouping": {
+                                                                    "primary": [],
+                                                                    "secondary": []
+                                                                },
+                                                                "showSavings": "dollar"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "wid": "b2545b77-0c9c-4ae3-848f-d62cad83e46f",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": false,
+                                                                "metricsType": "totalCount",
+                                                                "title": "Related Indicators",
+                                                                "resource": "indicators",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "warrooms.id",
+                                                                            "operator": "eq",
+                                                                            "_operator": "eq",
+                                                                            "value": "{{warRoomID}}",
+                                                                            "type": "primitive"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "timeRange": "createDate",
+                                                                "grouping": {
+                                                                    "primary": [],
+                                                                    "secondary": []
+                                                                },
+                                                                "showSavings": "dollar"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "wid": "d1cbe70b-d276-49ee-a4d9-be8c78ce7b59",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": false,
+                                                                "metricsType": "totalCount",
+                                                                "title": "Related Assets",
+                                                                "resource": "assets",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "warrooms.id",
+                                                                            "operator": "eq",
+                                                                            "_operator": "eq",
+                                                                            "value": "{{warRoomID}}",
+                                                                            "type": "primitive"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "timeRange": "createDate",
+                                                                "grouping": {
+                                                                    "primary": [],
+                                                                    "secondary": []
+                                                                },
+                                                                "showSavings": "dollar"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                }
+                                            ],
+                                            "wid": "a4ca0f75-fa90-4a47-a897-8bd0626a97b7",
+                                            "_collapsed": false
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "de2bf7f4-61f6-4f69-83d3-d7b7e802e6e0",
+                "container": true,
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "b84b7a55-19a9-43fe-bd1e-228d70d0f769",
+                                    "sectionText": "<h6 style=\"background: #404142; padding: 5px; text-align: left;\"><span style=\"font-size: 10pt; color: #ffffff;\"><strong>Related Alerts<\/strong><\/span><\/h6>"
+                                }
+                            },
+                            {
+                                "type": "readonlyFormGroup",
+                                "config": {
+                                    "wid": "061cb397-6103-4c9d-b493-85f080f977ad",
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 10,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "warrooms.id",
+                                                "operator": "eq",
+                                                "_operator": "eq",
+                                                "value": "{{warRoomID}}",
+                                                "type": "primitive"
+                                            }
+                                        ]
+                                    },
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "name",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "status",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "severity",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "type",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "assignedTo",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "resource": "alerts",
+                                    "style": "display-inline-block",
+                                    "displayType": "card-view",
+                                    "gridColumns": [],
+                                    "widgetAlwaysDisplay": true,
+                                    "recordTitle": {
+                                        "type": "sectionHeader",
+                                        "wid": "de9d36f0-8b33-4daa-8ac2-a01fbd8ee0ea",
+                                        "clone": false,
+                                        "remove": false
+                                    },
+                                    "relatedTemplate": {
+                                        "type": "rows",
+                                        "rows": [],
+                                        "wid": "d8660060-5577-4481-85b6-df833c936d9c"
+                                    }
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "0d1ace32-cf1e-402b-83d5-ba863105d1b7",
+                "container": true,
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "89d92097-f49c-4eeb-85c5-6583fa80ec19",
+                                    "sectionText": "<h6 style=\"background: #404142; padding: 5px; text-align: left;\"><span style=\"font-size: 10pt; color: #ffffff;\"><strong>Related Incidents<\/strong><\/span><\/h6>",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "editorType": "html"
+                                }
+                            },
+                            {
+                                "type": "readonlyFormGroup",
+                                "config": {
+                                    "wid": "fbaead0a-a0c2-493c-9239-819c8e762b22",
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 10,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "warrooms.id",
+                                                "operator": "eq",
+                                                "_operator": "eq",
+                                                "value": "{{warRoomID}}",
+                                                "type": "primitive"
+                                            }
+                                        ]
+                                    },
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "name",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "status",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "severity",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "phase",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "incidentLead",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "resource": "incidents",
+                                    "style": "display-inline-block",
+                                    "displayType": "card-view",
+                                    "gridColumns": [],
+                                    "widgetAlwaysDisplay": true,
+                                    "recordTitle": {
+                                        "type": "sectionHeader",
+                                        "wid": "dccc66ad-fa64-48b3-860f-44dd0a931eeb",
+                                        "clone": false,
+                                        "remove": false
+                                    },
+                                    "relatedTemplate": {
+                                        "type": "rows",
+                                        "rows": [],
+                                        "wid": "e7ceabcd-f989-45f4-b2d1-04a06d6ac763"
+                                    }
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "10ecd1f0-6ec6-44a1-8786-348def8988cf",
+                "container": true,
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "6c8de68c-e3d1-4f2e-86c1-bb49737fbae1",
+                                    "sectionText": "<h6 style=\"background: #404142; padding: 5px; text-align: left;\"><span style=\"font-size: 10pt; color: #ffffff;\"><strong>Related Indicators<\/strong><\/span><\/h6>",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "editorType": "html"
+                                }
+                            },
+                            {
+                                "type": "readonlyFormGroup",
+                                "config": {
+                                    "wid": "68090a5d-4a16-4e59-a19f-c6f0b1837bc3",
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 10,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "warrooms.id",
+                                                "operator": "eq",
+                                                "_operator": "eq",
+                                                "value": "{{warRoomID}}",
+                                                "type": "primitive"
+                                            }
+                                        ]
+                                    },
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "typeofindicator",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "value",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "reputation",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "resource": "indicators",
+                                    "style": "display-inline-block",
+                                    "displayType": "card-view",
+                                    "gridColumns": [],
+                                    "widgetAlwaysDisplay": true,
+                                    "recordTitle": {
+                                        "type": "sectionHeader",
+                                        "wid": "f89874f5-3ebc-4e79-b176-d3b466026efe",
+                                        "clone": false,
+                                        "remove": false
+                                    },
+                                    "relatedTemplate": {
+                                        "type": "rows",
+                                        "rows": [],
+                                        "wid": "55a8be4b-5fca-4cb9-90f9-8d1a61e86793"
+                                    }
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "ca9d2f12-f558-459e-a30a-05602d11d32b",
+                "container": true,
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "644edf16-9009-440b-83f5-a6727f2bfea5",
+                                    "sectionText": "<h6 style=\"background: #404142; padding: 5px; text-align: left;\"><span style=\"font-size: 10pt; color: #ffffff;\"><strong>Related Assets<\/strong><\/span><\/h6>",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "editorType": "html"
+                                }
+                            },
+                            {
+                                "type": "readonlyFormGroup",
+                                "config": {
+                                    "wid": "b9c9f668-db3c-4976-8bc8-ffbac17a4ee0",
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 10,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "warrooms.id",
+                                                "operator": "eq",
+                                                "_operator": "eq",
+                                                "value": "{{warRoomID}}",
+                                                "type": "primitive"
+                                            }
+                                        ]
+                                    },
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "hostname",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "status",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "propertyOf",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "resource": "assets",
+                                    "style": "display-inline-block",
+                                    "displayType": "card-view",
+                                    "gridColumns": [],
+                                    "widgetAlwaysDisplay": true,
+                                    "recordTitle": {
+                                        "type": "sectionHeader",
+                                        "wid": "42132706-bcd0-4682-a904-27b0f639bcc9",
+                                        "clone": false,
+                                        "remove": false
+                                    },
+                                    "relatedTemplate": {
+                                        "type": "rows",
+                                        "rows": [],
+                                        "wid": "59b1a938-9262-45df-b59d-7e7def9a70da"
+                                    }
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "2eb5df90-9a05-4446-81b7-4d9742aa2174",
+                "container": true,
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "6b282af8-51ce-4606-b0e1-2666db6bca8d",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "editorType": "html",
+                                    "sectionText": "<h5 style=\"background: #404142; padding: 5px; text-align: left;\"><span style=\"font-size: 12pt; color: #ffffff;\"><strong>PENDING TASKS<\/strong><\/span><\/h5>"
+                                }
+                            },
+                            {
+                                "type": "readonlyFormGroup",
+                                "config": {
+                                    "wid": "5de5443d-eea7-47f1-bf1d-6a535868188e",
+                                    "gridColumns": [],
+                                    "displayType": "card-view",
+                                    "widgetAlwaysDisplay": true,
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 10,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "status",
+                                                "operator": "neq",
+                                                "value": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed",
+                                                "_value": {
+                                                    "display": "Completed",
+                                                    "itemValue": "Completed",
+                                                    "@id": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed"
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "field": "warrooms.id",
+                                                "operator": "eq",
+                                                "_operator": "eq",
+                                                "value": "{{warRoomID}}",
+                                                "type": "primitive"
+                                            }
+                                        ]
+                                    },
+                                    "recordTitle": {
+                                        "type": "sectionHeader",
+                                        "wid": "76bd47ca-b63f-4571-95ca-33f0f2fc58f8",
+                                        "clone": false,
+                                        "remove": false
+                                    },
+                                    "relatedTemplate": {
+                                        "type": "rows",
+                                        "rows": [],
+                                        "wid": "bf936b3d-53d0-4b99-abbd-9111d0516f60"
+                                    },
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "name",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "status",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "priority",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "assignedToPerson",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "resource": "tasks"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "cd62491c-589e-41b7-a88c-1bdf786338d4",
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "171f4062-daaf-43a9-9dc0-2b99c52347f8",
+                                    "sectionText": "<p style=\"text-align: center;\"><span style=\"font-size: 10pt;\">Report Generated By FortiSOAR\u2122<\/span><\/p>",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "editorType": "html"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "d027f85c-fc5a-45df-9be9-09d51ede9bca",
+                "container": true,
+                "_collapsed": false
+            }
+        ],
+        "wid": "daaaadd9-c536-462a-8e54-47f8d9897aff"
+    },
+    "filterArray": [
+        {
+            "key": "warRoomID",
+            "open": true,
+            "type": "number",
+            "label": "War Room ID",
+            "value": 1,
+            "expression": "{{warRoomID}}",
+            "defaultValue": 1
+        }
+    ],
+    "updateDate": 1556262219
+}

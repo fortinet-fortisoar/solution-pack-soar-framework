@@ -1,0 +1,381 @@
+{
+    "@context": "\/api\/3\/contexts\/StagingModelMetadata",
+    "@id": "\/api\/3\/staging_model_metadatas\/5d49aba4-41b6-4f91-8a56-d370bd19bf3f",
+    "@type": "StagingModelMetadata",
+    "type": "announcements",
+    "parentType": null,
+    "tableName": "announcements",
+    "ownable": true,
+    "userOwnable": false,
+    "queueable": false,
+    "trackable": true,
+    "taggable": true,
+    "peerReplicable": false,
+    "defaultSort": [],
+    "uniqueConstraint": [],
+    "indexable": true,
+    "writable": true,
+    "attributes": [
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/670d9e21-2669-4de9-a9aa-66c355a088ea",
+            "@type": "AttributeMetadata",
+            "type": "warrooms",
+            "name": "warrooms",
+            "length": null,
+            "orderIndex": 2,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "warrooms"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "announcements",
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": [],
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": null,
+            "orphanRemoval": null,
+            "readable": null,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/5d49aba4-41b6-4f91-8a56-d370bd19bf3f",
+            "uuid": "670d9e21-2669-4de9-a9aa-66c355a088ea",
+            "recordTags": [],
+            "displayName": "{{ warrooms }}",
+            "descriptions": {
+                "singular": "War Rooms"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/a453e343-b5a4-4a8b-9235-d5aaba7c79d0",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "announcementCriticality",
+            "length": null,
+            "orderIndex": 3,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "AnnouncementCriticality"
+                        }
+                    ],
+                    "sort": [
+                        {
+                            "field": "orderIndex",
+                            "direction": "ASC"
+                        }
+                    ]
+                },
+                "displayConditions": {
+                    "e8e41070-f135-42f2-892b-7017cbba4024": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "75979d6f-867a-4422-8531-25c8a5fd81ef": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": "\/api\/3\/picklists\/e8e41070-f135-42f2-892b-7017cbba4024",
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": null,
+            "orphanRemoval": null,
+            "readable": null,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/5d49aba4-41b6-4f91-8a56-d370bd19bf3f",
+            "uuid": "a453e343-b5a4-4a8b-9235-d5aaba7c79d0",
+            "recordTags": [],
+            "displayName": "{{ announcementCriticality }}",
+            "descriptions": {
+                "singular": "Criticality"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/29aa20d9-7df9-4499-a45b-06c04d73f2f5",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "title",
+            "length": null,
+            "orderIndex": 4,
+            "formType": "text",
+            "dataSource": null,
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": "",
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": null,
+            "orphanRemoval": null,
+            "readable": null,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/5d49aba4-41b6-4f91-8a56-d370bd19bf3f",
+            "uuid": "29aa20d9-7df9-4499-a45b-06c04d73f2f5",
+            "recordTags": [],
+            "displayName": "{{ title }}",
+            "descriptions": {
+                "singular": "Title"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/7c95691d-4ac3-4cf7-bf5c-675d4663818a",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "description",
+            "length": null,
+            "orderIndex": 5,
+            "formType": "html",
+            "dataSource": null,
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": "",
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": null,
+            "orphanRemoval": null,
+            "readable": null,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/5d49aba4-41b6-4f91-8a56-d370bd19bf3f",
+            "uuid": "7c95691d-4ac3-4cf7-bf5c-675d4663818a",
+            "recordTags": [],
+            "displayName": "{{ description }}",
+            "descriptions": {
+                "singular": "Description"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/6be4d28e-2455-4fa6-9417-bc6452945b70",
+            "@type": "AttributeMetadata",
+            "type": "boolean",
+            "name": "notifyOnEmail",
+            "length": null,
+            "orderIndex": 1,
+            "formType": "checkbox",
+            "dataSource": null,
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": null,
+            "orphanRemoval": null,
+            "readable": null,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/5d49aba4-41b6-4f91-8a56-d370bd19bf3f",
+            "uuid": "6be4d28e-2455-4fa6-9417-bc6452945b70",
+            "recordTags": [],
+            "displayName": "{{ notifyOnEmail }}",
+            "descriptions": {
+                "singular": "Notify Responders On Email"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/db97466e-c84a-4003-a078-3b256de4b000",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "announcementType",
+            "length": null,
+            "orderIndex": 6,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "AnnoucementType"
+                        }
+                    ],
+                    "sort": [
+                        {
+                            "field": "orderIndex",
+                            "direction": "ASC"
+                        }
+                    ]
+                },
+                "displayConditions": {
+                    "222b116d-d495-4eb9-b12d-c71cb7b7ba6e": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "cfbb2798-ec01-4652-b774-fb2c19e35eb5": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "9745d253-ac30-4ded-b6ed-3370c16da022": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": "\/api\/3\/picklists\/cfbb2798-ec01-4652-b774-fb2c19e35eb5",
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": null,
+            "orphanRemoval": null,
+            "readable": null,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "sattrib": "\/api\/3\/staging_model_metadatas\/5d49aba4-41b6-4f91-8a56-d370bd19bf3f",
+            "uuid": "db97466e-c84a-4003-a078-3b256de4b000",
+            "recordTags": [],
+            "displayName": "{{ announcementType }}",
+            "descriptions": {
+                "singular": "Announcement Type"
+            }
+        }
+    ],
+    "system": false,
+    "module": "announcements",
+    "softDeleteable": false,
+    "archivable": false,
+    "paused": false,
+    "partitionBy": "modifyDate",
+    "archivalCriteria": {
+        "keep_primary_data_for": 24,
+        "delete_primary_data_after": 60
+    },
+    "archivalFilters": [],
+    "uuid": "5d49aba4-41b6-4f91-8a56-d370bd19bf3f",
+    "recordTags": [],
+    "displayName": "{{title}}",
+    "descriptions": {
+        "singular": "Announcement",
+        "plural": "Announcements"
+    }
+}
