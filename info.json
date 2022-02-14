@@ -6,14 +6,19 @@
     "label": "FortiSOAR Essentials",
     "dependencies": [],
     "prerequisite": [],
+    "category": [],
     "publisher": "Fortinet",
-    "description": "The FortiSOAR Essentials Solution Pack enables users to experience the power of FortiSOAR\u2122 incident response.",
+    "certified": "true",
+    "supportInfo": "support@fortinet.com",
+    "description": "The FortiSOAR Essentials Solution Pack enables users to experience the power of FortiSOAR incident response.",
+    "help": "https://github.com/fortinet-fortisoar/solution-pack-soar-essentials",
+    "tags": [],
     "fsrMinCompatibility": "7.2.0",
-    "date": "2022-02-10T20:38:39+00:00",
-    "exported_from": "master.fortisoar.com",
+    "date": "2022-02-14T18:03:42+00:00",
+    "exported_from": "tenant.fortisoar.com",
     "exported_by": "CS Admin",
     "contents": {
-        "picklist": [
+        "picklistNames": [
             {
                 "name": "AlertState"
             },
@@ -24,7 +29,25 @@
                 "name": "AlertType"
             },
             {
+                "name": "AnnoucementType"
+            },
+            {
+                "name": "AnnouncementCriticality"
+            },
+            {
                 "name": "AssetCategory"
+            },
+            {
+                "name": "AssetClass"
+            },
+            {
+                "name": "AssetState"
+            },
+            {
+                "name": "AssetStatus"
+            },
+            {
+                "name": "AttachmentsType"
             },
             {
                 "name": "CampaignStatus"
@@ -39,10 +62,16 @@
                 "name": "Closure Reason"
             },
             {
+                "name": "Comment Type"
+            },
+            {
                 "name": "Communication State"
             },
             {
                 "name": "Communication Type"
+            },
+            {
+                "name": "Criticality"
             },
             {
                 "name": "DeliveryVector"
@@ -78,6 +107,9 @@
                 "name": "KillChainPhases"
             },
             {
+                "name": "OperatingSystem"
+            },
+            {
                 "name": "Severity"
             },
             {
@@ -102,18 +134,65 @@
                 "name": "TrafficLightProtocol"
             },
             {
+                "name": "WarRoomStatus"
+            },
+            {
                 "name": "WorkflowPriority"
             }
         ],
-        "module": {
-            "alerts": [],
-            "campaigns": [],
-            "communication": [],
-            "hunt": [],
-            "incidents": [],
-            "indicators": [],
-            "sla_template": [],
-            "tasks": []
+        "modules": {
+            "alerts": {
+                "name": "Alerts",
+                "apiName": "alerts"
+            },
+            "announcements": {
+                "name": "Announcements",
+                "apiName": "announcements"
+            },
+            "assets": {
+                "name": "Assets",
+                "apiName": "assets"
+            },
+            "attachments": {
+                "name": "Attachments",
+                "apiName": "attachments"
+            },
+            "campaigns": {
+                "name": "Campaigns",
+                "apiName": "campaigns"
+            },
+            "comments": {
+                "name": "Comment",
+                "apiName": "comments"
+            },
+            "communication": {
+                "name": "Communications",
+                "apiName": "communication"
+            },
+            "hunt": {
+                "name": "Hunts",
+                "apiName": "hunt"
+            },
+            "incidents": {
+                "name": "Incidents",
+                "apiName": "incidents"
+            },
+            "indicators": {
+                "name": "Indicators",
+                "apiName": "indicators"
+            },
+            "sla_template": {
+                "name": "SLA Templates",
+                "apiName": "sla_template"
+            },
+            "tasks": {
+                "name": "Tasks",
+                "apiName": "tasks"
+            },
+            "warrooms": {
+                "name": "War Rooms",
+                "apiName": "warrooms"
+            }
         },
         "viewTemplates": {
             "alerts": [
@@ -121,7 +200,27 @@
                 "detail",
                 "form"
             ],
+            "announcements": [
+                "list",
+                "detail",
+                "form"
+            ],
+            "assets": [
+                "list",
+                "detail",
+                "form"
+            ],
+            "attachments": [
+                "list",
+                "detail",
+                "form"
+            ],
             "campaigns": [
+                "list",
+                "detail",
+                "form"
+            ],
+            "comments": [
                 "list",
                 "detail",
                 "form"
@@ -155,6 +254,11 @@
                 "list",
                 "detail",
                 "form"
+            ],
+            "warrooms": [
+                "list",
+                "detail",
+                "form"
             ]
         },
         "roles": [
@@ -167,7 +271,7 @@
                 "name": "SOC Team"
             }
         ],
-        "playbookCollections": [
+        "playbooks": [
             {
                 "name": "00 - Drafts"
             },
@@ -205,13 +309,102 @@
                 "name": "10 - Utilities"
             },
             {
-                "name": "11 - Demo"
-            },
-            {
                 "name": "12 - Training"
             },
             {
                 "name": "14 - Communications"
+            }
+        ],
+        "globalVariables": [
+            {
+                "id": 1,
+                "name": "Current_User",
+                "value": "{{vars.currentUser}}",
+                "default_value": null
+            },
+            {
+                "id": 2,
+                "name": "Default_Email",
+                "value": "noreply@example.com",
+                "default_value": null
+            },
+            {
+                "id": 3,
+                "name": "Body",
+                "value": "{{vars.request.body}}",
+                "default_value": null
+            },
+            {
+                "id": 4,
+                "name": "Current_Data",
+                "value": "{{vars.input.records[0]}}",
+                "default_value": null
+            },
+            {
+                "id": 5,
+                "name": "Previous_Data",
+                "value": "{{vars.previous.data}}",
+                "default_value": null
+            },
+            {
+                "id": 6,
+                "name": "PB_Log_TTL",
+                "value": "30",
+                "default_value": null
+            },
+            {
+                "id": 8,
+                "name": "Default_Indicator_TTL_Days",
+                "value": "20",
+                "default_value": "20"
+            },
+            {
+                "id": 12,
+                "name": "Indicator_type_map",
+                "value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}",
+                "default_value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}"
+            },
+            {
+                "id": 15,
+                "name": "Reset_SLA",
+                "value": "true",
+                "default_value": "true"
+            },
+            {
+                "id": 9,
+                "name": "Excludelist_IPs",
+                "value": "8.8.8.8,10.1.1.2",
+                "default_value": "8.8.8.8,10.1.1.2"
+            },
+            {
+                "id": 7,
+                "name": "Server_fqhn",
+                "value": "mtt.fortisoar.com",
+                "default_value": "mtt.fortisoar.com"
+            },
+            {
+                "id": 10,
+                "name": "Excludelist_URLs",
+                "value": "https:\/\/www.google.com,https:\/\/mail.yahoo.com\/login.html,https:\/\/www.office.com\/",
+                "default_value": "https:\/\/www.google.com,https:\/\/mail.yahoo.com\/login.html,https:\/\/www.office.com\/"
+            },
+            {
+                "id": 11,
+                "name": "Excludelist_Domains",
+                "value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com",
+                "default_value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com"
+            },
+            {
+                "id": 13,
+                "name": "Demo_mode",
+                "value": "true",
+                "default_value": "true"
+            },
+            {
+                "id": 14,
+                "name": "Current_Date",
+                "value": "{{arrow.utcnow().timestamp}}",
+                "default_value": "{{arrow.utcnow().timestamp}}"
             }
         ],
         "reports": [
@@ -231,6 +424,12 @@
                 "name": "Unhandled Activities"
             },
             {
+                "name": "War Room Summary"
+            },
+            {
+                "name": "War Room Summary Report"
+            },
+            {
                 "name": "Weekly Alert Report"
             },
             {
@@ -243,148 +442,187 @@
         "dashboards": [
             {
                 "name": "Overview"
+            },
+            {
+                "name": "ROI Summary"
             }
         ],
         "connectors": [
             {
-                "name": "activedirectory",
+                "name": "Active Directory",
+                "apiName": "activedirectory",
                 "version": "2.2.0"
             },
             {
-                "name": "alienvault-otx",
+                "name": "AlienVault-OTX",
+                "apiName": "alienvault-otx",
                 "version": "1.0.1"
             },
             {
-                "name": "threatstream",
+                "name": "Anomali ThreatStream",
+                "apiName": "threatstream",
                 "version": "2.2.1"
             },
             {
-                "name": "carbonblack-protect-bit9",
+                "name": "CarbonBlack Protection Bit9",
+                "apiName": "carbonblack-protect-bit9",
                 "version": "1.0.2"
             },
             {
-                "name": "carbonblack-response",
+                "name": "CarbonBlack Response",
+                "apiName": "carbonblack-response",
                 "version": "2.0.1"
             },
             {
-                "name": "cisco-threatgrid",
+                "name": "Cisco Threat Grid",
+                "apiName": "cisco-threatgrid",
                 "version": "1.3.0"
             },
             {
-                "name": "elasticsearch",
+                "name": "ElasticSearch",
+                "apiName": "elasticsearch",
                 "version": "2.2.1"
             },
             {
-                "name": "exchange",
+                "name": "Exchange",
+                "apiName": "exchange",
                 "version": "3.4.4"
             },
             {
-                "name": "fortinet-forticlient-ems",
+                "name": "Fortinet FortiClient EMS",
+                "apiName": "fortinet-forticlient-ems",
                 "version": "1.0.0"
             },
             {
-                "name": "fortinet-fortiedr",
+                "name": "Fortinet FortiEDR",
+                "apiName": "fortinet-fortiedr",
                 "version": "1.3.0"
             },
             {
-                "name": "fortigate-firewall",
+                "name": "Fortinet FortiGate",
+                "apiName": "fortigate-firewall",
                 "version": "5.0.0"
             },
             {
-                "name": "fortinet-fortisandbox",
+                "name": "Fortinet FortiSandbox",
+                "apiName": "fortinet-fortisandbox",
                 "version": "1.0.3"
             },
             {
-                "name": "fortinet-fortisiem",
+                "name": "Fortinet FortiSIEM",
+                "apiName": "fortinet-fortisiem",
                 "version": "4.3.0"
             },
             {
-                "name": "fortinet-web-filter-lookup",
+                "name": "Fortinet Web Filter Lookup",
+                "apiName": "fortinet-web-filter-lookup",
                 "version": "1.0.0"
             },
             {
-                "name": "xforce",
+                "name": "IBM XForce",
+                "apiName": "xforce",
                 "version": "1.0.1"
             },
             {
-                "name": "imap",
+                "name": "IMAP",
+                "apiName": "imap",
                 "version": "3.5.6"
             },
             {
-                "name": "ipstack",
+                "name": "IPStack",
+                "apiName": "ipstack",
                 "version": "1.0.0"
             },
             {
-                "name": "mxtoolbox",
+                "name": "MxToolbox",
+                "apiName": "mxtoolbox",
                 "version": "2.0.0"
             },
             {
-                "name": "nmap-scanner",
+                "name": "NMAP Scanner",
+                "apiName": "nmap-scanner",
                 "version": "1.0.1"
             },
             {
-                "name": "phishme-intelligence",
+                "name": "Phishme Intelligence",
+                "apiName": "phishme-intelligence",
                 "version": "1.0.0"
             },
             {
-                "name": "slacalculator",
+                "name": "SLA Calculator",
+                "apiName": "slacalculator",
                 "version": "1.0.0"
             },
             {
-                "name": "smtp",
-                "version": "2.4.2"
+                "name": "SMTP",
+                "apiName": "smtp",
+                "version": "2.4.3"
             },
             {
-                "name": "ssh",
+                "name": "SSH",
+                "apiName": "ssh",
                 "version": "2.1.1"
             },
             {
-                "name": "symantec-deepsight-intelligence",
+                "name": "Symantec DeepSight Intelligence",
+                "apiName": "symantec-deepsight-intelligence",
                 "version": "1.0.1"
             },
             {
-                "name": "cyops-system-monitoring",
+                "name": "System Monitoring",
+                "apiName": "cyops-system-monitoring",
                 "version": "1.4.0"
             },
             {
-                "name": "threatq",
+                "name": "ThreatQ",
+                "apiName": "threatq",
                 "version": "1.0.1"
             },
             {
-                "name": "urlscan-io",
+                "name": "URLScan.io",
+                "apiName": "urlscan-io",
                 "version": "1.1.0"
             },
             {
-                "name": "urlvoid",
+                "name": "URLVoid",
+                "apiName": "urlvoid",
                 "version": "1.1.0"
             },
             {
-                "name": "cyops_utilities",
-                "version": "3.2.0"
+                "name": "Utilities",
+                "apiName": "cyops_utilities",
+                "version": "3.2.1"
             },
             {
-                "name": "virustotal",
+                "name": "VirusTotal",
+                "apiName": "virustotal",
                 "version": "2.2.0"
             },
             {
-                "name": "whois-rdap",
+                "name": "Whois RDAP",
+                "apiName": "whois-rdap",
                 "version": "1.0.0"
             }
         ],
         "widgets": [
             {
-                "name": "Incident Correlations",
-                "version": "2.0.0"
-            },
-            {
+                "apiName": "slaCountDownClock",
                 "name": "SLA Count Down Timer",
                 "version": "2.0.0"
             },
             {
+                "apiName": "userAssignments",
                 "name": "User Tile",
+                "version": "2.0.0"
+            },
+            {
+                "apiName": "incidentCorrelations",
+                "name": "Incident Correlations",
                 "version": "2.0.0"
             }
         ],
-        "recordSets": []
+        "recordSets": {
+            "sla_template": 5
+        }
     }
 }

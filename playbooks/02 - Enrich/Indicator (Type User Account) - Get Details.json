@@ -11,10 +11,10 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1644508348,
+    "lastModifyDate": 1644855355,
     "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/4a6d1fe8-ced8-419a-8e12-497fe644133a",
+    "triggerStep": "\/api\/3\/workflow_steps\/7f1c79e1-e8a9-4577-8bae-9ef119ef2ca3",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -91,7 +91,7 @@
             "top": "30",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
-            "uuid": "4a6d1fe8-ced8-419a-8e12-497fe644133a"
+            "uuid": "7f1c79e1-e8a9-4577-8bae-9ef119ef2ca3"
         },
         {
             "@type": "WorkflowStep",
@@ -117,7 +117,7 @@
             "top": "570",
             "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "9f255002-2cc6-4ad8-ae76-901e1ab88ee6"
+            "uuid": "17155295-b7e2-4d01-8d4a-9adb92fe7d5b"
         },
         {
             "@type": "WorkflowStep",
@@ -151,7 +151,7 @@
             "top": "705",
             "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "b4a524ab-3813-469a-83aa-9a8391048bc8"
+            "uuid": "42abd313-6294-4624-9e49-bbab6a2b2f38"
         },
         {
             "@type": "WorkflowStep",
@@ -161,19 +161,19 @@
                 "conditions": [
                     {
                         "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/9f255002-2cc6-4ad8-ae76-901e1ab88ee6",
+                        "step_iri": "\/api\/3\/workflow_steps\/17155295-b7e2-4d01-8d4a-9adb92fe7d5b",
                         "condition": "{{ (vars.input.records[0].tenant.isDedicated == true) and (vars.input.records[0].tenant.role == 'self') }}",
                         "step_name": "Get User Details"
                     },
                     {
                         "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/9f255002-2cc6-4ad8-ae76-901e1ab88ee6",
+                        "step_iri": "\/api\/3\/workflow_steps\/17155295-b7e2-4d01-8d4a-9adb92fe7d5b",
                         "condition": "{{ vars.input.records[0].tenant.isDedicated == false }}",
                         "step_name": "Get User Details"
                     },
                     {
                         "option": "No",
-                        "step_iri": "\/api\/3\/workflow_steps\/ab99d037-a017-4846-8c80-d74082c004dc",
+                        "step_iri": "\/api\/3\/workflow_steps\/5e6d6578-c816-4aae-9494-82c4c9d5b2fe",
                         "condition": "{{ (vars.input.records[0].tenant.isDedicated == true) and (vars.input.records[0].tenant.role != 'self') }}",
                         "step_name": "No Operation"
                     }
@@ -183,7 +183,7 @@
             "top": "435",
             "left": "135",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "bd5fc1b4-16ad-4c88-bbd3-dabbbbc01dfb"
+            "uuid": "5b4b10a1-e32e-4a6c-81be-e334804cbfce"
         },
         {
             "@type": "WorkflowStep",
@@ -201,7 +201,7 @@
             "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "ab99d037-a017-4846-8c80-d74082c004dc"
+            "uuid": "5e6d6578-c816-4aae-9494-82c4c9d5b2fe"
         },
         {
             "@type": "WorkflowStep",
@@ -223,7 +223,7 @@
             "top": "165",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "b314a6e1-f311-4555-8af5-39790145fabc"
+            "uuid": "1f93183f-f5df-40f5-b6cd-5b9fc0ed3999"
         },
         {
             "@type": "WorkflowStep",
@@ -233,14 +233,14 @@
                 "conditions": [
                     {
                         "option": "No",
-                        "step_iri": "\/api\/3\/workflow_steps\/9f255002-2cc6-4ad8-ae76-901e1ab88ee6",
+                        "step_iri": "\/api\/3\/workflow_steps\/17155295-b7e2-4d01-8d4a-9adb92fe7d5b",
                         "condition": "{{ vars.steps.Get_License_Details.data.edition == 'Enterprise' }}",
                         "step_name": "Get User Details"
                     },
                     {
                         "option": "Yes",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/bd5fc1b4-16ad-4c88-bbd3-dabbbbc01dfb",
+                        "step_iri": "\/api\/3\/workflow_steps\/5b4b10a1-e32e-4a6c-81be-e334804cbfce",
                         "step_name": "Is Tenant Shared"
                     }
                 ]
@@ -249,86 +249,87 @@
             "top": "300",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "29141583-2d95-4b7c-818e-90723f7d3a79"
+            "uuid": "2e25a2ed-a1db-4ab1-bb30-60526ad3d82d"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Get User Details -> Update Indicator",
-            "targetStep": "\/api\/3\/workflow_steps\/b4a524ab-3813-469a-83aa-9a8391048bc8",
-            "sourceStep": "\/api\/3\/workflow_steps\/9f255002-2cc6-4ad8-ae76-901e1ab88ee6",
+            "targetStep": "\/api\/3\/workflow_steps\/42abd313-6294-4624-9e49-bbab6a2b2f38",
+            "sourceStep": "\/api\/3\/workflow_steps\/17155295-b7e2-4d01-8d4a-9adb92fe7d5b",
             "label": null,
             "isExecuted": false,
-            "uuid": "315bf74e-5c95-44df-9379-d339cf3321f0"
+            "uuid": "d324f892-269a-489e-acc9-fd57fd806115"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Tenant Shared -> No Operation",
-            "targetStep": "\/api\/3\/workflow_steps\/ab99d037-a017-4846-8c80-d74082c004dc",
-            "sourceStep": "\/api\/3\/workflow_steps\/bd5fc1b4-16ad-4c88-bbd3-dabbbbc01dfb",
+            "targetStep": "\/api\/3\/workflow_steps\/5e6d6578-c816-4aae-9494-82c4c9d5b2fe",
+            "sourceStep": "\/api\/3\/workflow_steps\/5b4b10a1-e32e-4a6c-81be-e334804cbfce",
             "label": "No",
             "isExecuted": false,
-            "uuid": "0fa4f3f4-06fd-4640-a98b-2ffe3f389c8d"
+            "uuid": "0905f3e7-3e6c-468d-90ca-69f9794391e6"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Tenant Shared -> Get User Details",
-            "targetStep": "\/api\/3\/workflow_steps\/9f255002-2cc6-4ad8-ae76-901e1ab88ee6",
-            "sourceStep": "\/api\/3\/workflow_steps\/bd5fc1b4-16ad-4c88-bbd3-dabbbbc01dfb",
+            "targetStep": "\/api\/3\/workflow_steps\/17155295-b7e2-4d01-8d4a-9adb92fe7d5b",
+            "sourceStep": "\/api\/3\/workflow_steps\/5b4b10a1-e32e-4a6c-81be-e334804cbfce",
             "label": "Yes",
             "isExecuted": false,
-            "uuid": "b376b191-4419-49a4-a31b-7d8d743aaa82"
+            "uuid": "8465280b-7cee-4672-a182-9d2467b50a22"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Get License Details -> Is MSSP Environment",
-            "targetStep": "\/api\/3\/workflow_steps\/29141583-2d95-4b7c-818e-90723f7d3a79",
-            "sourceStep": "\/api\/3\/workflow_steps\/b314a6e1-f311-4555-8af5-39790145fabc",
+            "targetStep": "\/api\/3\/workflow_steps\/2e25a2ed-a1db-4ab1-bb30-60526ad3d82d",
+            "sourceStep": "\/api\/3\/workflow_steps\/1f93183f-f5df-40f5-b6cd-5b9fc0ed3999",
             "label": null,
             "isExecuted": false,
-            "uuid": "0369edc8-f50e-4a30-8e4b-67c7f350cf2d"
+            "uuid": "a95338c4-0c9f-44a6-a8c1-8910b4fa4544"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Get License Details",
-            "targetStep": "\/api\/3\/workflow_steps\/b314a6e1-f311-4555-8af5-39790145fabc",
-            "sourceStep": "\/api\/3\/workflow_steps\/4a6d1fe8-ced8-419a-8e12-497fe644133a",
+            "targetStep": "\/api\/3\/workflow_steps\/1f93183f-f5df-40f5-b6cd-5b9fc0ed3999",
+            "sourceStep": "\/api\/3\/workflow_steps\/7f1c79e1-e8a9-4577-8bae-9ef119ef2ca3",
             "label": null,
             "isExecuted": false,
-            "uuid": "5791b732-4354-4da1-a17d-f8d83cec8914"
+            "uuid": "f3cac8fd-f9a5-4a5a-a770-df65fb6f72f0"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is MSSP Environment -> Is Tenant Shared",
-            "targetStep": "\/api\/3\/workflow_steps\/bd5fc1b4-16ad-4c88-bbd3-dabbbbc01dfb",
-            "sourceStep": "\/api\/3\/workflow_steps\/29141583-2d95-4b7c-818e-90723f7d3a79",
+            "targetStep": "\/api\/3\/workflow_steps\/5b4b10a1-e32e-4a6c-81be-e334804cbfce",
+            "sourceStep": "\/api\/3\/workflow_steps\/2e25a2ed-a1db-4ab1-bb30-60526ad3d82d",
             "label": "Yes",
             "isExecuted": false,
-            "uuid": "c747249e-fb06-4031-ae0d-05c8fb1a4c5b"
+            "uuid": "e01394c9-9fc6-4903-a4c7-bfec2873dbbf"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is MSSP Environment -> Get User Details",
-            "targetStep": "\/api\/3\/workflow_steps\/9f255002-2cc6-4ad8-ae76-901e1ab88ee6",
-            "sourceStep": "\/api\/3\/workflow_steps\/29141583-2d95-4b7c-818e-90723f7d3a79",
+            "targetStep": "\/api\/3\/workflow_steps\/17155295-b7e2-4d01-8d4a-9adb92fe7d5b",
+            "sourceStep": "\/api\/3\/workflow_steps\/2e25a2ed-a1db-4ab1-bb30-60526ad3d82d",
             "label": "No",
             "isExecuted": false,
-            "uuid": "f175489b-21ff-4430-a7de-465d666d0fa8"
+            "uuid": "c21ff844-1a4c-4791-b7a4-1bfa1bcb2f65"
         }
     ],
     "priority": null,
     "uuid": "99c205c6-d35a-4b08-a19a-22bff88641cb",
     "recordTags": [
         "FSRSolutionPack",
+        "fortiSOAREssentials-1.0.0",
         "incidentResponse-1.0.0",
         "Enrichment"
     ],
-    "id": "88",
+    "id": "80",
     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1644508349.791195,
+    "createDate": 1644855356.845752,
     "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1644508349.791195,
+    "modifyDate": 1644855356.845752,
     "owners": [],
     "isPrivate": false,
     "deletedAt": null
