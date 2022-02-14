@@ -13,10 +13,10 @@
         "indicator_value"
     ],
     "synchronous": false,
-    "lastModifyDate": 1644508348,
+    "lastModifyDate": 1644855355,
     "collection": "\/api\/3\/workflow_collections\/b135c052-e170-4cff-8cc7-9a4bfe607ccb",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/9a338a9f-2a4d-48e5-b2de-65b7a6e19c03",
+    "triggerStep": "\/api\/3\/workflow_steps\/d71c7c08-ea0a-4497-9b08-2b6d2823f571",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -35,7 +35,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "9a338a9f-2a4d-48e5-b2de-65b7a6e19c03"
+            "uuid": "d71c7c08-ea0a-4497-9b08-2b6d2823f571"
         },
         {
             "@type": "WorkflowStep",
@@ -60,7 +60,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "c42169b1-ef68-47e3-a501-a373b78b7772"
+            "uuid": "428970b6-b3b3-4fe7-996b-be49baf4db12"
         },
         {
             "@type": "WorkflowStep",
@@ -76,7 +76,7 @@
             "top": "570",
             "left": "126",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "fb37a653-1152-48d1-bf10-406b5327c3d7"
+            "uuid": "e0e00c50-ff06-470c-bc0b-885b276efeec"
         },
         {
             "@type": "WorkflowStep",
@@ -90,7 +90,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "508ca3e3-8562-482a-a189-152f992ce8d2"
+            "uuid": "547486c4-a511-400e-b658-78e356002bdc"
         },
         {
             "@type": "WorkflowStep",
@@ -112,45 +112,45 @@
             "top": "440",
             "left": "126",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "e3e4268b-4817-4dab-8557-d00a5d1941a8"
+            "uuid": "e688c73b-598a-41e4-8c76-b0ba715624cb"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Compute Symantec Summary -> enrichment_summary",
-            "targetStep": "\/api\/3\/workflow_steps\/fb37a653-1152-48d1-bf10-406b5327c3d7",
-            "sourceStep": "\/api\/3\/workflow_steps\/e3e4268b-4817-4dab-8557-d00a5d1941a8",
+            "targetStep": "\/api\/3\/workflow_steps\/e0e00c50-ff06-470c-bc0b-885b276efeec",
+            "sourceStep": "\/api\/3\/workflow_steps\/e688c73b-598a-41e4-8c76-b0ba715624cb",
             "label": null,
             "isExecuted": false,
-            "uuid": "9087656f-fff8-466c-bedd-34412110e4f4"
+            "uuid": "c02b4192-7d20-461f-8032-b9b8be1bf437"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Configurations -> Get File Reputation from Symantec Deepsight Intelligence",
-            "targetStep": "\/api\/3\/workflow_steps\/c42169b1-ef68-47e3-a501-a373b78b7772",
-            "sourceStep": "\/api\/3\/workflow_steps\/508ca3e3-8562-482a-a189-152f992ce8d2",
+            "targetStep": "\/api\/3\/workflow_steps\/428970b6-b3b3-4fe7-996b-be49baf4db12",
+            "sourceStep": "\/api\/3\/workflow_steps\/547486c4-a511-400e-b658-78e356002bdc",
             "label": null,
             "isExecuted": false,
-            "uuid": "4e2aa97b-ed9d-40e3-9c05-936e7fe8781a"
+            "uuid": "a4368111-162e-4411-9d6d-5c904ecd1efd"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/508ca3e3-8562-482a-a189-152f992ce8d2",
-            "sourceStep": "\/api\/3\/workflow_steps\/9a338a9f-2a4d-48e5-b2de-65b7a6e19c03",
+            "targetStep": "\/api\/3\/workflow_steps\/547486c4-a511-400e-b658-78e356002bdc",
+            "sourceStep": "\/api\/3\/workflow_steps\/d71c7c08-ea0a-4497-9b08-2b6d2823f571",
             "label": null,
             "isExecuted": false,
-            "uuid": "a4a43a0f-d4e5-401b-8cb7-20415a3cd997"
+            "uuid": "6b719e98-76ea-44b2-a440-f4b1c40d4ef4"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Get File Reputation from Symantec Deepsight Intelligence -> Compute Symantec Summary",
-            "targetStep": "\/api\/3\/workflow_steps\/e3e4268b-4817-4dab-8557-d00a5d1941a8",
-            "sourceStep": "\/api\/3\/workflow_steps\/c42169b1-ef68-47e3-a501-a373b78b7772",
+            "targetStep": "\/api\/3\/workflow_steps\/e688c73b-598a-41e4-8c76-b0ba715624cb",
+            "sourceStep": "\/api\/3\/workflow_steps\/428970b6-b3b3-4fe7-996b-be49baf4db12",
             "label": null,
             "isExecuted": false,
-            "uuid": "8f6bf17c-f504-4432-8764-6c979c6a1abf"
+            "uuid": "1b629e57-f8b8-4d37-b67d-73342032daa3"
         }
     ],
     "priority": null,
@@ -158,13 +158,14 @@
     "recordTags": [
         "Subroutine",
         "FSRSolutionPack",
+        "fortiSOAREssentials-1.0.0",
         "incidentResponse-1.0.0"
     ],
-    "id": "115",
+    "id": "107",
     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1644508351.198169,
+    "createDate": 1644855358.167277,
     "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1644508351.198169,
+    "modifyDate": 1644855358.167277,
     "owners": [],
     "isPrivate": false,
     "deletedAt": null

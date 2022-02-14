@@ -1,15 +1,69 @@
 [
     {
+        "id": 1,
+        "name": "Current_User",
+        "value": "{{vars.currentUser}}",
+        "default_value": null
+    },
+    {
+        "id": 2,
+        "name": "Default_Email",
+        "value": "noreply@example.com",
+        "default_value": null
+    },
+    {
+        "id": 3,
+        "name": "Body",
+        "value": "{{vars.request.body}}",
+        "default_value": null
+    },
+    {
+        "id": 4,
+        "name": "Current_Data",
+        "value": "{{vars.input.records[0]}}",
+        "default_value": null
+    },
+    {
+        "id": 5,
+        "name": "Previous_Data",
+        "value": "{{vars.previous.data}}",
+        "default_value": null
+    },
+    {
+        "id": 6,
+        "name": "PB_Log_TTL",
+        "value": "30",
+        "default_value": null
+    },
+    {
         "id": 8,
         "name": "Default_Indicator_TTL_Days",
         "value": "20",
         "default_value": "20"
     },
     {
+        "id": 12,
+        "name": "Indicator_type_map",
+        "value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}",
+        "default_value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}"
+    },
+    {
+        "id": 15,
+        "name": "Reset_SLA",
+        "value": "true",
+        "default_value": "true"
+    },
+    {
         "id": 9,
         "name": "Excludelist_IPs",
         "value": "8.8.8.8,10.1.1.2",
         "default_value": "8.8.8.8,10.1.1.2"
+    },
+    {
+        "id": 7,
+        "name": "Server_fqhn",
+        "value": "mtt.fortisoar.com",
+        "default_value": "mtt.fortisoar.com"
     },
     {
         "id": 10,
@@ -20,14 +74,8 @@
     {
         "id": 11,
         "name": "Excludelist_Domains",
-        "value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com,fortinet.com,twitter.com,facebook.com,linkedin.com,instagram.com,fortiguard.com,forticloud.com",
-        "default_value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com,fortinet.com,twitter.com,facebook.com,linkedin.com,instagram.com,fortiguard.com,forticloud.com"
-    },
-    {
-        "id": 12,
-        "name": "Indicator_type_map",
-        "value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}",
-        "default_value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}"
+        "value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com",
+        "default_value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com"
     },
     {
         "id": 13,
@@ -40,17 +88,5 @@
         "name": "Current_Date",
         "value": "{{arrow.utcnow().timestamp}}",
         "default_value": "{{arrow.utcnow().timestamp}}"
-    },
-    {
-        "id": 15,
-        "name": "Reset_SLA",
-        "value": "true",
-        "default_value": "true"
-    },
-    {
-        "id": 2,
-        "name": "Default_Email",
-        "value": "noreply@example.com",
-        "default_value": null
     }
 ]

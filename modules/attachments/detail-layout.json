@@ -1,0 +1,215 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "rows",
+    "config": {
+        "actionButtons": [],
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "style": "col-lg-12",
+                        "widgets": [
+                            {
+                                "config": {
+                                    "idField": "id",
+                                    "picklistFieldReadOnly": false,
+                                    "titleField": "name",
+                                    "titleFieldLinky": true,
+                                    "titleFieldReadOnly": false,
+                                    "wid": "b9f59625-3b34-42b1-a99c-55f92dec6536"
+                                },
+                                "type": "primaryDetail"
+                            },
+                            {
+                                "config": {
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "highlightMode": true,
+                                                            "name": "description"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "wid": "13a5b5a3-68f7-4567-9316-8bf1c23409e2"
+                                },
+                                "type": "editableFormGroup"
+                            },
+                            {
+                                "config": {
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "highlightMode": true,
+                                                            "name": "file"
+                                                        },
+                                                        {
+                                                            "highlightMode": true,
+                                                            "name": "createUser"
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "highlightMode": true,
+                                                            "name": "type"
+                                                        },
+                                                        {
+                                                            "highlightMode": true,
+                                                            "name": "createDate"
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "wid": "a814ae74-583d-4ef3-ac77-6d94efb72f96"
+                                },
+                                "type": "editableFormGroup"
+                            },
+                            {
+                                "config": {
+                                    "tabs": [
+                                        {
+                                            "flag": true,
+                                            "icon": "fa fa-exchange",
+                                            "show": true,
+                                            "title": "Correlations",
+                                            "widget": {
+                                                "config": {
+                                                    "excludes": [
+                                                        "notes",
+                                                        "comments",
+                                                        "people",
+                                                        "companies",
+                                                        "owners"
+                                                    ],
+                                                    "expandableCol": [],
+                                                    "gridsConfig": {
+                                                        "alerts": {
+                                                            "columns": [
+                                                                "name",
+                                                                "type",
+                                                                "severity",
+                                                                "status",
+                                                                "assignedTo"
+                                                            ]
+                                                        },
+                                                        "assets": {
+                                                            "columns": [
+                                                                "hostname",
+                                                                "ip",
+                                                                "dateScanned",
+                                                                "propertyOf",
+                                                                "criticality"
+                                                            ]
+                                                        },
+                                                        "companies": {
+                                                            "columns": [
+                                                                "name",
+                                                                "url",
+                                                                "status",
+                                                                "type",
+                                                                "industry"
+                                                            ]
+                                                        },
+                                                        "incidents": {
+                                                            "columns": [
+                                                                "name",
+                                                                "discoveredOn",
+                                                                "phase",
+                                                                "status",
+                                                                "confirmation",
+                                                                "severity",
+                                                                "category",
+                                                                "incidentLead"
+                                                            ]
+                                                        },
+                                                        "people": {
+                                                            "columns": [
+                                                                "firstname",
+                                                                "lastname",
+                                                                "title",
+                                                                "phoneWork",
+                                                                "company"
+                                                            ]
+                                                        },
+                                                        "tasks": {
+                                                            "columns": [
+                                                                "name",
+                                                                "dueDate",
+                                                                "priority",
+                                                                "status",
+                                                                "assignedToPerson"
+                                                            ]
+                                                        },
+                                                        "vulnerabilities": {
+                                                            "columns": [
+                                                                "vulnerabilityId",
+                                                                "name",
+                                                                "severity",
+                                                                "cvss",
+                                                                "lastSeenDate",
+                                                                "status"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "wid": "b2267f50-db02-4ed0-9629-cae2d2e1a075"
+                                                },
+                                                "type": "relationship.subtab"
+                                            }
+                                        },
+                                        {
+                                            "active": 0,
+                                            "flag": true,
+                                            "icon": "icon icon-access-control",
+                                            "show": false,
+                                            "title": "Access Control",
+                                            "widget": {
+                                                "type": "accessControl",
+                                                "config": {
+                                                    "wid": "499fc15e-af79-4654-a089-b2e60a110817",
+                                                    "inlineEditor": true,
+                                                    "optionalField1": true,
+                                                    "optionalField2": true
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "icon": "fa fa-eye",
+                                            "show": false,
+                                            "title": "Audit Log",
+                                            "widget": {
+                                                "config": {
+                                                    "wid": "53bfc21f-8346-47fc-9e7f-4ecd710df5a7"
+                                                },
+                                                "type": "timeline"
+                                            }
+                                        }
+                                    ],
+                                    "wid": "513fa505-4ca9-40f6-8a2d-713957c76115"
+                                },
+                                "type": "tabs"
+                            }
+                        ]
+                    }
+                ],
+                "wid": "3b6b2bed-b297-48b1-afb0-c84ec9313194"
+            }
+        ],
+        "wid": "f2b2bd9f-0597-4896-acd3-0d54d1e597d5"
+    },
+    "uuid": "modules-attachments-detail"
+}

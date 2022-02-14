@@ -20,10 +20,10 @@
         "description"
     ],
     "synchronous": false,
-    "lastModifyDate": 1644508348,
+    "lastModifyDate": 1644855355,
     "collection": "\/api\/3\/workflow_collections\/20289298-cdd6-4052-8fa0-11e2603dca00",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/ceca16a7-b74f-440a-a3e9-f34baa4a04ae",
+    "triggerStep": "\/api\/3\/workflow_steps\/5873e1b5-f646-41c7-9d8d-ffa3a9b7ebac",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -85,7 +85,7 @@
             "top": "560",
             "left": "480",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
-            "uuid": "888917f3-8c6d-4339-966d-b3c6f1bcf5ac"
+            "uuid": "1aae1e0d-9c23-4697-9ce5-e7c3ed473d65"
         },
         {
             "@type": "WorkflowStep",
@@ -96,7 +96,7 @@
             "top": "165",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "18acd731-b69d-41a8-b6e9-208411d71294"
+            "uuid": "dc11fc26-74e0-4f5f-b1d5-16527c4a82b6"
         },
         {
             "@type": "WorkflowStep",
@@ -118,7 +118,7 @@
             "top": "560",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "uuid": "41b63b84-7d15-4760-9fe1-5bf2eb44b903"
+            "uuid": "cc7fa388-1b73-4cd4-b0f1-5c0dee222dbc"
         },
         {
             "@type": "WorkflowStep",
@@ -144,7 +144,7 @@
             "top": "30",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "ceca16a7-b74f-440a-a3e9-f34baa4a04ae"
+            "uuid": "5873e1b5-f646-41c7-9d8d-ffa3a9b7ebac"
         },
         {
             "@type": "WorkflowStep",
@@ -172,7 +172,7 @@
             "top": "300",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
-            "uuid": "5e34b147-eaec-493d-9886-4bc4c56da113"
+            "uuid": "8be789b8-ea15-48a5-be46-f18ff228dac4"
         },
         {
             "@type": "WorkflowStep",
@@ -182,14 +182,14 @@
                 "conditions": [
                     {
                         "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/41b63b84-7d15-4760-9fe1-5bf2eb44b903",
+                        "step_iri": "\/api\/3\/workflow_steps\/cc7fa388-1b73-4cd4-b0f1-5c0dee222dbc",
                         "condition": "{{ vars.steps.Is_Indicator_Exist | length > 0 }}",
                         "step_name": "Enrich Indicator"
                     },
                     {
                         "option": "No",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/888917f3-8c6d-4339-966d-b3c6f1bcf5ac",
+                        "step_iri": "\/api\/3\/workflow_steps\/1aae1e0d-9c23-4697-9ce5-e7c3ed473d65",
                         "step_name": "Create New Indicator"
                     }
                 ]
@@ -198,63 +198,63 @@
             "top": "435",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "2e2e526b-8bbb-48e7-b47b-529a3d605d7b"
+            "uuid": "0d2057dd-a562-4ae9-a78a-eb6cf152a331"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/18acd731-b69d-41a8-b6e9-208411d71294",
-            "sourceStep": "\/api\/3\/workflow_steps\/ceca16a7-b74f-440a-a3e9-f34baa4a04ae",
+            "targetStep": "\/api\/3\/workflow_steps\/dc11fc26-74e0-4f5f-b1d5-16527c4a82b6",
+            "sourceStep": "\/api\/3\/workflow_steps\/5873e1b5-f646-41c7-9d8d-ffa3a9b7ebac",
             "label": null,
             "isExecuted": false,
-            "uuid": "360f977b-217c-4eed-9847-0e0ee93eb2bc"
+            "uuid": "fd11f87e-7730-4ca8-ab6e-7983feb91b56"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Configuration -> Is Indicator Exist",
-            "targetStep": "\/api\/3\/workflow_steps\/5e34b147-eaec-493d-9886-4bc4c56da113",
-            "sourceStep": "\/api\/3\/workflow_steps\/18acd731-b69d-41a8-b6e9-208411d71294",
+            "targetStep": "\/api\/3\/workflow_steps\/8be789b8-ea15-48a5-be46-f18ff228dac4",
+            "sourceStep": "\/api\/3\/workflow_steps\/dc11fc26-74e0-4f5f-b1d5-16527c4a82b6",
             "label": null,
             "isExecuted": false,
-            "uuid": "f7130cf9-1fb8-43c1-a8a9-e29022190c0b"
+            "uuid": "18dd4f16-f198-4af7-bcb7-3e9baebca4c2"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Indicator Exist -> Is indicator Found",
-            "targetStep": "\/api\/3\/workflow_steps\/2e2e526b-8bbb-48e7-b47b-529a3d605d7b",
-            "sourceStep": "\/api\/3\/workflow_steps\/5e34b147-eaec-493d-9886-4bc4c56da113",
+            "targetStep": "\/api\/3\/workflow_steps\/0d2057dd-a562-4ae9-a78a-eb6cf152a331",
+            "sourceStep": "\/api\/3\/workflow_steps\/8be789b8-ea15-48a5-be46-f18ff228dac4",
             "label": null,
             "isExecuted": false,
-            "uuid": "d5eea348-65ef-471b-bef8-656427cee82a"
+            "uuid": "10a9c514-1f07-4b1c-bc36-886d4199ced0"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is indicator Found -> Enrich Indicator",
-            "targetStep": "\/api\/3\/workflow_steps\/41b63b84-7d15-4760-9fe1-5bf2eb44b903",
-            "sourceStep": "\/api\/3\/workflow_steps\/2e2e526b-8bbb-48e7-b47b-529a3d605d7b",
+            "targetStep": "\/api\/3\/workflow_steps\/cc7fa388-1b73-4cd4-b0f1-5c0dee222dbc",
+            "sourceStep": "\/api\/3\/workflow_steps\/0d2057dd-a562-4ae9-a78a-eb6cf152a331",
             "label": "Yes",
             "isExecuted": false,
-            "uuid": "3096fa30-ceb8-44b1-9b13-bffb19e02765"
+            "uuid": "c6f03008-6f4f-418f-957a-6b453a60d8bb"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is indicator Found -> Create New Indicator",
-            "targetStep": "\/api\/3\/workflow_steps\/888917f3-8c6d-4339-966d-b3c6f1bcf5ac",
-            "sourceStep": "\/api\/3\/workflow_steps\/2e2e526b-8bbb-48e7-b47b-529a3d605d7b",
+            "targetStep": "\/api\/3\/workflow_steps\/1aae1e0d-9c23-4697-9ce5-e7c3ed473d65",
+            "sourceStep": "\/api\/3\/workflow_steps\/0d2057dd-a562-4ae9-a78a-eb6cf152a331",
             "label": "No",
             "isExecuted": false,
-            "uuid": "e62a5c37-07c1-4b4d-ad3c-5ce32ee90628"
+            "uuid": "b0251276-e384-40af-89b6-304da2500747"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Create New Indicator -> Enrich Indicator",
-            "targetStep": "\/api\/3\/workflow_steps\/41b63b84-7d15-4760-9fe1-5bf2eb44b903",
-            "sourceStep": "\/api\/3\/workflow_steps\/888917f3-8c6d-4339-966d-b3c6f1bcf5ac",
+            "targetStep": "\/api\/3\/workflow_steps\/cc7fa388-1b73-4cd4-b0f1-5c0dee222dbc",
+            "sourceStep": "\/api\/3\/workflow_steps\/1aae1e0d-9c23-4697-9ce5-e7c3ed473d65",
             "label": null,
             "isExecuted": false,
-            "uuid": "fda1e6b1-b036-48ab-8547-c075627850b3"
+            "uuid": "82598377-57d5-4818-b2e4-f56f42b68116"
         }
     ],
     "priority": null,
@@ -263,15 +263,16 @@
         "system",
         "Subroutine",
         "FSRSolutionPack",
+        "fortiSOAREssentials-1.0.0",
         "incidentResponse-1.0.0",
         "DeDuplicate",
         "Relate"
     ],
-    "id": "221",
+    "id": "213",
     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1644508356.552464,
+    "createDate": 1644855363.56715,
     "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1644508356.552464,
+    "modifyDate": 1644855363.56715,
     "owners": [],
     "isPrivate": false,
     "deletedAt": null

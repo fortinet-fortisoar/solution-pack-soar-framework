@@ -1,0 +1,463 @@
+{
+    "@context": "\/api\/3\/contexts\/Role",
+    "@id": "\/api\/3\/roles\/7b56d139-7ee6-455e-8658-35727e202b8a",
+    "@type": "Role",
+    "description": "Responsible for Alert Triaging, false positive filtering and escalating potentially malicious alerts to Incidents for review by T2 Analysts.",
+    "name": "T1 Analyst",
+    "modulePermissions": [
+        {
+            "@id": "\/api\/3\/module_permissions\/7b8722f3-1570-3351-864a-ede9ee3a90e6",
+            "@type": "ModulePermission",
+            "canCreate": false,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": false,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "application",
+            "uuid": "7b8722f3-1570-3351-864a-ede9ee3a90e6"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/073fe360-8942-3e00-a575-6f9ca84369ab",
+            "@type": "ModulePermission",
+            "canCreate": true,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": true,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "files",
+            "uuid": "073fe360-8942-3e00-a575-6f9ca84369ab"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/a295a4b4-1d5b-389b-b63e-b93da19c42a2",
+            "@type": "ModulePermission",
+            "canCreate": false,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": false,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "reporting",
+            "uuid": "a295a4b4-1d5b-389b-b63e-b93da19c42a2"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/760c01ff-bc9a-318b-a4d8-779299248bf2",
+            "@type": "ModulePermission",
+            "canCreate": true,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": true,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "dashboard",
+            "uuid": "760c01ff-bc9a-318b-a4d8-779299248bf2"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/b48b3c88-9260-3af9-8dce-eba7f18a6e53",
+            "@type": "ModulePermission",
+            "canCreate": true,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": true,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "alerts",
+            "uuid": "b48b3c88-9260-3af9-8dce-eba7f18a6e53"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/0df9fc3e-0658-3b5c-9310-b215ad3b644e",
+            "@type": "ModulePermission",
+            "canCreate": true,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": true,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "attachments",
+            "uuid": "0df9fc3e-0658-3b5c-9310-b215ad3b644e"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/fdc7ec2a-3b06-30d2-b7b0-6d0e3cfff172",
+            "@type": "ModulePermission",
+            "canCreate": true,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": true,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "comments",
+            "uuid": "fdc7ec2a-3b06-30d2-b7b0-6d0e3cfff172"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/3379a873-8298-3929-b0ef-dd4085e6e060",
+            "@type": "ModulePermission",
+            "canCreate": true,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": true,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "indicators",
+            "uuid": "3379a873-8298-3929-b0ef-dd4085e6e060"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/fab3d79b-33c3-48e6-ae51-e0199b112b58",
+            "@type": "ModulePermission",
+            "canCreate": false,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": false,
+            "canDelete": false,
+            "fieldPermissions": [
+                {
+                    "@id": "\/api\/3\/field_permissions\/0b13e52d-b058-32fb-8507-10dec634a07c",
+                    "@type": "FieldPermission",
+                    "field": "department",
+                    "canRead": false,
+                    "canWrite": false,
+                    "uuid": "0b13e52d-b058-32fb-8507-10dec634a07c"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/f425bf79-5a19-31d4-ab56-ed4ca30a7b1a",
+                    "@type": "FieldPermission",
+                    "field": "email",
+                    "canRead": false,
+                    "canWrite": false,
+                    "uuid": "f425bf79-5a19-31d4-ab56-ed4ca30a7b1a"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/f1eb9ed5-ccb1-33f4-bb05-19b8b0bea672",
+                    "@type": "FieldPermission",
+                    "field": "phoneFax",
+                    "canRead": false,
+                    "canWrite": false,
+                    "uuid": "f1eb9ed5-ccb1-33f4-bb05-19b8b0bea672"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/4d9ff0fb-8846-35e6-a8b4-9c6dd0933724",
+                    "@type": "FieldPermission",
+                    "field": "phoneHome",
+                    "canRead": false,
+                    "canWrite": false,
+                    "uuid": "4d9ff0fb-8846-35e6-a8b4-9c6dd0933724"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/cfff2b52-a60d-36da-af22-3a7e1860e64a",
+                    "@type": "FieldPermission",
+                    "field": "phoneMobile",
+                    "canRead": false,
+                    "canWrite": false,
+                    "uuid": "cfff2b52-a60d-36da-af22-3a7e1860e64a"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/60af55ca-e9cd-3d8a-bc8a-c9f7ec99baa1",
+                    "@type": "FieldPermission",
+                    "field": "phoneWork",
+                    "canRead": false,
+                    "canWrite": false,
+                    "uuid": "60af55ca-e9cd-3d8a-bc8a-c9f7ec99baa1"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/fab490bc-09a4-3a5c-ab3b-6eb5dc27b934",
+                    "@type": "FieldPermission",
+                    "field": "userId",
+                    "canRead": false,
+                    "canWrite": false,
+                    "uuid": "fab490bc-09a4-3a5c-ab3b-6eb5dc27b934"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/45dfd28c-9234-3624-aab4-6b8d5c0efc05",
+                    "@type": "FieldPermission",
+                    "field": "companyId",
+                    "canRead": false,
+                    "canWrite": false,
+                    "uuid": "45dfd28c-9234-3624-aab4-6b8d5c0efc05"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/fec8c7b1-054a-3e3b-a49f-22dd40163343",
+                    "@type": "FieldPermission",
+                    "field": "accessType",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "fec8c7b1-054a-3e3b-a49f-22dd40163343"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/4efec484-8a1f-3c27-a48f-a8c8412e18db",
+                    "@type": "FieldPermission",
+                    "field": "alerts",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "4efec484-8a1f-3c27-a48f-a8c8412e18db"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/822b8d5a-9559-3a48-8605-ff0d0814c2ea",
+                    "@type": "FieldPermission",
+                    "field": "attachments",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "822b8d5a-9559-3a48-8605-ff0d0814c2ea"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/21bdc683-6145-3862-9320-0a7c85c26a0e",
+                    "@type": "FieldPermission",
+                    "field": "comments",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "21bdc683-6145-3862-9320-0a7c85c26a0e"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/0c0f80c1-39b9-3c29-9c9d-3e7dd80f93f9",
+                    "@type": "FieldPermission",
+                    "field": "companies",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "0c0f80c1-39b9-3c29-9c9d-3e7dd80f93f9"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/77c5eb68-1ea8-3561-8cc8-aa7296a10f27",
+                    "@type": "FieldPermission",
+                    "field": "createDate",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "77c5eb68-1ea8-3561-8cc8-aa7296a10f27"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/cbdf94a8-f4e3-360b-ba7f-10ea7e59b85d",
+                    "@type": "FieldPermission",
+                    "field": "createUser",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "cbdf94a8-f4e3-360b-ba7f-10ea7e59b85d"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/1d5b2ac6-10b1-3e54-bab0-72a700f5ebc3",
+                    "@type": "FieldPermission",
+                    "field": "csActive",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "1d5b2ac6-10b1-3e54-bab0-72a700f5ebc3"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/77e8bd58-411d-3600-962c-46ec567d1670",
+                    "@type": "FieldPermission",
+                    "field": "description",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "77e8bd58-411d-3600-962c-46ec567d1670"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/1a703029-17c9-34c3-9be5-256f7b4b9f1f",
+                    "@type": "FieldPermission",
+                    "field": "firstname",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "1a703029-17c9-34c3-9be5-256f7b4b9f1f"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/e588ec20-9b0e-3ec6-8164-bdfafdf4b440",
+                    "@type": "FieldPermission",
+                    "field": "incidents",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "e588ec20-9b0e-3ec6-8164-bdfafdf4b440"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/8f4b1a8b-b984-32df-86b4-1d5fff5ba9d9",
+                    "@type": "FieldPermission",
+                    "field": "indicators",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "8f4b1a8b-b984-32df-86b4-1d5fff5ba9d9"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/331608b7-f55d-3b9c-9fbb-8dcf6c1b36f7",
+                    "@type": "FieldPermission",
+                    "field": "lastname",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "331608b7-f55d-3b9c-9fbb-8dcf6c1b36f7"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/a145ab9a-a29e-3435-aed8-96f2cb8d81a8",
+                    "@type": "FieldPermission",
+                    "field": "modifyDate",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "a145ab9a-a29e-3435-aed8-96f2cb8d81a8"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/1ef2b096-6263-3cd5-87c8-510a91cd114b",
+                    "@type": "FieldPermission",
+                    "field": "modifyUser",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "1ef2b096-6263-3cd5-87c8-510a91cd114b"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/971443a4-da24-3f1d-9eb7-de50b85d07f8",
+                    "@type": "FieldPermission",
+                    "field": "notes",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "971443a4-da24-3f1d-9eb7-de50b85d07f8"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/640836c6-42e1-377a-a611-5bd819f5f7f9",
+                    "@type": "FieldPermission",
+                    "field": "fsrQueues",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "640836c6-42e1-377a-a611-5bd819f5f7f9"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/191aec17-2ac9-3dc7-a78b-65ef2a249dd4",
+                    "@type": "FieldPermission",
+                    "field": "title",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "191aec17-2ac9-3dc7-a78b-65ef2a249dd4"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/0cf3b440-5531-3122-b091-4de13f15652d",
+                    "@type": "FieldPermission",
+                    "field": "tasks",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "0cf3b440-5531-3122-b091-4de13f15652d"
+                },
+                {
+                    "@id": "\/api\/3\/field_permissions\/c07d10d7-333f-327a-ab32-201209127b7a",
+                    "@type": "FieldPermission",
+                    "field": "type",
+                    "canRead": true,
+                    "canWrite": true,
+                    "uuid": "c07d10d7-333f-327a-ab32-201209127b7a"
+                }
+            ],
+            "module": "people",
+            "uuid": "fab3d79b-33c3-48e6-ae51-e0199b112b58"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/665bc656-2111-3906-ac46-426ac88f5b7b",
+            "@type": "ModulePermission",
+            "canCreate": false,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": false,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "fsr_queues",
+            "uuid": "665bc656-2111-3906-ac46-426ac88f5b7b"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/28267dc4-546b-3a37-8acb-d78f7d7fd77e",
+            "@type": "ModulePermission",
+            "canCreate": false,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": false,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "shifts",
+            "uuid": "28267dc4-546b-3a37-8acb-d78f7d7fd77e"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/399d850c-78d4-35c8-897c-6ebb915238c9",
+            "@type": "ModulePermission",
+            "canCreate": true,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": true,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "tasks",
+            "uuid": "399d850c-78d4-35c8-897c-6ebb915238c9"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/65025005-5c32-30da-8637-89a23d55ee5b",
+            "@type": "ModulePermission",
+            "canCreate": true,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": true,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "schedules",
+            "uuid": "65025005-5c32-30da-8637-89a23d55ee5b"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/75d1a913-85e4-3f8a-a651-7635ebbed3af",
+            "@type": "ModulePermission",
+            "canCreate": false,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": false,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "saved_reports",
+            "uuid": "75d1a913-85e4-3f8a-a651-7635ebbed3af"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/8c671d6e-221a-319e-9df2-f649b099c622",
+            "@type": "ModulePermission",
+            "canCreate": false,
+            "canExecute": true,
+            "canRead": false,
+            "canUpdate": false,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "workflows",
+            "uuid": "8c671d6e-221a-319e-9df2-f649b099c622"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/e23b0ccd-aeac-36bd-9c84-cff402411a6a",
+            "@type": "ModulePermission",
+            "canCreate": false,
+            "canExecute": true,
+            "canRead": false,
+            "canUpdate": false,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "connectors",
+            "uuid": "e23b0ccd-aeac-36bd-9c84-cff402411a6a"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/97ea33d1-bb4f-3b26-8def-0ef35022fb4a",
+            "@type": "ModulePermission",
+            "canCreate": false,
+            "canExecute": true,
+            "canRead": false,
+            "canUpdate": false,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "widgets",
+            "uuid": "97ea33d1-bb4f-3b26-8def-0ef35022fb4a"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/7ca5833f-f94e-3e04-ab25-fbb91ea2019a",
+            "@type": "ModulePermission",
+            "canCreate": true,
+            "canExecute": false,
+            "canRead": true,
+            "canUpdate": true,
+            "canDelete": false,
+            "fieldPermissions": [],
+            "module": "announcements",
+            "uuid": "7ca5833f-f94e-3e04-ab25-fbb91ea2019a"
+        },
+        {
+            "@id": "\/api\/3\/module_permissions\/17420a4a-66e3-3c59-9986-17a9491ae400",
+            "@type": "ModulePermission",
+            "canCreate": true,
+            "canExecute": true,
+            "canRead": true,
+            "canUpdate": true,
+            "canDelete": true,
+            "fieldPermissions": [],
+            "module": "warrooms",
+            "uuid": "17420a4a-66e3-3c59-9986-17a9491ae400"
+        }
+    ],
+    "uuid": "7b56d139-7ee6-455e-8658-35727e202b8a"
+}

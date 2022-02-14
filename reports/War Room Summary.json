@@ -1,0 +1,196 @@
+{
+    "@context": "\/api\/3\/contexts\/Reporting",
+    "@type": "Reporting",
+    "uuid": "9474953f-3196-4446-a356-1f68ae89dcf9",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1644847263.426728,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1644847263.426728,
+    "recordTags": [],
+    "displayName": "War Room Summary",
+    "type": "rows",
+    "templateType": "reporting",
+    "roles": [
+        "\/api\/3\/roles\/17562d60-b841-4ed7-912b-1ebaf063c8c9",
+        "\/api\/3\/roles\/21d7a7c6-9d68-438f-b732-e8950c5f745b",
+        "\/api\/3\/roles\/7b56d139-7ee6-455e-8658-35727e202b8a",
+        "\/api\/3\/roles\/a501c11e-15af-49a6-a3a4-88605f32f016",
+        "\/api\/3\/roles\/aada6692-fbf4-4a02-a580-f8a200962365",
+        "\/api\/3\/roles\/c5ff8174-b3fa-41c5-b781-2b890b426a80"
+    ],
+    "parentTemplateId": null,
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "7dde165c-b423-4d31-a018-cf0399813c00",
+                                    "sectionText": "<p style=\"text-align: center;\">&nbsp;<\/p>\n<p style=\"text-align: center; background: #4e94d0; padding-top: 5px;\"><span style=\"font-size: 25pt;\"><strong><span style=\"color: #efefee;\">War Room Summary Report<\/span>&nbsp;<\/strong><\/span><\/p>\n<p style=\"background: #2a5173; padding: 5px; text-align: center;\"><span style=\"font-size: 12pt; color: #efefee;\">War Room ID # <strong>{{warRoomID}}<\/strong> | Generated On {{todayDate}}<\/span><\/p>",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "editorType": "html"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "519727ca-5677-4a5d-954b-8c2c0de8aee5",
+                "container": false,
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "28a2b32a-fa90-4524-844d-1f75d6adaa83",
+                                    "sectionText": "<h4 style=\"background: #404142; padding: 5px; text-align: left;\"><span style=\"font-size: 12pt; color: #ffffff;\"><strong>WAR ROOM HIGHLIGHTS<\/strong><\/span><\/h4>",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "editorType": "html"
+                                }
+                            },
+                            {
+                                "type": "readonlyFormGroup",
+                                "config": {
+                                    "wid": "be59f9c2-0bbd-4d03-888a-1d3f1a2afa35",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "title",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        },
+                                                        {
+                                                            "name": "summary",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "resource": "warrooms",
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 30,
+                                        "logic": "AND",
+                                        "filters": []
+                                    },
+                                    "style": "display-inline-block",
+                                    "displayType": "card-view",
+                                    "gridColumns": [],
+                                    "widgetAlwaysDisplay": true,
+                                    "recordTitle": {
+                                        "type": "sectionHeader",
+                                        "wid": "d020de22-1caf-48bc-9ace-b3f384583a0d",
+                                        "clone": false,
+                                        "remove": false
+                                    },
+                                    "relatedTemplate": {
+                                        "type": "rows",
+                                        "rows": [
+                                            {
+                                                "columns": [
+                                                    {
+                                                        "widgets": [
+                                                            {
+                                                                "type": "simpleGrid",
+                                                                "config": {
+                                                                    "wid": "cdec5909-b9ca-4291-86a1-893b955fd660",
+                                                                    "widgetAlwaysDisplay": true,
+                                                                    "query": {
+                                                                        "sort": [
+                                                                            {
+                                                                                "direction": "ASC",
+                                                                                "field": "modifyDate",
+                                                                                "_fieldTitle": "Modified On",
+                                                                                "_fieldName": "modifyDate"
+                                                                            }
+                                                                        ],
+                                                                        "limit": 10,
+                                                                        "logic": "AND",
+                                                                        "filters": [
+                                                                            {
+                                                                                "field": "warrooms.id",
+                                                                                "operator": "eq",
+                                                                                "_operator": "eq",
+                                                                                "value": "{{warRoomID}}",
+                                                                                "type": "primitive"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "mapping": {
+                                                                        "assignedToPerson": "",
+                                                                        "columns": {
+                                                                            "createUser": {
+                                                                                "width": "10"
+                                                                            },
+                                                                            "content": {
+                                                                                "width": "90"
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "columns": [
+                                                                        "createUser",
+                                                                        "content"
+                                                                    ],
+                                                                    "module": "comments",
+                                                                    "title": "Comments",
+                                                                    "enableColumnWidthConfig": true
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "wid": "1088a33c-9033-4f23-b875-cc8354706a8a"
+                                            }
+                                        ],
+                                        "wid": "1897ff21-aeb7-44d3-a4dc-14e08970a077"
+                                    }
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "f207f02d-85f5-4187-9d7e-1e0ea8741217",
+                "container": true,
+                "_collapsed": false
+            }
+        ],
+        "wid": "daaaadd9-c536-462a-8e54-47f8d9897aff"
+    },
+    "filterArray": [
+        {
+            "key": "warRoomID",
+            "open": true,
+            "type": "number",
+            "label": "War Room ID",
+            "value": null,
+            "expression": "{{warRoomID}}",
+            "defaultValue": null
+        }
+    ],
+    "updateDate": 1556262219
+}
