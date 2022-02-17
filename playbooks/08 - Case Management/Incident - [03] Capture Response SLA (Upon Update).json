@@ -11,10 +11,10 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1644855355,
+    "lastModifyDate": 1645124453,
     "collection": "\/api\/3\/workflow_collections\/3c3b049e-5ecb-464a-83f6-5af6a230c0ed",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/e7abb275-f46f-4890-8d97-762b027b2cf9",
+    "triggerStep": "\/api\/3\/workflow_steps\/8004e36d-6fba-4064-a034-f84290423859",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -58,7 +58,7 @@
             "top": "30",
             "left": "650",
             "stepType": "\/api\/3\/workflow_step_types\/9300bf69-5063-486d-b3a6-47eb9da24872",
-            "uuid": "e7abb275-f46f-4890-8d97-762b027b2cf9"
+            "uuid": "8004e36d-6fba-4064-a034-f84290423859"
         },
         {
             "@type": "WorkflowStep",
@@ -96,7 +96,7 @@
             "top": "705",
             "left": "825",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "29f6c327-c327-45c9-86dd-a0ab087f854a"
+            "uuid": "2969ce76-6e28-4d2f-bf0e-6d73fb717b15"
         },
         {
             "@type": "WorkflowStep",
@@ -135,7 +135,7 @@
             "top": "705",
             "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "dcb3b892-4222-4f91-baa6-cbac085458c0"
+            "uuid": "899f4093-6b2e-455d-97b9-94391bf79d7b"
         },
         {
             "@type": "WorkflowStep",
@@ -172,7 +172,7 @@
             "top": "705",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "367b8ce9-8d06-440b-8c28-1300d2ce22fb"
+            "uuid": "2338bc99-c78a-4948-a584-8a8bc9cded17"
         },
         {
             "@type": "WorkflowStep",
@@ -196,7 +196,7 @@
             "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "0ccde3bb-e756-49f9-8603-2606d6342b56"
+            "uuid": "4728282b-57e6-40eb-bca9-691ae092df5d"
         },
         {
             "@type": "WorkflowStep",
@@ -206,13 +206,13 @@
                 "conditions": [
                     {
                         "option": "Missed",
-                        "step_iri": "\/api\/3\/workflow_steps\/29f6c327-c327-45c9-86dd-a0ab087f854a",
+                        "step_iri": "\/api\/3\/workflow_steps\/2969ce76-6e28-4d2f-bf0e-6d73fb717b15",
                         "condition": "{{ vars.input.records[0].modifyDate > vars.input.records[0].resDueBy }}",
                         "step_name": "Set Response SLA as Missed"
                     },
                     {
                         "option": "Met",
-                        "step_iri": "\/api\/3\/workflow_steps\/dcb3b892-4222-4f91-baa6-cbac085458c0",
+                        "step_iri": "\/api\/3\/workflow_steps\/899f4093-6b2e-455d-97b9-94391bf79d7b",
                         "condition": "{{ vars.input.records[0].modifyDate < vars.input.records[0].resDueBy }}",
                         "step_name": "Set Response SLA as Met"
                     }
@@ -222,7 +222,7 @@
             "top": "570",
             "left": "650",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "e5a7e3e1-e36d-44a0-bb37-8f9e71db9599"
+            "uuid": "0d3268cb-6928-4ce1-875f-b0d853116c99"
         },
         {
             "@type": "WorkflowStep",
@@ -232,14 +232,14 @@
                 "conditions": [
                     {
                         "option": "Set Response Date",
-                        "step_iri": "\/api\/3\/workflow_steps\/e5a7e3e1-e36d-44a0-bb37-8f9e71db9599",
+                        "step_iri": "\/api\/3\/workflow_steps\/0d3268cb-6928-4ce1-875f-b0d853116c99",
                         "condition": "{{ vars.input.records[0].status.itemValue == vars.steps.Get_SLA_Details.sla_time_list.incResTrackedOn }}",
                         "step_name": "Check Acknowledge SLA Status"
                     },
                     {
                         "option": "Recalculate Response SLA",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/0ccde3bb-e756-49f9-8603-2606d6342b56",
+                        "step_iri": "\/api\/3\/workflow_steps\/4728282b-57e6-40eb-bca9-691ae092df5d",
                         "step_name": "Recalculate Ack SLA"
                     }
                 ]
@@ -248,7 +248,7 @@
             "top": "435",
             "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "9b35f583-fb3e-4d78-b968-7dc2ebc7b6f1"
+            "uuid": "d78c7786-4f29-405b-a414-bf3443dc4a34"
         },
         {
             "@type": "WorkflowStep",
@@ -275,7 +275,7 @@
             "top": "435",
             "left": "825",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "6637f6e5-ecfc-4b49-96fc-51bc7916b33f"
+            "uuid": "71b68f50-2cdb-46fe-9c15-252b1e94e1e5"
         },
         {
             "@type": "WorkflowStep",
@@ -285,14 +285,14 @@
                 "conditions": [
                     {
                         "option": "Pause SLA",
-                        "step_iri": "\/api\/3\/workflow_steps\/6637f6e5-ecfc-4b49-96fc-51bc7916b33f",
+                        "step_iri": "\/api\/3\/workflow_steps\/71b68f50-2cdb-46fe-9c15-252b1e94e1e5",
                         "condition": "{{ vars.input.records[0].status.itemValue == vars.sla_time_list.incPauseSLAOn }}",
                         "step_name": "Pause Response SLA"
                     },
                     {
                         "option": "Check Status for Ack SLA",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/9b35f583-fb3e-4d78-b968-7dc2ebc7b6f1",
+                        "step_iri": "\/api\/3\/workflow_steps\/d78c7786-4f29-405b-a414-bf3443dc4a34",
                         "step_name": "Status Check for Ack SLA"
                     }
                 ]
@@ -301,7 +301,7 @@
             "top": "300",
             "left": "650",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "e3d8fe76-b9a2-497f-a028-93717fe9b3d0"
+            "uuid": "1d4ff639-90cd-41f4-a350-0b5858ddc1ae"
         },
         {
             "@type": "WorkflowStep",
@@ -322,90 +322,90 @@
             "top": "165",
             "left": "650",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "uuid": "62ba6dc0-b679-402b-ae0f-db1653315a42"
+            "uuid": "9fd558f9-f139-4220-8084-77b9478c914e"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Get SLA Details",
-            "targetStep": "\/api\/3\/workflow_steps\/62ba6dc0-b679-402b-ae0f-db1653315a42",
-            "sourceStep": "\/api\/3\/workflow_steps\/e7abb275-f46f-4890-8d97-762b027b2cf9",
+            "targetStep": "\/api\/3\/workflow_steps\/9fd558f9-f139-4220-8084-77b9478c914e",
+            "sourceStep": "\/api\/3\/workflow_steps\/8004e36d-6fba-4064-a034-f84290423859",
             "label": null,
             "isExecuted": false,
-            "uuid": "d2c12396-7ea1-4c3d-8992-24b7bb221cb5"
+            "uuid": "6b71a102-a9ee-42c6-9133-cfc64fcae487"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Check Current Status To Pause SLA -> Status Check for Ack SLA",
-            "targetStep": "\/api\/3\/workflow_steps\/9b35f583-fb3e-4d78-b968-7dc2ebc7b6f1",
-            "sourceStep": "\/api\/3\/workflow_steps\/e3d8fe76-b9a2-497f-a028-93717fe9b3d0",
+            "targetStep": "\/api\/3\/workflow_steps\/d78c7786-4f29-405b-a414-bf3443dc4a34",
+            "sourceStep": "\/api\/3\/workflow_steps\/1d4ff639-90cd-41f4-a350-0b5858ddc1ae",
             "label": "Check Status for Ack SLA",
             "isExecuted": false,
-            "uuid": "64c7a7cb-5788-42f0-b428-c0a5abaf4962"
+            "uuid": "f513c78f-28b9-4f32-a8b0-980d2ea80e06"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Get SLA Details -> Check Current Status To Pause SLA",
-            "targetStep": "\/api\/3\/workflow_steps\/e3d8fe76-b9a2-497f-a028-93717fe9b3d0",
-            "sourceStep": "\/api\/3\/workflow_steps\/62ba6dc0-b679-402b-ae0f-db1653315a42",
+            "targetStep": "\/api\/3\/workflow_steps\/1d4ff639-90cd-41f4-a350-0b5858ddc1ae",
+            "sourceStep": "\/api\/3\/workflow_steps\/9fd558f9-f139-4220-8084-77b9478c914e",
             "label": null,
             "isExecuted": false,
-            "uuid": "f081fdcc-a147-4a54-b945-a4b405c64bf9"
+            "uuid": "6b5700bc-0062-46f1-b66d-9dcc1b0b90a6"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Check Acknowledge SLA Status -> Set Acknowledge SLA as Met",
-            "targetStep": "\/api\/3\/workflow_steps\/dcb3b892-4222-4f91-baa6-cbac085458c0",
-            "sourceStep": "\/api\/3\/workflow_steps\/e5a7e3e1-e36d-44a0-bb37-8f9e71db9599",
+            "targetStep": "\/api\/3\/workflow_steps\/899f4093-6b2e-455d-97b9-94391bf79d7b",
+            "sourceStep": "\/api\/3\/workflow_steps\/0d3268cb-6928-4ce1-875f-b0d853116c99",
             "label": "Met",
             "isExecuted": false,
-            "uuid": "dd016c72-9693-47b7-9fd1-5f8d222bbff0"
+            "uuid": "94d83849-0c93-46a7-8405-6d730c8f8d18"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Status Check for Ack SLA -> Check Acknowledge SLA Status",
-            "targetStep": "\/api\/3\/workflow_steps\/e5a7e3e1-e36d-44a0-bb37-8f9e71db9599",
-            "sourceStep": "\/api\/3\/workflow_steps\/9b35f583-fb3e-4d78-b968-7dc2ebc7b6f1",
+            "targetStep": "\/api\/3\/workflow_steps\/0d3268cb-6928-4ce1-875f-b0d853116c99",
+            "sourceStep": "\/api\/3\/workflow_steps\/d78c7786-4f29-405b-a414-bf3443dc4a34",
             "label": "Set Response Date",
             "isExecuted": false,
-            "uuid": "4097d12a-0472-47df-b494-273d070d3712"
+            "uuid": "332e2e48-fae0-44a6-89e6-32751143742c"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Status Check for Ack SLA -> Recalculate Ack SLA",
-            "targetStep": "\/api\/3\/workflow_steps\/0ccde3bb-e756-49f9-8603-2606d6342b56",
-            "sourceStep": "\/api\/3\/workflow_steps\/9b35f583-fb3e-4d78-b968-7dc2ebc7b6f1",
+            "targetStep": "\/api\/3\/workflow_steps\/4728282b-57e6-40eb-bca9-691ae092df5d",
+            "sourceStep": "\/api\/3\/workflow_steps\/d78c7786-4f29-405b-a414-bf3443dc4a34",
             "label": "Recalculate Response SLA",
             "isExecuted": false,
-            "uuid": "35597026-8be6-4177-b947-66d43811212e"
+            "uuid": "812fe251-6f32-492e-a3ea-d126d7941323"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Recalculate Ack SLA -> Resume Ack SLA",
-            "targetStep": "\/api\/3\/workflow_steps\/367b8ce9-8d06-440b-8c28-1300d2ce22fb",
-            "sourceStep": "\/api\/3\/workflow_steps\/0ccde3bb-e756-49f9-8603-2606d6342b56",
+            "targetStep": "\/api\/3\/workflow_steps\/2338bc99-c78a-4948-a584-8a8bc9cded17",
+            "sourceStep": "\/api\/3\/workflow_steps\/4728282b-57e6-40eb-bca9-691ae092df5d",
             "label": null,
             "isExecuted": false,
-            "uuid": "1dab1e95-8616-4626-b653-beca2fd34363"
+            "uuid": "ac4ba62b-8f46-4be2-a81a-4989b8458709"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Check Current Status To Pause SLA -> Pause SLA",
-            "targetStep": "\/api\/3\/workflow_steps\/6637f6e5-ecfc-4b49-96fc-51bc7916b33f",
-            "sourceStep": "\/api\/3\/workflow_steps\/e3d8fe76-b9a2-497f-a028-93717fe9b3d0",
+            "targetStep": "\/api\/3\/workflow_steps\/71b68f50-2cdb-46fe-9c15-252b1e94e1e5",
+            "sourceStep": "\/api\/3\/workflow_steps\/1d4ff639-90cd-41f4-a350-0b5858ddc1ae",
             "label": "Pause SLA",
             "isExecuted": false,
-            "uuid": "66f07a7e-b365-4ba6-9334-d5acc70aa5ef"
+            "uuid": "2c1c174d-c2dd-486f-b707-3be0904d4790"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Check Acknowledge SLA Status -> Set Acknowledge SLA as Missed",
-            "targetStep": "\/api\/3\/workflow_steps\/29f6c327-c327-45c9-86dd-a0ab087f854a",
-            "sourceStep": "\/api\/3\/workflow_steps\/e5a7e3e1-e36d-44a0-bb37-8f9e71db9599",
+            "targetStep": "\/api\/3\/workflow_steps\/2969ce76-6e28-4d2f-bf0e-6d73fb717b15",
+            "sourceStep": "\/api\/3\/workflow_steps\/0d3268cb-6928-4ce1-875f-b0d853116c99",
             "label": "Missed",
             "isExecuted": false,
-            "uuid": "7d20f0a3-d97b-40d6-bb68-6286b4f6ac78"
+            "uuid": "a3da916f-3784-4317-a6f9-6fcaaecdd8b8"
         }
     ],
     "priority": null,
@@ -415,14 +415,13 @@
         "PostUpdate",
         "SLA",
         "FSRSolutionPack",
-        "fortiSOAREssentials-1.0.0",
-        "incidentResponse-1.0.0"
+        "sOARFramework-1.0.0"
     ],
     "id": "190",
     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1644855361.781659,
+    "createDate": 1645124459.034744,
     "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1644855361.781659,
+    "modifyDate": 1645124459.034744,
     "owners": [],
     "isPrivate": false,
     "deletedAt": null

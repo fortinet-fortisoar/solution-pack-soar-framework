@@ -1,0 +1,193 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Notify New Announcement",
+    "aliasName": null,
+    "tag": null,
+    "description": null,
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "lastModifyDate": 1645124453,
+    "collection": "\/api\/3\/workflow_collections\/c9282ce9-1cef-4e0b-94da-3b84c32381ff",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/bba54cd8-59f5-4f10-ab08-aeb518cbdead",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "announcements",
+                "resources": [
+                    "announcements"
+                ],
+                "step_variables": {
+                    "input": {
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    }
+                },
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "notifyOnEmail",
+                            "value": true,
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ]
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "uuid": "bba54cd8-59f5-4f10-ab08-aeb518cbdead"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Load war room",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "announcements.uuid",
+                            "value": "{{vars.input.records[0]['@id'].split('\/')[-1]}}",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ]
+                },
+                "module": "warrooms?$limit=30",
+                "step_variables": {
+                    "warRoom": "{{vars.result[0]}}"
+                }
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "uuid": "ed86cc66-d0b5-4f06-a711-59295e095ddd"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Send announcement notification",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "warRoom": "{{vars.warRoom}}",
+                    "emailBody": "{{vars.emailBody}}",
+                    "emailSubject": "[War Room {{vars.warRoom.id }}] New announcement:{{vars.input.records[0].title}}",
+                    "emailAttachmentIris": ""
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/944c4716-d44a-4ab4-b9eb-b05f9509a721"
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "7ada8d48-d194-49d9-b1d1-90b12bddb405"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set email body",
+            "description": null,
+            "arguments": {
+                "emailBody": "<p>An announcement was sent from War Room #{{ vars.warRoom.id }}:<\/p>\n<p>&nbsp;<\/p>\n<table style=\"min-width: 300px; max-width: 800px; border: 1px solid #dddddd;\">\n<tbody>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Announcement Title<\/strong><\/td>\n<td>{{vars.input.records[0].title}}<\/td>\n<\/tr>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Type<\/strong><\/td>\n<td>{{vars.input.records[0].announcementType.itemValue}}<\/td>\n<\/tr>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Announcement Description<\/strong><\/td>\n<td>{{vars.input.records[0].description}}<\/td>\n<\/tr>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Sent By<\/strong><\/td>\n<td>{{vars.input.records[0].createUser.firstname}} {{vars.input.records[0].createUser.lastname}}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>\n<p>&nbsp;<\/p>\n<table style=\"min-width: 300px; max-width: 800px; border: 1px solid #dddddd;\">\n<tbody>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>War Room TItle<\/strong><\/td>\n<td>{{ vars.warRoom.title }}<\/td>\n<\/tr>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Summary<\/strong><\/td>\n<td>{{ vars.warRoom.summary }}<\/td>\n<\/tr>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Status<\/strong><\/td>\n<td>{{ vars.warRoom.status.itemValue }}<\/td>\n<\/tr>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Launched By<\/strong><\/td>\n<td>{{ vars.warRoom.launchedBy.firstname}} {{ vars.warRoom.launchedBy.lastname}}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>\n<p>&nbsp;<\/p>\n<p><a href=\"{{ vars.warRoomLink }}\">Join War Room<\/a><\/p>\n<p>Thanks,<br \/>FortiSOAR&trade;<\/p>"
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "7fa5ac9e-3dd8-4327-b91c-1de63e05b350"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Wait 1 second",
+            "description": null,
+            "arguments": {
+                "delay": {
+                    "days": 0,
+                    "hours": 0,
+                    "weeks": 0,
+                    "minutes": 0,
+                    "seconds": 1
+                }
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dbf",
+            "uuid": "f1c831a8-1fb3-499d-b3e3-0329dae77ebd"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Load war room -> Set email body",
+            "targetStep": "\/api\/3\/workflow_steps\/7fa5ac9e-3dd8-4327-b91c-1de63e05b350",
+            "sourceStep": "\/api\/3\/workflow_steps\/ed86cc66-d0b5-4f06-a711-59295e095ddd",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "98a838c1-10a7-4ac0-a2d3-fd2d9d83a62f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Set email body -> Send announcement notification",
+            "targetStep": "\/api\/3\/workflow_steps\/7ada8d48-d194-49d9-b1d1-90b12bddb405",
+            "sourceStep": "\/api\/3\/workflow_steps\/7fa5ac9e-3dd8-4327-b91c-1de63e05b350",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "eeb0e8fc-3e07-4372-b847-b3cc024ea80a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Wait 1 second",
+            "targetStep": "\/api\/3\/workflow_steps\/f1c831a8-1fb3-499d-b3e3-0329dae77ebd",
+            "sourceStep": "\/api\/3\/workflow_steps\/bba54cd8-59f5-4f10-ab08-aeb518cbdead",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "507e9726-d6e7-4383-b452-525d1e8f2774"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Wait 1 second -> Load war room",
+            "targetStep": "\/api\/3\/workflow_steps\/ed86cc66-d0b5-4f06-a711-59295e095ddd",
+            "sourceStep": "\/api\/3\/workflow_steps\/f1c831a8-1fb3-499d-b3e3-0329dae77ebd",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "a6fb325e-2194-42b1-b0d7-568e239050ab"
+        }
+    ],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "6c9bf503-da57-4fda-a826-f8ad2250cd66",
+    "recordTags": [
+        "system",
+        "FSRSolutionPack",
+        "sOARFramework-1.0.0"
+    ],
+    "id": "216",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1645124460.921893,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1645124460.921893,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

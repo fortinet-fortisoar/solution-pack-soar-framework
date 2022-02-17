@@ -1,0 +1,721 @@
+{
+    "@context": "\/api\/3\/contexts\/Dashboard",
+    "@type": "Dashboard",
+    "uuid": "93bc8209-cf8d-463c-bcd8-db3ac03822cb-212c",
+    "createUser": null,
+    "createDate": 1645123060.272763,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1645124465.211974,
+    "recordTags": [],
+    "displayName": "ROI Summary",
+    "type": "rows",
+    "templateType": "dashboard",
+    "roles": [
+        "\/api\/3\/roles\/17562d60-b841-4ed7-912b-1ebaf063c8c9",
+        "\/api\/3\/roles\/21d7a7c6-9d68-438f-b732-e8950c5f745b",
+        "\/api\/3\/roles\/a501c11e-15af-49a6-a3a4-88605f32f016",
+        "\/api\/3\/roles\/c5ff8174-b3fa-41c5-b781-2b890b426a80"
+    ],
+    "parentTemplateId": null,
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "rows",
+                                "config": {
+                                    "wid": "360e445d-8442-4d17-bf1e-dc9714c5f3f1",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "sectionHeader",
+                                                            "config": {
+                                                                "wid": "7527651b-682c-4f29-ad75-53600bd04b36",
+                                                                "sectionText": "<p><span style=\"font-size: 14pt; color: #00ccff;\">KEY PERFORMANCE METRICS<\/span><\/p>"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ],
+                                            "wid": "d0f2d471-c0eb-4abc-81c2-8166e39734b9"
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "showSavings": "dollar",
+                                                                "wid": "d4378bab-6b22-4906-82bf-81d63d4b1037",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": true,
+                                                                "metricsType": "totalCount",
+                                                                "title": "Total Alerts Resolved",
+                                                                "resource": "alerts",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "OR",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "eq",
+                                                                            "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                                                                            "_value": {
+                                                                                "itemValue": "Closed"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "ratioResource": "alerts",
+                                                                "ratioquery": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "timeRange": "resolveddate",
+                                                                "ratiotimeRange": "resolveddate"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "showSavings": "dollar",
+                                                                "wid": "915c4bd1-24ce-424f-8f64-9edb5cdd8356",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": true,
+                                                                "metricsType": "paCount",
+                                                                "title": "Automated Actions Run",
+                                                                "resource": "incidents",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "ratioResource": "alerts",
+                                                                "ratioquery": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "escalatedtoincident",
+                                                                            "operator": "eq",
+                                                                            "value": "\/api\/3\/picklists\/fa12313b-66af-4a2e-864e-a5f19241b734",
+                                                                            "_value": {
+                                                                                "itemValue": "Yes"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "timeRange": "createDate",
+                                                                "ratiotimeRange": "createDate",
+                                                                "opration": "mean",
+                                                                "toDateField": "resolveddate",
+                                                                "fromDateField": "createDate"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "showSavings": "time",
+                                                                "wid": "d48ba5de-3acb-4658-a9c7-4e12a972f51e",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": true,
+                                                                "metricsType": "roi",
+                                                                "title": "Overall Time Saved",
+                                                                "resource": "alerts",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "ratioResource": "alerts",
+                                                                "ratioquery": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "escalatedtoincident",
+                                                                            "operator": "eq",
+                                                                            "value": "\/api\/3\/picklists\/fa12313b-66af-4a2e-864e-a5f19241b734",
+                                                                            "_value": {
+                                                                                "itemValue": "Yes"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "timeRange": "createDate",
+                                                                "ratiotimeRange": "createDate",
+                                                                "perHour": 60,
+                                                                "perMin": 5
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "showSavings": "dollar",
+                                                                "wid": "48ece81b-d24b-48d8-8dd9-314240a6734e",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": true,
+                                                                "metricsType": "roi",
+                                                                "title": "ROI",
+                                                                "resource": "alerts",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "ratioResource": "alerts",
+                                                                "ratioquery": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "escalatedtoincident",
+                                                                            "operator": "eq",
+                                                                            "value": "\/api\/3\/picklists\/fa12313b-66af-4a2e-864e-a5f19241b734",
+                                                                            "_value": {
+                                                                                "itemValue": "Yes"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "timeRange": "createDate",
+                                                                "ratiotimeRange": "createDate",
+                                                                "perHour": 60,
+                                                                "perMin": 5
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
+                                                }
+                                            ],
+                                            "wid": "c21b309b-d859-4cbd-96ae-e7f6cebaedda"
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "10d7cf0e-d920-486c-b4b5-05b65f9c3938"
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "4a38e7a8-110e-4de3-ba33-47fd289d3d85",
+                                    "sectionText": "<p><span style=\"font-size: 14pt; color: #00ccff;\">ALERT TRENDS<\/span><\/p>"
+                                }
+                            },
+                            {
+                                "type": "rows",
+                                "config": {
+                                    "wid": "8a690a18-b7e5-40a7-b88a-366e2f8e61fe",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "wid": "f4957f9f-06e6-4055-a16f-be48abdbcaa9",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": true,
+                                                                "metricsType": "totalCount",
+                                                                "title": "Total Alerts Created",
+                                                                "resource": "alerts",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "ratioResource": "alerts",
+                                                                "ratioquery": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "timeRange": "createDate",
+                                                                "ratiotimeRange": "createDate"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "wid": "70ae9203-546d-4832-9ec2-c4c09369e644",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": true,
+                                                                "metricsType": "ratio",
+                                                                "title": "Alerts Escalation Ratio",
+                                                                "resource": "alerts",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "escalatedtoincident",
+                                                                            "operator": "eq",
+                                                                            "value": "\/api\/3\/picklists\/fa12313b-66af-4a2e-864e-a5f19241b734",
+                                                                            "_value": {
+                                                                                "display": "Yes",
+                                                                                "itemValue": "Yes"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "ratioResource": "alerts",
+                                                                "ratioquery": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "timeRange": "createDate",
+                                                                "ratiotimeRange": "createDate"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "wid": "752d517a-2b2f-4b6a-ad8c-3b0acd933fc6",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": true,
+                                                                "metricsType": "timeToX",
+                                                                "title": "Mean Time To Resolve",
+                                                                "resource": "alerts",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "ratioResource": "alerts",
+                                                                "ratioquery": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "timeRange": "resolveddate",
+                                                                "ratiotimeRange": "resolveddate",
+                                                                "opration": "mean",
+                                                                "fromDateField": "createDate",
+                                                                "toDateField": "resolveddate",
+                                                                "grouping": {
+                                                                    "primary": [],
+                                                                    "secondary": []
+                                                                },
+                                                                "showSavings": "dollar",
+                                                                "cardLayout": true
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                }
+                                            ],
+                                            "wid": "985d99a6-c183-48cc-b6ac-f2a0bcc96835"
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "chart",
+                                                            "config": {
+                                                                "query": {
+                                                                    "sort": [
+                                                                        {
+                                                                            "field": "type.orderIndex",
+                                                                            "direction": "ASC"
+                                                                        },
+                                                                        {
+                                                                            "field": "escalatedtoincident.orderIndex",
+                                                                            "direction": "ASC"
+                                                                        }
+                                                                    ],
+                                                                    "limit": 2147483647,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                                                                            "_value": {
+                                                                                "display": "Open",
+                                                                                "itemValue": "Open"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ],
+                                                                    "aggregates": [
+                                                                        {
+                                                                            "operator": "countdistinct",
+                                                                            "field": "*",
+                                                                            "alias": "total"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "type",
+                                                                            "field": "type.itemValue"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "firstOrderIndex",
+                                                                            "field": "type.orderIndex"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "escalatedtoincident",
+                                                                            "field": "escalatedtoincident.itemValue"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "color",
+                                                                            "field": "escalatedtoincident.color"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "secondOrderIndex",
+                                                                            "field": "escalatedtoincident.orderIndex"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "mapping": {
+                                                                    "assignedToPerson": "",
+                                                                    "firstGrouping": "type",
+                                                                    "secondGrouping": "escalatedtoincident"
+                                                                },
+                                                                "aggregate": true,
+                                                                "wid": "b30bea73-7442-4a69-825a-7ef1e1256fb4",
+                                                                "title": "Investigated Alerts By Type",
+                                                                "resource": "alerts",
+                                                                "chart": "bar",
+                                                                "barStyle": "vertical"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ],
+                                            "wid": "4056ae0f-b031-4a1d-a0ae-9d5aabfd4d29"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "type": "rows",
+                                "config": {
+                                    "wid": "f5359a79-cf01-4186-83ca-684e4ae6f060",
+                                    "rows": []
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "68cea29d-b08b-4ee2-9e66-8bb50a174439"
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "4ac213ac-118e-4903-b38e-091ec5cef278",
+                                    "sectionText": "<p><span style=\"font-size: 14pt; color: #00ccff;\">INCIDENT TRENDS<\/span><\/p>"
+                                }
+                            },
+                            {
+                                "type": "rows",
+                                "config": {
+                                    "wid": "79427395-bcb4-4259-aad2-9d18ac923596",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "wid": "06f746d3-4ea9-4c62-bad0-8771c84d3820",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": true,
+                                                                "metricsType": "totalCount",
+                                                                "title": "Total Incidents Created",
+                                                                "resource": "incidents",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "ratioResource": "alerts",
+                                                                "ratioquery": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "timeRange": "createDate",
+                                                                "ratiotimeRange": "createDate"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "wid": "8caba4f4-9157-4c13-980a-bbd76f17aaa3",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": true,
+                                                                "metricsType": "timeToX",
+                                                                "title": "Mean Time To Resolve",
+                                                                "resource": "incidents",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "ratioResource": "alerts",
+                                                                "ratioquery": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "timeRange": "resolveddate",
+                                                                "ratiotimeRange": "resolveddate",
+                                                                "opration": "mean",
+                                                                "toDateField": "resolveddate",
+                                                                "fromDateField": "createDate",
+                                                                "grouping": {
+                                                                    "primary": [],
+                                                                    "secondary": []
+                                                                },
+                                                                "showSavings": "dollar",
+                                                                "cardLayout": true
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "wid": "33b199ae-8444-409b-8637-96cc48e6cb61",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": true,
+                                                                "metricsType": "timeToX",
+                                                                "title": "Max Time To Resolve",
+                                                                "resource": "incidents",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "ratioResource": "alerts",
+                                                                "ratioquery": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": []
+                                                                },
+                                                                "timeRange": "resolveddate",
+                                                                "ratiotimeRange": "resolveddate",
+                                                                "opration": "max",
+                                                                "toDateField": "resolveddate",
+                                                                "fromDateField": "createDate",
+                                                                "grouping": {
+                                                                    "primary": [],
+                                                                    "secondary": []
+                                                                },
+                                                                "showSavings": "dollar",
+                                                                "cardLayout": true
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                }
+                                            ],
+                                            "wid": "ac565857-c662-4a5b-8fc2-757a9a64dfd0"
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "chart",
+                                                            "config": {
+                                                                "query": {
+                                                                    "sort": [
+                                                                        {
+                                                                            "field": "category.orderIndex",
+                                                                            "direction": "ASC"
+                                                                        },
+                                                                        {
+                                                                            "field": "phase.orderIndex",
+                                                                            "direction": "ASC"
+                                                                        }
+                                                                    ],
+                                                                    "limit": 2147483647,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/bb73fe9e-f699-11e7-8c3f-9a214cf093ae",
+                                                                            "_value": {
+                                                                                "display": "Open",
+                                                                                "itemValue": "Open"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ],
+                                                                    "aggregates": [
+                                                                        {
+                                                                            "operator": "countdistinct",
+                                                                            "field": "*",
+                                                                            "alias": "total"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "category",
+                                                                            "field": "category.itemValue"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "firstOrderIndex",
+                                                                            "field": "category.orderIndex"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "phase",
+                                                                            "field": "phase.itemValue"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "secondOrderIndex",
+                                                                            "field": "phase.orderIndex"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "color",
+                                                                            "field": "phase.color"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "mapping": {
+                                                                    "assignedToPerson": "",
+                                                                    "firstGrouping": "category",
+                                                                    "secondGrouping": "phase"
+                                                                },
+                                                                "aggregate": true,
+                                                                "wid": "634016f4-bafd-4250-8302-8aa2b7036e39",
+                                                                "title": "Investigated Incidents By Type",
+                                                                "resource": "incidents",
+                                                                "chart": "bar",
+                                                                "barStyle": "vertical"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ],
+                                            "wid": "3ef2d920-6786-4eda-9337-4449c0cd7f93"
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "0e38a05e-2ba4-417d-85e1-1c9a49c665c3"
+            }
+        ],
+        "wid": "ec834d77-403b-4dfa-abda-719402adbb17"
+    },
+    "filterArray": [],
+    "updateDate": null
+}

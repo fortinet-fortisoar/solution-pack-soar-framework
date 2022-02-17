@@ -1,0 +1,92 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Alert > Set Assigned Date (upon creation)",
+    "aliasName": null,
+    "tag": "#system",
+    "description": "Update Assigned Date when Person is assigned to Alert",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "lastModifyDate": 1645124453,
+    "collection": "\/api\/3\/workflow_collections\/7b096971-ca3f-479d-a156-ef9ad5c37506",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/7d8eb5cc-2220-41f9-9c7e-c8194bb21ced",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "alerts",
+                "step_variables": [],
+                "fieldbasedtrigger": {
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "assignedTo",
+                            "value": "false",
+                            "_value": [],
+                            "operator": "isnull"
+                        }
+                    ]
+                }
+            },
+            "status": null,
+            "top": "60",
+            "left": "100",
+            "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "uuid": "7d8eb5cc-2220-41f9-9c7e-c8194bb21ced"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Assigned Date",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "assigneddate": "{{arrow.utcnow().timestamp}}"
+                },
+                "_showJson": false,
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "collectionType": "\/api\/3\/alerts",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "180",
+            "left": "307",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "091aaea7-d8e3-4c8f-8a29-f677dfe4b3fa"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Set Assigned Date",
+            "targetStep": "\/api\/3\/workflow_steps\/091aaea7-d8e3-4c8f-8a29-f677dfe4b3fa",
+            "sourceStep": "\/api\/3\/workflow_steps\/7d8eb5cc-2220-41f9-9c7e-c8194bb21ced",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "38d0a71f-a432-4068-a95f-fdec4240ef55"
+        }
+    ],
+    "priority": null,
+    "uuid": "2c8b6e86-5a15-41fa-b944-63609f14d2ca",
+    "recordTags": [
+        "system",
+        "FSRSolutionPack",
+        "sOARFramework-1.0.0"
+    ],
+    "id": "208",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1645124460.642748,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1645124460.642748,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

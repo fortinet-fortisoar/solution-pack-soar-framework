@@ -1,0 +1,140 @@
+{
+    "@context": "\/api\/3\/contexts\/Dashboard",
+    "@type": "Dashboard",
+    "uuid": "82bc8209-ef8d-463d-bcd8-db3ac08882cb-444d",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1645123054.888169,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1645124465.225172,
+    "recordTags": [],
+    "displayName": "SOC Admin",
+    "type": "rows",
+    "templateType": "dashboard",
+    "roles": [
+        "\/api\/3\/roles\/17562d60-b841-4ed7-912b-1ebaf063c8c9",
+        "\/api\/3\/roles\/21d7a7c6-9d68-438f-b732-e8950c5f745b",
+        "\/api\/3\/roles\/a501c11e-15af-49a6-a3a4-88605f32f016",
+        "\/api\/3\/roles\/c5ff8174-b3fa-41c5-b781-2b890b426a80"
+    ],
+    "parentTemplateId": null,
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "cardList",
+                                "config": {
+                                    "query": {
+                                        "limit": 10,
+                                        "logic": "AND",
+                                        "filters": [],
+                                        "sort": [
+                                            {
+                                                "direction": "ASC",
+                                                "field": "status"
+                                            },
+                                            {
+                                                "direction": "DESC",
+                                                "field": "severity"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "templateView": "cardView",
+                                        "assignedToPerson": "incidentLead",
+                                        "picklistBar": "severity",
+                                        "title": "uuid",
+                                        "subTitle": "name",
+                                        "subTitle3": "status",
+                                        "subTitle4": "discoveredOn"
+                                    },
+                                    "wid": "6d81975e-9a14-4861-b1f9-cfea7c49eac9",
+                                    "title": "Recent Incidents",
+                                    "module": "incidents"
+                                }
+                            },
+                            {
+                                "type": "cardList",
+                                "config": {
+                                    "query": {
+                                        "limit": 10,
+                                        "logic": "AND",
+                                        "filters": [],
+                                        "sort": [
+                                            {
+                                                "direction": "ASC",
+                                                "field": "status.orderIndex",
+                                                "_fieldTitle": "Status",
+                                                "_fieldName": "status"
+                                            },
+                                            {
+                                                "direction": "DESC",
+                                                "field": "severity.orderIndex",
+                                                "_fieldTitle": "Severity",
+                                                "_fieldName": "severity"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "templateView": "cardView",
+                                        "assignedToPerson": "assignedTo",
+                                        "picklistBar": "severity",
+                                        "title": "name",
+                                        "subTitle": "type",
+                                        "subTitle3": "status",
+                                        "subTitle4": "createDate"
+                                    },
+                                    "wid": "8c300e5d-b805-4585-961d-aa4d25e437d8",
+                                    "title": "Recent Alerts",
+                                    "module": "alerts"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-6"
+                    },
+                    {
+                        "widgets": [
+                            {
+                                "type": "cardList",
+                                "config": {
+                                    "query": {
+                                        "limit": 20,
+                                        "logic": "AND",
+                                        "filters": [],
+                                        "sort": [
+                                            {
+                                                "direction": "ASC",
+                                                "field": "status.orderIndex",
+                                                "_fieldTitle": "Status",
+                                                "_fieldName": "status"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "templateView": "viewType",
+                                        "assignedToPerson": "assignedToPerson",
+                                        "picklistBar": "",
+                                        "title": "name",
+                                        "subTitle": "priority",
+                                        "subTitle3": "assignedToPerson",
+                                        "subTitle4": "dueBy"
+                                    },
+                                    "wid": "1e104771-fb98-4217-9008-826ff6a10782",
+                                    "title": "Tasks",
+                                    "module": "tasks"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-6"
+                    }
+                ],
+                "wid": "980d6d04-623e-43dd-a825-362e636d0e25"
+            }
+        ],
+        "wid": "4a7c02ee-ee04-4be7-920b-8627a56b8635"
+    },
+    "filterArray": [],
+    "updateDate": null
+}
