@@ -1,0 +1,99 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Alert > Escalate to Incident (Link Relations)",
+    "aliasName": null,
+    "tag": null,
+    "description": "This playbook will extract related records and assign to incident created",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "alert_iri"
+    ],
+    "synchronous": false,
+    "lastModifyDate": null,
+    "collection": "\/api\/3\/workflow_collections\/4f127014-b01b-4bfe-9399-4cd4d18f001c",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/845ac7d1-8127-493d-ad3c-449ac8668ec3",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "alert_iri": "{{ vars.alert_iri }}"
+                        }
+                    }
+                }
+            },
+            "status": null,
+            "top": "40",
+            "left": "60",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "uuid": "845ac7d1-8127-493d-ad3c-449ac8668ec3"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Related Records",
+            "description": null,
+            "arguments": {
+                "related_records": "{{ (vars.input.params['alert_iri'] + \"?$relationships=true\") | fromIRI }}"
+            },
+            "status": null,
+            "top": "185",
+            "left": "256",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "1e7a9b7e-9b15-4e1d-8cd2-366554a983d2"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Return Related Records",
+            "description": null,
+            "arguments": {
+                "assets_record_list": "{{vars.related_records.assets | json_query('[*].\"@id\"[]')}}",
+                "indicators_record_list": "{{vars.related_records.indicators | json_query('[*].\"@id\"[]')}}"
+            },
+            "status": null,
+            "top": "320",
+            "left": "420",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "3e85a1b0-1023-4bfb-ad63-0bbd8a162a03"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Related Records",
+            "targetStep": "\/api\/3\/workflow_steps\/1e7a9b7e-9b15-4e1d-8cd2-366554a983d2",
+            "sourceStep": "\/api\/3\/workflow_steps\/845ac7d1-8127-493d-ad3c-449ac8668ec3",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "d58dd503-a8ba-445a-a390-1a08040c0250"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Related Records -> Return Related Records",
+            "targetStep": "\/api\/3\/workflow_steps\/3e85a1b0-1023-4bfb-ad63-0bbd8a162a03",
+            "sourceStep": "\/api\/3\/workflow_steps\/1e7a9b7e-9b15-4e1d-8cd2-366554a983d2",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "5ea398c3-1c05-4d84-a258-2b5658889ffe"
+        }
+    ],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "f35b7874-4a53-45e1-a686-86a605ea7dcf",
+    "recordTags": [],
+    "id": "30",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1645123064.570091,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1645182254.374027,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

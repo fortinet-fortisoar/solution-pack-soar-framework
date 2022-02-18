@@ -1,0 +1,73 @@
+{
+    "uuid": "c318a8b1-69bf-4a03-b47a-8b6db5a4d451",
+    "name": "Incident > Notify Updation",
+    "entity_type": "incidents",
+    "event_type": "update",
+    "trigger_condition": {
+        "sort": [],
+        "limit": 30,
+        "logic": "AND",
+        "filters": [
+            {
+                "type": "object",
+                "field": "incidentLead",
+                "value": "",
+                "_value": {
+                    "@id": "",
+                    "display": "",
+                    "itemValue": ""
+                },
+                "operator": "changed"
+            },
+            {
+                "type": "object",
+                "field": "incidentLead",
+                "value": "false",
+                "_value": {
+                    "@id": "false",
+                    "display": "",
+                    "itemValue": ""
+                },
+                "operator": "isnull"
+            }
+        ]
+    },
+    "actions": [
+        {
+            "type": "email",
+            "params": {
+                "body": "<p>Hey {% set assignedUser = vars.input.record.incidentLead | fromIRI %}{{ assignedUser.firstname }}, the following incident has been assigned to you:<\/p>\n<table style=\"min-width: 300px; max-width: 800px; border: 1px solid #dddddd;\">\n<tbody>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Incident Name<\/strong><\/td>\n<td>{{ vars.input.record.name }}<\/td>\n<\/tr>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Severity<\/strong><\/td>\n<td>{{ (vars.input.record.severity | fromIRI).itemValue }}<\/td>\n<\/tr>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Status<\/strong><\/td>\n<td>{{ (vars.input.record.status | fromIRI).itemValue }}<\/td>\n<\/tr>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Phase<\/strong><\/td>\n<td>{{ (vars.input.record.phase | fromIRI).itemValue }}<\/td>\n<\/tr>\n<tr>\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Description<\/strong><\/td>\n<td>{{ vars.input.record.description}}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>\n<p><br \/>You can view this incident by clicking here:<br \/>{% set idParts = vars.input.record['@id'].split('\/') %}<br \/><a href=\"https:\/\/{{globalVars.Server_fqhn}}{{'\/modules\/incidents\/' + (idParts | last) }}\">{{globalVars.Server_fqhn}}{{'\/modules\/incidents\/' + (idParts | last) }}<\/a><\/p>\n<p>Thanks,<br \/>FortiSOAR&trade;<\/p>",
+                "subject": "FortiSOAR: An incident has been assigned to you.",
+                "iri_list": "",
+                "cc_recipients": "",
+                "to_recipients": "{{vars.input.record.incidentLead}}",
+                "bcc_recipients": "",
+                "inline_iri_list": ""
+            },
+            "enabled": true,
+            "is_system": true,
+            "channel_uuid": "2a817063-e12a-496d-934d-381d22a95b3b",
+            "user_preference_key": "email"
+        },
+        {
+            "type": "system",
+            "content": "<p>An incident, {{vars.input.record.name}}, has been assigned to you!<\/p>\n<p>{% set idParts = vars.input.record['@id'].split('\/') %}<\/p>\n<p><a href=\"{{ '\/modules\/incidents\/' + (idParts | last) }}\">View Incident<\/a><\/p>",
+            "enabled": true,
+            "is_system": true,
+            "channel_uuid": "7a04788b-5128-4288-a0fc-6e82d18c3b7b",
+            "owner_detail": {
+                "isAssigned": true,
+                "assignedToTeam": [],
+                "assignedToField": "incidentLead",
+                "assignedToPerson": []
+            }
+        }
+    ],
+    "is_system": true,
+    "is_active": true,
+    "priority": 10,
+    "event_source": "crudhub",
+    "source": null,
+    "channel_preference_field": null,
+    "visible": true
+}
