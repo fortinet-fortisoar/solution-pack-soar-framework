@@ -1,0 +1,62 @@
+{
+    "uuid": "5db18094-1d82-4ca4-9674-a7bd566aa7ad",
+    "name": "Alert > Notify Creation",
+    "entity_type": "alerts",
+    "event_type": "create",
+    "trigger_condition": {
+        "sort": [],
+        "limit": 30,
+        "logic": "AND",
+        "filters": [
+            {
+                "type": "object",
+                "field": "assignedTo",
+                "value": "false",
+                "_value": {
+                    "@id": "false",
+                    "display": "",
+                    "itemValue": ""
+                },
+                "operator": "isnull"
+            }
+        ]
+    },
+    "actions": [
+        {
+            "type": "email",
+            "params": {
+                "body": "<p>Hey {% set assignedUser = vars.input.record.assignedTo | fromIRI %}{{ assignedUser.firstname }}, the following alert has been assigned to you:<\/p>\n<table style=\"min-width: 300px; max-width: 800px; border: 1px solid #dddddd;\">\n<tbody>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Alert Name<\/strong><\/td>\n<td>{{ vars.input.record.name }}<\/td>\n<\/tr>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Severity<\/strong><\/td>\n<td>{{ (vars.input.record.severity | fromIRI).itemValue }}<\/td>\n<\/tr>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Status<\/strong><\/td>\n<td>{{ (vars.input.record.status | fromIRI).itemValue }}<\/td>\n<\/tr>\n<tr>\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Description<\/strong><\/td>\n<td>{{ vars.input.record.description}}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>\n<p><br>You can view this alert by clicking here:<br>{% set idParts = vars.input.record['@id'].split('\/') %}<br><a href=\"https:\/\/{{globalVars.Server_fqhn}}{{ '\/modules\/alerts\/' + (idParts | last) }}\">{{globalVars.Server_fqhn}}{{ '\/modules\/alerts\/' + (idParts | last) }}<\/a><\/p>\n<p>Thanks,<br>FortiSOAR<\/p>",
+                "subject": "FortiSOAR: An alert has been assigned.",
+                "iri_list": "",
+                "cc_recipients": "",
+                "to_recipients": "{{vars.input.record.assignedTo}}",
+                "bcc_recipients": "",
+                "inline_iri_list": ""
+            },
+            "enabled": true,
+            "is_system": true,
+            "channel_uuid": "2a817063-e12a-496d-934d-381d22a95b3b",
+            "user_preference_key": "email"
+        },
+        {
+            "type": "system",
+            "content": "<p>An alert, {{vars.input.record.name}}, has been assigned to you!<\/p>\n<p>{% set idParts = vars.input.record['@id'].split('\/') %}<\/p>\n<p><a href=\"{{ '\/modules\/alerts\/' + (idParts | last) }}\">View Alert<\/a><\/p>",
+            "enabled": true,
+            "is_system": true,
+            "channel_uuid": "7a04788b-5128-4288-a0fc-6e82d18c3b7b",
+            "owner_detail": {
+                "isAssigned": true,
+                "assignedToTeam": [],
+                "assignedToField": "assignedTo",
+                "assignedToPerson": []
+            }
+        }
+    ],
+    "is_system": true,
+    "is_active": true,
+    "priority": 10,
+    "event_source": "crudhub",
+    "source": null,
+    "channel_preference_field": null,
+    "visible": true
+}
