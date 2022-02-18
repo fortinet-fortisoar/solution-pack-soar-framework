@@ -1,0 +1,355 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Send War Room Summary Email",
+    "aliasName": null,
+    "tag": null,
+    "description": "Email contains war room summary report",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "lastModifyDate": 1645124453,
+    "collection": "\/api\/3\/workflow_collections\/c9282ce9-1cef-4e0b-94da-3b84c32381ff",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/727f97f6-c556-4a53-b017-94608ad4b727",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Send to response team or custom",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Response Team",
+                        "step_iri": "\/api\/3\/workflow_steps\/effe1844-8cc0-4248-bc6c-4fbdb0dbf0c6",
+                        "condition": "{{ vars.input.params.sendToResponseTeam }}",
+                        "step_name": "Send email"
+                    },
+                    {
+                        "option": "Custom",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/cd11b092-b342-4f95-951c-555003512f1b",
+                        "step_name": "Send to custom recipients"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "570",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "979c916e-6172-40be-9711-a9ad4bf7ab7b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Send email",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "warRoom": "{{vars.input.records[0]}}",
+                    "emailBody": "{{vars.emailBody}}",
+                    "emailSubject": "{{vars.emailSubject}}",
+                    "emailAttachmentIris": "{{vars.emailAttachments}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/944c4716-d44a-4ab4-b9eb-b05f9509a721"
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "uuid": "effe1844-8cc0-4248-bc6c-4fbdb0dbf0c6"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set email parameters",
+            "description": null,
+            "arguments": {
+                "emailBody": "<p>You were added to War Room #{{ vars.warRoom.id }}:<\/p>\n<table style=\"min-width: 300px; max-width: 800px; border: 1px solid #dddddd;\">\n<tbody>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Title<\/strong><\/td>\n<td>{{ vars.warRoom.title }}<\/td>\n<\/tr>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Summary<\/strong><\/td>\n<td>{{ vars.warRoom.summary }}<\/td>\n<\/tr>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Status<\/strong><\/td>\n<td>{{ vars.warRoom.status.itemValue }}<\/td>\n<\/tr>\n<tr style=\"border-bottom: 1px solid #ddd;\">\n<td style=\"text-align: right; padding: 5px; border-right: 1px solid #ddd;\"><strong>Launched By<\/strong><\/td>\n<td>{{ vars.warRoom.launchedBy.firstname}} {{ vars.warRoom.launchedBy.lastname}}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>\n<br \/>\n<p><a href=\"{{ vars.warRoomLink }}\">Join War Room<\/a><\/p>\n<p>Thanks,<br \/>FortiSOAR&trade;<\/p>",
+                "emailSubject": "War Room #{{ vars.warRoom.id }}: {{ vars.warRoom.title }}",
+                "emailAttachments": "{{vars.steps.Generate_War_Room_Summary_Report.data['@id']}}"
+            },
+            "status": null,
+            "top": "435",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "8326b1d1-988f-433c-b2ff-0f06b6f0a70b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "2ddb3f28-1ca5-440d-b8f0-9b19703a592c",
+                "title": "Send Email Update",
+                "resources": [
+                    "warrooms"
+                ],
+                "inputVariables": [
+                    {
+                        "name": "sendToResponseTeam",
+                        "type": "boolean",
+                        "label": "Send to Response Team",
+                        "title": "Checkbox",
+                        "usable": true,
+                        "tooltip": "Send the update to all users and teams with access to the record",
+                        "dataType": "checkbox",
+                        "formType": "checkbox",
+                        "required": false,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/checkbox.html",
+                        "defaultValue": true,
+                        "lengthConstraint": false,
+                        "allowedEncryption": false,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "customRecipientEmails",
+                        "type": "string",
+                        "label": "Custom Recipient Emails",
+                        "title": "Text Area",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "text",
+                        "formType": "textarea",
+                        "required": false,
+                        "_expanded": false,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/textarea.html",
+                        "defaultValue": null,
+                        "visibilityQuery": {
+                            "sort": [],
+                            "limit": 30,
+                            "logic": "AND",
+                            "filters": [
+                                {
+                                    "type": "primitive",
+                                    "field": "sendToResponseTeam",
+                                    "value": false,
+                                    "operator": "eq",
+                                    "_operator": "eq"
+                                }
+                            ]
+                        },
+                        "lengthConstraint": true,
+                        "allowedEncryption": true,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false,
+                        "_addVisibilityConditions": true
+                    },
+                    {
+                        "name": "attachWarRoomSummaryReport",
+                        "type": "boolean",
+                        "label": "Attach War Room Summary report",
+                        "title": "Checkbox",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "checkbox",
+                        "formType": "checkbox",
+                        "required": false,
+                        "_expanded": false,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/checkbox.html",
+                        "defaultValue": true,
+                        "visibilityQuery": {
+                            "sort": [],
+                            "limit": 30,
+                            "logic": "AND",
+                            "filters": []
+                        },
+                        "lengthConstraint": false,
+                        "allowedEncryption": false,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false,
+                        "_addVisibilityConditions": true
+                    }
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "sendToResponseTeam": "{{vars.request.data[\"sendToResponseTeam\"]}}",
+                            "customRecipientEmails": "{{vars.request.data[\"customRecipientEmails\"]}}",
+                            "attachWarRoomSummaryReport": "{{vars.request.data[\"attachWarRoomSummaryReport\"]}}"
+                        },
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "_promptexpanded": true,
+                "displayConditions": {
+                    "alerts": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    },
+                    "warrooms": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    }
+                },
+                "executeButtonText": "Send Email",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "30",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "uuid": "727f97f6-c556-4a53-b017-94608ad4b727"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Send to custom recipients",
+            "description": null,
+            "arguments": {
+                "config": "f221bd8b-e626-4513-8f41-615f99d56281",
+                "params": {
+                    "cc": "",
+                    "to": "{{vars.input.params.customRecipientEmails}}",
+                    "bcc": "",
+                    "from": "",
+                    "type": "Manual Input",
+                    "content": "{{vars.emailBody}}",
+                    "subject": "{{vars.emailSubject}}",
+                    "iri_list": "{{vars.emailAttachments}}",
+                    "body_type": "Plain Text",
+                    "file_name": "",
+                    "file_path": ""
+                },
+                "version": "2.4.0",
+                "from_str": "admin@example.com",
+                "connector": "smtp",
+                "operation": "send_email_new",
+                "operationTitle": "Send Email",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/4c0019b2-055c-44d0-968c-678a0c2d762e",
+            "uuid": "cd11b092-b342-4f95-951c-555003512f1b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "warRoom": "{{vars.input.records[0]}}",
+                "warRoomLink": "https:\/\/{{globalVars.Server_fqhn}}{{vars.input.records[0]['@id'] | iriToLink}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "9565304c-cca6-495c-92e5-342234bf3b08"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Generate War Room Summary Report",
+            "description": null,
+            "arguments": {
+                "name": "Report Engine",
+                "params": {
+                    "user_id": "{{vars.currentUser}}",
+                    "timezone": "{{vars.request.headers.tz}}",
+                    "report_id": "60f0c032-90e8-4026-b430-176efd5560b7",
+                    "query_params": "{\"qparam\": {\"warRoomID\": {{ vars.warRoom.id }} } }"
+                },
+                "version": "1.2.0",
+                "connector": "cyops-schedule-report",
+                "operation": "schedule_report_manual",
+                "operationTitle": "Generate Report From Report ID",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "de1b5410-c798-4053-80f1-0d66c1cc4935"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/9565304c-cca6-495c-92e5-342234bf3b08",
+            "sourceStep": "\/api\/3\/workflow_steps\/727f97f6-c556-4a53-b017-94608ad4b727",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "51a628f7-e691-4089-8b54-2536dca35aff"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Set email body -> Send to response team or custom",
+            "targetStep": "\/api\/3\/workflow_steps\/979c916e-6172-40be-9711-a9ad4bf7ab7b",
+            "sourceStep": "\/api\/3\/workflow_steps\/8326b1d1-988f-433c-b2ff-0f06b6f0a70b",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "184de6b1-b672-4a78-8e74-f629bc8d691a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Send to response team or custom -> Send email",
+            "targetStep": "\/api\/3\/workflow_steps\/effe1844-8cc0-4248-bc6c-4fbdb0dbf0c6",
+            "sourceStep": "\/api\/3\/workflow_steps\/979c916e-6172-40be-9711-a9ad4bf7ab7b",
+            "label": "Response Team",
+            "isExecuted": false,
+            "uuid": "33f4ae33-09fb-47cb-b4bf-e08855a9672f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Send to response team or custom -> Send to custom recipients",
+            "targetStep": "\/api\/3\/workflow_steps\/cd11b092-b342-4f95-951c-555003512f1b",
+            "sourceStep": "\/api\/3\/workflow_steps\/979c916e-6172-40be-9711-a9ad4bf7ab7b",
+            "label": "Custom",
+            "isExecuted": false,
+            "uuid": "deca1110-085b-477d-8dcc-f218f47b6a53"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Generate War Room Summary Report",
+            "targetStep": "\/api\/3\/workflow_steps\/de1b5410-c798-4053-80f1-0d66c1cc4935",
+            "sourceStep": "\/api\/3\/workflow_steps\/9565304c-cca6-495c-92e5-342234bf3b08",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "8b1e696f-760e-4432-adcc-039177f6c936"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Generate War Room Summary Report -> Set email body and subject",
+            "targetStep": "\/api\/3\/workflow_steps\/8326b1d1-988f-433c-b2ff-0f06b6f0a70b",
+            "sourceStep": "\/api\/3\/workflow_steps\/de1b5410-c798-4053-80f1-0d66c1cc4935",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "1fe9edf9-1759-4830-9366-bf70e89885dc"
+        }
+    ],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "57ddd255-cf73-459a-ab79-f83aedcfce56",
+    "recordTags": [
+        "FSRSolutionPack",
+        "sOARFramework-1.0.0"
+    ],
+    "id": "221",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1645124460.923178,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1645124460.923178,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

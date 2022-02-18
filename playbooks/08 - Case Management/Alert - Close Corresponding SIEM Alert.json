@@ -11,10 +11,10 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1644855355,
+    "lastModifyDate": 1645124453,
     "collection": "\/api\/3\/workflow_collections\/3c3b049e-5ecb-464a-83f6-5af6a230c0ed",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/bf874db0-bf79-449c-bc0d-587a0e5ac445",
+    "triggerStep": "\/api\/3\/workflow_steps\/4540dbd3-f9c1-4782-ad18-610fab89b0a3",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -65,7 +65,7 @@
             "top": "31",
             "left": "220",
             "stepType": "\/api\/3\/workflow_step_types\/9300bf69-5063-486d-b3a6-47eb9da24872",
-            "uuid": "bf874db0-bf79-449c-bc0d-587a0e5ac445"
+            "uuid": "4540dbd3-f9c1-4782-ad18-610fab89b0a3"
         },
         {
             "@type": "WorkflowStep",
@@ -90,11 +90,11 @@
                         {
                             "option": "Close SIEM Alert",
                             "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/16d978be-41b3-40dd-a3d1-9f6aae5fe4e0"
+                            "step_iri": "\/api\/3\/workflow_steps\/74b5facc-d28a-4a8d-95d3-6864ff43acef"
                         },
                         {
                             "option": "Do Nothing",
-                            "step_iri": "\/api\/3\/workflow_steps\/16650cda-306f-49f0-b51d-d3ed1ece8dab"
+                            "step_iri": "\/api\/3\/workflow_steps\/d6f6fdd8-3696-4c9f-9b04-3205ec85ba5f"
                         }
                     ],
                     "duplicateOption": false
@@ -104,7 +104,7 @@
             "top": "220",
             "left": "220",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
-            "uuid": "8e862bf9-2c1d-4245-a1a3-dd84b2a96966"
+            "uuid": "03cbcc0b-1f1a-4f07-8b19-7e6d4063315a"
         },
         {
             "@type": "WorkflowStep",
@@ -128,7 +128,7 @@
             "top": "380",
             "left": "407",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
-            "uuid": "16d978be-41b3-40dd-a3d1-9f6aae5fe4e0"
+            "uuid": "74b5facc-d28a-4a8d-95d3-6864ff43acef"
         },
         {
             "@type": "WorkflowStep",
@@ -152,36 +152,36 @@
             "top": "386",
             "left": "11",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
-            "uuid": "16650cda-306f-49f0-b51d-d3ed1ece8dab"
+            "uuid": "d6f6fdd8-3696-4c9f-9b04-3205ec85ba5f"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Close SIEM Alert -> Add No Change Note",
-            "targetStep": "\/api\/3\/workflow_steps\/16650cda-306f-49f0-b51d-d3ed1ece8dab",
-            "sourceStep": "\/api\/3\/workflow_steps\/8e862bf9-2c1d-4245-a1a3-dd84b2a96966",
+            "targetStep": "\/api\/3\/workflow_steps\/d6f6fdd8-3696-4c9f-9b04-3205ec85ba5f",
+            "sourceStep": "\/api\/3\/workflow_steps\/03cbcc0b-1f1a-4f07-8b19-7e6d4063315a",
             "label": "Do Nothing",
             "isExecuted": false,
-            "uuid": "21dc716b-2b48-4ff4-955a-312a7e05af7b"
+            "uuid": "46cefff8-98ee-4ccc-bce7-bb7bfc8cf684"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Close SIEM Alert",
-            "targetStep": "\/api\/3\/workflow_steps\/8e862bf9-2c1d-4245-a1a3-dd84b2a96966",
-            "sourceStep": "\/api\/3\/workflow_steps\/bf874db0-bf79-449c-bc0d-587a0e5ac445",
+            "targetStep": "\/api\/3\/workflow_steps\/03cbcc0b-1f1a-4f07-8b19-7e6d4063315a",
+            "sourceStep": "\/api\/3\/workflow_steps\/4540dbd3-f9c1-4782-ad18-610fab89b0a3",
             "label": null,
             "isExecuted": false,
-            "uuid": "ca5dac8a-2052-4a65-ad21-93ef13035b1c"
+            "uuid": "79b0545d-d9fe-41f3-aa89-33f812d2c0a2"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Close SIEM Alert -> Add Clossure note",
-            "targetStep": "\/api\/3\/workflow_steps\/16d978be-41b3-40dd-a3d1-9f6aae5fe4e0",
-            "sourceStep": "\/api\/3\/workflow_steps\/8e862bf9-2c1d-4245-a1a3-dd84b2a96966",
+            "targetStep": "\/api\/3\/workflow_steps\/74b5facc-d28a-4a8d-95d3-6864ff43acef",
+            "sourceStep": "\/api\/3\/workflow_steps\/03cbcc0b-1f1a-4f07-8b19-7e6d4063315a",
             "label": "Close SIEM Alert",
             "isExecuted": false,
-            "uuid": "ecd809e0-ba60-45e4-9aeb-fa5f8d6b99b3"
+            "uuid": "5310f776-cff3-4c63-a33c-5bc431c9cee2"
         }
     ],
     "priority": null,
@@ -189,14 +189,13 @@
     "recordTags": [
         "PostUpdate",
         "FSRSolutionPack",
-        "fortiSOAREssentials-1.0.0",
-        "incidentResponse-1.0.0"
+        "sOARFramework-1.0.0"
     ],
     "id": "164",
     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1644855361.774058,
+    "createDate": 1645124459.027601,
     "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1644855361.774058,
+    "modifyDate": 1645124459.027601,
     "owners": [],
     "isPrivate": false,
     "deletedAt": null

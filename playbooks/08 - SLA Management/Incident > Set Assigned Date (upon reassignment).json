@@ -1,0 +1,102 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Incident > Set Assigned Date (upon reassignment)",
+    "aliasName": null,
+    "tag": "#system",
+    "description": "Update Assigned Date when Lead is assigned to Incident",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "lastModifyDate": 1645124453,
+    "collection": "\/api\/3\/workflow_collections\/7b096971-ca3f-479d-a156-ef9ad5c37506",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/db9be980-1630-4b7a-9a56-fd00b02cd376",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Assigned Date",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "assigneddate": "{{arrow.utcnow().timestamp}}"
+                },
+                "_showJson": false,
+                "collection": "{{vars.input.records[0][\"@id\"]}}",
+                "collectionType": "\/api\/3\/incidents",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "160",
+            "left": "411",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "985d0361-1905-463b-abde-e985e80187a2"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "incidents",
+                "step_variables": [],
+                "fieldbasedtrigger": {
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "incidentLead",
+                            "value": null,
+                            "_value": {
+                                "display": "",
+                                "itemValue": ""
+                            },
+                            "operator": "changed"
+                        },
+                        {
+                            "type": "object",
+                            "field": "incidentLead",
+                            "value": "false",
+                            "_value": [],
+                            "operator": "isnull"
+                        }
+                    ]
+                }
+            },
+            "status": null,
+            "top": "67",
+            "left": "100",
+            "stepType": "\/api\/3\/workflow_step_types\/9300bf69-5063-486d-b3a6-47eb9da24872",
+            "uuid": "db9be980-1630-4b7a-9a56-fd00b02cd376"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Set Assigned Date",
+            "targetStep": "\/api\/3\/workflow_steps\/985d0361-1905-463b-abde-e985e80187a2",
+            "sourceStep": "\/api\/3\/workflow_steps\/db9be980-1630-4b7a-9a56-fd00b02cd376",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "2d271517-8174-4255-9293-2eb0b51c44b4"
+        }
+    ],
+    "priority": null,
+    "uuid": "1f901acf-5047-47cd-842b-b8c02ac34198",
+    "recordTags": [
+        "system",
+        "FSRSolutionPack",
+        "sOARFramework-1.0.0"
+    ],
+    "id": "212",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1645124460.645711,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1645124460.645711,
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null
+}

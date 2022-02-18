@@ -13,10 +13,10 @@
         "indicator_value"
     ],
     "synchronous": false,
-    "lastModifyDate": 1644855355,
+    "lastModifyDate": 1645124453,
     "collection": "\/api\/3\/workflow_collections\/b135c052-e170-4cff-8cc7-9a4bfe607ccb",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/15b09c1a-1426-411b-b78a-9659de7c0406",
+    "triggerStep": "\/api\/3\/workflow_steps\/2ada0c5a-c473-4955-9f74-6219ad9020b6",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -33,7 +33,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "15b09c1a-1426-411b-b78a-9659de7c0406"
+            "uuid": "2ada0c5a-c473-4955-9f74-6219ad9020b6"
         },
         {
             "@type": "WorkflowStep",
@@ -49,7 +49,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "e7a46ac8-8b97-42d2-a733-cbfaaed8cc9c"
+            "uuid": "edd01b54-c442-4f2a-a7c1-0087160c9616"
         },
         {
             "@type": "WorkflowStep",
@@ -76,7 +76,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "988937e7-5ddb-4f0d-979b-991b1d083da2"
+            "uuid": "3f4d5268-ed39-4b51-9a38-1e39cd71ed44"
         },
         {
             "@type": "WorkflowStep",
@@ -98,7 +98,7 @@
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "0a7162ed-40a9-4fe4-a0b4-9e75291187c9"
+            "uuid": "319a2ce2-74e8-497e-bf37-9a0659d995ba"
         },
         {
             "@type": "WorkflowStep",
@@ -114,45 +114,45 @@
             "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "bf5ea395-e4f5-4dd1-b75f-06ca29906ce3"
+            "uuid": "4d5f09e8-7b0d-46bd-aa4d-43835bf89b35"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Get Email Reputation from Threatq -> Compute Threat Summary",
-            "targetStep": "\/api\/3\/workflow_steps\/0a7162ed-40a9-4fe4-a0b4-9e75291187c9",
-            "sourceStep": "\/api\/3\/workflow_steps\/988937e7-5ddb-4f0d-979b-991b1d083da2",
+            "targetStep": "\/api\/3\/workflow_steps\/319a2ce2-74e8-497e-bf37-9a0659d995ba",
+            "sourceStep": "\/api\/3\/workflow_steps\/3f4d5268-ed39-4b51-9a38-1e39cd71ed44",
             "label": null,
             "isExecuted": false,
-            "uuid": "ad96a7ae-74dd-43a3-9769-beb6fb379cae"
+            "uuid": "f428414e-9a9a-41b2-ac61-2e94f1131c7d"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/e7a46ac8-8b97-42d2-a733-cbfaaed8cc9c",
-            "sourceStep": "\/api\/3\/workflow_steps\/15b09c1a-1426-411b-b78a-9659de7c0406",
+            "targetStep": "\/api\/3\/workflow_steps\/edd01b54-c442-4f2a-a7c1-0087160c9616",
+            "sourceStep": "\/api\/3\/workflow_steps\/2ada0c5a-c473-4955-9f74-6219ad9020b6",
             "label": null,
             "isExecuted": false,
-            "uuid": "01b5f194-3843-4931-a84d-2915d5905705"
+            "uuid": "2ada176c-b0a4-4d41-a669-68673e85754e"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Compute Threat Summary -> enrichment_summary",
-            "targetStep": "\/api\/3\/workflow_steps\/bf5ea395-e4f5-4dd1-b75f-06ca29906ce3",
-            "sourceStep": "\/api\/3\/workflow_steps\/0a7162ed-40a9-4fe4-a0b4-9e75291187c9",
+            "targetStep": "\/api\/3\/workflow_steps\/4d5f09e8-7b0d-46bd-aa4d-43835bf89b35",
+            "sourceStep": "\/api\/3\/workflow_steps\/319a2ce2-74e8-497e-bf37-9a0659d995ba",
             "label": null,
             "isExecuted": false,
-            "uuid": "341db5a2-2aa7-46a5-bf52-d13ff3827cb5"
+            "uuid": "5bcb49a4-4be8-47e5-a231-06bb20e63854"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Configurations -> Get Email Reputation from Threatq",
-            "targetStep": "\/api\/3\/workflow_steps\/988937e7-5ddb-4f0d-979b-991b1d083da2",
-            "sourceStep": "\/api\/3\/workflow_steps\/e7a46ac8-8b97-42d2-a733-cbfaaed8cc9c",
+            "targetStep": "\/api\/3\/workflow_steps\/3f4d5268-ed39-4b51-9a38-1e39cd71ed44",
+            "sourceStep": "\/api\/3\/workflow_steps\/edd01b54-c442-4f2a-a7c1-0087160c9616",
             "label": null,
             "isExecuted": false,
-            "uuid": "427cfb0b-ca51-4e55-949f-45cbc6f20258"
+            "uuid": "0efc6eed-da76-447b-8ba6-6536f5340cd7"
         }
     ],
     "priority": null,
@@ -160,14 +160,13 @@
     "recordTags": [
         "Subroutine",
         "FSRSolutionPack",
-        "fortiSOAREssentials-1.0.0",
-        "incidentResponse-1.0.0"
+        "sOARFramework-1.0.0"
     ],
     "id": "108",
     "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1644855358.168009,
+    "createDate": 1645124455.531324,
     "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1644855358.168009,
+    "modifyDate": 1645124455.531324,
     "owners": [],
     "isPrivate": false,
     "deletedAt": null

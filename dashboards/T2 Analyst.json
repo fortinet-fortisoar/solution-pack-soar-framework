@@ -1,0 +1,350 @@
+{
+    "@context": "\/api\/3\/contexts\/Dashboard",
+    "@type": "Dashboard",
+    "uuid": "82bc8209-ef8d-463d-bcd8-db3ac08882cb-222d",
+    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "createDate": 1645123054.888437,
+    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+    "modifyDate": 1645124465.264416,
+    "recordTags": [],
+    "displayName": "T2 Analyst",
+    "type": "rows",
+    "templateType": "dashboard",
+    "roles": [
+        "\/api\/3\/roles\/21d7a7c6-9d68-438f-b732-e8950c5f745b",
+        "\/api\/3\/roles\/aada6692-fbf4-4a02-a580-f8a200962365"
+    ],
+    "parentTemplateId": null,
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "rows",
+                                "config": {
+                                    "wid": "46af8177-9ef3-44b3-a8c9-bb1737ad3ec1",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "chart",
+                                                            "config": {
+                                                                "query": {
+                                                                    "limit": 2147483647,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae",
+                                                                            "_value": {
+                                                                                "itemValue": "Resolved"
+                                                                            },
+                                                                            "type": "object"
+                                                                        },
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/bb73fade-f699-11e7-8c3f-9a214cf093ae",
+                                                                            "_value": {
+                                                                                "itemValue": "Inactive"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ],
+                                                                    "aggregates": [
+                                                                        {
+                                                                            "operator": "countdistinct",
+                                                                            "field": "*",
+                                                                            "alias": "total"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "severity",
+                                                                            "field": "severity.itemValue"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "color",
+                                                                            "field": "severity.color"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "orderIndex",
+                                                                            "field": "severity.orderIndex"
+                                                                        }
+                                                                    ],
+                                                                    "sort": [
+                                                                        {
+                                                                            "field": "severity.orderIndex",
+                                                                            "direction": "ASC"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "mapping": {
+                                                                    "fieldName": "severity",
+                                                                    "assignedToPerson": "incidentLead"
+                                                                },
+                                                                "aggregate": true,
+                                                                "wid": "6ce24979-7e6c-491b-9dcf-340c5d96541a",
+                                                                "title": "My Incidents By Severity",
+                                                                "resource": "incidents",
+                                                                "chart": "pie"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "chart",
+                                                            "config": {
+                                                                "query": {
+                                                                    "limit": 2147483647,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae",
+                                                                            "_value": {
+                                                                                "itemValue": "Resolved"
+                                                                            },
+                                                                            "type": "object"
+                                                                        },
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/bb73fade-f699-11e7-8c3f-9a214cf093ae",
+                                                                            "_value": {
+                                                                                "display": "Inactive",
+                                                                                "itemValue": "Inactive"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ],
+                                                                    "aggregates": [
+                                                                        {
+                                                                            "operator": "countdistinct",
+                                                                            "field": "*",
+                                                                            "alias": "total"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "category",
+                                                                            "field": "category.itemValue"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "color",
+                                                                            "field": "category.color"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "orderIndex",
+                                                                            "field": "category.orderIndex"
+                                                                        }
+                                                                    ],
+                                                                    "sort": [
+                                                                        {
+                                                                            "field": "category.orderIndex",
+                                                                            "direction": "ASC"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "mapping": {
+                                                                    "fieldName": "category",
+                                                                    "assignedToPerson": "incidentLead"
+                                                                },
+                                                                "aggregate": true,
+                                                                "wid": "72c1107e-65a6-48d0-81ea-09722098ef72",
+                                                                "title": "My Incidents By Type",
+                                                                "resource": "incidents",
+                                                                "chart": "pie"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "chart",
+                                                            "config": {
+                                                                "query": {
+                                                                    "limit": 2147483647,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed",
+                                                                            "_value": {
+                                                                                "itemValue": "Completed"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ],
+                                                                    "aggregates": [
+                                                                        {
+                                                                            "operator": "countdistinct",
+                                                                            "field": "*",
+                                                                            "alias": "total"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "priority",
+                                                                            "field": "priority.itemValue"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "color",
+                                                                            "field": "priority.color"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "orderIndex",
+                                                                            "field": "priority.orderIndex"
+                                                                        }
+                                                                    ],
+                                                                    "sort": [
+                                                                        {
+                                                                            "field": "priority.orderIndex",
+                                                                            "direction": "ASC"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "mapping": {
+                                                                    "fieldName": "priority",
+                                                                    "assignedToPerson": "assignedToPerson"
+                                                                },
+                                                                "aggregate": true,
+                                                                "wid": "c06b7fa5-0df8-4a2a-a367-db392f2f44aa",
+                                                                "chart": "pie",
+                                                                "resource": "tasks",
+                                                                "title": "My Tasks By Priority"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                }
+                                            ],
+                                            "wid": "80835a69-3e6d-4a0c-8bc7-d868fbfd6a5e"
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "cardList",
+                                                            "config": {
+                                                                "query": {
+                                                                    "limit": 10,
+                                                                    "logic": "OR",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "severity",
+                                                                            "operator": "eq",
+                                                                            "value": "\/api\/3\/picklists\/40187287-89fc-4e9c-b717-e9443d57eedb",
+                                                                            "_value": {
+                                                                                "itemValue": "High"
+                                                                            },
+                                                                            "type": "object"
+                                                                        },
+                                                                        {
+                                                                            "field": "severity",
+                                                                            "operator": "eq",
+                                                                            "value": "\/api\/3\/picklists\/7efa2220-39bb-44e4-961f-ac368776e3b0",
+                                                                            "_value": {
+                                                                                "itemValue": "Critical"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ],
+                                                                    "sort": []
+                                                                },
+                                                                "mapping": {
+                                                                    "templateView": "cardView",
+                                                                    "assignedToPerson": "",
+                                                                    "picklistBar": "severity",
+                                                                    "title": "name",
+                                                                    "subTitle": "severity",
+                                                                    "subTitle3": "status",
+                                                                    "subTitle4": "dueby"
+                                                                },
+                                                                "wid": "6018f507-4247-4abe-b491-c7591a6c2191",
+                                                                "title": "Critical\/High Severity Incidents",
+                                                                "module": "incidents"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "cardList",
+                                                            "config": {
+                                                                "query": {
+                                                                    "limit": 10,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed",
+                                                                            "_value": {
+                                                                                "itemValue": "Completed"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ],
+                                                                    "sort": [
+                                                                        {
+                                                                            "direction": "ASC",
+                                                                            "field": "dueBy",
+                                                                            "_fieldTitle": "Due By",
+                                                                            "_fieldName": "dueBy"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "mapping": {
+                                                                    "templateView": "cardView",
+                                                                    "assignedToPerson": "assignedToPerson",
+                                                                    "picklistBar": "priority",
+                                                                    "title": "name",
+                                                                    "subTitle": "type",
+                                                                    "subTitle3": "priority",
+                                                                    "subTitle4": "dueBy"
+                                                                },
+                                                                "wid": "ace71c21-179a-48a3-9bff-5cf89c6fbfc7",
+                                                                "title": "Assigned Tasks",
+                                                                "module": "tasks"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                }
+                                            ],
+                                            "wid": "8d7775ad-4527-4d8a-b430-2d9aba968975"
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "980d6d04-623e-43dd-a825-362e636d0e25"
+            }
+        ],
+        "wid": "4a7c02ee-ee04-4be7-920b-8627a56b8635"
+    },
+    "filterArray": [],
+    "updateDate": null
+}

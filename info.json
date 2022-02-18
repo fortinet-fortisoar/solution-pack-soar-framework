@@ -1,21 +1,22 @@
 {
-    "name": "fortiSOAREssentials",
+    "name": "sOARFramework",
     "version": "1.0.0",
     "type": "solutionpack",
     "local": true,
-    "label": "FortiSOAR Essentials",
+    "label": "SOAR Framework",
     "dependencies": [],
     "prerequisite": [],
-    "category": [],
     "publisher": "Fortinet",
     "certified": "true",
-    "tags": [],
+    "description": "The SOAR Framework Solution Pack enables users to experience the power of FortiSOAR incident response.",
+    "summary": null,
+    "help": "https:\/\/github.com\/fortinet-fortisoar\/solution-pack-soar-framework",
+    "category": [],
     "supportInfo": "support@fortinet.com",
-    "help": "https://github.com/fortinet-fortisoar/solution-pack-soar-essentials",
-    "description": "The FortiSOAR Essentials Solution Pack enables users to experience the power of FortiSOAR incident response.",
+    "tags": [],
     "fsrMinCompatibility": "7.2.0",
-    "date": "2022-02-14T18:03:42+00:00",
-    "exported_from": "tenant.fortisoar.com",
+    "date": "2022-02-17T19:58:50+00:00",
+    "exported_from": "master.fortisoar.in",
     "exported_by": "CS Admin",
     "contents": {
         "picklistNames": [
@@ -47,22 +48,13 @@
                 "name": "AssetStatus"
             },
             {
-                "name": "AttachmentsType"
-            },
-            {
                 "name": "CampaignStatus"
             },
             {
                 "name": "CampaignVector"
             },
             {
-                "name": "Choose Report"
-            },
-            {
                 "name": "Closure Reason"
-            },
-            {
-                "name": "Comment Type"
             },
             {
                 "name": "Communication State"
@@ -119,25 +111,10 @@
                 "name": "SLAState"
             },
             {
-                "name": "TaskPriority"
-            },
-            {
-                "name": "TaskStatus"
-            },
-            {
-                "name": "TaskTeams"
-            },
-            {
-                "name": "TaskType"
-            },
-            {
                 "name": "TrafficLightProtocol"
             },
             {
                 "name": "WarRoomStatus"
-            },
-            {
-                "name": "WorkflowPriority"
             }
         ],
         "modules": {
@@ -153,21 +130,17 @@
                 "name": "Assets",
                 "apiName": "assets"
             },
-            "attachments": {
-                "name": "Attachments",
-                "apiName": "attachments"
-            },
             "campaigns": {
                 "name": "Campaigns",
                 "apiName": "campaigns"
             },
-            "comments": {
-                "name": "Comment",
-                "apiName": "comments"
-            },
             "communication": {
                 "name": "Communications",
                 "apiName": "communication"
+            },
+            "events": {
+                "name": "Events",
+                "apiName": "events"
             },
             "hunt": {
                 "name": "Hunts",
@@ -184,10 +157,6 @@
             "sla_template": {
                 "name": "SLA Templates",
                 "apiName": "sla_template"
-            },
-            "tasks": {
-                "name": "Tasks",
-                "apiName": "tasks"
             },
             "warrooms": {
                 "name": "War Rooms",
@@ -210,22 +179,17 @@
                 "detail",
                 "form"
             ],
-            "attachments": [
-                "list",
-                "detail",
-                "form"
-            ],
             "campaigns": [
                 "list",
                 "detail",
                 "form"
             ],
-            "comments": [
+            "communication": [
                 "list",
                 "detail",
                 "form"
             ],
-            "communication": [
+            "events": [
                 "list",
                 "detail",
                 "form"
@@ -250,11 +214,6 @@
                 "detail",
                 "form"
             ],
-            "tasks": [
-                "list",
-                "detail",
-                "form"
-            ],
             "warrooms": [
                 "list",
                 "detail",
@@ -263,30 +222,7 @@
         },
         "roles": [
             {
-                "name": "Full App Permissions"
-            },
-            {
-                "name": "Application Administrator"
-            },
-            {
-                "name": "FortiSOAR Agent"
-            },
-            {
-                "name": "Playbook Administrator"
-            },
-            {
-                "name": "Security Administrator"
-            },
-            {
-                "name": "T1 Analyst"
-            },
-            {
-                "name": "T2 Analyst"
-            }
-        ],
-        "teams": [
-            {
-                "name": "SOC Team"
+                "name": "SOC Analyst"
             }
         ],
         "playbooks": [
@@ -319,6 +255,12 @@
             },
             {
                 "name": "08 - Case Management (Extended)"
+            },
+            {
+                "name": "08 - SLA Management"
+            },
+            {
+                "name": "08 - War Room Automation"
             },
             {
                 "name": "09 - Incident Response"
@@ -374,55 +316,55 @@
                 "default_value": null
             },
             {
+                "id": 7,
+                "name": "Server_fqhn",
+                "value": "master.fortisoar.in",
+                "default_value": null
+            },
+            {
                 "id": 8,
                 "name": "Default_Indicator_TTL_Days",
                 "value": "20",
                 "default_value": "20"
             },
             {
-                "id": 12,
+                "id": 9,
                 "name": "Indicator_type_map",
                 "value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}",
                 "default_value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}"
             },
             {
-                "id": 15,
+                "id": 10,
                 "name": "Reset_SLA",
                 "value": "true",
                 "default_value": "true"
             },
             {
-                "id": 9,
+                "id": 11,
                 "name": "Excludelist_IPs",
                 "value": "8.8.8.8,10.1.1.2",
                 "default_value": "8.8.8.8,10.1.1.2"
             },
             {
-                "id": 7,
-                "name": "Server_fqhn",
-                "value": "mtt.fortisoar.com",
-                "default_value": "mtt.fortisoar.com"
-            },
-            {
-                "id": 10,
+                "id": 12,
                 "name": "Excludelist_URLs",
                 "value": "https:\/\/www.google.com,https:\/\/mail.yahoo.com\/login.html,https:\/\/www.office.com\/",
                 "default_value": "https:\/\/www.google.com,https:\/\/mail.yahoo.com\/login.html,https:\/\/www.office.com\/"
             },
             {
-                "id": 11,
+                "id": 13,
                 "name": "Excludelist_Domains",
                 "value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com",
                 "default_value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com"
             },
             {
-                "id": 13,
+                "id": 14,
                 "name": "Demo_mode",
                 "value": "true",
                 "default_value": "true"
             },
             {
-                "id": 14,
+                "id": 15,
                 "name": "Current_Date",
                 "value": "{{arrow.utcnow().timestamp}}",
                 "default_value": "{{arrow.utcnow().timestamp}}"
@@ -462,10 +404,25 @@
         ],
         "dashboards": [
             {
+                "name": "Executive View"
+            },
+            {
                 "name": "Overview"
             },
             {
                 "name": "ROI Summary"
+            },
+            {
+                "name": "SOC Admin"
+            },
+            {
+                "name": "System Dashboard"
+            },
+            {
+                "name": "T1 Analyst"
+            },
+            {
+                "name": "T2 Analyst"
             }
         ],
         "connectors": [
@@ -577,7 +534,7 @@
             {
                 "name": "SMTP",
                 "apiName": "smtp",
-                "version": "2.4.2"
+                "version": "2.4.3"
             },
             {
                 "name": "SSH",
@@ -612,7 +569,7 @@
             {
                 "name": "Utilities",
                 "apiName": "cyops_utilities",
-                "version": "3.2.0"
+                "version": "3.2.1"
             },
             {
                 "name": "VirusTotal",
@@ -627,13 +584,23 @@
         ],
         "widgets": [
             {
+                "apiName": "userAssignments",
+                "name": "User Tile",
+                "version": "2.0.0"
+            },
+            {
+                "apiName": "recordSummary",
+                "name": "Record Summary",
+                "version": "2.0.0"
+            },
+            {
                 "apiName": "slaCountDownClock",
                 "name": "SLA Count Down Timer",
                 "version": "2.0.0"
             },
             {
-                "apiName": "userAssignments",
-                "name": "User Tile",
+                "apiName": "taskManagement",
+                "name": "Task Management",
                 "version": "2.0.0"
             },
             {
