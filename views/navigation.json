@@ -5,311 +5,122 @@
     "config": {
         "navigation": [
             {
-                "title": "Dashboard",
-                "icon": "icon icon-dashboard",
-                "require": {
-                    "module": "dashboard",
-                    "action": "read"
-                },
-                "state": {
-                    "name": "main.dashboard",
-                    "parameters": []
-                },
-                "editMode": false
-            },
-            {
                 "title": "Incident Response",
                 "icon": "icon icon-incident-response",
                 "items": [
                     {
-                        "title": "Alerts",
                         "icon": "icon icon-alert",
-                        "require": {
-                            "module": "alerts",
-                            "action": "read"
-                        },
                         "state": {
                             "name": "main.modules.list",
                             "parameters": {
                                 "module": "alerts"
                             }
                         },
-                        "editMode": false
+                        "title": "Alerts",
+                        "require": {
+                            "action": "read",
+                            "module": "alerts"
+                        },
+                        "editMode": false,
+                        "open": false,
+                        "isEnabled": false,
+                        "openStatus": false
                     },
                     {
-                        "title": "Incidents",
                         "icon": "icon icon-incidents",
-                        "require": {
-                            "module": "incidents",
-                            "action": "read"
-                        },
                         "state": {
                             "name": "main.modules.list",
                             "parameters": {
                                 "module": "incidents"
                             }
                         },
-                        "editMode": false
+                        "title": "Incidents",
+                        "require": {
+                            "action": "read",
+                            "module": "incidents"
+                        },
+                        "editMode": false,
+                        "open": false,
+                        "isEnabled": false,
+                        "openStatus": false
                     },
                     {
-                        "title": "Tasks",
-                        "require": {
-                            "module": "tasks",
-                            "action": "read"
-                        },
+                        "icon": "icon icon-tasks",
                         "state": {
                             "name": "main.modules.list",
                             "parameters": {
                                 "module": "tasks"
                             }
                         },
+                        "title": "Tasks",
+                        "require": {
+                            "action": "read",
+                            "module": "tasks"
+                        },
                         "editMode": false,
-                        "icon": "icon icon-tasks"
+                        "open": false,
+                        "isEnabled": false,
+                        "openStatus": false
                     },
                     {
-                        "title": "Indicators",
                         "icon": "icon icon-indicators",
-                        "require": {
-                            "module": "indicators",
-                            "action": "read"
-                        },
                         "state": {
                             "name": "main.modules.list",
                             "parameters": {
                                 "module": "indicators"
                             }
                         },
-                        "editMode": false
+                        "title": "Indicators",
+                        "require": {
+                            "action": "read",
+                            "module": "indicators"
+                        },
+                        "editMode": false,
+                        "open": false,
+                        "isEnabled": false,
+                        "openStatus": false
                     },
                     {
-                        "title": "Emails",
-                        "require": {
-                            "module": "emails",
-                            "action": "read"
-                        },
-                        "state": {
-                            "name": "main.modules.list",
-                            "parameters": {
-                                "module": "emails"
-                            }
-                        },
-                        "icon": "icon icon-send-email",
-                        "editMode": false
-                    },
-                    {
-                        "title": "War Rooms",
-                        "require": {
-                            "module": "warrooms",
-                            "action": "read"
-                        },
-                        "state": {
-                            "name": "main.modules.list",
-                            "parameters": {
-                                "module": "warrooms"
-                            }
-                        },
-                        "icon": "icon icon-war-room",
-                        "editMode": false
-                    }
-                ],
-                "editMode": false
-            },
-            {
-                "title": "Vulnerability Management",
-                "icon": "icon icon-vulnerability-management",
-                "items": [
-                    {
-                        "title": "Vulnerabilities",
-                        "icon": "icon icon-vulnerability",
-                        "require": {
-                            "module": "vulnerabilities",
-                            "action": "read"
-                        },
-                        "state": {
-                            "name": "main.modules.list",
-                            "parameters": {
-                                "module": "vulnerabilities"
-                            }
-                        },
-                        "editMode": false
-                    },
-                    {
-                        "title": "Assets",
-                        "icon": "icon icon-assets",
-                        "require": {
-                            "module": "assets",
-                            "action": "read"
-                        },
-                        "state": {
-                            "name": "main.modules.list",
-                            "parameters": {
-                                "module": "assets"
-                            }
-                        },
-                        "editMode": false
-                    },
-                    {
-                        "title": "Scans",
-                        "icon": "icon icon-scans",
-                        "require": {
-                            "module": "scans",
-                            "action": "read"
-                        },
-                        "state": {
-                            "name": "main.modules.list",
-                            "parameters": {
-                                "module": "scans"
-                            }
-                        },
-                        "editMode": false
-                    }
-                ],
-                "editMode": false
-            },
-            {
-                "title": "Automation",
-                "icon": "icon icon-automation",
-                "items": [
-                    {
-                        "title": "Playbooks",
-                        "icon": "icon icon-playbooks",
-                        "require": {
-                            "module": "workflows",
-                            "action": "read"
-                        },
-                        "state": {
-                            "name": "main.workflow"
-                        },
-                        "editMode": false
-                    },
-                    {
-                        "title": "Data Ingestion",
-                        "icon": "icon icon-updates",
-                        "require": {
-                            "module": "connectors",
-                            "action": "read"
-                        },
-                        "state": {
-                            "name": "main.dataIngestion"
-                        },
-                        "editMode": false
-                    },
-                    {
-                        "title": "Assignment",
-                        "icon": "icon icon-queue-members",
-                        "require": {
-                            "module": "fsr_queues",
-                            "action": "read"
-                        },
-                        "state": {
-                            "name": "main.assignment_automation_entry"
-                        },
-                        "editMode": false
-                    },
-                    {
-                        "title": "Schedules",
-                        "require": {
-                            "module": "schedules",
-                            "action": "read"
-                        },
-                        "state": {
-                            "name": "main.schedules"
-                        },
-                        "icon": "icon icon-schedules",
-                        "editMode": false
-                    },
-                    {
-                        "title": "SLA Templates",
-                        "require": {
-                            "module": "sla_template",
-                            "action": "read"
-                        },
+                        "icon": "fa fa-clock-o",
                         "state": {
                             "name": "main.modules.list",
                             "parameters": {
                                 "module": "sla_template"
                             }
                         },
-                        "icon": "fa fa-clock-o",
-                        "editMode": false
-                    }
-                ],
-                "editMode": false
-            },
-            {
-                "title": "Resources",
-                "icon": "icon icon-resources",
-                "items": [
-                    {
-                        "title": "Attachments",
-                        "icon": "icon icon-attachments",
+                        "title": "SLA Templates",
                         "require": {
-                            "module": "attachments",
-                            "action": "read"
-                        },
-                        "state": {
-                            "name": "main.modules.list",
-                            "parameters": {
-                                "module": "attachments"
-                            }
-                        },
-                        "editMode": false
-                    },
-                    {
-                        "title": "Email Templates",
-                        "require": {
-                            "module": "email_templates",
-                            "action": "read"
-                        },
-                        "state": {
-                            "name": "main.modules.list",
-                            "parameters": {
-                                "module": "email_templates"
-                            }
+                            "action": "read",
+                            "module": "sla_template"
                         },
                         "editMode": false,
-                        "icon": "icon icon-email-templates"
+                        "open": false,
+                        "isEnabled": false,
+                        "openStatus": false
+                    },
+                    {
+                        "icon": "icon icon-war-room",
+                        "state": {
+                            "name": "main.modules.list",
+                            "parameters": {
+                                "module": "warrooms"
+                            }
+                        },
+                        "title": "War Rooms",
+                        "require": {
+                            "action": "read",
+                            "module": "warrooms"
+                        },
+                        "editMode": false,
+                        "open": false,
+                        "isEnabled": false,
+                        "openStatus": false
                     }
                 ],
-                "editMode": false
-            },
-            {
-                "title": "Reports",
-                "icon": "icon icon-reports",
-                "require": {
-                    "module": "reporting",
-                    "action": "read"
-                },
-                "state": {
-                    "name": "main.reporting",
-                    "parameters": []
-                },
-                "editMode": false
-            },
-            {
-                "title": "Marketplace",
-                "icon": "fa fa-cart-plus",
-                "require": {
-                    "module": "marketplace",
-                    "action": "read"
-                },
-                "state": {
-                    "name": "main.marketplace"
-                },
-                "editMode": false
-            },
-            {
-                "title": "Help",
-                "state": {
-                    "name": "main.pages",
-                    "parameters": {
-                        "module": "help"
-                    }
-                },
-                "openInNewTab": true,
-                "url": "https:\/\/docs.fortinet.com\/product\/fortisoar",
-                "icon": "icon icon-help",
-                "editMode": false
+                "editMode": false,
+                "open": false,
+                "isEnabled": false,
+                "openStatus": false
             }
         ]
     },
