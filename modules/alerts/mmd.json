@@ -1,6 +1,6 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
+    "@id": "\/api\/3\/staging_model_metadatas\/6b43797d-331c-4fb3-9946-4a3cd4b8cb37",
     "@type": "StagingModelMetadata",
     "type": "alerts",
     "parentType": null,
@@ -26,52 +26,150 @@
     "writable": true,
     "attributes": [
         {
-            "@id": "\/api\/3\/attribute_metadatas\/f095d995-0047-4ab2-86b1-38af4655d159",
+            "@id": "\/api\/3\/attribute_metadatas\/cf0e4cfb-e1f8-4d7a-9ab7-85d84ebdf60d",
             "@type": "AttributeMetadata",
             "type": "string",
-            "name": "uuid",
-            "length": 36,
-            "orderIndex": 92,
-            "formType": null,
+            "name": "destinationID",
+            "length": 0,
+            "orderIndex": 42,
+            "formType": "text",
             "dataSource": [],
             "searchable": false,
             "peerReplicable": true,
-            "system": true,
+            "system": false,
             "encrypted": false,
             "gridColumn": false,
             "collection": false,
             "inversedField": null,
             "ownsRelationship": false,
             "validation": {
-                "required": false
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
             },
             "bulkAction": {
-                "allow": false
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
             },
             "dataSourceFilters": [],
             "defaultValue": "",
             "tooltip": "",
             "visibility": true,
             "htmlEscape": false,
-            "orphanRemoval": null,
+            "orphanRemoval": false,
             "readable": true,
             "writeable": true,
-            "identifier": true,
+            "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "f095d995-0047-4ab2-86b1-38af4655d159",
+            "uuid": "cf0e4cfb-e1f8-4d7a-9ab7-85d84ebdf60d",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
             ],
-            "displayName": "{{ uuid }}",
+            "displayName": "{{ destinationID }}",
             "descriptions": {
-                "singular": "UUID"
+                "singular": "Destination ID"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/6d3a913f-6d44-4e5e-a5d2-0d12c9fc3828",
+            "@id": "\/api\/3\/attribute_metadatas\/5e9971cd-6059-4ce5-8640-ced9f782d72c",
+            "@type": "AttributeMetadata",
+            "type": "hunt",
+            "name": "hunts",
+            "length": 0,
+            "orderIndex": 62,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "hunt"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "alerts",
+            "ownsRelationship": true,
+            "validation": {
+                "required": false,
+                "_enableRange": false,
+                "minlength": 0,
+                "maxlength": -1
+            },
+            "bulkAction": [],
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "uuid": "5e9971cd-6059-4ce5-8640-ced9f782d72c",
+            "recordTags": [
+                "FSRSolutionPack",
+                "sOARFramework-1.0.0"
+            ],
+            "displayName": "{{ hunts }}",
+            "descriptions": {
+                "singular": "Hunts"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/dc0ac15f-a785-4ec3-9a88-c0bd421fecc3",
+            "@type": "AttributeMetadata",
+            "type": "communication",
+            "name": "communications",
+            "length": 0,
+            "orderIndex": 10,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "communication"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "alerts",
+            "ownsRelationship": true,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": [],
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "uuid": "dc0ac15f-a785-4ec3-9a88-c0bd421fecc3",
+            "recordTags": [
+                "FSRSolutionPack",
+                "sOARFramework-1.0.0"
+            ],
+            "displayName": "{{ communications }}",
+            "descriptions": {
+                "singular": "Communications"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/19e388a4-d90e-4c2a-9fa5-59d0498a690e",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "emailClassification",
@@ -167,8 +265,7 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "6d3a913f-6d44-4e5e-a5d2-0d12c9fc3828",
+            "uuid": "19e388a4-d90e-4c2a-9fa5-59d0498a690e",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -179,7 +276,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/63c8afdf-3c13-452c-8b60-025bad81fbf4",
+            "@id": "\/api\/3\/attribute_metadatas\/8876f9fe-1fe6-4108-9bc5-99500c9a83bb",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "vulnerabilitySeverity",
@@ -217,8 +314,7 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "63c8afdf-3c13-452c-8b60-025bad81fbf4",
+            "uuid": "8876f9fe-1fe6-4108-9bc5-99500c9a83bb",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -229,7 +325,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/53e515f6-9bbb-4cb6-8055-4f74074844ca",
+            "@id": "\/api\/3\/attribute_metadatas\/931f806c-20c4-4117-9d2a-47bee53d8fa0",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "ackSLApausedon",
@@ -268,8 +364,7 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "53e515f6-9bbb-4cb6-8055-4f74074844ca",
+            "uuid": "931f806c-20c4-4117-9d2a-47bee53d8fa0",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -280,7 +375,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/66aff3b4-f007-4ba5-9254-14768f52faa1",
+            "@id": "\/api\/3\/attribute_metadatas\/2233fe11-eade-47d2-9732-e607df69f228",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "alertRemainingRespSLA",
@@ -318,8 +413,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "66aff3b4-f007-4ba5-9254-14768f52faa1",
+            "uuid": "2233fe11-eade-47d2-9732-e607df69f228",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -330,7 +424,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/b80c537e-0b58-4bb5-8251-02e7d9406b6c",
+            "@id": "\/api\/3\/attribute_metadatas\/58e54c55-be6c-4469-bc8a-16a2e53f44b1",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "alertRemainingAckSLA",
@@ -368,8 +462,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "b80c537e-0b58-4bb5-8251-02e7d9406b6c",
+            "uuid": "58e54c55-be6c-4469-bc8a-16a2e53f44b1",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -380,7 +473,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/034838a4-77e7-4ea4-b1a7-fa9ccde5768b",
+            "@id": "\/api\/3\/attribute_metadatas\/ac861e41-8087-44fe-9c17-5b07774c840f",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "deviceSerialNo",
@@ -437,8 +530,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "034838a4-77e7-4ea4-b1a7-fa9ccde5768b",
+            "uuid": "ac861e41-8087-44fe-9c17-5b07774c840f",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -449,7 +541,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/b7f2d082-45d6-442f-8d9c-a11bdd31819d",
+            "@id": "\/api\/3\/attribute_metadatas\/82bf7a9e-3b5c-473b-8d5e-91665d2d3ae8",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "deviceOwner",
@@ -506,8 +598,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "b7f2d082-45d6-442f-8d9c-a11bdd31819d",
+            "uuid": "82bf7a9e-3b5c-473b-8d5e-91665d2d3ae8",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -518,7 +609,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/2084fc51-818e-4035-ad7a-6b99a931f36b",
+            "@id": "\/api\/3\/attribute_metadatas\/54001884-4a28-4c9b-8f42-5aa40779eb9c",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "deviceType",
@@ -643,8 +734,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "2084fc51-818e-4035-ad7a-6b99a931f36b",
+            "uuid": "54001884-4a28-4c9b-8f42-5aa40779eb9c",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -655,7 +745,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/ddd99d3c-4346-4c97-a428-0ca99ce90048",
+            "@id": "\/api\/3\/attribute_metadatas\/615246b3-a8ee-4278-8916-2cadd4fb45b1",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "priorityWeight",
@@ -694,8 +784,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "ddd99d3c-4346-4c97-a428-0ca99ce90048",
+            "uuid": "615246b3-a8ee-4278-8916-2cadd4fb45b1",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -706,7 +795,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/5731cca7-69bc-4c6c-9d91-7d6a4ca207cd",
+            "@id": "\/api\/3\/attribute_metadatas\/23d3b9d5-9e56-4e3b-9b8d-db293e72cd52",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "bucketName",
@@ -763,8 +852,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "5731cca7-69bc-4c6c-9d91-7d6a4ca207cd",
+            "uuid": "23d3b9d5-9e56-4e3b-9b8d-db293e72cd52",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -775,7 +863,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/6d67757c-b024-43dd-9d7f-b8750c566567",
+            "@id": "\/api\/3\/attribute_metadatas\/be58c82a-5705-41d1-8fbd-02eef37aeaf0",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "alertDetectionDate",
@@ -828,8 +916,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "6d67757c-b024-43dd-9d7f-b8750c566567",
+            "uuid": "be58c82a-5705-41d1-8fbd-02eef37aeaf0",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -840,7 +927,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/f6d7035c-5306-4fab-9fb4-c4c742aff009",
+            "@id": "\/api\/3\/attribute_metadatas\/71efa099-bd8d-41f1-8b86-7cb4762c4dac",
             "@type": "AttributeMetadata",
             "type": "campaigns",
             "name": "campaigns",
@@ -876,8 +963,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "f6d7035c-5306-4fab-9fb4-c4c742aff009",
+            "uuid": "71efa099-bd8d-41f1-8b86-7cb4762c4dac",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -888,153 +974,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/56ead804-f6ba-472d-bae2-93ff5660e85e",
-            "@type": "AttributeMetadata",
-            "type": "string",
-            "name": "destinationID",
-            "length": 0,
-            "orderIndex": 42,
-            "formType": "text",
-            "dataSource": [],
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": false,
-            "inversedField": null,
-            "ownsRelationship": false,
-            "validation": {
-                "required": false,
-                "minlength": 0,
-                "maxlength": 10485761,
-                "_enableRange": false
-            },
-            "bulkAction": {
-                "allow": false,
-                "buttonText": "",
-                "buttonIcon": "",
-                "buttonClass": "btn btn-default btn-sm"
-            },
-            "dataSourceFilters": [],
-            "defaultValue": "",
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "56ead804-f6ba-472d-bae2-93ff5660e85e",
-            "recordTags": [
-                "FSRSolutionPack",
-                "sOARFramework-1.0.0"
-            ],
-            "displayName": "{{ destinationID }}",
-            "descriptions": {
-                "singular": "Destination ID"
-            }
-        },
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/1644fcc5-a7be-4806-ae0c-9759dd9d009a",
-            "@type": "AttributeMetadata",
-            "type": "hunt",
-            "name": "hunts",
-            "length": 0,
-            "orderIndex": 62,
-            "formType": "manyToMany",
-            "dataSource": {
-                "model": "hunt"
-            },
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": true,
-            "inversedField": "alerts",
-            "ownsRelationship": true,
-            "validation": {
-                "required": false,
-                "_enableRange": false,
-                "minlength": 0,
-                "maxlength": -1
-            },
-            "bulkAction": [],
-            "dataSourceFilters": [],
-            "defaultValue": null,
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "1644fcc5-a7be-4806-ae0c-9759dd9d009a",
-            "recordTags": [
-                "FSRSolutionPack",
-                "sOARFramework-1.0.0"
-            ],
-            "displayName": "{{ hunts }}",
-            "descriptions": {
-                "singular": "Hunts"
-            }
-        },
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/2a0d6ebb-9ae3-4b05-907c-c951fa52c7c7",
-            "@type": "AttributeMetadata",
-            "type": "communication",
-            "name": "communications",
-            "length": 0,
-            "orderIndex": 10,
-            "formType": "manyToMany",
-            "dataSource": {
-                "model": "communication"
-            },
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": true,
-            "inversedField": "alerts",
-            "ownsRelationship": true,
-            "validation": {
-                "required": false,
-                "minlength": 0,
-                "maxlength": 10485761
-            },
-            "bulkAction": [],
-            "dataSourceFilters": [],
-            "defaultValue": null,
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "2a0d6ebb-9ae3-4b05-907c-c951fa52c7c7",
-            "recordTags": [
-                "FSRSolutionPack",
-                "sOARFramework-1.0.0"
-            ],
-            "displayName": "{{ communications }}",
-            "descriptions": {
-                "singular": "Communications"
-            }
-        },
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/a95dd2f8-4931-41c7-8da0-8a9f55ad6df7",
+            "@id": "\/api\/3\/attribute_metadatas\/82ab0420-22eb-40b4-913e-b7227278fccd",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "respSLApausedon",
@@ -1073,8 +1013,7 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "a95dd2f8-4931-41c7-8da0-8a9f55ad6df7",
+            "uuid": "82ab0420-22eb-40b4-913e-b7227278fccd",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -1085,7 +1024,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/17dcfc0b-a711-4ef6-a3ee-b489b0e3bb51",
+            "@id": "\/api\/3\/attribute_metadatas\/5bb9801d-c820-4c16-bba1-85983e16d435",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "mitreattackid",
@@ -1139,8 +1078,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "17dcfc0b-a711-4ef6-a3ee-b489b0e3bb51",
+            "uuid": "5bb9801d-c820-4c16-bba1-85983e16d435",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -1151,7 +1089,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/6ea2ccdf-df93-4b84-b7bc-dc5cef11fe24",
+            "@id": "\/api\/3\/attribute_metadatas\/dd7911b5-3e23-43b8-a352-c8098aa7c410",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "mitreTechnique",
@@ -1214,8 +1152,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "6ea2ccdf-df93-4b84-b7bc-dc5cef11fe24",
+            "uuid": "dd7911b5-3e23-43b8-a352-c8098aa7c410",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -1226,7 +1163,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/f3e31779-69d3-4041-b832-e93479188f4e",
+            "@id": "\/api\/3\/attribute_metadatas\/013c3c28-339a-47e1-acc6-cb17c3a6f215",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "respDate",
@@ -1264,8 +1201,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "f3e31779-69d3-4041-b832-e93479188f4e",
+            "uuid": "013c3c28-339a-47e1-acc6-cb17c3a6f215",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -1276,7 +1212,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/9f9aba90-b8b9-40e2-8b16-6c6e866fea1c",
+            "@id": "\/api\/3\/attribute_metadatas\/3fe69204-3619-44f3-8c58-55cefd8eb8f4",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "ackDate",
@@ -1314,8 +1250,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "9f9aba90-b8b9-40e2-8b16-6c6e866fea1c",
+            "uuid": "3fe69204-3619-44f3-8c58-55cefd8eb8f4",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -1326,7 +1261,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/0f844349-2f57-4cda-9eb6-43ce8b115841",
+            "@id": "\/api\/3\/attribute_metadatas\/0d889895-3fa3-426a-9eb0-83b1f74a3069",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "ackSlaStatus",
@@ -1405,8 +1340,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "0f844349-2f57-4cda-9eb6-43ce8b115841",
+            "uuid": "0d889895-3fa3-426a-9eb0-83b1f74a3069",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -1417,7 +1351,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/5e330e0a-523f-4d85-a048-4a43714da89a",
+            "@id": "\/api\/3\/attribute_metadatas\/5b7b7356-a710-477c-abed-2c0843309433",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "respSlaStatus",
@@ -1492,8 +1426,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "5e330e0a-523f-4d85-a048-4a43714da89a",
+            "uuid": "5b7b7356-a710-477c-abed-2c0843309433",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -1504,7 +1437,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/63daddcb-513c-45c3-87fe-ff9937bf5c7e",
+            "@id": "\/api\/3\/attribute_metadatas\/cb64b974-75b8-43a6-bb75-6e05cb772609",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "assigneddate",
@@ -1543,8 +1476,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "63daddcb-513c-45c3-87fe-ff9937bf5c7e",
+            "uuid": "cb64b974-75b8-43a6-bb75-6e05cb772609",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -1555,7 +1487,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/6921da45-1e3d-4702-9a7c-916459792ae0",
+            "@id": "\/api\/3\/attribute_metadatas\/b0a16f87-43f4-4a10-831e-41ef9808b773",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "resolveddate",
@@ -1594,8 +1526,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "6921da45-1e3d-4702-9a7c-916459792ae0",
+            "uuid": "b0a16f87-43f4-4a10-831e-41ef9808b773",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -1606,7 +1537,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/fd2cb527-4712-4e0f-add5-caa541d25ee8",
+            "@id": "\/api\/3\/attribute_metadatas\/f8be9eb6-d71b-469e-a7bb-cb86ba6c80ab",
             "@type": "AttributeMetadata",
             "type": "events",
             "name": "events",
@@ -1642,8 +1573,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "fd2cb527-4712-4e0f-add5-caa541d25ee8",
+            "uuid": "f8be9eb6-d71b-469e-a7bb-cb86ba6c80ab",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -1654,7 +1584,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/fcb7e0c2-9955-4996-b1ef-8b50792cc537",
+            "@id": "\/api\/3\/attribute_metadatas\/d5e6291d-3a03-4a2a-b55d-08580ba6b6be",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "computerName",
@@ -1708,8 +1638,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "fcb7e0c2-9955-4996-b1ef-8b50792cc537",
+            "uuid": "d5e6291d-3a03-4a2a-b55d-08580ba6b6be",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -1720,7 +1649,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/a2b78be7-5548-46ff-a9f9-921d2eb70c94",
+            "@id": "\/api\/3\/attribute_metadatas\/91361f25-e5bf-488d-b3c7-d63cd219fd9a",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "closureReason",
@@ -1809,8 +1738,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "a2b78be7-5548-46ff-a9f9-921d2eb70c94",
+            "uuid": "91361f25-e5bf-488d-b3c7-d63cd219fd9a",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -1821,7 +1749,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/f66a51cd-1fa5-4b52-b092-a4923e362100",
+            "@id": "\/api\/3\/attribute_metadatas\/9196739c-16f2-4c2d-a380-03dcaeab1e6f",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "closureNotes",
@@ -1894,8 +1822,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "f66a51cd-1fa5-4b52-b092-a4923e362100",
+            "uuid": "9196739c-16f2-4c2d-a380-03dcaeab1e6f",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -1906,7 +1833,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/2867f84f-70f5-4843-9454-034a8546d811",
+            "@id": "\/api\/3\/attribute_metadatas\/a84616be-8f2d-4ddd-aa70-bfe9d8ad66e2",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "escalatedtoincident",
@@ -1973,8 +1900,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "2867f84f-70f5-4843-9454-034a8546d811",
+            "uuid": "a84616be-8f2d-4ddd-aa70-bfe9d8ad66e2",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -1985,7 +1911,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/bc8c6281-f83c-40ad-a566-56dc3ed6f709",
+            "@id": "\/api\/3\/attribute_metadatas\/21c71215-a489-4f8d-bea3-c4d0f6740a0c",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "escalationReason",
@@ -2058,8 +1984,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "bc8c6281-f83c-40ad-a566-56dc3ed6f709",
+            "uuid": "21c71215-a489-4f8d-bea3-c4d0f6740a0c",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2070,7 +1995,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/5da48d23-3c83-44ec-aaf1-bd25e680dd67",
+            "@id": "\/api\/3\/attribute_metadatas\/efab227e-d420-4021-9e5d-9a92e9f09b31",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "sourceType",
@@ -2109,8 +2034,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "5da48d23-3c83-44ec-aaf1-bd25e680dd67",
+            "uuid": "efab227e-d420-4021-9e5d-9a92e9f09b31",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2121,7 +2045,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/e0301106-eaf3-443d-8c51-c6c03f9a5e1e",
+            "@id": "\/api\/3\/attribute_metadatas\/1dc8442c-12db-4fdf-9f03-252432bca960",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "name",
@@ -2156,8 +2080,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "e0301106-eaf3-443d-8c51-c6c03f9a5e1e",
+            "uuid": "1dc8442c-12db-4fdf-9f03-252432bca960",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2168,7 +2091,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/ee4445ca-61c6-4d45-86af-70c225855587",
+            "@id": "\/api\/3\/attribute_metadatas\/f43c1401-e70d-4b43-b8fe-b239a23363c5",
             "@type": "AttributeMetadata",
             "type": "alerts",
             "name": "alerts",
@@ -2204,8 +2127,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "ee4445ca-61c6-4d45-86af-70c225855587",
+            "uuid": "f43c1401-e70d-4b43-b8fe-b239a23363c5",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2216,7 +2138,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/085d5990-08e0-4300-82c2-9a533350a389",
+            "@id": "\/api\/3\/attribute_metadatas\/0f12ad3f-8e8f-436b-bdff-eae22bbf3931",
             "@type": "AttributeMetadata",
             "type": "assets",
             "name": "assets",
@@ -2254,8 +2176,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "085d5990-08e0-4300-82c2-9a533350a389",
+            "uuid": "0f12ad3f-8e8f-436b-bdff-eae22bbf3931",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2266,7 +2187,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/0aecfa9a-12dc-4e4b-a82f-13430d563cdd",
+            "@id": "\/api\/3\/attribute_metadatas\/a8dddd28-aae0-4e15-ac7c-6d0924664223",
             "@type": "AttributeMetadata",
             "type": "people",
             "name": "assignedTo",
@@ -2307,8 +2228,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "0aecfa9a-12dc-4e4b-a82f-13430d563cdd",
+            "uuid": "a8dddd28-aae0-4e15-ac7c-6d0924664223",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2319,7 +2239,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/feb7b75c-fb2c-4285-96a6-9b91d0d8a893",
+            "@id": "\/api\/3\/attribute_metadatas\/e9bbcdac-efb3-4a33-b402-36f0d9947ba9",
             "@type": "AttributeMetadata",
             "type": "attachments",
             "name": "attachments",
@@ -2357,8 +2277,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "feb7b75c-fb2c-4285-96a6-9b91d0d8a893",
+            "uuid": "e9bbcdac-efb3-4a33-b402-36f0d9947ba9",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2369,7 +2288,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/4fdd024a-515f-4507-a145-76f9175850c7",
+            "@id": "\/api\/3\/attribute_metadatas\/f2752006-6f62-45e1-96ff-0e2794c183a5",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "attachmentNames",
@@ -2423,8 +2342,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "4fdd024a-515f-4507-a145-76f9175850c7",
+            "uuid": "f2752006-6f62-45e1-96ff-0e2794c183a5",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2435,7 +2353,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/e0209503-3f18-42f8-816d-f05b6fbedc4e",
+            "@id": "\/api\/3\/attribute_metadatas\/8ddee063-4926-48b0-9bde-2b3cd16168f4",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "bytesTransferred",
@@ -2489,8 +2407,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "e0209503-3f18-42f8-816d-f05b6fbedc4e",
+            "uuid": "8ddee063-4926-48b0-9bde-2b3cd16168f4",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2501,7 +2418,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/735eb665-ec40-4efa-9557-44e25d55151c",
+            "@id": "\/api\/3\/attribute_metadatas\/67c11ade-0019-4cf3-b57d-8886625b8c71",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "commandLine",
@@ -2555,8 +2472,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "735eb665-ec40-4efa-9557-44e25d55151c",
+            "uuid": "67c11ade-0019-4cf3-b57d-8886625b8c71",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2567,7 +2483,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/85be1e0a-d7e1-4609-b3b4-23744083987d",
+            "@id": "\/api\/3\/attribute_metadatas\/beae29e4-4601-4890-9122-bf9932c70e3e",
             "@type": "AttributeMetadata",
             "type": "comments",
             "name": "comments",
@@ -2605,8 +2521,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "85be1e0a-d7e1-4609-b3b4-23744083987d",
+            "uuid": "beae29e4-4601-4890-9122-bf9932c70e3e",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2617,7 +2532,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/c3d4b3c9-b396-4a42-aa13-54389767083e",
+            "@id": "\/api\/3\/attribute_metadatas\/92b5607c-dce2-41fa-a439-47eccf4b57b6",
             "@type": "AttributeMetadata",
             "type": "companies",
             "name": "companies",
@@ -2655,8 +2570,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "c3d4b3c9-b396-4a42-aa13-54389767083e",
+            "uuid": "92b5607c-dce2-41fa-a439-47eccf4b57b6",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2667,7 +2581,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/681e2e94-78b4-4221-976d-92b5eabfffc0",
+            "@id": "\/api\/3\/attribute_metadatas\/3ae6d559-2bff-4029-95df-01e02811bf28",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "decodedCommandLine",
@@ -2721,8 +2635,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "681e2e94-78b4-4221-976d-92b5eabfffc0",
+            "uuid": "3ae6d559-2bff-4029-95df-01e02811bf28",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2733,7 +2646,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/8860e6ce-ad48-4065-bd55-19dce313ce73",
+            "@id": "\/api\/3\/attribute_metadatas\/8921be50-fa63-4bb5-802a-66928729ff0c",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "description",
@@ -2769,8 +2682,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "8860e6ce-ad48-4065-bd55-19dce313ce73",
+            "uuid": "8921be50-fa63-4bb5-802a-66928729ff0c",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2781,7 +2693,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/3b2dfd99-36b7-4024-812d-2924bc85c257",
+            "@id": "\/api\/3\/attribute_metadatas\/73541e0f-803d-44bc-ad42-2dff58d54ac0",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "destinationIp",
@@ -2834,8 +2746,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "3b2dfd99-36b7-4024-812d-2924bc85c257",
+            "uuid": "73541e0f-803d-44bc-ad42-2dff58d54ac0",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2846,7 +2757,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/a6b3020f-8f9c-4dfb-81fd-ddc07f27a540",
+            "@id": "\/api\/3\/attribute_metadatas\/9229c1ba-0760-47be-b3a5-32fba5a54eea",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "destinationPort",
@@ -2900,8 +2811,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "a6b3020f-8f9c-4dfb-81fd-ddc07f27a540",
+            "uuid": "9229c1ba-0760-47be-b3a5-32fba5a54eea",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2912,7 +2822,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/fed9467b-971e-4473-a8ab-6f58169c2560",
+            "@id": "\/api\/3\/attribute_metadatas\/e9897207-ddff-44ba-a929-7e458038d9c9",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "deviceUID",
@@ -2967,8 +2877,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "fed9467b-971e-4473-a8ab-6f58169c2560",
+            "uuid": "e9897207-ddff-44ba-a929-7e458038d9c9",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -2979,7 +2888,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/4f02b134-c9e9-42a6-b5ca-0b38d5c85cf1",
+            "@id": "\/api\/3\/attribute_metadatas\/d79734e4-a9a8-440a-852c-ab0ca4a95968",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "domain",
@@ -3033,8 +2942,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "4f02b134-c9e9-42a6-b5ca-0b38d5c85cf1",
+            "uuid": "d79734e4-a9a8-440a-852c-ab0ca4a95968",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -3045,7 +2953,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/c2794ae2-a3f6-4498-b084-e7caa6951e5c",
+            "@id": "\/api\/3\/attribute_metadatas\/4be88e6c-f330-49e3-adde-981bed183adc",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "dueBy",
@@ -3081,8 +2989,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "c2794ae2-a3f6-4498-b084-e7caa6951e5c",
+            "uuid": "4be88e6c-f330-49e3-adde-981bed183adc",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -3093,7 +3000,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/9faa95e3-7e6e-43ee-a09a-dd4060444bfb",
+            "@id": "\/api\/3\/attribute_metadatas\/d9d75b02-5eb1-4ab1-8479-ae6779881dd6",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "fileEmail",
@@ -3151,8 +3058,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "9faa95e3-7e6e-43ee-a09a-dd4060444bfb",
+            "uuid": "d9d75b02-5eb1-4ab1-8479-ae6779881dd6",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -3163,55 +3069,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/b0876e85-50ec-4862-9c48-522e7c4a287e",
-            "@type": "AttributeMetadata",
-            "type": "emails",
-            "name": "emails",
-            "length": null,
-            "orderIndex": 47,
-            "formType": "manyToMany",
-            "dataSource": {
-                "model": "emails"
-            },
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": true,
-            "inversedField": "alerts",
-            "ownsRelationship": true,
-            "validation": {
-                "_enableRange": false,
-                "required": false,
-                "minlength": 0,
-                "maxlength": -1
-            },
-            "bulkAction": [],
-            "dataSourceFilters": [],
-            "defaultValue": "",
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "b0876e85-50ec-4862-9c48-522e7c4a287e",
-            "recordTags": [
-                "FSRSolutionPack",
-                "sOARFramework-1.0.0"
-            ],
-            "displayName": "{{ emails }}",
-            "descriptions": {
-                "singular": "Emails"
-            }
-        },
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/c5e7679c-7b83-4ec2-9c0e-2c4a306de1bd",
+            "@id": "\/api\/3\/attribute_metadatas\/0e695049-a450-485a-b8a8-bf0b3b79e089",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "emailBody",
@@ -3287,8 +3145,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "c5e7679c-7b83-4ec2-9c0e-2c4a306de1bd",
+            "uuid": "0e695049-a450-485a-b8a8-bf0b3b79e089",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -3299,7 +3156,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/48983534-7d01-4125-963a-b3ebf59a7d9d",
+            "@id": "\/api\/3\/attribute_metadatas\/cf4df98a-1b56-4964-8a12-78cf711b907f",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "emailFrom",
@@ -3362,8 +3219,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "48983534-7d01-4125-963a-b3ebf59a7d9d",
+            "uuid": "cf4df98a-1b56-4964-8a12-78cf711b907f",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -3374,7 +3230,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/52a84b46-3c64-4395-b019-2d9f0c91c3b1",
+            "@id": "\/api\/3\/attribute_metadatas\/991801b4-2df2-41ab-b355-d1707bcffc0e",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "emailHeaders",
@@ -3450,8 +3306,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "52a84b46-3c64-4395-b019-2d9f0c91c3b1",
+            "uuid": "991801b4-2df2-41ab-b355-d1707bcffc0e",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -3462,7 +3317,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/91dd44ec-96c9-4f26-95d6-003404db489f",
+            "@id": "\/api\/3\/attribute_metadatas\/eba050da-cd22-4bcb-9fe8-056f22489102",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "emailTo",
@@ -3526,8 +3381,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "91dd44ec-96c9-4f26-95d6-003404db489f",
+            "uuid": "eba050da-cd22-4bcb-9fe8-056f22489102",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -3538,7 +3392,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/bb456184-22cc-49f3-96d1-c697038de9c1",
+            "@id": "\/api\/3\/attribute_metadatas\/40c0dbb0-f94a-4cd1-83f0-e779965559be",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "emailSubject",
@@ -3602,8 +3456,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "bb456184-22cc-49f3-96d1-c697038de9c1",
+            "uuid": "40c0dbb0-f94a-4cd1-83f0-e779965559be",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -3614,7 +3467,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/f6b5dac7-b3ce-481c-b587-a03af1b7f66d",
+            "@id": "\/api\/3\/attribute_metadatas\/40d4dee0-2507-4386-993c-fd9d018b5414",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "epochTime",
@@ -3668,8 +3521,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "f6b5dac7-b3ce-481c-b587-a03af1b7f66d",
+            "uuid": "40d4dee0-2507-4386-993c-fd9d018b5414",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -3680,7 +3532,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/7eb8675f-5b36-480c-ae47-bd879d08465d",
+            "@id": "\/api\/3\/attribute_metadatas\/fa973955-291c-4f2d-b846-3af7eedff9d4",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "eventTime",
@@ -3734,8 +3586,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "7eb8675f-5b36-480c-ae47-bd879d08465d",
+            "uuid": "fa973955-291c-4f2d-b846-3af7eedff9d4",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -3746,7 +3597,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/46e65b8a-2ede-480d-aab3-912b3dbb4e60",
+            "@id": "\/api\/3\/attribute_metadatas\/60e3174b-fb2d-418b-a338-171a8ceada69",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "fileHash",
@@ -3808,8 +3659,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "46e65b8a-2ede-480d-aab3-912b3dbb4e60",
+            "uuid": "60e3174b-fb2d-418b-a338-171a8ceada69",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -3820,7 +3670,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/958e07f3-12f2-4e0a-a319-132e286615a8",
+            "@id": "\/api\/3\/attribute_metadatas\/5e852913-a11c-4803-bf2e-2d60a4fc8085",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "fileName",
@@ -3883,8 +3733,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "958e07f3-12f2-4e0a-a319-132e286615a8",
+            "uuid": "5e852913-a11c-4803-bf2e-2d60a4fc8085",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -3895,7 +3744,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/de3fb7ca-3774-45cc-a905-44f8f8de7d73",
+            "@id": "\/api\/3\/attribute_metadatas\/5bea15e6-0542-460e-b594-fc48a2039109",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "fileNames",
@@ -3958,8 +3807,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "de3fb7ca-3774-45cc-a905-44f8f8de7d73",
+            "uuid": "5bea15e6-0542-460e-b594-fc48a2039109",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -3970,7 +3818,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/744bdfd3-80e7-4427-8a5d-a52579dcd031",
+            "@id": "\/api\/3\/attribute_metadatas\/b2e47625-acb2-482f-8a7e-c83fac2812da",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "filePath",
@@ -4024,8 +3872,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "744bdfd3-80e7-4427-8a5d-a52579dcd031",
+            "uuid": "b2e47625-acb2-482f-8a7e-c83fac2812da",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -4036,7 +3883,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/64105b9f-3733-4c6c-8bf7-d9df89477ac5",
+            "@id": "\/api\/3\/attribute_metadatas\/5309dbc8-715a-44d1-9a60-d080f4d734ed",
             "@type": "AttributeMetadata",
             "type": "incidents",
             "name": "incidents",
@@ -4074,8 +3921,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "64105b9f-3733-4c6c-8bf7-d9df89477ac5",
+            "uuid": "5309dbc8-715a-44d1-9a60-d080f4d734ed",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -4086,7 +3932,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/05528490-b1b2-4162-a0f6-6fdea3794dce",
+            "@id": "\/api\/3\/attribute_metadatas\/33b2abe6-a1bc-406f-88f6-57ecb12858ec",
             "@type": "AttributeMetadata",
             "type": "indicators",
             "name": "indicators",
@@ -4122,8 +3968,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "05528490-b1b2-4162-a0f6-6fdea3794dce",
+            "uuid": "33b2abe6-a1bc-406f-88f6-57ecb12858ec",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -4134,7 +3979,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/127f9e81-2cfb-4b58-b631-22e020f087de",
+            "@id": "\/api\/3\/attribute_metadatas\/7f3a85e3-90de-4cf0-859d-a97f84219a7b",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "killChainPhase",
@@ -4327,8 +4172,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "127f9e81-2cfb-4b58-b631-22e020f087de",
+            "uuid": "7f3a85e3-90de-4cf0-859d-a97f84219a7b",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -4339,7 +4183,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/3e422db4-57e8-4956-852e-21d653a61960",
+            "@id": "\/api\/3\/attribute_metadatas\/b43f34a1-8463-4d67-8281-ccee92bcea10",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "latestLogin",
@@ -4393,8 +4237,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "3e422db4-57e8-4956-852e-21d653a61960",
+            "uuid": "b43f34a1-8463-4d67-8281-ccee92bcea10",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -4405,7 +4248,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/ab2856f1-356a-4bcb-a7b7-e891bb160124",
+            "@id": "\/api\/3\/attribute_metadatas\/1f081176-51fd-42f3-bee6-7e492a58c23e",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "metrics",
@@ -4461,8 +4304,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "ab2856f1-356a-4bcb-a7b7-e891bb160124",
+            "uuid": "1f081176-51fd-42f3-bee6-7e492a58c23e",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -4473,57 +4315,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/9321a42f-ee2d-4df2-9288-52090108d15a",
-            "@type": "AttributeMetadata",
-            "type": "notes",
-            "name": "notes",
-            "length": null,
-            "orderIndex": 67,
-            "formType": "manyToMany",
-            "dataSource": {
-                "model": "notes"
-            },
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": true,
-            "inversedField": "alerts",
-            "ownsRelationship": true,
-            "validation": {
-                "_enableRange": false,
-                "required": false,
-                "minlength": 0,
-                "maxlength": -1
-            },
-            "bulkAction": {
-                "allow": false
-            },
-            "dataSourceFilters": [],
-            "defaultValue": "",
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "9321a42f-ee2d-4df2-9288-52090108d15a",
-            "recordTags": [
-                "FSRSolutionPack",
-                "sOARFramework-1.0.0"
-            ],
-            "displayName": "{{ notes }}",
-            "descriptions": {
-                "singular": "Notes"
-            }
-        },
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/c1d84b68-f611-4353-8cb7-3bf94d5fb14f",
+            "@id": "\/api\/3\/attribute_metadatas\/dfb3054b-3096-4d3e-a929-bffd4c366d51",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "parentProcessCmdLine",
@@ -4577,8 +4369,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "c1d84b68-f611-4353-8cb7-3bf94d5fb14f",
+            "uuid": "dfb3054b-3096-4d3e-a929-bffd4c366d51",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -4589,7 +4380,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/3d46a17b-4af1-4bc5-b1da-39c7d0186d52",
+            "@id": "\/api\/3\/attribute_metadatas\/b4ace0fa-fb50-42d8-aa0d-598e22de3fee",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "parentProcessPid",
@@ -4643,8 +4434,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "3d46a17b-4af1-4bc5-b1da-39c7d0186d52",
+            "uuid": "b4ace0fa-fb50-42d8-aa0d-598e22de3fee",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -4655,7 +4445,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/a10b27d9-4733-4684-8f08-6eb069018381",
+            "@id": "\/api\/3\/attribute_metadatas\/8673923e-e933-4632-ad32-72b9b306c148",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "scheduledTask",
@@ -4709,8 +4499,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "a10b27d9-4733-4684-8f08-6eb069018381",
+            "uuid": "8673923e-e933-4632-ad32-72b9b306c148",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -4721,7 +4510,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/fa8acda9-f9a3-4691-a184-2eff05b5dcaf",
+            "@id": "\/api\/3\/attribute_metadatas\/1f763f23-2c0c-457f-b897-17f4477b425d",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "parentProcessName",
@@ -4782,8 +4571,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "fa8acda9-f9a3-4691-a184-2eff05b5dcaf",
+            "uuid": "1f763f23-2c0c-457f-b897-17f4477b425d",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -4794,7 +4582,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/ac9174b9-4ab0-4245-a6d8-8b3e4e618617",
+            "@id": "\/api\/3\/attribute_metadatas\/e27d87bb-6f35-4adf-b3e8-fad8bea749ef",
             "@type": "AttributeMetadata",
             "type": "people",
             "name": "persons",
@@ -4832,8 +4620,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "ac9174b9-4ab0-4245-a6d8-8b3e4e618617",
+            "uuid": "e27d87bb-6f35-4adf-b3e8-fad8bea749ef",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -4844,7 +4631,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/205b145c-c156-4058-a6b6-4b72fdf7b3fe",
+            "@id": "\/api\/3\/attribute_metadatas\/b3087a9a-cf02-478c-802c-084c44d57e47",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "processGuid",
@@ -4898,8 +4685,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "205b145c-c156-4058-a6b6-4b72fdf7b3fe",
+            "uuid": "b3087a9a-cf02-478c-802c-084c44d57e47",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -4910,7 +4696,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/06d7a881-45ec-4a9c-9066-2fd3a22b3515",
+            "@id": "\/api\/3\/attribute_metadatas\/40a91732-9667-40d9-8b26-209bb7e595e3",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "processId",
@@ -4964,8 +4750,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "06d7a881-45ec-4a9c-9066-2fd3a22b3515",
+            "uuid": "40a91732-9667-40d9-8b26-209bb7e595e3",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -4976,7 +4761,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/1c0264f5-5511-4b66-9e53-20cff8ab08b4",
+            "@id": "\/api\/3\/attribute_metadatas\/8a61a841-9e79-4038-a636-f1807e230c9c",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "processName",
@@ -5030,8 +4815,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "1c0264f5-5511-4b66-9e53-20cff8ab08b4",
+            "uuid": "8a61a841-9e79-4038-a636-f1807e230c9c",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5042,7 +4826,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/34748242-2f6e-4ecc-87a6-ed4ee3d3d15b",
+            "@id": "\/api\/3\/attribute_metadatas\/b0b7a861-503c-4a0c-874c-9e76b8f0c129",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "processTree",
@@ -5096,8 +4880,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "34748242-2f6e-4ecc-87a6-ed4ee3d3d15b",
+            "uuid": "b0b7a861-503c-4a0c-874c-9e76b8f0c129",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5108,7 +4891,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/de3c0e39-0d83-41a8-9941-097afee16d67",
+            "@id": "\/api\/3\/attribute_metadatas\/0fcb588d-f8d2-47ad-8f48-a08194725f96",
             "@type": "AttributeMetadata",
             "type": "integer",
             "name": "respDueDate",
@@ -5146,8 +4929,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "de3c0e39-0d83-41a8-9941-097afee16d67",
+            "uuid": "0fcb588d-f8d2-47ad-8f48-a08194725f96",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5158,7 +4940,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/8c465ee7-eba4-4093-92bf-7adc94118247",
+            "@id": "\/api\/3\/attribute_metadatas\/9c41b2d8-3d6e-4c2a-83fa-c6638f643171",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "sourcedata",
@@ -5197,8 +4979,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "8c465ee7-eba4-4093-92bf-7adc94118247",
+            "uuid": "9c41b2d8-3d6e-4c2a-83fa-c6638f643171",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5209,7 +4990,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/28551c4c-eb36-455e-ab4e-11824709f546",
+            "@id": "\/api\/3\/attribute_metadatas\/ae641030-7ecf-45cd-b3fd-719706228312",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "recipientEmailAddress",
@@ -5264,8 +5045,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "28551c4c-eb36-455e-ab4e-11824709f546",
+            "uuid": "ae641030-7ecf-45cd-b3fd-719706228312",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5276,7 +5056,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/615ee5e3-58b0-4b1a-b35c-cf95e9cc371f",
+            "@id": "\/api\/3\/attribute_metadatas\/1a7dd119-3a49-415b-8b94-1bc6488f9657",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "registryKey",
@@ -5330,8 +5110,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "615ee5e3-58b0-4b1a-b35c-cf95e9cc371f",
+            "uuid": "1a7dd119-3a49-415b-8b94-1bc6488f9657",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5342,7 +5121,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/a6e1e368-3a49-4f21-b13c-a7014d5437d5",
+            "@id": "\/api\/3\/attribute_metadatas\/ed299034-9243-42c1-8bd6-011fb80a84af",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "registryKeyValue",
@@ -5396,8 +5175,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "a6e1e368-3a49-4f21-b13c-a7014d5437d5",
+            "uuid": "ed299034-9243-42c1-8bd6-011fb80a84af",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5408,7 +5186,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/93983642-98c7-4dd2-9962-f432bd2b98e9",
+            "@id": "\/api\/3\/attribute_metadatas\/ac0e6675-0625-4708-b24a-bf1511f9aca6",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "reporter",
@@ -5473,8 +5251,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "93983642-98c7-4dd2-9962-f432bd2b98e9",
+            "uuid": "ac0e6675-0625-4708-b24a-bf1511f9aca6",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5485,7 +5262,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/990d9772-49ee-45fb-9122-26b0c69f0d3b",
+            "@id": "\/api\/3\/attribute_metadatas\/cb4af6ee-f140-4ed0-a7d8-3f05ebbce300",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "reporterEmailBody",
@@ -5552,8 +5329,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "990d9772-49ee-45fb-9122-26b0c69f0d3b",
+            "uuid": "cb4af6ee-f140-4ed0-a7d8-3f05ebbce300",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5564,7 +5340,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/875ee326-05f9-486d-8014-0544293deae5",
+            "@id": "\/api\/3\/attribute_metadatas\/9f9e52b1-ae13-42dc-9282-649cf26005fb",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "returnPath",
@@ -5618,8 +5394,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "875ee326-05f9-486d-8014-0544293deae5",
+            "uuid": "9f9e52b1-ae13-42dc-9282-649cf26005fb",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5630,7 +5405,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/7e560092-639e-4096-af21-e0549fe4de3c",
+            "@id": "\/api\/3\/attribute_metadatas\/49f7569a-c317-4729-863e-579ece08ea3d",
             "@type": "AttributeMetadata",
             "type": "tasks",
             "name": "tasks",
@@ -5647,7 +5422,7 @@
             "gridColumn": false,
             "collection": true,
             "inversedField": "alerts",
-            "ownsRelationship": false,
+            "ownsRelationship": true,
             "validation": {
                 "_enableRange": false,
                 "required": false,
@@ -5666,8 +5441,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "7e560092-639e-4096-af21-e0549fe4de3c",
+            "uuid": "49f7569a-c317-4729-863e-579ece08ea3d",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5678,7 +5452,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/47763ed7-71ad-4850-b603-6587d035d503",
+            "@id": "\/api\/3\/attribute_metadatas\/ebd9da34-baef-4d29-a35a-2538e6b2f044",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "senderDomain",
@@ -5733,8 +5507,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "47763ed7-71ad-4850-b603-6587d035d503",
+            "uuid": "ebd9da34-baef-4d29-a35a-2538e6b2f044",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5745,7 +5518,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/f45517a5-9430-401b-8b5d-8b6c90ba20bc",
+            "@id": "\/api\/3\/attribute_metadatas\/f6811851-7540-4391-886e-c525d4248deb",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "senderEmailAddress",
@@ -5801,8 +5574,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "f45517a5-9430-401b-8b5d-8b6c90ba20bc",
+            "uuid": "f6811851-7540-4391-886e-c525d4248deb",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5813,7 +5585,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/64aaa246-614a-4136-9e6a-474116ff4c37",
+            "@id": "\/api\/3\/attribute_metadatas\/054d9e03-0c28-44af-b1b7-c5171d8f41de",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "services",
@@ -5867,8 +5639,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "64aaa246-614a-4136-9e6a-474116ff4c37",
+            "uuid": "054d9e03-0c28-44af-b1b7-c5171d8f41de",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5879,7 +5650,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/f0eab8ed-a71c-4e5a-951f-dae8b99b08ff",
+            "@id": "\/api\/3\/attribute_metadatas\/a30f88a9-c010-4da4-96a7-6275a590e2fe",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "severity",
@@ -5958,8 +5729,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "f0eab8ed-a71c-4e5a-951f-dae8b99b08ff",
+            "uuid": "a30f88a9-c010-4da4-96a7-6275a590e2fe",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -5970,7 +5740,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/cb9e0c0c-9e47-44d0-b4f5-05d4f7a3aaeb",
+            "@id": "\/api\/3\/attribute_metadatas\/e0f9e074-e7f1-462f-b698-f4de64308791",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "source",
@@ -6005,8 +5775,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "cb9e0c0c-9e47-44d0-b4f5-05d4f7a3aaeb",
+            "uuid": "e0f9e074-e7f1-462f-b698-f4de64308791",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -6017,7 +5786,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/1a68d2d6-fb83-460d-953d-c49e142aadcf",
+            "@id": "\/api\/3\/attribute_metadatas\/c0e6c649-1e46-449f-a356-86606efab233",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "sourceId",
@@ -6052,8 +5821,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "1a68d2d6-fb83-460d-953d-c49e142aadcf",
+            "uuid": "c0e6c649-1e46-449f-a356-86606efab233",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -6064,7 +5832,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/5cc41511-fb17-405c-95d8-c31e735004dd",
+            "@id": "\/api\/3\/attribute_metadatas\/9dcbc48c-fc8f-4a32-9daf-82a7f3674d55",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "sourceIp",
@@ -6135,8 +5903,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "5cc41511-fb17-405c-95d8-c31e735004dd",
+            "uuid": "9dcbc48c-fc8f-4a32-9daf-82a7f3674d55",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -6147,7 +5914,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/a0c60539-88da-455d-8ad5-c73f0d4258d1",
+            "@id": "\/api\/3\/attribute_metadatas\/a70ccc5d-746c-4689-a467-cd51f72420cb",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "sourcePort",
@@ -6201,8 +5968,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "a0c60539-88da-455d-8ad5-c73f0d4258d1",
+            "uuid": "a70ccc5d-746c-4689-a467-cd51f72420cb",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -6213,7 +5979,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/2bc42e1b-d152-4e55-ab4d-1b5ae080143a",
+            "@id": "\/api\/3\/attribute_metadatas\/39b61876-bd50-44bf-b703-6b149f56d13b",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "sourceProcess",
@@ -6267,8 +6033,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "2bc42e1b-d152-4e55-ab4d-1b5ae080143a",
+            "uuid": "39b61876-bd50-44bf-b703-6b149f56d13b",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -6279,7 +6044,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/0bf7e257-68bf-4106-af18-cd2104c9e437",
+            "@id": "\/api\/3\/attribute_metadatas\/c5d3bf1e-2260-4b80-890d-ec989339c129",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "sourceTool",
@@ -6343,8 +6108,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "0bf7e257-68bf-4106-af18-cd2104c9e437",
+            "uuid": "c5d3bf1e-2260-4b80-890d-ec989339c129",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -6355,98 +6119,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/8c2fb291-58e4-4425-a46a-2bff2b788ba3",
-            "@type": "AttributeMetadata",
-            "type": "picklists",
-            "name": "state",
-            "length": 0,
-            "orderIndex": 96,
-            "formType": "picklist",
-            "dataSource": {
-                "displayConditions": {
-                    "2879663c-c1dc-4ef2-84ae-8c67c9353b86": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "501d0562-89a0-4079-9a9e-cdde7d34e3ed": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "89dc3716-1818-4286-ab75-0d49714aea0f": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "a1bac09b-1441-45aa-ad1b-c88744e48e72": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "cf031c4e-3bb9-4f87-91eb-91a5cb1c6d48": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    }
-                },
-                "model": "picklists",
-                "query": {
-                    "filters": [
-                        {
-                            "field": "listName__name",
-                            "operator": "eq",
-                            "value": "AlertState"
-                        }
-                    ],
-                    "logic": "AND",
-                    "sort": [
-                        {
-                            "direction": "ASC",
-                            "field": "orderIndex"
-                        }
-                    ]
-                }
-            },
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": false,
-            "inversedField": null,
-            "ownsRelationship": false,
-            "validation": {
-                "_enableRange": false,
-                "required": false,
-                "minlength": 0,
-                "maxlength": -1
-            },
-            "bulkAction": {
-                "allow": false,
-                "buttonClass": "btn btn-default btn-sm",
-                "buttonIcon": "",
-                "buttonText": ""
-            },
-            "dataSourceFilters": [],
-            "defaultValue": null,
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "8c2fb291-58e4-4425-a46a-2bff2b788ba3",
-            "recordTags": [
-                "FSRSolutionPack",
-                "sOARFramework-1.0.0"
-            ],
-            "displayName": "{{ state }}",
-            "descriptions": {
-                "singular": "State"
-            }
-        },
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/2cb037c9-92d8-4a10-a125-2345becebbe5",
+            "@id": "\/api\/3\/attribute_metadatas\/68368787-e8a2-4de1-97c8-7200b95b3898",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "status",
@@ -6529,8 +6202,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "2cb037c9-92d8-4a10-a125-2345becebbe5",
+            "uuid": "68368787-e8a2-4de1-97c8-7200b95b3898",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -6541,7 +6213,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/e4e1bd31-0acd-4e6a-908b-15497144a798",
+            "@id": "\/api\/3\/attribute_metadatas\/e3584c3f-5e98-4083-89b9-3cb92a19e335",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "targetAsset",
@@ -6605,8 +6277,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "e4e1bd31-0acd-4e6a-908b-15497144a798",
+            "uuid": "e3584c3f-5e98-4083-89b9-3cb92a19e335",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -6617,7 +6288,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/807ca73f-cbc8-41f8-980a-ab95cb399ccb",
+            "@id": "\/api\/3\/attribute_metadatas\/666d7a9a-a120-4c0a-84c6-f3adb3559174",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "targetProcess",
@@ -6671,8 +6342,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "807ca73f-cbc8-41f8-980a-ab95cb399ccb",
+            "uuid": "666d7a9a-a120-4c0a-84c6-f3adb3559174",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -6683,7 +6353,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/4f543488-5cd6-4dbd-a05c-bf4482a9f651",
+            "@id": "\/api\/3\/attribute_metadatas\/5504f4a8-e607-49cd-95d9-18fda00b6c1a",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "type",
@@ -6811,8 +6481,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "4f543488-5cd6-4dbd-a05c-bf4482a9f651",
+            "uuid": "5504f4a8-e607-49cd-95d9-18fda00b6c1a",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -6823,7 +6492,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/317b596b-8a91-4340-b510-87f1829c9fff",
+            "@id": "\/api\/3\/attribute_metadatas\/941779c4-292b-46bf-97d9-ca2e7a29d2b8",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "url",
@@ -6877,8 +6546,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "317b596b-8a91-4340-b510-87f1829c9fff",
+            "uuid": "941779c4-292b-46bf-97d9-ca2e7a29d2b8",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -6889,7 +6557,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/18bd9f79-acc6-43d6-bdc7-0e82051ed8d0",
+            "@id": "\/api\/3\/attribute_metadatas\/c00e2a1a-4239-437f-bbba-ec3c158f61ed",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "userName",
@@ -6943,8 +6611,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "18bd9f79-acc6-43d6-bdc7-0e82051ed8d0",
+            "uuid": "c00e2a1a-4239-437f-bbba-ec3c158f61ed",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -6955,7 +6622,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/33154ab5-02f2-4130-984f-b1b1f286cb57",
+            "@id": "\/api\/3\/attribute_metadatas\/2a2f3ab3-1275-4fba-aca8-2d34cf13f19a",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "userDetails",
@@ -7009,8 +6676,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "33154ab5-02f2-4130-984f-b1b1f286cb57",
+            "uuid": "2a2f3ab3-1275-4fba-aca8-2d34cf13f19a",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -7021,57 +6687,7 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/99dce556-f906-4451-a39b-83ac44d50cc0",
-            "@type": "AttributeMetadata",
-            "type": "vulnerabilities",
-            "name": "vulnerabilities",
-            "length": null,
-            "orderIndex": 107,
-            "formType": "manyToMany",
-            "dataSource": {
-                "model": "vulnerabilities"
-            },
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": true,
-            "inversedField": "alerts",
-            "ownsRelationship": false,
-            "validation": {
-                "_enableRange": false,
-                "required": false,
-                "minlength": 0,
-                "maxlength": -1
-            },
-            "bulkAction": {
-                "allow": false
-            },
-            "dataSourceFilters": [],
-            "defaultValue": "",
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "99dce556-f906-4451-a39b-83ac44d50cc0",
-            "recordTags": [
-                "FSRSolutionPack",
-                "sOARFramework-1.0.0"
-            ],
-            "displayName": "{{ vulnerabilities }}",
-            "descriptions": {
-                "singular": "Vulnerabilities"
-            }
-        },
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/ac2aa75d-01f4-47ec-81a4-3061ed1031eb",
+            "@id": "\/api\/3\/attribute_metadatas\/fa9099c0-4e33-4d1d-ba8d-8edd57806c18",
             "@type": "AttributeMetadata",
             "type": "warrooms",
             "name": "warrooms",
@@ -7106,8 +6722,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "sattrib": "\/api\/3\/staging_model_metadatas\/9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
-            "uuid": "ac2aa75d-01f4-47ec-81a4-3061ed1031eb",
+            "uuid": "fa9099c0-4e33-4d1d-ba8d-8edd57806c18",
             "recordTags": [
                 "FSRSolutionPack",
                 "sOARFramework-1.0.0"
@@ -7115,6 +6730,150 @@
             "displayName": "{{ warrooms }}",
             "descriptions": {
                 "singular": "War Rooms"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/2633199b-df70-4a40-950e-9daf86ba1a66",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "uuid",
+            "length": 36,
+            "orderIndex": 92,
+            "formType": null,
+            "dataSource": [],
+            "searchable": false,
+            "peerReplicable": true,
+            "system": true,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": -1
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": true,
+            "unique": false,
+            "recommend": false,
+            "uuid": "2633199b-df70-4a40-950e-9daf86ba1a66",
+            "recordTags": [
+                "FSRSolutionPack",
+                "sOARFramework-1.0.0"
+            ],
+            "displayName": "{{ uuid }}",
+            "descriptions": {
+                "singular": "UUID"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/316b1616-8152-4bc8-97a2-d1f702f49ad7",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "state",
+            "length": 0,
+            "orderIndex": 96,
+            "formType": "picklist",
+            "dataSource": {
+                "displayConditions": {
+                    "2879663c-c1dc-4ef2-84ae-8c67c9353b86": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "501d0562-89a0-4079-9a9e-cdde7d34e3ed": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "89dc3716-1818-4286-ab75-0d49714aea0f": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "a1bac09b-1441-45aa-ad1b-c88744e48e72": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "cf031c4e-3bb9-4f87-91eb-91a5cb1c6d48": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "8675a07f-2d0d-4e3a-89af-4822b8341df8": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "8ec42be5-e440-4be9-b7e6-5ea087641959": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                },
+                "model": "picklists",
+                "query": {
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "AlertState"
+                        }
+                    ],
+                    "logic": "AND",
+                    "sort": [
+                        {
+                            "direction": "ASC",
+                            "field": "orderIndex"
+                        }
+                    ]
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": false,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "uuid": "316b1616-8152-4bc8-97a2-d1f702f49ad7",
+            "recordTags": [
+                "FSRSolutionPack",
+                "sOARFramework-1.0.0"
+            ],
+            "displayName": "{{ state }}",
+            "descriptions": {
+                "singular": "State"
             }
         }
     ],
@@ -7129,7 +6888,7 @@
         "delete_primary_data_after": 60
     },
     "archivalFilters": [],
-    "uuid": "9a5f8c83-332a-4dee-9550-4bfb6bd0c212",
+    "uuid": "6b43797d-331c-4fb3-9946-4a3cd4b8cb37",
     "recordTags": [
         "FSRSolutionPack",
         "sOARFramework-1.0.0"
