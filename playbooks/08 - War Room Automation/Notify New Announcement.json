@@ -11,10 +11,10 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1645124453,
+    "lastModifyDate": 1646211771,
     "collection": "\/api\/3\/workflow_collections\/c9282ce9-1cef-4e0b-94da-3b84c32381ff",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/bba54cd8-59f5-4f10-ab08-aeb518cbdead",
+    "triggerStep": "\/api\/3\/workflow_steps\/39f3996c-612c-4ce9-aa13-1f44f9ba211a",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -51,7 +51,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
-            "uuid": "bba54cd8-59f5-4f10-ab08-aeb518cbdead"
+            "uuid": "39f3996c-612c-4ce9-aa13-1f44f9ba211a"
         },
         {
             "@type": "WorkflowStep",
@@ -81,7 +81,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
-            "uuid": "ed86cc66-d0b5-4f06-a711-59295e095ddd"
+            "uuid": "9d43f42f-f664-4b3e-9818-fb2b2191cb73"
         },
         {
             "@type": "WorkflowStep",
@@ -102,7 +102,7 @@
             "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "uuid": "7ada8d48-d194-49d9-b1d1-90b12bddb405"
+            "uuid": "87756708-8e52-43cb-b2fd-b6402b134532"
         },
         {
             "@type": "WorkflowStep",
@@ -115,7 +115,7 @@
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "7fa5ac9e-3dd8-4327-b91c-1de63e05b350"
+            "uuid": "15e62621-1870-46f2-81ff-4bdbe56cf4a7"
         },
         {
             "@type": "WorkflowStep",
@@ -134,60 +134,55 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dbf",
-            "uuid": "f1c831a8-1fb3-499d-b3e3-0329dae77ebd"
+            "uuid": "8c789613-77e9-452f-b5b7-d018348ecb93"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Load war room -> Set email body",
-            "targetStep": "\/api\/3\/workflow_steps\/7fa5ac9e-3dd8-4327-b91c-1de63e05b350",
-            "sourceStep": "\/api\/3\/workflow_steps\/ed86cc66-d0b5-4f06-a711-59295e095ddd",
+            "targetStep": "\/api\/3\/workflow_steps\/15e62621-1870-46f2-81ff-4bdbe56cf4a7",
+            "sourceStep": "\/api\/3\/workflow_steps\/9d43f42f-f664-4b3e-9818-fb2b2191cb73",
             "label": null,
             "isExecuted": false,
-            "uuid": "98a838c1-10a7-4ac0-a2d3-fd2d9d83a62f"
+            "uuid": "6bf36b56-8cc6-43d4-ba84-1023c87e5c9f"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Set email body -> Send announcement notification",
-            "targetStep": "\/api\/3\/workflow_steps\/7ada8d48-d194-49d9-b1d1-90b12bddb405",
-            "sourceStep": "\/api\/3\/workflow_steps\/7fa5ac9e-3dd8-4327-b91c-1de63e05b350",
+            "targetStep": "\/api\/3\/workflow_steps\/87756708-8e52-43cb-b2fd-b6402b134532",
+            "sourceStep": "\/api\/3\/workflow_steps\/15e62621-1870-46f2-81ff-4bdbe56cf4a7",
             "label": null,
             "isExecuted": false,
-            "uuid": "eeb0e8fc-3e07-4372-b847-b3cc024ea80a"
+            "uuid": "cb4b45fa-b259-468c-b0b0-fa0a21751b17"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Wait 1 second",
-            "targetStep": "\/api\/3\/workflow_steps\/f1c831a8-1fb3-499d-b3e3-0329dae77ebd",
-            "sourceStep": "\/api\/3\/workflow_steps\/bba54cd8-59f5-4f10-ab08-aeb518cbdead",
+            "targetStep": "\/api\/3\/workflow_steps\/8c789613-77e9-452f-b5b7-d018348ecb93",
+            "sourceStep": "\/api\/3\/workflow_steps\/39f3996c-612c-4ce9-aa13-1f44f9ba211a",
             "label": null,
             "isExecuted": false,
-            "uuid": "507e9726-d6e7-4383-b452-525d1e8f2774"
+            "uuid": "934a393f-2511-423c-8f49-232481104ab6"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Wait 1 second -> Load war room",
-            "targetStep": "\/api\/3\/workflow_steps\/ed86cc66-d0b5-4f06-a711-59295e095ddd",
-            "sourceStep": "\/api\/3\/workflow_steps\/f1c831a8-1fb3-499d-b3e3-0329dae77ebd",
+            "targetStep": "\/api\/3\/workflow_steps\/9d43f42f-f664-4b3e-9818-fb2b2191cb73",
+            "sourceStep": "\/api\/3\/workflow_steps\/8c789613-77e9-452f-b5b7-d018348ecb93",
             "label": null,
             "isExecuted": false,
-            "uuid": "a6fb325e-2194-42b1-b0d7-568e239050ab"
+            "uuid": "305f7122-cc1e-479b-b670-8aa3f4d24ef4"
         }
     ],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
     "uuid": "6c9bf503-da57-4fda-a826-f8ad2250cd66",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
     "recordTags": [
         "system",
         "FSRSolutionPack",
         "sOARFramework-1.0.0"
-    ],
-    "id": "216",
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1645124460.921893,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1645124460.921893,
-    "owners": [],
-    "isPrivate": false,
-    "deletedAt": null
+    ]
 }

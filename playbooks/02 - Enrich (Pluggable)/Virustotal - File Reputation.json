@@ -14,10 +14,10 @@
         "indicator_file_name"
     ],
     "synchronous": false,
-    "lastModifyDate": 1645124453,
+    "lastModifyDate": 1646211771,
     "collection": "\/api\/3\/workflow_collections\/b135c052-e170-4cff-8cc7-9a4bfe607ccb",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/f83f35d6-f661-417f-b146-8f6cf9f3efc8",
+    "triggerStep": "\/api\/3\/workflow_steps\/be5c109b-418d-49e9-812c-5e0ff147b463",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -32,7 +32,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "f6b83b6d-fb85-4a21-bca3-d6c279811bb5"
+            "uuid": "19a675ea-e564-4a68-9710-190ef2ad82fb"
         },
         {
             "@type": "WorkflowStep",
@@ -59,7 +59,7 @@
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "b800901c-499b-4cff-806a-bb45bbd8861b"
+            "uuid": "3048bdf6-3d10-4c3e-a55e-539b2a677386"
         },
         {
             "@type": "WorkflowStep",
@@ -75,7 +75,7 @@
             "top": "705",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "1e179f47-db1d-4ef9-b342-6524510b6d09"
+            "uuid": "21c66b84-9841-4129-a5d1-eb1613e6e3c8"
         },
         {
             "@type": "WorkflowStep",
@@ -109,7 +109,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "e6b3a903-6ecb-45c5-97b5-685abb8c7e21"
+            "uuid": "5647d728-923a-4e72-b169-7ba7644d0c2c"
         },
         {
             "@type": "WorkflowStep",
@@ -126,7 +126,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "f83f35d6-f661-417f-b146-8f6cf9f3efc8"
+            "uuid": "be5c109b-418d-49e9-812c-5e0ff147b463"
         },
         {
             "@type": "WorkflowStep",
@@ -148,69 +148,64 @@
             "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "eb69b03c-789b-4491-9f19-c3c3a6be102d"
+            "uuid": "23605e3c-a709-4998-a1b2-de2610f3574c"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Enrichment Summary -> enrichment_summary",
-            "targetStep": "\/api\/3\/workflow_steps\/1e179f47-db1d-4ef9-b342-6524510b6d09",
-            "sourceStep": "\/api\/3\/workflow_steps\/eb69b03c-789b-4491-9f19-c3c3a6be102d",
+            "targetStep": "\/api\/3\/workflow_steps\/21c66b84-9841-4129-a5d1-eb1613e6e3c8",
+            "sourceStep": "\/api\/3\/workflow_steps\/23605e3c-a709-4998-a1b2-de2610f3574c",
             "label": null,
             "isExecuted": false,
-            "uuid": "b1b2ffb7-9658-4442-8067-bd90cd8ca77d"
+            "uuid": "28f3a398-f5bb-49c4-8f99-22546d14a4ed"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Get File Reputation -> Enrichment Summary",
-            "targetStep": "\/api\/3\/workflow_steps\/eb69b03c-789b-4491-9f19-c3c3a6be102d",
-            "sourceStep": "\/api\/3\/workflow_steps\/b800901c-499b-4cff-806a-bb45bbd8861b",
+            "targetStep": "\/api\/3\/workflow_steps\/23605e3c-a709-4998-a1b2-de2610f3574c",
+            "sourceStep": "\/api\/3\/workflow_steps\/3048bdf6-3d10-4c3e-a55e-539b2a677386",
             "label": null,
             "isExecuted": false,
-            "uuid": "cf557ea2-7dee-4e5c-a6a8-6fe1f18d1bd1"
+            "uuid": "d7c5d18d-7edd-41ce-b7d0-3f3a0b8d3ee4"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Upload file to VirusTotal -> Get File Reputation",
-            "targetStep": "\/api\/3\/workflow_steps\/b800901c-499b-4cff-806a-bb45bbd8861b",
-            "sourceStep": "\/api\/3\/workflow_steps\/e6b3a903-6ecb-45c5-97b5-685abb8c7e21",
+            "targetStep": "\/api\/3\/workflow_steps\/3048bdf6-3d10-4c3e-a55e-539b2a677386",
+            "sourceStep": "\/api\/3\/workflow_steps\/5647d728-923a-4e72-b169-7ba7644d0c2c",
             "label": null,
             "isExecuted": false,
-            "uuid": "a08c7b67-d742-4ba5-9dd0-33bad4ce7d79"
+            "uuid": "6052376b-2c1a-40cc-8f7e-a218d1f8a0b3"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Configuration -> Upload file to VirusTotal",
-            "targetStep": "\/api\/3\/workflow_steps\/e6b3a903-6ecb-45c5-97b5-685abb8c7e21",
-            "sourceStep": "\/api\/3\/workflow_steps\/f6b83b6d-fb85-4a21-bca3-d6c279811bb5",
+            "targetStep": "\/api\/3\/workflow_steps\/5647d728-923a-4e72-b169-7ba7644d0c2c",
+            "sourceStep": "\/api\/3\/workflow_steps\/19a675ea-e564-4a68-9710-190ef2ad82fb",
             "label": null,
             "isExecuted": false,
-            "uuid": "353730ba-fcf0-4a06-be44-715635e5e093"
+            "uuid": "518efac9-fb92-4f21-a9a8-2694417548a8"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/f6b83b6d-fb85-4a21-bca3-d6c279811bb5",
-            "sourceStep": "\/api\/3\/workflow_steps\/f83f35d6-f661-417f-b146-8f6cf9f3efc8",
+            "targetStep": "\/api\/3\/workflow_steps\/19a675ea-e564-4a68-9710-190ef2ad82fb",
+            "sourceStep": "\/api\/3\/workflow_steps\/be5c109b-418d-49e9-812c-5e0ff147b463",
             "label": null,
             "isExecuted": false,
-            "uuid": "575c554e-1920-4093-9c84-a63c97753619"
+            "uuid": "0b52ee99-81f4-4604-ac44-db9ac960895a"
         }
     ],
     "priority": null,
     "uuid": "0e9bf89b-b5c8-49f4-9b03-0dc2c3b4b257",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
     "recordTags": [
         "Subroutine",
         "FSRSolutionPack",
         "sOARFramework-1.0.0"
-    ],
-    "id": "114",
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1645124455.532919,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1645124455.532919,
-    "owners": [],
-    "isPrivate": false,
-    "deletedAt": null
+    ]
 }

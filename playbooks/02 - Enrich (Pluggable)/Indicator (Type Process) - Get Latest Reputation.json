@@ -13,10 +13,10 @@
         "indicator_value"
     ],
     "synchronous": false,
-    "lastModifyDate": 1645124453,
+    "lastModifyDate": 1646211771,
     "collection": "\/api\/3\/workflow_collections\/b135c052-e170-4cff-8cc7-9a4bfe607ccb",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/683a8a73-4f46-4127-ac37-c6033ca373fd",
+    "triggerStep": "\/api\/3\/workflow_steps\/b46f5f24-2eb5-41f3-9218-dd88a0c2f27b",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -69,7 +69,7 @@
             "top": "190",
             "left": "127",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
-            "uuid": "683a8a73-4f46-4127-ac37-c6033ca373fd"
+            "uuid": "b46f5f24-2eb5-41f3-9218-dd88a0c2f27b"
         },
         {
             "@type": "WorkflowStep",
@@ -79,13 +79,13 @@
                 "conditions": [
                     {
                         "option": "Referenced",
-                        "step_iri": "\/api\/3\/workflow_steps\/060fe4c1-750f-4b9c-afe8-3a2ba1164ead",
+                        "step_iri": "\/api\/3\/workflow_steps\/eaa47727-5313-48ea-981e-10bc32e77324",
                         "condition": "{{ vars.input.params['indicator_value'] | length > 0 }}"
                     },
                     {
                         "option": "Upon Create",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/b85213ed-a5d8-41a8-b686-875685e2eb0c"
+                        "step_iri": "\/api\/3\/workflow_steps\/8add55d3-155c-49a7-88ec-2bdb7fea5c37"
                     }
                 ]
             },
@@ -93,7 +93,7 @@
             "top": "187",
             "left": "780",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "9d2a9d89-84ab-422e-8c4a-ba1845447a60"
+            "uuid": "22f73c00-d7e7-42ec-83fc-346f7b414917"
         },
         {
             "@type": "WorkflowStep",
@@ -106,7 +106,7 @@
             "top": "68",
             "left": "1134",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "060fe4c1-750f-4b9c-afe8-3a2ba1164ead"
+            "uuid": "eaa47727-5313-48ea-981e-10bc32e77324"
         },
         {
             "@type": "WorkflowStep",
@@ -139,7 +139,7 @@
             "top": "330",
             "left": "1130",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "b85213ed-a5d8-41a8-b686-875685e2eb0c"
+            "uuid": "8add55d3-155c-49a7-88ec-2bdb7fea5c37"
         },
         {
             "@type": "WorkflowStep",
@@ -152,60 +152,55 @@
             "top": "190",
             "left": "450",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "b0738b23-da00-4892-b37a-1dbc84397880"
+            "uuid": "351979b7-51ea-4718-b8b5-4f36fc008f35"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/b0738b23-da00-4892-b37a-1dbc84397880",
-            "sourceStep": "\/api\/3\/workflow_steps\/683a8a73-4f46-4127-ac37-c6033ca373fd",
+            "targetStep": "\/api\/3\/workflow_steps\/351979b7-51ea-4718-b8b5-4f36fc008f35",
+            "sourceStep": "\/api\/3\/workflow_steps\/b46f5f24-2eb5-41f3-9218-dd88a0c2f27b",
             "label": null,
             "isExecuted": false,
-            "uuid": "d2d7c17d-9c8c-41ac-ab68-4e4baa4aa707"
+            "uuid": "1e6301bc-8c44-4da7-a438-d51feb6f2a3a"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Upon Create -> Asset IRI",
-            "targetStep": "\/api\/3\/workflow_steps\/060fe4c1-750f-4b9c-afe8-3a2ba1164ead",
-            "sourceStep": "\/api\/3\/workflow_steps\/9d2a9d89-84ab-422e-8c4a-ba1845447a60",
+            "targetStep": "\/api\/3\/workflow_steps\/eaa47727-5313-48ea-981e-10bc32e77324",
+            "sourceStep": "\/api\/3\/workflow_steps\/22f73c00-d7e7-42ec-83fc-346f7b414917",
             "label": "Referenced",
             "isExecuted": false,
-            "uuid": "5bef7031-a6fc-46e3-9dd3-f15d48c139dd"
+            "uuid": "fac5dcba-a47c-4e0f-9fbe-7eda093f29d6"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Upon Create -> Update Record",
-            "targetStep": "\/api\/3\/workflow_steps\/b85213ed-a5d8-41a8-b686-875685e2eb0c",
-            "sourceStep": "\/api\/3\/workflow_steps\/9d2a9d89-84ab-422e-8c4a-ba1845447a60",
+            "targetStep": "\/api\/3\/workflow_steps\/8add55d3-155c-49a7-88ec-2bdb7fea5c37",
+            "sourceStep": "\/api\/3\/workflow_steps\/22f73c00-d7e7-42ec-83fc-346f7b414917",
             "label": "Upon Create",
             "isExecuted": false,
-            "uuid": "37e2359d-87a4-4f45-8b7a-9960b94307da"
+            "uuid": "f468612d-4646-4b42-8af8-2644dd7b18d8"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Configuration -> Is Referenced",
-            "targetStep": "\/api\/3\/workflow_steps\/9d2a9d89-84ab-422e-8c4a-ba1845447a60",
-            "sourceStep": "\/api\/3\/workflow_steps\/b0738b23-da00-4892-b37a-1dbc84397880",
+            "targetStep": "\/api\/3\/workflow_steps\/22f73c00-d7e7-42ec-83fc-346f7b414917",
+            "sourceStep": "\/api\/3\/workflow_steps\/351979b7-51ea-4718-b8b5-4f36fc008f35",
             "label": null,
             "isExecuted": false,
-            "uuid": "35ca9fef-effb-490b-8c01-cdef9a81e1da"
+            "uuid": "27e26123-6b0f-48c1-8920-2b365dd43eac"
         }
     ],
     "priority": null,
     "uuid": "2e5bb6ea-cb7b-465d-8b55-5051f6336af7",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
     "recordTags": [
         "Subroutine",
         "FSRSolutionPack",
         "sOARFramework-1.0.0"
-    ],
-    "id": "104",
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1645124455.530081,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1645124455.530081,
-    "owners": [],
-    "isPrivate": false,
-    "deletedAt": null
+    ]
 }

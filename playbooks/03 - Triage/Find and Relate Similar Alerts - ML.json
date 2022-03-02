@@ -11,10 +11,10 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1645124453,
+    "lastModifyDate": 1646211771,
     "collection": "\/api\/3\/workflow_collections\/4a9adb3a-1a68-4b28-8096-ea12210dfeab",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/96bd639e-01e2-4f33-be43-bae4928a65ae",
+    "triggerStep": "\/api\/3\/workflow_steps\/7de88920-7cea-4a34-b942-27388182083a",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -28,7 +28,7 @@
             "top": "111",
             "left": "287",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "650b87d4-ddc2-4a6b-a7fe-bd7e8392fb0b"
+            "uuid": "a3d1f037-8e6e-4691-833e-189179506b5c"
         },
         {
             "@type": "WorkflowStep",
@@ -61,7 +61,7 @@
             "top": "30",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-            "uuid": "96bd639e-01e2-4f33-be43-bae4928a65ae"
+            "uuid": "7de88920-7cea-4a34-b942-27388182083a"
         },
         {
             "@type": "WorkflowStep",
@@ -74,7 +74,7 @@
             "top": "200",
             "left": "440",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "5e387503-bdf2-41f8-9fa8-d52299dc0354"
+            "uuid": "cadc247d-4fe8-4369-8372-6de17ddea3b7"
         },
         {
             "@type": "WorkflowStep",
@@ -96,7 +96,7 @@
             "top": "293",
             "left": "590",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "3fe0c391-8943-48b0-883e-5eeb3c86c890"
+            "uuid": "193353bc-9c4c-4f7a-90a8-989f593f0705"
         },
         {
             "@type": "WorkflowStep",
@@ -132,60 +132,55 @@
             "top": "386",
             "left": "747",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "fbc36d29-e59e-4434-83ac-0cdce851dd49"
+            "uuid": "8ba6ba9b-57ec-4316-83e1-a02000e5b763"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Configuration -> Similarity Request Payload",
-            "targetStep": "\/api\/3\/workflow_steps\/5e387503-bdf2-41f8-9fa8-d52299dc0354",
-            "sourceStep": "\/api\/3\/workflow_steps\/650b87d4-ddc2-4a6b-a7fe-bd7e8392fb0b",
+            "targetStep": "\/api\/3\/workflow_steps\/cadc247d-4fe8-4369-8372-6de17ddea3b7",
+            "sourceStep": "\/api\/3\/workflow_steps\/a3d1f037-8e6e-4691-833e-189179506b5c",
             "label": null,
             "isExecuted": false,
-            "uuid": "24249a42-fedc-48e0-9f9a-3d2d6e1a5428"
+            "uuid": "0997269d-c444-4099-aff2-4e74e300da04"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Similarity Settings",
-            "targetStep": "\/api\/3\/workflow_steps\/650b87d4-ddc2-4a6b-a7fe-bd7e8392fb0b",
-            "sourceStep": "\/api\/3\/workflow_steps\/96bd639e-01e2-4f33-be43-bae4928a65ae",
+            "targetStep": "\/api\/3\/workflow_steps\/a3d1f037-8e6e-4691-833e-189179506b5c",
+            "sourceStep": "\/api\/3\/workflow_steps\/7de88920-7cea-4a34-b942-27388182083a",
             "label": null,
             "isExecuted": false,
-            "uuid": "32f971e8-0b6e-4a0d-915e-83eaa9ea2fdf"
+            "uuid": "57e31357-246c-49d7-bff9-bd6538baefd8"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Similarity Request Payload -> Find Similar Alerts in the Last 30 Days",
-            "targetStep": "\/api\/3\/workflow_steps\/3fe0c391-8943-48b0-883e-5eeb3c86c890",
-            "sourceStep": "\/api\/3\/workflow_steps\/5e387503-bdf2-41f8-9fa8-d52299dc0354",
+            "targetStep": "\/api\/3\/workflow_steps\/193353bc-9c4c-4f7a-90a8-989f593f0705",
+            "sourceStep": "\/api\/3\/workflow_steps\/cadc247d-4fe8-4369-8372-6de17ddea3b7",
             "label": null,
             "isExecuted": false,
-            "uuid": "0db9cb47-e62e-4c6a-a699-85cc6c2170ca"
+            "uuid": "181d1779-3079-4bc3-b766-ee4045f8fadd"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Find Similar Alerts in the Last 30 Days -> Correlate Similar Alerts And Update State",
-            "targetStep": "\/api\/3\/workflow_steps\/fbc36d29-e59e-4434-83ac-0cdce851dd49",
-            "sourceStep": "\/api\/3\/workflow_steps\/3fe0c391-8943-48b0-883e-5eeb3c86c890",
+            "targetStep": "\/api\/3\/workflow_steps\/8ba6ba9b-57ec-4316-83e1-a02000e5b763",
+            "sourceStep": "\/api\/3\/workflow_steps\/193353bc-9c4c-4f7a-90a8-989f593f0705",
             "label": null,
             "isExecuted": false,
-            "uuid": "c4d818f9-dc80-4e33-8a8a-d48b6b813650"
+            "uuid": "554ef682-dbf7-4572-80d1-79a8670edae2"
         }
     ],
     "priority": null,
     "uuid": "f7639996-c5ff-4d65-8571-cd11b792fd2f",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
     "recordTags": [
         "system",
         "FSRSolutionPack",
         "sOARFramework-1.0.0"
-    ],
-    "id": "120",
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1645124456.636585,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1645124456.636585,
-    "owners": [],
-    "isPrivate": false,
-    "deletedAt": null
+    ]
 }
