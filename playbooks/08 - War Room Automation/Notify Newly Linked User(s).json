@@ -11,10 +11,10 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1645124453,
+    "lastModifyDate": 1646211771,
     "collection": "\/api\/3\/workflow_collections\/c9282ce9-1cef-4e0b-94da-3b84c32381ff",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/9267699f-8863-4673-9d46-e14dab61af3f",
+    "triggerStep": "\/api\/3\/workflow_steps\/aa2e7736-448b-4cc0-8c1a-b7ee1c6d13b7",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -29,7 +29,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "901dc684-88a4-4606-a176-e15cfe0349e6"
+            "uuid": "db01cb45-2a81-41cd-888d-8da99ead2d26"
         },
         {
             "@type": "WorkflowStep",
@@ -62,7 +62,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
-            "uuid": "1c88e58b-a7e1-463a-8ff5-a86b3dbfc56f"
+            "uuid": "dd3b3545-651a-430d-966b-3e4abb40b7bb"
         },
         {
             "@type": "WorkflowStep",
@@ -82,7 +82,7 @@
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "8d75a9b1-2f79-4539-831b-20e693acb2d5"
+            "uuid": "9a2b8c83-7249-4df3-a6f6-cec1bbbe7335"
         },
         {
             "@type": "WorkflowStep",
@@ -108,7 +108,7 @@
             "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "uuid": "963bd2e4-aaa8-476a-a33a-506305225f83"
+            "uuid": "9310cafb-c346-44d9-af94-b68a9415c891"
         },
         {
             "@type": "WorkflowStep",
@@ -156,60 +156,55 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/9300bf69-5063-486d-b3a6-47eb9da24872",
-            "uuid": "9267699f-8863-4673-9d46-e14dab61af3f"
+            "uuid": "aa2e7736-448b-4cc0-8c1a-b7ee1c6d13b7"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Load war room relationships",
-            "targetStep": "\/api\/3\/workflow_steps\/1c88e58b-a7e1-463a-8ff5-a86b3dbfc56f",
-            "sourceStep": "\/api\/3\/workflow_steps\/9267699f-8863-4673-9d46-e14dab61af3f",
+            "targetStep": "\/api\/3\/workflow_steps\/dd3b3545-651a-430d-966b-3e4abb40b7bb",
+            "sourceStep": "\/api\/3\/workflow_steps\/aa2e7736-448b-4cc0-8c1a-b7ee1c6d13b7",
             "label": null,
             "isExecuted": false,
-            "uuid": "2cb1a7ea-b825-42ba-a23c-bb962f80c63f"
+            "uuid": "fc2c4849-9ede-460b-94db-6749ff4d6ceb"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Load war room relationships -> Get difference of userOwners and owners",
-            "targetStep": "\/api\/3\/workflow_steps\/901dc684-88a4-4606-a176-e15cfe0349e6",
-            "sourceStep": "\/api\/3\/workflow_steps\/1c88e58b-a7e1-463a-8ff5-a86b3dbfc56f",
+            "targetStep": "\/api\/3\/workflow_steps\/db01cb45-2a81-41cd-888d-8da99ead2d26",
+            "sourceStep": "\/api\/3\/workflow_steps\/dd3b3545-651a-430d-966b-3e4abb40b7bb",
             "label": null,
             "isExecuted": false,
-            "uuid": "e08c8c9c-fc48-465b-9847-05412ad1feeb"
+            "uuid": "85dc340e-7dbc-482e-836c-b636834d5c64"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Get difference of userOwners and owners -> Set email body",
-            "targetStep": "\/api\/3\/workflow_steps\/8d75a9b1-2f79-4539-831b-20e693acb2d5",
-            "sourceStep": "\/api\/3\/workflow_steps\/901dc684-88a4-4606-a176-e15cfe0349e6",
+            "targetStep": "\/api\/3\/workflow_steps\/9a2b8c83-7249-4df3-a6f6-cec1bbbe7335",
+            "sourceStep": "\/api\/3\/workflow_steps\/db01cb45-2a81-41cd-888d-8da99ead2d26",
             "label": null,
             "isExecuted": false,
-            "uuid": "9d74bdfa-3670-4b68-88db-299bf40d1617"
+            "uuid": "64c58ed7-3cff-440a-971e-a08d9bf77fda"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Set email body -> Send new notifications",
-            "targetStep": "\/api\/3\/workflow_steps\/963bd2e4-aaa8-476a-a33a-506305225f83",
-            "sourceStep": "\/api\/3\/workflow_steps\/8d75a9b1-2f79-4539-831b-20e693acb2d5",
+            "targetStep": "\/api\/3\/workflow_steps\/9310cafb-c346-44d9-af94-b68a9415c891",
+            "sourceStep": "\/api\/3\/workflow_steps\/9a2b8c83-7249-4df3-a6f6-cec1bbbe7335",
             "label": null,
             "isExecuted": false,
-            "uuid": "79f812d6-7390-4b25-827e-cf9c28b70f2e"
+            "uuid": "9a7d0a66-9e17-4a30-8976-8a4427dd2d99"
         }
     ],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
     "uuid": "c1e9c66d-0e56-48a0-9ece-10e26698c071",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
     "recordTags": [
         "system",
         "FSRSolutionPack",
         "sOARFramework-1.0.0"
-    ],
-    "id": "218",
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1645124460.922459,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1645124460.922459,
-    "owners": [],
-    "isPrivate": false,
-    "deletedAt": null
+    ]
 }

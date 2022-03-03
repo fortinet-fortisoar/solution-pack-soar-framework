@@ -13,10 +13,10 @@
         "indicator_value"
     ],
     "synchronous": false,
-    "lastModifyDate": 1645124453,
+    "lastModifyDate": 1646211771,
     "collection": "\/api\/3\/workflow_collections\/b135c052-e170-4cff-8cc7-9a4bfe607ccb",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/bc473e75-11f6-47a8-8194-ae389f9e1bc2",
+    "triggerStep": "\/api\/3\/workflow_steps\/d59736af-5fe8-4dbb-afe8-a2e013e130bf",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -30,7 +30,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "efafb5ce-f02d-4e80-97c0-bca1fb71dfd1"
+            "uuid": "a4eed6bc-0a97-45cc-9902-a5d6d63c5f41"
         },
         {
             "@type": "WorkflowStep",
@@ -47,7 +47,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "bc473e75-11f6-47a8-8194-ae389f9e1bc2"
+            "uuid": "d59736af-5fe8-4dbb-afe8-a2e013e130bf"
         },
         {
             "@type": "WorkflowStep",
@@ -63,7 +63,7 @@
             "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "0dfebc63-3856-4d92-8eda-b89fcd288c86"
+            "uuid": "ff3bba69-e60e-4246-87ac-b87cd97799a7"
         },
         {
             "@type": "WorkflowStep",
@@ -86,7 +86,7 @@
             "top": "440",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "0e23899d-7d0f-4504-9cdb-10616c1e7437"
+            "uuid": "dc3858bf-758d-488a-8d7c-0367dc492a56"
         },
         {
             "@type": "WorkflowStep",
@@ -113,60 +113,55 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "41a32af1-619a-4df4-85fe-39fc9ed59268"
+            "uuid": "19403525-1c5f-4425-9248-6f65ad781a8c"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/efafb5ce-f02d-4e80-97c0-bca1fb71dfd1",
-            "sourceStep": "\/api\/3\/workflow_steps\/bc473e75-11f6-47a8-8194-ae389f9e1bc2",
+            "targetStep": "\/api\/3\/workflow_steps\/a4eed6bc-0a97-45cc-9902-a5d6d63c5f41",
+            "sourceStep": "\/api\/3\/workflow_steps\/d59736af-5fe8-4dbb-afe8-a2e013e130bf",
             "label": null,
             "isExecuted": false,
-            "uuid": "e115cd16-0bfa-48d0-8fb6-12d9fe704f81"
+            "uuid": "c2128b11-5024-4d45-847f-392d007e465a"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Configurations -> Get Reputation from MxToolbox",
-            "targetStep": "\/api\/3\/workflow_steps\/41a32af1-619a-4df4-85fe-39fc9ed59268",
-            "sourceStep": "\/api\/3\/workflow_steps\/efafb5ce-f02d-4e80-97c0-bca1fb71dfd1",
+            "targetStep": "\/api\/3\/workflow_steps\/19403525-1c5f-4425-9248-6f65ad781a8c",
+            "sourceStep": "\/api\/3\/workflow_steps\/a4eed6bc-0a97-45cc-9902-a5d6d63c5f41",
             "label": null,
             "isExecuted": false,
-            "uuid": "b416bb3f-fd60-48ae-b066-365c3e53f20d"
+            "uuid": "8dd1f73d-7717-49dd-9769-981d85759af3"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Compute MxToolbox Summary -> enrichment_summary",
-            "targetStep": "\/api\/3\/workflow_steps\/0dfebc63-3856-4d92-8eda-b89fcd288c86",
-            "sourceStep": "\/api\/3\/workflow_steps\/0e23899d-7d0f-4504-9cdb-10616c1e7437",
+            "targetStep": "\/api\/3\/workflow_steps\/ff3bba69-e60e-4246-87ac-b87cd97799a7",
+            "sourceStep": "\/api\/3\/workflow_steps\/dc3858bf-758d-488a-8d7c-0367dc492a56",
             "label": null,
             "isExecuted": false,
-            "uuid": "84d06161-6d85-4c2f-be0b-665d77bde744"
+            "uuid": "bbfda9bf-c6d6-43ee-862e-7e93e4d57da3"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Get Reputation from MxToolbox -> Compute MxToolbox Summary",
-            "targetStep": "\/api\/3\/workflow_steps\/0e23899d-7d0f-4504-9cdb-10616c1e7437",
-            "sourceStep": "\/api\/3\/workflow_steps\/41a32af1-619a-4df4-85fe-39fc9ed59268",
+            "targetStep": "\/api\/3\/workflow_steps\/dc3858bf-758d-488a-8d7c-0367dc492a56",
+            "sourceStep": "\/api\/3\/workflow_steps\/19403525-1c5f-4425-9248-6f65ad781a8c",
             "label": null,
             "isExecuted": false,
-            "uuid": "dbc87247-ce29-4da1-83b4-a1cdce817b3d"
+            "uuid": "0519b6b4-f8ef-4b61-af33-b32856e32907"
         }
     ],
     "priority": null,
     "uuid": "bb22d5c1-c946-4cca-aef1-babcc00fcf96",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
     "recordTags": [
         "Subroutine",
         "FSRSolutionPack",
         "sOARFramework-1.0.0"
-    ],
-    "id": "106",
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1645124455.530771,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1645124455.530771,
-    "owners": [],
-    "isPrivate": false,
-    "deletedAt": null
+    ]
 }

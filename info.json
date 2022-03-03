@@ -7,15 +7,14 @@
     "dependencies": [],
     "prerequisite": [],
     "publisher": "Fortinet",
-    "certified": "true",
     "description": "The SOAR Framework Solution Pack enables users to experience the power of FortiSOAR incident response.",
     "summary": null,
     "help": "https:\/\/github.com\/fortinet-fortisoar\/solution-pack-soar-framework",
     "category": [],
     "supportInfo": "support@fortinet.com",
-    "tags": [],
+    "iconLarge": null,
     "fsrMinCompatibility": "7.2.0",
-    "date": "2022-02-17T19:58:50+00:00",
+    "date": "2022-03-03T09:19:39+00:00",
     "exported_from": "master.fortisoar.in",
     "exported_by": "CS Admin",
     "contents": {
@@ -163,13 +162,6 @@
                 "apiName": "warrooms"
             }
         },
-        "views": {
-            "navigation": [
-                [
-                    "Incident Response"
-                ]
-            ]
-        },
         "viewTemplates": {
             "alerts": [
                 "list",
@@ -227,12 +219,26 @@
                 "form"
             ]
         },
+        "views": {
+            "navigation": [
+                [
+                    "Dashboard",
+                    "Incident Response",
+                    "Automation",
+                    "Resources",
+                    "Reports",
+                    "Marketplace",
+                    "Queue & Shift Management",
+                    "Help"
+                ]
+            ]
+        },
         "roles": [
             {
-                "name": "SOC Analyst"
+                "name": "Full App Permissions"
             },
             {
-                "name": "Full App Permissions"
+                "name": "SOC Analyst"
             }
         ],
         "playbooks": [
@@ -345,7 +351,7 @@
             },
             {
                 "id": 9,
-                "name": "Indicator_type_map",
+                "name": "Indicator_Type_Map",
                 "value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}",
                 "default_value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}"
             },
@@ -370,14 +376,8 @@
             {
                 "id": 13,
                 "name": "Excludelist_Domains",
-                "value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com",
-                "default_value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com"
-            },
-            {
-                "id": 14,
-                "name": "Demo_mode",
-                "value": "true",
-                "default_value": "true"
+                "value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com,fortinet.com,twitter.com,facebook.com,linkedin.com,instagram.com,fortiguard.com,forticloud.com",
+                "default_value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com,fortinet.com,twitter.com,facebook.com,linkedin.com,instagram.com,fortiguard.com,forticloud.com"
             },
             {
                 "id": 15,
@@ -385,6 +385,12 @@
                 "value": "{{arrow.utcnow().timestamp}}",
                 "default_value": "{{arrow.utcnow().timestamp}}"
             }
+        ],
+        "rules": [
+            "Incident > Notify Updation",
+            "Alert > Notify Updation",
+            "Alert > Notify Creation",
+            "Incident > Notify Creation"
         ],
         "reports": [
             {
@@ -417,12 +423,6 @@
             {
                 "name": "Weekly IOC Report"
             }
-        ],
-        "rules": [
-            "Incident > Notify Updation",
-            "Alert > Notify Updation",
-            "Alert > Notify Creation",
-            "Incident > Notify Creation"
         ],
         "dashboards": [
             {
@@ -554,11 +554,6 @@
                 "version": "1.0.0"
             },
             {
-                "name": "SMTP",
-                "apiName": "smtp",
-                "version": "2.4.3"
-            },
-            {
                 "name": "SSH",
                 "apiName": "ssh",
                 "version": "2.1.1"
@@ -587,11 +582,6 @@
                 "name": "URLVoid",
                 "apiName": "urlvoid",
                 "version": "1.1.0"
-            },
-            {
-                "name": "Utilities",
-                "apiName": "cyops_utilities",
-                "version": "3.2.1"
             },
             {
                 "name": "VirusTotal",
