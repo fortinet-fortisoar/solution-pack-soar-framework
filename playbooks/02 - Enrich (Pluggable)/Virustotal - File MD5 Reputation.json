@@ -13,10 +13,10 @@
         "indicator_value"
     ],
     "synchronous": false,
-    "lastModifyDate": 1645124453,
+    "lastModifyDate": 1646211771,
     "collection": "\/api\/3\/workflow_collections\/b135c052-e170-4cff-8cc7-9a4bfe607ccb",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/5cb76513-c243-43f1-aaab-89e35a454acb",
+    "triggerStep": "\/api\/3\/workflow_steps\/135161a7-1a8b-48c2-8c7e-187b35126df0",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -30,7 +30,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "8543e568-f977-4ed6-8a6f-6e624b661df6"
+            "uuid": "4698ecb2-c3d1-43d6-bd15-19009e11809c"
         },
         {
             "@type": "WorkflowStep",
@@ -63,7 +63,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "4ee26f7a-8244-4638-82ae-c9be331134e8"
+            "uuid": "5f5ca288-8246-4338-93cf-f8b22138f666"
         },
         {
             "@type": "WorkflowStep",
@@ -85,7 +85,7 @@
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "3c0cabac-08d8-4d21-a6fb-4d5de66ff834"
+            "uuid": "708ba379-41c3-4d73-b033-d146af2282ab"
         },
         {
             "@type": "WorkflowStep",
@@ -101,7 +101,7 @@
             "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "f3b47d75-705a-4e45-8541-98adbc672f1e"
+            "uuid": "556ee595-de3d-46b3-8ee3-a6756f6f675c"
         },
         {
             "@type": "WorkflowStep",
@@ -118,60 +118,55 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "5cb76513-c243-43f1-aaab-89e35a454acb"
+            "uuid": "135161a7-1a8b-48c2-8c7e-187b35126df0"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Compute VT Summary -> enrichment_summary",
-            "targetStep": "\/api\/3\/workflow_steps\/f3b47d75-705a-4e45-8541-98adbc672f1e",
-            "sourceStep": "\/api\/3\/workflow_steps\/3c0cabac-08d8-4d21-a6fb-4d5de66ff834",
+            "targetStep": "\/api\/3\/workflow_steps\/556ee595-de3d-46b3-8ee3-a6756f6f675c",
+            "sourceStep": "\/api\/3\/workflow_steps\/708ba379-41c3-4d73-b033-d146af2282ab",
             "label": null,
             "isExecuted": false,
-            "uuid": "56400376-80d7-4361-abb8-afddad956b44"
+            "uuid": "ffa22a35-baaa-4908-9270-b523625b8631"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/8543e568-f977-4ed6-8a6f-6e624b661df6",
-            "sourceStep": "\/api\/3\/workflow_steps\/5cb76513-c243-43f1-aaab-89e35a454acb",
+            "targetStep": "\/api\/3\/workflow_steps\/4698ecb2-c3d1-43d6-bd15-19009e11809c",
+            "sourceStep": "\/api\/3\/workflow_steps\/135161a7-1a8b-48c2-8c7e-187b35126df0",
             "label": null,
             "isExecuted": false,
-            "uuid": "f1d1394c-27bf-4fbe-ae0d-6bcee53d0f93"
+            "uuid": "0dfc9d16-29e3-410a-8bca-8b24bc96251f"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Configurations -> Get File Reputation from VT",
-            "targetStep": "\/api\/3\/workflow_steps\/4ee26f7a-8244-4638-82ae-c9be331134e8",
-            "sourceStep": "\/api\/3\/workflow_steps\/8543e568-f977-4ed6-8a6f-6e624b661df6",
+            "targetStep": "\/api\/3\/workflow_steps\/5f5ca288-8246-4338-93cf-f8b22138f666",
+            "sourceStep": "\/api\/3\/workflow_steps\/4698ecb2-c3d1-43d6-bd15-19009e11809c",
             "label": null,
             "isExecuted": false,
-            "uuid": "1d01cc2f-e3d4-46a0-851b-7b05f55ac709"
+            "uuid": "289d8ec2-3a8e-4782-9b82-54bfdd600e02"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Get File Reputation from VT -> Compute VT Summary",
-            "targetStep": "\/api\/3\/workflow_steps\/3c0cabac-08d8-4d21-a6fb-4d5de66ff834",
-            "sourceStep": "\/api\/3\/workflow_steps\/4ee26f7a-8244-4638-82ae-c9be331134e8",
+            "targetStep": "\/api\/3\/workflow_steps\/708ba379-41c3-4d73-b033-d146af2282ab",
+            "sourceStep": "\/api\/3\/workflow_steps\/5f5ca288-8246-4338-93cf-f8b22138f666",
             "label": null,
             "isExecuted": false,
-            "uuid": "27c0dcc2-f85b-48a9-bd11-4da9d06e58f5"
+            "uuid": "66b81fb3-d6c5-44a0-b423-22beba58c58b"
         }
     ],
     "priority": null,
     "uuid": "904a5f2d-0a3e-431e-80ed-3eb3eebf915a",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
     "recordTags": [
         "Subroutine",
         "FSRSolutionPack",
         "sOARFramework-1.0.0"
-    ],
-    "id": "113",
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1645124455.532656,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1645124455.532656,
-    "owners": [],
-    "isPrivate": false,
-    "deletedAt": null
+    ]
 }

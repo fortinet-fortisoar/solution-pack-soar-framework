@@ -11,10 +11,10 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1645124453,
+    "lastModifyDate": 1646211771,
     "collection": "\/api\/3\/workflow_collections\/d8ad6155-7798-4991-bfb4-7584a86c2241",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/13527fe0-fff0-45af-9260-f277de83c3ef",
+    "triggerStep": "\/api\/3\/workflow_steps\/22315664-5a60-4604-b53a-8170397eb0ad",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -55,7 +55,7 @@
             "top": "190",
             "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "d511de41-b5f8-4da8-b3df-16f9ecc46a9c"
+            "uuid": "ec405d2c-9d5a-4abb-b0b7-f2486a36829c"
         },
         {
             "@type": "WorkflowStep",
@@ -80,11 +80,11 @@
                         {
                             "option": "Yes - Malicious",
                             "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/2c1d727b-76d9-47d4-ae07-acc8d58c81b0"
+                            "step_iri": "\/api\/3\/workflow_steps\/13296426-f8ee-4991-9e9c-7e64df62257a"
                         },
                         {
                             "option": "No Benign",
-                            "step_iri": "\/api\/3\/workflow_steps\/d511de41-b5f8-4da8-b3df-16f9ecc46a9c"
+                            "step_iri": "\/api\/3\/workflow_steps\/ec405d2c-9d5a-4abb-b0b7-f2486a36829c"
                         }
                     ],
                     "duplicateOption": false
@@ -94,7 +94,7 @@
             "top": "110",
             "left": "775",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
-            "uuid": "d6a3711d-7cd1-43db-b4e9-32e107b14747"
+            "uuid": "56e775fb-8e2b-4b9c-8f18-64cc463c53c9"
         },
         {
             "@type": "WorkflowStep",
@@ -107,7 +107,7 @@
             "top": "110",
             "left": "450",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "56c3ae3a-f376-40be-92c9-2d3a38dc9ae2"
+            "uuid": "e361f08f-8ba6-46c2-a36c-4e6be98553d9"
         },
         {
             "@type": "WorkflowStep",
@@ -142,7 +142,7 @@
             "top": "110",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-            "uuid": "13527fe0-fff0-45af-9260-f277de83c3ef"
+            "uuid": "22315664-5a60-4604-b53a-8170397eb0ad"
         },
         {
             "@type": "WorkflowStep",
@@ -172,61 +172,56 @@
             "top": "30",
             "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "2c1d727b-76d9-47d4-ae07-acc8d58c81b0"
+            "uuid": "13296426-f8ee-4991-9e9c-7e64df62257a"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/56c3ae3a-f376-40be-92c9-2d3a38dc9ae2",
-            "sourceStep": "\/api\/3\/workflow_steps\/13527fe0-fff0-45af-9260-f277de83c3ef",
+            "targetStep": "\/api\/3\/workflow_steps\/e361f08f-8ba6-46c2-a36c-4e6be98553d9",
+            "sourceStep": "\/api\/3\/workflow_steps\/22315664-5a60-4604-b53a-8170397eb0ad",
             "label": null,
             "isExecuted": false,
-            "uuid": "760d49e6-18d5-487c-96d3-7b712f85facf"
+            "uuid": "31d02e2c-6b49-4e83-a522-2b4a98668cc9"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Filehash Malicious -> Update Severity to Critical",
-            "targetStep": "\/api\/3\/workflow_steps\/2c1d727b-76d9-47d4-ae07-acc8d58c81b0",
-            "sourceStep": "\/api\/3\/workflow_steps\/d6a3711d-7cd1-43db-b4e9-32e107b14747",
+            "targetStep": "\/api\/3\/workflow_steps\/13296426-f8ee-4991-9e9c-7e64df62257a",
+            "sourceStep": "\/api\/3\/workflow_steps\/56e775fb-8e2b-4b9c-8f18-64cc463c53c9",
             "label": "Yes - Malicious",
             "isExecuted": false,
-            "uuid": "b34289ee-bff7-401f-b598-eed22f9bef2b"
+            "uuid": "608555f4-6987-4e9e-ae5b-39872f744e7b"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Configuration -> Is Filehash Malicious",
-            "targetStep": "\/api\/3\/workflow_steps\/d6a3711d-7cd1-43db-b4e9-32e107b14747",
-            "sourceStep": "\/api\/3\/workflow_steps\/56c3ae3a-f376-40be-92c9-2d3a38dc9ae2",
+            "targetStep": "\/api\/3\/workflow_steps\/56e775fb-8e2b-4b9c-8f18-64cc463c53c9",
+            "sourceStep": "\/api\/3\/workflow_steps\/e361f08f-8ba6-46c2-a36c-4e6be98553d9",
             "label": null,
             "isExecuted": false,
-            "uuid": "f6bae605-553d-46ce-b080-7c24e0ace79e"
+            "uuid": "f8455379-b04f-4d79-b859-f2d76723d3a9"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Filehash Malicious -> Close as Benign",
-            "targetStep": "\/api\/3\/workflow_steps\/d511de41-b5f8-4da8-b3df-16f9ecc46a9c",
-            "sourceStep": "\/api\/3\/workflow_steps\/d6a3711d-7cd1-43db-b4e9-32e107b14747",
+            "targetStep": "\/api\/3\/workflow_steps\/ec405d2c-9d5a-4abb-b0b7-f2486a36829c",
+            "sourceStep": "\/api\/3\/workflow_steps\/56e775fb-8e2b-4b9c-8f18-64cc463c53c9",
             "label": "No Benign",
             "isExecuted": false,
-            "uuid": "c4b561fb-de9a-49eb-8898-b20f4f369615"
+            "uuid": "29467e12-556f-4595-84c1-3742669f9eaf"
         }
     ],
     "priority": null,
     "uuid": "650a8949-c769-457c-964c-af5e643a9510",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
     "recordTags": [
         "FSRSolutionPack",
         "sOARFramework-1.0.0",
         "ManualAction",
         "Alerts"
-    ],
-    "id": "238",
-    "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "createDate": 1645124461.977097,
-    "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-    "modifyDate": 1645124461.977097,
-    "owners": [],
-    "isPrivate": false,
-    "deletedAt": null
+    ]
 }
