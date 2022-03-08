@@ -167,7 +167,7 @@
                 "operation": "make_cyops_request",
                 "operationTitle": "CyOPs: Make CyOPs API Call",
                 "step_variables": {
-                    "pages": "{{(vars.result.data['hydra:totalItems']\/vars.result.data['hydra:itemsPerPage']) | round(0, 'ceil') | int}}"
+                    "pages": "{{(vars.result.data['hydra:totalItems']\/vars.result.data['hydra:member'] | length | int) | round(0, 'ceil') | int}}"
                 }
             },
             "status": null,
