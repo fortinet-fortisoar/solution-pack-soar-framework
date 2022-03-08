@@ -1,10 +1,10 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "Incident > Set Resolved Date",
+    "name": "Incident - Set Assigned Date (upon reassignment)",
     "aliasName": null,
     "tag": "#system",
-    "description": "Update Resolved Date when State is marked \"Resolved\"",
+    "description": "Update Assigned Date when Lead is assigned to Incident",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -14,15 +14,15 @@
     "lastModifyDate": 1646211771,
     "collection": "\/api\/3\/workflow_collections\/7b096971-ca3f-479d-a156-ef9ad5c37506",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/92e5392c-b462-40dd-ba90-320521a25fc3",
+    "triggerStep": "\/api\/3\/workflow_steps\/4fbc6672-6c7b-4651-a567-e89248bf43b6",
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Update Resolved Date",
+            "name": "Set Assigned Date",
             "description": null,
             "arguments": {
                 "resource": {
-                    "resolveddate": "{{arrow.utcnow().timestamp}}"
+                    "assigneddate": "{{arrow.utcnow().timestamp}}"
                 },
                 "_showJson": false,
                 "collection": "{{vars.input.records[0][\"@id\"]}}",
@@ -30,10 +30,10 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "120",
-            "left": "380",
+            "top": "160",
+            "left": "411",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "6044217d-de84-4fe0-9706-bee6674981a7"
+            "uuid": "90544482-6ab6-457b-b85e-76da533df665"
         },
         {
             "@type": "WorkflowStep",
@@ -48,46 +48,44 @@
                     "filters": [
                         {
                             "type": "object",
-                            "field": "status",
-                            "value": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae",
+                            "field": "incidentLead",
+                            "value": null,
                             "_value": {
-                                "itemValue": "Resolved"
+                                "display": "",
+                                "itemValue": ""
                             },
                             "operator": "changed"
                         },
                         {
                             "type": "object",
-                            "field": "status",
-                            "value": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae",
-                            "_value": {
-                                "display": "Resolved",
-                                "itemValue": "Resolved"
-                            },
-                            "operator": "eq"
+                            "field": "incidentLead",
+                            "value": "false",
+                            "_value": [],
+                            "operator": "isnull"
                         }
                     ]
                 }
             },
             "status": null,
-            "top": "30",
-            "left": "47",
+            "top": "67",
+            "left": "100",
             "stepType": "\/api\/3\/workflow_step_types\/9300bf69-5063-486d-b3a6-47eb9da24872",
-            "uuid": "92e5392c-b462-40dd-ba90-320521a25fc3"
+            "uuid": "4fbc6672-6c7b-4651-a567-e89248bf43b6"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Update Resolved Date",
-            "targetStep": "\/api\/3\/workflow_steps\/6044217d-de84-4fe0-9706-bee6674981a7",
-            "sourceStep": "\/api\/3\/workflow_steps\/92e5392c-b462-40dd-ba90-320521a25fc3",
+            "name": "Start -> Set Assigned Date",
+            "targetStep": "\/api\/3\/workflow_steps\/90544482-6ab6-457b-b85e-76da533df665",
+            "sourceStep": "\/api\/3\/workflow_steps\/4fbc6672-6c7b-4651-a567-e89248bf43b6",
             "label": null,
             "isExecuted": false,
-            "uuid": "ac0de79b-fe25-4245-ae21-0b572e246d14"
+            "uuid": "08bc668b-f9cf-4810-9299-50974e3a01db"
         }
     ],
     "priority": null,
-    "uuid": "51171338-6e54-4ef8-85cd-0362b092b1c2",
+    "uuid": "1f901acf-5047-47cd-842b-b8c02ac34198",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,
