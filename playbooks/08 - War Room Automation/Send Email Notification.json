@@ -16,10 +16,10 @@
         "emailAttachmentIris"
     ],
     "synchronous": false,
-    "lastModifyDate": 1646211771,
+    "lastModifyDate": 1646854038,
     "collection": "\/api\/3\/workflow_collections\/c9282ce9-1cef-4e0b-94da-3b84c32381ff",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/8883f6fd-db0c-45e0-8c86-93d3e33e7db3",
+    "triggerStep": "\/api\/3\/workflow_steps\/bd0dd951-b93f-4e08-b66e-586689790a89",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -32,7 +32,7 @@
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "7e9686bd-f9b7-4c44-92af-d0a4ac1917cc"
+            "uuid": "3cbecbff-1231-47c0-acf1-f877e57254ab"
         },
         {
             "@type": "WorkflowStep",
@@ -55,7 +55,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "8883f6fd-db0c-45e0-8c86-93d3e33e7db3"
+            "uuid": "bd0dd951-b93f-4e08-b66e-586689790a89"
         },
         {
             "@type": "WorkflowStep",
@@ -77,7 +77,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "d2d43ac6-cf87-4a36-b6f8-e7c2f6302082"
+            "uuid": "07d7ff43-dbaf-4392-8694-64a8a8dd1451"
         },
         {
             "@type": "WorkflowStep",
@@ -103,7 +103,7 @@
             "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "uuid": "46db5817-afcc-4ae8-ae78-8b7a1207b432"
+            "uuid": "4eace735-ed87-4ca1-ad79-32c9860787ad"
         },
         {
             "@type": "WorkflowStep",
@@ -125,45 +125,45 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "3c8c90d8-1066-49b4-ad23-d02fc163bf59"
+            "uuid": "98934604-733a-4213-91a7-fd7bced14d2b"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Load owners from war room",
-            "targetStep": "\/api\/3\/workflow_steps\/d2d43ac6-cf87-4a36-b6f8-e7c2f6302082",
-            "sourceStep": "\/api\/3\/workflow_steps\/8883f6fd-db0c-45e0-8c86-93d3e33e7db3",
+            "targetStep": "\/api\/3\/workflow_steps\/07d7ff43-dbaf-4392-8694-64a8a8dd1451",
+            "sourceStep": "\/api\/3\/workflow_steps\/bd0dd951-b93f-4e08-b66e-586689790a89",
             "label": null,
             "isExecuted": false,
-            "uuid": "f1db3a58-be9c-4e64-b226-10eda2484084"
+            "uuid": "dae824f2-f783-4c96-89df-171441a2e1ce"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Load owners from war room -> Load user owners from war room",
-            "targetStep": "\/api\/3\/workflow_steps\/3c8c90d8-1066-49b4-ad23-d02fc163bf59",
-            "sourceStep": "\/api\/3\/workflow_steps\/d2d43ac6-cf87-4a36-b6f8-e7c2f6302082",
+            "targetStep": "\/api\/3\/workflow_steps\/98934604-733a-4213-91a7-fd7bced14d2b",
+            "sourceStep": "\/api\/3\/workflow_steps\/07d7ff43-dbaf-4392-8694-64a8a8dd1451",
             "label": null,
             "isExecuted": false,
-            "uuid": "a5d81b09-59f6-4df8-afe6-d7923cacfc08"
+            "uuid": "dea158d5-2ebd-4390-925e-2458abc763d6"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Load user owners from war room -> Combine lists and uniq",
-            "targetStep": "\/api\/3\/workflow_steps\/7e9686bd-f9b7-4c44-92af-d0a4ac1917cc",
-            "sourceStep": "\/api\/3\/workflow_steps\/3c8c90d8-1066-49b4-ad23-d02fc163bf59",
+            "targetStep": "\/api\/3\/workflow_steps\/3cbecbff-1231-47c0-acf1-f877e57254ab",
+            "sourceStep": "\/api\/3\/workflow_steps\/98934604-733a-4213-91a7-fd7bced14d2b",
             "label": null,
             "isExecuted": false,
-            "uuid": "e75cf12c-8a30-46c5-9552-9a3adc91717f"
+            "uuid": "a8352991-d222-4932-9d81-fe52a2ccc370"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Combine lists and uniq -> Send each email",
-            "targetStep": "\/api\/3\/workflow_steps\/46db5817-afcc-4ae8-ae78-8b7a1207b432",
-            "sourceStep": "\/api\/3\/workflow_steps\/7e9686bd-f9b7-4c44-92af-d0a4ac1917cc",
+            "targetStep": "\/api\/3\/workflow_steps\/4eace735-ed87-4ca1-ad79-32c9860787ad",
+            "sourceStep": "\/api\/3\/workflow_steps\/3cbecbff-1231-47c0-acf1-f877e57254ab",
             "label": null,
             "isExecuted": false,
-            "uuid": "58fa06cb-7346-4d1e-83c3-ac8f843d02f2"
+            "uuid": "82b9e868-2a80-4a17-b9f3-872e513a05d7"
         }
     ],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
@@ -172,7 +172,6 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "FSRSolutionPack",
-        "sOARFramework-1.0.0"
+        "Subroutine"
     ]
 }

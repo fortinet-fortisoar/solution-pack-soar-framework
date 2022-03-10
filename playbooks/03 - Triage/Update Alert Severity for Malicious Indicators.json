@@ -11,10 +11,10 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1646211771,
+    "lastModifyDate": 1646852003,
     "collection": "\/api\/3\/workflow_collections\/4a9adb3a-1a68-4b28-8096-ea12210dfeab",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/b508b75a-0bcc-4515-91da-ec1b4cf5d84d",
+    "triggerStep": "\/api\/3\/workflow_steps\/d833b6ea-052e-4244-9b5d-32aff59ea0db",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -64,7 +64,7 @@
             "top": "73",
             "left": "753",
             "stepType": "\/api\/3\/workflow_step_types\/9300bf69-5063-486d-b3a6-47eb9da24872",
-            "uuid": "b508b75a-0bcc-4515-91da-ec1b4cf5d84d"
+            "uuid": "d833b6ea-052e-4244-9b5d-32aff59ea0db"
         },
         {
             "@type": "WorkflowStep",
@@ -104,7 +104,7 @@
             "top": "340",
             "left": "753",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "27d14e45-f2fe-4f4d-a2e3-aa5469b2e6d5"
+            "uuid": "b2a9d15c-5cc5-41b1-9b5f-fd76f422cb0e"
         },
         {
             "@type": "WorkflowStep",
@@ -170,7 +170,7 @@
             "top": "208",
             "left": "753",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
-            "uuid": "7dcf1a66-0d07-4039-8d21-b3f595ccb53c"
+            "uuid": "244178ef-90ad-4527-a3ac-23a0db9ff715"
         },
         {
             "@type": "WorkflowStep",
@@ -199,36 +199,36 @@
             "top": "480",
             "left": "753",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
-            "uuid": "2622d909-1d2f-4389-a80f-0c26db39f0c5"
+            "uuid": "af752655-ebd4-437c-8722-26be81d9c579"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Find Related Malicious Indicators",
-            "targetStep": "\/api\/3\/workflow_steps\/7dcf1a66-0d07-4039-8d21-b3f595ccb53c",
-            "sourceStep": "\/api\/3\/workflow_steps\/b508b75a-0bcc-4515-91da-ec1b4cf5d84d",
+            "targetStep": "\/api\/3\/workflow_steps\/244178ef-90ad-4527-a3ac-23a0db9ff715",
+            "sourceStep": "\/api\/3\/workflow_steps\/d833b6ea-052e-4244-9b5d-32aff59ea0db",
             "label": null,
             "isExecuted": false,
-            "uuid": "c9661ba6-49c5-46a0-82ed-abd1b7417d86"
+            "uuid": "0cca9b00-78dc-4078-ab5d-c62e5220d285"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Check Indicator -> Set Severity",
-            "targetStep": "\/api\/3\/workflow_steps\/27d14e45-f2fe-4f4d-a2e3-aa5469b2e6d5",
-            "sourceStep": "\/api\/3\/workflow_steps\/7dcf1a66-0d07-4039-8d21-b3f595ccb53c",
+            "targetStep": "\/api\/3\/workflow_steps\/b2a9d15c-5cc5-41b1-9b5f-fd76f422cb0e",
+            "sourceStep": "\/api\/3\/workflow_steps\/244178ef-90ad-4527-a3ac-23a0db9ff715",
             "label": null,
             "isExecuted": false,
-            "uuid": "76426c40-8006-4529-8e46-c6ed6cabea68"
+            "uuid": "0c885841-efe5-4ef5-b93a-b061713f2de8"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Set Severity -> Add note",
-            "targetStep": "\/api\/3\/workflow_steps\/2622d909-1d2f-4389-a80f-0c26db39f0c5",
-            "sourceStep": "\/api\/3\/workflow_steps\/27d14e45-f2fe-4f4d-a2e3-aa5469b2e6d5",
+            "targetStep": "\/api\/3\/workflow_steps\/af752655-ebd4-437c-8722-26be81d9c579",
+            "sourceStep": "\/api\/3\/workflow_steps\/b2a9d15c-5cc5-41b1-9b5f-fd76f422cb0e",
             "label": null,
             "isExecuted": false,
-            "uuid": "f4286945-6cf0-4393-adc1-d33b97184516"
+            "uuid": "4b037c8b-b09a-4e40-a092-c88fe04cecd1"
         }
     ],
     "priority": null,
@@ -237,8 +237,6 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "system",
-        "FSRSolutionPack",
-        "sOARFramework-1.0.0"
+        "system"
     ]
 }

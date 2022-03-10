@@ -13,10 +13,10 @@
         "indicator_value"
     ],
     "synchronous": false,
-    "lastModifyDate": 1646211771,
+    "lastModifyDate": 1646851771,
     "collection": "\/api\/3\/workflow_collections\/b135c052-e170-4cff-8cc7-9a4bfe607ccb",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/fff9b98b-882a-43da-b3de-5f33645bed1e",
+    "triggerStep": "\/api\/3\/workflow_steps\/2a08f54f-4147-41bb-833f-909cbf11ac16",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -29,7 +29,7 @@
             "top": "190",
             "left": "450",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "507e6241-c1d4-4333-a1f0-54ce23c071e9"
+            "uuid": "1ee20dbc-c50a-4c10-941e-b92bbe52aeed"
         },
         {
             "@type": "WorkflowStep",
@@ -82,7 +82,7 @@
             "top": "190",
             "left": "126",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
-            "uuid": "fff9b98b-882a-43da-b3de-5f33645bed1e"
+            "uuid": "2a08f54f-4147-41bb-833f-909cbf11ac16"
         },
         {
             "@type": "WorkflowStep",
@@ -96,7 +96,7 @@
             "top": "30",
             "left": "1750",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "0f554e6b-2a1f-4ac1-b07f-d22bfa91f47f"
+            "uuid": "9b204025-42e3-46f1-b482-331a8ff74347"
         },
         {
             "@type": "WorkflowStep",
@@ -125,7 +125,7 @@
             "top": "190",
             "left": "775",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
-            "uuid": "448a11cd-2098-4a0f-90d3-cd8925213075"
+            "uuid": "b1ce6ffa-144e-4a12-aae8-002ecc3ec682"
         },
         {
             "@type": "WorkflowStep",
@@ -148,7 +148,7 @@
             "top": "270",
             "left": "1425",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "df3d33d9-6397-44fd-8df0-44f7990929dd"
+            "uuid": "e6bee2fd-5218-4157-95a1-b66ef6957664"
         },
         {
             "@type": "WorkflowStep",
@@ -158,13 +158,13 @@
                 "conditions": [
                     {
                         "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/733bc2d5-ad4d-4fdc-b7e8-2fab0d4f8e06",
+                        "step_iri": "\/api\/3\/workflow_steps\/8ad9bd66-fa75-4472-a763-f50a88ea9005",
                         "condition": "{{ vars.steps.Find_Asset | length > 0 }}"
                     },
                     {
                         "option": "No",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/df3d33d9-6397-44fd-8df0-44f7990929dd"
+                        "step_iri": "\/api\/3\/workflow_steps\/e6bee2fd-5218-4157-95a1-b66ef6957664"
                     }
                 ]
             },
@@ -172,7 +172,7 @@
             "top": "190",
             "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "7321b4c8-702c-49fb-9a2f-eff5502c15f3"
+            "uuid": "8ad16a54-7635-4ae2-9ced-815dc634d5c0"
         },
         {
             "@type": "WorkflowStep",
@@ -182,13 +182,13 @@
                 "conditions": [
                     {
                         "option": "Referenced",
-                        "step_iri": "\/api\/3\/workflow_steps\/0f554e6b-2a1f-4ac1-b07f-d22bfa91f47f",
+                        "step_iri": "\/api\/3\/workflow_steps\/9b204025-42e3-46f1-b482-331a8ff74347",
                         "condition": "{{ vars.input.params['indicator_value'] | length > 0 }}"
                     },
                     {
                         "option": "Upon Create",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/1dc8ab09-1cf4-465f-a857-5bce9626be34"
+                        "step_iri": "\/api\/3\/workflow_steps\/e2d9829f-c41a-4609-84a3-46d905565b50"
                     }
                 ]
             },
@@ -196,7 +196,7 @@
             "top": "110",
             "left": "1425",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "733bc2d5-ad4d-4fdc-b7e8-2fab0d4f8e06"
+            "uuid": "8ad9bd66-fa75-4472-a763-f50a88ea9005"
         },
         {
             "@type": "WorkflowStep",
@@ -222,72 +222,72 @@
             "top": "190",
             "left": "1750",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "1dc8ab09-1cf4-465f-a857-5bce9626be34"
+            "uuid": "e2d9829f-c41a-4609-84a3-46d905565b50"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Configuration -> Does Assets Exists",
-            "targetStep": "\/api\/3\/workflow_steps\/448a11cd-2098-4a0f-90d3-cd8925213075",
-            "sourceStep": "\/api\/3\/workflow_steps\/507e6241-c1d4-4333-a1f0-54ce23c071e9",
+            "targetStep": "\/api\/3\/workflow_steps\/b1ce6ffa-144e-4a12-aae8-002ecc3ec682",
+            "sourceStep": "\/api\/3\/workflow_steps\/1ee20dbc-c50a-4c10-941e-b92bbe52aeed",
             "label": null,
             "isExecuted": false,
-            "uuid": "f8065009-7e8b-404d-a3d8-98241c2811b2"
+            "uuid": "321a32ae-e8e0-47b0-ae12-8dc93008f078"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Upon Create -> Update Record",
-            "targetStep": "\/api\/3\/workflow_steps\/1dc8ab09-1cf4-465f-a857-5bce9626be34",
-            "sourceStep": "\/api\/3\/workflow_steps\/733bc2d5-ad4d-4fdc-b7e8-2fab0d4f8e06",
+            "targetStep": "\/api\/3\/workflow_steps\/e2d9829f-c41a-4609-84a3-46d905565b50",
+            "sourceStep": "\/api\/3\/workflow_steps\/8ad9bd66-fa75-4472-a763-f50a88ea9005",
             "label": "Upon Create",
             "isExecuted": false,
-            "uuid": "4e4e20b0-15c6-47b6-8318-bee112b2c3d5"
+            "uuid": "b22cbd9d-b25e-45a1-8adb-f71363a88843"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Upon Create -> Asset IRI",
-            "targetStep": "\/api\/3\/workflow_steps\/0f554e6b-2a1f-4ac1-b07f-d22bfa91f47f",
-            "sourceStep": "\/api\/3\/workflow_steps\/733bc2d5-ad4d-4fdc-b7e8-2fab0d4f8e06",
+            "targetStep": "\/api\/3\/workflow_steps\/9b204025-42e3-46f1-b482-331a8ff74347",
+            "sourceStep": "\/api\/3\/workflow_steps\/8ad9bd66-fa75-4472-a763-f50a88ea9005",
             "label": "Referenced",
             "isExecuted": false,
-            "uuid": "8dafa7a3-8587-48bc-82ea-d8cb4bca0f31"
+            "uuid": "91f020e7-8fc0-440c-a804-c6ace6dfce01"
         },
         {
             "@type": "WorkflowRoute",
             "name": "If Yes -> Copy  of Update Record",
-            "targetStep": "\/api\/3\/workflow_steps\/df3d33d9-6397-44fd-8df0-44f7990929dd",
-            "sourceStep": "\/api\/3\/workflow_steps\/7321b4c8-702c-49fb-9a2f-eff5502c15f3",
+            "targetStep": "\/api\/3\/workflow_steps\/e6bee2fd-5218-4157-95a1-b66ef6957664",
+            "sourceStep": "\/api\/3\/workflow_steps\/8ad16a54-7635-4ae2-9ced-815dc634d5c0",
             "label": "No",
             "isExecuted": false,
-            "uuid": "b039620c-0718-41fd-b505-adc1af0be741"
+            "uuid": "6430a5eb-9f40-4123-9cf1-3475e6d3f707"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Does Assets Exists -> If Yes",
-            "targetStep": "\/api\/3\/workflow_steps\/7321b4c8-702c-49fb-9a2f-eff5502c15f3",
-            "sourceStep": "\/api\/3\/workflow_steps\/448a11cd-2098-4a0f-90d3-cd8925213075",
+            "targetStep": "\/api\/3\/workflow_steps\/8ad16a54-7635-4ae2-9ced-815dc634d5c0",
+            "sourceStep": "\/api\/3\/workflow_steps\/b1ce6ffa-144e-4a12-aae8-002ecc3ec682",
             "label": null,
             "isExecuted": false,
-            "uuid": "bb6d590f-efa1-496d-892b-edb57e111838"
+            "uuid": "0a85c0fe-3f7b-4662-b9e9-c1df72dc82ce"
         },
         {
             "@type": "WorkflowRoute",
             "name": "If Yes -> Is Upon Create",
-            "targetStep": "\/api\/3\/workflow_steps\/733bc2d5-ad4d-4fdc-b7e8-2fab0d4f8e06",
-            "sourceStep": "\/api\/3\/workflow_steps\/7321b4c8-702c-49fb-9a2f-eff5502c15f3",
+            "targetStep": "\/api\/3\/workflow_steps\/8ad9bd66-fa75-4472-a763-f50a88ea9005",
+            "sourceStep": "\/api\/3\/workflow_steps\/8ad16a54-7635-4ae2-9ced-815dc634d5c0",
             "label": "Yes",
             "isExecuted": false,
-            "uuid": "0cb9c582-6308-4bae-b20f-c579745d0868"
+            "uuid": "ba7f3b92-0e06-4c38-9930-66b28ecf6268"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/507e6241-c1d4-4333-a1f0-54ce23c071e9",
-            "sourceStep": "\/api\/3\/workflow_steps\/fff9b98b-882a-43da-b3de-5f33645bed1e",
+            "targetStep": "\/api\/3\/workflow_steps\/1ee20dbc-c50a-4c10-941e-b92bbe52aeed",
+            "sourceStep": "\/api\/3\/workflow_steps\/2a08f54f-4147-41bb-833f-909cbf11ac16",
             "label": null,
             "isExecuted": false,
-            "uuid": "eab0a252-f4a5-4bb0-b9fc-4a805725dec0"
+            "uuid": "dbc1c995-06f8-45ac-8ca6-f27ab42da6aa"
         }
     ],
     "priority": null,
@@ -296,8 +296,6 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "Subroutine",
-        "FSRSolutionPack",
-        "sOARFramework-1.0.0"
+        "Subroutine"
     ]
 }
