@@ -11,10 +11,10 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1646211771,
+    "lastModifyDate": 1646851966,
     "collection": "\/api\/3\/workflow_collections\/4a9adb3a-1a68-4b28-8096-ea12210dfeab",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/2001a9be-a319-4358-92e4-0dc5af114e51",
+    "triggerStep": "\/api\/3\/workflow_steps\/07eef9cc-142b-42a5-99a2-6f121172d9f7",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -51,7 +51,7 @@
             "top": "20",
             "left": "20",
             "stepType": "\/api\/3\/workflow_step_types\/9300bf69-5063-486d-b3a6-47eb9da24872",
-            "uuid": "2001a9be-a319-4358-92e4-0dc5af114e51"
+            "uuid": "07eef9cc-142b-42a5-99a2-6f121172d9f7"
         },
         {
             "@type": "WorkflowStep",
@@ -62,12 +62,12 @@
                     {
                         "option": "No",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/eb75d50f-c8fa-4c6a-baab-f119e784a4bd",
+                        "step_iri": "\/api\/3\/workflow_steps\/160fb242-9fb9-443b-93ea-00e0622a4a8d",
                         "step_name": "No further action required"
                     },
                     {
                         "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/d358f419-5d08-41db-8154-543a850c8327",
+                        "step_iri": "\/api\/3\/workflow_steps\/7df36e09-f2f5-471c-9215-f378e479fc64",
                         "condition": "{{ vars.input.records[0].alerts | length > 1 }}",
                         "step_name": "Configuration"
                     }
@@ -77,7 +77,7 @@
             "top": "180",
             "left": "180",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "a131955c-3ed9-411e-accb-aae9f43288e7"
+            "uuid": "825c23d0-ff8f-4dd4-af7b-6274a2be3359"
         },
         {
             "@type": "WorkflowStep",
@@ -87,14 +87,14 @@
                 "conditions": [
                     {
                         "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/e3eee5b3-177f-47ae-9801-5b05dba7dacf",
+                        "step_iri": "\/api\/3\/workflow_steps\/9f665769-8db0-4a75-98a3-f3d0b52d0e32",
                         "condition": "{{ (vars.previous.data.alerts | length) > 1 }}",
                         "step_name": "Find Flag Comment"
                     },
                     {
                         "option": "No",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/0117f030-1096-421a-9b2a-f95313eb1403",
+                        "step_iri": "\/api\/3\/workflow_steps\/ba511c44-0bba-4392-a500-b362c3b9ba50",
                         "step_name": "Create a new note"
                     }
                 ]
@@ -103,7 +103,7 @@
             "top": "280",
             "left": "780",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "3cdaf82d-ab2c-4231-9b19-fca37c25f373"
+            "uuid": "2e154160-abe2-4f1c-82d9-aad9276219ed"
         },
         {
             "@type": "WorkflowStep",
@@ -150,7 +150,7 @@
             "top": "400",
             "left": "1080",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
-            "uuid": "e3eee5b3-177f-47ae-9801-5b05dba7dacf"
+            "uuid": "9f665769-8db0-4a75-98a3-f3d0b52d0e32"
         },
         {
             "@type": "WorkflowStep",
@@ -164,7 +164,7 @@
             "top": "280",
             "left": "500",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "d358f419-5d08-41db-8154-543a850c8327"
+            "uuid": "7df36e09-f2f5-471c-9215-f378e479fc64"
         },
         {
             "@type": "WorkflowStep",
@@ -208,7 +208,7 @@
             "top": "280",
             "left": "1760",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
-            "uuid": "0117f030-1096-421a-9b2a-f95313eb1403"
+            "uuid": "ba511c44-0bba-4392-a500-b362c3b9ba50"
         },
         {
             "@type": "WorkflowStep",
@@ -226,7 +226,7 @@
             "top": "100",
             "left": "500",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "eb75d50f-c8fa-4c6a-baab-f119e784a4bd"
+            "uuid": "160fb242-9fb9-443b-93ea-00e0622a4a8d"
         },
         {
             "@type": "WorkflowStep",
@@ -236,14 +236,14 @@
                 "conditions": [
                     {
                         "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/2ea556aa-23b4-4966-b488-e36725517758",
+                        "step_iri": "\/api\/3\/workflow_steps\/fb7ecfd6-5de3-4d5c-9d29-1b69b84f8eb8",
                         "condition": "{{ vars.steps.Find_Flag_Comment | length > 0 }}",
                         "step_name": "Link to alerts"
                     },
                     {
                         "option": "No",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/0117f030-1096-421a-9b2a-f95313eb1403",
+                        "step_iri": "\/api\/3\/workflow_steps\/ba511c44-0bba-4392-a500-b362c3b9ba50",
                         "step_name": "Create a new note"
                     }
                 ]
@@ -252,7 +252,7 @@
             "top": "400",
             "left": "1380",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "62e4959a-84af-4903-bd93-5317bc772113"
+            "uuid": "130d71d4-ac0e-4418-bdbf-3597bf6e03cf"
         },
         {
             "@type": "WorkflowStep",
@@ -278,90 +278,90 @@
             "top": "500",
             "left": "1760",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "2ea556aa-23b4-4966-b488-e36725517758"
+            "uuid": "fb7ecfd6-5de3-4d5c-9d29-1b69b84f8eb8"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Was previously linked to multiple alerts -> Find Flag Comment",
-            "targetStep": "\/api\/3\/workflow_steps\/e3eee5b3-177f-47ae-9801-5b05dba7dacf",
-            "sourceStep": "\/api\/3\/workflow_steps\/3cdaf82d-ab2c-4231-9b19-fca37c25f373",
+            "targetStep": "\/api\/3\/workflow_steps\/9f665769-8db0-4a75-98a3-f3d0b52d0e32",
+            "sourceStep": "\/api\/3\/workflow_steps\/2e154160-abe2-4f1c-82d9-aad9276219ed",
             "label": "Yes",
             "isExecuted": false,
-            "uuid": "2e3519a5-86f7-4731-ba4d-9246f797498e"
+            "uuid": "cc75ea52-a4dc-4c37-901b-f7845e559810"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Was previously linked to multiple alerts -> Create a new note",
-            "targetStep": "\/api\/3\/workflow_steps\/0117f030-1096-421a-9b2a-f95313eb1403",
-            "sourceStep": "\/api\/3\/workflow_steps\/3cdaf82d-ab2c-4231-9b19-fca37c25f373",
+            "targetStep": "\/api\/3\/workflow_steps\/ba511c44-0bba-4392-a500-b362c3b9ba50",
+            "sourceStep": "\/api\/3\/workflow_steps\/2e154160-abe2-4f1c-82d9-aad9276219ed",
             "label": "No",
             "isExecuted": false,
-            "uuid": "edde68d8-c883-4df6-8a3b-348e247bf729"
+            "uuid": "6058fccb-f402-452e-b6ce-902fbe765567"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Indicator Linked to Multiple Alerts -> No further action required",
-            "targetStep": "\/api\/3\/workflow_steps\/eb75d50f-c8fa-4c6a-baab-f119e784a4bd",
-            "sourceStep": "\/api\/3\/workflow_steps\/a131955c-3ed9-411e-accb-aae9f43288e7",
+            "targetStep": "\/api\/3\/workflow_steps\/160fb242-9fb9-443b-93ea-00e0622a4a8d",
+            "sourceStep": "\/api\/3\/workflow_steps\/825c23d0-ff8f-4dd4-af7b-6274a2be3359",
             "label": "No",
             "isExecuted": false,
-            "uuid": "7036763e-d643-443d-8589-eb760e3ef1df"
+            "uuid": "1cbef47f-be7a-4541-9b92-4dc3f543eb63"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Is Indicator Linked to Multiple Alerts",
-            "targetStep": "\/api\/3\/workflow_steps\/a131955c-3ed9-411e-accb-aae9f43288e7",
-            "sourceStep": "\/api\/3\/workflow_steps\/2001a9be-a319-4358-92e4-0dc5af114e51",
+            "targetStep": "\/api\/3\/workflow_steps\/825c23d0-ff8f-4dd4-af7b-6274a2be3359",
+            "sourceStep": "\/api\/3\/workflow_steps\/07eef9cc-142b-42a5-99a2-6f121172d9f7",
             "label": null,
             "isExecuted": false,
-            "uuid": "f5dae2ab-1f32-49eb-9c4e-1a65c3db1606"
+            "uuid": "ccfc7396-c0b5-44b0-9697-64fdfbcdadb9"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Indicator Linked to Multiple Alerts -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/d358f419-5d08-41db-8154-543a850c8327",
-            "sourceStep": "\/api\/3\/workflow_steps\/a131955c-3ed9-411e-accb-aae9f43288e7",
+            "targetStep": "\/api\/3\/workflow_steps\/7df36e09-f2f5-471c-9215-f378e479fc64",
+            "sourceStep": "\/api\/3\/workflow_steps\/825c23d0-ff8f-4dd4-af7b-6274a2be3359",
             "label": "Yes",
             "isExecuted": false,
-            "uuid": "75319d67-7b00-412f-b297-7f4ba965e546"
+            "uuid": "4cad044d-4100-48d5-b2cf-f394595ab3a4"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Configuration -> Was previously linked to multiple alerts",
-            "targetStep": "\/api\/3\/workflow_steps\/3cdaf82d-ab2c-4231-9b19-fca37c25f373",
-            "sourceStep": "\/api\/3\/workflow_steps\/d358f419-5d08-41db-8154-543a850c8327",
+            "targetStep": "\/api\/3\/workflow_steps\/2e154160-abe2-4f1c-82d9-aad9276219ed",
+            "sourceStep": "\/api\/3\/workflow_steps\/7df36e09-f2f5-471c-9215-f378e479fc64",
             "label": null,
             "isExecuted": false,
-            "uuid": "d29af653-d0db-4606-8109-7e9e855026e9"
+            "uuid": "eb310dd3-7df8-40fa-831c-56b94a32f25e"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Find Flag Comment -> Note found",
-            "targetStep": "\/api\/3\/workflow_steps\/62e4959a-84af-4903-bd93-5317bc772113",
-            "sourceStep": "\/api\/3\/workflow_steps\/e3eee5b3-177f-47ae-9801-5b05dba7dacf",
+            "targetStep": "\/api\/3\/workflow_steps\/130d71d4-ac0e-4418-bdbf-3597bf6e03cf",
+            "sourceStep": "\/api\/3\/workflow_steps\/9f665769-8db0-4a75-98a3-f3d0b52d0e32",
             "label": null,
             "isExecuted": false,
-            "uuid": "2e212908-1029-46d6-a166-24cfc369d211"
+            "uuid": "3abc0209-5255-4057-aad4-33ddb696d0c5"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Note found -> Link to alerts",
-            "targetStep": "\/api\/3\/workflow_steps\/2ea556aa-23b4-4966-b488-e36725517758",
-            "sourceStep": "\/api\/3\/workflow_steps\/62e4959a-84af-4903-bd93-5317bc772113",
+            "targetStep": "\/api\/3\/workflow_steps\/fb7ecfd6-5de3-4d5c-9d29-1b69b84f8eb8",
+            "sourceStep": "\/api\/3\/workflow_steps\/130d71d4-ac0e-4418-bdbf-3597bf6e03cf",
             "label": "Yes",
             "isExecuted": false,
-            "uuid": "1dd1b8e0-2d12-4d3b-93a7-d700ba7290cf"
+            "uuid": "74eb32cb-b07e-43a0-8c35-d96fe1ff4bec"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Note found -> Create a new note",
-            "targetStep": "\/api\/3\/workflow_steps\/0117f030-1096-421a-9b2a-f95313eb1403",
-            "sourceStep": "\/api\/3\/workflow_steps\/62e4959a-84af-4903-bd93-5317bc772113",
+            "targetStep": "\/api\/3\/workflow_steps\/ba511c44-0bba-4392-a500-b362c3b9ba50",
+            "sourceStep": "\/api\/3\/workflow_steps\/130d71d4-ac0e-4418-bdbf-3597bf6e03cf",
             "label": "No",
             "isExecuted": false,
-            "uuid": "fefd27ed-5b7d-4ea2-920d-00d4bc9cdc35"
+            "uuid": "45a88fc5-7019-4064-afc5-bef4496b65fb"
         }
     ],
     "priority": null,
@@ -370,8 +370,6 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "system",
-        "FSRSolutionPack",
-        "sOARFramework-1.0.0"
+        "system"
     ]
 }

@@ -11,10 +11,10 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1646211771,
+    "lastModifyDate": 1646853789,
     "collection": "\/api\/3\/workflow_collections\/7b096971-ca3f-479d-a156-ef9ad5c37506",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/cfdaf2da-4728-4a4f-8d1c-e094b782ae7a",
+    "triggerStep": "\/api\/3\/workflow_steps\/4f6e8305-1aa5-40b2-9cd9-f53a0bd03a62",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -44,7 +44,7 @@
             "top": "12",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/9300bf69-5063-486d-b3a6-47eb9da24872",
-            "uuid": "cfdaf2da-4728-4a4f-8d1c-e094b782ae7a"
+            "uuid": "4f6e8305-1aa5-40b2-9cd9-f53a0bd03a62"
         },
         {
             "@type": "WorkflowStep",
@@ -63,7 +63,7 @@
             "top": "320",
             "left": "606",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "c16f18e9-773c-41d0-bcd3-002fd40ab262"
+            "uuid": "1378c25d-e129-425f-9519-9d76c65462ef"
         },
         {
             "@type": "WorkflowStep",
@@ -78,7 +78,7 @@
             "top": "320",
             "left": "9",
             "stepType": "\/api\/3\/workflow_step_types\/ee73e569-2188-43fe-a7f0-1964ba82a4de",
-            "uuid": "e1f1e217-f6b9-4f29-9d31-da048f2268a2"
+            "uuid": "4026119a-205b-471c-8191-250117fccf85"
         },
         {
             "@type": "WorkflowStep",
@@ -87,11 +87,11 @@
             "arguments": {
                 "conditions": [
                     {
-                        "step_iri": "\/api\/3\/workflow_steps\/c16f18e9-773c-41d0-bcd3-002fd40ab262",
+                        "step_iri": "\/api\/3\/workflow_steps\/1378c25d-e129-425f-9519-9d76c65462ef",
                         "condition": "{{ vars.input.records[0].status[\"@id\"] == \"\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232\" }}"
                     },
                     {
-                        "step_iri": "\/api\/3\/workflow_steps\/e1f1e217-f6b9-4f29-9d31-da048f2268a2",
+                        "step_iri": "\/api\/3\/workflow_steps\/4026119a-205b-471c-8191-250117fccf85",
                         "condition": "{{ vars.input.records[0].status[\"@id\"] != \"\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232\" }}"
                     }
                 ]
@@ -100,36 +100,36 @@
             "top": "180",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "1b6b4320-1ce1-4a96-ba20-f54a22e92f1f"
+            "uuid": "b63b6f4a-5596-453c-974c-d7314da4e741"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Check Status is Closed",
-            "targetStep": "\/api\/3\/workflow_steps\/1b6b4320-1ce1-4a96-ba20-f54a22e92f1f",
-            "sourceStep": "\/api\/3\/workflow_steps\/cfdaf2da-4728-4a4f-8d1c-e094b782ae7a",
+            "targetStep": "\/api\/3\/workflow_steps\/b63b6f4a-5596-453c-974c-d7314da4e741",
+            "sourceStep": "\/api\/3\/workflow_steps\/4f6e8305-1aa5-40b2-9cd9-f53a0bd03a62",
             "label": null,
             "isExecuted": false,
-            "uuid": "4f117cb5-d4b6-4688-8b07-9da25c90698a"
+            "uuid": "95ffe12d-19b6-400c-acb7-19ca74337a47"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Check Status is Closed -> Update Resolved Date",
-            "targetStep": "\/api\/3\/workflow_steps\/c16f18e9-773c-41d0-bcd3-002fd40ab262",
-            "sourceStep": "\/api\/3\/workflow_steps\/1b6b4320-1ce1-4a96-ba20-f54a22e92f1f",
+            "targetStep": "\/api\/3\/workflow_steps\/1378c25d-e129-425f-9519-9d76c65462ef",
+            "sourceStep": "\/api\/3\/workflow_steps\/b63b6f4a-5596-453c-974c-d7314da4e741",
             "label": null,
             "isExecuted": false,
-            "uuid": "03013aba-b4a8-4408-a653-5a3faf378692"
+            "uuid": "b75f0ff7-39fe-4c65-bf4e-a7d41f6d1437"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Check Status is Closed -> No Operations",
-            "targetStep": "\/api\/3\/workflow_steps\/e1f1e217-f6b9-4f29-9d31-da048f2268a2",
-            "sourceStep": "\/api\/3\/workflow_steps\/1b6b4320-1ce1-4a96-ba20-f54a22e92f1f",
+            "targetStep": "\/api\/3\/workflow_steps\/4026119a-205b-471c-8191-250117fccf85",
+            "sourceStep": "\/api\/3\/workflow_steps\/b63b6f4a-5596-453c-974c-d7314da4e741",
             "label": null,
             "isExecuted": false,
-            "uuid": "7f668c24-5009-4362-8124-a20ed7884c67"
+            "uuid": "0106c63f-9807-4e31-ac51-ca7e6d67b91d"
         }
     ],
     "priority": null,
@@ -138,8 +138,6 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "system",
-        "FSRSolutionPack",
-        "sOARFramework-1.0.0"
+        "system"
     ]
 }

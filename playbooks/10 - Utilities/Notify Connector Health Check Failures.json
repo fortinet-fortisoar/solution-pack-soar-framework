@@ -11,10 +11,10 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1646211771,
+    "lastModifyDate": 1646854329,
     "collection": "\/api\/3\/workflow_collections\/20289298-cdd6-4052-8fa0-11e2603dca00",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/c8b6effd-0ff6-4af4-8ca2-71f38c58ee7b",
+    "triggerStep": "\/api\/3\/workflow_steps\/26fa6e55-962e-4e5b-8e78-c534a4fcd3ac",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -38,7 +38,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "14153ddc-d869-4a4d-9ed0-826b1e846a30"
+            "uuid": "2ff99110-8c68-441b-9507-db8d631a5f70"
         },
         {
             "@type": "WorkflowStep",
@@ -51,7 +51,7 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "c8b6effd-0ff6-4af4-8ca2-71f38c58ee7b"
+            "uuid": "26fa6e55-962e-4e5b-8e78-c534a4fcd3ac"
         },
         {
             "@type": "WorkflowStep",
@@ -78,7 +78,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "bf84e080-4b7d-48ee-880b-f7a0ffb9efef"
+            "uuid": "300a2116-a578-4e03-a4b3-35afebac559e"
         },
         {
             "@type": "WorkflowStep",
@@ -110,7 +110,7 @@
             "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/4c0019b2-055c-44d0-968c-678a0c2d762e",
-            "uuid": "e4291f7d-7612-43f5-93e3-96955c714efd"
+            "uuid": "8ff4691a-1a9d-4b14-ba79-d35b529f8c07"
         },
         {
             "@type": "WorkflowStep",
@@ -123,45 +123,45 @@
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "ef843008-1bef-48be-8a67-857099bf58af"
+            "uuid": "f7eafe60-0dc1-47e7-bf82-77567cf094a6"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Set failureList -> Send email",
-            "targetStep": "\/api\/3\/workflow_steps\/e4291f7d-7612-43f5-93e3-96955c714efd",
-            "sourceStep": "\/api\/3\/workflow_steps\/ef843008-1bef-48be-8a67-857099bf58af",
+            "targetStep": "\/api\/3\/workflow_steps\/8ff4691a-1a9d-4b14-ba79-d35b529f8c07",
+            "sourceStep": "\/api\/3\/workflow_steps\/f7eafe60-0dc1-47e7-bf82-77567cf094a6",
             "label": null,
             "isExecuted": false,
-            "uuid": "feffb078-1d18-4a1f-af4b-1b74555a3086"
+            "uuid": "0e217fb9-395e-4d50-a3ba-c7a85619c33a"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Load configured connectors",
-            "targetStep": "\/api\/3\/workflow_steps\/14153ddc-d869-4a4d-9ed0-826b1e846a30",
-            "sourceStep": "\/api\/3\/workflow_steps\/c8b6effd-0ff6-4af4-8ca2-71f38c58ee7b",
+            "targetStep": "\/api\/3\/workflow_steps\/2ff99110-8c68-441b-9507-db8d631a5f70",
+            "sourceStep": "\/api\/3\/workflow_steps\/26fa6e55-962e-4e5b-8e78-c534a4fcd3ac",
             "label": null,
             "isExecuted": false,
-            "uuid": "32c5713e-59ae-4c5e-8a74-1fc19db0416a"
+            "uuid": "fcc08993-4bec-42fd-bbc7-50bd436012e0"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Load configured connectors -> Run health checks",
-            "targetStep": "\/api\/3\/workflow_steps\/bf84e080-4b7d-48ee-880b-f7a0ffb9efef",
-            "sourceStep": "\/api\/3\/workflow_steps\/14153ddc-d869-4a4d-9ed0-826b1e846a30",
+            "targetStep": "\/api\/3\/workflow_steps\/300a2116-a578-4e03-a4b3-35afebac559e",
+            "sourceStep": "\/api\/3\/workflow_steps\/2ff99110-8c68-441b-9507-db8d631a5f70",
             "label": null,
             "isExecuted": false,
-            "uuid": "92447593-5314-46b7-af1f-744019b8f870"
+            "uuid": "9c106196-2525-4215-8865-3e0b31470a67"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Run health checks -> Set failureList",
-            "targetStep": "\/api\/3\/workflow_steps\/ef843008-1bef-48be-8a67-857099bf58af",
-            "sourceStep": "\/api\/3\/workflow_steps\/bf84e080-4b7d-48ee-880b-f7a0ffb9efef",
+            "targetStep": "\/api\/3\/workflow_steps\/f7eafe60-0dc1-47e7-bf82-77567cf094a6",
+            "sourceStep": "\/api\/3\/workflow_steps\/300a2116-a578-4e03-a4b3-35afebac559e",
             "label": null,
             "isExecuted": false,
-            "uuid": "c4741733-1faf-4ace-9ea1-56c22b6dcd19"
+            "uuid": "441ec5aa-c4ca-46d4-b993-ae906e0b889a"
         }
     ],
     "priority": null,
@@ -172,10 +172,6 @@
     "recordTags": [
         "system",
         "Subroutine",
-        "FSRSolutionPack",
-        "sOARFramework-1.0.0",
-        "Scheduled",
-        "fortiSOAREssentials-1.0.0",
-        "incidentResponse-1.0.0"
+        "Scheduled"
     ]
 }

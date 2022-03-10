@@ -11,10 +11,10 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "lastModifyDate": 1646211771,
+    "lastModifyDate": 1646854429,
     "collection": "\/api\/3\/workflow_collections\/d8ad6155-7798-4991-bfb4-7584a86c2241",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/7c468e09-828e-4922-8c70-b3c1eaccd7b7",
+    "triggerStep": "\/api\/3\/workflow_steps\/67fbb588-4b64-4095-b468-5cb239a5bcf3",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -27,7 +27,7 @@
             "top": "110",
             "left": "450",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "e377277c-ab29-4408-ae2a-8a3fcef4dbe8"
+            "uuid": "5509267f-6b97-4c65-9b91-7ca431e2425e"
         },
         {
             "@type": "WorkflowStep",
@@ -49,7 +49,7 @@
             "top": "110",
             "left": "775",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "ef8fd2d7-8ea9-4ced-ad5d-fde51fcd4b5e"
+            "uuid": "ad669e64-9df8-4ff5-bc95-8f03dc8e934f"
         },
         {
             "@type": "WorkflowStep",
@@ -79,7 +79,7 @@
             "top": "190",
             "left": "1425",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "5fbbcdca-9042-4bb5-989b-dddb62aaba36"
+            "uuid": "dfe86873-b817-4b1a-8949-4d3e601be011"
         },
         {
             "@type": "WorkflowStep",
@@ -89,13 +89,13 @@
                 "conditions": [
                     {
                         "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/5fbbcdca-9042-4bb5-989b-dddb62aaba36",
+                        "step_iri": "\/api\/3\/workflow_steps\/dfe86873-b817-4b1a-8949-4d3e601be011",
                         "condition": "{{ vars.steps.Get_File_Reputation.data.aggregate > 5 }}"
                     },
                     {
                         "option": "No",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/12ccc9d8-6708-4dd6-a820-bbaf9542f018"
+                        "step_iri": "\/api\/3\/workflow_steps\/f1c0057f-7a62-428b-a75a-476d2571e7e2"
                     }
                 ]
             },
@@ -103,7 +103,7 @@
             "top": "110",
             "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "87cdcd2e-5fc6-46f1-9d3c-7aabd4a76463"
+            "uuid": "a948f9e8-fa1f-439c-8f2a-feeceb7a4edf"
         },
         {
             "@type": "WorkflowStep",
@@ -144,7 +144,7 @@
             "top": "30",
             "left": "1425",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "12ccc9d8-6708-4dd6-a820-bbaf9542f018"
+            "uuid": "f1c0057f-7a62-428b-a75a-476d2571e7e2"
         },
         {
             "@type": "WorkflowStep",
@@ -168,54 +168,54 @@
             "top": "110",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-            "uuid": "7c468e09-828e-4922-8c70-b3c1eaccd7b7"
+            "uuid": "67fbb588-4b64-4095-b468-5cb239a5bcf3"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
             "name": "Get File Reputation -> Is File Malicious",
-            "targetStep": "\/api\/3\/workflow_steps\/87cdcd2e-5fc6-46f1-9d3c-7aabd4a76463",
-            "sourceStep": "\/api\/3\/workflow_steps\/ef8fd2d7-8ea9-4ced-ad5d-fde51fcd4b5e",
+            "targetStep": "\/api\/3\/workflow_steps\/a948f9e8-fa1f-439c-8f2a-feeceb7a4edf",
+            "sourceStep": "\/api\/3\/workflow_steps\/ad669e64-9df8-4ff5-bc95-8f03dc8e934f",
             "label": null,
             "isExecuted": false,
-            "uuid": "bf99a003-7355-4a20-85e1-61dbbebc767d"
+            "uuid": "46194d0b-822f-4c47-9624-67845d97561c"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is File Malicious -> Close as Benign",
-            "targetStep": "\/api\/3\/workflow_steps\/12ccc9d8-6708-4dd6-a820-bbaf9542f018",
-            "sourceStep": "\/api\/3\/workflow_steps\/87cdcd2e-5fc6-46f1-9d3c-7aabd4a76463",
+            "targetStep": "\/api\/3\/workflow_steps\/f1c0057f-7a62-428b-a75a-476d2571e7e2",
+            "sourceStep": "\/api\/3\/workflow_steps\/a948f9e8-fa1f-439c-8f2a-feeceb7a4edf",
             "label": "No",
             "isExecuted": false,
-            "uuid": "65b0c003-c7b0-435a-a977-88e502b81633"
+            "uuid": "92103d36-83eb-404c-85e6-2edc1e8f394c"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is File Malicious -> Update Severity to Critical",
-            "targetStep": "\/api\/3\/workflow_steps\/5fbbcdca-9042-4bb5-989b-dddb62aaba36",
-            "sourceStep": "\/api\/3\/workflow_steps\/87cdcd2e-5fc6-46f1-9d3c-7aabd4a76463",
+            "targetStep": "\/api\/3\/workflow_steps\/dfe86873-b817-4b1a-8949-4d3e601be011",
+            "sourceStep": "\/api\/3\/workflow_steps\/a948f9e8-fa1f-439c-8f2a-feeceb7a4edf",
             "label": "Yes",
             "isExecuted": false,
-            "uuid": "5d26ece8-ef36-4c2c-b5b1-cdbdd8c7d751"
+            "uuid": "965e6349-fe93-477d-9c5b-7b1ba016d821"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/e377277c-ab29-4408-ae2a-8a3fcef4dbe8",
-            "sourceStep": "\/api\/3\/workflow_steps\/7c468e09-828e-4922-8c70-b3c1eaccd7b7",
+            "targetStep": "\/api\/3\/workflow_steps\/5509267f-6b97-4c65-9b91-7ca431e2425e",
+            "sourceStep": "\/api\/3\/workflow_steps\/67fbb588-4b64-4095-b468-5cb239a5bcf3",
             "label": null,
             "isExecuted": false,
-            "uuid": "012ae81b-3faf-4f86-90ac-e40094a9b1ca"
+            "uuid": "db25e47e-8c39-4d02-a5ea-e494cde02be3"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Configuration -> Get File Reputation",
-            "targetStep": "\/api\/3\/workflow_steps\/ef8fd2d7-8ea9-4ced-ad5d-fde51fcd4b5e",
-            "sourceStep": "\/api\/3\/workflow_steps\/e377277c-ab29-4408-ae2a-8a3fcef4dbe8",
+            "targetStep": "\/api\/3\/workflow_steps\/ad669e64-9df8-4ff5-bc95-8f03dc8e934f",
+            "sourceStep": "\/api\/3\/workflow_steps\/5509267f-6b97-4c65-9b91-7ca431e2425e",
             "label": null,
             "isExecuted": false,
-            "uuid": "6839d5c9-e5b3-4db5-92a2-77fc35be8759"
+            "uuid": "2c95f864-392b-413c-a74d-c1c067863382"
         }
     ],
     "priority": null,
@@ -224,8 +224,6 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "FSRSolutionPack",
-        "sOARFramework-1.0.0",
         "ManualAction",
         "Alerts"
     ]
