@@ -1,0 +1,774 @@
+{
+    "@context": "\/api\/3\/contexts\/Dashboard",
+    "@type": "Dashboard",
+    "uuid": "add96996-0f45-4d15-a897-1b77a9444336",
+    "displayName": "Analyst",
+    "type": "rows",
+    "templateType": "dashboard",
+    "roles": [
+        "\/api\/3\/roles\/09346f6b-c52e-49c0-9ea5-eb5df2b0fa88",
+        "\/api\/3\/roles\/21d7a7c6-9d68-438f-b732-e8950c5f745b",
+        "\/api\/3\/roles\/594e0cba-5cf1-44d3-9639-420c9b8d883b"
+    ],
+    "parentTemplateId": null,
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "rows",
+                                "config": {
+                                    "wid": "a1cb2e12-0f79-4857-bf25-2d855cf5667c",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "sectionHeader",
+                                                            "config": {
+                                                                "wid": "266319d7-9dfb-45ac-a1f6-3b6b9bf6da89",
+                                                                "query": {
+                                                                    "filters": [],
+                                                                    "sort": [],
+                                                                    "limit": 10
+                                                                },
+                                                                "editorType": "html",
+                                                                "sectionText": "<p><span style=\"font-size: 14pt; color: #00ccff;\">ALERTS<\/span><\/p>"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ],
+                                            "wid": "11de68f0-5759-4e20-8efe-f1f74263c476",
+                                            "_collapsed": false
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "chart",
+                                                            "config": {
+                                                                "wid": "301b865a-c076-44af-a1f0-fbc18d9dbea9",
+                                                                "widgetAlwaysDisplay": true,
+                                                                "query": {
+                                                                    "sort": [
+                                                                        {
+                                                                            "field": "severity.orderIndex",
+                                                                            "direction": "ASC"
+                                                                        }
+                                                                    ],
+                                                                    "limit": 2147483647,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                                                                            "_value": {
+                                                                                "itemValue": "Closed",
+                                                                                "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ],
+                                                                    "aggregates": [
+                                                                        {
+                                                                            "operator": "countdistinct",
+                                                                            "field": "*",
+                                                                            "alias": "total"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "severity",
+                                                                            "field": "severity.itemValue"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "color",
+                                                                            "field": "severity.color"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "orderIndex",
+                                                                            "field": "severity.orderIndex"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "mapping": {
+                                                                    "assignedToPerson": "assignedTo",
+                                                                    "fieldName": "severity"
+                                                                },
+                                                                "aggregate": true,
+                                                                "title": "My Alerts By Severity",
+                                                                "resource": "alerts",
+                                                                "chart": "pie"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "chart",
+                                                            "config": {
+                                                                "wid": "4ce110db-1683-4eac-b9ca-9d2bb496dedd",
+                                                                "widgetAlwaysDisplay": true,
+                                                                "query": {
+                                                                    "sort": [
+                                                                        {
+                                                                            "field": "type.orderIndex",
+                                                                            "direction": "ASC"
+                                                                        }
+                                                                    ],
+                                                                    "limit": 2147483647,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                                                                            "_value": {
+                                                                                "display": "Closed",
+                                                                                "itemValue": "Closed",
+                                                                                "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ],
+                                                                    "aggregates": [
+                                                                        {
+                                                                            "operator": "countdistinct",
+                                                                            "field": "*",
+                                                                            "alias": "total"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "type",
+                                                                            "field": "type.itemValue"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "color",
+                                                                            "field": "type.color"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "orderIndex",
+                                                                            "field": "type.orderIndex"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "mapping": {
+                                                                    "assignedToPerson": "assignedTo",
+                                                                    "fieldName": "type"
+                                                                },
+                                                                "aggregate": true,
+                                                                "title": "My Alerts By Type",
+                                                                "resource": "alerts",
+                                                                "chart": "pie"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                }
+                                            ],
+                                            "wid": "ca0d6a64-10a8-4b1a-9c9d-60f0bb4ce9b4",
+                                            "_collapsed": false,
+                                            "collapsible": false,
+                                            "collapsibleIndex": 0,
+                                            "container": true
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "tabs",
+                                                            "config": {
+                                                                "wid": "27e965a0-73c6-414f-bd7f-7831fb1e3203",
+                                                                "tabs": [
+                                                                    {
+                                                                        "title": "SLA EXPIRING SOON",
+                                                                        "active": 0,
+                                                                        "widget": {
+                                                                            "type": "cardList",
+                                                                            "config": {
+                                                                                "wid": "bc80ee40-4df6-4f05-9eb1-34aa6fffdf18",
+                                                                                "query": {
+                                                                                    "sort": [
+                                                                                        {
+                                                                                            "direction": "ASC",
+                                                                                            "field": "dueBy",
+                                                                                            "_fieldTitle": "Ack Due Date",
+                                                                                            "_fieldName": "dueBy"
+                                                                                        }
+                                                                                    ],
+                                                                                    "limit": 10,
+                                                                                    "logic": "AND",
+                                                                                    "filters": [
+                                                                                        {
+                                                                                            "logic": "AND",
+                                                                                            "filters": [
+                                                                                                {
+                                                                                                    "field": "dueBy",
+                                                                                                    "operator": "gte",
+                                                                                                    "value": "{{getRelativeDate(0,0,0,0,0,0)}}",
+                                                                                                    "type": "datetime"
+                                                                                                },
+                                                                                                {
+                                                                                                    "field": "dueBy",
+                                                                                                    "operator": "lte",
+                                                                                                    "value": "{{getRelativeDate(0,0,7,\"end\",\"end\",\"end\")}}",
+                                                                                                    "type": "datetime"
+                                                                                                }
+                                                                                            ],
+                                                                                            "_field": "dueBy",
+                                                                                            "_value": {
+                                                                                                "differenceType": "days",
+                                                                                                "differenceValue": 7
+                                                                                            },
+                                                                                            "_operator": "date",
+                                                                                            "type": "datetime"
+                                                                                        },
+                                                                                        {
+                                                                                            "logic": "OR",
+                                                                                            "filters": [
+                                                                                                {
+                                                                                                    "field": "status",
+                                                                                                    "operator": "eq",
+                                                                                                    "value": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                                                                                                    "_value": {
+                                                                                                        "itemValue": "Open",
+                                                                                                        "@id": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146"
+                                                                                                    },
+                                                                                                    "type": "object"
+                                                                                                },
+                                                                                                {
+                                                                                                    "field": "status",
+                                                                                                    "operator": "eq",
+                                                                                                    "value": "\/api\/3\/picklists\/758925e7-629c-46d8-89db-fb36f5fbe88a",
+                                                                                                    "_value": {
+                                                                                                        "itemValue": "Investigating",
+                                                                                                        "@id": "\/api\/3\/picklists\/758925e7-629c-46d8-89db-fb36f5fbe88a"
+                                                                                                    },
+                                                                                                    "type": "object"
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                "mapping": {
+                                                                                    "templateView": "cardView",
+                                                                                    "assignedToPerson": "assignedTo",
+                                                                                    "picklistBar": "severity",
+                                                                                    "title": "name",
+                                                                                    "subTitle": "severity",
+                                                                                    "subTitle3": "status",
+                                                                                    "subTitle4": "dueBy"
+                                                                                },
+                                                                                "title": "SLA Expiring In 7 Days",
+                                                                                "module": "alerts"
+                                                                            }
+                                                                        },
+                                                                        "icon": "fa fa-clock-o",
+                                                                        "show": true
+                                                                    },
+                                                                    {
+                                                                        "title": "Critical Alerts",
+                                                                        "active": 0,
+                                                                        "widget": {
+                                                                            "type": "cardList",
+                                                                            "config": {
+                                                                                "wid": "26dc2321-ba2d-4f32-a954-8e8958677217",
+                                                                                "query": {
+                                                                                    "sort": [
+                                                                                        {
+                                                                                            "direction": "ASC",
+                                                                                            "field": "dueBy",
+                                                                                            "_fieldTitle": "Ack Due Date",
+                                                                                            "_fieldName": "dueBy"
+                                                                                        }
+                                                                                    ],
+                                                                                    "limit": 10,
+                                                                                    "logic": "OR",
+                                                                                    "filters": [
+                                                                                        {
+                                                                                            "field": "status",
+                                                                                            "operator": "eq",
+                                                                                            "value": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                                                                                            "_value": {
+                                                                                                "display": "Open",
+                                                                                                "itemValue": "Open",
+                                                                                                "@id": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146"
+                                                                                            },
+                                                                                            "type": "object",
+                                                                                            "display": "Open"
+                                                                                        },
+                                                                                        {
+                                                                                            "field": "status",
+                                                                                            "operator": "eq",
+                                                                                            "value": "\/api\/3\/picklists\/758925e7-629c-46d8-89db-fb36f5fbe88a",
+                                                                                            "_value": {
+                                                                                                "display": "Investigating",
+                                                                                                "itemValue": "Investigating",
+                                                                                                "@id": "\/api\/3\/picklists\/758925e7-629c-46d8-89db-fb36f5fbe88a"
+                                                                                            },
+                                                                                            "type": "object",
+                                                                                            "display": "Investigating"
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                "mapping": {
+                                                                                    "templateView": "cardView",
+                                                                                    "assignedToPerson": "assignedTo",
+                                                                                    "picklistBar": "severity",
+                                                                                    "title": "name",
+                                                                                    "subTitle": "severity",
+                                                                                    "subTitle3": "status",
+                                                                                    "subTitle4": "dueBy"
+                                                                                },
+                                                                                "title": "Critical\/High Severity Alerts",
+                                                                                "module": "alerts"
+                                                                            }
+                                                                        },
+                                                                        "icon": "fa fa-compass",
+                                                                        "show": false
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ],
+                                            "wid": "56f8086f-cefd-45fb-a538-b3a6c951e8b8",
+                                            "_collapsed": false,
+                                            "container": true
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "sectionHeader",
+                                                            "config": {
+                                                                "wid": "d00a1176-0315-4a4f-a3d5-5ceb2dd862b3",
+                                                                "query": {
+                                                                    "filters": [],
+                                                                    "sort": [],
+                                                                    "limit": 10
+                                                                },
+                                                                "editorType": "html",
+                                                                "sectionText": "<p><span style=\"font-size: 14pt; color: #00ccff;\">INCIDENTS<\/span><\/p>"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ],
+                                            "wid": "33b36975-913c-4984-a856-d1e56e8b51d6",
+                                            "_collapsed": false
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "chart",
+                                                            "config": {
+                                                                "wid": "a34b5ecc-6c15-432b-a42f-2435716f94a6",
+                                                                "widgetAlwaysDisplay": true,
+                                                                "query": {
+                                                                    "sort": [
+                                                                        {
+                                                                            "field": "severity.orderIndex",
+                                                                            "direction": "ASC"
+                                                                        }
+                                                                    ],
+                                                                    "limit": 2147483647,
+                                                                    "logic": "OR",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae",
+                                                                            "_value": {
+                                                                                "itemValue": "Resolved",
+                                                                                "@id": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae"
+                                                                            },
+                                                                            "type": "object"
+                                                                        },
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/bb73fade-f699-11e7-8c3f-9a214cf093ae",
+                                                                            "_value": {
+                                                                                "itemValue": "Inactive",
+                                                                                "@id": "\/api\/3\/picklists\/bb73fade-f699-11e7-8c3f-9a214cf093ae"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ],
+                                                                    "aggregates": [
+                                                                        {
+                                                                            "operator": "countdistinct",
+                                                                            "field": "*",
+                                                                            "alias": "total"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "severity",
+                                                                            "field": "severity.itemValue"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "color",
+                                                                            "field": "severity.color"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "orderIndex",
+                                                                            "field": "severity.orderIndex"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "mapping": {
+                                                                    "assignedToPerson": "incidentLead",
+                                                                    "fieldName": "severity"
+                                                                },
+                                                                "aggregate": true,
+                                                                "title": "My Incidents By Severity",
+                                                                "resource": "incidents",
+                                                                "chart": "pie"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "chart",
+                                                            "config": {
+                                                                "wid": "a8958447-f34e-419b-8ec0-08bb05b95aa3",
+                                                                "widgetAlwaysDisplay": true,
+                                                                "query": {
+                                                                    "sort": [
+                                                                        {
+                                                                            "field": "category.orderIndex",
+                                                                            "direction": "ASC"
+                                                                        }
+                                                                    ],
+                                                                    "limit": 2147483647,
+                                                                    "logic": "OR",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae",
+                                                                            "_value": {
+                                                                                "display": "Resolved",
+                                                                                "itemValue": "Resolved",
+                                                                                "@id": "\/api\/3\/picklists\/bb73fd5e-f699-11e7-8c3f-9a214cf093ae"
+                                                                            },
+                                                                            "type": "object"
+                                                                        },
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/bb73fade-f699-11e7-8c3f-9a214cf093ae",
+                                                                            "_value": {
+                                                                                "display": "Inactive",
+                                                                                "itemValue": "Inactive",
+                                                                                "@id": "\/api\/3\/picklists\/bb73fade-f699-11e7-8c3f-9a214cf093ae"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ],
+                                                                    "aggregates": [
+                                                                        {
+                                                                            "operator": "countdistinct",
+                                                                            "field": "*",
+                                                                            "alias": "total"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "category",
+                                                                            "field": "category.itemValue"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "color",
+                                                                            "field": "category.color"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "orderIndex",
+                                                                            "field": "category.orderIndex"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "mapping": {
+                                                                    "assignedToPerson": "incidentLead",
+                                                                    "fieldName": "category"
+                                                                },
+                                                                "aggregate": true,
+                                                                "title": "My Incidents By Type",
+                                                                "resource": "incidents",
+                                                                "chart": "pie"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "cardList",
+                                                            "config": {
+                                                                "wid": "685d2955-c7fe-4606-adf8-c424f5023859",
+                                                                "query": {
+                                                                    "sort": [
+                                                                        {
+                                                                            "direction": "ASC",
+                                                                            "field": "ackDueDate",
+                                                                            "_fieldTitle": "Ack Due Date",
+                                                                            "_fieldName": "ackDueDate"
+                                                                        }
+                                                                    ],
+                                                                    "limit": 10,
+                                                                    "logic": "OR",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "severity",
+                                                                            "operator": "eq",
+                                                                            "value": "\/api\/3\/picklists\/40187287-89fc-4e9c-b717-e9443d57eedb",
+                                                                            "_value": {
+                                                                                "itemValue": "High",
+                                                                                "@id": "\/api\/3\/picklists\/40187287-89fc-4e9c-b717-e9443d57eedb"
+                                                                            },
+                                                                            "type": "object",
+                                                                            "display": "High"
+                                                                        },
+                                                                        {
+                                                                            "field": "severity",
+                                                                            "operator": "eq",
+                                                                            "value": "\/api\/3\/picklists\/7efa2220-39bb-44e4-961f-ac368776e3b0",
+                                                                            "_value": {
+                                                                                "itemValue": "Critical",
+                                                                                "@id": "\/api\/3\/picklists\/7efa2220-39bb-44e4-961f-ac368776e3b0"
+                                                                            },
+                                                                            "type": "object",
+                                                                            "display": "Critical"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "mapping": {
+                                                                    "templateView": "cardView",
+                                                                    "assignedToPerson": "incidentLead",
+                                                                    "picklistBar": "severity",
+                                                                    "title": "name",
+                                                                    "subTitle": "severity",
+                                                                    "subTitle3": "status",
+                                                                    "subTitle4": "ackDueDate"
+                                                                },
+                                                                "title": "Critical\/High Severity Incidents",
+                                                                "module": "incidents"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                }
+                                            ],
+                                            "wid": "7481d4ad-258f-402a-90a5-534f68323351",
+                                            "collapsible": false,
+                                            "collapsibleIndex": 0,
+                                            "_collapsed": false,
+                                            "container": true
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "style": "col-lg-9"
+                    },
+                    {
+                        "widgets": [
+                            {
+                                "type": "rows",
+                                "config": {
+                                    "wid": "f0f41b80-5610-448d-a7ff-56d9e2ba9425",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "sectionHeader",
+                                                            "config": {
+                                                                "wid": "0e8b3c58-dc62-453e-b1d3-dadf9a59f62c",
+                                                                "query": {
+                                                                    "filters": [],
+                                                                    "sort": [],
+                                                                    "limit": 10
+                                                                },
+                                                                "editorType": "html",
+                                                                "sectionText": "<p><span style=\"font-size: 14pt; color: #00ccff;\">TASKS<\/span><\/p>"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ],
+                                            "wid": "068670ff-09e9-4d5e-ac24-95d70203dc08",
+                                            "_collapsed": false
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "chart",
+                                                            "config": {
+                                                                "wid": "cfb085c6-d78b-4101-bd24-f398ffe96a66",
+                                                                "widgetAlwaysDisplay": true,
+                                                                "query": {
+                                                                    "sort": [
+                                                                        {
+                                                                            "field": "priority.orderIndex",
+                                                                            "direction": "ASC"
+                                                                        }
+                                                                    ],
+                                                                    "limit": 2147483647,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed",
+                                                                            "_value": {
+                                                                                "display": "Completed",
+                                                                                "itemValue": "Completed",
+                                                                                "@id": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ],
+                                                                    "aggregates": [
+                                                                        {
+                                                                            "operator": "countdistinct",
+                                                                            "field": "*",
+                                                                            "alias": "total"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "priority",
+                                                                            "field": "priority.itemValue"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "color",
+                                                                            "field": "priority.color"
+                                                                        },
+                                                                        {
+                                                                            "operator": "groupby",
+                                                                            "alias": "orderIndex",
+                                                                            "field": "priority.orderIndex"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "mapping": {
+                                                                    "assignedToPerson": "assignedToPerson",
+                                                                    "fieldName": "priority"
+                                                                },
+                                                                "aggregate": true,
+                                                                "title": "My Tasks By Priority",
+                                                                "resource": "tasks",
+                                                                "chart": "pie"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ],
+                                            "wid": "95e7b848-23dc-4313-b11b-9d827bff122c",
+                                            "_collapsed": false
+                                        },
+                                        {
+                                            "columns": [
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "cardList",
+                                                            "config": {
+                                                                "wid": "e25c688c-7ee4-4915-baee-f584ee1c11e6",
+                                                                "query": {
+                                                                    "sort": [
+                                                                        {
+                                                                            "direction": "ASC",
+                                                                            "field": "dueBy",
+                                                                            "_fieldTitle": "Due By",
+                                                                            "_fieldName": "dueBy"
+                                                                        }
+                                                                    ],
+                                                                    "limit": 10,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "status",
+                                                                            "operator": "neq",
+                                                                            "value": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed",
+                                                                            "_value": {
+                                                                                "display": "Completed",
+                                                                                "itemValue": "Completed",
+                                                                                "@id": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed"
+                                                                            },
+                                                                            "type": "object"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "mapping": {
+                                                                    "templateView": "cardView",
+                                                                    "assignedToPerson": "assignedToPerson",
+                                                                    "picklistBar": "priority",
+                                                                    "title": "name",
+                                                                    "subTitle": "type",
+                                                                    "subTitle3": "priority",
+                                                                    "subTitle4": "dueBy"
+                                                                },
+                                                                "title": "Assigned Tasks",
+                                                                "module": "tasks"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-12"
+                                                }
+                                            ],
+                                            "wid": "b9948677-b81d-4db6-b4e5-d45b95f418a6",
+                                            "_collapsed": false
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "style": "col-lg-3"
+                    }
+                ],
+                "wid": "28e55480-4d1f-48ef-9ef3-83a096315b84",
+                "collapsible": false,
+                "collapsibleIndex": 0,
+                "_collapsed": false,
+                "container": true
+            }
+        ],
+        "wid": "de46e68e-94b4-4e38-8286-67d7f461d415"
+    },
+    "filterArray": [],
+    "updateDate": null
+}
