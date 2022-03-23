@@ -2,27 +2,19 @@
 
 ## Overview
 
-The SOAR Framework Solution Pack provides you with a snapshot of the configuration data and other items that can help you to optimally use and experience FortiSOAR’s incident response. 
+The SOAR Framework Solution Pack provides you a snapshot of the configuration data and other items that can help you optimally use and experience FortiSOAR's incident response. 
 
 This documentation provides a listing and brief description of the various types of modules, connectors, playbook collections, dashboards, reports, and widgets included in the Solution Pack.
 
 Playbooks help perform various operations that automate security processes across an organization. These playbooks also help simulate use cases and provide training for FortiSOAR.
 
-It is a foundational Solution Pack that creates the day-to-day modules that a Security Operations Center (SOC) requires. E.g. Alerts, incidents, indicators, campaigns, and hunts.
+SOAR framework is a foundational Solution Pack that creates the day-to-day modules like alerts, incidents, indicators, campaigns, and hunts that Security Operations Center (SOC) requires.
 
-***How to use all elements of FortiSOAR as per best practices***
-
-### ~~What are SIEM and EDR?~~
-
-~~The core function of Security Information and Event Management (SIEM) is threat detection and management.~~
-
-~~A SIEM collects and combines data from various sources across an organization’s IT and security framework -- including host systems, networks, firewalls, and antivirus security devices. It analyzes data collected through these sources to identify potential security issues within an enterprise.~~
-
-~~An EDR (Endpoint Detection and Response) is a SIEM-complementary software used to expand detection and response capacity.~~
+**How to use all elements of FortiSOAR as per best practices**
 
 ## Prerequisites
 
-SOAR Framework Solution Pack is the base solution pack and hence there are no prerequisites to install it.
+SOAR Framework Solution Pack is the base solution pack there are no prerequisites to install it.
 
 ## Contents
 
@@ -79,25 +71,43 @@ Alerts are primary actionable data elements that we obtain through a periodic in
 
 ##### Alert Ingestion
 
-For every indicator, file URL, hash, domain, IP address, user; there is a corresponding enrichment playbook that goes through multiple intelligence platforms, and other processes, collects the data, and puts that information in a formatted manner to the indicator record.
+Running an alert through the system to find signs and understand if there was a threat is Alert Ingestion.
 
 ##### Indicator Extraction
 
 Depends on the standard schema of the alerts module, which when populated, translates to the respective indicator record.
 
+##### Indicator Enrichment
+
+For every indicator, file URL, hash, domain, IP address, user; there is a corresponding enrichment playbook that goes through multiple intelligence platforms, and other processes, collects the data, and puts that information in a formatted manner to the indicator record.
+
 #### Announcements
+
+Announcements module helps notify users who are a part of a [war room](#war-rooms). 
 
 #### Assets
 
+Assets represent a unique piece of hardware and any information known about that hardware, such as MAC address, hostname, or IP address. Assets preferably have a unique identifier. The assets module helps add devices within FortiSOAR for use by the SOC team. Computers typically represent the assets of your organization. 
+
 #### Campaigns
+
+Campaigns are a collection of incidents relatable to a single threat actor. Many times, disparate incidents are connected attempts of a malicious attacker attempting to probe and gain access to a network.
 
 #### Communication
 
+It helps users to communicate with external entities like tenant contacts, and other SOC teams, using email, instant messaging (IM), etc. from within an alert generated in FortiSOAR. For this purpose, it uses IMAP and Exchange connectors.
+
 #### Events
+
+Events consist of records that contain machine-level information about activity that triggered a specific alert.
 
 #### Hunt
 
+The Hunts module is a place to store and organize your hunts. The hunt you create here will be the central repository where all Alerts, Assets, Users, and other modules’ records that become associated with your hunting activity will be linked together. 
+
 #### Incidents
+
+Incidents are confirmed alerts that negatively affect the confidentiality, integrity, and availability of an organization. Incidents represent a collection of information discovered during an Incident Response investigation. Incidents are triggered based on the suspicion or confirmation of a security breach.
 
 #### Indicators
 
@@ -107,7 +117,11 @@ Some of this evidence of potential breach is found on event logs and timestamped
 
 #### SLA Template
 
+SLA Templates in FortiSOAR help create an in-built SLA management for incidents and alerts. For more information, please refer to [SLA Management](https://docs.fortinet.com/document/fortisoar/7.0.2/administration-guide/792686/sla-management). 
+
 #### War Rooms
+
+War Rooms in FortiSOAR is a collaborative space that enables SOC teams to mitigate a critical cyber threat scenario or campaign. FortiSOAR makes it easy for analysts to quickly and easily provision a War Room that allows participation of all stakeholders to analyze and collaborate to quickly mitigate the threat and restore the services. For more information, see the War Rooms chapter.
 
 ### Playbooks
 
@@ -135,26 +149,30 @@ SOAR Framework includes the following playbooks:
 
 #### Naming Convention
 
-Playbooks follow a specific order of execution and are arranged in the same sequence as the flow of alert ingestion in SOAR Framework.
+Playbooks follow a specific order of execution and are arranged in the same sequence as the flow of alert ingestion in SOAR Framework. Hence the name carries a number that defines the order in which the playbooks run.
 
 ### Rules
 
+Rules provide a framework to define a condition that generates notifications.
+
 The SOAR Framework includes the following rules:
 
-- Alert > Notify Creation
-- Alert > Notify Update
-- Incident > Notify Creation
-- Incident > Notify Update
+- Alert > Notify Creation - It sends a notification, via the app or the email, whenever an alert is **created**.
+- Alert > Notify Update - It sends a notification, via the app or the email, whenever an alert is **updated**.
+- Incident > Notify Creation - It sends a notification, via the app or the email, whenever an incident is **created**.
+- Incident > Notify Update - It sends a notification, via the app or the email, whenever an incident is **updated**.
 
 ### Widgets
 
-Widgets render information for the visual display inside the View Template., SOAR Framework has the following widgets:
+Widgets render information for the visual display inside View Template. Widget types vary such that specific widgets only correspond to certain view types. For example, the detail view has some exclusive widgets, such as Visual Correlation, Comments, Timeline, etc.
 
-- Task Management (War Room)
-- Record Summary (War Room)
-- SLA Count Down Timer
-- User Tile
-- Incident Correlations
+SOAR Framework has the following widgets:
+
+- **Task Management (War Room)** - It is a comprehensive task management widget that helps users manage tasks and get visibility into the current task board.
+- **Record Summary (War Room)** - It is primarily designed to showcase a particular record's highlights or summary, this widget houses multiple utility widgets within it to allow for customized uses.
+- **SLA Count Down Timer** - This widget displays the remaining time for an SLA.
+- **User Tile** - This widget shows relevant information like alerts, incidents, and tasks to users.
+- **Incident Correlations** - This widget displays the correlation graph of an incident.
 
 ### Roles
 
@@ -171,10 +189,11 @@ A Dashboard is the default landing page, and users' home page, that users see wh
 - ROI Summary
 - SOC Admin
 - Analyst
+- System Health Status
 
 ### Reports
 
-SOAR framework includes the following reports:
+The reports module displays various reports for specific, defined users. SOAR framework includes the following reports:
 
 - High Impact Incidents
 - Incident Summary Report
@@ -187,31 +206,13 @@ SOAR framework includes the following reports:
 - Weekly IOC Report
 - Weekly Incident Report
 
-## Scenario Flow
-
-The FortiSOAR process happens in multiple steps where an alert is ingested, indicators extracted and enriched, multiple playbooks are executed to analyze and understand if the alerts contain sufficient information to compile and report as an incident.
-
-![](assets/Fortisoar-Flow.png)
-
-This flow diagram is explained in the following 
-
-1. **Pull alerts from an alert source** - FortiSOAR, at regular intervals, pulls alerts from an alert source like a SIEM or an EDR. It combines threats or alerts from multiple sources into a single location.
-2. **Extract indicators from alerts** - Indicators, like IP address, email address, or any such identifiable information that is associated with the alert source, are extracted to gather more context or information related to the alert.
-3. **Playbooks Execution** - FortiSOAR has multiple playbooks that run to automate and expedite the process of notification or case management, Triaging, Investigation, and possible escalation. Following are some of the tasks that playbooks have automated.
-   1. **Enrich Indicators** - The indicator enrichment process helps collect more actionable information for the SOC analyst. E.g. fetching the reputation of a suspicious file, domain, or a URL from threat intelligence platforms like Anomali or VirusTotal.
-   2. **Triage** - You can sort, systemize, or perform computation on the enriched data to reduce investigation time. A thorough investigation in a shorter time helps make a decision and reach a resolution faster.
-   3. **Action** - After a successful triage, playbooks help take corrective action on the triaged indicators. Actions may include asset mitigation by isolation, blocking domains and URLs through firewalls, and blocking or disabling users and IP addresses.
-   4. **Hunt** - Hunt playbooks search and identify suspicious domains, malware, files, or other indicators and create alerts as and when such threats are located.
-   5. **Case Management** - Case Management playbooks automate processes like adding users as case owners, tracking SLA and resolution timelines, among other things. It also contains playbooks that resolve an alert by taking appropriate action or marking it as an 'incident' and escalating it.
-   6. **Incident Response** - These playbooks help plan response to an incident like a malware attack.
-
 ## Playbook Collection
 
 The playbook collection is designed so that it runs in a specific order. Each collection has multiple playbooks with each containing tasks undertaken on each run.
 
 ### Enrich Playbook Collection
 
-It has 2 playbook collections
+It has two playbook collections
 
 - 02 - Enrich
 - 02 - Enrich (Pluggable)
@@ -541,3 +542,21 @@ This collection has one playbook.
 | Link Previous Communications             | Links existing communications records to create a conversation thread. |
 | Manual Send Notification                 | Sends email notification for any selected communication record that is in either “Draft” or “Sending” state to the intended recipients. |
 | Send Notification                        | Sends auto-notification of any new communication record that is in the “Sending” state to the intended recipients. |
+
+## Scenario Flow
+
+The FortiSOAR process happens in multiple steps where an alert is ingested, indicators extracted and enriched, multiple playbooks are executed to analyze and understand if the alerts contain sufficient information to compile and report as an incident.
+
+![](assets/Fortisoar-Flow.png)
+
+This flow diagram is explained in the following 
+
+1. **Pull alerts from an alert source** - FortiSOAR, at regular intervals, pulls alerts from an alert source like a SIEM or an EDR. It combines threats or alerts from multiple sources into a single location.
+2. **Extract indicators from alerts** - Indicators, like IP address, email address, or any such identifiable information that is associated with the alert source, are extracted to gather more context or information related to the alert.
+3. **Playbooks Execution** - FortiSOAR has multiple playbooks that run to automate and expedite the process of notification or case management, Triaging, Investigation, and possible escalation. Following are some of the tasks that playbooks have automated.
+   1. **Enrich Indicators** - The indicator enrichment process helps collect more actionable information for the SOC analyst. E.g. fetching the reputation of a suspicious file, domain, or a URL from threat intelligence platforms like Anomali or VirusTotal.
+   2. **Triage** - You can sort, systemize, or perform computation on the enriched data to reduce investigation time. A thorough investigation in a shorter time helps make a decision and reach a resolution faster.
+   3. **Action** - After a successful triage, playbooks help take corrective action on the triaged indicators. Actions may include asset mitigation by isolation, blocking domains and URLs through firewalls, and blocking or disabling users and IP addresses.
+   4. **Hunt** - Hunt playbooks search and identify suspicious domains, malware, files, or other indicators and create alerts as and when such threats are located.
+   5. **Case Management** - Case Management playbooks automate processes like adding users as case owners, tracking SLA and resolution timelines, among other things. It also contains playbooks that resolve an alert by taking appropriate action or marking it as an 'incident' and escalating it.
+   6. **Incident Response** - These playbooks help plan response to an incident like a malware attack.
