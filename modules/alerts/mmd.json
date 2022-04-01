@@ -1,6 +1,6 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/76517de8-a0e8-41d4-a936-d35b1ce6528e",
+    "@id": "\/api\/3\/staging_model_metadatas\/d8dbd704-8cd5-4e32-be83-4df9cfc890b0",
     "@type": "StagingModelMetadata",
     "type": "alerts",
     "parentType": null,
@@ -1637,9 +1637,27 @@
             "ownsRelationship": false,
             "validation": {
                 "_enableRange": false,
-                "required": false,
+                "required": [
+                    {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "field": "status",
+                                "operator": "eq",
+                                "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                                "_value": {
+                                    "itemValue": "Closed",
+                                    "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
+                                },
+                                "type": "object"
+                            }
+                        ]
+                    }
+                ],
                 "minlength": 0,
-                "maxlength": -1
+                "maxlength": 10485761
             },
             "bulkAction": {
                 "allow": false,
@@ -1648,25 +1666,25 @@
                 "buttonText": ""
             },
             "dataSourceFilters": [],
-            "defaultValue": "\/api\/3\/picklists\/8590c81e-3307-4645-97f5-c3e1bec4e05a",
+            "defaultValue": null,
             "tooltip": "",
             "visibility": [
                 {
-                    "filters": [
-                        {
-                            "_value": {
-                                "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
-                                "itemValue": "Closed"
-                            },
-                            "field": "status",
-                            "operator": "eq",
-                            "type": "object",
-                            "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
-                        }
-                    ],
+                    "sort": [],
                     "limit": 30,
                     "logic": "AND",
-                    "sort": []
+                    "filters": [
+                        {
+                            "field": "status",
+                            "operator": "eq",
+                            "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                            "_value": {
+                                "itemValue": "Closed",
+                                "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
+                            },
+                            "type": "object"
+                        }
+                    ]
                 }
             ],
             "htmlEscape": false,
@@ -2595,18 +2613,28 @@
             "tooltip": "",
             "visibility": [
                 {
-                    "filters": [
-                        {
-                            "_operator": "isnull",
-                            "field": "destinationIp",
-                            "operator": "isnull",
-                            "type": "primitive",
-                            "value": "false"
-                        }
-                    ],
+                    "sort": [],
                     "limit": 30,
                     "logic": "OR",
-                    "sort": []
+                    "filters": [
+                        {
+                            "field": "destinationIp",
+                            "operator": "isnull",
+                            "_operator": "isnull",
+                            "value": "false",
+                            "type": "primitive"
+                        },
+                        {
+                            "field": "type",
+                            "operator": "eq",
+                            "value": "\/api\/3\/picklists\/382183df-212d-4ce1-adae-088647cc72c3",
+                            "_value": {
+                                "itemValue": "Brute Force Attempts",
+                                "@id": "\/api\/3\/picklists\/382183df-212d-4ce1-adae-088647cc72c3"
+                            },
+                            "type": "object"
+                        }
+                    ]
                 }
             ],
             "htmlEscape": false,
@@ -6399,14 +6427,6 @@
                     "cf031c4e-3bb9-4f87-91eb-91a5cb1c6d48": {
                         "conditions": null,
                         "visibility": "visible"
-                    },
-                    "8675a07f-2d0d-4e3a-89af-4822b8341df8": {
-                        "visibility": "visible",
-                        "conditions": null
-                    },
-                    "8ec42be5-e440-4be9-b7e6-5ea087641959": {
-                        "visibility": "visible",
-                        "conditions": null
                     }
                 },
                 "model": "picklists",
@@ -6439,7 +6459,7 @@
                 "_enableRange": false,
                 "required": false,
                 "minlength": 0,
-                "maxlength": 10485761
+                "maxlength": -1
             },
             "bulkAction": {
                 "allow": false,
@@ -6476,7 +6496,7 @@
         "delete_primary_data_after": 60
     },
     "archivalFilters": [],
-    "uuid": "76517de8-a0e8-41d4-a936-d35b1ce6528e",
+    "uuid": "d8dbd704-8cd5-4e32-be83-4df9cfc890b0",
     "displayName": "{{ name }}",
     "descriptions": {
         "plural": "Alerts",
