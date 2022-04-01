@@ -75,8 +75,8 @@
                 "workflowReference": "\/api\/3\/workflows\/49160df7-9694-4451-9a15-41e79fdd3aa3"
             },
             "status": null,
-            "top": "440",
-            "left": "120",
+            "top": "435",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "uuid": "649438ce-fc23-4876-b327-3e3056267dd6"
         },
@@ -101,6 +101,7 @@
                         "required": true,
                         "_expanded": true,
                         "_nameTouched": true,
+                        "defaultValue": null,
                         "useModuleField": false,
                         "useRecordFieldDefault": false
                     },
@@ -183,6 +184,7 @@
                         },
                         "searchable": false,
                         "templateUrl": "app\/components\/form\/fields\/typeahead.html",
+                        "defaultValue": null,
                         "useModuleField": false,
                         "displayTemplate": "{{ firstname }} {{ lastname }}",
                         "allowedEncryption": false,
@@ -337,6 +339,86 @@
                         "allowedEncryption": false,
                         "allowedGridColumn": true,
                         "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "closureReason",
+                        "type": "picklists",
+                        "label": "Closure Reason",
+                        "title": "Picklist",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "picklist",
+                        "formType": "picklist",
+                        "required": true,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "dataSource": {
+                            "model": "picklists",
+                            "query": {
+                                "sort": [
+                                    {
+                                        "field": "orderIndex",
+                                        "direction": "ASC"
+                                    }
+                                ],
+                                "logic": "AND",
+                                "filters": [
+                                    {
+                                        "field": "listName__name",
+                                        "value": "Closure Reason",
+                                        "operator": "eq"
+                                    }
+                                ]
+                            },
+                            "displayConditions": {
+                                "2ab3e8e9-8cd9-4641-8400-a18a4e8a2da8": {
+                                    "conditions": null,
+                                    "visibility": "visible"
+                                },
+                                "2b0112f6-4746-4dab-ada6-a8cd1e675572": {
+                                    "conditions": null,
+                                    "visibility": "visible"
+                                },
+                                "672aef13-a684-422e-be6c-15e10ec49915": {
+                                    "conditions": null,
+                                    "visibility": "visible"
+                                },
+                                "8590c81e-3307-4645-97f5-c3e1bec4e05a": {
+                                    "conditions": null,
+                                    "visibility": "visible"
+                                },
+                                "8f8ce378-df65-4231-85e3-0b8f25a04379": {
+                                    "conditions": null,
+                                    "visibility": "visible"
+                                },
+                                "cc2d6b59-62de-4cb6-93a2-bcce4250009d": {
+                                    "conditions": null,
+                                    "visibility": "visible"
+                                }
+                            }
+                        },
+                        "searchable": false,
+                        "templateUrl": "app\/components\/form\/fields\/typeahead.html",
+                        "defaultValue": {
+                            "id": "371",
+                            "@id": "\/api\/3\/picklists\/cc2d6b59-62de-4cb6-93a2-bcce4250009d",
+                            "icon": null,
+                            "uuid": "cc2d6b59-62de-4cb6-93a2-bcce4250009d",
+                            "@type": "Picklist",
+                            "color": null,
+                            "display": "Escalated to Incident",
+                            "listName": "\/api\/3\/picklist_names\/4ebacea1-88cd-4ea8-9dcc-385bea42cc59",
+                            "itemValue": "Escalated to Incident",
+                            "importedBy": [],
+                            "orderIndex": 1
+                        },
+                        "_previousName": "closureRe",
+                        "displayTemplate": "%7B%7B%20itemValue%20%7D%7D",
+                        "lengthConstraint": false,
+                        "allowedEncryption": false,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false
                     }
                 ],
                 "step_variables": {
@@ -346,6 +428,7 @@
                             "incidentLead": "{{vars.request.data[\"incidentLead\"]}}",
                             "incidentName": "{{vars.request.data[\"incidentName\"]}}",
                             "incidentType": "{{vars.request.data[\"incidentType\"]}}",
+                            "closureReason": "{{vars.request.data[\"closureReason\"]}}",
                             "escalationReason": "{{vars.request.data[\"escalationReason\"]}}"
                         },
                         "records": "{{vars.input.records}}"
