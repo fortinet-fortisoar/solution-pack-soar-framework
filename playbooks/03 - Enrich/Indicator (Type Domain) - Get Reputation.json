@@ -291,44 +291,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Is Malicious",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Malicious",
-                        "step_iri": "\/api\/3\/workflow_steps\/a8293e3a-dfba-4a75-944a-30c2b32bd8e9",
-                        "condition": "{{ vars.last_analysis_stats.malicious > 0 }}",
-                        "step_name": "Set Malicious"
-                    },
-                    {
-                        "option": "No Reputation",
-                        "step_iri": "\/api\/3\/workflow_steps\/ba00839d-3f7c-4c58-9482-3dd90983dfa9",
-                        "condition": "{{ vars.last_analysis_stats.malicious == 0 or vars.last_analysis_stats.suspicious == 0 or vars.last_analysis_stats.harmless == 0 }}",
-                        "step_name": "Set No Reputation"
-                    },
-                    {
-                        "option": "Safe",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/76a57575-4e0f-46f7-a42f-3afca8f2f2c3",
-                        "step_name": "Set Good"
-                    },
-                    {
-                        "option": "Suspicious",
-                        "step_iri": "\/api\/3\/workflow_steps\/4da003d4-3f6a-4158-a76f-a871a13fc41f",
-                        "condition": "{{ vars.last_analysis_stats.suspicious > 0 }}",
-                        "step_name": "Set Suspicious"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "510",
-            "left": "3050",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "7cd3addf-43dd-4691-9844-9d4e37532479"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Get Reputation from URLVoid",
             "description": null,
             "arguments": {
@@ -779,6 +741,44 @@
             "left": "775",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "22afb2fc-20ce-4da4-a59f-4773684459a0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Malicious",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Malicious",
+                        "step_iri": "\/api\/3\/workflow_steps\/a8293e3a-dfba-4a75-944a-30c2b32bd8e9",
+                        "condition": "{{ vars.last_analysis_stats.malicious > 0 }}",
+                        "step_name": "Set Malicious"
+                    },
+                    {
+                        "option": "Safe",
+                        "step_iri": "\/api\/3\/workflow_steps\/76a57575-4e0f-46f7-a42f-3afca8f2f2c3",
+                        "condition": "{{ vars.last_analysis_stats.harmless > vars.last_analysis_stats.undetected }}",
+                        "step_name": "Set Good"
+                    },
+                    {
+                        "option": "No Reputation",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/ba00839d-3f7c-4c58-9482-3dd90983dfa9",
+                        "step_name": "Set No Reputation"
+                    },
+                    {
+                        "option": "Suspicious",
+                        "step_iri": "\/api\/3\/workflow_steps\/4da003d4-3f6a-4158-a76f-a871a13fc41f",
+                        "condition": "{{ vars.last_analysis_stats.suspicious > 0 }}",
+                        "step_name": "Set Suspicious"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "510",
+            "left": "3050",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "7cd3addf-43dd-4691-9844-9d4e37532479"
         }
     ],
     "routes": [

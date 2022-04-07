@@ -605,44 +605,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Is Malicious",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Malicious",
-                        "step_iri": "\/api\/3\/workflow_steps\/ac6cdfa8-7eaa-4cbb-a179-d31b684a67b1",
-                        "condition": "{{ vars.last_analysis_stats.malicious > 0 }}",
-                        "step_name": "Set Malicious"
-                    },
-                    {
-                        "option": "No Reputation",
-                        "step_iri": "\/api\/3\/workflow_steps\/982519a4-b10e-4807-83e8-c9a1d012fd3e",
-                        "condition": "{{ vars.last_analysis_stats.malicious == 0 or vars.last_analysis_stats.suspicious == 0 or vars.last_analysis_stats.harmless == 0 }}",
-                        "step_name": "Set No Reputation"
-                    },
-                    {
-                        "option": "Safe",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/0bb8c4ec-37f1-4d27-840b-db2914ac1fb0",
-                        "step_name": "Set Good"
-                    },
-                    {
-                        "option": "Suspicious",
-                        "step_iri": "\/api\/3\/workflow_steps\/e889fbe1-2864-4cd5-829b-e1a408e8047c",
-                        "condition": "{{ vars.last_analysis_stats.suspicious > 0 }}",
-                        "step_name": "Set Suspicious"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "430",
-            "left": "2725",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "25d259fb-8253-4a05-adcf-cc8b145f1da6"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Compute VT Whois",
             "description": null,
             "arguments": {
@@ -786,6 +748,44 @@
             "left": "260",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "uuid": "1761c731-f890-4d33-97f0-2d81a0a6ba92"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Malicious",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Malicious",
+                        "step_iri": "\/api\/3\/workflow_steps\/ac6cdfa8-7eaa-4cbb-a179-d31b684a67b1",
+                        "condition": "{{ vars.last_analysis_stats.malicious > 0 }}",
+                        "step_name": "Set Malicious"
+                    },
+                    {
+                        "option": "Safe",
+                        "step_iri": "\/api\/3\/workflow_steps\/0bb8c4ec-37f1-4d27-840b-db2914ac1fb0",
+                        "condition": "{{ vars.last_analysis_stats.harmless > vars.last_analysis_stats.undetected }}",
+                        "step_name": "Set Good"
+                    },
+                    {
+                        "option": "No Reputation",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/982519a4-b10e-4807-83e8-c9a1d012fd3e",
+                        "step_name": "Set No Reputation"
+                    },
+                    {
+                        "option": "Suspicious",
+                        "step_iri": "\/api\/3\/workflow_steps\/e889fbe1-2864-4cd5-829b-e1a408e8047c",
+                        "condition": "{{ vars.last_analysis_stats.suspicious > 0 }}",
+                        "step_name": "Set Suspicious"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "430",
+            "left": "2725",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "25d259fb-8253-4a05-adcf-cc8b145f1da6"
         }
     ],
     "routes": [

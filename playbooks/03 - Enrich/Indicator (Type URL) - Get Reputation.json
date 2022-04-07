@@ -19,6 +19,30 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "Compute VT Categories",
+            "description": null,
+            "arguments": {
+                "when": "{{(vars.steps.Get_URL_Reputation_from_VT.data.attributes.categories != None and vars.steps.Get_URL_Reputation_from_VT.data.attributes.categories)}}",
+                "params": {
+                    "data": "{{vars.steps.Get_URL_Reputation_from_VT.data.attributes.categories}}",
+                    "styling": true,
+                    "row_fields": "",
+                    "table_style": "{ 'width':'auto','font':'10px;'}"
+                },
+                "version": "3.1.2",
+                "connector": "cyops_utilities",
+                "operation": "json_to_html",
+                "operationTitle": "Utils: Convert JSON into a HTML Table",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "830",
+            "left": "1750",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "uuid": "4e7d7b93-0bd3-425e-9875-0a6a3e8593a0"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Get Reputation from URLVoid",
             "description": null,
             "arguments": {
@@ -590,44 +614,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Is Malicious",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Malicious",
-                        "step_iri": "\/api\/3\/workflow_steps\/2804e9ef-f5ad-420e-abcb-30474196da74",
-                        "condition": "{{ vars.last_analysis_stats.malicious > 0 }}",
-                        "step_name": "Set Malicious"
-                    },
-                    {
-                        "option": "No Reputation",
-                        "step_iri": "\/api\/3\/workflow_steps\/f7ff912e-ebf5-430f-9dd1-e6eaa9de8c63",
-                        "condition": "{{ vars.last_analysis_stats.malicious == 0 or vars.last_analysis_stats.suspicious == 0 or vars.last_analysis_stats.harmless == 0 }}",
-                        "step_name": "Set No reputation"
-                    },
-                    {
-                        "option": "Safe",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/52c83f93-0e83-451f-9419-ef623bcb52ad",
-                        "step_name": "Set Good"
-                    },
-                    {
-                        "option": "Suspicious",
-                        "step_iri": "\/api\/3\/workflow_steps\/cf55d95f-add5-4874-9109-28175ebc7143",
-                        "condition": "{{ vars.last_analysis_stats.suspicious > 0 }}",
-                        "step_name": "Set Suspicious"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "430",
-            "left": "2725",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "bd53607c-5a62-4349-b7b1-ac183532dfde"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Set Suspicious",
             "description": null,
             "arguments": {
@@ -659,30 +645,6 @@
             "left": "1425",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "95388387-d265-4380-966f-86ed345c6d83"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Compute VT Categories",
-            "description": null,
-            "arguments": {
-                "when": "{{(vars.steps.Get_URL_Reputation_from_VT.data.attributes.categories != None and vars.steps.Get_URL_Reputation_from_VT.data.attributes.categories)}}",
-                "params": {
-                    "data": "{{vars.steps.Get_URL_Reputation_from_VT.data.attributes.categories}}",
-                    "styling": true,
-                    "row_fields": "",
-                    "table_style": "{ 'width':'auto','font':'10px;'}"
-                },
-                "version": "3.1.2",
-                "connector": "cyops_utilities",
-                "operation": "json_to_html",
-                "operationTitle": "Utils: Convert JSON into a HTML Table",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "830",
-            "left": "1750",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "4e7d7b93-0bd3-425e-9875-0a6a3e8593a0"
         },
         {
             "@type": "WorkflowStep",
@@ -727,6 +689,44 @@
             "left": "775",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "c252fb33-3eb2-4f47-b5a2-3964bc2f03d8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Malicious",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Malicious",
+                        "step_iri": "\/api\/3\/workflow_steps\/2804e9ef-f5ad-420e-abcb-30474196da74",
+                        "condition": "{{ vars.last_analysis_stats.malicious > 0 }}",
+                        "step_name": "Set Malicious"
+                    },
+                    {
+                        "option": "Safe",
+                        "step_iri": "\/api\/3\/workflow_steps\/52c83f93-0e83-451f-9419-ef623bcb52ad",
+                        "condition": "{{ vars.last_analysis_stats.harmless > vars.last_analysis_stats.undetected }}",
+                        "step_name": "Set Good"
+                    },
+                    {
+                        "option": "No Reputation",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/f7ff912e-ebf5-430f-9dd1-e6eaa9de8c63",
+                        "step_name": "Set No reputation"
+                    },
+                    {
+                        "option": "Suspicious",
+                        "step_iri": "\/api\/3\/workflow_steps\/cf55d95f-add5-4874-9109-28175ebc7143",
+                        "condition": "{{ vars.last_analysis_stats.suspicious > 0 }}",
+                        "step_name": "Set Suspicious"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "430",
+            "left": "2725",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "bd53607c-5a62-4349-b7b1-ac183532dfde"
         }
     ],
     "routes": [
