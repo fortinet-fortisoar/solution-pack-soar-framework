@@ -365,19 +365,19 @@
                         "option": "Malicious",
                         "step_iri": "\/api\/3\/workflow_steps\/897bf0b6-550f-4f24-9fa4-7bb082e316ff",
                         "condition": "{{ vars.last_analysis_stats.malicious > 0 }}",
-                        "step_name": "Copy  of Set Malicious"
-                    },
-                    {
-                        "option": "No Reputation",
-                        "step_iri": "\/api\/3\/workflow_steps\/1cba22eb-0ef7-4763-ba82-c69b0c4513c5",
-                        "condition": "{{ vars.last_analysis_stats.malicious == 0 or vars.last_analysis_stats.suspicious == 0 or vars.last_analysis_stats.harmless == 0 }}",
-                        "step_name": "Copy  of Set No Reputation"
+                        "step_name": "Set Malicious"
                     },
                     {
                         "option": "Safe",
-                        "default": true,
                         "step_iri": "\/api\/3\/workflow_steps\/36536f84-370d-46f1-8842-991a60c4140e",
-                        "step_name": "Copy  of Set Good"
+                        "condition": "{{ vars.last_analysis_stats.harmless > vars.last_analysis_stats.undetected }}",
+                        "step_name": "Set Good"
+                    },
+                    {
+                        "option": "No Reputation",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/1cba22eb-0ef7-4763-ba82-c69b0c4513c5",
+                        "step_name": "Set No Reputation"
                     },
                     {
                         "option": "Suspicious",
