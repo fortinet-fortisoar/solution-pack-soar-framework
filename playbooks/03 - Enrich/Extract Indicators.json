@@ -276,9 +276,8 @@
                     "__link": {
                         "alerts": "{{vars.alert_iri}}"
                     },
-                    "__replace": "false",
+                    "__replace": "true",
                     "expiryDate": "{{arrow.utcnow().shift(days=+(globalVars.Default_Indicator_TTL_Days | int)).timestamp}}",
-                    "reputation": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
                     "expiredStatus": "\/api\/3\/picklists\/d4ca4a72-7974-4b93-843e-da9efa235c6e",
                     "indicatorStatus": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
                     "typeofindicator": "{{('IndicatorType' | picklist(vars.item.type))['@id']}}"
