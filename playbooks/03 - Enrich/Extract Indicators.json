@@ -37,19 +37,20 @@
                         {
                             "type": "object",
                             "field": "reputation",
-                            "value": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                            "value": "true",
                             "_value": {
-                                "@id": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
-                                "itemValue": "TBD"
+                                "@id": "true",
+                                "display": "TBD",
+                                "itemValue": ""
                             },
-                            "operator": "eq"
+                            "operator": "isnull"
                         }
                     ]
                 },
                 "module": "indicators?$limit=30",
                 "do_until": {
-                    "delay": "65",
-                    "retries": "2",
+                    "delay": 65,
+                    "retries": 2,
                     "condition": "{{vars.result | length == 0}}"
                 },
                 "checkboxFields": false,
