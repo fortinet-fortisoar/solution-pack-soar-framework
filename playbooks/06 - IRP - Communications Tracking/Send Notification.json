@@ -68,9 +68,9 @@
             "arguments": {
                 "config": "88c3d39c-2fa9-4731-b00d-29815008f17c",
                 "params": {
-                    "cc": "{% if vars.input.records[0].cc%}{{vars.input.records[0].cc | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+')}}{%else%}None{%endif%}",
-                    "to": "{{vars.input.records[0].to | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+')}}",
-                    "bcc": "{% if vars.input.records[0].bcc %}{{vars.input.records[0].bcc | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+')}}{%else%}None{%endif%}",
+                    "cc": "{% if vars.input.records[0].cc%}{{vars.input.records[0].cc | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+')}}{%else%}None{%endif%}",
+                    "to": "{{vars.input.records[0].to | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+')}}",
+                    "bcc": "{% if vars.input.records[0].bcc %}{{vars.input.records[0].bcc | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+')}}{%else%}None{%endif%}",
                     "from": "",
                     "type": "Manual Input",
                     "content": "{{vars.input.records[0].body}}",
@@ -147,9 +147,9 @@
                     "body": "<p>{{vars.input.records[0].body}}<\/p>",
                     "subject": "{{vars.input.records[0].subject}}",
                     "iri_list": "{{vars.attachments}}",
-                    "cc_recipients": "{% if vars.input.records[0].cc%}{{vars.input.records[0].cc | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+')}}{%else%}None{%endif%}",
-                    "to_recipients": "{{vars.input.records[0].to | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+')}}",
-                    "bcc_recipients": "{% if vars.input.records[0].bcc %}{{vars.input.records[0].bcc| regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+')}}{%else%}None{%endif%}",
+                    "cc_recipients": "{% if vars.input.records[0].cc%}{{vars.input.records[0].cc | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+')}}{%else%}None{%endif%}",
+                    "to_recipients": "{{vars.input.records[0].to | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+')}}",
+                    "bcc_recipients": "{% if vars.input.records[0].bcc %}{{vars.input.records[0].bcc| regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+')}}{%else%}None{%endif%}",
                     "inline_iri_list": ""
                 },
                 "version": "3.4.4",
