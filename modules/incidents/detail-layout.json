@@ -601,6 +601,690 @@
                                                                                             }
                                                                                         },
                                                                                         "icon": "fa fa-star",
+                                                                                        "show": false
+                                                                                    },
+                                                                                    {
+                                                                                        "title": "Timeline",
+                                                                                        "active": 0,
+                                                                                        "widget": {
+                                                                                            "type": "incidentTimeline-1.0.0",
+                                                                                            "config": {
+                                                                                                "wid": "78bbae07-2909-48be-873e-60bde7b1a7f7",
+                                                                                                "resource": "incidents",
+                                                                                                "alertDateField": {
+                                                                                                    "name": "createDate",
+                                                                                                    "title": "Created On",
+                                                                                                    "type": "datetime",
+                                                                                                    "defaultSort": true,
+                                                                                                    "validation": [],
+                                                                                                    "gridColumn": false,
+                                                                                                    "visibility": true,
+                                                                                                    "bulkAction": [],
+                                                                                                    "dataSourceFilters": null,
+                                                                                                    "searchable": false,
+                                                                                                    "defaultValue": null,
+                                                                                                    "peerReplicable": true,
+                                                                                                    "defaultValueChanged": false,
+                                                                                                    "unique": false,
+                                                                                                    "isFormField": true,
+                                                                                                    "isRelationship": false,
+                                                                                                    "editable": false,
+                                                                                                    "ignoreTypeValidators": false,
+                                                                                                    "tooltip": null,
+                                                                                                    "required": false,
+                                                                                                    "visible": true,
+                                                                                                    "hydraDescription": null,
+                                                                                                    "readOnly": false
+                                                                                                },
+                                                                                                "alertEventColorField": {
+                                                                                                    "name": "severity",
+                                                                                                    "title": "Severity",
+                                                                                                    "type": "picklist",
+                                                                                                    "defaultSort": [
+                                                                                                        {
+                                                                                                            "direction": "asc",
+                                                                                                            "field": "orderIndex"
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "query": {
+                                                                                                        "limit": 30,
+                                                                                                        "search": "",
+                                                                                                        "logic": "AND",
+                                                                                                        "page": 1,
+                                                                                                        "widgetQuery": null,
+                                                                                                        "filters": [
+                                                                                                            {
+                                                                                                                "field": "listName__name",
+                                                                                                                "value": "Severity",
+                                                                                                                "display": "Severity",
+                                                                                                                "operator": "eq",
+                                                                                                                "type": "primitive",
+                                                                                                                "OPERATOR_KEY": "$"
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "sort": [
+                                                                                                            {
+                                                                                                                "direction": "ASC",
+                                                                                                                "field": "orderIndex"
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "aggregates": []
+                                                                                                    },
+                                                                                                    "model": "picklists",
+                                                                                                    "validation": {
+                                                                                                        "_enableRange": false,
+                                                                                                        "required": false,
+                                                                                                        "minlength": 0,
+                                                                                                        "maxlength": 10485761
+                                                                                                    },
+                                                                                                    "gridColumn": true,
+                                                                                                    "visibility": true,
+                                                                                                    "bulkAction": {
+                                                                                                        "allow": true,
+                                                                                                        "buttonClass": "btn btn-default btn-sm",
+                                                                                                        "buttonIcon": "fa fa-exclamation-circle",
+                                                                                                        "buttonText": "Change Severity"
+                                                                                                    },
+                                                                                                    "inversedField": null,
+                                                                                                    "dataSourceFilters": null,
+                                                                                                    "searchable": false,
+                                                                                                    "defaultValue": "\/api\/3\/picklists\/58d0753f-f7e4-403b-953c-b0f521eab759",
+                                                                                                    "peerReplicable": true,
+                                                                                                    "recommend": false,
+                                                                                                    "defaultValueChanged": false,
+                                                                                                    "unique": false,
+                                                                                                    "options": [
+                                                                                                        {
+                                                                                                            "@id": "\/api\/3\/picklists\/0d609b08-45e0-469f-8910-41145c0b7c03",
+                                                                                                            "@type": "Picklist",
+                                                                                                            "itemValue": "Minimal",
+                                                                                                            "orderIndex": 0,
+                                                                                                            "color": "#157DD9",
+                                                                                                            "icon": null,
+                                                                                                            "listName": "\/api\/3\/picklist_names\/4e80cba3-032f-48b4-ac03-17e3ec247aac",
+                                                                                                            "uuid": "0d609b08-45e0-469f-8910-41145c0b7c03",
+                                                                                                            "id": 359,
+                                                                                                            "importedBy": []
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "@id": "\/api\/3\/picklists\/58d0753f-f7e4-403b-953c-b0f521eab759",
+                                                                                                            "@type": "Picklist",
+                                                                                                            "itemValue": "Low",
+                                                                                                            "orderIndex": 1,
+                                                                                                            "color": "#28B35C",
+                                                                                                            "icon": null,
+                                                                                                            "listName": "\/api\/3\/picklist_names\/4e80cba3-032f-48b4-ac03-17e3ec247aac",
+                                                                                                            "uuid": "58d0753f-f7e4-403b-953c-b0f521eab759",
+                                                                                                            "id": 361,
+                                                                                                            "importedBy": []
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "@id": "\/api\/3\/picklists\/b3c20a3a-ecfd-4adc-a225-0205968e6793",
+                                                                                                            "@type": "Picklist",
+                                                                                                            "itemValue": "Medium",
+                                                                                                            "orderIndex": 2,
+                                                                                                            "color": "#D2AC1A",
+                                                                                                            "icon": null,
+                                                                                                            "listName": "\/api\/3\/picklist_names\/4e80cba3-032f-48b4-ac03-17e3ec247aac",
+                                                                                                            "uuid": "b3c20a3a-ecfd-4adc-a225-0205968e6793",
+                                                                                                            "id": 363,
+                                                                                                            "importedBy": []
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "@id": "\/api\/3\/picklists\/40187287-89fc-4e9c-b717-e9443d57eedb",
+                                                                                                            "@type": "Picklist",
+                                                                                                            "itemValue": "High",
+                                                                                                            "orderIndex": 3,
+                                                                                                            "color": "#DE7A13",
+                                                                                                            "icon": null,
+                                                                                                            "listName": "\/api\/3\/picklist_names\/4e80cba3-032f-48b4-ac03-17e3ec247aac",
+                                                                                                            "uuid": "40187287-89fc-4e9c-b717-e9443d57eedb",
+                                                                                                            "id": 360,
+                                                                                                            "importedBy": []
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "@id": "\/api\/3\/picklists\/7efa2220-39bb-44e4-961f-ac368776e3b0",
+                                                                                                            "@type": "Picklist",
+                                                                                                            "itemValue": "Critical",
+                                                                                                            "orderIndex": 4,
+                                                                                                            "color": "#e31b1d",
+                                                                                                            "icon": null,
+                                                                                                            "listName": "\/api\/3\/picklist_names\/4e80cba3-032f-48b4-ac03-17e3ec247aac",
+                                                                                                            "uuid": "7efa2220-39bb-44e4-961f-ac368776e3b0",
+                                                                                                            "id": 362,
+                                                                                                            "importedBy": []
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "isFormField": true,
+                                                                                                    "isRelationship": false,
+                                                                                                    "editable": true,
+                                                                                                    "ignoreTypeValidators": false,
+                                                                                                    "tooltip": "",
+                                                                                                    "required": false,
+                                                                                                    "visible": true,
+                                                                                                    "hydraDescription": "",
+                                                                                                    "module": "application",
+                                                                                                    "displayTemplate": "{{ itemValue }}",
+                                                                                                    "trackable": false,
+                                                                                                    "descriptions": {
+                                                                                                        "plural": "Picklists",
+                                                                                                        "singular": "Picklist"
+                                                                                                    },
+                                                                                                    "readOnly": false
+                                                                                                },
+                                                                                                "alertContentFields": [
+                                                                                                    {
+                                                                                                        "name": "status",
+                                                                                                        "title": "Status",
+                                                                                                        "type": "picklist",
+                                                                                                        "defaultSort": [
+                                                                                                            {
+                                                                                                                "direction": "asc",
+                                                                                                                "field": "orderIndex"
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "query": {
+                                                                                                            "limit": 30,
+                                                                                                            "search": "",
+                                                                                                            "logic": "AND",
+                                                                                                            "page": 1,
+                                                                                                            "widgetQuery": null,
+                                                                                                            "filters": [
+                                                                                                                {
+                                                                                                                    "field": "listName__name",
+                                                                                                                    "value": "AlertStatus",
+                                                                                                                    "display": "AlertStatus",
+                                                                                                                    "operator": "eq",
+                                                                                                                    "type": "primitive",
+                                                                                                                    "OPERATOR_KEY": "$"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "sort": [
+                                                                                                                {
+                                                                                                                    "direction": "ASC",
+                                                                                                                    "field": "orderIndex"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "aggregates": []
+                                                                                                        },
+                                                                                                        "model": "picklists",
+                                                                                                        "validation": {
+                                                                                                            "_enableRange": false,
+                                                                                                            "required": false,
+                                                                                                            "minlength": 0,
+                                                                                                            "maxlength": -1
+                                                                                                        },
+                                                                                                        "gridColumn": true,
+                                                                                                        "visibility": true,
+                                                                                                        "bulkAction": {
+                                                                                                            "allow": true,
+                                                                                                            "buttonClass": "btn btn-default btn-sm",
+                                                                                                            "buttonIcon": "fa fa-check-square-o",
+                                                                                                            "buttonText": "Change Status"
+                                                                                                        },
+                                                                                                        "inversedField": null,
+                                                                                                        "dataSourceFilters": null,
+                                                                                                        "searchable": false,
+                                                                                                        "defaultValue": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                                                                                                        "peerReplicable": true,
+                                                                                                        "recommend": false,
+                                                                                                        "defaultValueChanged": false,
+                                                                                                        "unique": false,
+                                                                                                        "options": [
+                                                                                                            {
+                                                                                                                "@id": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                                                                                                                "@type": "Picklist",
+                                                                                                                "itemValue": "Open",
+                                                                                                                "orderIndex": 1,
+                                                                                                                "color": null,
+                                                                                                                "icon": null,
+                                                                                                                "listName": "\/api\/3\/picklist_names\/33e964a9-d607-49f2-813c-7ce46141815a",
+                                                                                                                "uuid": "7de816ff-7140-4ee5-bd05-93ce22002146",
+                                                                                                                "id": 188,
+                                                                                                                "importedBy": []
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "@id": "\/api\/3\/picklists\/758925e7-629c-46d8-89db-fb36f5fbe88a",
+                                                                                                                "@type": "Picklist",
+                                                                                                                "itemValue": "Investigating",
+                                                                                                                "orderIndex": 2,
+                                                                                                                "color": null,
+                                                                                                                "icon": null,
+                                                                                                                "listName": "\/api\/3\/picklist_names\/33e964a9-d607-49f2-813c-7ce46141815a",
+                                                                                                                "uuid": "758925e7-629c-46d8-89db-fb36f5fbe88a",
+                                                                                                                "id": 187,
+                                                                                                                "importedBy": []
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "@id": "\/api\/3\/picklists\/a53d5465-75a6-4b7a-8144-4eccc23cea4a",
+                                                                                                                "@type": "Picklist",
+                                                                                                                "itemValue": "Pending",
+                                                                                                                "orderIndex": 3,
+                                                                                                                "color": null,
+                                                                                                                "icon": null,
+                                                                                                                "listName": "\/api\/3\/picklist_names\/33e964a9-d607-49f2-813c-7ce46141815a",
+                                                                                                                "uuid": "a53d5465-75a6-4b7a-8144-4eccc23cea4a",
+                                                                                                                "id": 190,
+                                                                                                                "importedBy": []
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                                                                                                                "@type": "Picklist",
+                                                                                                                "itemValue": "Closed",
+                                                                                                                "orderIndex": 4,
+                                                                                                                "color": null,
+                                                                                                                "icon": null,
+                                                                                                                "listName": "\/api\/3\/picklist_names\/33e964a9-d607-49f2-813c-7ce46141815a",
+                                                                                                                "uuid": "fac53e73-8d16-4189-98d5-95fbd1555232",
+                                                                                                                "id": 191,
+                                                                                                                "importedBy": []
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "@id": "\/api\/3\/picklists\/891fb9d5-556c-44c6-9f7d-94a27dec732e",
+                                                                                                                "@type": "Picklist",
+                                                                                                                "itemValue": "Re-Opened",
+                                                                                                                "orderIndex": 6,
+                                                                                                                "color": null,
+                                                                                                                "icon": null,
+                                                                                                                "listName": "\/api\/3\/picklist_names\/33e964a9-d607-49f2-813c-7ce46141815a",
+                                                                                                                "uuid": "891fb9d5-556c-44c6-9f7d-94a27dec732e",
+                                                                                                                "id": 189,
+                                                                                                                "importedBy": []
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "isFormField": true,
+                                                                                                        "isRelationship": false,
+                                                                                                        "editable": true,
+                                                                                                        "ignoreTypeValidators": false,
+                                                                                                        "tooltip": "",
+                                                                                                        "required": false,
+                                                                                                        "visible": true,
+                                                                                                        "hydraDescription": "",
+                                                                                                        "module": "application",
+                                                                                                        "displayTemplate": "{{ itemValue }}",
+                                                                                                        "trackable": false,
+                                                                                                        "descriptions": {
+                                                                                                            "plural": "Picklists",
+                                                                                                            "singular": "Picklist"
+                                                                                                        },
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "description",
+                                                                                                        "title": "Description",
+                                                                                                        "type": "richtext",
+                                                                                                        "defaultSort": true,
+                                                                                                        "validation": {
+                                                                                                            "_enableRange": false,
+                                                                                                            "required": false,
+                                                                                                            "minlength": 0,
+                                                                                                            "maxlength": -1
+                                                                                                        },
+                                                                                                        "gridColumn": false,
+                                                                                                        "visibility": true,
+                                                                                                        "bulkAction": {
+                                                                                                            "allow": false
+                                                                                                        },
+                                                                                                        "inversedField": null,
+                                                                                                        "dataSourceFilters": null,
+                                                                                                        "searchable": false,
+                                                                                                        "defaultValue": null,
+                                                                                                        "peerReplicable": true,
+                                                                                                        "recommend": false,
+                                                                                                        "defaultValueChanged": false,
+                                                                                                        "unique": false,
+                                                                                                        "isFormField": true,
+                                                                                                        "isRelationship": false,
+                                                                                                        "editable": true,
+                                                                                                        "ignoreTypeValidators": false,
+                                                                                                        "tooltip": "",
+                                                                                                        "required": false,
+                                                                                                        "visible": true,
+                                                                                                        "hydraDescription": "",
+                                                                                                        "readOnly": false
+                                                                                                    }
+                                                                                                ],
+                                                                                                "indicatorDateField": {
+                                                                                                    "name": "firstSeen",
+                                                                                                    "title": "First Seen",
+                                                                                                    "type": "datetime",
+                                                                                                    "defaultSort": true,
+                                                                                                    "validation": {
+                                                                                                        "_enableRange": false,
+                                                                                                        "maxlength": 10485761,
+                                                                                                        "minlength": 0,
+                                                                                                        "required": false
+                                                                                                    },
+                                                                                                    "gridColumn": true,
+                                                                                                    "visibility": true,
+                                                                                                    "bulkAction": {
+                                                                                                        "allow": false,
+                                                                                                        "buttonClass": "btn btn-default btn-sm",
+                                                                                                        "buttonIcon": "",
+                                                                                                        "buttonText": ""
+                                                                                                    },
+                                                                                                    "inversedField": null,
+                                                                                                    "dataSourceFilters": null,
+                                                                                                    "searchable": true,
+                                                                                                    "defaultValue": null,
+                                                                                                    "peerReplicable": true,
+                                                                                                    "recommend": false,
+                                                                                                    "defaultValueChanged": false,
+                                                                                                    "unique": false,
+                                                                                                    "isFormField": true,
+                                                                                                    "isRelationship": false,
+                                                                                                    "editable": true,
+                                                                                                    "ignoreTypeValidators": false,
+                                                                                                    "tooltip": "",
+                                                                                                    "required": false,
+                                                                                                    "visible": true,
+                                                                                                    "hydraDescription": "",
+                                                                                                    "readOnly": false
+                                                                                                },
+                                                                                                "indicatorEventColorField": {
+                                                                                                    "name": "reputation",
+                                                                                                    "title": "Reputation",
+                                                                                                    "type": "picklist",
+                                                                                                    "defaultSort": [
+                                                                                                        {
+                                                                                                            "direction": "asc",
+                                                                                                            "field": "orderIndex"
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "query": {
+                                                                                                        "limit": 30,
+                                                                                                        "search": "",
+                                                                                                        "logic": "AND",
+                                                                                                        "page": 1,
+                                                                                                        "widgetQuery": null,
+                                                                                                        "filters": [
+                                                                                                            {
+                                                                                                                "field": "listName__name",
+                                                                                                                "value": "IndicatorReputation",
+                                                                                                                "display": "IndicatorReputation",
+                                                                                                                "operator": "eq",
+                                                                                                                "type": "primitive",
+                                                                                                                "OPERATOR_KEY": "$"
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "sort": [
+                                                                                                            {
+                                                                                                                "direction": "ASC",
+                                                                                                                "field": "orderIndex"
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "aggregates": []
+                                                                                                    },
+                                                                                                    "model": "picklists",
+                                                                                                    "validation": {
+                                                                                                        "maxlength": 10485761,
+                                                                                                        "minlength": 0,
+                                                                                                        "required": false,
+                                                                                                        "_enableRange": false
+                                                                                                    },
+                                                                                                    "gridColumn": true,
+                                                                                                    "visibility": true,
+                                                                                                    "bulkAction": {
+                                                                                                        "allow": true,
+                                                                                                        "buttonClass": "btn btn-default btn-sm",
+                                                                                                        "buttonIcon": "fa fa-pencil",
+                                                                                                        "buttonText": "Update Reputation"
+                                                                                                    },
+                                                                                                    "inversedField": null,
+                                                                                                    "dataSourceFilters": null,
+                                                                                                    "searchable": false,
+                                                                                                    "defaultValue": null,
+                                                                                                    "peerReplicable": true,
+                                                                                                    "recommend": false,
+                                                                                                    "defaultValueChanged": false,
+                                                                                                    "unique": false,
+                                                                                                    "options": [
+                                                                                                        {
+                                                                                                            "@id": "\/api\/3\/picklists\/b19b42aa-aee4-47df-9cda-894537dacb2a",
+                                                                                                            "@type": "Picklist",
+                                                                                                            "itemValue": "Good",
+                                                                                                            "orderIndex": 0,
+                                                                                                            "color": "#52c91a",
+                                                                                                            "icon": null,
+                                                                                                            "listName": "\/api\/3\/picklist_names\/e75ed3c3-9f23-4a43-832b-0daf236209ba",
+                                                                                                            "uuid": "b19b42aa-aee4-47df-9cda-894537dacb2a",
+                                                                                                            "id": 312,
+                                                                                                            "importedBy": []
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "@id": "\/api\/3\/picklists\/7074e547-7785-4979-be32-c6d0c863e4bd",
+                                                                                                            "@type": "Picklist",
+                                                                                                            "itemValue": "Malicious",
+                                                                                                            "orderIndex": 1,
+                                                                                                            "color": "#c42323",
+                                                                                                            "icon": null,
+                                                                                                            "listName": "\/api\/3\/picklist_names\/e75ed3c3-9f23-4a43-832b-0daf236209ba",
+                                                                                                            "uuid": "7074e547-7785-4979-be32-c6d0c863e4bd",
+                                                                                                            "id": 309,
+                                                                                                            "importedBy": []
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "@id": "\/api\/3\/picklists\/50bfd06c-9aff-4f7d-b6d9-821339e31fe7",
+                                                                                                            "@type": "Picklist",
+                                                                                                            "itemValue": "Suspicious",
+                                                                                                            "orderIndex": 2,
+                                                                                                            "color": "#dbc030",
+                                                                                                            "icon": null,
+                                                                                                            "listName": "\/api\/3\/picklist_names\/e75ed3c3-9f23-4a43-832b-0daf236209ba",
+                                                                                                            "uuid": "50bfd06c-9aff-4f7d-b6d9-821339e31fe7",
+                                                                                                            "id": 308,
+                                                                                                            "importedBy": []
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "@id": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                                                                                                            "@type": "Picklist",
+                                                                                                            "itemValue": "TBD",
+                                                                                                            "orderIndex": 3,
+                                                                                                            "color": "#696969",
+                                                                                                            "icon": null,
+                                                                                                            "listName": "\/api\/3\/picklist_names\/e75ed3c3-9f23-4a43-832b-0daf236209ba",
+                                                                                                            "uuid": "ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                                                                                                            "id": 311,
+                                                                                                            "importedBy": []
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "@id": "\/api\/3\/picklists\/9a611980-1b5e-4ae9-8062-eb2c0c433cff",
+                                                                                                            "@type": "Picklist",
+                                                                                                            "itemValue": "No Reputation Available",
+                                                                                                            "orderIndex": 4,
+                                                                                                            "color": "#6a9169",
+                                                                                                            "icon": null,
+                                                                                                            "listName": "\/api\/3\/picklist_names\/e75ed3c3-9f23-4a43-832b-0daf236209ba",
+                                                                                                            "uuid": "9a611980-1b5e-4ae9-8062-eb2c0c433cff",
+                                                                                                            "id": 310,
+                                                                                                            "importedBy": []
+                                                                                                        }
+                                                                                                    ],
+                                                                                                    "isFormField": true,
+                                                                                                    "isRelationship": false,
+                                                                                                    "editable": true,
+                                                                                                    "ignoreTypeValidators": false,
+                                                                                                    "tooltip": "",
+                                                                                                    "required": false,
+                                                                                                    "visible": true,
+                                                                                                    "hydraDescription": "",
+                                                                                                    "module": "application",
+                                                                                                    "displayTemplate": "{{ itemValue }}",
+                                                                                                    "trackable": false,
+                                                                                                    "descriptions": {
+                                                                                                        "plural": "Picklists",
+                                                                                                        "singular": "Picklist"
+                                                                                                    },
+                                                                                                    "readOnly": false
+                                                                                                },
+                                                                                                "indicatorContentFields": [
+                                                                                                    {
+                                                                                                        "name": "description",
+                                                                                                        "title": "Description",
+                                                                                                        "type": "richtext",
+                                                                                                        "defaultSort": true,
+                                                                                                        "validation": {
+                                                                                                            "maxlength": -1,
+                                                                                                            "minlength": 0,
+                                                                                                            "required": false
+                                                                                                        },
+                                                                                                        "gridColumn": false,
+                                                                                                        "visibility": true,
+                                                                                                        "bulkAction": {
+                                                                                                            "allow": false
+                                                                                                        },
+                                                                                                        "inversedField": null,
+                                                                                                        "dataSourceFilters": null,
+                                                                                                        "searchable": false,
+                                                                                                        "defaultValue": null,
+                                                                                                        "peerReplicable": true,
+                                                                                                        "recommend": false,
+                                                                                                        "defaultValueChanged": false,
+                                                                                                        "unique": false,
+                                                                                                        "isFormField": true,
+                                                                                                        "isRelationship": false,
+                                                                                                        "editable": true,
+                                                                                                        "ignoreTypeValidators": false,
+                                                                                                        "tooltip": "",
+                                                                                                        "required": false,
+                                                                                                        "visible": true,
+                                                                                                        "hydraDescription": "",
+                                                                                                        "readOnly": false
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "name": "indicatorStatus",
+                                                                                                        "title": "Status",
+                                                                                                        "type": "picklist",
+                                                                                                        "defaultSort": [
+                                                                                                            {
+                                                                                                                "direction": "asc",
+                                                                                                                "field": "orderIndex"
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "query": {
+                                                                                                            "limit": 30,
+                                                                                                            "search": "",
+                                                                                                            "logic": "AND",
+                                                                                                            "page": 1,
+                                                                                                            "widgetQuery": null,
+                                                                                                            "filters": [
+                                                                                                                {
+                                                                                                                    "field": "listName__name",
+                                                                                                                    "value": "IndicatorStatus",
+                                                                                                                    "display": "IndicatorStatus",
+                                                                                                                    "operator": "eq",
+                                                                                                                    "type": "primitive",
+                                                                                                                    "OPERATOR_KEY": "$"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "sort": [
+                                                                                                                {
+                                                                                                                    "direction": "ASC",
+                                                                                                                    "field": "orderIndex"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "aggregates": []
+                                                                                                        },
+                                                                                                        "model": "picklists",
+                                                                                                        "validation": {
+                                                                                                            "maxlength": 10485761,
+                                                                                                            "minlength": 0,
+                                                                                                            "required": false
+                                                                                                        },
+                                                                                                        "gridColumn": true,
+                                                                                                        "visibility": true,
+                                                                                                        "bulkAction": [],
+                                                                                                        "inversedField": null,
+                                                                                                        "dataSourceFilters": null,
+                                                                                                        "searchable": false,
+                                                                                                        "defaultValue": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
+                                                                                                        "peerReplicable": true,
+                                                                                                        "recommend": false,
+                                                                                                        "defaultValueChanged": false,
+                                                                                                        "unique": false,
+                                                                                                        "options": [
+                                                                                                            {
+                                                                                                                "@id": "\/api\/3\/picklists\/fa29fe48-f01e-476f-bb33-c910f5795b57",
+                                                                                                                "@type": "Picklist",
+                                                                                                                "itemValue": "Blocked",
+                                                                                                                "orderIndex": 0,
+                                                                                                                "color": null,
+                                                                                                                "icon": null,
+                                                                                                                "listName": "\/api\/3\/picklist_names\/e6639d57-94a9-432f-a46f-b2b530402077",
+                                                                                                                "uuid": "fa29fe48-f01e-476f-bb33-c910f5795b57",
+                                                                                                                "id": 316,
+                                                                                                                "importedBy": []
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "@id": "\/api\/3\/picklists\/41a9818a-c283-4d7f-852c-6e275033e3d2",
+                                                                                                                "@type": "Picklist",
+                                                                                                                "itemValue": "Unblocked",
+                                                                                                                "orderIndex": 1,
+                                                                                                                "color": null,
+                                                                                                                "icon": null,
+                                                                                                                "listName": "\/api\/3\/picklist_names\/e6639d57-94a9-432f-a46f-b2b530402077",
+                                                                                                                "uuid": "41a9818a-c283-4d7f-852c-6e275033e3d2",
+                                                                                                                "id": 314,
+                                                                                                                "importedBy": []
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "@id": "\/api\/3\/picklists\/4218cb58-4de5-4eff-ad08-185d36ef9bab",
+                                                                                                                "@type": "Picklist",
+                                                                                                                "itemValue": "Excluded",
+                                                                                                                "orderIndex": 2,
+                                                                                                                "color": null,
+                                                                                                                "icon": null,
+                                                                                                                "listName": "\/api\/3\/picklist_names\/e6639d57-94a9-432f-a46f-b2b530402077",
+                                                                                                                "uuid": "4218cb58-4de5-4eff-ad08-185d36ef9bab",
+                                                                                                                "id": 315,
+                                                                                                                "importedBy": []
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "@id": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
+                                                                                                                "@type": "Picklist",
+                                                                                                                "itemValue": "TBD",
+                                                                                                                "orderIndex": 3,
+                                                                                                                "color": null,
+                                                                                                                "icon": null,
+                                                                                                                "listName": "\/api\/3\/picklist_names\/e6639d57-94a9-432f-a46f-b2b530402077",
+                                                                                                                "uuid": "2f5cff61-fbff-4bb3-96be-302b78a9fb47",
+                                                                                                                "id": 313,
+                                                                                                                "importedBy": []
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "@id": "\/api\/3\/picklists\/e4a39098-3e26-4559-a7d8-7ed6ea4d6e31",
+                                                                                                                "@type": "Picklist",
+                                                                                                                "itemValue": "Isolated",
+                                                                                                                "orderIndex": 4,
+                                                                                                                "color": null,
+                                                                                                                "icon": null,
+                                                                                                                "listName": "\/api\/3\/picklist_names\/e6639d57-94a9-432f-a46f-b2b530402077",
+                                                                                                                "uuid": "e4a39098-3e26-4559-a7d8-7ed6ea4d6e31",
+                                                                                                                "id": 317,
+                                                                                                                "importedBy": []
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "isFormField": true,
+                                                                                                        "isRelationship": false,
+                                                                                                        "editable": true,
+                                                                                                        "ignoreTypeValidators": false,
+                                                                                                        "tooltip": "",
+                                                                                                        "required": false,
+                                                                                                        "visible": true,
+                                                                                                        "hydraDescription": "",
+                                                                                                        "module": "application",
+                                                                                                        "displayTemplate": "{{ itemValue }}",
+                                                                                                        "trackable": false,
+                                                                                                        "descriptions": {
+                                                                                                            "plural": "Picklists",
+                                                                                                            "singular": "Picklist"
+                                                                                                        },
+                                                                                                        "readOnly": false
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        },
+                                                                                        "icon": "icon icon-timeline",
                                                                                         "show": true
                                                                                     },
                                                                                     {
@@ -709,7 +1393,7 @@
                                                                                                 ]
                                                                                             }
                                                                                         },
-                                                                                        "icon": "fa fa-none",
+                                                                                        "icon": "icon icon-source-code",
                                                                                         "show": false
                                                                                     },
                                                                                     {
@@ -725,13 +1409,6 @@
                                                                                         }
                                                                                     }
                                                                                 ]
-                                                                            }
-                                                                        },
-                                                                        {
-                                                                            "type": "comments",
-                                                                            "config": {
-                                                                                "wid": "0741f0ee-2d8d-470e-8b99-1065975de0a0",
-                                                                                "compact": true
                                                                             }
                                                                         }
                                                                     ],
@@ -947,7 +1624,8 @@
                     "picklistBar": "severity"
                 }
             }
-        }
+        },
+        "metadata": []
     },
     "uuid": "modules-incidents-detail"
 }
