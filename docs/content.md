@@ -6,7 +6,7 @@ SOAR Framework **Solution Pack** (SFwSP) lays the foundation to use the FortiSOA
 
 ## How does this Solution Pack work for you?
 
-SFwSP installs several modules such as alerts and indicators along with corresponding playbooks, dashboards, reports, and widgets to make it a comprehensive solution and provide a fully functional Incident Response Platform augmented by Automation and Threat Intelligence. 
+SFwSP installs several modules such as alerts, incidents, and indicators along with corresponding playbooks, dashboards, reports, and widgets to make it a comprehensive solution and provide a fully functional Incident Response Platform augmented by Automation and Threat Intelligence. 
 
 ## Advantages of SOAR Framework Solution Pack 
 
