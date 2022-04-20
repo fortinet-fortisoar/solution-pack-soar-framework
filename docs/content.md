@@ -35,7 +35,7 @@ In case of a true positive, the SOC escalates related alertsinto an incident, le
 
 The following diagram helps better understand the overall process and the subsequent explanations.
 
-![](res/Fortisoar-Flow.png)
+![](res/FortiSOAR-flow.png)
 
 **Pull alerts from the data source** - FortiSOAR, at regular intervals, pulls alerts from configured alert sources such as SIEM, EDR, or email. This process is the Data Ingestion and it creates the alert records in the system. 
 
