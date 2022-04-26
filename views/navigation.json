@@ -18,104 +18,98 @@
                 "editMode": false
             },
             {
+                "title": "Queue & Shift Management",
+                "icon": "icon icon-queue-members",
+                "require": {
+                    "module": "fsr_queues",
+                    "action": "read"
+                },
+                "state": {
+                    "name": "main.assignment_automation_entry"
+                },
+                "editMode": false
+            },
+            {
                 "title": "Incident Response",
                 "icon": "icon icon-incident-response",
                 "items": [
                     {
-                        "icon": "icon icon-alert",
+                        "title": "Alerts",
+                        "require": {
+                            "module": "alerts",
+                            "action": "read"
+                        },
                         "state": {
                             "name": "main.modules.list",
                             "parameters": {
                                 "module": "alerts"
                             }
                         },
-                        "title": "Alerts",
-                        "require": {
-                            "action": "read",
-                            "module": "alerts"
-                        },
-                        "editMode": false,
-                        "open": false,
-                        "isEnabled": false,
-                        "openStatus": false
+                        "icon": "icon icon-alert",
+                        "editMode": false
                     },
                     {
-                        "icon": "icon icon-incidents",
+                        "title": "Incidents",
+                        "require": {
+                            "module": "incidents",
+                            "action": "read"
+                        },
                         "state": {
                             "name": "main.modules.list",
                             "parameters": {
                                 "module": "incidents"
                             }
                         },
-                        "title": "Incidents",
-                        "require": {
-                            "action": "read",
-                            "module": "incidents"
-                        },
-                        "editMode": false,
-                        "open": false,
-                        "isEnabled": false,
-                        "openStatus": false
+                        "icon": "icon icon-incidents",
+                        "editMode": false
                     },
                     {
-                        "icon": "icon icon-tasks",
+                        "title": "Tasks",
+                        "require": {
+                            "module": "tasks",
+                            "action": "read"
+                        },
                         "state": {
                             "name": "main.modules.list",
                             "parameters": {
                                 "module": "tasks"
                             }
                         },
-                        "title": "Tasks",
-                        "require": {
-                            "action": "read",
-                            "module": "tasks"
-                        },
-                        "editMode": false,
-                        "open": false,
-                        "isEnabled": false,
-                        "openStatus": false
+                        "icon": "icon icon-tasks",
+                        "editMode": false
                     },
                     {
-                        "icon": "icon icon-indicators",
+                        "title": "Indicators",
+                        "require": {
+                            "module": "indicators",
+                            "action": "read"
+                        },
                         "state": {
                             "name": "main.modules.list",
                             "parameters": {
                                 "module": "indicators"
                             }
                         },
-                        "title": "Indicators",
-                        "require": {
-                            "action": "read",
-                            "module": "indicators"
-                        },
-                        "editMode": false,
-                        "open": false,
-                        "isEnabled": false,
-                        "openStatus": false
+                        "icon": "icon icon-indicators",
+                        "editMode": false
                     },
                     {
-                        "icon": "icon icon-war-room",
+                        "title": "War Rooms",
+                        "require": {
+                            "module": "warrooms",
+                            "action": "read"
+                        },
                         "state": {
                             "name": "main.modules.list",
                             "parameters": {
                                 "module": "warrooms"
                             }
                         },
-                        "title": "War Rooms",
-                        "require": {
-                            "action": "read",
-                            "module": "warrooms"
-                        },
-                        "editMode": false,
-                        "open": false,
-                        "isEnabled": false,
-                        "openStatus": false
+                        "icon": "icon icon-war-room",
+                        "editMode": false
                     }
                 ],
-                "editMode": false,
-                "open": false,
-                "isEnabled": false,
-                "openStatus": false
+                "editMode": false
             },
             {
                 "title": "Automation",
@@ -130,6 +124,18 @@
                         },
                         "state": {
                             "name": "main.workflow"
+                        },
+                        "editMode": false
+                    },
+                    {
+                        "title": "Connectors",
+                        "icon": "icon icon-connectors",
+                        "require": {
+                            "module": "connectors",
+                            "action": "read"
+                        },
+                        "state": {
+                            "name": "main.connectors"
                         },
                         "editMode": false
                     },
@@ -158,22 +164,19 @@
                         "editMode": false
                     },
                     {
-                        "icon": "fa fa-clock-o",
+                        "title": "SLA Templates",
+                        "require": {
+                            "module": "sla_template",
+                            "action": "read"
+                        },
                         "state": {
                             "name": "main.modules.list",
                             "parameters": {
                                 "module": "sla_template"
                             }
                         },
-                        "title": "SLA Templates",
-                        "require": {
-                            "action": "read",
-                            "module": "sla_template"
-                        },
-                        "editMode": false,
-                        "open": false,
-                        "isEnabled": false,
-                        "openStatus": false
+                        "icon": "fa fa-clock-o",
+                        "editMode": false
                     }
                 ],
                 "editMode": false
@@ -229,26 +232,27 @@
                 "editMode": false
             },
             {
-                "title": "Marketplace",
-                "icon": "fa fa-cart-plus",
+                "title": "Widget Library",
+                "icon": "icon icon-widget",
                 "require": {
-                    "module": "marketplace",
+                    "module": "widgets",
                     "action": "read"
                 },
                 "state": {
-                    "name": "main.marketplace"
+                    "name": "main.widgets",
+                    "parameters": []
                 },
                 "editMode": false
             },
             {
-                "title": "Queue & Shift Management",
-                "icon": "icon icon-queue-members",
+                "title": "Content Hub",
+                "icon": "icon icon-content-hub",
                 "require": {
-                    "module": "fsr_queues",
+                    "module": "contentHub",
                     "action": "read"
                 },
                 "state": {
-                    "name": "main.assignment_automation_entry"
+                    "name": "main.marketplace"
                 },
                 "editMode": false
             },

@@ -5,13 +5,14 @@
     "local": true,
     "label": "SOAR Framework",
     "dependencies": [],
-    "prerequisite": [],
+    "prerequisite": null,
     "publisher": "Fortinet",
     "certified": "true",
     "description": "The SOAR Framework Solution Pack enables users to experience the power of FortiSOAR incident response.",
     "summary": null,
     "help": "https:\/\/github.com\/fortinet-fortisoar\/solution-pack-soar-framework",
     "category": [],
+    "featured": true,
     "supportInfo": "support@fortinet.com",
     "iconLarge": null,
     "fsrMinCompatibility": "7.2.0",
@@ -227,16 +228,15 @@
         },
         "views": {
             "navigation": [
-                [
-                    "Dashboard",
-                    "Incident Response",
-                    "Automation",
-                    "Resources",
-                    "Reports",
-                    "Marketplace",
-                    "Queue & Shift Management",
-                    "Help"
-                ]
+                "Dashboard",
+                "Queue & Shift Management",
+                "Incident Response",
+                "Automation",
+                "Resources",
+                "Reports",
+                "Widget Library",
+                "Content Hub",
+                "Help"
             ]
         },
         "roles": [
@@ -244,66 +244,51 @@
                 "name": "Full App Permissions"
             },
             {
+                "name": "SOC Manager"
+            },
+            {
                 "name": "SOC Analyst"
             }
         ],
         "playbooks": [
             {
-                "name": "00 - Drafts"
+                "name": "01 - Drafts"
             },
             {
-                "name": "01 - Ingest"
+                "name": "02 - Use Cases"
             },
             {
-                "name": "02 - Enrich"
+                "name": "03 - Enrich"
             },
             {
-                "name": "02 - Enrich (Pluggable)"
+                "name": "03 - Enrich (Pluggable)"
             },
             {
                 "name": "03 - Triage"
             },
             {
-                "name": "04 - Use Cases"
+                "name": "04 - Actions"
             },
             {
-                "name": "05 - Actions"
+                "name": "05 - Hunt"
             },
             {
-                "name": "06 - Hunt"
+                "name": "06 - IRP - Case Management"
             },
             {
-                "name": "08 - Case Management"
+                "name": "06 - IRP - Communications Tracking"
             },
             {
-                "name": "08 - Case Management (Extended)"
+                "name": "06 - IRP - Reporting"
             },
             {
-                "name": "08 - Escalation"
+                "name": "06 - IRP - War Room"
             },
             {
-                "name": "08 - Similarity"
+                "name": "07 - Incident Response Plan"
             },
             {
-                "name": "08 - SLA Management"
-            },
-            {
-                "name": "08 - War Room Automation"
-            },
-            {
-                "name": "09 - Incident Response"
-            },
-            {
-                "name": "10 - Utilities"
-            },
-            {
-                "name": "11 - Demo"
-            },
-            {
-                "name": "12 - Training"
-            },
-            {
-                "name": "14 - Communications"
+                "name": "08 - Utilities"
             }
         ],
         "globalVariables": [
@@ -356,16 +341,22 @@
                 "default_value": "20"
             },
             {
-                "id": 9,
-                "name": "Indicator_Type_Map",
-                "value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}",
-                "default_value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}"
-            },
-            {
                 "id": 10,
                 "name": "Reset_SLA",
                 "value": "true",
                 "default_value": "true"
+            },
+            {
+                "id": 15,
+                "name": "Current_Date",
+                "value": "{{arrow.utcnow().timestamp}}",
+                "default_value": "{{arrow.utcnow().timestamp}}"
+            },
+            {
+                "id": 9,
+                "name": "Indicator_Type_Map",
+                "value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}",
+                "default_value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}"
             },
             {
                 "id": 11,
@@ -384,12 +375,6 @@
                 "name": "Excludelist_Domains",
                 "value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com,fortinet.com,twitter.com,facebook.com,linkedin.com,instagram.com,fortiguard.com,forticloud.com",
                 "default_value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com,fortinet.com,twitter.com,facebook.com,linkedin.com,instagram.com,fortiguard.com,forticloud.com"
-            },
-            {
-                "id": 15,
-                "name": "Current_Date",
-                "value": "{{arrow.utcnow().timestamp}}",
-                "default_value": "{{arrow.utcnow().timestamp}}"
             }
         ],
         "rules": [
@@ -432,7 +417,7 @@
         ],
         "dashboards": [
             {
-                "name": "Executive View"
+                "name": "Analyst"
             },
             {
                 "name": "Overview"
@@ -442,15 +427,6 @@
             },
             {
                 "name": "SOC Admin"
-            },
-            {
-                "name": "System Dashboard"
-            },
-            {
-                "name": "T1 Analyst"
-            },
-            {
-                "name": "T2 Analyst"
             }
         ],
         "connectors": [
@@ -465,24 +441,9 @@
                 "version": "1.0.1"
             },
             {
-                "name": "Anomali ThreatStream",
-                "apiName": "threatstream",
-                "version": "2.2.1"
-            },
-            {
-                "name": "CarbonBlack Protection Bit9",
-                "apiName": "carbonblack-protect-bit9",
-                "version": "1.0.2"
-            },
-            {
                 "name": "CarbonBlack Response",
                 "apiName": "carbonblack-response",
                 "version": "2.0.1"
-            },
-            {
-                "name": "Cisco Threat Grid",
-                "apiName": "cisco-threatgrid",
-                "version": "1.3.0"
             },
             {
                 "name": "ElasticSearch",
@@ -550,11 +511,6 @@
                 "version": "1.0.1"
             },
             {
-                "name": "Phishme Intelligence",
-                "apiName": "phishme-intelligence",
-                "version": "1.0.0"
-            },
-            {
                 "name": "SLA Calculator",
                 "apiName": "slacalculator",
                 "version": "1.0.0"
@@ -563,11 +519,6 @@
                 "name": "SSH",
                 "apiName": "ssh",
                 "version": "2.1.1"
-            },
-            {
-                "name": "Symantec DeepSight Intelligence",
-                "apiName": "symantec-deepsight-intelligence",
-                "version": "1.0.1"
             },
             {
                 "name": "ThreatQ",
