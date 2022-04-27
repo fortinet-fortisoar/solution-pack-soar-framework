@@ -83,9 +83,7 @@
                 ],
                 "step_variables": {
                     "input": {
-                        "params": {
-                            "indicator_value": "{{ vars.indicator_value }}"
-                        },
+                        "params": [],
                         "records": [
                             "{{vars.input.records[0]}}"
                         ]
@@ -98,21 +96,11 @@
                     "filters": [
                         {
                             "type": "object",
-                            "field": "typeofindicator",
-                            "value": "\/api\/3\/picklists\/0ca054f2-d923-4992-a4a7-c516e6df281e",
-                            "_value": {
-                                "@id": "\/api\/3\/picklists\/0ca054f2-d923-4992-a4a7-c516e6df281e",
-                                "itemValue": "FileHash-MD5"
-                            },
-                            "operator": "eq"
-                        },
-                        {
-                            "type": "object",
                             "field": "indicatorStatus",
                             "value": "\/api\/3\/picklists\/4218cb58-4de5-4eff-ad08-185d36ef9bab",
                             "_value": {
                                 "@id": "\/api\/3\/picklists\/4218cb58-4de5-4eff-ad08-185d36ef9bab",
-                                "itemValue": "Whitelisted"
+                                "itemValue": "Excluded"
                             },
                             "operator": "neq"
                         },
@@ -137,6 +125,41 @@
                                     "_value": {
                                         "@id": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
                                         "itemValue": "TBD"
+                                    },
+                                    "operator": "eq"
+                                }
+                            ]
+                        },
+                        {
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "type": "object",
+                                    "field": "typeofindicator",
+                                    "value": "\/api\/3\/picklists\/0ca054f2-d923-4992-a4a7-c516e6df281e",
+                                    "_value": {
+                                        "@id": "\/api\/3\/picklists\/0ca054f2-d923-4992-a4a7-c516e6df281e",
+                                        "itemValue": "FileHash-MD5"
+                                    },
+                                    "operator": "eq"
+                                },
+                                {
+                                    "type": "object",
+                                    "field": "typeofindicator",
+                                    "value": "\/api\/3\/picklists\/143e40b0-e643-468d-b968-a542fc85f08d",
+                                    "_value": {
+                                        "@id": "\/api\/3\/picklists\/143e40b0-e643-468d-b968-a542fc85f08d",
+                                        "itemValue": "FileHash-SHA1"
+                                    },
+                                    "operator": "eq"
+                                },
+                                {
+                                    "type": "object",
+                                    "field": "typeofindicator",
+                                    "value": "\/api\/3\/picklists\/4ea7b083-a0af-41ea-8d7c-7ace16021722",
+                                    "_value": {
+                                        "@id": "\/api\/3\/picklists\/4ea7b083-a0af-41ea-8d7c-7ace16021722",
+                                        "itemValue": "FileHash-SHA256"
                                     },
                                     "operator": "eq"
                                 }
