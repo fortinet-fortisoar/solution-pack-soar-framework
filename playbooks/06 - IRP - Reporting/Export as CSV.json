@@ -11,7 +11,7 @@
     "remoteExecutableFlag": false,
     "parameters": [],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/20289298-cdd6-4052-8fa0-11e2603dca00",
+    "collection": "\/api\/3\/workflow_collections\/e811949a-45b4-4189-b524-fdb64c417810",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/96bbd26c-d404-4458-938d-e492bd0e71e9",
     "steps": [
@@ -166,12 +166,12 @@
                 "operation": "make_cyops_request",
                 "operationTitle": "CyOPs: Make CyOPs API Call",
                 "step_variables": {
-                    "pages": "{{(vars.result.data['hydra:totalItems']\/vars.pages | int) | round(0, 'ceil') | int}}"
+                    "pages": "{{(vars.result.data['hydra:totalItems']\/vars.pageSize | int) | round(0, 'ceil') | int}}"
                 }
             },
             "status": null,
             "top": "300",
-            "left": "125",
+            "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "94ed884f-cbaf-479b-abf8-6f2fd59aee5a"
         },
@@ -219,8 +219,8 @@
                 "workflowReference": "\/api\/3\/workflows\/040d22ad-4796-4154-8592-c89af670abb5"
             },
             "status": null,
-            "top": "700",
-            "left": "120",
+            "top": "705",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "uuid": "61e4d61e-f8b5-42a2-861b-c0c741f38b42"
         }
@@ -282,12 +282,12 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Find Records Paginated -> Write Results To File",
+            "name": "Find Records Paginated -> Write Headers To File",
             "targetStep": "\/api\/3\/workflow_steps\/f3bbac99-d211-4cc8-9639-34ee1b1c6c09",
             "sourceStep": "\/api\/3\/workflow_steps\/94ed884f-cbaf-479b-abf8-6f2fd59aee5a",
             "label": null,
             "isExecuted": false,
-            "uuid": "c2cfcf13-6623-4166-a279-07aab0346f6a"
+            "uuid": "c7f6e127-f47e-478c-b2a7-143283f93b7f"
         }
     ],
     "priority": null,

@@ -1,6 +1,6 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/76517de8-a0e8-41d4-a936-d35b1ce6528e",
+    "@id": "\/api\/3\/staging_model_metadatas\/0cc85bc4-1cca-4635-bd94-c8d99a823ec3",
     "@type": "StagingModelMetadata",
     "type": "alerts",
     "parentType": null,
@@ -1637,9 +1637,27 @@
             "ownsRelationship": false,
             "validation": {
                 "_enableRange": false,
-                "required": false,
+                "required": [
+                    {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "field": "status",
+                                "operator": "eq",
+                                "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                                "_value": {
+                                    "itemValue": "Closed",
+                                    "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
+                                },
+                                "type": "object"
+                            }
+                        ]
+                    }
+                ],
                 "minlength": 0,
-                "maxlength": -1
+                "maxlength": 10485761
             },
             "bulkAction": {
                 "allow": false,
@@ -1648,25 +1666,25 @@
                 "buttonText": ""
             },
             "dataSourceFilters": [],
-            "defaultValue": "\/api\/3\/picklists\/8590c81e-3307-4645-97f5-c3e1bec4e05a",
+            "defaultValue": null,
             "tooltip": "",
             "visibility": [
                 {
-                    "filters": [
-                        {
-                            "_value": {
-                                "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
-                                "itemValue": "Closed"
-                            },
-                            "field": "status",
-                            "operator": "eq",
-                            "type": "object",
-                            "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
-                        }
-                    ],
+                    "sort": [],
                     "limit": 30,
                     "logic": "AND",
-                    "sort": []
+                    "filters": [
+                        {
+                            "field": "status",
+                            "operator": "eq",
+                            "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                            "_value": {
+                                "itemValue": "Closed",
+                                "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
+                            },
+                            "type": "object"
+                        }
+                    ]
                 }
             ],
             "htmlEscape": false,
@@ -2595,18 +2613,28 @@
             "tooltip": "",
             "visibility": [
                 {
-                    "filters": [
-                        {
-                            "_operator": "isnull",
-                            "field": "destinationIp",
-                            "operator": "isnull",
-                            "type": "primitive",
-                            "value": "false"
-                        }
-                    ],
+                    "sort": [],
                     "limit": 30,
                     "logic": "OR",
-                    "sort": []
+                    "filters": [
+                        {
+                            "field": "destinationIp",
+                            "operator": "isnull",
+                            "_operator": "isnull",
+                            "value": "false",
+                            "type": "primitive"
+                        },
+                        {
+                            "field": "type",
+                            "operator": "eq",
+                            "value": "\/api\/3\/picklists\/382183df-212d-4ce1-adae-088647cc72c3",
+                            "_value": {
+                                "itemValue": "Brute Force Attempts",
+                                "@id": "\/api\/3\/picklists\/382183df-212d-4ce1-adae-088647cc72c3"
+                            },
+                            "type": "object"
+                        }
+                    ]
                 }
             ],
             "htmlEscape": false,
@@ -2995,6 +3023,52 @@
             "displayName": "{{ emailBody }}",
             "descriptions": {
                 "singular": "Email Body"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/9f18022f-dc38-4417-af1f-bf4e8fa625dd",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "sourcedata",
+            "length": 0,
+            "orderIndex": 77,
+            "formType": "textarea",
+            "dataSource": [],
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "required": false,
+                "minlength": 0,
+                "maxlength": -1
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "uuid": "9f18022f-dc38-4417-af1f-bf4e8fa625dd",
+            "displayName": "{{ sourcedata }}",
+            "descriptions": {
+                "singular": "Source Data"
             }
         },
         {
@@ -4682,52 +4756,6 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/9f18022f-dc38-4417-af1f-bf4e8fa625dd",
-            "@type": "AttributeMetadata",
-            "type": "string",
-            "name": "sourcedata",
-            "length": 0,
-            "orderIndex": 77,
-            "formType": "textarea",
-            "dataSource": [],
-            "searchable": true,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": false,
-            "inversedField": null,
-            "ownsRelationship": false,
-            "validation": {
-                "_enableRange": false,
-                "required": false,
-                "minlength": 0,
-                "maxlength": -1
-            },
-            "bulkAction": {
-                "allow": false,
-                "buttonClass": "btn btn-default btn-sm",
-                "buttonIcon": "",
-                "buttonText": ""
-            },
-            "dataSourceFilters": [],
-            "defaultValue": null,
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "uuid": "9f18022f-dc38-4417-af1f-bf4e8fa625dd",
-            "displayName": "{{ sourcedata }}",
-            "descriptions": {
-                "singular": "Source Data"
-            }
-        },
-        {
             "@id": "\/api\/3\/attribute_metadatas\/6798845a-be47-4937-8c30-ce7ac5d53258",
             "@type": "AttributeMetadata",
             "type": "string",
@@ -5409,92 +5437,6 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/e646b7ed-e4bc-4820-ade0-c6464d0ea75f",
-            "@type": "AttributeMetadata",
-            "type": "picklists",
-            "name": "severity",
-            "length": null,
-            "orderIndex": 88,
-            "formType": "picklist",
-            "dataSource": {
-                "displayConditions": {
-                    "0d609b08-45e0-469f-8910-41145c0b7c03": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "40187287-89fc-4e9c-b717-e9443d57eedb": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "58d0753f-f7e4-403b-953c-b0f521eab759": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "7efa2220-39bb-44e4-961f-ac368776e3b0": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "b3c20a3a-ecfd-4adc-a225-0205968e6793": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    }
-                },
-                "model": "picklists",
-                "query": {
-                    "filters": [
-                        {
-                            "field": "listName__name",
-                            "operator": "eq",
-                            "value": "Severity"
-                        }
-                    ],
-                    "logic": "AND",
-                    "sort": [
-                        {
-                            "direction": "ASC",
-                            "field": "orderIndex"
-                        }
-                    ]
-                }
-            },
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": true,
-            "collection": false,
-            "inversedField": null,
-            "ownsRelationship": false,
-            "validation": {
-                "_enableRange": false,
-                "required": false,
-                "minlength": 0,
-                "maxlength": -1
-            },
-            "bulkAction": {
-                "allow": true,
-                "buttonClass": "btn btn-default btn-sm",
-                "buttonIcon": "fa fa-exclamation-circle",
-                "buttonText": "Change Severity"
-            },
-            "dataSourceFilters": [],
-            "defaultValue": "",
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "uuid": "e646b7ed-e4bc-4820-ade0-c6464d0ea75f",
-            "displayName": "{{ severity }}",
-            "descriptions": {
-                "singular": "Severity"
-            }
-        },
-        {
             "@id": "\/api\/3\/attribute_metadatas\/50ac7d15-0d1c-4140-aa5b-6f6629749a42",
             "@type": "AttributeMetadata",
             "type": "string",
@@ -6030,141 +5972,6 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/1821765b-c752-4ec4-8d35-11956a6c3e4b",
-            "@type": "AttributeMetadata",
-            "type": "picklists",
-            "name": "type",
-            "length": null,
-            "orderIndex": 103,
-            "formType": "picklist",
-            "dataSource": {
-                "displayConditions": {
-                    "0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "0cbc2c31-c360-4770-b1e7-3653a8c24ead": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "1b143a42-8dd4-4121-8f38-fb5c299692ae": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "2b8024fd-096a-426f-bf7f-63fb149ff9ee": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "382183df-212d-4ce1-adae-088647cc72c3": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "3be51b8d-a02e-43a8-b6d3-07926771ac47": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "3eb31470-7a13-4029-9b48-6f5f3d493002": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "459be3a6-db44-4794-9545-f6bd7f1c068f": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "574a6ee2-7265-4701-815e-cff83b053bce": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "6bdeedd7-fb20-4b20-9717-f06520f0f788": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "844c0b64-04fa-494f-9795-7c8406e59f69": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "8b6f20f0-08ba-47f7-bc7d-233592309940": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "a043fb35-f373-44c0-bfa9-5bce2f711141": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "a36e1dbd-a9ec-47b2-8f25-e077a40d509c": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "ab6d7fd7-7b16-4ac2-9cf2-b52a912baee8": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "c145394b-069a-449b-a05e-67980d0f4b82": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "d282a627-a16e-4a8e-9b80-fce1636dfcfc": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "ebc1de7c-4089-4ac6-99be-cdbc441b0d91": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    }
-                },
-                "model": "picklists",
-                "query": {
-                    "filters": [
-                        {
-                            "field": "listName__name",
-                            "operator": "eq",
-                            "value": "AlertType"
-                        }
-                    ],
-                    "logic": "AND",
-                    "sort": [
-                        {
-                            "direction": "ASC",
-                            "field": "orderIndex"
-                        }
-                    ]
-                }
-            },
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": true,
-            "collection": false,
-            "inversedField": null,
-            "ownsRelationship": false,
-            "validation": {
-                "_enableRange": false,
-                "required": false,
-                "minlength": 0,
-                "maxlength": -1
-            },
-            "bulkAction": {
-                "allow": false
-            },
-            "dataSourceFilters": [],
-            "defaultValue": "",
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "uuid": "1821765b-c752-4ec4-8d35-11956a6c3e4b",
-            "displayName": "{{ type }}",
-            "descriptions": {
-                "singular": "Type"
-            }
-        },
-        {
             "@id": "\/api\/3\/attribute_metadatas\/e28d514e-9ac7-4ebf-9cae-91d058320bde",
             "@type": "AttributeMetadata",
             "type": "string",
@@ -6396,10 +6203,6 @@
                         "conditions": null,
                         "visibility": "visible"
                     },
-                    "cf031c4e-3bb9-4f87-91eb-91a5cb1c6d48": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
                     "8675a07f-2d0d-4e3a-89af-4822b8341df8": {
                         "visibility": "visible",
                         "conditions": null
@@ -6439,7 +6242,7 @@
                 "_enableRange": false,
                 "required": false,
                 "minlength": 0,
-                "maxlength": 10485761
+                "maxlength": -1
             },
             "bulkAction": {
                 "allow": false,
@@ -6448,9 +6251,9 @@
                 "buttonText": ""
             },
             "dataSourceFilters": [],
-            "defaultValue": null,
+            "defaultValue": "\/api\/3\/picklists\/a1bac09b-1441-45aa-ad1b-c88744e48e72",
             "tooltip": "",
-            "visibility": false,
+            "visibility": true,
             "htmlEscape": false,
             "orphanRemoval": false,
             "readable": true,
@@ -6462,6 +6265,263 @@
             "displayName": "{{ state }}",
             "descriptions": {
                 "singular": "State"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/e646b7ed-e4bc-4820-ade0-c6464d0ea75f",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "severity",
+            "length": null,
+            "orderIndex": 88,
+            "formType": "picklist",
+            "dataSource": {
+                "displayConditions": {
+                    "0d609b08-45e0-469f-8910-41145c0b7c03": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "40187287-89fc-4e9c-b717-e9443d57eedb": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "58d0753f-f7e4-403b-953c-b0f521eab759": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "7efa2220-39bb-44e4-961f-ac368776e3b0": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "b3c20a3a-ecfd-4adc-a225-0205968e6793": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    }
+                },
+                "model": "picklists",
+                "query": {
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "Severity"
+                        }
+                    ],
+                    "logic": "AND",
+                    "sort": [
+                        {
+                            "direction": "ASC",
+                            "field": "orderIndex"
+                        }
+                    ]
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": {
+                "allow": true,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "fa fa-exclamation-circle",
+                "buttonText": "Change Severity"
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "\/api\/3\/picklists\/58d0753f-f7e4-403b-953c-b0f521eab759",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "uuid": "e646b7ed-e4bc-4820-ade0-c6464d0ea75f",
+            "displayName": "{{ severity }}",
+            "descriptions": {
+                "singular": "Severity"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/1821765b-c752-4ec4-8d35-11956a6c3e4b",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "type",
+            "length": null,
+            "orderIndex": 103,
+            "formType": "picklist",
+            "dataSource": {
+                "displayConditions": {
+                    "0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "0cbc2c31-c360-4770-b1e7-3653a8c24ead": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "1b143a42-8dd4-4121-8f38-fb5c299692ae": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "2b8024fd-096a-426f-bf7f-63fb149ff9ee": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "382183df-212d-4ce1-adae-088647cc72c3": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "3be51b8d-a02e-43a8-b6d3-07926771ac47": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "3eb31470-7a13-4029-9b48-6f5f3d493002": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "459be3a6-db44-4794-9545-f6bd7f1c068f": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "574a6ee2-7265-4701-815e-cff83b053bce": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "6bdeedd7-fb20-4b20-9717-f06520f0f788": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "844c0b64-04fa-494f-9795-7c8406e59f69": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "8b6f20f0-08ba-47f7-bc7d-233592309940": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "a043fb35-f373-44c0-bfa9-5bce2f711141": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "a36e1dbd-a9ec-47b2-8f25-e077a40d509c": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "ab6d7fd7-7b16-4ac2-9cf2-b52a912baee8": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "c145394b-069a-449b-a05e-67980d0f4b82": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "d282a627-a16e-4a8e-9b80-fce1636dfcfc": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "ebc1de7c-4089-4ac6-99be-cdbc441b0d91": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "382b0435-e517-4760-867a-d662048fe292": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "58a405d1-542e-418d-80fa-3c5d2e12484f": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "72459a5f-7759-4cff-a8ac-fa673113c4d0": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "1b14cac9-5f6a-4d87-8b9b-e710b322c490": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "8e6e8d5a-5c9e-42f8-852f-a41258d0454f": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "e4dbab77-45a3-4506-b7cf-7a33314f9b2e": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "1754c6e3-3d37-4740-98aa-497f925c29ef": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "b888cb0e-dc6c-4d6b-8cd0-ab8bfa9449a2": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "bfdb72c0-d8ad-4d0b-b441-ea7f44e37d08": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                },
+                "model": "picklists",
+                "query": {
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "AlertType"
+                        }
+                    ],
+                    "logic": "AND",
+                    "sort": [
+                        {
+                            "direction": "ASC",
+                            "field": "orderIndex"
+                        }
+                    ]
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "\/api\/3\/picklists\/574a6ee2-7265-4701-815e-cff83b053bce",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "uuid": "1821765b-c752-4ec4-8d35-11956a6c3e4b",
+            "displayName": "{{ type }}",
+            "descriptions": {
+                "singular": "Type"
             }
         }
     ],
@@ -6476,7 +6536,7 @@
         "delete_primary_data_after": 60
     },
     "archivalFilters": [],
-    "uuid": "76517de8-a0e8-41d4-a936-d35b1ce6528e",
+    "uuid": "0cc85bc4-1cca-4635-bd94-c8d99a823ec3",
     "displayName": "{{ name }}",
     "descriptions": {
         "plural": "Alerts",

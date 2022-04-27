@@ -1,6 +1,6 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/67558c20-fe29-4789-b3f7-2e3c9e902c96",
+    "@id": "\/api\/3\/staging_model_metadatas\/f62fca25-bb3f-4a42-94a2-9018061a6e9d",
     "@type": "StagingModelMetadata",
     "type": "indicators",
     "parentType": null,
@@ -26,6 +26,48 @@
     "indexable": true,
     "writable": true,
     "attributes": [
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/b4984206-6195-4c41-82d5-f0c691b9d235",
+            "@type": "AttributeMetadata",
+            "type": "warrooms",
+            "name": "warrooms",
+            "length": 0,
+            "orderIndex": 33,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "warrooms"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "indicators",
+            "ownsRelationship": true,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": [],
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "uuid": "b4984206-6195-4c41-82d5-f0c691b9d235",
+            "displayName": "{{ warrooms }}",
+            "descriptions": {
+                "singular": "War Rooms"
+            }
+        },
         {
             "@id": "\/api\/3\/attribute_metadatas\/0204deec-eac2-40cc-992c-58dcde1a6f66",
             "@type": "AttributeMetadata",
@@ -159,48 +201,6 @@
             "displayName": "{{ firstSeen }}",
             "descriptions": {
                 "singular": "First Seen"
-            }
-        },
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/2f68bd62-2c0b-439d-9eb7-d92b0be5bf48",
-            "@type": "AttributeMetadata",
-            "type": "string",
-            "name": "uuid",
-            "length": 36,
-            "orderIndex": 11,
-            "formType": null,
-            "dataSource": [],
-            "searchable": false,
-            "peerReplicable": true,
-            "system": true,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": false,
-            "inversedField": null,
-            "ownsRelationship": false,
-            "validation": {
-                "maxlength": 1024,
-                "minlength": 0,
-                "required": false
-            },
-            "bulkAction": {
-                "allow": false
-            },
-            "dataSourceFilters": [],
-            "defaultValue": "",
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": null,
-            "readable": true,
-            "writeable": true,
-            "identifier": true,
-            "unique": false,
-            "recommend": false,
-            "uuid": "2f68bd62-2c0b-439d-9eb7-d92b0be5bf48",
-            "displayName": "{{ uuid }}",
-            "descriptions": {
-                "singular": "UUID"
             }
         },
         {
@@ -852,69 +852,6 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/e2476d12-e489-407a-b48d-257e136b39ad",
-            "@type": "AttributeMetadata",
-            "type": "picklists",
-            "name": "reputation",
-            "length": null,
-            "orderIndex": 13,
-            "formType": "picklist",
-            "dataSource": {
-                "model": "picklists",
-                "query": {
-                    "filters": [
-                        {
-                            "field": "listName__name",
-                            "operator": "eq",
-                            "value": "IndicatorReputation"
-                        }
-                    ],
-                    "logic": "AND",
-                    "sort": [
-                        {
-                            "direction": "ASC",
-                            "field": "orderIndex"
-                        }
-                    ]
-                }
-            },
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": true,
-            "collection": false,
-            "inversedField": null,
-            "ownsRelationship": false,
-            "validation": {
-                "maxlength": -1,
-                "minlength": 0,
-                "required": false
-            },
-            "bulkAction": {
-                "allow": true,
-                "buttonClass": "btn btn-default btn-sm",
-                "buttonIcon": "fa fa-pencil",
-                "buttonText": "Update Reputation"
-            },
-            "dataSourceFilters": [],
-            "defaultValue": "",
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "uuid": "e2476d12-e489-407a-b48d-257e136b39ad",
-            "displayName": "{{ reputation }}",
-            "descriptions": {
-                "singular": "Reputation"
-            }
-        },
-        {
             "@id": "\/api\/3\/attribute_metadatas\/936dba7c-6b37-43dd-b9cc-81764463d7d4",
             "@type": "AttributeMetadata",
             "type": "string",
@@ -1558,48 +1495,6 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/b4984206-6195-4c41-82d5-f0c691b9d235",
-            "@type": "AttributeMetadata",
-            "type": "warrooms",
-            "name": "warrooms",
-            "length": 0,
-            "orderIndex": 33,
-            "formType": "manyToMany",
-            "dataSource": {
-                "model": "warrooms"
-            },
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": true,
-            "inversedField": "indicators",
-            "ownsRelationship": true,
-            "validation": {
-                "required": false,
-                "minlength": 0,
-                "maxlength": 10485761
-            },
-            "bulkAction": [],
-            "dataSourceFilters": [],
-            "defaultValue": null,
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "uuid": "b4984206-6195-4c41-82d5-f0c691b9d235",
-            "displayName": "{{ warrooms }}",
-            "descriptions": {
-                "singular": "War Rooms"
-            }
-        },
-        {
             "@id": "\/api\/3\/attribute_metadatas\/058cb69e-c9a6-44ed-afa1-d554bc543a1e",
             "@type": "AttributeMetadata",
             "type": "string",
@@ -1692,7 +1587,7 @@
             "gridColumn": false,
             "collection": true,
             "inversedField": "indicators",
-            "ownsRelationship": false,
+            "ownsRelationship": true,
             "validation": null,
             "bulkAction": null,
             "dataSourceFilters": null,
@@ -1711,6 +1606,134 @@
             "descriptions": {
                 "singular": "Tasks"
             }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/2f68bd62-2c0b-439d-9eb7-d92b0be5bf48",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "uuid",
+            "length": 36,
+            "orderIndex": 11,
+            "formType": null,
+            "dataSource": [],
+            "searchable": false,
+            "peerReplicable": true,
+            "system": true,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": 1024,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": true,
+            "unique": false,
+            "recommend": false,
+            "uuid": "2f68bd62-2c0b-439d-9eb7-d92b0be5bf48",
+            "displayName": "{{ uuid }}",
+            "descriptions": {
+                "singular": "UUID"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/e2476d12-e489-407a-b48d-257e136b39ad",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "reputation",
+            "length": null,
+            "orderIndex": 13,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "IndicatorReputation"
+                        }
+                    ],
+                    "logic": "AND",
+                    "sort": [
+                        {
+                            "direction": "ASC",
+                            "field": "orderIndex"
+                        }
+                    ]
+                },
+                "displayConditions": {
+                    "50bfd06c-9aff-4f7d-b6d9-821339e31fe7": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "7074e547-7785-4979-be32-c6d0c863e4bd": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "9a611980-1b5e-4ae9-8062-eb2c0c433cff": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "ae98ebc6-beef-4882-9980-1d88fc6d87cd": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "b19b42aa-aee4-47df-9cda-894537dacb2a": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": true,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "fa fa-pencil",
+                "buttonText": "Update Reputation"
+            },
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "uuid": "e2476d12-e489-407a-b48d-257e136b39ad",
+            "displayName": "{{ reputation }}",
+            "descriptions": {
+                "singular": "Reputation"
+            }
         }
     ],
     "system": false,
@@ -1724,7 +1747,7 @@
         "delete_primary_data_after": 60
     },
     "archivalFilters": [],
-    "uuid": "67558c20-fe29-4789-b3f7-2e3c9e902c96",
+    "uuid": "f62fca25-bb3f-4a42-94a2-9018061a6e9d",
     "displayName": "{{ value }}",
     "descriptions": {
         "plural": "Indicators",

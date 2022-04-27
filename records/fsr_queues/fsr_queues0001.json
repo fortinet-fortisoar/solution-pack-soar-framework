@@ -1,0 +1,73 @@
+[
+    {
+        "@type": "Queue",
+        "name": "Default",
+        "description": "All new alerts, incidents, and tasks default to this queue",
+        "currentRoundRobinIndex": null,
+        "active": true,
+        "draft": false,
+        "recordTypes": [
+            "tasks",
+            "alerts",
+            "incidents"
+        ],
+        "assignmentParameters": {
+            "secondaryOption": "none"
+        },
+        "recordTypeRules": [
+            {
+                "name": "Alerts rule",
+                "_uuid": "e6e53fe1-26cd-4fa0-8cad-0ec7d4c1c28d",
+                "priority": 50,
+                "condition": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                },
+                "eventType": "create",
+                "recordType": "alerts"
+            },
+            {
+                "name": "Incidents rule",
+                "_uuid": "bd818995-c23c-4c79-94e0-97e60ca0c699",
+                "priority": 50,
+                "condition": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                },
+                "eventType": "create",
+                "recordType": "incidents"
+            },
+            {
+                "name": "Tasks rule",
+                "_uuid": "18162573-43e5-4b48-9ef5-6ad4a3049ece",
+                "priority": 50,
+                "condition": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                },
+                "eventType": "create",
+                "recordType": "tasks"
+            }
+        ],
+        "assignmentMethod": "none",
+        "members": [
+            "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce"
+        ],
+        "leader": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "uuid": "4cf6073b-319d-4c30-887c-f642adfede82",
+        "createUser": null,
+        "createDate": null,
+        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "modifyDate": 1648574771.942815,
+        "owners": [
+            "\/api\/3\/teams\/6e569c09-3bd4-40f1-98b0-cc994464c3c5"
+        ],
+        "id": "1"
+    }
+]

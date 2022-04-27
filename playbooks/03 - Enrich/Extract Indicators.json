@@ -6,7 +6,7 @@
     "tag": "#PostCreate #system",
     "description": "Extracts and creates indicators from the specified data and then enriches specific fields in alerts with the indicator data.",
     "isActive": true,
-    "debug": true,
+    "debug": false,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
     "parameters": [
@@ -22,43 +22,44 @@
             "name": "Wait for Enrichment",
             "description": null,
             "arguments": {
-                "query": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": [
-                        {
-                            "type": "primitive",
-                            "field": "alerts.id",
-                            "value": "{{vars.input.records[0].id}}",
-                            "operator": "eq",
-                            "_operator": "eq"
-                        },
-                        {
-                            "type": "object",
-                            "field": "reputation",
-                            "value": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
-                            "_value": {
-                                "@id": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
-                                "itemValue": "TBD"
-                            },
-                            "operator": "eq"
-                        }
-                    ]
-                },
-                "module": "indicators?$limit=30",
-                "do_until": {
-                    "delay": "65",
-                    "retries": "2",
-                    "condition": "{{vars.result | length == 0}}"
-                },
-                "checkboxFields": false,
-                "step_variables": []
+              "when": "{{vars.steps.Create_Indicator | length > 0}}",
+              "query": {
+                "sort": [],
+                "limit": 30,
+                "logic": "AND",
+                "filters": [
+                  {
+                    "type": "primitive",
+                    "field": "alerts.id",
+                    "value": "{{vars.input.records[0].id}}",
+                    "operator": "eq",
+                    "_operator": "eq"
+                  },
+                  {
+                    "type": "object",
+                    "field": "reputation",
+                    "value": "/api/3/picklists/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                    "_value": {
+                      "@id": "/api/3/picklists/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                      "itemValue": "TBD"
+                    },
+                    "operator": "eq"
+                  }
+                ]
+              },
+              "module": "indicators?$limit=30",
+              "do_until": {
+                "delay": 65,
+                "retries": 2,
+                "condition": "{{vars.result | length == 0}}"
+              },
+              "checkboxFields": false,
+              "step_variables": []
             },
             "status": null,
-            "top": "1515",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "top": "1520",
+            "left": "120",
+            "stepType": "/api/3/workflow_step_types/b593663d-7d13-40ce-a3a3-96dece928770",
             "uuid": "6387638d-9134-4ecb-a492-fe721b866e7a"
         },
         {
@@ -278,7 +279,6 @@
                     },
                     "__replace": "true",
                     "expiryDate": "{{arrow.utcnow().shift(days=+(globalVars.Default_Indicator_TTL_Days | int)).timestamp}}",
-                    "reputation": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
                     "expiredStatus": "\/api\/3\/picklists\/d4ca4a72-7974-4b93-843e-da9efa235c6e",
                     "indicatorStatus": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
                     "typeofindicator": "{{('IndicatorType' | picklist(vars.item.type))['@id']}}"

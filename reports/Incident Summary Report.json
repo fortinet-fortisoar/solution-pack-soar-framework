@@ -10,7 +10,7 @@
         "\/api\/3\/roles\/21d7a7c6-9d68-438f-b732-e8950c5f745b",
         "\/api\/3\/roles\/a501c11e-15af-49a6-a3a4-88605f32f016",
         "\/api\/3\/roles\/c5ff8174-b3fa-41c5-b781-2b890b426a80",
-        "\/api\/3\/roles\/aada6692-fbf4-4a02-a580-f8a200962365"
+        "\/api\/3\/roles\/7b56d139-7ee6-455e-8658-35727e202b8a"
     ],
     "parentTemplateId": null,
     "config": {
@@ -31,7 +31,8 @@
                     }
                 ],
                 "wid": "519727ca-5677-4a5d-954b-8c2c0de8aee5",
-                "container": false
+                "container": false,
+                "_collapsed": false
             },
             {
                 "columns": [
@@ -40,7 +41,7 @@
                             {
                                 "type": "sectionHeader",
                                 "config": {
-                                    "wid": "28a2b32a-fa90-4524-844d-1f75d6adaa83",
+                                    "wid": "37d4d2e0-8375-4556-960f-bc7d73654892",
                                     "sectionText": "<h4 style=\"background: #404142; padding: 5px; text-align: left;\"><span style=\"font-size: 12pt; color: #ffffff;\"><strong>INCIDENT HIGHLIGHTS<\/strong><\/span><\/h4>"
                                 }
                             },
@@ -286,7 +287,8 @@
                                     ],
                                     "wid": "da31f18f-3d77-4a73-96cf-2016c1b4d3ff",
                                     "title": "Latest 5 Comments",
-                                    "module": "comments"
+                                    "module": "comments",
+                                    "assignedToSetting": "onlyMe"
                                 }
                             }
                         ],
@@ -294,6 +296,679 @@
                     }
                 ],
                 "wid": "f207f02d-85f5-4187-9d7e-1e0ea8741217",
+                "container": true,
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "28a2b32a-fa90-4524-844d-1f75d6adaa83",
+                                    "sectionText": "<h4 style=\"background: #404142; padding: 5px; text-align: left;\"><span style=\"font-size: 12pt; color: #ffffff;\"><strong>INCIDENT TIMELINE<\/strong><\/span><\/h4>",
+                                    "query": {
+                                        "filters": [],
+                                        "sort": [],
+                                        "limit": 10
+                                    },
+                                    "editorType": "html"
+                                }
+                            },
+                            {
+                                "type": "incidentTimeline-1.0.0",
+                                "config": {
+                                    "wid": "cf81ad4f-47ae-4b28-a7a8-4234282e7708",
+                                    "alertDateField": {
+                                        "name": "createDate",
+                                        "title": "Created On",
+                                        "type": "datetime",
+                                        "defaultSort": true,
+                                        "validation": [],
+                                        "gridColumn": false,
+                                        "visibility": true,
+                                        "bulkAction": [],
+                                        "dataSourceFilters": null,
+                                        "searchable": false,
+                                        "defaultValue": null,
+                                        "peerReplicable": true,
+                                        "defaultValueChanged": false,
+                                        "unique": false,
+                                        "isFormField": true,
+                                        "isRelationship": false,
+                                        "editable": false,
+                                        "ignoreTypeValidators": false,
+                                        "tooltip": null,
+                                        "required": false,
+                                        "visible": true,
+                                        "hydraDescription": null,
+                                        "readOnly": false
+                                    },
+                                    "alertEventColorField": {
+                                        "name": "severity",
+                                        "title": "Severity",
+                                        "type": "picklist",
+                                        "defaultSort": [
+                                            {
+                                                "direction": "asc",
+                                                "field": "orderIndex"
+                                            }
+                                        ],
+                                        "query": {
+                                            "limit": 30,
+                                            "search": "",
+                                            "logic": "AND",
+                                            "page": 1,
+                                            "widgetQuery": null,
+                                            "filters": [
+                                                {
+                                                    "field": "listName__name",
+                                                    "value": "Severity",
+                                                    "display": "Severity",
+                                                    "operator": "eq",
+                                                    "type": "primitive",
+                                                    "OPERATOR_KEY": "$"
+                                                }
+                                            ],
+                                            "sort": [
+                                                {
+                                                    "direction": "ASC",
+                                                    "field": "orderIndex"
+                                                }
+                                            ],
+                                            "aggregates": []
+                                        },
+                                        "model": "picklists",
+                                        "validation": {
+                                            "_enableRange": false,
+                                            "required": false,
+                                            "minlength": 0,
+                                            "maxlength": 10485761
+                                        },
+                                        "gridColumn": true,
+                                        "visibility": true,
+                                        "bulkAction": {
+                                            "allow": true,
+                                            "buttonClass": "btn btn-default btn-sm",
+                                            "buttonIcon": "fa fa-exclamation-circle",
+                                            "buttonText": "Change Severity"
+                                        },
+                                        "inversedField": null,
+                                        "dataSourceFilters": null,
+                                        "searchable": false,
+                                        "defaultValue": "\/api\/3\/picklists\/58d0753f-f7e4-403b-953c-b0f521eab759",
+                                        "peerReplicable": true,
+                                        "recommend": false,
+                                        "defaultValueChanged": false,
+                                        "unique": false,
+                                        "options": [
+                                            {
+                                                "@id": "\/api\/3\/picklists\/0d609b08-45e0-469f-8910-41145c0b7c03",
+                                                "@type": "Picklist",
+                                                "itemValue": "Minimal",
+                                                "orderIndex": 0,
+                                                "color": "#157DD9",
+                                                "icon": null,
+                                                "listName": "\/api\/3\/picklist_names\/4e80cba3-032f-48b4-ac03-17e3ec247aac",
+                                                "uuid": "0d609b08-45e0-469f-8910-41145c0b7c03",
+                                                "id": 359,
+                                                "importedBy": []
+                                            },
+                                            {
+                                                "@id": "\/api\/3\/picklists\/58d0753f-f7e4-403b-953c-b0f521eab759",
+                                                "@type": "Picklist",
+                                                "itemValue": "Low",
+                                                "orderIndex": 1,
+                                                "color": "#28B35C",
+                                                "icon": null,
+                                                "listName": "\/api\/3\/picklist_names\/4e80cba3-032f-48b4-ac03-17e3ec247aac",
+                                                "uuid": "58d0753f-f7e4-403b-953c-b0f521eab759",
+                                                "id": 361,
+                                                "importedBy": []
+                                            },
+                                            {
+                                                "@id": "\/api\/3\/picklists\/b3c20a3a-ecfd-4adc-a225-0205968e6793",
+                                                "@type": "Picklist",
+                                                "itemValue": "Medium",
+                                                "orderIndex": 2,
+                                                "color": "#D2AC1A",
+                                                "icon": null,
+                                                "listName": "\/api\/3\/picklist_names\/4e80cba3-032f-48b4-ac03-17e3ec247aac",
+                                                "uuid": "b3c20a3a-ecfd-4adc-a225-0205968e6793",
+                                                "id": 363,
+                                                "importedBy": []
+                                            },
+                                            {
+                                                "@id": "\/api\/3\/picklists\/40187287-89fc-4e9c-b717-e9443d57eedb",
+                                                "@type": "Picklist",
+                                                "itemValue": "High",
+                                                "orderIndex": 3,
+                                                "color": "#DE7A13",
+                                                "icon": null,
+                                                "listName": "\/api\/3\/picklist_names\/4e80cba3-032f-48b4-ac03-17e3ec247aac",
+                                                "uuid": "40187287-89fc-4e9c-b717-e9443d57eedb",
+                                                "id": 360,
+                                                "importedBy": []
+                                            },
+                                            {
+                                                "@id": "\/api\/3\/picklists\/7efa2220-39bb-44e4-961f-ac368776e3b0",
+                                                "@type": "Picklist",
+                                                "itemValue": "Critical",
+                                                "orderIndex": 4,
+                                                "color": "#e31b1d",
+                                                "icon": null,
+                                                "listName": "\/api\/3\/picklist_names\/4e80cba3-032f-48b4-ac03-17e3ec247aac",
+                                                "uuid": "7efa2220-39bb-44e4-961f-ac368776e3b0",
+                                                "id": 362,
+                                                "importedBy": []
+                                            }
+                                        ],
+                                        "isFormField": true,
+                                        "isRelationship": false,
+                                        "editable": true,
+                                        "ignoreTypeValidators": false,
+                                        "tooltip": "",
+                                        "required": false,
+                                        "visible": true,
+                                        "hydraDescription": "",
+                                        "module": "application",
+                                        "displayTemplate": "{{ itemValue }}",
+                                        "trackable": false,
+                                        "descriptions": {
+                                            "plural": "Picklists",
+                                            "singular": "Picklist"
+                                        },
+                                        "readOnly": false
+                                    },
+                                    "alertContentFields": [
+                                        {
+                                            "name": "status",
+                                            "title": "Status",
+                                            "type": "picklist",
+                                            "defaultSort": [
+                                                {
+                                                    "direction": "asc",
+                                                    "field": "orderIndex"
+                                                }
+                                            ],
+                                            "query": {
+                                                "limit": 30,
+                                                "search": "",
+                                                "logic": "AND",
+                                                "page": 1,
+                                                "widgetQuery": null,
+                                                "filters": [
+                                                    {
+                                                        "field": "listName__name",
+                                                        "value": "AlertStatus",
+                                                        "display": "AlertStatus",
+                                                        "operator": "eq",
+                                                        "type": "primitive",
+                                                        "OPERATOR_KEY": "$"
+                                                    }
+                                                ],
+                                                "sort": [
+                                                    {
+                                                        "direction": "ASC",
+                                                        "field": "orderIndex"
+                                                    }
+                                                ],
+                                                "aggregates": []
+                                            },
+                                            "model": "picklists",
+                                            "validation": {
+                                                "_enableRange": false,
+                                                "required": false,
+                                                "minlength": 0,
+                                                "maxlength": -1
+                                            },
+                                            "gridColumn": true,
+                                            "visibility": true,
+                                            "bulkAction": {
+                                                "allow": true,
+                                                "buttonClass": "btn btn-default btn-sm",
+                                                "buttonIcon": "fa fa-check-square-o",
+                                                "buttonText": "Change Status"
+                                            },
+                                            "inversedField": null,
+                                            "dataSourceFilters": null,
+                                            "searchable": false,
+                                            "defaultValue": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                                            "peerReplicable": true,
+                                            "recommend": false,
+                                            "defaultValueChanged": false,
+                                            "unique": false,
+                                            "options": [
+                                                {
+                                                    "@id": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                                                    "@type": "Picklist",
+                                                    "itemValue": "Open",
+                                                    "orderIndex": 1,
+                                                    "color": null,
+                                                    "icon": null,
+                                                    "listName": "\/api\/3\/picklist_names\/33e964a9-d607-49f2-813c-7ce46141815a",
+                                                    "uuid": "7de816ff-7140-4ee5-bd05-93ce22002146",
+                                                    "id": 188,
+                                                    "importedBy": []
+                                                },
+                                                {
+                                                    "@id": "\/api\/3\/picklists\/758925e7-629c-46d8-89db-fb36f5fbe88a",
+                                                    "@type": "Picklist",
+                                                    "itemValue": "Investigating",
+                                                    "orderIndex": 2,
+                                                    "color": null,
+                                                    "icon": null,
+                                                    "listName": "\/api\/3\/picklist_names\/33e964a9-d607-49f2-813c-7ce46141815a",
+                                                    "uuid": "758925e7-629c-46d8-89db-fb36f5fbe88a",
+                                                    "id": 187,
+                                                    "importedBy": []
+                                                },
+                                                {
+                                                    "@id": "\/api\/3\/picklists\/a53d5465-75a6-4b7a-8144-4eccc23cea4a",
+                                                    "@type": "Picklist",
+                                                    "itemValue": "Pending",
+                                                    "orderIndex": 3,
+                                                    "color": null,
+                                                    "icon": null,
+                                                    "listName": "\/api\/3\/picklist_names\/33e964a9-d607-49f2-813c-7ce46141815a",
+                                                    "uuid": "a53d5465-75a6-4b7a-8144-4eccc23cea4a",
+                                                    "id": 190,
+                                                    "importedBy": []
+                                                },
+                                                {
+                                                    "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                                                    "@type": "Picklist",
+                                                    "itemValue": "Closed",
+                                                    "orderIndex": 4,
+                                                    "color": null,
+                                                    "icon": null,
+                                                    "listName": "\/api\/3\/picklist_names\/33e964a9-d607-49f2-813c-7ce46141815a",
+                                                    "uuid": "fac53e73-8d16-4189-98d5-95fbd1555232",
+                                                    "id": 191,
+                                                    "importedBy": []
+                                                },
+                                                {
+                                                    "@id": "\/api\/3\/picklists\/891fb9d5-556c-44c6-9f7d-94a27dec732e",
+                                                    "@type": "Picklist",
+                                                    "itemValue": "Re-Opened",
+                                                    "orderIndex": 6,
+                                                    "color": null,
+                                                    "icon": null,
+                                                    "listName": "\/api\/3\/picklist_names\/33e964a9-d607-49f2-813c-7ce46141815a",
+                                                    "uuid": "891fb9d5-556c-44c6-9f7d-94a27dec732e",
+                                                    "id": 189,
+                                                    "importedBy": []
+                                                }
+                                            ],
+                                            "isFormField": true,
+                                            "isRelationship": false,
+                                            "editable": true,
+                                            "ignoreTypeValidators": false,
+                                            "tooltip": "",
+                                            "required": false,
+                                            "visible": true,
+                                            "hydraDescription": "",
+                                            "module": "application",
+                                            "displayTemplate": "{{ itemValue }}",
+                                            "trackable": false,
+                                            "descriptions": {
+                                                "plural": "Picklists",
+                                                "singular": "Picklist"
+                                            },
+                                            "readOnly": false
+                                        },
+                                        {
+                                            "name": "description",
+                                            "title": "Description",
+                                            "type": "richtext",
+                                            "defaultSort": true,
+                                            "validation": {
+                                                "_enableRange": false,
+                                                "required": false,
+                                                "minlength": 0,
+                                                "maxlength": -1
+                                            },
+                                            "gridColumn": false,
+                                            "visibility": true,
+                                            "bulkAction": {
+                                                "allow": false
+                                            },
+                                            "inversedField": null,
+                                            "dataSourceFilters": null,
+                                            "searchable": false,
+                                            "defaultValue": null,
+                                            "peerReplicable": true,
+                                            "recommend": false,
+                                            "defaultValueChanged": false,
+                                            "unique": false,
+                                            "isFormField": true,
+                                            "isRelationship": false,
+                                            "editable": true,
+                                            "ignoreTypeValidators": false,
+                                            "tooltip": "",
+                                            "required": false,
+                                            "visible": true,
+                                            "hydraDescription": "",
+                                            "readOnly": false
+                                        }
+                                    ],
+                                    "indicatorDateField": {
+                                        "name": "firstSeen",
+                                        "title": "First Seen",
+                                        "type": "datetime",
+                                        "defaultSort": true,
+                                        "validation": {
+                                            "_enableRange": false,
+                                            "maxlength": 10485761,
+                                            "minlength": 0,
+                                            "required": false
+                                        },
+                                        "gridColumn": true,
+                                        "visibility": true,
+                                        "bulkAction": {
+                                            "allow": false,
+                                            "buttonClass": "btn btn-default btn-sm",
+                                            "buttonIcon": "",
+                                            "buttonText": ""
+                                        },
+                                        "inversedField": null,
+                                        "dataSourceFilters": null,
+                                        "searchable": true,
+                                        "defaultValue": null,
+                                        "peerReplicable": true,
+                                        "recommend": false,
+                                        "defaultValueChanged": false,
+                                        "unique": false,
+                                        "isFormField": true,
+                                        "isRelationship": false,
+                                        "editable": true,
+                                        "ignoreTypeValidators": false,
+                                        "tooltip": "",
+                                        "required": false,
+                                        "visible": true,
+                                        "hydraDescription": "",
+                                        "readOnly": false
+                                    },
+                                    "indicatorEventColorField": {
+                                        "name": "reputation",
+                                        "title": "Reputation",
+                                        "type": "picklist",
+                                        "defaultSort": [
+                                            {
+                                                "direction": "asc",
+                                                "field": "orderIndex"
+                                            }
+                                        ],
+                                        "query": {
+                                            "limit": 30,
+                                            "search": "",
+                                            "logic": "AND",
+                                            "page": 1,
+                                            "widgetQuery": null,
+                                            "filters": [
+                                                {
+                                                    "field": "listName__name",
+                                                    "value": "IndicatorReputation",
+                                                    "display": "IndicatorReputation",
+                                                    "operator": "eq",
+                                                    "type": "primitive",
+                                                    "OPERATOR_KEY": "$"
+                                                }
+                                            ],
+                                            "sort": [
+                                                {
+                                                    "direction": "ASC",
+                                                    "field": "orderIndex"
+                                                }
+                                            ],
+                                            "aggregates": []
+                                        },
+                                        "model": "picklists",
+                                        "validation": {
+                                            "maxlength": 10485761,
+                                            "minlength": 0,
+                                            "required": false,
+                                            "_enableRange": false
+                                        },
+                                        "gridColumn": true,
+                                        "visibility": true,
+                                        "bulkAction": {
+                                            "allow": true,
+                                            "buttonClass": "btn btn-default btn-sm",
+                                            "buttonIcon": "fa fa-pencil",
+                                            "buttonText": "Update Reputation"
+                                        },
+                                        "inversedField": null,
+                                        "dataSourceFilters": null,
+                                        "searchable": false,
+                                        "defaultValue": null,
+                                        "peerReplicable": true,
+                                        "recommend": false,
+                                        "defaultValueChanged": false,
+                                        "unique": false,
+                                        "options": [
+                                            {
+                                                "@id": "\/api\/3\/picklists\/b19b42aa-aee4-47df-9cda-894537dacb2a",
+                                                "@type": "Picklist",
+                                                "itemValue": "Good",
+                                                "orderIndex": 0,
+                                                "color": "#52c91a",
+                                                "icon": null,
+                                                "listName": "\/api\/3\/picklist_names\/e75ed3c3-9f23-4a43-832b-0daf236209ba",
+                                                "uuid": "b19b42aa-aee4-47df-9cda-894537dacb2a",
+                                                "id": 312,
+                                                "importedBy": []
+                                            },
+                                            {
+                                                "@id": "\/api\/3\/picklists\/7074e547-7785-4979-be32-c6d0c863e4bd",
+                                                "@type": "Picklist",
+                                                "itemValue": "Malicious",
+                                                "orderIndex": 1,
+                                                "color": "#c42323",
+                                                "icon": null,
+                                                "listName": "\/api\/3\/picklist_names\/e75ed3c3-9f23-4a43-832b-0daf236209ba",
+                                                "uuid": "7074e547-7785-4979-be32-c6d0c863e4bd",
+                                                "id": 309,
+                                                "importedBy": []
+                                            },
+                                            {
+                                                "@id": "\/api\/3\/picklists\/50bfd06c-9aff-4f7d-b6d9-821339e31fe7",
+                                                "@type": "Picklist",
+                                                "itemValue": "Suspicious",
+                                                "orderIndex": 2,
+                                                "color": "#dbc030",
+                                                "icon": null,
+                                                "listName": "\/api\/3\/picklist_names\/e75ed3c3-9f23-4a43-832b-0daf236209ba",
+                                                "uuid": "50bfd06c-9aff-4f7d-b6d9-821339e31fe7",
+                                                "id": 308,
+                                                "importedBy": []
+                                            },
+                                            {
+                                                "@id": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                                                "@type": "Picklist",
+                                                "itemValue": "TBD",
+                                                "orderIndex": 3,
+                                                "color": "#696969",
+                                                "icon": null,
+                                                "listName": "\/api\/3\/picklist_names\/e75ed3c3-9f23-4a43-832b-0daf236209ba",
+                                                "uuid": "ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                                                "id": 311,
+                                                "importedBy": []
+                                            },
+                                            {
+                                                "@id": "\/api\/3\/picklists\/9a611980-1b5e-4ae9-8062-eb2c0c433cff",
+                                                "@type": "Picklist",
+                                                "itemValue": "No Reputation Available",
+                                                "orderIndex": 4,
+                                                "color": "#6a9169",
+                                                "icon": null,
+                                                "listName": "\/api\/3\/picklist_names\/e75ed3c3-9f23-4a43-832b-0daf236209ba",
+                                                "uuid": "9a611980-1b5e-4ae9-8062-eb2c0c433cff",
+                                                "id": 310,
+                                                "importedBy": []
+                                            }
+                                        ],
+                                        "isFormField": true,
+                                        "isRelationship": false,
+                                        "editable": true,
+                                        "ignoreTypeValidators": false,
+                                        "tooltip": "",
+                                        "required": false,
+                                        "visible": true,
+                                        "hydraDescription": "",
+                                        "module": "application",
+                                        "displayTemplate": "{{ itemValue }}",
+                                        "trackable": false,
+                                        "descriptions": {
+                                            "plural": "Picklists",
+                                            "singular": "Picklist"
+                                        },
+                                        "readOnly": false
+                                    },
+                                    "indicatorContentFields": [
+                                        {
+                                            "name": "indicatorStatus",
+                                            "title": "Status",
+                                            "type": "picklist",
+                                            "defaultSort": [
+                                                {
+                                                    "direction": "asc",
+                                                    "field": "orderIndex"
+                                                }
+                                            ],
+                                            "query": {
+                                                "limit": 30,
+                                                "search": "",
+                                                "logic": "AND",
+                                                "page": 1,
+                                                "widgetQuery": null,
+                                                "filters": [
+                                                    {
+                                                        "field": "listName__name",
+                                                        "value": "IndicatorStatus",
+                                                        "display": "IndicatorStatus",
+                                                        "operator": "eq",
+                                                        "type": "primitive",
+                                                        "OPERATOR_KEY": "$"
+                                                    }
+                                                ],
+                                                "sort": [
+                                                    {
+                                                        "direction": "ASC",
+                                                        "field": "orderIndex"
+                                                    }
+                                                ],
+                                                "aggregates": []
+                                            },
+                                            "model": "picklists",
+                                            "validation": {
+                                                "maxlength": 10485761,
+                                                "minlength": 0,
+                                                "required": false
+                                            },
+                                            "gridColumn": true,
+                                            "visibility": true,
+                                            "bulkAction": [],
+                                            "inversedField": null,
+                                            "dataSourceFilters": null,
+                                            "searchable": false,
+                                            "defaultValue": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
+                                            "peerReplicable": true,
+                                            "recommend": false,
+                                            "defaultValueChanged": false,
+                                            "unique": false,
+                                            "options": [
+                                                {
+                                                    "@id": "\/api\/3\/picklists\/fa29fe48-f01e-476f-bb33-c910f5795b57",
+                                                    "@type": "Picklist",
+                                                    "itemValue": "Blocked",
+                                                    "orderIndex": 0,
+                                                    "color": null,
+                                                    "icon": null,
+                                                    "listName": "\/api\/3\/picklist_names\/e6639d57-94a9-432f-a46f-b2b530402077",
+                                                    "uuid": "fa29fe48-f01e-476f-bb33-c910f5795b57",
+                                                    "id": 316,
+                                                    "importedBy": []
+                                                },
+                                                {
+                                                    "@id": "\/api\/3\/picklists\/41a9818a-c283-4d7f-852c-6e275033e3d2",
+                                                    "@type": "Picklist",
+                                                    "itemValue": "Unblocked",
+                                                    "orderIndex": 1,
+                                                    "color": null,
+                                                    "icon": null,
+                                                    "listName": "\/api\/3\/picklist_names\/e6639d57-94a9-432f-a46f-b2b530402077",
+                                                    "uuid": "41a9818a-c283-4d7f-852c-6e275033e3d2",
+                                                    "id": 314,
+                                                    "importedBy": []
+                                                },
+                                                {
+                                                    "@id": "\/api\/3\/picklists\/4218cb58-4de5-4eff-ad08-185d36ef9bab",
+                                                    "@type": "Picklist",
+                                                    "itemValue": "Excluded",
+                                                    "orderIndex": 2,
+                                                    "color": null,
+                                                    "icon": null,
+                                                    "listName": "\/api\/3\/picklist_names\/e6639d57-94a9-432f-a46f-b2b530402077",
+                                                    "uuid": "4218cb58-4de5-4eff-ad08-185d36ef9bab",
+                                                    "id": 315,
+                                                    "importedBy": []
+                                                },
+                                                {
+                                                    "@id": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
+                                                    "@type": "Picklist",
+                                                    "itemValue": "TBD",
+                                                    "orderIndex": 3,
+                                                    "color": null,
+                                                    "icon": null,
+                                                    "listName": "\/api\/3\/picklist_names\/e6639d57-94a9-432f-a46f-b2b530402077",
+                                                    "uuid": "2f5cff61-fbff-4bb3-96be-302b78a9fb47",
+                                                    "id": 313,
+                                                    "importedBy": []
+                                                },
+                                                {
+                                                    "@id": "\/api\/3\/picklists\/e4a39098-3e26-4559-a7d8-7ed6ea4d6e31",
+                                                    "@type": "Picklist",
+                                                    "itemValue": "Isolated",
+                                                    "orderIndex": 4,
+                                                    "color": null,
+                                                    "icon": null,
+                                                    "listName": "\/api\/3\/picklist_names\/e6639d57-94a9-432f-a46f-b2b530402077",
+                                                    "uuid": "e4a39098-3e26-4559-a7d8-7ed6ea4d6e31",
+                                                    "id": 317,
+                                                    "importedBy": []
+                                                }
+                                            ],
+                                            "isFormField": true,
+                                            "isRelationship": false,
+                                            "editable": true,
+                                            "ignoreTypeValidators": false,
+                                            "tooltip": "",
+                                            "required": false,
+                                            "visible": true,
+                                            "hydraDescription": "",
+                                            "module": "application",
+                                            "displayTemplate": "{{ itemValue }}",
+                                            "trackable": false,
+                                            "descriptions": {
+                                                "plural": "Picklists",
+                                                "singular": "Picklist"
+                                            },
+                                            "readOnly": false
+                                        }
+                                    ],
+                                    "toggleEnable": true,
+                                    "jinjaValue": "{{incidentID}}",
+                                    "auto_expand": true
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "23297e0d-3941-4c01-a3d0-ea1df99a8c61",
+                "_collapsed": false,
                 "container": true
             },
             {
@@ -327,38 +1002,6 @@
                                                                 "metricsType": "totalCount",
                                                                 "title": "Related Alerts",
                                                                 "resource": "alerts",
-                                                                "query": {
-                                                                    "sort": [],
-                                                                    "limit": 30,
-                                                                    "logic": "AND",
-                                                                    "filters": [
-                                                                        {
-                                                                            "field": "incidents.id",
-                                                                            "operator": "eq",
-                                                                            "value": "{{incidentID}}",
-                                                                            "type": "primitive"
-                                                                        }
-                                                                    ]
-                                                                },
-                                                                "timeRange": "createDate"
-                                                            }
-                                                        }
-                                                    ],
-                                                    "style": "col-lg-3"
-                                                },
-                                                {
-                                                    "widgets": [
-                                                        {
-                                                            "type": "performanceMetrics",
-                                                            "config": {
-                                                                "wid": "aa5fac42-0f72-49f9-b405-eafb2c45419c",
-                                                                "includeFailedPlaybooks": true,
-                                                                "excludeConfigActions": true,
-                                                                "days": 30,
-                                                                "showPercentageChanges": false,
-                                                                "metricsType": "totalCount",
-                                                                "title": "Related Tasks",
-                                                                "resource": "tasks",
                                                                 "query": {
                                                                     "sort": [],
                                                                     "limit": 30,
@@ -441,9 +1084,42 @@
                                                         }
                                                     ],
                                                     "style": "col-lg-3"
+                                                },
+                                                {
+                                                    "widgets": [
+                                                        {
+                                                            "type": "performanceMetrics",
+                                                            "config": {
+                                                                "wid": "aa5fac42-0f72-49f9-b405-eafb2c45419c",
+                                                                "includeFailedPlaybooks": true,
+                                                                "excludeConfigActions": true,
+                                                                "days": 30,
+                                                                "showPercentageChanges": false,
+                                                                "metricsType": "totalCount",
+                                                                "title": "Related Tasks",
+                                                                "resource": "tasks",
+                                                                "query": {
+                                                                    "sort": [],
+                                                                    "limit": 30,
+                                                                    "logic": "AND",
+                                                                    "filters": [
+                                                                        {
+                                                                            "field": "incidents.id",
+                                                                            "operator": "eq",
+                                                                            "value": "{{incidentID}}",
+                                                                            "type": "primitive"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "timeRange": "createDate"
+                                                            }
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-3"
                                                 }
                                             ],
-                                            "wid": "a4ca0f75-fa90-4a47-a897-8bd0626a97b7"
+                                            "wid": "a4ca0f75-fa90-4a47-a897-8bd0626a97b7",
+                                            "_collapsed": false
                                         }
                                     ]
                                 }
@@ -453,7 +1129,8 @@
                     }
                 ],
                 "wid": "de2bf7f4-61f6-4f69-83d3-d7b7e802e6e0",
-                "container": true
+                "container": true,
+                "_collapsed": false
             },
             {
                 "columns": [
@@ -557,7 +1234,166 @@
                     }
                 ],
                 "wid": "0d1ace32-cf1e-402b-83d5-ba863105d1b7",
-                "container": true
+                "container": true,
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "6c8de68c-e3d1-4f2e-86c1-bb49737fbae1",
+                                    "sectionText": "<h6 style=\"background: #404142; padding: 5px; text-align: left;\"><span style=\"font-size: 10pt; color: #ffffff;\"><strong>Related Indicators<\/strong><\/span><\/h6>"
+                                }
+                            },
+                            {
+                                "type": "readonlyFormGroup",
+                                "config": {
+                                    "wid": "68090a5d-4a16-4e59-a19f-c6f0b1837bc3",
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 10,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "incidents.id",
+                                                "operator": "eq",
+                                                "value": "{{incidentID}}",
+                                                "type": "primitive"
+                                            }
+                                        ]
+                                    },
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "typeofindicator",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "value",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "reputation",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "resource": "indicators",
+                                    "style": "display-inline-block"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "10ecd1f0-6ec6-44a1-8786-348def8988cf",
+                "container": true,
+                "_collapsed": false
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "sectionHeader",
+                                "config": {
+                                    "wid": "644edf16-9009-440b-83f5-a6727f2bfea5",
+                                    "sectionText": "<h6 style=\"background: #404142; padding: 5px; text-align: left;\"><span style=\"font-size: 10pt; color: #ffffff;\"><strong>Related Assets<\/strong><\/span><\/h6>"
+                                }
+                            },
+                            {
+                                "type": "readonlyFormGroup",
+                                "config": {
+                                    "wid": "b9c9f668-db3c-4976-8bc8-ffbac17a4ee0",
+                                    "query": {
+                                        "sort": [],
+                                        "limit": 10,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "incidents.id",
+                                                "operator": "eq",
+                                                "value": "{{incidentID}}",
+                                                "type": "primitive"
+                                            }
+                                        ]
+                                    },
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "hostname",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "status",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "propertyOf",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": true
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-4"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "resource": "assets",
+                                    "style": "display-inline-block"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "ca9d2f12-f558-459e-a30a-05602d11d32b",
+                "container": true,
+                "_collapsed": false
             },
             {
                 "columns": [
@@ -660,164 +1496,9 @@
                         "style": "col-lg-12"
                     }
                 ],
-                "wid": "10ecd1f0-6ec6-44a1-8786-348def8988cf",
-                "container": true
-            },
-            {
-                "columns": [
-                    {
-                        "widgets": [
-                            {
-                                "type": "sectionHeader",
-                                "config": {
-                                    "wid": "6c8de68c-e3d1-4f2e-86c1-bb49737fbae1",
-                                    "sectionText": "<h6 style=\"background: #404142; padding: 5px; text-align: left;\"><span style=\"font-size: 10pt; color: #ffffff;\"><strong>Related Indicators<\/strong><\/span><\/h6>"
-                                }
-                            },
-                            {
-                                "type": "readonlyFormGroup",
-                                "config": {
-                                    "wid": "68090a5d-4a16-4e59-a19f-c6f0b1837bc3",
-                                    "query": {
-                                        "sort": [],
-                                        "limit": 10,
-                                        "logic": "AND",
-                                        "filters": [
-                                            {
-                                                "field": "incidents.id",
-                                                "operator": "eq",
-                                                "value": "{{incidentID}}",
-                                                "type": "primitive"
-                                            }
-                                        ]
-                                    },
-                                    "rows": [
-                                        {
-                                            "columns": [
-                                                {
-                                                    "fields": [
-                                                        {
-                                                            "name": "typeofindicator",
-                                                            "highlightMode": true,
-                                                            "linky": true,
-                                                            "readOnly": true
-                                                        }
-                                                    ],
-                                                    "style": "col-lg-4"
-                                                },
-                                                {
-                                                    "fields": [
-                                                        {
-                                                            "name": "value",
-                                                            "highlightMode": true,
-                                                            "linky": true,
-                                                            "readOnly": true
-                                                        }
-                                                    ],
-                                                    "style": "col-lg-4"
-                                                },
-                                                {
-                                                    "fields": [
-                                                        {
-                                                            "name": "reputation",
-                                                            "highlightMode": true,
-                                                            "linky": true,
-                                                            "readOnly": true
-                                                        }
-                                                    ],
-                                                    "style": "col-lg-4"
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "resource": "indicators",
-                                    "style": "display-inline-block"
-                                }
-                            }
-                        ],
-                        "style": "col-lg-12"
-                    }
-                ],
-                "wid": "ca9d2f12-f558-459e-a30a-05602d11d32b",
-                "container": true
-            },
-            {
-                "columns": [
-                    {
-                        "widgets": [
-                            {
-                                "type": "sectionHeader",
-                                "config": {
-                                    "wid": "644edf16-9009-440b-83f5-a6727f2bfea5",
-                                    "sectionText": "<h6 style=\"background: #404142; padding: 5px; text-align: left;\"><span style=\"font-size: 10pt; color: #ffffff;\"><strong>Related Assets<\/strong><\/span><\/h6>"
-                                }
-                            },
-                            {
-                                "type": "readonlyFormGroup",
-                                "config": {
-                                    "wid": "b9c9f668-db3c-4976-8bc8-ffbac17a4ee0",
-                                    "query": {
-                                        "sort": [],
-                                        "limit": 10,
-                                        "logic": "AND",
-                                        "filters": [
-                                            {
-                                                "field": "incidents.id",
-                                                "operator": "eq",
-                                                "value": "{{incidentID}}",
-                                                "type": "primitive"
-                                            }
-                                        ]
-                                    },
-                                    "rows": [
-                                        {
-                                            "columns": [
-                                                {
-                                                    "fields": [
-                                                        {
-                                                            "name": "hostname",
-                                                            "highlightMode": true,
-                                                            "linky": true,
-                                                            "readOnly": true
-                                                        }
-                                                    ],
-                                                    "style": "col-lg-4"
-                                                },
-                                                {
-                                                    "fields": [
-                                                        {
-                                                            "name": "status",
-                                                            "highlightMode": true,
-                                                            "linky": true,
-                                                            "readOnly": true
-                                                        }
-                                                    ],
-                                                    "style": "col-lg-4"
-                                                },
-                                                {
-                                                    "fields": [
-                                                        {
-                                                            "name": "propertyOf",
-                                                            "highlightMode": true,
-                                                            "linky": true,
-                                                            "readOnly": true
-                                                        }
-                                                    ],
-                                                    "style": "col-lg-4"
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "resource": "assets",
-                                    "style": "display-inline-block"
-                                }
-                            }
-                        ],
-                        "style": "col-lg-12"
-                    }
-                ],
                 "wid": "2eb5df90-9a05-4446-81b7-4d9742aa2174",
-                "container": true
+                "container": true,
+                "_collapsed": false
             },
             {
                 "columns": [
@@ -835,10 +1516,14 @@
                     }
                 ],
                 "wid": "d027f85c-fc5a-45df-9be9-09d51ede9bca",
-                "container": true
+                "container": true,
+                "_collapsed": false
             }
         ],
-        "wid": "daaaadd9-c536-462a-8e54-47f8d9897aff"
+        "wid": "daaaadd9-c536-462a-8e54-47f8d9897aff",
+        "metadata": {
+            "customTemplateTitle": "Reporting"
+        }
     },
     "filterArray": [
         {
@@ -846,7 +1531,7 @@
             "open": true,
             "type": "number",
             "label": "Incident ID",
-            "value": "",
+            "value": null,
             "required": true,
             "expression": "{{incidentID}}",
             "defaultValue": null

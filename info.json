@@ -9,16 +9,13 @@
     "publisher": "Fortinet",
     "certified": "true",
     "description": "The SOAR Framework Solution Pack enables users to experience the power of FortiSOAR incident response.",
-    "summary": null,
-    "help": "https:\/\/github.com\/fortinet-fortisoar\/solution-pack-soar-framework",
+    "help": "https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/develop/README.md",
     "category": [],
     "featured": true,
-    "supportInfo": "support@fortinet.com",
+    "supportInfo": "Fortinet Customer Support",
     "iconLarge": null,
     "fsrMinCompatibility": "7.2.0",
     "date": "2022-03-03T09:19:39+00:00",
-    "exported_from": "master.fortisoar.in",
-    "exported_by": "CS Admin",
     "contents": {
         "picklistNames": [
             {
@@ -165,66 +162,110 @@
             }
         },
         "viewTemplates": {
-            "alerts": [
-                "list",
-                "detail",
-                "form",
-                "settings"
-            ],
-            "announcements": [
-                "list",
-                "detail",
-                "form"
-            ],
-            "assets": [
-                "list",
-                "detail",
-                "form",
-                "settings"
-            ],
-            "campaigns": [
-                "list",
-                "detail",
-                "form"
-            ],
-            "communication": [
-                "list",
-                "detail",
-                "form"
-            ],
-            "events": [
-                "list",
-                "detail",
-                "form"
-            ],
-            "hunt": [
-                "list",
-                "detail",
-                "form"
-            ],
-            "incidents": [
-                "list",
-                "detail",
-                "form",
-                "settings"
-            ],
-            "indicators": [
-                "list",
-                "detail",
-                "form",
-                "settings"
-            ],
-            "sla_template": [
-                "list",
-                "detail",
-                "form"
-            ],
-            "warrooms": [
-                "list",
-                "detail",
-                "form",
-                "settings"
-            ]
+            "alerts": {
+                "name": "Alerts",
+                "apiName": "alerts",
+                "views": [
+                    "list",
+                    "detail",
+                    "form",
+                    "settings"
+                ]
+            },
+            "announcements": {
+                "name": "Announcements",
+                "apiName": "announcements",
+                "views": [
+                    "list",
+                    "detail",
+                    "form"
+                ]
+            },
+            "assets": {
+                "name": "Assets",
+                "apiName": "assets",
+                "views": [
+                    "list",
+                    "detail",
+                    "form",
+                    "settings"
+                ]
+            },
+            "campaigns": {
+                "name": "Campaigns",
+                "apiName": "campaigns",
+                "views": [
+                    "list",
+                    "detail",
+                    "form"
+                ]
+            },
+            "communication": {
+                "name": "Communications",
+                "apiName": "communication",
+                "views": [
+                    "list",
+                    "detail",
+                    "form"
+                ]
+            },
+            "events": {
+                "name": "Events",
+                "apiName": "events",
+                "views": [
+                    "list",
+                    "detail",
+                    "form"
+                ]
+            },
+            "hunt": {
+                "name": "Hunts",
+                "apiName": "hunt",
+                "views": [
+                    "list",
+                    "detail",
+                    "form"
+                ]
+            },
+            "incidents": {
+                "name": "Incidents",
+                "apiName": "incidents",
+                "views": [
+                    "list",
+                    "detail",
+                    "form",
+                    "settings"
+                ]
+            },
+            "indicators": {
+                "name": "Indicators",
+                "apiName": "indicators",
+                "views": [
+                    "list",
+                    "detail",
+                    "form",
+                    "settings"
+                ]
+            },
+            "sla_template": {
+                "name": "SLA Templates",
+                "apiName": "sla_template",
+                "views": [
+                    "list",
+                    "detail",
+                    "form"
+                ]
+            },
+            "warrooms": {
+                "name": "War Rooms",
+                "apiName": "warrooms",
+                "views": [
+                    "list",
+                    "detail",
+                    "form",
+                    "settings"
+                ]
+            }
         },
         "views": {
             "navigation": [
@@ -234,8 +275,7 @@
                 "Automation",
                 "Resources",
                 "Reports",
-                "Widget Library",
-                "Content Hub",
+                "User Community",
                 "Help"
             ]
         },
@@ -293,33 +333,9 @@
         ],
         "globalVariables": [
             {
-                "id": 1,
-                "name": "Current_User",
-                "value": "{{vars.currentUser}}",
-                "default_value": null
-            },
-            {
                 "id": 2,
                 "name": "Default_Email",
                 "value": "noreply@example.com",
-                "default_value": null
-            },
-            {
-                "id": 3,
-                "name": "Body",
-                "value": "{{vars.request.body}}",
-                "default_value": null
-            },
-            {
-                "id": 4,
-                "name": "Current_Data",
-                "value": "{{vars.input.records[0]}}",
-                "default_value": null
-            },
-            {
-                "id": 5,
-                "name": "Previous_Data",
-                "value": "{{vars.previous.data}}",
                 "default_value": null
             },
             {
@@ -378,8 +394,8 @@
             }
         ],
         "rules": [
-            "Incident - Notify Updation",
-            "Alert - Notify Updation",
+            "Incident - Notify Updates",
+            "Alert - Notify Updates",
             "Alert - Notify Creation",
             "Incident - Notify Creation"
         ],
@@ -432,125 +448,94 @@
         "connectors": [
             {
                 "name": "Active Directory",
-                "apiName": "activedirectory",
-                "version": "2.2.0"
+                "apiName": "activedirectory"
             },
             {
                 "name": "AlienVault-OTX",
-                "apiName": "alienvault-otx",
-                "version": "1.0.1"
+                "apiName": "alienvault-otx"
             },
             {
                 "name": "CarbonBlack Response",
-                "apiName": "carbonblack-response",
-                "version": "2.0.1"
+                "apiName": "carbonblack-response"
             },
             {
                 "name": "ElasticSearch",
-                "apiName": "elasticsearch",
-                "version": "2.2.1"
+                "apiName": "elasticsearch"
             },
             {
                 "name": "Exchange",
-                "apiName": "exchange",
-                "version": "3.4.4"
+                "apiName": "exchange"
             },
             {
                 "name": "Fortinet FortiClient EMS",
-                "apiName": "fortinet-forticlient-ems",
-                "version": "1.0.0"
+                "apiName": "fortinet-forticlient-ems"
             },
             {
                 "name": "Fortinet FortiEDR",
-                "apiName": "fortinet-fortiedr",
-                "version": "1.3.0"
+                "apiName": "fortinet-fortiedr"
             },
             {
                 "name": "Fortinet FortiGate",
-                "apiName": "fortigate-firewall",
-                "version": "5.0.0"
+                "apiName": "fortigate-firewall"
             },
             {
                 "name": "Fortinet FortiSandbox",
-                "apiName": "fortinet-fortisandbox",
-                "version": "1.0.3"
+                "apiName": "fortinet-fortisandbox"
             },
             {
                 "name": "Fortinet FortiSIEM",
-                "apiName": "fortinet-fortisiem",
-                "version": "4.3.0"
+                "apiName": "fortinet-fortisiem"
             },
             {
                 "name": "Fortinet Web Filter Lookup",
-                "apiName": "fortinet-web-filter-lookup",
-                "version": "1.0.0"
+                "apiName": "fortinet-web-filter-lookup"
             },
             {
                 "name": "IBM XForce",
-                "apiName": "xforce",
-                "version": "1.0.1"
-            },
-            {
-                "name": "IMAP",
-                "apiName": "imap",
-                "version": "3.5.6"
+                "apiName": "xforce"
             },
             {
                 "name": "IPStack",
-                "apiName": "ipstack",
-                "version": "1.0.0"
+                "apiName": "ipstack"
             },
             {
                 "name": "MxToolbox",
-                "apiName": "mxtoolbox",
-                "version": "2.0.0"
+                "apiName": "mxtoolbox"
             },
             {
                 "name": "NMAP Scanner",
-                "apiName": "nmap-scanner",
-                "version": "1.0.1"
+                "apiName": "nmap-scanner"
             },
             {
                 "name": "SLA Calculator",
-                "apiName": "slacalculator",
-                "version": "1.0.0"
-            },
-            {
-                "name": "SSH",
-                "apiName": "ssh",
-                "version": "2.1.1"
+                "apiName": "slacalculator"
             },
             {
                 "name": "ThreatQ",
-                "apiName": "threatq",
-                "version": "1.0.1"
+                "apiName": "threatq"
             },
             {
                 "name": "URLScan.io",
-                "apiName": "urlscan-io",
-                "version": "1.1.0"
+                "apiName": "urlscan-io"
             },
             {
                 "name": "URLVoid",
-                "apiName": "urlvoid",
-                "version": "1.1.0"
+                "apiName": "urlvoid"
             },
             {
                 "name": "VirusTotal",
-                "apiName": "virustotal",
-                "version": "2.2.0"
+                "apiName": "virustotal"
             },
             {
                 "name": "Whois RDAP",
-                "apiName": "whois-rdap",
-                "version": "1.0.0"
+                "apiName": "whois-rdap"
             }
         ],
         "widgets": [
             {
                 "apiName": "userAssignments",
                 "name": "User Tile",
-                "version": "2.0.0"
+                "version": "2.1.0"
             },
             {
                 "apiName": "recordSummary",
@@ -571,10 +556,29 @@
                 "apiName": "incidentCorrelations",
                 "name": "Incident Correlations",
                 "version": "2.0.0"
+            },
+            {
+                "apiName": "customPicklistMessage",
+                "name": "Custom Picklist Message",
+                "version": "1.0.0"
+            },
+            {
+                "apiName": "incidentTimeline",
+                "name": "Incident Timeline",
+                "version": "1.0.0"
             }
         ],
-        "recordSets": {
-            "sla_template": 5
-        }
+        "recordSets": [
+            {
+                "name": "Queues",
+                "apiName": "fsr_queues",
+                "count": 1
+            },
+            {
+                "name": "SLA Templates",
+                "apiName": "sla_template",
+                "count": 5
+            }
+        ]
     }
 }

@@ -16,7 +16,7 @@
         "datetimeFieldsToConvert"
     ],
     "synchronous": false,
-    "collection": "\/api\/3\/workflow_collections\/20289298-cdd6-4052-8fa0-11e2603dca00",
+    "collection": "\/api\/3\/workflow_collections\/e811949a-45b4-4189-b524-fdb64c417810",
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/b91a0668-7406-4c6f-bbcd-c6028d19f841",
     "steps": [
@@ -27,7 +27,7 @@
             "arguments": {
                 "config": "0fd89191-0436-4ba1-8eca-88771f17e159",
                 "params": {
-                    "python_function": "import csv\nimport arrow\n\nrecordsToSave = {{vars.steps.Run_Query.data['hydra:member']}}\ncolumns = recordsToSave[0].keys()\nwith open('{{vars.fileToUpdate}}','a') as out_file:\n    csv_w = csv.writer(out_file)\n    for record in recordsToSave:\n        values = []\n        for key in columns:\n            if type(record[key]) is dict:\n               recordType = (record[key]).get('@type', None)\n               if recordType == 'Picklist':\n                   values.append(str(record[key]['itemValue']))\n               elif recordType == 'Person':\n                   values.append(str(record[key]['firstname'] + record[key]['lastname']))\n               elif recordType == 'Appliance':\n                   values.append(str(record[key]['name']))\n            elif key in {{ vars.input.params.datetimeFieldsToConvert}}:\n                values.append(arrow.get(record[key]).format('YYYY-MM-DD HH:mm:ss ZZ'))\n            elif key in {{ vars.input.params.queryBody['__selectFields']}}:\n                values.append(str(record[key]))\n        csv_w.writerow(values)"
+                    "python_function": "import csv\nimport arrow\n\nrecordsToSave = {{vars.steps.Run_Query.data['hydra:member']}}\ncolumns = recordsToSave[0].keys()\nwith open('{{vars.fileToUpdate}}','a') as out_file:\n    csv_w = csv.writer(out_file)\n    for record in recordsToSave:\n        values = []\n        for key in columns:\n            if type(record[key]) is dict:\n               recordType = (record[key]).get('@type', None)\n               if recordType == 'Picklist':\n                   values.append(str(record[key]['itemValue']))\n               elif recordType == 'Person':\n                   values.append(str(record[key]['firstname'] + record[key]['lastname']))\n               elif recordType == 'Appliance':\n                   values.append(str(record[key]['name']))\n            elif key in {{ vars.input.params.datetimeFieldsToConvert}} and record[key]:\n                values.append(arrow.get(record[key]).format('YYYY-MM-DD HH:mm:ss ZZ'))\n            elif key in {{ vars.input.params.queryBody['__selectFields']}}:\n                values.append(str(record[key]))\n        csv_w.writerow(values)"
                 },
                 "version": "1.2.1",
                 "connector": "code-snippet",
