@@ -51,9 +51,9 @@ After the alert is created, multiple playbooks (see following list) are launched
 
 After the completion of Indicator extraction and enrichment, the alert is ready for further investigation. This state is internally identified as `state=ready to investigate`. Here, some playbooks trigger to respond to a specific type of alert. These are **Use Case Playbooks**. The playbook collection named “**02 – Use Cases**” contains multiple playbooks. A collection of playbooks has names that carry the prefix “02 – Use Cases; e.g., **02- Use Case - Brute Force Attack**.
 
-At the end of this cycle, the given alert is either marked as **False Positive **and **closed** **or marked as **True Positive and Escalated into an Incident**. Note, the Escalation into an incident by default is a manual step (by clicking Escalate button), but the same can also be automated via invoking **Escalate to Incident Playbook** into the respective response playbooks. 
+At the end of this cycle, the given alert is either marked as **False Positive** and **closed** or marked as **True Positive** and **Escalated into an Incident**. Note, the Escalation into an incident by default is a manual step (by clicking **Escalate** button), but the same can also be automated via invoking **Escalate to Incident Playbook** into the respective response playbooks. 
 
-Marking an alert as closed invokes a corresponding close source alert playbook. This playbook, by default, simply prompts you to close the alert at the source; however, you can (or should) modify that to use the respective product's connectors (such as FortiSIEM) to invoke the closure action. This way you can update the source systems to your desired state.
+Marking an alert as **Closed** invokes a corresponding close source alert playbook. This playbook, by default, simply prompts you to close the alert at the source; however, you must modify that to use the respective product's connectors (such as FortiSIEM) to invoke the closure action. This way you can update the source systems to your desired state.
 
 ## Additional Resources 
 
@@ -61,6 +61,7 @@ Marking an alert as closed invokes a corresponding close source alert playbook. 
 * [Extending Default Alert Schema](#extending-default-alert-schema)
 * [Extending Default Indicator Extraction Process](#extending-default-indicator-extraction-process)
 * [Extending Default Indicator Enrichment Process](#extending-default-indicator-enrichment-process)
+* [Building Investigation/Response Playbook](#building-investigationresponse-playbook)
 
 ## Prerequisites
 
@@ -1083,3 +1084,9 @@ You can add another step after the **Configuration** step. You can have the doma
 Once you are done with the changes, click **Save Playbook** to save it. Now, whenever you create an indicator and select type as **Domain** and enter the domain name in **Value** field, this playbook triggers and fetches indicator records from your added source apart from the ones already present in the playbook.
 
 This is how you can extend the default indicator enrichment process.
+
+### Building Investigation/Response Playbook
+
+Response playbooks should typically be executed, once indicator extraction and enrichment is complete. Hence, Response Playbook's trigger should be set to `On Update , State = Indicator Extracted`
+
+This step ensures that your response playbook is executed only after Indicators are extracted and enriched.
