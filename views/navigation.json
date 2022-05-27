@@ -109,6 +109,21 @@
                         "editMode": false
                     },
                     {
+                        "title": "Communications",
+                        "require": {
+                            "module": "communication",
+                            "action": "read"
+                        },
+                        "state": {
+                            "name": "main.modules.list",
+                            "parameters": {
+                                "module": "communication"
+                            }
+                        },
+                        "icon": "icon icon-email-templates",
+                        "editMode": false
+                    },
+                    {
                         "title": "Hunts",
                         "require": {
                             "module": "hunt",
@@ -277,16 +292,28 @@
                 "editMode": false
             },
             {
-                "title": "User Community",
-                "state": {
-                    "name": "main.pages",
-                    "parameters": {
-                        "module": "user-community"
-                    }
+                "title": "Widget Library",
+                "icon": "icon icon-widget",
+                "require": {
+                    "module": "widgets",
+                    "action": "read"
                 },
-                "openInNewTab": true,
-                "url": "https:\/\/fusecommunity.fortinet.com\/groups\/community-home?CommunityKey=9f1420e8-e3c6-4535-8cae-3fa714da66d8",
-                "icon": "icon icon-users",
+                "state": {
+                    "name": "main.widgets",
+                    "parameters": []
+                },
+                "editMode": false
+            },
+            {
+                "title": "Content Hub",
+                "icon": "icon icon-content-hub",
+                "require": {
+                    "module": "contentHub",
+                    "action": "read"
+                },
+                "state": {
+                    "name": "main.marketplace"
+                },
                 "editMode": false
             },
             {
@@ -301,6 +328,37 @@
                 "url": "https:\/\/docs.fortinet.com\/product\/fortisoar",
                 "icon": "icon icon-help",
                 "editMode": false
+            },
+            {
+                "title": "User Community",
+                "state": {
+                    "name": "main.pages",
+                    "parameters": {
+                        "module": "user-community"
+                    }
+                },
+                "openInNewTab": true,
+                "url": "https:\/\/fusecommunity.fortinet.com\/groups\/community-home?CommunityKey=9f1420e8-e3c6-4535-8cae-3fa714da66d8",
+                "icon": "icon icon-users",
+                "editMode": false
+            },
+            {
+                "icon": "fa fa-play",
+                "open": false,
+                "state": {
+                    "name": "main.modules.list",
+                    "parameters": {
+                        "module": "scenario"
+                    }
+                },
+                "title": "Simulations",
+                "require": {
+                    "module": "scenario",
+                    "action": "read"
+                },
+                "editMode": false,
+                "isEnabled": false,
+                "openStatus": false
             }
         ]
     },
