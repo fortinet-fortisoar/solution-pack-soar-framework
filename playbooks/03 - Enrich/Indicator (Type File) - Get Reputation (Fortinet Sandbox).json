@@ -28,8 +28,8 @@
                 "enrichment_summary": "{{vars.steps.Enrichment_Summary.data['formatted_string']}}"
             },
             "status": null,
-            "top": "270",
-            "left": "4675",
+            "top": "430",
+            "left": "5000",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "uuid": "2f8983bb-5c4f-4110-8ce1-ffbaae23e873"
         },
@@ -52,8 +52,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "190",
-            "left": "3375",
+            "top": "350",
+            "left": "3700",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "4e5ec533-fc09-4787-bfb7-a9ddb080eb8d"
         },
@@ -74,8 +74,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "190",
-            "left": "4025",
+            "top": "350",
+            "left": "4350",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "5b86296f-4a68-46e5-b18c-6efafa0a7b2b"
         },
@@ -98,7 +98,7 @@
             },
             "status": null,
             "top": "270",
-            "left": "1425",
+            "left": "1750",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "uuid": "ed820ada-44cf-41e1-a80a-a410b538372a"
         },
@@ -158,7 +158,7 @@
                 }
             },
             "status": null,
-            "top": "350",
+            "top": "190",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
             "uuid": "5d02e88c-3213-4bb9-a021-c45a0073dae5"
@@ -184,7 +184,7 @@
             },
             "status": null,
             "top": "270",
-            "left": "1100",
+            "left": "1425",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "uuid": "1a1d12f3-36b9-4aa8-916d-f82ae988a96c"
         },
@@ -218,7 +218,7 @@
             },
             "status": null,
             "top": "270",
-            "left": "2725",
+            "left": "3050",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "uuid": "46380bda-356c-4455-a0e2-7ae36363f3be"
         },
@@ -229,11 +229,13 @@
             "arguments": {
                 "resource": {
                     "reputation": "{{vars.Reputation_Type_IRI}}",
-                    "description": "<h6>{% for i in vars.steps.Enrichment_Summary %}<\/h6>\n<p>{{i.data['formatted_string']}}{%endfor%}<\/p>\n<h6><strong>{% if \"Malicious\" in vars.Reputation_Type_Text %} Seems :&nbsp;<\/strong><span style=\"color: red;\">{{vars.Reputation_Type_Text}}<\/span><\/h6>\n<h6><strong>{% elif \"Good\" in vars.Reputation_Type_Text %} Seems :&nbsp;<\/strong><span style=\"color: green;\">{{vars.Reputation_Type_Text}}<\/span><\/h6>\n<h6><strong>{% elif \"Suspicious\" in vars.Reputation_Type_Text %} Seems :&nbsp;<\/strong><span style=\"color: #ff6600;\">{{vars.Reputation_Type_Text}}<\/span><\/h6>\n<h6><strong>{% elif \"No Reputation Available\" in vars.Reputation_Type_Text %} Seems : {{vars.Reputation_Type_Text}}<\/strong><\/h6>\n<h6><strong>{%endif%}<\/strong><\/h6>\n<p>&nbsp;<\/p>\n<p>&nbsp;<\/p>"
+                    "description": "<h6>{% for i in vars.steps.Enrichment_Summary %}<\/h6>\n<p>{{i.data['formatted_string']}}{%endfor%}<\/p>\n<h6><strong>{% if \"Malicious\" in vars.Reputation_Type_Text %} Seems :&nbsp;<\/strong><span style=\"color: red;\">{{vars.Reputation_Type_Text}}<\/span><\/h6>\n<h6><strong>{% elif \"Good\" in vars.Reputation_Type_Text %} Seems :&nbsp;<\/strong><span style=\"color: green;\">{{vars.Reputation_Type_Text}}<\/span><\/h6>\n<h6><strong>{% elif \"Suspicious\" in vars.Reputation_Type_Text %} Seems :&nbsp;<\/strong><span style=\"color: #ff6600;\">{{vars.Reputation_Type_Text}}<\/span><\/h6>\n<h6><strong>{% elif \"No Reputation Available\" in vars.Reputation_Type_Text %} Seems : {{vars.Reputation_Type_Text}}<\/strong><\/h6>\n<h6><strong>{%endif%}<\/strong><\/h6>\n<p>&nbsp;<\/p>\n<p>&nbsp;<\/p>",
+                    "enrichmentStatus": "\/api\/3\/picklists\/c6e46fde-97a2-48cc-8019-938c9c5aebd0"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
                 "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
                 "collectionType": "\/api\/3\/indicators",
                 "fieldOperation": {
                     "recordTags": "Overwrite"
@@ -241,8 +243,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "110",
-            "left": "4675",
+            "top": "270",
+            "left": "5000",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "uuid": "1e8d0150-8783-432f-bd26-e90ef5c5eaba"
         },
@@ -256,7 +258,7 @@
             },
             "status": null,
             "top": "510",
-            "left": "3050",
+            "left": "3375",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "uuid": "fcd82860-1ec8-4976-be35-3ca7764284e4"
         },
@@ -299,8 +301,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "190",
-            "left": "3700",
+            "top": "350",
+            "left": "4025",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "uuid": "fbda4469-ae8e-4ff4-918f-fe8c45ecc006"
         },
@@ -313,7 +315,7 @@
             },
             "status": null,
             "top": "270",
-            "left": "2400",
+            "left": "2725",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "uuid": "02a686e0-4471-4433-9629-5ca2285880ed"
         },
@@ -327,7 +329,7 @@
             },
             "status": null,
             "top": "350",
-            "left": "3050",
+            "left": "3375",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "uuid": "9a5139b6-9314-482b-a567-32b1e8a72b00"
         },
@@ -350,8 +352,8 @@
                 ]
             },
             "status": null,
-            "top": "190",
-            "left": "4350",
+            "top": "350",
+            "left": "4675",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "uuid": "2a43895e-ce5f-4bdc-bb83-107d4f9b9bdd"
         },
@@ -373,7 +375,7 @@
             },
             "status": null,
             "top": "270",
-            "left": "2075",
+            "left": "2400",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "uuid": "083a7904-6c29-4bb3-9679-18b154cd2c57"
         },
@@ -400,7 +402,7 @@
             },
             "status": null,
             "top": "270",
-            "left": "1750",
+            "left": "2075",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "uuid": "ba6c4c5f-56e5-495e-8bb9-6946d9aaffbd"
         },
@@ -415,7 +417,7 @@
             },
             "status": null,
             "top": "270",
-            "left": "775",
+            "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "uuid": "c26be4f0-433a-4996-bd0c-54fef13dfd9d"
         },
@@ -429,7 +431,7 @@
             },
             "status": null,
             "top": "190",
-            "left": "3050",
+            "left": "3375",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "uuid": "edf8284a-0f65-4465-b895-0819576adcb7"
         },
@@ -443,7 +445,7 @@
             },
             "status": null,
             "top": "30",
-            "left": "3050",
+            "left": "3375",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "uuid": "51bcb8d4-4f49-4556-95c6-7d83e9f220cb"
         },
@@ -462,13 +464,13 @@
                     {
                         "option": "No, Enrich Here",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/c26be4f0-433a-4996-bd0c-54fef13dfd9d",
-                        "step_name": "Configuration"
+                        "step_iri": "\/api\/3\/workflow_steps\/535d1759-5a80-4841-b843-29a41cac55eb",
+                        "step_name": "Update Enrichment Status to In Process"
                     }
                 ]
             },
             "status": null,
-            "top": "350",
+            "top": "190",
             "left": "450",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "uuid": "f75e712b-a340-4670-9173-c83c599c44ca"
@@ -486,10 +488,34 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "430",
+            "top": "110",
             "left": "775",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "a36bd47a-8ffd-4f43-ad05-5845756924c8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Enrichment Status to In Process",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "enrichmentStatus": "\/api\/3\/picklists\/8a4609d2-8a3d-4bda-9888-5f00bfea43cb"
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/indicators",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "270",
+            "left": "775",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "535d1759-5a80-4841-b843-29a41cac55eb"
         }
     ],
     "routes": [
@@ -684,12 +710,21 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Has Dedicated Tenant Record -> Configuration",
+            "name": "Update Enrichment Status to In Process -> Configuration",
             "targetStep": "\/api\/3\/workflow_steps\/c26be4f0-433a-4996-bd0c-54fef13dfd9d",
+            "sourceStep": "\/api\/3\/workflow_steps\/535d1759-5a80-4841-b843-29a41cac55eb",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "6f43ff55-c599-47c3-8b7e-c4d3f54767eb"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Dedicated Tenant Record -> Update Enrichment Status to In Process",
+            "targetStep": "\/api\/3\/workflow_steps\/535d1759-5a80-4841-b843-29a41cac55eb",
             "sourceStep": "\/api\/3\/workflow_steps\/f75e712b-a340-4670-9173-c83c599c44ca",
             "label": "No, Enrich Here",
             "isExecuted": false,
-            "uuid": "06cafdc3-58a2-432b-975d-3fe37b1f198c"
+            "uuid": "b56abf31-bce7-4485-a0f7-3e64ec15e317"
         }
     ],
     "priority": null,

@@ -113,8 +113,8 @@
                 }
             },
             "status": null,
-            "top": "300",
-            "left": "125",
+            "top": "435",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "uuid": "9f229083-97e9-4cd7-91ec-b0ac1b47fc9a"
         },
@@ -124,22 +124,14 @@
             "description": null,
             "arguments": {
                 "resource": {
-                    "reputation": {
-                        "id": 7814,
-                        "@id": "\/api\/3\/picklists\/9a611980-1b5e-4ae9-8062-eb2c0c433cff",
-                        "icon": null,
-                        "@type": "Picklist",
-                        "color": "#6a9169",
-                        "display": "No Reputation Available",
-                        "listName": "\/api\/3\/picklist_names\/e75ed3c3-9f23-4a43-832b-0daf236209ba",
-                        "itemValue": "No Reputation Available",
-                        "orderIndex": 4
-                    },
-                    "description": "{% if vars.foundADDetails %} \n<table style=\"width=465px\" ;border-collapse: unset;\" border=\"2\">\n<tbody>\n<tr>\n<td style=\"width: 231px;\">Common Name<\/td>\n<td style=\"width: 233px;\">{{vars.steps.Get_User_Details.data.entries[0].attributes.cn}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 231px;\">sAM Account Name<\/td>\n<td style=\"width: 233px;\">{{vars.steps.Get_User_Details.data.entries[0].attributes.sAMAccountName}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 231px;\">Name<\/td>\n<td style=\"width: 233px;\">{{vars.steps.Get_User_Details.data.entries[0].attributes.name}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 231px;\">Distinguished Name<\/td>\n<td style=\"width: 233px;\">{{vars.steps.Get_User_Details.data.entries[0].attributes.distinguishedName}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 231px;\">Member Of<\/td>\n<td style=\"width: 233px;\" scope=\"col\">{{vars.steps.Get_User_Details.data.entries[0].attributes.memberOf[0]}}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>\n<p>&nbsp;<\/p>\n{% endif %}"
+                    "reputation": "\/api\/3\/picklists\/9a611980-1b5e-4ae9-8062-eb2c0c433cff",
+                    "description": "{% if vars.foundADDetails %} \n<table style=\"width=465px\" ;border-collapse: unset;\" border=\"2\">\n<tbody>\n<tr>\n<td style=\"width: 231px;\">Common Name<\/td>\n<td style=\"width: 233px;\">{{vars.steps.Get_User_Details.data.entries[0].attributes.cn}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 231px;\">sAM Account Name<\/td>\n<td style=\"width: 233px;\">{{vars.steps.Get_User_Details.data.entries[0].attributes.sAMAccountName}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 231px;\">Name<\/td>\n<td style=\"width: 233px;\">{{vars.steps.Get_User_Details.data.entries[0].attributes.name}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 231px;\">Distinguished Name<\/td>\n<td style=\"width: 233px;\">{{vars.steps.Get_User_Details.data.entries[0].attributes.distinguishedName}}<\/td>\n<\/tr>\n<tr>\n<td style=\"width: 231px;\">Member Of<\/td>\n<td style=\"width: 233px;\" scope=\"col\">{{vars.steps.Get_User_Details.data.entries[0].attributes.memberOf[0]}}<\/td>\n<\/tr>\n<\/tbody>\n<\/table>\n<p>&nbsp;<\/p>\n{% endif %}",
+                    "enrichmentStatus": "\/api\/3\/picklists\/c6e46fde-97a2-48cc-8019-938c9c5aebd0"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
                 "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
                 "collectionType": "\/api\/3\/indicators",
                 "fieldOperation": {
                     "recordTags": "Overwrite"
@@ -147,8 +139,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "435",
-            "left": "125",
+            "top": "570",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "uuid": "aadda7e4-c07d-4d31-91a3-81a3f530229a"
         },
@@ -167,8 +159,8 @@
                     {
                         "option": "No, Enrich Here",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/9f229083-97e9-4cd7-91ec-b0ac1b47fc9a",
-                        "step_name": "Get User Details"
+                        "step_iri": "\/api\/3\/workflow_steps\/1709ed3f-e14b-466c-a5f6-f1f48bd1305d",
+                        "step_name": "Update Enrichment Status to In Process"
                     }
                 ]
             },
@@ -192,9 +184,33 @@
             },
             "status": null,
             "top": "300",
-            "left": "475",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "a1f375bd-f26e-4368-89a9-cf36c15a7b23"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Enrichment Status to In Process",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "enrichmentStatus": "\/api\/3\/picklists\/8a4609d2-8a3d-4bda-9888-5f00bfea43cb"
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/indicators",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "1709ed3f-e14b-466c-a5f6-f1f48bd1305d"
         }
     ],
     "routes": [
@@ -227,12 +243,21 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Has Dedicated Tenant Record -> Get User Details",
-            "targetStep": "\/api\/3\/workflow_steps\/9f229083-97e9-4cd7-91ec-b0ac1b47fc9a",
+            "name": "Is Dedicated Tenant Record -> Update Enrichment Status to In Process",
+            "targetStep": "\/api\/3\/workflow_steps\/1709ed3f-e14b-466c-a5f6-f1f48bd1305d",
             "sourceStep": "\/api\/3\/workflow_steps\/7894411d-427f-44a3-99a7-4587b125af80",
             "label": "No, Enrich Here",
             "isExecuted": false,
-            "uuid": "ec7788c2-3140-4414-bcfe-48893debc507"
+            "uuid": "0553727a-f288-4695-8664-6fcc902bda91"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Enrichment Status to In Process -> Get User Details",
+            "targetStep": "\/api\/3\/workflow_steps\/9f229083-97e9-4cd7-91ec-b0ac1b47fc9a",
+            "sourceStep": "\/api\/3\/workflow_steps\/1709ed3f-e14b-466c-a5f6-f1f48bd1305d",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "50adab56-67cc-444d-b43f-55a157947dc0"
         }
     ],
     "priority": null,
