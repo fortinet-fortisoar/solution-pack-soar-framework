@@ -1104,27 +1104,39 @@
                 {
                     "sort": [],
                     "limit": 30,
-                    "logic": "OR",
+                    "logic": "AND",
                     "filters": [
                         {
-                            "field": "type",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
-                            "_value": {
-                                "itemValue": "Suspicious Email",
-                                "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
-                            },
-                            "type": "object"
+                            "field": "reporterEmailBody",
+                            "operator": "isnull",
+                            "_operator": "isnull",
+                            "value": "false",
+                            "type": "primitive"
                         },
                         {
-                            "field": "type",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
-                            "_value": {
-                                "itemValue": "Phishing",
-                                "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
-                            },
-                            "type": "object"
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                                    "_value": {
+                                        "itemValue": "Suspicious Email",
+                                        "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                    "_value": {
+                                        "itemValue": "Phishing",
+                                        "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
+                                    },
+                                    "type": "object"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -2202,17 +2214,39 @@
                 {
                     "sort": [],
                     "limit": 30,
-                    "logic": "OR",
+                    "logic": "AND",
                     "filters": [
                         {
-                            "field": "type",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
-                            "_value": {
-                                "itemValue": "Suspicious Email",
-                                "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
-                            },
-                            "type": "object"
+                            "field": "fileEmail",
+                            "operator": "isnull",
+                            "_operator": "isnull",
+                            "value": "false",
+                            "type": "primitive"
+                        },
+                        {
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                                    "_value": {
+                                        "itemValue": "Suspicious Email",
+                                        "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                    "_value": {
+                                        "itemValue": "Phishing",
+                                        "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
+                                    },
+                                    "type": "object"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -2565,18 +2599,8 @@
                 {
                     "sort": [],
                     "limit": 30,
-                    "logic": "OR",
+                    "logic": "AND",
                     "filters": [
-                        {
-                            "field": "type",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
-                            "_value": {
-                                "itemValue": "Suspicious Email",
-                                "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
-                            },
-                            "type": "object"
-                        },
                         {
                             "field": "emailClassification",
                             "operator": "isnull",
@@ -2587,6 +2611,31 @@
                                 "@id": "false"
                             },
                             "type": "object"
+                        },
+                        {
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                    "_value": {
+                                        "itemValue": "Phishing",
+                                        "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                                    "_value": {
+                                        "itemValue": "Suspicious Email",
+                                        "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
+                                    },
+                                    "type": "object"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -2857,7 +2906,7 @@
                 {
                     "sort": [],
                     "limit": 30,
-                    "logic": "OR",
+                    "logic": "AND",
                     "filters": [
                         {
                             "field": "emailFrom",
@@ -2867,14 +2916,29 @@
                             "type": "primitive"
                         },
                         {
-                            "field": "type",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
-                            "_value": {
-                                "itemValue": "Suspicious Email",
-                                "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
-                            },
-                            "type": "object"
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                    "_value": {
+                                        "itemValue": "Phishing",
+                                        "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                                    "_value": {
+                                        "itemValue": "Suspicious Email",
+                                        "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
+                                    },
+                                    "type": "object"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -2886,7 +2950,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "uuid": "0f5c023a-dcb8-483f-bfe0-aee854d1c1b9",
+            "uuid": "3255a099-7eed-43e9-88a7-e23379a74565",
             "displayName": "{{ emailFrom }}",
             "descriptions": {
                 "singular": "Email From"
@@ -4178,7 +4242,7 @@
                 {
                     "sort": [],
                     "limit": 30,
-                    "logic": "OR",
+                    "logic": "AND",
                     "filters": [
                         {
                             "field": "emailBody",
@@ -4188,7 +4252,7 @@
                             "type": "primitive"
                         },
                         {
-                            "logic": "AND",
+                            "logic": "OR",
                             "filters": [
                                 {
                                     "field": "type",
@@ -4201,11 +4265,14 @@
                                     "type": "object"
                                 },
                                 {
-                                    "field": "emailBody",
-                                    "operator": "isnull",
-                                    "_operator": "isnull",
-                                    "value": "false",
-                                    "type": "primitive"
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                    "_value": {
+                                        "itemValue": "Phishing",
+                                        "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
+                                    },
+                                    "type": "object"
                                 }
                             ]
                         }
@@ -4321,7 +4388,7 @@
                 {
                     "sort": [],
                     "limit": 30,
-                    "logic": "OR",
+                    "logic": "AND",
                     "filters": [
                         {
                             "field": "emailHeaders",
@@ -4331,7 +4398,7 @@
                             "type": "primitive"
                         },
                         {
-                            "logic": "AND",
+                            "logic": "OR",
                             "filters": [
                                 {
                                     "field": "type",
@@ -4344,11 +4411,14 @@
                                     "type": "object"
                                 },
                                 {
-                                    "field": "emailHeaders",
-                                    "operator": "isnull",
-                                    "_operator": "isnull",
-                                    "value": "false",
-                                    "type": "primitive"
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                    "_value": {
+                                        "itemValue": "Phishing",
+                                        "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
+                                    },
+                                    "type": "object"
                                 }
                             ]
                         }
@@ -4403,7 +4473,7 @@
                 {
                     "sort": [],
                     "limit": 30,
-                    "logic": "OR",
+                    "logic": "AND",
                     "filters": [
                         {
                             "field": "emailTo",
@@ -4413,14 +4483,29 @@
                             "type": "primitive"
                         },
                         {
-                            "field": "type",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
-                            "_value": {
-                                "itemValue": "Suspicious Email",
-                                "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
-                            },
-                            "type": "object"
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                    "_value": {
+                                        "itemValue": "Phishing",
+                                        "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                                    "_value": {
+                                        "itemValue": "Suspicious Email",
+                                        "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
+                                    },
+                                    "type": "object"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -5574,17 +5659,39 @@
                 {
                     "sort": [],
                     "limit": 30,
-                    "logic": "OR",
+                    "logic": "AND",
                     "filters": [
                         {
-                            "field": "type",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
-                            "_value": {
-                                "itemValue": "Suspicious Email",
-                                "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
-                            },
-                            "type": "object"
+                            "field": "recipientEmailAddress",
+                            "operator": "isnull",
+                            "_operator": "isnull",
+                            "value": "false",
+                            "type": "primitive"
+                        },
+                        {
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                                    "_value": {
+                                        "itemValue": "Suspicious Email",
+                                        "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                    "_value": {
+                                        "itemValue": "Phishing",
+                                        "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
+                                    },
+                                    "type": "object"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -5757,27 +5864,39 @@
                 {
                     "sort": [],
                     "limit": 30,
-                    "logic": "OR",
+                    "logic": "AND",
                     "filters": [
                         {
-                            "field": "type",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
-                            "_value": {
-                                "itemValue": "Suspicious Email",
-                                "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
-                            },
-                            "type": "object"
+                            "field": "reporter",
+                            "operator": "isnull",
+                            "_operator": "isnull",
+                            "value": "false",
+                            "type": "primitive"
                         },
                         {
-                            "field": "type",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
-                            "_value": {
-                                "itemValue": "Phishing",
-                                "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
-                            },
-                            "type": "object"
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                                    "_value": {
+                                        "itemValue": "Suspicious Email",
+                                        "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                    "_value": {
+                                        "itemValue": "Phishing",
+                                        "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
+                                    },
+                                    "type": "object"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -5830,7 +5949,7 @@
                 {
                     "sort": [],
                     "limit": 30,
-                    "logic": "OR",
+                    "logic": "AND",
                     "filters": [
                         {
                             "field": "returnPath",
@@ -5838,6 +5957,31 @@
                             "_operator": "isnull",
                             "value": "false",
                             "type": "primitive"
+                        },
+                        {
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                                    "_value": {
+                                        "itemValue": "Suspicious Email",
+                                        "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                    "_value": {
+                                        "itemValue": "Phishing",
+                                        "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
+                                    },
+                                    "type": "object"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -5890,17 +6034,39 @@
                 {
                     "sort": [],
                     "limit": 30,
-                    "logic": "OR",
+                    "logic": "AND",
                     "filters": [
                         {
-                            "field": "type",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
-                            "_value": {
-                                "itemValue": "Suspicious Email",
-                                "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
-                            },
-                            "type": "object"
+                            "field": "senderDomain",
+                            "operator": "isnull",
+                            "_operator": "isnull",
+                            "value": "false",
+                            "type": "primitive"
+                        },
+                        {
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                    "_value": {
+                                        "itemValue": "Phishing",
+                                        "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                                    "_value": {
+                                        "itemValue": "Suspicious Email",
+                                        "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
+                                    },
+                                    "type": "object"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -5953,17 +6119,39 @@
                 {
                     "sort": [],
                     "limit": 30,
-                    "logic": "OR",
+                    "logic": "AND",
                     "filters": [
                         {
-                            "field": "type",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
-                            "_value": {
-                                "itemValue": "Suspicious Email",
-                                "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
-                            },
-                            "type": "object"
+                            "field": "senderEmailAddress",
+                            "operator": "isnull",
+                            "_operator": "isnull",
+                            "value": "false",
+                            "type": "primitive"
+                        },
+                        {
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                                    "_value": {
+                                        "itemValue": "Suspicious Email",
+                                        "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                    "_value": {
+                                        "itemValue": "Phishing",
+                                        "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
+                                    },
+                                    "type": "object"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -6609,7 +6797,7 @@
                 {
                     "sort": [],
                     "limit": 30,
-                    "logic": "OR",
+                    "logic": "AND",
                     "filters": [
                         {
                             "field": "emailSubject",
@@ -6619,14 +6807,29 @@
                             "type": "primitive"
                         },
                         {
-                            "field": "type",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
-                            "_value": {
-                                "itemValue": "Suspicious Email",
-                                "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
-                            },
-                            "type": "object"
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                                    "_value": {
+                                        "itemValue": "Suspicious Email",
+                                        "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                    "_value": {
+                                        "itemValue": "Phishing",
+                                        "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa"
+                                    },
+                                    "type": "object"
+                                }
+                            ]
                         }
                     ]
                 }
