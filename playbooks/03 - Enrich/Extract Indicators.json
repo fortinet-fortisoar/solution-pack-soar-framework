@@ -6,7 +6,7 @@
     "tag": "#PostCreate #system",
     "description": "Extracts and creates indicators from the specified data and then enriches specific fields in alerts with the indicator data.",
     "isActive": true,
-    "debug": false,
+    "debug": true,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
     "parameters": [
@@ -22,44 +22,44 @@
             "name": "Wait for Enrichment",
             "description": null,
             "arguments": {
-              "when": "{{vars.steps.Create_Indicator | length > 0}}",
-              "query": {
-                "sort": [],
-                "limit": 30,
-                "logic": "AND",
-                "filters": [
-                  {
-                    "type": "primitive",
-                    "field": "alerts.id",
-                    "value": "{{vars.input.records[0].id}}",
-                    "operator": "eq",
-                    "_operator": "eq"
-                  },
-                  {
-                    "type": "object",
-                    "field": "reputation",
-                    "value": "/api/3/picklists/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
-                    "_value": {
-                      "@id": "/api/3/picklists/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
-                      "itemValue": "TBD"
-                    },
-                    "operator": "eq"
-                  }
-                ]
-              },
-              "module": "indicators?$limit=30",
-              "do_until": {
-                "delay": 65,
-                "retries": 2,
-                "condition": "{{vars.result | length == 0}}"
-              },
-              "checkboxFields": false,
-              "step_variables": []
+                "when": "{{vars.steps.Create_Indicator | length > 0}}",
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "alerts.id",
+                            "value": "{{vars.input.records[0].id}}",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        },
+                        {
+                            "type": "object",
+                            "field": "reputation",
+                            "value": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                                "itemValue": "TBD"
+                            },
+                            "operator": "eq"
+                        }
+                    ]
+                },
+                "module": "indicators?$limit=30",
+                "do_until": {
+                    "delay": 65,
+                    "retries": 2,
+                    "condition": "{{vars.result | length == 0}}"
+                },
+                "checkboxFields": false,
+                "step_variables": []
             },
             "status": null,
-            "top": "1520",
-            "left": "120",
-            "stepType": "/api/3/workflow_step_types/b593663d-7d13-40ce-a3a3-96dece928770",
+            "top": "1515",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "uuid": "6387638d-9134-4ecb-a492-fe721b866e7a"
         },
         {
@@ -80,8 +80,7 @@
             "name": "Update Indicator List",
             "description": null,
             "arguments": {
-                "temp": "{% for key,value in vars.indicator_type_map.items()%}{%if vars.alert_metadata.get(key) %}{% set list_vals = vars.alert_metadata.get(key).split(\",\") %}{%for val in list_vals%}{{vars.alert_field_iocs.append({\"type\": value, \"value\":val})}}{%endfor%}{%endif%}{%endfor%}{{vars.alert_field_iocs}}",
-                "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls)}}"
+                "temp": "{% for key,value in vars.indicator_type_map.items()%}{%if vars.alert_metadata.get(key) %}{% set list_vals = vars.alert_metadata.get(key).split(\",\") %}{%for val in list_vals%}{%if val not in vars.excluded_indicators%}{{vars.alert_field_iocs.append({\"type\": value, \"value\":val})}}{%endif%}{%endfor%}{%endif%}{%endfor%}{{vars.alert_field_iocs}}"
             },
             "status": null,
             "top": "435",
@@ -174,14 +173,15 @@
                     "alerts"
                 ],
                 "step_variables": {
+                    "ips": "{{globalVars.Excludelist_IPs.split(',')}}",
+                    "urls": "{{globalVars.Excludelist_URLs.split(',')}}",
                     "input": {
-                        "params": {
-                            "alertMetaData": "{{ vars.alertMetaData }}"
-                        },
+                        "params": [],
                         "records": [
                             "{{vars.input.records[0]}}"
                         ]
-                    }
+                    },
+                    "domains": "{{globalVars.Excludelist_Domains.split(',')}}"
                 },
                 "fieldbasedtrigger": {
                     "sort": [],
@@ -194,7 +194,6 @@
                             "value": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
                             "_value": {
                                 "@id": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
-                                "display": "Indicator Extracted",
                                 "itemValue": "Indicator Extracted"
                             },
                             "operator": "neq"
@@ -242,15 +241,12 @@
             "name": "Configuration",
             "description": "You can customize extraction by modifying indicator map in configuration step",
             "arguments": {
-                "ips": "{{globalVars.Excludelist_IPs.split(',')}}",
-                "urls": "{{globalVars.Excludelist_URLs.split(',')}}",
-                "domains": "{{globalVars.Excludelist_Domains.split(',')}}",
                 "alert_iri": "{{vars.input.params.alertMetaData['@id'] | ternary(vars.input.params.alertMetaData['@id'],vars.input.records[0]['@id'])}}",
                 "unified_iocs": "[]",
                 "alert_metadata": "{{vars.input.params.alertMetaData | ternary(vars.input.params.alertMetaData,vars.input.records[0])}}",
                 "alert_field_iocs": "[]",
                 "indicator_type_map": "{{globalVars.Indicator_Type_Map}}",
-                "excluded_indicators": "[]"
+                "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls)}}"
             },
             "status": null,
             "top": "300",
