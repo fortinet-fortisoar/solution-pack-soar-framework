@@ -1,6 +1,6 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/9f3ae67f-5224-44f4-abec-02f343f42bc2",
+    "@id": "\/api\/3\/staging_model_metadatas\/fafe57d3-5c23-4d51-9a6c-4f417ea3b8af",
     "@type": "StagingModelMetadata",
     "type": "alerts",
     "parentType": null,
@@ -3003,6 +3003,49 @@
             }
         },
         {
+            "@id": "\/api\/3\/attribute_metadatas\/9e8a4ef1-4eca-48cf-8a04-8a6cf4185bf3",
+            "@type": "AttributeMetadata",
+            "type": "indicators",
+            "name": "indicators",
+            "length": null,
+            "orderIndex": 60,
+            "formType": "manyToMany",
+            "dataSource": {
+                "model": "indicators"
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": true,
+            "inversedField": "alerts",
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": [],
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "uuid": "9e8a4ef1-4eca-48cf-8a04-8a6cf4185bf3",
+            "displayName": "{{ indicators }}",
+            "descriptions": {
+                "singular": "Indicators"
+            }
+        },
+        {
             "@id": "\/api\/3\/attribute_metadatas\/ffd6d3c8-6884-45ba-9c83-12790374ffd4",
             "@type": "AttributeMetadata",
             "type": "integer",
@@ -3674,6 +3717,77 @@
             "displayName": "{{ bucketName }}",
             "descriptions": {
                 "singular": "Bucket Name"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/1d80d79b-cbe9-4a72-91b7-1d50177eeb34",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "fileNames",
+            "length": null,
+            "orderIndex": 57,
+            "formType": "textarea",
+            "dataSource": [],
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": [
+                {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "OR",
+                    "filters": [
+                        {
+                            "field": "fileNames",
+                            "operator": "isnull",
+                            "_operator": "isnull",
+                            "value": "false",
+                            "type": "primitive"
+                        },
+                        {
+                            "field": "type",
+                            "operator": "eq",
+                            "value": "\/api\/3\/picklists\/3eb31470-7a13-4029-9b48-6f5f3d493002",
+                            "_value": {
+                                "itemValue": "Data Leakage",
+                                "@id": "\/api\/3\/picklists\/3eb31470-7a13-4029-9b48-6f5f3d493002"
+                            },
+                            "type": "object"
+                        }
+                    ]
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "uuid": "1d80d79b-cbe9-4a72-91b7-1d50177eeb34",
+            "displayName": "{{ fileNames }}",
+            "descriptions": {
+                "singular": "File Names"
             }
         },
         {
@@ -4399,120 +4513,6 @@
             "displayName": "{{ fileName }}",
             "descriptions": {
                 "singular": "File Name"
-            }
-        },
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/1d80d79b-cbe9-4a72-91b7-1d50177eeb34",
-            "@type": "AttributeMetadata",
-            "type": "string",
-            "name": "fileNames",
-            "length": null,
-            "orderIndex": 57,
-            "formType": "textarea",
-            "dataSource": [],
-            "searchable": true,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": false,
-            "inversedField": null,
-            "ownsRelationship": false,
-            "validation": {
-                "_enableRange": false,
-                "required": false,
-                "minlength": 0,
-                "maxlength": 10485761
-            },
-            "bulkAction": {
-                "allow": false,
-                "buttonClass": "btn btn-default btn-sm",
-                "buttonIcon": "",
-                "buttonText": ""
-            },
-            "dataSourceFilters": [],
-            "defaultValue": "",
-            "tooltip": "",
-            "visibility": [
-                {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "OR",
-                    "filters": [
-                        {
-                            "field": "fileNames",
-                            "operator": "isnull",
-                            "_operator": "isnull",
-                            "value": "false",
-                            "type": "primitive"
-                        },
-                        {
-                            "field": "type",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/3eb31470-7a13-4029-9b48-6f5f3d493002",
-                            "_value": {
-                                "itemValue": "Data Leakage",
-                                "@id": "\/api\/3\/picklists\/3eb31470-7a13-4029-9b48-6f5f3d493002"
-                            },
-                            "type": "object"
-                        }
-                    ]
-                }
-            ],
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "uuid": "1d80d79b-cbe9-4a72-91b7-1d50177eeb34",
-            "displayName": "{{ fileNames }}",
-            "descriptions": {
-                "singular": "File Names"
-            }
-        },
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/9e8a4ef1-4eca-48cf-8a04-8a6cf4185bf3",
-            "@type": "AttributeMetadata",
-            "type": "indicators",
-            "name": "indicators",
-            "length": null,
-            "orderIndex": 60,
-            "formType": "manyToMany",
-            "dataSource": {
-                "model": "indicators"
-            },
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": true,
-            "inversedField": "alerts",
-            "ownsRelationship": false,
-            "validation": {
-                "_enableRange": false,
-                "required": false,
-                "minlength": 0,
-                "maxlength": 10485761
-            },
-            "bulkAction": [],
-            "dataSourceFilters": [],
-            "defaultValue": "",
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "uuid": "9e8a4ef1-4eca-48cf-8a04-8a6cf4185bf3",
-            "displayName": "{{ indicators }}",
-            "descriptions": {
-                "singular": "Indicators"
             }
         },
         {
@@ -6545,7 +6545,7 @@
         "delete_primary_data_after": 60
     },
     "archivalFilters": [],
-    "uuid": "9f3ae67f-5224-44f4-abec-02f343f42bc2",
+    "uuid": "fafe57d3-5c23-4d51-9a6c-4f417ea3b8af",
     "displayName": "{{ name }}",
     "descriptions": {
         "plural": "Alerts",
