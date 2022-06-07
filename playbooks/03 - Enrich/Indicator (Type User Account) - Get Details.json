@@ -87,8 +87,8 @@
                 }
             },
             "status": null,
-            "top": "30",
-            "left": "300",
+            "top": "110",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
             "uuid": "6c66e462-befc-4aad-9272-1176b85ea1a3"
         },
@@ -113,8 +113,8 @@
                 }
             },
             "status": null,
-            "top": "435",
-            "left": "475",
+            "top": "190",
+            "left": "1425",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "uuid": "9f229083-97e9-4cd7-91ec-b0ac1b47fc9a"
         },
@@ -139,8 +139,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "570",
-            "left": "475",
+            "top": "190",
+            "left": "1750",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "uuid": "aadda7e4-c07d-4d31-91a3-81a3f530229a"
         },
@@ -159,14 +159,14 @@
                     {
                         "option": "No, Enrich Here",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/1709ed3f-e14b-466c-a5f6-f1f48bd1305d",
-                        "step_name": "Update Enrichment Status to In Process"
+                        "step_iri": "\/api\/3\/workflow_steps\/f381e55c-75d5-4df9-8c1d-dd43ef5acec2",
+                        "step_name": "Is Referenced Playbook"
                     }
                 ]
             },
             "status": null,
-            "top": "165",
-            "left": "300",
+            "top": "110",
+            "left": "450",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "uuid": "7894411d-427f-44a3-99a7-4587b125af80"
         },
@@ -183,8 +183,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "300",
-            "left": "125",
+            "top": "30",
+            "left": "775",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "a1f375bd-f26e-4368-89a9-cf36c15a7b23"
         },
@@ -207,10 +207,36 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "300",
-            "left": "475",
+            "top": "145",
+            "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "uuid": "1709ed3f-e14b-466c-a5f6-f1f48bd1305d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Referenced Playbook",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/9f229083-97e9-4cd7-91ec-b0ac1b47fc9a",
+                        "condition": "{{ vars.input.params['indicator_value'] | length > 0 }}",
+                        "step_name": "Get User Details"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/1709ed3f-e14b-466c-a5f6-f1f48bd1305d",
+                        "step_name": "Update Enrichment Status to In Process"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "190",
+            "left": "775",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "f381e55c-75d5-4df9-8c1d-dd43ef5acec2"
         }
     ],
     "routes": [
@@ -243,21 +269,39 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Is Dedicated Tenant Record -> Update Enrichment Status to In Process",
-            "targetStep": "\/api\/3\/workflow_steps\/1709ed3f-e14b-466c-a5f6-f1f48bd1305d",
-            "sourceStep": "\/api\/3\/workflow_steps\/7894411d-427f-44a3-99a7-4587b125af80",
-            "label": "No, Enrich Here",
-            "isExecuted": false,
-            "uuid": "0553727a-f288-4695-8664-6fcc902bda91"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Update Enrichment Status to In Process -> Get User Details",
             "targetStep": "\/api\/3\/workflow_steps\/9f229083-97e9-4cd7-91ec-b0ac1b47fc9a",
             "sourceStep": "\/api\/3\/workflow_steps\/1709ed3f-e14b-466c-a5f6-f1f48bd1305d",
             "label": null,
             "isExecuted": false,
             "uuid": "50adab56-67cc-444d-b43f-55a157947dc0"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Dedicated Tenant Record -> Is Referenced Playbook",
+            "targetStep": "\/api\/3\/workflow_steps\/f381e55c-75d5-4df9-8c1d-dd43ef5acec2",
+            "sourceStep": "\/api\/3\/workflow_steps\/7894411d-427f-44a3-99a7-4587b125af80",
+            "label": "No, Enrich Here",
+            "isExecuted": false,
+            "uuid": "c65d00f2-6815-4f9f-9169-28e4386f22e7"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Referenced Playbook -> Update Enrichment Status to In Process",
+            "targetStep": "\/api\/3\/workflow_steps\/1709ed3f-e14b-466c-a5f6-f1f48bd1305d",
+            "sourceStep": "\/api\/3\/workflow_steps\/f381e55c-75d5-4df9-8c1d-dd43ef5acec2",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "af75d17c-44a2-4b85-a803-5b0ddb176565"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Referenced Playbook -> Get User Details",
+            "targetStep": "\/api\/3\/workflow_steps\/9f229083-97e9-4cd7-91ec-b0ac1b47fc9a",
+            "sourceStep": "\/api\/3\/workflow_steps\/f381e55c-75d5-4df9-8c1d-dd43ef5acec2",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "6071629d-8f99-4497-ad4c-247dac429bbc"
         }
     ],
     "priority": null,

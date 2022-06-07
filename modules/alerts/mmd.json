@@ -1,6 +1,6 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/fdb3f1f8-a43b-4ab8-8d22-89a126792d36",
+    "@id": "\/api\/3\/staging_model_metadatas\/9f3ae67f-5224-44f4-abec-02f343f42bc2",
     "@type": "StagingModelMetadata",
     "type": "alerts",
     "parentType": null,
@@ -69,117 +69,6 @@
             "displayName": "{{ destinationID }}",
             "descriptions": {
                 "singular": "Destination ID"
-            }
-        },
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/d06e04eb-8f4b-4c4d-b17d-d77e95d5c4f8",
-            "@type": "AttributeMetadata",
-            "type": "picklists",
-            "name": "classification",
-            "length": null,
-            "orderIndex": 1,
-            "formType": "picklist",
-            "dataSource": {
-                "model": "picklists",
-                "query": {
-                    "logic": "AND",
-                    "filters": [
-                        {
-                            "field": "listName__name",
-                            "operator": "eq",
-                            "value": "Alert Classification"
-                        }
-                    ],
-                    "sort": [
-                        {
-                            "field": "orderIndex",
-                            "direction": "ASC"
-                        }
-                    ]
-                },
-                "displayConditions": {
-                    "9343afd9-65d2-4a06-9cb8-3b46179ee513": {
-                        "visibility": "visible",
-                        "conditions": null
-                    },
-                    "2ee120dc-1532-4788-ae4c-66f0afe695eb": {
-                        "visibility": "visible",
-                        "conditions": null
-                    }
-                }
-            },
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": true,
-            "collection": false,
-            "inversedField": null,
-            "ownsRelationship": false,
-            "validation": {
-                "required": [
-                    {
-                        "sort": [],
-                        "limit": 30,
-                        "logic": "AND",
-                        "filters": [
-                            {
-                                "field": "status",
-                                "operator": "eq",
-                                "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
-                                "_value": {
-                                    "display": "Closed",
-                                    "itemValue": "Closed",
-                                    "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
-                                },
-                                "type": "object"
-                            }
-                        ]
-                    }
-                ],
-                "minlength": 0,
-                "maxlength": 10485761,
-                "_enableRange": false
-            },
-            "bulkAction": {
-                "allow": false,
-                "buttonText": "",
-                "buttonIcon": "",
-                "buttonClass": "btn btn-default btn-sm"
-            },
-            "dataSourceFilters": null,
-            "defaultValue": null,
-            "tooltip": null,
-            "visibility": [
-                {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": [
-                        {
-                            "field": "status",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
-                            "_value": {
-                                "itemValue": "Closed",
-                                "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
-                            },
-                            "type": "object"
-                        }
-                    ]
-                }
-            ],
-            "htmlEscape": false,
-            "orphanRemoval": null,
-            "readable": true,
-            "writeable": true,
-            "identifier": null,
-            "unique": false,
-            "recommend": false,
-            "uuid": "d06e04eb-8f4b-4c4d-b17d-d77e95d5c4f8",
-            "displayName": "{{ classification }}",
-            "descriptions": {
-                "singular": "Classification"
             }
         },
         {
@@ -794,59 +683,15 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/145329d0-81c9-43f0-8392-aaba11918a2f",
+            "@id": "\/api\/3\/attribute_metadatas\/9f18022f-dc38-4417-af1f-bf4e8fa625dd",
             "@type": "AttributeMetadata",
-            "type": "picklists",
-            "name": "closureReason",
+            "type": "string",
+            "name": "sourcedata",
             "length": 0,
-            "orderIndex": 19,
-            "formType": "picklist",
-            "dataSource": {
-                "displayConditions": {
-                    "2b0112f6-4746-4dab-ada6-a8cd1e675572": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "672aef13-a684-422e-be6c-15e10ec49915": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "8590c81e-3307-4645-97f5-c3e1bec4e05a": {
-                        "conditions": null,
-                        "visibility": "visible"
-                    },
-                    "cc2d6b59-62de-4cb6-93a2-bcce4250009d": {
-                        "visibility": "visible",
-                        "conditions": null
-                    },
-                    "8f8ce378-df65-4231-85e3-0b8f25a04379": {
-                        "visibility": "visible",
-                        "conditions": null
-                    },
-                    "2ab3e8e9-8cd9-4641-8400-a18a4e8a2da8": {
-                        "visibility": "visible",
-                        "conditions": null
-                    }
-                },
-                "model": "picklists",
-                "query": {
-                    "filters": [
-                        {
-                            "field": "listName__name",
-                            "operator": "eq",
-                            "value": "Closure Reason"
-                        }
-                    ],
-                    "logic": "AND",
-                    "sort": [
-                        {
-                            "direction": "ASC",
-                            "field": "orderIndex"
-                        }
-                    ]
-                }
-            },
-            "searchable": false,
+            "orderIndex": 75,
+            "formType": "textarea",
+            "dataSource": [],
+            "searchable": true,
             "peerReplicable": true,
             "system": false,
             "encrypted": false,
@@ -856,25 +701,7 @@
             "ownsRelationship": false,
             "validation": {
                 "_enableRange": false,
-                "required": [
-                    {
-                        "sort": [],
-                        "limit": 30,
-                        "logic": "AND",
-                        "filters": [
-                            {
-                                "field": "status",
-                                "operator": "eq",
-                                "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
-                                "_value": {
-                                    "itemValue": "Closed",
-                                    "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
-                                },
-                                "type": "object"
-                            }
-                        ]
-                    }
-                ],
+                "required": false,
                 "minlength": 0,
                 "maxlength": 10485761
             },
@@ -887,25 +714,7 @@
             "dataSourceFilters": [],
             "defaultValue": null,
             "tooltip": "",
-            "visibility": [
-                {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": [
-                        {
-                            "field": "status",
-                            "operator": "eq",
-                            "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
-                            "_value": {
-                                "itemValue": "Closed",
-                                "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
-                            },
-                            "type": "object"
-                        }
-                    ]
-                }
-            ],
+            "visibility": true,
             "htmlEscape": false,
             "orphanRemoval": false,
             "readable": true,
@@ -913,10 +722,10 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "uuid": "145329d0-81c9-43f0-8392-aaba11918a2f",
-            "displayName": "{{ closureReason }}",
+            "uuid": "9f18022f-dc38-4417-af1f-bf4e8fa625dd",
+            "displayName": "{{ sourcedata }}",
             "descriptions": {
-                "singular": "Closure Reason"
+                "singular": "Source Data"
             }
         },
         {
@@ -2231,52 +2040,6 @@
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/9f18022f-dc38-4417-af1f-bf4e8fa625dd",
-            "@type": "AttributeMetadata",
-            "type": "string",
-            "name": "sourcedata",
-            "length": 0,
-            "orderIndex": 75,
-            "formType": "textarea",
-            "dataSource": [],
-            "searchable": true,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": false,
-            "inversedField": null,
-            "ownsRelationship": false,
-            "validation": {
-                "_enableRange": false,
-                "required": false,
-                "minlength": 0,
-                "maxlength": 10485761
-            },
-            "bulkAction": {
-                "allow": false,
-                "buttonClass": "btn btn-default btn-sm",
-                "buttonIcon": "",
-                "buttonText": ""
-            },
-            "dataSourceFilters": [],
-            "defaultValue": null,
-            "tooltip": "",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "uuid": "9f18022f-dc38-4417-af1f-bf4e8fa625dd",
-            "displayName": "{{ sourcedata }}",
-            "descriptions": {
-                "singular": "Source Data"
-            }
-        },
-        {
             "@id": "\/api\/3\/attribute_metadatas\/dc4a2228-2831-4e8e-a7bf-60e93a47f808",
             "@type": "AttributeMetadata",
             "type": "string",
@@ -2890,6 +2653,89 @@
             "displayName": "{{ emailFrom }}",
             "descriptions": {
                 "singular": "Email From"
+            }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/494d9f84-6000-41b8-9d9b-977132931fbe",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "emailHeaders",
+            "length": 0,
+            "orderIndex": 49,
+            "formType": "textarea",
+            "dataSource": [],
+            "searchable": true,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "",
+            "tooltip": "",
+            "visibility": [
+                {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "OR",
+                    "filters": [
+                        {
+                            "field": "emailHeaders",
+                            "operator": "isnull",
+                            "_operator": "isnull",
+                            "value": "false",
+                            "type": "primitive"
+                        },
+                        {
+                            "logic": "AND",
+                            "filters": [
+                                {
+                                    "field": "type",
+                                    "operator": "eq",
+                                    "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                                    "_value": {
+                                        "itemValue": "Suspicious Email",
+                                        "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
+                                    },
+                                    "type": "object"
+                                },
+                                {
+                                    "field": "emailHeaders",
+                                    "operator": "isnull",
+                                    "_operator": "isnull",
+                                    "value": "false",
+                                    "type": "primitive"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "uuid": "494d9f84-6000-41b8-9d9b-977132931fbe",
+            "displayName": "{{ emailHeaders }}",
+            "descriptions": {
+                "singular": "Email Headers"
             }
         },
         {
@@ -4283,89 +4129,6 @@
             "displayName": "{{ filePath }}",
             "descriptions": {
                 "singular": "File Path"
-            }
-        },
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/494d9f84-6000-41b8-9d9b-977132931fbe",
-            "@type": "AttributeMetadata",
-            "type": "string",
-            "name": "emailHeaders",
-            "length": 0,
-            "orderIndex": 49,
-            "formType": "textarea",
-            "dataSource": [],
-            "searchable": true,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": false,
-            "collection": false,
-            "inversedField": null,
-            "ownsRelationship": false,
-            "validation": {
-                "_enableRange": false,
-                "required": false,
-                "minlength": 0,
-                "maxlength": 10485761
-            },
-            "bulkAction": {
-                "allow": false,
-                "buttonClass": "btn btn-default btn-sm",
-                "buttonIcon": "",
-                "buttonText": ""
-            },
-            "dataSourceFilters": [],
-            "defaultValue": "",
-            "tooltip": "",
-            "visibility": [
-                {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "OR",
-                    "filters": [
-                        {
-                            "field": "emailHeaders",
-                            "operator": "isnull",
-                            "_operator": "isnull",
-                            "value": "false",
-                            "type": "primitive"
-                        },
-                        {
-                            "logic": "AND",
-                            "filters": [
-                                {
-                                    "field": "type",
-                                    "operator": "eq",
-                                    "value": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
-                                    "_value": {
-                                        "itemValue": "Suspicious Email",
-                                        "@id": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82"
-                                    },
-                                    "type": "object"
-                                },
-                                {
-                                    "field": "emailHeaders",
-                                    "operator": "isnull",
-                                    "_operator": "isnull",
-                                    "value": "false",
-                                    "type": "primitive"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ],
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "uuid": "494d9f84-6000-41b8-9d9b-977132931fbe",
-            "displayName": "{{ emailHeaders }}",
-            "descriptions": {
-                "singular": "Email Headers"
             }
         },
         {
@@ -6643,6 +6406,132 @@
             "descriptions": {
                 "singular": "Email Subject"
             }
+        },
+        {
+            "@id": "\/api\/3\/attribute_metadatas\/145329d0-81c9-43f0-8392-aaba11918a2f",
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "closureReason",
+            "length": 0,
+            "orderIndex": 19,
+            "formType": "picklist",
+            "dataSource": {
+                "displayConditions": {
+                    "2b0112f6-4746-4dab-ada6-a8cd1e675572": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "672aef13-a684-422e-be6c-15e10ec49915": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "8590c81e-3307-4645-97f5-c3e1bec4e05a": {
+                        "conditions": null,
+                        "visibility": "visible"
+                    },
+                    "cc2d6b59-62de-4cb6-93a2-bcce4250009d": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "8f8ce378-df65-4231-85e3-0b8f25a04379": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "2ab3e8e9-8cd9-4641-8400-a18a4e8a2da8": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                },
+                "model": "picklists",
+                "query": {
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "Closure Reason"
+                        }
+                    ],
+                    "logic": "AND",
+                    "sort": [
+                        {
+                            "direction": "ASC",
+                            "field": "orderIndex"
+                        }
+                    ]
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "required": [
+                    {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "field": "status",
+                                "operator": "eq",
+                                "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                                "_value": {
+                                    "itemValue": "Closed",
+                                    "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
+                                },
+                                "type": "object"
+                            }
+                        ]
+                    }
+                ],
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": null,
+            "tooltip": "",
+            "visibility": [
+                {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "status",
+                            "operator": "eq",
+                            "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                            "_value": {
+                                "itemValue": "Closed",
+                                "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
+                            },
+                            "type": "object"
+                        }
+                    ]
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "uuid": "145329d0-81c9-43f0-8392-aaba11918a2f",
+            "displayName": "{{ closureReason }}",
+            "descriptions": {
+                "singular": "Closure Reason"
+            }
         }
     ],
     "system": false,
@@ -6656,7 +6545,7 @@
         "delete_primary_data_after": 60
     },
     "archivalFilters": [],
-    "uuid": "fdb3f1f8-a43b-4ab8-8d22-89a126792d36",
+    "uuid": "9f3ae67f-5224-44f4-abec-02f343f42bc2",
     "displayName": "{{ name }}",
     "descriptions": {
         "plural": "Alerts",
