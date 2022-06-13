@@ -27,18 +27,89 @@
                 ],
                 "inputVariables": [
                     {
-                        "name": "closingReason",
+                        "name": "closureNotes",
                         "type": "string",
-                        "label": "Closing Reason",
+                        "label": "Closure Notes",
                         "title": "Rich Text",
                         "usable": true,
                         "dataType": "text",
                         "formType": "richtext",
                         "required": true,
+                        "_expanded": true,
                         "collection": false,
                         "searchable": true,
                         "templateUrl": "app\/components\/form\/fields\/richtext.html",
+                        "defaultValue": null,
+                        "_previousName": "closingNotes",
                         "allowedEncryption": true,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "closureReason",
+                        "type": "picklists",
+                        "label": "Closure Reason",
+                        "title": "Picklist",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "picklist",
+                        "formType": "picklist",
+                        "required": false,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "dataSource": {
+                            "model": "picklists",
+                            "query": {
+                                "sort": [
+                                    {
+                                        "field": "orderIndex",
+                                        "direction": "ASC"
+                                    }
+                                ],
+                                "logic": "AND",
+                                "filters": [
+                                    {
+                                        "field": "listName__name",
+                                        "value": "Closure Reason",
+                                        "operator": "eq"
+                                    }
+                                ]
+                            },
+                            "displayConditions": {
+                                "2ab3e8e9-8cd9-4641-8400-a18a4e8a2da8": {
+                                    "conditions": null,
+                                    "visibility": "visible"
+                                },
+                                "2b0112f6-4746-4dab-ada6-a8cd1e675572": {
+                                    "conditions": null,
+                                    "visibility": "visible"
+                                },
+                                "672aef13-a684-422e-be6c-15e10ec49915": {
+                                    "conditions": null,
+                                    "visibility": "visible"
+                                },
+                                "8590c81e-3307-4645-97f5-c3e1bec4e05a": {
+                                    "conditions": null,
+                                    "visibility": "visible"
+                                },
+                                "8f8ce378-df65-4231-85e3-0b8f25a04379": {
+                                    "conditions": null,
+                                    "visibility": "visible"
+                                },
+                                "cc2d6b59-62de-4cb6-93a2-bcce4250009d": {
+                                    "conditions": null,
+                                    "visibility": "visible"
+                                }
+                            }
+                        },
+                        "searchable": false,
+                        "templateUrl": "app\/components\/form\/fields\/typeahead.html",
+                        "defaultValue": null,
+                        "_previousName": "closureReas",
+                        "displayTemplate": "%7B%7B%20itemValue%20%7D%7D",
+                        "lengthConstraint": false,
+                        "allowedEncryption": false,
                         "allowedGridColumn": true,
                         "useRecordFieldDefault": false
                     }
@@ -46,7 +117,8 @@
                 "step_variables": {
                     "input": {
                         "params": {
-                            "closingReason": "{{vars.input.params[\"closingReason\"]}}"
+                            "closureNotes": "{{vars.request.data[\"closureNotes\"]}}",
+                            "closureReason": "{{vars.request.data[\"closureReason\"]}}"
                         },
                         "records": "{{vars.input.records}}"
                     }
@@ -63,7 +135,7 @@
                                 "field": "status",
                                 "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
                                 "_value": {
-                                    "display": "Closed",
+                                    "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
                                     "itemValue": "Closed"
                                 },
                                 "operator": "neq"
@@ -79,6 +151,7 @@
             "top": "20",
             "left": "20",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
             "uuid": "61796373-4bc4-4d31-bb34-541d6c30c94f"
         },
         {
@@ -87,32 +160,28 @@
             "description": null,
             "arguments": {
                 "message": {
+                    "tenant": "",
                     "content": "<p>The Alert status is updated to <strong><span style=\"color: #00ff00;\">Closed<\/span><\/strong><\/p>",
                     "records": "['{{vars.input.records[0]['@id']}}']"
                 },
                 "resource": {
-                    "status": {
-                        "id": 6802,
-                        "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
-                        "icon": null,
-                        "@type": "Picklist",
-                        "color": null,
-                        "display": "Closed",
-                        "listName": "\/api\/3\/picklist_names\/33e964a9-d607-49f2-813c-7ce46141815a",
-                        "itemValue": "Closed",
-                        "orderIndex": 2
-                    },
-                    "closureNotes": "<p>{{vars.input.params.closingReason}}<\/p>"
+                    "status": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                    "closureNotes": "<p>{{vars.input.params.closureNotes}}<\/p>",
+                    "closureReason": "{{vars.input.params.closureReason['@id']}}"
                 },
                 "_showJson": false,
+                "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
                 "collectionType": "\/api\/3\/alerts",
+                "fieldOperation": [],
                 "step_variables": []
             },
             "status": null,
             "top": "146",
             "left": "220",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
             "uuid": "703d494c-228c-4433-8737-c2dcdb8e7a5b"
         }
     ],
@@ -127,6 +196,7 @@
             "uuid": "36227a91-9e60-4435-be1d-77bf0c1e1d7d"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "54866017-8228-4674-a9f5-fd1f1304d1db",
     "owners": [],
