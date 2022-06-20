@@ -30,7 +30,7 @@ In case of a true positive, the SOC escalates related alerts into an incident, l
 
 The following diagram helps better understand the overall process and the subsequent explanations.
 
-![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/develop/docs/res/FortiSOAR-flow.svg)
+![](https://raw.githubusercontent.com/fortinet-fortisoar/solution-pack-soar-framework/develop/docs/res/FortiSOAR-flow.svg)
 
 1. **Data Ingestion**
     1. **Pull alerts from the data sources** - FortiSOAR, at regular intervals, pulls alerts from configured alert sources such as SIEM, EDR, or email. This process is the Alert Ingestion and it creates the alert records in the system.     
@@ -61,7 +61,7 @@ The following diagram helps better understand the overall process and the subseq
 6. **Crisis Management** - To avert a crisis, it is customary and an obvious course of action to bring in all the stakeholders together to formulate the next plan of action. The **War Room** helps bring together everyone who can help solve the problem. For example, in case of an **Incident**, an organization may have to:
     - Issue a statement, for which they need their Legal team
     - Gauge the financial redressal required, for which presence of the Finance team is crucial
-    - Rope in the Human Resources(HR) team, if employees are involved
+    - Rope in the Human Resources(HR) team, if employees are involved   
 
     A **War Room** in this scenario brings together all the above teams and help devise a more intuitive plan of action.
 

@@ -1,4 +1,4 @@
-| [Home](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/develop/README.md) |
+| [Home](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/README.md) |
 |--------------------------------------------|
 
 # Contents
@@ -9,29 +9,30 @@ This section lists the various contents of the SOAR Framework Solution Pack.
 
 SOAR framework includes the following connectors:
 
-| Sr. No. | Connector Names            | Description                                                                                                                                                                                                                      |
-|---------|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1       | Active Directory           | Helps directly query AD to retrieve information about users, groups, and computers, in an organization, by using the Lightweight Directory Access Protocol (LDAP).                                                               |
-| 2       | AlienVault-OTX             | AlienVault-OTX is an open source repository of Indicators of Compromise (IOCs) supported by the community. This connector provides actions like Get IP Reputation, Create Pulse, and Get Domain Reputation.                      |
-| 3       | CarbonBlack Response       | This connector facilitates automated operation related to endpoint protection like isolate endpoint, unisolate endpoint, hunt file, terminate process etc. with CarbonBlack Response server.                                     |
-| 4       | ElasticSearch              | ElasticSearch is a distributed, RESTful search, and analytics engine capable of solving a number of use cases. This connector facilitates automated operations to execute lucene query, get mapping and cluster details.         |
-| 5       | Exchange                   | This connector provides a robust, platform-independent, and simple interface for communicating with Microsoft Exchange 2007-2016 Server or Office 365 using Exchange Web Services (EWS).                                         |
-| 6       | Fortinet FortiClient EMS   | This connector provides operations related to quarantine/unquarantine endpoints, get endpoint details, and is a security management solution that enables scalable and centralized management of multiple endpoints (computers). |
-| 7       | Fortinet FortiEDR          | This connector facilitates the automated operations related to events, forensics and collectors.                                                                                                                                 |
-| 8       | Fortinet FortiGate         | Fortinet FortiGate enterprise firewall provide high performance, consolidated advanced security and granular visibility for broad protection across the entire digital attack surface.                                           |
-| 9       | Fortinet FortiSandbox      | FortiSandbox executes suspicious files in the VM host module to determine if the file is High, Medium, or Low Risk based on the behaviour observed in the VM sandbox module.                                                     |
-| 10      | Fortinet FortiSIEM         | FortiSIEM provides integrations that allow you to query and make changes to the CMDB, query events, and send incident notifications.                                                                                             |
-| 11      | Fortinet Web Filter Lookup | Fortinet Web Filter Lookup allows users to check category and classification for any Domain                                                                                                                                      |
-| 12      | IBM X-Force                | This connector helps you rapidly research the latest global security threats, aggregate actionable intelligence, consult with experts, and collaborate with peers.                                                               |
-| 13      | IpStack                    | IPStack provides geolocation facility for IP Address or Domain.                                                                                                                                                                  |
-| 14      | MxToolbox                  | MxToolbox offers monitoring solutions and lookup tools. Connector supports automated operations for Lookup, Monitor and Usage                                                                                                    |
-| 15      | NMAP Scanner               | NMAP (Network Mapper) is a free and open-source security scanner used to discover hosts and services on a computer network, thus building a "map" of the network.                                                                |
-| 16      | SLA Calculator             | Calculates SLA due date based on locale and work hours. This connector needs content pack for supporting playbooks and module changes                                                                                            |
-| 17      | ThreatQ                    | ThreatQuotient (ThreatQ) delivers an open and extensible threat intelligence platform (TIP) to provide defenders the context, customization, and collaboration required to increase security effectiveness and efficiently handle threat operations and management.|
-| 18      | URLScan.io                 | URLScan.io provides a service that analyzes websites and the resources they request. URLScan.io provides actions like search domain, ip, hash scan URL and retrieve report of scanned url.                                       |
-| 19      | URLVoid                    | URLVoid provides a service to analyze websites through multiple blacklist engines and online reputation tools to facilitate the detection of fraudulent and malicious websites.                                                  |
-| 20      | VirusTotal                 | This connector facilitates automated operations such as scanning and analyzing suspicious files and URLs and retrieving reports from VirusTotal for files, IP addresses, and domains.                                            |
-| 21      | Whois RDAP                 | Whois RDAP is a service that enables you to retrieve information about the location of IP addresses, servers, or websites. You can find out the owner of the Internet resource and their contact details.|
+| Sr. No. | Connector Names            | Description                                                                                                                                                                                                                                                         |
+|---------|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1       | Active Directory           | Helps directly query AD to retrieve information about users, groups, and computers, in an organization, by using the Lightweight Directory Access Protocol (LDAP).                                                                                                  |
+| 2       | AlienVault-OTX             | AlienVault-OTX is an open source repository of Indicators of Compromise (IOCs) supported by the community. This connector provides actions like Get IP Reputation, Create Pulse, and Get Domain Reputation.                                                         |
+| 3       | CarbonBlack Response       | This connector facilitates automated operation related to endpoint protection like isolate endpoint, unisolate endpoint, hunt file, terminate process etc. with CarbonBlack Response server.                                                                        |
+| 4       | ElasticSearch              | ElasticSearch is a distributed, RESTful search, and analytics engine capable of solving a number of use cases. This connector facilitates automated operations to execute lucene query, get mapping and cluster details.                                            |
+| 5       | Exchange                   | This connector provides a robust, platform-independent, and simple interface for communicating with Microsoft Exchange 2007-2016 Server or Office 365 using Exchange Web Services (EWS).                                                                            |
+| 6       | Fortinet FortiClient EMS   | This connector provides operations related to quarantine/unquarantine endpoints, get endpoint details, and is a security management solution that enables scalable and centralized management of multiple endpoints (computers).                                    |
+| 7       | Fortinet FortiEDR          | This connector facilitates the automated operations related to events, forensics and collectors.                                                                                                                                                                    |
+| 8       | Fortinet FortiGate         | Fortinet FortiGate enterprise firewall provide high performance, consolidated advanced security and granular visibility for broad protection across the entire digital attack surface.                                                                              |
+| 9       | Fortinet FortiSandbox      | FortiSandbox executes suspicious files in the VM host module to determine if the file is High, Medium, or Low Risk based on the behaviour observed in the VM sandbox module.                                                                                        |
+| 10      | Fortinet FortiSIEM         | FortiSIEM provides integrations that allow you to query and make changes to the CMDB, query events, and send incident notifications.                                                                                                                                |
+| 11      | Fortinet Web Filter Lookup | Fortinet Web Filter Lookup allows users to check category and classification for any Domain                                                                                                                                                                         |
+| 12      | IBM X-Force                | This connector helps you rapidly research the latest global security threats, aggregate actionable intelligence, consult with experts, and collaborate with peers.                                                                                                  |
+| 13      | IpStack                    | IPStack provides geolocation facility for IP Address or Domain.                                                                                                                                                                                                     |
+| 14      | MxToolbox                  | MxToolbox offers monitoring solutions and lookup tools. Connector supports automated operations for Lookup, Monitor and Usage                                                                                                                                       |
+| 15      | IP Quality Score           | The IP Quality Score (IPQS) Threat Intelligence application provides threat intelligence for IP addresses, email addresses, URLs, and domains via automated interactions with a IP Quality Score server using FortiSOAR™ playbooks.                                 |
+| 16      | NMAP Scanner               | NMAP (Network Mapper) is a free and open-source security scanner used to discover hosts and services on a computer network, thus building a "map" of the network.                                                                                                   |
+| 17      | SLA Calculator             | Calculates SLA due date based on locale and work hours. This connector needs content pack for supporting playbooks and module changes                                                                                                                               |
+| 18      | ThreatQ                    | ThreatQuotient (ThreatQ) delivers an open and extensible threat intelligence platform (TIP) to provide defenders the context, customization, and collaboration required to increase security effectiveness and efficiently handle threat operations and management. |
+| 19      | URLScan.io                 | URLScan.io provides a service that analyzes websites and the resources they request. URLScan.io provides actions like search domain, ip, hash scan URL and retrieve report of scanned url.                                                                          |
+| 20      | URLVoid                    | URLVoid provides a service to analyze websites through multiple blacklist engines and online reputation tools to facilitate the detection of fraudulent and malicious websites.                                                                                     |
+| 21      | VirusTotal                 | This connector facilitates automated operations such as scanning and analyzing suspicious files and URLs and retrieving reports from VirusTotal for files, IP addresses, and domains.                                                                               |
+| 22      | Whois RDAP                 | Whois RDAP is a service that enables you to retrieve information about the location of IP addresses, servers, or websites. You can find out the owner of the Internet resource and their contact details.                                                           |
 
 ## Modules
 
@@ -50,54 +51,6 @@ The SOAR framework includes the following modules:
 | 9       | Indicators    | **Indicators of compromise** (IOCs) serve as evidence of probable intrusions on a host system or network. These artifacts help personnel at a Security Operations Center (SOC) to detect intrusion attempts or other malicious activities. IOCs help better analyze a particular malware’s techniques and behaviors and provide actionable threat intelligence to further improve an organization’s incident response strategies.<br/><br/>Some of this evidence of potential breach is found on event logs and timestamped entries in the system, applications, and services. |
 | 10      | SLA Template  | SLA Templates in FortiSOAR help create an in-built SLA management for incidents and alerts. For more information, please refer to [SLA Management](https://docs.fortinet.com/document/fortisoar/7.0.2/administration-guide/792686/sla-management).                                                                                                                                                                                                                                                                                                                             |
 | 11      | War Rooms     | War Rooms in FortiSOAR is a collaborative space that enables SOC teams to mitigate a critical cyber threat scenario or campaign. FortiSOAR makes it easy for analysts to quickly and easily provision a War Room that allows participation of all stakeholders to analyze and collaborate to quickly mitigate the threat and restore the services. For more information, see the War Rooms chapter.                                                                                                                                                                            |
-
-<!-- ## Alerts
-
-Alerts are primary actionable data elements that we obtain through a periodic ingestion process. We extract data through multiple channels like emails, SIEM platforms, or EDR platforms to create alerts. Once we have alerts, multiple playbooks are launched to extract and enrich the indicators.
-
-To enhance or extend this default schema, refer to section [Extending Default Alert Schema](#extending-default-alert-schema).
-
-## Announcements
-
-The announcements module helps notify users who are a part of a [war room](#war-rooms). 
-
-## Assets
-
-Assets represent a unique piece of hardware and any information known about that hardware, such as MAC address, hostname, or IP address. Assets preferably have a unique identifier. The assets module helps add devices within FortiSOAR for use by the SOC team. Computers typically represent the assets of your organization. 
-
-## Campaigns
-
-Campaigns are a collection of incidents relatable to a single threat actor. Many times, disparate incidents are connected attempts of a malicious attacker attempting to probe and gain access to a network.
-
-## Communication
-
-It helps users to communicate with external entities like tenant contacts, and other SOC teams, using email, instant messaging (IM), etc. from within an alert generated in FortiSOAR. For this purpose, it uses IMAP and Exchange connectors.
-
-## Events
-
-Events consist of records that contain machine-level information about activity that triggered a specific alert.
-
-## Hunt
-
-The Hunts module is a place to store and organize your hunts. The hunt you create here will be the central repository where all Alerts, Assets, Users, and other modules’ records that become associated with your hunting activity will be linked together. 
-
-## Incidents
-
-Incidents are confirmed alerts that negatively affect the confidentiality, integrity, and availability of an organization. Incidents represent a collection of information discovered during an Incident Response investigation. Incidents are triggered based on the suspicion or confirmation of a security breach.
-
-## Indicators
-
-**Indicators of compromise** (IOCs) serve as evidence of probable intrusions on a host system or network. These artifacts help personnel at a Security Operations Center (SOC) to detect intrusion attempts or other malicious activities. IOCs help better analyze a particular malware’s techniques and behaviors and provide actionable threat intelligence to further improve an organization’s incident response strategies.
-
-Some of this evidence of potential breach is found on event logs and timestamped entries in the system, applications, and services.
-
-## SLA Template
-
-SLA Templates in FortiSOAR help create an in-built SLA management for incidents and alerts. For more information, please refer to [SLA Management](https://docs.fortinet.com/document/fortisoar/7.0.2/administration-guide/792686/sla-management). 
-
-## War Rooms
-
-War Rooms in FortiSOAR is a collaborative space that enables SOC teams to mitigate a critical cyber threat scenario or campaign. FortiSOAR makes it easy for analysts to quickly and easily provision a War Room that allows participation of all stakeholders to analyze and collaborate to quickly mitigate the threat and restore the services. For more information, see the War Rooms chapter. -->
 
 ## Naming Convention
 
@@ -144,12 +97,12 @@ SOAR framework has the following roles included:
 
 A Dashboard is the default landing page, and users' home page, that users see when they log into FortiSOAR. Dashboard, at a glance, shows them the critical tasks on which they need to work. SOAR Framework includes the following dashboards:
 
-| Sr. No. | Dashboards  | Description                                                                                                     |
-|---------|-------------|-----------------------------------------------------------------------------------------------------------------|
-| 1       | Overview    | This dashboard displays total alerts received, escalation ratio, and time saved among many other things.        |
-| 2       | ROI Summary | This dashboard displays total alerts resolved, last 30 days' escalation ratio, and ROI among many other things. |
-| 3       | SOC Admin   | This dashboard displays recent incident, alerts, and assigned tasks                                             |
-| 4       | Analyst     | This dashboard displays alerts segregated by severity, type, priority, and criticality among other things.      |
+| Sr. No. | Dashboards  | Description                                                                                                               |
+|---------|-------------|---------------------------------------------------------------------------------------------------------------------------|
+| 1       | Overview    | This dashboard displays total alerts received, escalation ratio, time saved, and closure reasons among many other things. |
+| 2       | ROI Summary | This dashboard displays total alerts resolved, last 30 days' escalation ratio, and ROI among many other things.           |
+| 3       | SOC Admin   | This dashboard displays recent incident, alerts, and assigned tasks                                                       |
+| 4       | Analyst     | This dashboard displays alerts segregated by severity, type, priority, and criticality among other things.                |
 
 ## Reports
 
@@ -188,16 +141,20 @@ SOAR Framework includes the following playbook collections:
 
 ## Enrich Playbook Collection
 
-It has two playbook collections
+<!-- It has two playbook collections
 
 - 03 - Enrich
 - 03 - Enrich (Pluggable)
 
 ### 03 - Enrich
 
-Playbooks in the *03-Enrich* collection help perform enrichment of data -- one of the first incident response tasks. Automating data enrichment tasks helps better manage increasing volumes of threats and provides more actionable context to the analysts. An example of an enrichment type playbook would be retrieving the reputation of a file, domain, URL, etc. from threat intelligence platforms such as Anomali ThreatStream and VirusTotal.
+Playbooks in the *03-Enrich* collection help perform enrichment of data &ndash; one of the first incident response tasks. Automating data enrichment tasks helps better manage increasing volumes of threats and provides more actionable context to the analysts. An example of an enrichment type playbook would be retrieving the reputation of a file, domain, URL, etc. from threat intelligence platforms such as Anomali ThreatStream and VirusTotal.
 
-Following is a table that lists the playbooks that are part of the *“03-Enrich”*collection in the Solution Pack:
+Following is a table that lists the playbooks that are part of the *03-Enrich* collection in the Solution Pack: -->
+Playbooks in the *03-Enrich* collection help perform enrichment of data &ndash; one of the first incident response tasks. Automating data enrichment tasks helps better manage increasing volumes of threats and provides more actionable context to the analysts. An example of an enrichment type playbook would be retrieving the reputation of a file, domain, URL, etc. from threat intelligence platforms such as Anomali ThreatStream and VirusTotal.
+
+| 03 - Enrich |
+|--|
 
 | Sr. No | Name of the playbook                                     | Description                                                                                                                                              |
 |--------|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -224,9 +181,14 @@ Following is a table that lists the playbooks that are part of the *“03-Enrich
 | 21     | Indicator (Type URL) - GetReputation (Fortinet Sandbox)  | Submit URL to FortinetFortiSandbox.                                                                                                                      |
 | 22     | Indicator (Type User Account) -Get Details               | Retrieves the details of indicators of type ‘User Account’ using configured threat intelligence tools.                                                   |
 
-### 03 - Enrich (Pluggable)
+<!-- ### 03 - Enrich (Pluggable)
+
+The function of the playbooks in both *Enrich* and *Enrich (Pluggable)* collections is the same; however, the design approach is different. In the standard *Enrich* playbook, all threat intelligence platforms for a particular indicator type are configured in a single playbook. In *Enrich (Pluggable)* collection, every threat intelligence platform for a particular indicator type has a separate playbook, which can be plugged in or referenced to the enrichment playbook. -->
 
 The function of the playbooks in both *Enrich* and *Enrich (Pluggable)* collections is the same; however, the design approach is different. In the standard *Enrich* playbook, all threat intelligence platforms for a particular indicator type are configured in a single playbook. In *Enrich (Pluggable)* collection, every threat intelligence platform for a particular indicator type has a separate playbook, which can be plugged in or referenced to the enrichment playbook.
+
+| 03 - Enrich (Pluggable) |
+|--|
 
 | Sr. No. | Name of the playbook                                 | Description                                                                                                                                              |
 |---------|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -269,7 +231,7 @@ The function of the playbooks in both *Enrich* and *Enrich (Pluggable)* collecti
 
 ## Triaging Playbook Collection
 
-This playbook collection appears with the name 
+<!-- This playbook collection appears with the name 
 
 - 03 - Triage
 
@@ -277,7 +239,12 @@ This playbook collection appears with the name
 
 Playbooks in the *03-Triage* collection perform actions such as sorting, systematizing, and computing your enriched data to help you quickly investigate the incident and take decisions for containment and resolution of an incident.
 
-Following is a table that lists the playbooks that are part of the *“03-Triage”*collection in the Solution Pack:
+Following is a table that lists the playbooks that are part of the *03-Triage* collection in the Solution Pack: -->
+
+Playbooks in the *03-Triage* collection perform actions such as sorting, systematizing, and computing your enriched data to help you quickly investigate the incident and take decisions for containment and resolution of an incident.
+
+| 03 - Triage |
+|--|
 
 | Sr. No | Name of the playbook                                                     | Description                                                                                                                                                                                                                                                       |
 |--------|--------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -295,9 +262,8 @@ Following is a table that lists the playbooks that are part of the *“03-Triage
 
 Playbooks in the *04-Actions* collection perform various operations such as blocking or unblocking domains, URLs, and hosts.
 
-### 04 - Actions
-
-Following is a table that lists the playbooks that are a part of the *04-Actions* collection in the Solution Pack:
+| 04 - Actions |
+|--|
 
 | Sr. No. | Name of the playbook                                | Description                                                                                                                                                                                                                                 |
 |---------|-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -342,183 +308,152 @@ Following is a table that lists the playbooks that are a part of the *04-Actions
 
 Playbooks in the *05-Hunt* collection automate threat hunting processes, search, and identify suspicious domains, malware, and other indicators in your environment and create alerts based on them.
 
-### 05 - Hunt
+| 05 - Hunt |
+|--|
 
-Following is a table that lists the playbooks that are part of the “05-Hunt” collection in the Solution Pack:
-
-| Sr. No. | Name of the playbook | Description                                                                                                           |
-|---------|----------------------|-----------------------------------------------------------------------------------------------------------------------|
-| 1       | Hunt Indicators      | Searches for the specified indicators in your environment using EDR tools, and create alerts for ones that are found. |
+| Name of the playbook | Description                                                                                                           |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------|
+| Hunt Indicators      | Searches for the specified indicators in your environment using EDR tools, and create alerts for ones that are found. |
 
 ## Case Management Collection
 
 This playbook collection has the following playbook
 
 - 06 - IRP - Case Management
+- 06 - IRP - Communications Tracking
+- 06 - IRP - Reporting
+- 06 - IRP - War Room
 
-### 06 - IRP - Case Management 
+| 06 - IRP - Case Management |
+|--|
 
-| Sr. No | Name of the playbook                                                    | Description                                                                                                                                                                             |
-|--------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1      | Alert - [01] Capture All SLA(Upon Create)                               | Updates the alert's acknowledgment due date and response due date based on the alert’s severity.                                                                                        |
-| 2      | Alert - [02] Capture Ack SLA(Upon Update)                               | Updates the alert's acknowledgment date and SLA Status based on when the alert status is changed.                                                                                       |
-| 3      | Alert - [03] Capture Response SLA(Upon Update)                          | Updates the alert's response date and SLA Status based on when the alert status is changed.                                                                                             |
-| 4      | Alert - [04] Check for SLA violations                                   | Checks periodically for violations of acknowledgment SLA of the open alerts.                                                                                                            |
-| 5      | Alert - [05] Update Ack and Response Due dates (Post Severity Change)   | Updates the alert’s acknowledgment due date and response due date for the change in the severity of alerts                                                                              |
-| 6      | Alert - Close Corresponding SIEM Alert                                  | Closes the alert on the corresponding SIEM when an alert is closed in FortiSOAR.                                                                                                        |
-| 7      | Alert - Periodic Update Alert SLAStatus                                 | This is a subroutine playbook to periodically check violations of acknowledgment and response SLA of the open alerts.                                                                   |
-| 8      | Alert - Update SLA Details                                              | Updates an alert's acknowledgment due date and response due date based on the severity of the alert.                                                                                    |
-| 9      | Approval - On Create                                                    | This playbook is triggered whenever an approval record is created, and an email is sent out to the intended approved(s).                                                                |
-| 10     | Approval - On Email Receipt(Exchange)                                   | This playbook is triggered whenever an email is received via Exchange; the playbook determines whether the received email is an approval mail, and, if yes, checks its approval status. |
-| 11     | Approval - On Email Receipt(IMAP)                                       | This playbook is triggered whenever an email is received via IMAP and it checks whether the received email is an approval mail along with its approval status.                          |
-| 12     | Approval - On Email Receipt -Process Email                              | Checks if the email is an approval email and returns its approval status.                                                                                                               |
-| 13     | Assign Random User to UnassignedAlerts                                  | Auto assigns alerts if their assignments were missed during alert creation.                                                                                                             |
-| 14     | Assign Random User to UnassignedIncidents                               | Auto assigns incidents if their assignments were missing during incident creation.                                                                                                      |
-| 15     | Fetch SLA Details                                                       | Fetches SLA Details for incidents as per Service, that is, for MSSP or Enterprise.                                                                                                      |
-| 16     | Incident - [01] Capture All SLA(Upon Create)                            | Updates an alert acknowledgment due date and response due date based on the severity of the incident.                                                                                   |
-| 17     | Incident - [02] Capture Ack SLA(Upon Update)                            | Updates an incident's acknowledgment date and SLA status when the status of the incident is changed.                                                                                    |
-| 18     | Incident - [03] Capture ResponseSLA (Upon Update)                       | Update an incident's response date and SLA status when the status of the incident is changed.                                                                                           |
-| 19     | Incident - [04] Check for SLA violations                                | Periodically check acknowledgment of SLA violations of the Open Incidents.                                                                                                              |
-| 20     | Incident - [05] Update Response and Ack Due date (Post Severity Change) | Update an incident's acknowledgment due date and response due date following a change in severity.                                                                                      |
-| 21     | Incident - Periodic UpdateIncident SLA Status                           | This is a subroutine playbook to check and update an incident’s SLA status.                                                                                                             |
-| 22     | Incident (Post Create) PhaseChange                                      | Sets an incident's phase dates upon incident creation.                                                                                                                                  |
-| 23     | Incident (Post Update) PhaseChange                                      | Updates an incident's phase dates when the incident phase is changed.                                                                                                                   |
-| 24     | Incident - Set Phase Dates                                              | Updates an incident's phase dates based on the incident phase.                                                                                                                          |
-| 25     | Incidents - Update SLA Details                                          | Updates an alert's acknowledgment due date and response due date based on incident severity.                                                                                            |
-| 26     | Indicator - Check Expiry Status                                         | Checks periodically for the expiry date of the indicator and marks it as expired, if matched.                                                                                           |
-| 27     | Indicator - Set Default ExpiryDate                                      | Sets the default expiry date when an indicator is created.                                                                                                                              |
-| 28     | Indicator - Set First Seen Date                                         | Sets the first seen date when an indicator is created.                                                                                                                                  |
-| 29     | Indicator - Set Last Seen Date                                          | Tracks the occurrence of an indicator by updating the last seen date.                                                                                                                   |
-| 30     | Notify Blocked Indicator Statusto Linked Alerts                         | Adds a note about an indicator being blocked.                                                                                                                                           |
-| 31     | Pause SLA - Alerts                                                      | Pauses the alert's acknowledgment or response when its respective SLA status is changed to'Awaiting Action'.                                                                            |
-| 32     | Pause SLA - Incidents                                                   | Pauses the incident's acknowledgment or response SLA when its respective SLA status is changed to'Awaiting Action'.                                                                     |
-| 33     | Prompt when Indicator linked is to Campaign                             | Notifies an analyst via manual input when an indicator is linked to a campaign.                                                                                                         |
-| 34     | Set Prompt to an Alert                                                  | Displays a prompt on alerts when an indicator is linked to the campaign.                                                                                                                |
+| Sr. No  | Name of the playbook                                                     | Description                                                                                                                                                                                                        |
+|---------|--------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1       | Alert - [01] Capture All SLA (Upon Create)                               | Updates the alert's acknowledgement due date and response due date based on the alert’s severity.                                                                                                                  |
+| 2       | Alert - [02] Capture Ack SLA (Upon Update)                               | Updates the alert's acknowledgement date and SLA Status based on when the alert status is changed.                                                                                                                 |
+| 3       | Alert - [03] Capture Response SLA (Upon Update)                          | Updates the alert's response date and SLA Status based on when the alert status is changed.                                                                                                                        |
+| 4       | Alert - [04] Check for SLA violations                                    | Checks periodically for violations of acknowledgement SLA of the open alerts.                                                                                                                                      |
+| 5       | Alert - [05] Update Ack and Response Due dates (Post Severity Change)    | Updates the alert’s acknowledge due date and response due date for change in the severity of alerts                                                                                                                |
+| 6       | Alert - Close Corresponding SIEM Alert                                   | Closes the alert on the corresponding SIEM when an alert is closed in FortiSOAR.                                                                                                                                   |
+| 7       | Alert - Periodic Update Alert SLA Status                                 | This is a subroutine playbook to periodically check violations of acknowledgement and response SLA of the open alerts.                                                                                             |
+| 8       | Alert - Update SLA Details                                               | Updates an alert's acknowledgement due date and response due date based on the severity of the alert.                                                                                                              |
+| 9       | Approval - On Create                                                     |  This playbook is triggered whenever an approval record is created, and an email is sent out to the intended approver(s).                                                                                          |
+| 10      | Approval - On Email Receipt (Exchange)                                   | This playbook is triggered whenever an email is received via Exchange; the playbook determines whether the received email is an approval mail, and, if yes, checks its approval status.                            |
+| 11      | Approval - On Email Receipt (IMAP)                                       | This playbook is triggered whenever an email is received via IMAP and it checks whether the received email is an approval mail along with its approval status.                                                     |
+| 12      | Approval - On Email Receipt - Process Email                              | Checks if the email is an approval email and returns its approval status.                                                                                                                                          |
+| 13      | Assign Random User to Unassigned Alerts                                  | Auto assigns alerts if their assignments were missed during alert creation.                                                                                                                                        |
+| 14      | Assign Random User to Unassigned Incidents                               | Auto assigns incidents if their assignments were missing during incident creation.                                                                                                                                 |
+| 15      | Fetch SLA Details                                                        | Fetches SLA Details for incidents as per Service, that is, for MSSP or Enterprise.                                                                                                                                 |
+| 16      | Incident - [01] Capture All SLA (Upon Create)                            | Updates an alert's acknowledgement due date and response due date based on the severity of the incident.                                                                                                           |
+| 17      | Incident - [02] Capture Ack SLA (Upon Update)                            | Updates an incident's acknowledgement date and SLA status when the status of the incident is changed.                                                                                                              |
+| 18      | Incident - [03] Capture Response SLA (Upon Update)                       | Update an incident's response date and SLA status when the status of the incident is changed.                                                                                                                      |
+| 19      | Incident - [04] Check for SLA violations                                 | Periodically check Acknowledgement SLA violations of the Open Incidents.                                                                                                                                           |
+| 20      | Incident - [05] Update Response and Ack Due date (Post Severity Change)  | Update an incident's acknowledgement due date and response due date following a change in severity.                                                                                                                |
+| 21      | Incident - Periodic Update Incident SLA Status                           | This is a subroutine playbook to check and update an incident’s SLA status.                                                                                                                                        |
+| 22      | Incident (Post Create) Phase Change                                      | Sets an incident's phase dates upon incident creation.                                                                                                                                                             |
+| 23      | Incident (Post Update) Phase Change                                      | Updates an incident's phase dates when incident phase is changed.                                                                                                                                                  |
+| 24      | Incident - Set Phase Dates                                               | Updates an incident's phase dates based on incident phase.                                                                                                                                                         |
+| 25      | Incidents - Update SLA Details                                           | Updates an alert's acknowledgement due date and response due date based on incident severity.                                                                                                                      |
+| 26      | Indicator - Check Expiry Status                                          | Checks periodically for the expiry date of the indicator and marks it as expired, if matched.                                                                                                                      |
+| 27      | Indicator - Set Default Expiry Date                                      | Sets the default expiry date when an indicator is created.                                                                                                                                                         |
+| 28      | Indicator - Set First Seen Date                                          | Sets the first seen date when an indicator is created.                                                                                                                                                             |
+| 29      | Indicator - Set Last Seen Date                                           | Tracks the occurrence of an indicator by updating the last seen date.                                                                                                                                              |
+| 30      | Notify Blocked Indicator Status to Linked Alerts                         | Adds a note about an indicator being blocked.                                                                                                                                                                      |
+| 31      | Pause SLA - Alerts                                                       | Pauses the alert's acknowledgement or response when its respective SLA status is changed to 'Awaiting Action'.                                                                                                     |
+| 32      | Pause SLA - Incidents                                                    | Pauses the incident's acknowledgement or response SLA when its respective SLA status is changed to 'Awaiting Action'.                                                                                              |
+| 33      | Prompt when Indicator linked is to Campaign                              | Notifies an analyst via manual input when an indicator is linked to a campaign.                                                                                                                                    |
+| 34      | Set Prompt to an Alert                                                   | Displays a prompt on alerts when an indicator is linked to campaign.                                                                                                                                               |
+| 35      | Incident - [06] Check for Ack SLA violations                             | Notifies users of violation of Acknowledgement SLA.                                                                                                                                                                |
+| 36      | Incident - [07] Check for Response SLA violations                        | Notifies users of violation of Response SLA.                                                                                                                                                                       |
+| 37      | Notify Ack SLA Violation                                                 | Checks every 5 minutes, for Acknowledgement SLA violations of open incidents.                                                                                                                                      |
+| 38      | Notify Response SLA Violation                                            | Checks every 5 minutes for Response SLA violations of acknowledged incidents.                                                                                                                                      |
+| 39      | Alert - Escalate To Incident                                             |  Escalates the selected alert to an incident.                                                                                                                                                                      |
+| 40      | Alert - Escalate To Incident (No Trigger)                                | Creates a new incident with the specified inputs and links the alert(s) to the newly created incident.                                                                                                             |
+| 41      | Alert - Escalate to Incident (Link Relations)                            | Extracts related records and assigns them to a created incident.                                                                                                                                                   |
+| 42      | Resolve Alert                                                            | Marks the specified Security Alert as closed.                                                                                                                                                                      |
+| 43      | Link Similar Alerts                                                      | Links all selected similar alerts with the parent alert.                                                                                                                                                           |
+| 44      | Link Similar Emails                                                      | Links all selected similar emails with the parent email.                                                                                                                                                           |
+| 45      | Link Similar Incidents                                                   | Links all selected similar incidents with the parent incident.                                                                                                                                                     |
+| 46      | Link Similar Indicators                                                  | Links all selected similar indicators with the parent indicator.                                                                                                                                                   |
+| 47      | Alert - Set Assigned Date (upon creation)                                | Updates the assigned date of the alert when a person is assigned to the alert.                                                                                                                                     |
+| 48      | Alert - Set Assigned Date (upon reassignment)                            | Updates the assigned date of the alert when a person is reassigned to the alert.                                                                                                                                   |
+| 49      | Alert - Set Resolved Date                                                | Updates the resolved date of an alert when its state is marked as "Closed".                                                                                                                                        |
+| 50      | Incident - Set Assigned Date (upon creation)                             | Updates the assigned date of an incident when a lead is assigned to the incident.                                                                                                                                  |
+| 51      | Incident - Set Assigned Date (upon reassignment)                         | Updates the assigned date of the incident when a lead is reassigned to the incident.                                                                                                                               |
+| 52      | Incident - Set Resolved Date                                             | Updates the resolved date of an incident when its state is marked as "Resolved".                                                                                                                                   |
+| 53      | Ingest IOC From CSV File                                                 | Ingest and create indicators from IOC listed in CSV file. Incase CSV file has huge number of records , its recommended that celery soft timeout and tasks timeout values are updated. Refer product documentation  |
+| 54      | Create IOC Extracted From CSV File                                       | It is subroutine of “Ingest IOC From CSV File” playbook, which will create IOC extracted from CSV File                                                                                                             |
 
-## 08 - Case Management (Extended)
+| 06 - IRP - Communications Tracking |
+|--|
 
-| Playbook Name                                     | Description                                                                   |
-|---------------------------------------------------|-------------------------------------------------------------------------------|
-| Incident - [06] Check forAck SLA violations       | Notifies users of violation of Acknowledgement SLA.                           |
-| Incident - [07] Check for Response SLA violations | Notifies users of violation of Response SLA.                                  |
-| Notify Ack SLA Violation                          | Checks every 5 minutes, for Acknowledgement SLAviolations of open incidents.  |
-| Notify Response SLA Violation                     | Checks every 5 minutes for Response SLA violations of acknowledged incidents. |
+| Sr. No  | Name of the playbook                          | Description                                                                                                                                 |
+|---------|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| 1       | Add Note for Communication Linked             | Adds a note stating a new communication has been linked to alert.                                                                           |
+| 2       | Add Note for Communication Linked (Received)  | Adds a note stating a new communication that was received has been linked to alert.                                                         |
+| 3       | Create Communication Record                   |  Creates a record in the communications module and links it to an alert based off the information that is entered by the security analyst.  |
+| 4       | Create Communication Record (Email Reply)     | Creates a record in the communications module based off a reply to a received email.                                                        |
+| 5       | Link Communication Record                     | Links the communication record to the corresponding alert based on the message ID.                                                          |
+| 6       | Link Previous Communications                  | Links existing communications records to create a conversation thread.                                                                      |
+| 7       | Manual Send Notification                      | Sends email notification for any selected communication record that is in either “Draft” or “Sending” state to the intended recipients.     |
+| 8       | Send Notification                             | Sends auto-notification of any new communication record that is in the “Sending” state to the intended recipients.                          |
 
-## 08 - Escalation
+| 06 - IRP - Reporting |
+|--|
 
-| Playbook Name                                | Description                                                                                            |
-|----------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| Alert -Escalate To Incident                  | Escalates the selected alert to an incident.                                                           |
-| Alert -Escalate To Incident (No Trigger)     | Creates a new incident with the specified inputs and links the alert(s) to the newly created incident. |
-| Alert -Escalate to Incident (Link Relations) | Extractsrelated records and assigns them to a created incident.                                        |
-| Resolve Alert                                | Marks the specified Security Alert as closed.                                                          |
+| Sr. No.  | Name of the playbook                    | Description                                                                                                              |
+|----------|-----------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| 1        | Export Selected Records                 | Exports all selected records to a JSON file and creates an attachment record for the same.                               |
+| 2        | Import Data                             | Imports a valid JSON file to a relevant module and creates subsequent records.                                           |
+| 3        | Export as CSV                           | Export all records of the given module with specified filters in the CSV format.                                         |
+| 4        | Get Paginated Records                   | Gets paginated records data and appends them in a .CSV file. This playbook is a reference playbook for 'Export as CSV'.  |
+| 5        | Notify Connector Health Check Failures  | Scheduled to check connectors’ health status and notify the specified recipients of any failed health check.             |
+| 6        | Notify Failed Playbook Executions       | Notifies specified recipients of any playbook failure. It can be scheduled to run at specific intervals.                 |
 
-## 08 - Similarity
+| 06 - IRP - War Room Automation |
+|--|
 
-| Playbook Name           | Description                                                      |
-|-------------------------|------------------------------------------------------------------|
-| Link Similar Alerts     | Links all selected similar alerts with the parent alert.         |
-| Link Similar Emails     | Links all selected similar emails with the parent email.         |
-| Link Similar Incidents  | Links all selected similar incidents with the parent incident.   |
-| Link Similar Indicators | Links all selected similar indicators with the parent indicator. |
-
-## 08 - SLA Management
-
-| Playbook Name                                   | Description                                                                          |
-|-------------------------------------------------|--------------------------------------------------------------------------------------|
-| Alert - SetAssigned Date (upon creation)        | Updates the assigned date of the alert when a person is assigned to the alert.       |
-| Alert - SetAssigned Date (upon reassignment)    | Updates the assigned date of the alert when a person is reassigned to the alert.     |
-| Alert - SetResolved Date                        | Updates the resolved date of an alert when its state is marked as "Closed".          |
-| Incident -Set Assigned Date (upon creation)     | Updates the assigned date of an incident when a lead is assigned to the incident.    |
-| Incident -Set Assigned Date (upon reassignment) | Updates the assigned date of the incident when a lead is reassigned to the incident. |
-| Incident -Set Resolved Date                     | Updates the resolved date of an incident when its state is marked as"Resolved".      |
-
-## 08 - War Room Automation
-
-| Playbook Name                             | Description                                                                                                                                                     |
-|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CascadeOwnership for Newly Linked Records | Assigns war room responders as owners in all newly linked records such as alerts, incidents, indicators, etc.                                                   |
-| GenerateWar Room Report                   | Generates aWar Room Report and adds a link to the specific War Room record as a comment.                                                                        |
-| Notify NewAnnouncement                    | Sends an email notification to the war room owner and user owners whenever a new announcement is created.                                                       |
-| NotifyNewly Linked Team                   | Sends an email notification to the new team that has been linked to the War Roomrecord.                                                                         |
-| NotifyNewly Linked User(s)                | Sends an email notification to the new users that have been linked to the War Roomrecord.                                                                       |
-| Send Email                                | This child playbook of Send Email Notification. It sends an email notification to war room owners and user owners related to any changes in the War Roomrecord. |
-| Send EmailNotification                    | Fetchesdetails of War Room owners and user owners and sends them an email notification related to any changes in the war room record.                           |
-| Send WarRoom Summary Email                | Generates and sends the War Room Summary report to the response team or specified user(s).                                                                      |
-| Set WarRoom Live and Notify Responders    | Updates the war room status to "Live" and sends the email notification to the responders.                                                                       |
-| Set up WarRoom from Alerts                | Establishes a War Room based on the selected alert(s).                                                                                                          |
-| Set up WarRoom from Incidents             | Establishes a War Room based on the selected incident(s).                                                                                                       |
-| Update WarRoom Close Date                 | Updates the ‘Close Date’ of the War Room record, when its status is marked as "Closed".                                                                         |
+| Sr. No. | Playbook Name                             | Description                                                                                                                                                     |
+|---------|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1       | CascadeOwnership for Newly Linked Records | Assigns war room responders as owners in all newly linked records such as alerts, incidents, indicators, etc.                                                   |
+| 2       | GenerateWar Room Report                   | Generates aWar Room Report and adds a link to the specific War Room record as a comment.                                                                        |
+| 3       | Notify NewAnnouncement                    | Sends an email notification to the war room owner and user owners whenever a new announcement is created.                                                       |
+| 4       | NotifyNewly Linked Team                   | Sends an email notification to the new team that has been linked to the War Roomrecord.                                                                         |
+| 5       | NotifyNewly Linked User(s)                | Sends an email notification to the new users that have been linked to the War Roomrecord.                                                                       |
+| 6       | Send Email                                | This child playbook of Send Email Notification. It sends an email notification to war room owners and user owners related to any changes in the War Roomrecord. |
+| 7       | Send EmailNotification                    | Fetchesdetails of War Room owners and user owners and sends them an email notification related to any changes in the war room record.                           |
+| 8       | Send WarRoom Summary Email                | Generates and sends the War Room Summary report to the response team or specified user(s).                                                                      |
+| 9       | Set WarRoom Live and Notify Responders    | Updates the war room status to "Live" and sends the email notification to the responders.                                                                       |
+| 10      | Set up WarRoom from Alerts                | Establishes a War Room based on the selected alert(s).                                                                                                          |
+| 11      | Set up WarRoom from Incidents             | Establishes a War Room based on the selected incident(s).                                                                                                       |
+| 12      | Update WarRoom Close Date                 | Updates the ‘Close Date’ of the War Room record, when its status is marked as "Closed".                                                                         |
 
 ## Incident Response Playbook Collection
 
-This collection has one playbook
+| 07 - Incident Response Plan |
+|--|
 
-- 09 - Incident response
-
-### 09 - Incident Response
-
-| Playbook Name                                        | Description                                                                                                                |
-|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| Incident Response Plan (Type - Malware)              | Investigates incidents of type ‘Malware’ and executes the different phases of incident response using CarbonBlackResponse. |
-| Incident Response Plan (Type - NIST 800-61 -Generic) | Creates tasks for incident response and handling as per the guidelines provided in NIST 800-61.                            |
-| NIST 800-61 - Upfront Tasks                          | Creates tasks for incident response and handling as per the guidelines provided in NIST 800-61.                            |
+| Sr. No. | Playbook Name                                        | Description                                                                                                                |
+|---------|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| 1       | Incident Response Plan (Type - Malware)              | Investigates incidents of type ‘Malware’ and executes the different phases of incident response using CarbonBlackResponse. |
+| 2       | Incident Response Plan (Type - NIST 800-61 -Generic) | Creates tasks for incident response and handling as per the guidelines provided in NIST 800-61.                            |
+| 3       | NIST 800-61 - Upfront Tasks                          | Creates tasks for incident response and handling as per the guidelines provided in NIST 800-61.                            |
 
 ## Utilities Playbook
 
-This collection has one playbook.
+You can use the playbooks in the *08 - Utilities* collection to perform various operations in FortiSOAR such as creating and linking assets to specified emails, alerts, or incidents, exporting all records or a specified module, or scheduling the health check of connectors and send appropriate notifications.
 
-- 10 - Utilities
+| 08 - Utilities |
+|--|
 
-### 10 - Utilities
-
-You can use the playbooks in the *10 - Utilities* collection to perform various operations in FortiSOAR such as creating and linking assets to specified emails, alerts, or incidents, exporting all records or a specified module, or scheduling the health check of connectors and send appropriate notifications.
-
-Following is a table that lists the playbooks that are part of the *10- Utilities* collection in the Solution Pack:
-
-| Playbook Name                                 | Description                                                                                                                                                       |
-|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add Attacker Tag to Indicator (FortiDeceptor) | Finds the Attacker IP Address in a FortiDeceptoralert and adds the Attacker Tag to the indicator as well as updates the reputation of the indicator to Malicious. |
-| Create and Link Asset                         | Creates an asset (if it doesn't exist already), and links it to the specified email, alert, or incident record.                                                   |
-| Create and Link Indicator                     | Create an indicator (if it doesn't exist already), and link it to the specified email, alert, or incident record.                                                 |
-| Download and Create Attachment                | Downloads the file from a specified URL and creates an attachment record for the same.                                                                            |
-| Export as CSV                                 | Export all records of the given module with specified filters in the CSV format.                                                                                  |
-| Get Paginated Records                         | Gets paginated records data and appends them in a.CSV file. This playbook is a reference playbook for 'Export as CSV'.                                            |
-| Notify Connector Health Check Failures        | Scheduled to check connectors’ health status and notify the specified recipients of any failed health check.                                                      |
-| Notify Failed Playbook Executions             | Notify specified recipients of any playbook failure. It can be scheduled to run at specific intervals.                                                            |
-| Scheduled Configuration Export                | Export template name and email address to be updated in the 'Configuration' step. Can be used to schedule Configuration Export and send it as an email.           |
-
- 
-
-## Training Playbook Collection
-
-This collection has one playbook.
-
-- 12 - Training
-
-### 12 -Training
-
-| Playbook Name                               | Description                                                                                                                        |
-|---------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| 01 - Investigate Filehash (Manual)          | This is a manually triggered playbook that the security analyst uses to determine the file hash reputation.                        |
-| 02 - Investigate Filehash (Semi-Automated)  | This is a manually triggered playbook that investigates file hash reputation using VirusTotal.                                     |
-| 03 - Investigate Filehash (Fully Automated) | Thisplaybook is triggered automatically following the creation of an alert; it investigates file hash reputation using VirusTotal. |
-
-## Communication Playbook Collection
-
-This collection has one playbook.
-
-- 14 - Communications
-
-### 14 - Communications
-
-| Playbook Name                                | Description                                                                                                                              |
-|----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| Add Note for Communication Linked            | Adds a note stating a new communication has been linked to the alert.                                                                    |
-| Add Note for Communication Linked (Received) | Adds a note stating a new communication that was received has been linked to the alert.                                                  |
-| Create Communication Record                  | Creates a record in the communications module and links it to an alert based on the information that is entered by the security analyst. |
-| Create Communication Record (Email Reply)    | Creates a record in the communications module based on a reply to a received email.                                                      |
-| Link Communication Record                    | Links the communication record to the corresponding alert based on the message ID.                                                       |
-| Link Previous Communications                 | Links existing communications records to create a conversation thread.                                                                   |
-| Manual Send Notification                     | Sends email notification for any selected communication record that is in either “Draft” or “Sending” state to the intended recipients.  |
-| Send Notification                            | Sends auto-notification of any new communication record that is in the “Sending” state to the intended recipients.                       |
+| Sr. No. | Playbook Name                                 | Description                                                                                                                                                       |
+|---------|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1       | Add Attacker Tag to Indicator (FortiDeceptor) | Finds the Attacker IP Address in a FortiDeceptoralert and adds the Attacker Tag to the indicator as well as updates the reputation of the indicator to Malicious. |
+| 2       | Create and Link Asset                         | Creates an asset (if it doesn't exist already), and links it to the specified email, alert, or incident record.                                                   |
+| 3       | Create and Link Indicator                     | Create an indicator (if it doesn't exist already), and link it to the specified email, alert, or incident record.                                                 |
+| 4       | Download and Create Attachment                | Downloads the file from a specified URL and creates an attachment record for the same.                                                                            |
+| 5       | Export as CSV                                 | Export all records of the given module with specified filters in the CSV format.                                                                                  |
+| 6       | Get Paginated Records                         | Gets paginated records data and appends them in a.CSV file. This playbook is a reference playbook for 'Export as CSV'.                                            |
+| 7       | Notify Connector Health Check Failures        | Scheduled to check connectors’ health status and notify the specified recipients of any failed health check.                                                      |
+| 8       | Notify Failed Playbook Executions             | Notify specified recipients of any playbook failure. It can be scheduled to run at specific intervals.                                                            |
+| 9       | Scheduled Configuration Export                | Export template name and email address to be updated in the 'Configuration' step. Can be used to schedule Configuration Export and send it as an email.           |
