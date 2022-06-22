@@ -30,7 +30,8 @@
                         "style": "col-lg-12"
                     }
                 ],
-                "wid": "55f18f20-1671-4c6d-b3f8-e3e91acbefac"
+                "wid": "55f18f20-1671-4c6d-b3f8-e3e91acbefac",
+                "_collapsed": false
             },
             {
                 "columns": [
@@ -189,7 +190,8 @@
                         "style": "col-lg-6"
                     }
                 ],
-                "wid": "63b666fa-532a-4b78-a8c6-6c2a9ed07e45"
+                "wid": "63b666fa-532a-4b78-a8c6-6c2a9ed07e45",
+                "_collapsed": false
             },
             {
                 "columns": [
@@ -272,14 +274,16 @@
                                     "aggregate": true,
                                     "resource": "incidents",
                                     "title": "Open Incidents By Type",
-                                    "wid": "acda7b7d-f5e8-44c1-9770-0e9659535e26"
+                                    "wid": "acda7b7d-f5e8-44c1-9770-0e9659535e26",
+                                    "assignedToSetting": "onlyMe"
                                 }
                             }
                         ],
                         "style": "col-lg-12"
                     }
                 ],
-                "wid": "d9e411a9-e1d4-4bf1-a631-788d2eae6fa2"
+                "wid": "d9e411a9-e1d4-4bf1-a631-788d2eae6fa2",
+                "_collapsed": false
             },
             {
                 "columns": [
@@ -361,7 +365,8 @@
                                     "aggregate": true,
                                     "resource": "incidents",
                                     "title": "Incident Assignment Distribution",
-                                    "wid": "e2dd96db-3656-4a05-9cd6-46bb9465ac82"
+                                    "wid": "e2dd96db-3656-4a05-9cd6-46bb9465ac82",
+                                    "assignedToSetting": "onlyMe"
                                 }
                             }
                         ],
@@ -437,14 +442,16 @@
                                     "aggregate": true,
                                     "resource": "incidents",
                                     "title": "Incidents By Status",
-                                    "wid": "6c6c7209-c986-46cc-a460-c03116738f52"
+                                    "wid": "6c6c7209-c986-46cc-a460-c03116738f52",
+                                    "assignedToSetting": "onlyMe"
                                 }
                             }
                         ],
                         "style": "col-lg-6"
                     }
                 ],
-                "wid": "181112ef-04d3-4396-8a3e-868b6c59ab9d"
+                "wid": "181112ef-04d3-4396-8a3e-868b6c59ab9d",
+                "_collapsed": false
             },
             {
                 "columns": [
@@ -464,7 +471,8 @@
                                                 "operator": "eq",
                                                 "value": "\/api\/3\/picklists\/bb73fe9e-f699-11e7-8c3f-9a214cf093ae",
                                                 "_value": {
-                                                    "itemValue": "Open"
+                                                    "itemValue": "Open",
+                                                    "@id": "\/api\/3\/picklists\/bb73fe9e-f699-11e7-8c3f-9a214cf093ae"
                                                 },
                                                 "type": "object"
                                             },
@@ -476,7 +484,8 @@
                                                         "operator": "eq",
                                                         "value": "\/api\/3\/picklists\/40187287-89fc-4e9c-b717-e9443d57eedb",
                                                         "_value": {
-                                                            "itemValue": "High"
+                                                            "itemValue": "High",
+                                                            "@id": "\/api\/3\/picklists\/40187287-89fc-4e9c-b717-e9443d57eedb"
                                                         },
                                                         "type": "object"
                                                     },
@@ -485,7 +494,8 @@
                                                         "operator": "eq",
                                                         "value": "\/api\/3\/picklists\/7efa2220-39bb-44e4-961f-ac368776e3b0",
                                                         "_value": {
-                                                            "itemValue": "Critical"
+                                                            "itemValue": "Critical",
+                                                            "@id": "\/api\/3\/picklists\/7efa2220-39bb-44e4-961f-ac368776e3b0"
                                                         },
                                                         "type": "object"
                                                     }
@@ -498,13 +508,13 @@
                                                         "field": "createDate",
                                                         "operator": "gte",
                                                         "value": "{{getRelativeDate(0,0,-7,\"start\",\"start\",\"start\")}}",
-                                                        "type": "primitive"
+                                                        "type": "datetime"
                                                     },
                                                     {
                                                         "field": "createDate",
                                                         "operator": "lte",
-                                                        "value": "{{getRelativeDate(0,0,-1,\"end\",\"end\",\"end\")}}",
-                                                        "type": "primitive"
+                                                        "value": "{{getRelativeDate(0,0,0,0,0,0)}}",
+                                                        "type": "datetime"
                                                     }
                                                 ],
                                                 "_field": "createDate",
@@ -521,13 +531,13 @@
                                         "assignedToPerson": ""
                                     },
                                     "columns": [
+                                        "id",
                                         "severity",
                                         "name",
                                         "phase",
                                         "status",
                                         "category",
-                                        "incidentLead",
-                                        "dueby"
+                                        "incidentLead"
                                     ],
                                     "wid": "45c3168b-93f2-4438-800f-0453464504c8",
                                     "title": "High Severity Open Incidents",
@@ -538,7 +548,8 @@
                         "style": "col-lg-12"
                     }
                 ],
-                "wid": "3a41c0c9-fa7b-4f49-9458-9c8ba3ac3110"
+                "wid": "3a41c0c9-fa7b-4f49-9458-9c8ba3ac3110",
+                "_collapsed": false
             },
             {
                 "columns": [
@@ -555,10 +566,14 @@
                         "style": "col-lg-12"
                     }
                 ],
-                "wid": "5c5b1b17-b82b-4dc4-96fc-cc40ef602b03"
+                "wid": "5c5b1b17-b82b-4dc4-96fc-cc40ef602b03",
+                "_collapsed": false
             }
         ],
-        "wid": "74f4cfde-57af-4033-8b15-3adb899212e2"
+        "wid": "74f4cfde-57af-4033-8b15-3adb899212e2",
+        "metadata": {
+            "customTemplateTitle": "Reporting"
+        }
     },
     "filterArray": [],
     "updateDate": null
