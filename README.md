@@ -4,7 +4,7 @@
 - **Certified**: Yes 
 - **Publisher**: Fortinet 
 - **Compatible Version**: FortiSOAR v7.2.0 and above
-- [Release Notes](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/release-notes.md)
+- [Release Notes](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/release_notes.md)
 
 # Overview 
 
