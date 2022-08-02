@@ -19,133 +19,51 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Geo Locate Domain",
+            "name": "Whois Information from VT",
             "description": null,
             "arguments": {
-                "name": "IPStack",
-                "config": "89a736ae-5c81-45d0-9ad3-8a4e7189f7c7",
+                "when": "{{(vars.whoisdata_dict | length > 0)}}",
                 "params": {
-                    "query": "{{vars.indicator_value}}",
-                    "fields": "",
-                    "enable_hostname": false,
-                    "enable_security": false
-                },
-                "version": "1.0.0",
-                "connector": "ipstack",
-                "operation": "domain_locate",
-                "ignore_errors": true,
-                "operationTitle": "Geolocate Domain",
-                "step_variables": {
-                    "foundIpStackReputation": "{{ ( vars.result.data and (vars.result.data | length > 0) ) | ternary(true,false) }}"
-                }
-            },
-            "status": null,
-            "top": "30",
-            "left": "2400",
-            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "f348012e-4eee-4b6e-a8e3-ba6123e02494"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Is Referenced",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Referenced",
-                        "step_iri": "\/api\/3\/workflow_steps\/e948308e-ab85-427b-a610-379f8466a7b6",
-                        "condition": "{{ vars.input.params['indicator_value'] | length > 0 }}"
-                    },
-                    {
-                        "option": "Upon Create",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/c61c6a5a-37b6-42e8-9fd0-4d02026d2ffe"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "510",
-            "left": "4025",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "c36585d8-39b5-4f17-a64d-76373e5681fd"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Enrichment Summary",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "value": "{{vars.steps.Compute_VT_Summary.data['formatted_string']}} \n\n{{vars.steps.Compute_Fortinet_Web_Filter_Summary.data['formatted_string']}}\n\n{{vars.steps.Compute_Anomali_Summary.data['formatted_string']}}\n\n{{vars.steps.Compute_IP_Stack_Summary.data['formatted_string']}}\n\n{{vars.steps.Compute_AV_OTX_Summary.data['formatted_string']}}\n\n{{vars.steps.Compute_VT_Whois.data['formatted_string']}}\n\n{{vars.steps.Compute_URLVoid_Summary.data['formatted_string']}}  \n\n{{vars.steps.Compute_MxToolbox_Summary.data['formatted_string']}}\n\n\n\n "
+                    "data": "{{vars.whoisdata_dict}}",
+                    "styling": true,
+                    "row_fields": "",
+                    "table_style": "{ 'width':'auto','font':'10px;'}"
                 },
                 "version": "3.1.2",
                 "connector": "cyops_utilities",
-                "operation": "format_richtext",
-                "operationTitle": "Utils: Format as RichText",
+                "operation": "json_to_html",
+                "operationTitle": "Utils: Convert JSON into a HTML Table",
                 "step_variables": []
             },
             "status": null,
-            "top": "510",
-            "left": "3700",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "e5325490-0496-46fb-8360-3c080070f09a"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Configuration",
-            "description": null,
-            "arguments": {
-                "whoisdata_dict": "{}",
-                "categories_dict": "{}",
-                "googleMapAPIkey": "AIzaSyDy4tlleelMlMRB-HuBbgxeBMrfUJQF2ZE",
-                "indicator_value": "{{vars.input.params['indicator_value'] | ternary(vars.input.params['indicator_value'],vars.input.records[0].value) }}",
-                "foundAnomaliReputation": "false",
-                "foundIpStackReputation": "false",
-                "VT_reputation_threshold": "5",
-                "foundDomainMxReputation": "false"
-            },
-            "status": null,
-            "top": "590",
-            "left": "775",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "c7d49c77-3393-4096-aeea-2a15eb88e60c"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Get Domain Reputation from VT",
-            "description": null,
-            "arguments": {
-                "name": "VirusTotal",
-                "config": "1ba6a7ef-304a-4f78-855d-70b09bcd0b0a",
-                "params": {
-                    "domain": "{{vars.indicator_value}}",
-                    "relationships": ""
-                },
-                "version": "2.2.0",
-                "connector": "virustotal",
-                "operation": "query_domain",
-                "operationTitle": "Get Domain Reputation",
-                "step_variables": {
-                    "temp": "{% if vars.result.data.attributes.whois.raw %}{%- for item in vars.result.data.attributes.whois.raw[0].split(\"\\n\") -%}{%- set key = item.split(\":\")[0] -%}{%- set value = item.split(\":\")[1:] | join(\"\") -%}{%if value and key%}{{vars.whoisdata_dict.update({key:value})}}{%endif%}{%- endfor -%}{%endif%}",
-                    "community_votes": "{{vars.result.data.attributes['total_votes']}}",
-                    "last_analysis_stats": "{{vars.result.data.attributes['last_analysis_stats']}}"
-                },
-                "operationOutput": {
-                    "scans": [],
-                    "total": "",
-                    "scan_id": "",
-                    "resource": "",
-                    "aggregate": "",
-                    "permalink": "",
-                    "positives": "",
-                    "scan_date": "",
-                    "verbose_msg": ""
-                }
-            },
-            "status": null,
             "top": "990",
+            "left": "2075",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "uuid": "ce1b520d-ac41-4e6d-be90-daa7071c213a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Enrichment Status to In Process",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "enrichmentStatus": "\/api\/3\/picklists\/8a4609d2-8a3d-4bda-9888-5f00bfea43cb"
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/indicators",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "385",
             "left": "1100",
-            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "bdff946f-c4c4-4352-97db-7893d0fdae22"
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "uuid": "b743df58-fd04-427e-9125-00ef1b51551c"
         },
         {
             "@type": "WorkflowStep",
@@ -221,10 +139,140 @@
                 }
             },
             "status": null,
-            "top": "670",
+            "top": "350",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
             "uuid": "cd83e6de-2150-42f6-abfe-fd6c94f5b140"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Geo Locate Domain",
+            "description": null,
+            "arguments": {
+                "name": "IPStack",
+                "config": "89a736ae-5c81-45d0-9ad3-8a4e7189f7c7",
+                "params": {
+                    "query": "{{vars.indicator_value}}",
+                    "fields": "",
+                    "enable_hostname": false,
+                    "enable_security": false
+                },
+                "version": "1.0.0",
+                "connector": "ipstack",
+                "operation": "domain_locate",
+                "ignore_errors": true,
+                "operationTitle": "Geolocate Domain",
+                "step_variables": {
+                    "foundIpStackReputation": "{{ ( vars.result.data and (vars.result.data | length > 0) ) | ternary(true,false) }}"
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "3050",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "f348012e-4eee-4b6e-a8e3-ba6123e02494"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Referenced",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Referenced",
+                        "step_iri": "\/api\/3\/workflow_steps\/e948308e-ab85-427b-a610-379f8466a7b6",
+                        "condition": "{{ vars.input.params['indicator_value'] | length > 0 }}"
+                    },
+                    {
+                        "option": "Upon Create",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/c61c6a5a-37b6-42e8-9fd0-4d02026d2ffe"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "510",
+            "left": "4675",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "c36585d8-39b5-4f17-a64d-76373e5681fd"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Enrichment Summary",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "value": "{{vars.steps.Compute_VT_Summary.data['formatted_string']}} \n\n{{vars.steps.Compute_Fortinet_Web_Filter_Summary.data['formatted_string']}}\n\n{{vars.steps.Compute_Anomali_Summary.data['formatted_string']}}\n\n{{vars.steps.Compute_IP_Stack_Summary.data['formatted_string']}}\n\n{{vars.steps.Compute_AV_OTX_Summary.data['formatted_string']}}\n\n{{vars.steps.Compute_VT_Whois.data['formatted_string']}}\n\n{{vars.steps.Compute_URLVoid_Summary.data['formatted_string']}}  \n\n{{vars.steps.Compute_MxToolbox_Summary.data['formatted_string']}}\n\n\n\n "
+                },
+                "version": "3.1.2",
+                "connector": "cyops_utilities",
+                "operation": "format_richtext",
+                "operationTitle": "Utils: Format as RichText",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "510",
+            "left": "4350",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "uuid": "e5325490-0496-46fb-8360-3c080070f09a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "whoisdata_dict": "{}",
+                "categories_dict": "{}",
+                "googleMapAPIkey": "AIzaSyDy4tlleelMlMRB-HuBbgxeBMrfUJQF2ZE",
+                "indicator_value": "{{vars.input.params['indicator_value'] | ternary(vars.input.params['indicator_value'],vars.input.records[0].value) }}",
+                "foundAnomaliReputation": "false",
+                "foundIpStackReputation": "false",
+                "VT_reputation_threshold": "5",
+                "foundDomainMxReputation": "false"
+            },
+            "status": null,
+            "top": "430",
+            "left": "1425",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "uuid": "c7d49c77-3393-4096-aeea-2a15eb88e60c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Domain Reputation from VT",
+            "description": null,
+            "arguments": {
+                "name": "VirusTotal",
+                "config": "1ba6a7ef-304a-4f78-855d-70b09bcd0b0a",
+                "params": {
+                    "domain": "{{vars.indicator_value}}",
+                    "relationships": ""
+                },
+                "version": "2.2.0",
+                "connector": "virustotal",
+                "operation": "query_domain",
+                "operationTitle": "Get Domain Reputation",
+                "step_variables": {
+                    "temp": "{% if vars.result.data.attributes.whois.raw %}{%- for item in vars.result.data.attributes.whois.raw[0].split(\"\\n\") -%}{%- set key = item.split(\":\")[0] -%}{%- set value = item.split(\":\")[1:] | join(\"\") -%}{%if value and key%}{{vars.whoisdata_dict.update({key:value})}}{%endif%}{%- endfor -%}{%endif%}",
+                    "community_votes": "{{vars.result.data.attributes['total_votes']}}",
+                    "last_analysis_stats": "{{vars.result.data.attributes['last_analysis_stats']}}"
+                },
+                "operationOutput": {
+                    "scans": [],
+                    "total": "",
+                    "scan_id": "",
+                    "resource": "",
+                    "aggregate": "",
+                    "permalink": "",
+                    "positives": "",
+                    "scan_date": "",
+                    "verbose_msg": ""
+                }
+            },
+            "status": null,
+            "top": "990",
+            "left": "1750",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "uuid": "bdff946f-c4c4-4352-97db-7893d0fdae22"
         },
         {
             "@type": "WorkflowStep",
@@ -243,7 +291,7 @@
             },
             "status": null,
             "top": "830",
-            "left": "2725",
+            "left": "3375",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "71262f7b-2ca2-4a9d-b3d6-98daf52c31eb"
         },
@@ -264,7 +312,7 @@
             },
             "status": null,
             "top": "670",
-            "left": "2725",
+            "left": "3375",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "6e80142c-e100-4c3a-9331-d3dea1e899de"
         },
@@ -285,7 +333,7 @@
             },
             "status": null,
             "top": "510",
-            "left": "2725",
+            "left": "3375",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "7ce5e74d-81c6-43a4-84a4-bb37a860df84"
         },
@@ -311,7 +359,7 @@
             },
             "status": null,
             "top": "510",
-            "left": "2400",
+            "left": "3050",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "uuid": "67dade2c-ffe3-4432-a2a1-ec9fda09a021"
         },
@@ -325,7 +373,8 @@
                         "recordTags": "{% if vars.foundAVReputation %}{{(vars.steps.Get_Reputation_from_AlienVault_OTX.data.results | json_query(\"[*].tags[]\") | unique | string).replace(\"[\",\"\").replace(\"]\",\"\").replace(\"?\",\"\").replace(\"\\'\",\"\").replace(\"#\",\"\").replace(\"\\\"\",\"\").replace(\"\/\",\"\").replace(\"*\",\"\")}}{%endif%}"
                     },
                     "reputation": "{{vars.Reputation_Type_IRI}}",
-                    "description": "{{vars.steps.Enrichment_Summary.data['formatted_string']}}"
+                    "description": "{{vars.steps.Enrichment_Summary.data['formatted_string']}}",
+                    "enrichmentStatus": "\/api\/3\/picklists\/c6e46fde-97a2-48cc-8019-938c9c5aebd0"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
@@ -339,7 +388,7 @@
             },
             "status": null,
             "top": "430",
-            "left": "4350",
+            "left": "5000",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "uuid": "c61c6a5a-37b6-42e8-9fd0-4d02026d2ffe"
         },
@@ -360,7 +409,7 @@
             },
             "status": null,
             "top": "990",
-            "left": "1750",
+            "left": "2400",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "b1c2bc42-49a2-4526-bf76-6aa2a1d8dc07"
         },
@@ -375,7 +424,7 @@
             },
             "status": null,
             "top": "590",
-            "left": "4350",
+            "left": "5000",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "uuid": "e948308e-ab85-427b-a610-379f8466a7b6"
         },
@@ -396,7 +445,7 @@
             },
             "status": null,
             "top": "30",
-            "left": "2725",
+            "left": "3375",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "cf944cdf-7c04-44e9-b24a-e4bcbc8f7867"
         },
@@ -421,7 +470,7 @@
             },
             "status": null,
             "top": "830",
-            "left": "2400",
+            "left": "3050",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "uuid": "9790f155-c532-4cbf-a01c-91532e75b7b7"
         },
@@ -448,7 +497,7 @@
             },
             "status": null,
             "top": "350",
-            "left": "2400",
+            "left": "3050",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "uuid": "0f663873-b5a4-4da6-9d1a-7cbd3291ee32"
         },
@@ -476,7 +525,7 @@
             },
             "status": null,
             "top": "190",
-            "left": "2400",
+            "left": "3050",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "uuid": "1a6270be-a68a-42de-899f-1671eeaeae31"
         },
@@ -503,7 +552,7 @@
             },
             "status": null,
             "top": "670",
-            "left": "2400",
+            "left": "3050",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "uuid": "5c8c73f6-ac44-40bf-b105-889744be474c"
         },
@@ -516,8 +565,8 @@
                 "Reputation_Type_Text": "Malicious"
             },
             "status": null,
-            "top": "350",
-            "left": "3375",
+            "top": "190",
+            "left": "4025",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "uuid": "a8293e3a-dfba-4a75-944a-30c2b32bd8e9"
         },
@@ -530,8 +579,8 @@
                 "Reputation_Type_Text": "No Reputation Available"
             },
             "status": null,
-            "top": "670",
-            "left": "3375",
+            "top": "510",
+            "left": "4025",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "uuid": "ba00839d-3f7c-4c58-9482-3dd90983dfa9"
         },
@@ -552,33 +601,9 @@
             },
             "status": null,
             "top": "190",
-            "left": "2725",
+            "left": "3375",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "5c6d7aa6-4e30-46aa-8024-fc64d18bfff9"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Whois Information from VT",
-            "description": null,
-            "arguments": {
-                "when": "{{(vars.whoisdata_dict | length > 0)}}",
-                "params": {
-                    "data": "{{vars.whoisdata_dict}}",
-                    "styling": true,
-                    "row_fields": "",
-                    "table_style": "{ 'width':'auto','font':'10px;'}"
-                },
-                "version": "3.1.2",
-                "connector": "cyops_utilities",
-                "operation": "json_to_html",
-                "operationTitle": "Utils: Convert JSON into a HTML Table",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "990",
-            "left": "1425",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "ce1b520d-ac41-4e6d-be90-daa7071c213a"
         },
         {
             "@type": "WorkflowStep",
@@ -597,7 +622,7 @@
             },
             "status": null,
             "top": "350",
-            "left": "2725",
+            "left": "3375",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "4afa73d0-65bc-4fad-b42c-8f34a4d3308a"
         },
@@ -610,8 +635,8 @@
                 "Reputation_Type_Text": "Good"
             },
             "status": null,
-            "top": "510",
-            "left": "3375",
+            "top": "350",
+            "left": "4025",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "uuid": "76a57575-4e0f-46f7-a42f-3afca8f2f2c3"
         },
@@ -632,7 +657,7 @@
             },
             "status": null,
             "top": "990",
-            "left": "2725",
+            "left": "3375",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "c761b8c1-bd93-42b4-88e1-aa20c8573367"
         },
@@ -645,8 +670,8 @@
                 "Reputation_Type_Text": "Suspicious"
             },
             "status": null,
-            "top": "830",
-            "left": "3375",
+            "top": "670",
+            "left": "4025",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "uuid": "4da003d4-3f6a-4158-a76f-a871a13fc41f"
         },
@@ -670,7 +695,7 @@
             },
             "status": null,
             "top": "990",
-            "left": "2075",
+            "left": "2725",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "c0e5e044-60a7-4231-84e0-b47bbcd7cf45"
         },
@@ -694,35 +719,9 @@
             },
             "status": null,
             "top": "990",
-            "left": "2400",
+            "left": "3050",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "339ec637-3adb-40e0-b9ca-08242859304f"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Is Dedicated Tenant Record",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Yes, Enrich at Tenant Node",
-                        "step_iri": "\/api\/3\/workflow_steps\/22afb2fc-20ce-4da4-a59f-4773684459a0",
-                        "condition": "{{ 'tenant' in vars.input.records[0] and vars.input.records[0].tenant.isDedicated and vars.input.records[0].tenant.role != 'self' }}",
-                        "step_name": "Exit"
-                    },
-                    {
-                        "option": "No, Enrich Here",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/c7d49c77-3393-4096-aeea-2a15eb88e60c",
-                        "step_name": "Configuration"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "670",
-            "left": "450",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "940f7cb2-8e66-435b-a8ca-332f0d5f6514"
         },
         {
             "@type": "WorkflowStep",
@@ -737,7 +736,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "750",
+            "top": "270",
             "left": "775",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "uuid": "22afb2fc-20ce-4da4-a59f-4773684459a0"
@@ -776,9 +775,61 @@
             },
             "status": null,
             "top": "510",
-            "left": "3050",
+            "left": "3700",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "uuid": "7cd3addf-43dd-4691-9844-9d4e37532479"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Dedicated Tenant Record",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes, Enrich at Tenant Node",
+                        "step_iri": "\/api\/3\/workflow_steps\/22afb2fc-20ce-4da4-a59f-4773684459a0",
+                        "condition": "{{ 'tenant' in vars.input.records[0] and vars.input.records[0].tenant.isDedicated and vars.input.records[0].tenant.role != 'self' }}",
+                        "step_name": "Exit"
+                    },
+                    {
+                        "option": "No, Enrich Here",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/e3538c66-59c5-4233-a04b-dee5c905d232",
+                        "step_name": "Is Referenced Playbook"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "350",
+            "left": "450",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "940f7cb2-8e66-435b-a8ca-332f0d5f6514"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Referenced Playbook",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/c7d49c77-3393-4096-aeea-2a15eb88e60c",
+                        "condition": "{{ vars.input.params['indicator_value'] | length > 0 }}",
+                        "step_name": "Configuration"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/b743df58-fd04-427e-9125-00ef1b51551c",
+                        "step_name": "Update Enrichment Status to In Process"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "430",
+            "left": "775",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "uuid": "e3538c66-59c5-4233-a04b-dee5c905d232"
         }
     ],
     "routes": [
@@ -1126,12 +1177,39 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Has Dedicated Tenant Record -> Configuration",
+            "name": "Update Enrichment Status to In Process -> Configuration",
             "targetStep": "\/api\/3\/workflow_steps\/c7d49c77-3393-4096-aeea-2a15eb88e60c",
+            "sourceStep": "\/api\/3\/workflow_steps\/b743df58-fd04-427e-9125-00ef1b51551c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "92342932-4610-4ec4-9eb4-95b9cc2fe49b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Dedicated Tenant Record -> Is Referenced Playbook",
+            "targetStep": "\/api\/3\/workflow_steps\/e3538c66-59c5-4233-a04b-dee5c905d232",
             "sourceStep": "\/api\/3\/workflow_steps\/940f7cb2-8e66-435b-a8ca-332f0d5f6514",
             "label": "No, Enrich Here",
             "isExecuted": false,
-            "uuid": "cf972e97-acc8-420e-be45-64ee58cf1ae1"
+            "uuid": "3377c324-1d35-488e-8464-4b88e7070ff2"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Referenced Playbook -> Update Enrichment Status to In Process",
+            "targetStep": "\/api\/3\/workflow_steps\/b743df58-fd04-427e-9125-00ef1b51551c",
+            "sourceStep": "\/api\/3\/workflow_steps\/e3538c66-59c5-4233-a04b-dee5c905d232",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "77e29f48-ab91-4ef8-a1a5-0100cafed89d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Referenced Playbook -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/c7d49c77-3393-4096-aeea-2a15eb88e60c",
+            "sourceStep": "\/api\/3\/workflow_steps\/e3538c66-59c5-4233-a04b-dee5c905d232",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "5cd9baf8-d769-46a1-991c-217499695b19"
         }
     ],
     "priority": null,

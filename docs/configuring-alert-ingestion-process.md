@@ -1,4 +1,4 @@
-| [Home](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/develop/README.md) |
+| [Home](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/README.md) |
 |--------------------------------------------|
 
 # Configuring Alert Ingestion Process
@@ -9,7 +9,7 @@ The **Data Ingestion** page displays all the connectors that are installed and c
 
 To view the **Data Ingestion** page, log on to FortiSOAR. On the left navigation pane, click **Automation** > **Data Ingestion**. This page displays connectors that are enabled for data ingestion, along with the count of configurations available for that connector.
 
-![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/develop/docs/res/data-ingestion-page.png)
+![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/docs/res/data-ingestion-page.png)
 
 1. To configure a connector for data ingestion, refer to the document [Configuring a connector in FortiSOAR](https://docs.fortinet.com/document/fortisoar/0.0.0/configuring-a-connector/1/configuring-a-connector#Configuring_a_connector_in_FortiSOAR_). Following connectors are installed, by default, with SOAR Framework Solution Pack:
 

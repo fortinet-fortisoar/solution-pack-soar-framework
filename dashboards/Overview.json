@@ -325,6 +325,93 @@
                                     "query": {
                                         "sort": [
                                             {
+                                                "field": "closureReason.orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ],
+                                        "limit": 2147483647,
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "status",
+                                                "operator": "eq",
+                                                "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                                                "_value": {
+                                                    "itemValue": "Closed",
+                                                    "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232"
+                                                },
+                                                "type": "object"
+                                            },
+                                            {
+                                                "logic": "AND",
+                                                "filters": [
+                                                    {
+                                                        "field": "resolveddate",
+                                                        "operator": "gte",
+                                                        "value": "{{getRelativeDate(0,0,-30,\"start\",\"start\",\"start\")}}",
+                                                        "type": "datetime"
+                                                    }
+                                                ],
+                                                "_field": "resolveddate",
+                                                "_value": {
+                                                    "differenceType": "days",
+                                                    "differenceValue": -30
+                                                },
+                                                "_operator": "gte",
+                                                "type": "datetime"
+                                            }
+                                        ],
+                                        "aggregates": [
+                                            {
+                                                "operator": "countdistinct",
+                                                "field": "*",
+                                                "alias": "total"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "closureReason",
+                                                "field": "closureReason.itemValue"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "color",
+                                                "field": "closureReason.color"
+                                            },
+                                            {
+                                                "operator": "groupby",
+                                                "alias": "orderIndex",
+                                                "field": "closureReason.orderIndex"
+                                            }
+                                        ]
+                                    },
+                                    "mapping": {
+                                        "assignedToPerson": "",
+                                        "fieldName": "closureReason",
+                                        "firstGrouping": "incidentLead",
+                                        "secondGrouping": "severity"
+                                    },
+                                    "aggregate": true,
+                                    "wid": "357e0152-1168-49ef-b6ac-bb212a294edb",
+                                    "title": "Closure Reasons In Last 30 Days",
+                                    "resource": "alerts",
+                                    "chart": "donut",
+                                    "barStyle": "vertical",
+                                    "widgetAlwaysDisplay": true,
+                                    "assignedToSetting": "onlyMe",
+                                    "showCount": true
+                                }
+                            }
+                        ],
+                        "style": "col-lg-3"
+                    },
+                    {
+                        "widgets": [
+                            {
+                                "type": "chart",
+                                "config": {
+                                    "query": {
+                                        "sort": [
+                                            {
                                                 "field": "incidentLead.firstname",
                                                 "direction": "ASC"
                                             },
@@ -385,15 +472,17 @@
                                         "secondGrouping": "severity"
                                     },
                                     "aggregate": true,
-                                    "wid": "357e0152-1168-49ef-b6ac-bb212a294edb",
+                                    "wid": "4eebbf2e-ebb5-468b-aea8-aef227fe676d",
                                     "title": "Analyst Workload",
                                     "resource": "incidents",
                                     "chart": "bar",
-                                    "barStyle": "vertical"
+                                    "barStyle": "vertical",
+                                    "widgetAlwaysDisplay": true,
+                                    "assignedToSetting": "onlyMe"
                                 }
                             }
                         ],
-                        "style": "col-lg-4"
+                        "style": "col-lg-3"
                     },
                     {
                         "widgets": [
@@ -455,7 +544,7 @@
                                 }
                             }
                         ],
-                        "style": "col-lg-4"
+                        "style": "col-lg-3"
                     },
                     {
                         "widgets": [
@@ -533,12 +622,14 @@
                                 }
                             }
                         ],
-                        "style": "col-lg-4"
+                        "style": "col-lg-3"
                     }
                 ],
                 "wid": "1b5de2f2-6c29-46f6-bb32-5fa3147858a4",
                 "container": true,
-                "_collapsed": false
+                "_collapsed": false,
+                "collapsible": false,
+                "collapsibleIndex": 0
             },
             {
                 "columns": [
@@ -792,7 +883,10 @@
                 "_collapsed": false
             }
         ],
-        "wid": "ec834d77-403b-4dfa-abda-719402adbb17"
+        "wid": "ec834d77-403b-4dfa-abda-719402adbb17",
+        "metadata": {
+            "customTemplateTitle": "Dashboard"
+        }
     },
     "filterArray": [],
     "updateDate": 1583387971

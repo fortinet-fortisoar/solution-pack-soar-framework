@@ -1,4 +1,4 @@
-| [Home](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/develop/README.md) |
+| [Home](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/README.md) |
 |--------------------------------------------|
 
 # Extending Default Indicator Extraction Process
@@ -19,11 +19,11 @@ Navigate to **Automation** > **Playbooks** > **03 – Enrich** > **Extract Indic
 
 Navigate to **Automation** > **Playbooks** and click any playbook collection. A list of included playbooks appears on the left. Click any playbook and go to **Tools** > **Global Variables**.
 
-![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/develop/docs/res/global-variables.png)
+![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/docs/res/global-variables.png)
 
 From the Global variables on the left, click the edit button on `Indicator_Type_Map` to edit it.
 
-![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/develop/docs/res/indicator-type-map.png)
+![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/docs/res/indicator-type-map.png)
 
 Following is the default JSON contained in **Field Value** of the `Indicator_Type_Map` global variable. The key-value pairs are in the format `<FieldAPIKey>:<FieldType>`
 
