@@ -140,4 +140,3 @@ As part of the alert ingestion process, you may need to add additional fields. F
 | 101   | UUID                             | `uuid`                  |                |
 | 102   | Vulnerability  Severity          | `vulnerabilitySeverity` | `Integer`      |
 | 103   | War Rooms                        | `warrooms`              | `Many To Many` |
-
