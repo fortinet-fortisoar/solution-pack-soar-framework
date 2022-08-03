@@ -1,4 +1,4 @@
-| [Home](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/develop/README.md) |
+| [Home](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/README.md) |
 |--------------------------------------------|
 
 # Extending Default Indicator Enrichment Process
@@ -25,7 +25,7 @@ Consider a playbook **Indicator (Type Domain) - GetReputation** under the playbo
 
 To add a step parallel to **Get Reputation...** refer to [playbooks steps in the playbooks guide](https://docs.fortinet.com/document/fortisoar/7.0.2/playbooks-guide/784146/triggers-steps#Playbook_Steps_..5). Following is the **Indicator (Type Domain) - GetReputation** playbook.
 
-![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/develop/docs/res/indicator-domain-get-reputation-playbook.png)
+![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/docs/res/indicator-domain-get-reputation-playbook.png)
 
 Subsequent steps help add a playbook step that fetches information from **VirusTotal**<sup>TM</sup>.
 

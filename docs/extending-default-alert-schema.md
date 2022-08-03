@@ -1,4 +1,4 @@
-| [Home](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/develop/README.md) |
+| [Home](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/README.md) |
 |--------------------------------------------|
 
 # Extending Default Alert Schema
@@ -140,4 +140,3 @@ As part of the alert ingestion process, you may need to add additional fields. F
 | 101   | UUID                             | `uuid`                  |                |
 | 102   | Vulnerability  Severity          | `vulnerabilitySeverity` | `Integer`      |
 | 103   | War Rooms                        | `warrooms`              | `Many To Many` |
-
