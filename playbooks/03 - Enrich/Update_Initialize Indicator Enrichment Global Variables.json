@@ -1,0 +1,153 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Update\/Initialize Indicator Enrichment Global Variables",
+    "aliasName": null,
+    "tag": null,
+    "description": "Update enrichment playbooks list global variable based on indicator type defined as param tag",
+    "isActive": true,
+    "debug": true,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "enrichmentTag",
+        "enrichmentGlobalVar"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/fcf6482e-999a-4d96-91a5-7d1168413633",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Include Only Configured Connectors",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.activeWorkflows}}",
+                    "__bulk": false,
+                    "parallel": true,
+                    "condition": ""
+                },
+                "arguments": {
+                    "playbookIRI": "{{ vars.item }}"
+                },
+                "apply_async": false,
+                "step_variables": {
+                    "filteredActiveWorkflows": "{{ vars.result | json_query('[*].playbookList[]') }}"
+                },
+                "pass_input_record": false,
+                "workflowReference": "\/api\/3\/workflows\/f0ded47b-6297-4049-89dc-54572aea450b"
+            },
+            "status": null,
+            "top": "260",
+            "left": "460",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "6ded71b0-705d-4a6c-b5e6-a3a7a02c289b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Indicators Enrichment Global Variable",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "macro": "{{vars.input.params.enrichmentGlobalVar}}",
+                    "value": "{% if vars.filteredActiveWorkflows %}{{vars.filteredActiveWorkflows|join(',')}}{% else %}NoEnrichmentAvailable{% endif %}"
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "updatemacro",
+                "operationTitle": "FSR: Create\/Update Global Variables",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "380",
+            "left": "620",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "d3d64055-5763-4865-aa27-90a5698654f5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "fcf6482e-999a-4d96-91a5-7d1168413633"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Workflows",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "query": "{\n    \"sort\": [\n        {\n            \"field\": \"createDate\",\n            \"direction\": \"DESC\",\n            \"_fieldName\": \"createDate\"\n        }\n    ],\n    \"limit\": 90,\n    \"logic\": \"AND\",\n    \"filters\": [\n        {\n            \"field\": \"recordTags\",\n            \"value\": [\"{{vars.input.params['enrichmentTag']}}\"],\n            \"display\": \"\",\n            \"operator\": \"in\",\n            \"type\": \"array\",\n            \"OPERATOR_KEY\": \"$\"\n        },\n        {\n            \"field\": \"isActive\",\n            \"value\": true,\n            \"operator\": \"eq\"\n        }\n    ],\n    \"__selectFields\": [\n        \"id\", \"name\"\n    ]\n}",
+                    "resource": "workflows"
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "query_cyops_resource",
+                "operationTitle": "FSR: Find Record",
+                "step_variables": {
+                    "activeWorkflows": "{{vars.result.data|json_query(\"[][\\\"@id\\\"][]\")}}"
+                }
+            },
+            "status": null,
+            "top": "140",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "e15128d3-0b5f-4c66-9bdf-ed781bbc1713"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Workflows -> Include Only Configured Connectors",
+            "targetStep": "\/api\/3\/workflow_steps\/6ded71b0-705d-4a6c-b5e6-a3a7a02c289b",
+            "sourceStep": "\/api\/3\/workflow_steps\/e15128d3-0b5f-4c66-9bdf-ed781bbc1713",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "824797aa-6ab1-4e0c-a58b-2355c10a3739"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Workflows",
+            "targetStep": "\/api\/3\/workflow_steps\/e15128d3-0b5f-4c66-9bdf-ed781bbc1713",
+            "sourceStep": "\/api\/3\/workflow_steps\/fcf6482e-999a-4d96-91a5-7d1168413633",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "206cb47c-8841-4f81-b2ee-36a4fc2573db"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Include Only Configured Connectors -> Update Indicators Enrichment Global Variable",
+            "targetStep": "\/api\/3\/workflow_steps\/d3d64055-5763-4865-aa27-90a5698654f5",
+            "sourceStep": "\/api\/3\/workflow_steps\/6ded71b0-705d-4a6c-b5e6-a3a7a02c289b",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "19c343f2-a843-4730-8e1f-648d6606388e"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "e1fbff9b-8397-4b2e-afd7-676251acf064",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Utility",
+        "Enrichment"
+    ]
+}
