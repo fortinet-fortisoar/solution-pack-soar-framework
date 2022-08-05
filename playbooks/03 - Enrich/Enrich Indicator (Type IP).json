@@ -1,0 +1,330 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Enrich Indicator (Type IP)",
+    "aliasName": null,
+    "tag": "#Subroutine",
+    "description": "Pre-process the IP Address indicator",
+    "isActive": true,
+    "debug": true,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "indicator_value",
+        "enrichmentPlaybooksList",
+        "style_colors"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/038b86c3-5b70-402c-ac3a-b4b9e575f667",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Indicator Reputation",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.input.params.enrichmentPlaybooksList}}",
+                    "__bulk": false,
+                    "parallel": true,
+                    "condition": ""
+                },
+                "arguments": {
+                    "style_colors": "{{vars.style_colors}}",
+                    "indicator_value": "{{vars.indicator_value}}",
+                    "reputation_threshold": "{{vars.malicious_threshold}}"
+                },
+                "apply_async": false,
+                "ignore_errors": false,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "{{vars.item}}"
+            },
+            "status": null,
+            "top": "100",
+            "left": "800",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "d0440918-84e1-4a37-b3a3-adb5bce4e1dc"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Compute Private IP Summary",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.hostname != \"\"}}",
+                "params": {
+                    "value": "{% if vars.hostname %}\n<div class=\"card-container-body\" style=\"width: 280px;\">\n<div class=\"card-number\"><span class=\"card-count\">0<\/span>\n<div class=\"font-size-12 ng-binding\">Hostname: {{vars.hostname}}<\/div>\n{%else%}\n<div class=\"card-container-body\" style=\"width: 280px;\">\n<div class=\"card-number\"><span class=\"card-count\">0<\/span>\n<div class=\"font-size-12 ng-binding\">Hostname: Not Available <i class=\"icon icon-information margin-left-sm\" title=\"nslookup could not find hostname\"><\/i>\n<\/div>\n\n {%endif%}\n<div class=\"font-size-14 ng-binding\"><strong>Internal IP<\/strong><\/div>\n<\/div>\n<\/div>"
+                },
+                "version": "3.0.4",
+                "connector": "cyops_utilities",
+                "operation": "format_richtext",
+                "operationTitle": "Utils: Format as RichText",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "480",
+            "left": "480",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "233f2afb-32b4-423e-a678-70f6bcca4796"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set No Reputation for Private IP",
+            "description": null,
+            "arguments": {
+                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"No Reputation Available\"))[\"@id\"]}}",
+                "Reputation_Type_Text": "No Reputation Available"
+            },
+            "status": null,
+            "top": "580",
+            "left": "480",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "9671b5ab-6024-4d0d-aea4-a2f1b87e22a0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Private IP Summary",
+            "description": null,
+            "arguments": {
+                "completed": "True",
+                "reputation": "{{vars.Reputation_Type_Text}}",
+                "reputation_iri": "{{vars.Reputation_Type_IRI}}",
+                "enrichment_summary": "{{vars.steps.Compute_Private_IP_Summary.data['formatted_string']}}"
+            },
+            "status": null,
+            "top": "680",
+            "left": "480",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "e4a0de23-7673-4138-b940-90278fe758d7"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Integrations Available for Enrichment",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/d0440918-84e1-4a37-b3a3-adb5bce4e1dc",
+                        "condition": "{{ \"\/api\/3\/workflows\" in vars.enrichmentPlaybooksList[0] }}",
+                        "step_name": "Get Indicator Reputation"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/d34bc754-17d3-4bbc-b2d4-61d113280967",
+                        "step_name": "No Op"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "180",
+            "left": "480",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "32a86be9-1ae9-45b3-b119-2783e46bf8c2"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "40",
+            "left": "160",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "038b86c3-5b70-402c-ac3a-b4b9e575f667"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is IP Private",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "no",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/32a86be9-1ae9-45b3-b119-2783e46bf8c2",
+                        "step_name": "Integrations Available for Enrichment"
+                    },
+                    {
+                        "option": "yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/3751b4eb-ef67-4730-8514-39d8438bff4a",
+                        "condition": "{{ vars.steps.Match_IP_in_Internal_Subnets.data['matched_cidr_ip']|length > 0 }}",
+                        "step_name": "Reverse DNS"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "260",
+            "left": "160",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "12312657-c79c-4353-bafb-a2d9db2db764"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "No Op",
+            "description": null,
+            "arguments": {
+                "verdict": "no_op"
+            },
+            "status": null,
+            "top": "240",
+            "left": "800",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "d34bc754-17d3-4bbc-b2d4-61d113280967"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Match IP in Internal Subnets",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "cidr": "['10.0.0.0\/8','172.16.0.0\/12','192.168.0.0\/16']",
+                    "ip_address": "{{vars.input.params['indicator_value']}}"
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "ip_cidr_check",
+                "operationTitle": "Utils: Is IP in CIDR",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "140",
+            "left": "160",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "c4715c54-e1da-4e43-9884-735b68dc9a2c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Reverse DNS",
+            "description": null,
+            "arguments": {
+                "config": "0e7a1d6d-1ab7-4d97-bbd3-f680d4dc676a",
+                "params": {
+                    "python_function": "try:\n    import dns.resolver,dns.reversename\n    addrs = dns.reversename.from_address(\"{{vars.record}}\")\n    print(str(dns.resolver.query(addrs,\"PTR\")[0]))\nexcept:\n    print('Hostname Not Resolvable')"
+                },
+                "version": "1.2.5",
+                "connector": "code-snippet",
+                "operation": "python_inline",
+                "operationTitle": "Execute Python Code",
+                "step_variables": {
+                    "hostname": "{{vars.result.data['code_output']}}"
+                }
+            },
+            "status": null,
+            "top": "380",
+            "left": "480",
+            "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
+            "group": null,
+            "uuid": "3751b4eb-ef67-4730-8514-39d8438bff4a"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Integrations Available for Enrichment -> Get Indicator Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/d0440918-84e1-4a37-b3a3-adb5bce4e1dc",
+            "sourceStep": "\/api\/3\/workflow_steps\/32a86be9-1ae9-45b3-b119-2783e46bf8c2",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "0aa85c97-b704-4e86-bfd2-d04e8886c98c"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Match IP in Internal Subnets -> Is IP Private",
+            "targetStep": "\/api\/3\/workflow_steps\/12312657-c79c-4353-bafb-a2d9db2db764",
+            "sourceStep": "\/api\/3\/workflow_steps\/c4715c54-e1da-4e43-9884-735b68dc9a2c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "9ec1640d-496f-4d25-827b-e4e930bf2e54"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Reverse DNS -> Compute Private IP Summary",
+            "targetStep": "\/api\/3\/workflow_steps\/233f2afb-32b4-423e-a678-70f6bcca4796",
+            "sourceStep": "\/api\/3\/workflow_steps\/3751b4eb-ef67-4730-8514-39d8438bff4a",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "ccd1ac5b-8e3f-40c8-9956-eede5c58ae38"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is IP Private -> Integrations Available for Enrichment",
+            "targetStep": "\/api\/3\/workflow_steps\/32a86be9-1ae9-45b3-b119-2783e46bf8c2",
+            "sourceStep": "\/api\/3\/workflow_steps\/12312657-c79c-4353-bafb-a2d9db2db764",
+            "label": "no",
+            "isExecuted": false,
+            "uuid": "d247c40f-ae02-4f60-aa56-865ab2dc1663"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Integrations Available for Enrichment -> No Op",
+            "targetStep": "\/api\/3\/workflow_steps\/d34bc754-17d3-4bbc-b2d4-61d113280967",
+            "sourceStep": "\/api\/3\/workflow_steps\/32a86be9-1ae9-45b3-b119-2783e46bf8c2",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "1bfe4834-dfce-49a6-baba-bcfa4fbe6374"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Match IP in Internal Subnets",
+            "targetStep": "\/api\/3\/workflow_steps\/c4715c54-e1da-4e43-9884-735b68dc9a2c",
+            "sourceStep": "\/api\/3\/workflow_steps\/038b86c3-5b70-402c-ac3a-b4b9e575f667",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "4809e62a-ace3-4a88-a5be-82f12830256d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Set No Reputation for Private IP -> Private IP Summary",
+            "targetStep": "\/api\/3\/workflow_steps\/e4a0de23-7673-4138-b940-90278fe758d7",
+            "sourceStep": "\/api\/3\/workflow_steps\/9671b5ab-6024-4d0d-aea4-a2f1b87e22a0",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c4c3e67e-55b4-4439-bf5a-755880ca7221"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is IP Private -> Reverse DNS",
+            "targetStep": "\/api\/3\/workflow_steps\/3751b4eb-ef67-4730-8514-39d8438bff4a",
+            "sourceStep": "\/api\/3\/workflow_steps\/12312657-c79c-4353-bafb-a2d9db2db764",
+            "label": "yes",
+            "isExecuted": false,
+            "uuid": "59a2fb55-e01e-4604-9f92-ad7ebce22e24"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Compute Private IP Summary -> Set No Reputation for Private IP",
+            "targetStep": "\/api\/3\/workflow_steps\/9671b5ab-6024-4d0d-aea4-a2f1b87e22a0",
+            "sourceStep": "\/api\/3\/workflow_steps\/233f2afb-32b4-423e-a678-70f6bcca4796",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "6fbe396d-9faf-4d99-a7dc-708033fb2883"
+        }
+    ],
+    "groups": [],
+    "priority": null,
+    "uuid": "f5232ef8-cf0c-4e11-a7cc-af9dc37afded",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Enrichment"
+    ]
+}
