@@ -70,24 +70,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Start",
-            "description": null,
-            "arguments": {
-                "step_variables": {
-                    "input": {
-                        "params": []
-                    }
-                }
-            },
-            "status": null,
-            "top": "30",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "group": null,
-            "uuid": "fcf6482e-999a-4d96-91a5-7d1168413633"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Get Workflows",
             "description": null,
             "arguments": {
@@ -109,17 +91,35 @@
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "e15128d3-0b5f-4c66-9bdf-ed781bbc1713"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "fcf6482e-999a-4d96-91a5-7d1168413633"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Get Workflows -> Include Only Configured Connectors",
-            "targetStep": "\/api\/3\/workflow_steps\/6ded71b0-705d-4a6c-b5e6-a3a7a02c289b",
-            "sourceStep": "\/api\/3\/workflow_steps\/e15128d3-0b5f-4c66-9bdf-ed781bbc1713",
+            "name": "Include Only Configured Connectors -> Update Indicators Enrichment Global Variable",
+            "targetStep": "\/api\/3\/workflow_steps\/d3d64055-5763-4865-aa27-90a5698654f5",
+            "sourceStep": "\/api\/3\/workflow_steps\/6ded71b0-705d-4a6c-b5e6-a3a7a02c289b",
             "label": null,
             "isExecuted": false,
-            "uuid": "824797aa-6ab1-4e0c-a58b-2355c10a3739"
+            "uuid": "19c343f2-a843-4730-8e1f-648d6606388e"
         },
         {
             "@type": "WorkflowRoute",
@@ -132,12 +132,12 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Include Only Configured Connectors -> Update Indicators Enrichment Global Variable",
-            "targetStep": "\/api\/3\/workflow_steps\/d3d64055-5763-4865-aa27-90a5698654f5",
-            "sourceStep": "\/api\/3\/workflow_steps\/6ded71b0-705d-4a6c-b5e6-a3a7a02c289b",
+            "name": "Get Workflows -> Include Only Configured Connectors",
+            "targetStep": "\/api\/3\/workflow_steps\/6ded71b0-705d-4a6c-b5e6-a3a7a02c289b",
+            "sourceStep": "\/api\/3\/workflow_steps\/e15128d3-0b5f-4c66-9bdf-ed781bbc1713",
             "label": null,
             "isExecuted": false,
-            "uuid": "19c343f2-a843-4730-8e1f-648d6606388e"
+            "uuid": "824797aa-6ab1-4e0c-a58b-2355c10a3739"
         }
     ],
     "groups": [],
