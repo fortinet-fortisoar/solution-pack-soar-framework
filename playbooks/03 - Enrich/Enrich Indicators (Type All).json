@@ -84,6 +84,20 @@
         },
         {
             "@type": "WorkflowStep",
+            "name": "No Op",
+            "description": null,
+            "arguments": {
+                "nextStep": "no_op"
+            },
+            "status": null,
+            "top": "540",
+            "left": "1680",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "38f96cf3-1429-4996-b445-9eff4ddfc3ce"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Start",
             "description": "Indicator reputation is set as 'TBD' by 'Create and Link Indicator' utility playbook. We can ignore those indicators when triggering this PB",
             "arguments": {
@@ -257,38 +271,6 @@
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "3d7cb74b-d060-4933-9ebe-67579f88452b"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "No Integration Available",
-            "description": null,
-            "arguments": {
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "content": "<p>No integration available for enrichment<\/p>",
-                    "records": "{{vars.input.records[0]['@id']}}"
-                },
-                "resource": {
-                    "reputation": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
-                    "enrichmentStatus": "\/api\/3\/picklists\/c6e46fde-97a2-48cc-8019-938c9c5aebd0"
-                },
-                "operation": "Append",
-                "collection": "{{vars.input.records[0]['@id']}}",
-                "__recommend": [],
-                "collectionType": "\/api\/3\/indicators",
-                "fieldOperation": {
-                    "recordTags": "Append"
-                },
-                "step_variables": []
-            },
-            "status": null,
-            "top": "520",
-            "left": "1680",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "group": null,
-            "uuid": "4d9603ae-2f1c-48ed-a61a-60704a608db8"
         },
         {
             "@type": "WorkflowStep",
@@ -623,7 +605,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Has Integrations Available for Enrichment",
+            "name": "Integrations Available for Enrichment",
             "description": null,
             "arguments": {
                 "conditions": [
@@ -636,8 +618,8 @@
                     {
                         "option": "No",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/4d9603ae-2f1c-48ed-a61a-60704a608db8",
-                        "step_name": "No Integration Available"
+                        "step_iri": "\/api\/3\/workflow_steps\/38f96cf3-1429-4996-b445-9eff4ddfc3ce",
+                        "step_name": "No Op"
                     }
                 ]
             },
@@ -725,15 +707,6 @@
         }
     ],
     "routes": [
-        {
-            "@type": "WorkflowRoute",
-            "name": "Integrations Available for Enrichment -> No Integration Available",
-            "targetStep": "\/api\/3\/workflow_steps\/4d9603ae-2f1c-48ed-a61a-60704a608db8",
-            "sourceStep": "\/api\/3\/workflow_steps\/ea51391e-d9b2-4af6-ac63-497e61419238",
-            "label": "No",
-            "isExecuted": false,
-            "uuid": "2c76d783-403b-428c-aa1a-0f1a42016837"
-        },
         {
             "@type": "WorkflowRoute",
             "name": "Additional Checks for IP -> Compute Reputation Data",
@@ -958,6 +931,15 @@
             "label": "No",
             "isExecuted": false,
             "uuid": "770de2f5-b9c9-4cda-9cc7-0fc115c5e991"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Integrations Available for Enrichment -> No Op",
+            "targetStep": "\/api\/3\/workflow_steps\/38f96cf3-1429-4996-b445-9eff4ddfc3ce",
+            "sourceStep": "\/api\/3\/workflow_steps\/ea51391e-d9b2-4af6-ac63-497e61419238",
+            "label": "No",
+            "isExecuted": false,
+            "uuid": "fd27e8af-ad82-4169-89cf-602270343873"
         },
         {
             "@type": "WorkflowRoute",
