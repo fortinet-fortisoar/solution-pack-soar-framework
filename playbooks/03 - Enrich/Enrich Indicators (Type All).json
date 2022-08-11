@@ -20,319 +20,81 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Is Malicious",
+            "name": "Initialize Enrichment Playbooks List",
             "description": null,
             "arguments": {
-                "conditions": [
-                    {
-                        "option": "Malicious",
-                        "step_iri": "\/api\/3\/workflow_steps\/f9efb396-4f6d-496e-95b7-8132b4357f86",
-                        "condition": "{{ \"Malicious\" in vars.verdicts }}",
-                        "step_name": "Set Malicious"
-                    },
-                    {
-                        "option": "No Reputation",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/3d7cb74b-d060-4933-9ebe-67579f88452b",
-                        "step_name": "Set No Reputation"
-                    },
-                    {
-                        "option": "Suspicious",
-                        "step_iri": "\/api\/3\/workflow_steps\/3019b0d0-df56-4738-b599-8752a82af23e",
-                        "condition": "{{ \"Suspicious\" in vars.verdicts }}",
-                        "step_name": "Set Suspicious"
-                    },
-                    {
-                        "option": "Good",
-                        "step_iri": "\/api\/3\/workflow_steps\/90602b79-d420-44dd-95ad-c06e6c107585",
-                        "condition": "{{ \"Good\" in vars.verdicts }}",
-                        "step_name": "Set Good"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "920",
-            "left": "1680",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "group": null,
-            "uuid": "ddc214f4-d9c0-4600-b2e9-af0df3bc0377"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Is Supported Indicator Type",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "No",
-                        "step_iri": "\/api\/3\/workflow_steps\/a61c987a-3864-49a0-b0b9-8802e00805d2",
-                        "condition": "{{ vars.enrichmentGlobalVarForType == \"NotSupported_Playbooks_IRIs\" }}",
-                        "step_name": "Exit"
-                    },
-                    {
-                        "option": "Yes",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/38b44efe-c444-42c9-b0d9-a8efbfe3a0c6",
-                        "step_name": "Get Enrichment Playbooks List"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "460",
-            "left": "680",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "group": null,
-            "uuid": "50ce2052-a344-4374-9b94-e528860c111f"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Update Field Mapping",
-            "description": null,
-            "arguments": {
-                "when": "{{vars.field_mapping | length > 0}}",
-                "params": {
-                    "iri": "{{vars.input.records[0]['@id']}}",
-                    "body": "{{vars.field_mapping}}"
-                },
-                "version": "3.2.1",
-                "connector": "cyops_utilities",
-                "operation": "update_cyops_resource",
-                "operationTitle": "FSR: Update Record",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "980",
-            "left": "3220",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "acc4c661-464c-4c5d-b58d-b0e7a88008ee"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Configuration",
-            "description": null,
-            "arguments": {
-                "style_colors": "{\n\"Good\": \"#52c91a\",\n\"Malicious\": \"#c42323\",\n\"Suspicious\": \"#dbc030\",\n\"TBD\": \"#696969\",\n\"No Reputation Available\": \"#6a9169\"\n}",
-                "enrichmentTags": "{\"File\": \"File_Enrichment\",\"IP Address\": \"IP_Enrichment\",\"URL\": \"URL_Enrichment\",\"Domain\": \"Domain_Enrichment\",\"Email Address\": \"Email_Enrichment\",\"FileHash-MD5\": \"FileHash_Enrichment\",\"FileHash-SHA1\": \"FileHash_Enrichment\",\"FileHash-SHA256\": \"FileHash_Enrichment\"}"
-            },
-            "status": null,
-            "top": "160",
-            "left": "680",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "fbe06a74-ed1b-4e6c-9ab6-98350daed35f"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Set Malicious",
-            "description": null,
-            "arguments": {
-                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"Malicious\"))[\"@id\"]}}",
-                "Reputation_Type_Text": "Malicious"
-            },
-            "status": null,
-            "top": "700",
-            "left": "2160",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "f9efb396-4f6d-496e-95b7-8132b4357f86"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Is Dedicated Tenant Record",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Yes, Enrich at Tenant Node",
-                        "step_iri": "\/api\/3\/workflow_steps\/678a25cd-14af-49c7-9ea8-c3452585b910",
-                        "condition": "{{ 'tenant' in vars.input.records[0] and vars.input.records[0].tenant.isDedicated and vars.input.records[0].tenant.role != 'self' }}",
-                        "step_name": "Enrichment on Tenant"
-                    },
-                    {
-                        "option": "No, Enrich here",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/fbe06a74-ed1b-4e6c-9ab6-98350daed35f",
-                        "step_name": "Configuration"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "160",
-            "left": "260",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "group": null,
-            "uuid": "50a9c51c-6dbb-412c-83b3-fad2d88a9392"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Is Referenced",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Referenced",
-                        "step_iri": "\/api\/3\/workflow_steps\/ff1cda79-4318-46df-afd2-febe2d72c076",
-                        "condition": "{{ vars.input.params['indicator_value'] | length > 0 }}",
-                        "step_name": "Summary"
-                    },
-                    {
-                        "option": "Upon Create",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/f250ed61-15a3-458b-9436-7480c809f3ef",
-                        "step_name": "Update Record"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "880",
-            "left": "2540",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "group": null,
-            "uuid": "dd6f68af-fb89-41c3-9d36-036299d96c6d"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Update Enrichment Status to In Progress",
-            "description": null,
-            "arguments": {
-                "when": "{{not vars.input.params['indicator_value'] == None}}",
-                "resource": {
-                    "enrichmentStatus": "\/api\/3\/picklists\/8a4609d2-8a3d-4bda-9888-5f00bfea43cb"
-                },
-                "_showJson": false,
-                "operation": "Append",
-                "collection": "{{vars.input.records[0]['@id']}}",
-                "__recommend": [],
-                "collectionType": "\/api\/3\/indicators",
-                "fieldOperation": {
-                    "recordTags": "Append"
-                },
-                "step_variables": []
-            },
-            "status": null,
-            "top": "260",
-            "left": "680",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "group": null,
-            "uuid": "e7e931fb-79a9-422a-beb2-bfcee6012817"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Additional Checks for IP",
-            "description": null,
-            "arguments": {
+                "when": "{{vars.steps.Get_Enrichment_Playbooks_List.data['hydra:member'] | length == 0}}",
                 "arguments": {
-                    "style_colors": "{{vars.style_colors}}",
-                    "indicator_value": "{{vars.indicator_value}}",
-                    "enrichmentPlaybooksList": "{{vars.enrichmentPlaybooksList.split(\",\")}}"
+                    "enrichmentTag": "{{vars.enrichmentTag}}",
+                    "enrichmentGlobalVar": "{{vars.enrichmentGlobalVarForType}}"
                 },
                 "apply_async": false,
-                "ignore_errors": false,
-                "step_variables": [],
+                "step_variables": {
+                    "enrichmentPlaybooksList": "{{vars.result.data.value}}"
+                },
                 "pass_input_record": false,
-                "workflowReference": "\/api\/3\/workflows\/846a0e87-c5e9-4181-a9ab-f3b3f1e521cb"
+                "workflowReference": "\/api\/3\/workflows\/e1fbff9b-8397-4b2e-afd7-676251acf064"
+            },
+            "status": null,
+            "top": "580",
+            "left": "1040",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "2e62a551-037c-4a68-ade3-a6cf4186a487"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Suspicious",
+            "description": null,
+            "arguments": {
+                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"Suspicious\"))[\"@id\"]}}",
+                "Reputation_Type_Text": "Suspicious"
             },
             "status": null,
             "top": "800",
-            "left": "1380",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "5e280ff6-13e6-49eb-878a-217923163080"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Enrichment on Tenant",
-            "description": null,
-            "arguments": {
-                "params": [],
-                "version": "3.2.1",
-                "connector": "cyops_utilities",
-                "operation": "no_op",
-                "operationTitle": "Utils: No Operation",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "300",
-            "left": "260",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "678a25cd-14af-49c7-9ea8-c3452585b910"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Set No Reputation",
-            "description": null,
-            "arguments": {
-                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"No Reputation Available\"))[\"@id\"]}}",
-                "Reputation_Type_Text": "No Reputation Available"
-            },
-            "status": null,
-            "top": "1100",
             "left": "2160",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
-            "uuid": "3d7cb74b-d060-4933-9ebe-67579f88452b"
+            "uuid": "3019b0d0-df56-4738-b599-8752a82af23e"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Identify Enrichment Playbooks List",
+            "name": "Get Enrichment Playbooks List",
             "description": null,
             "arguments": {
-                "enrichmentTag": "\/api\/3\/tags\/{{vars.enrichmentTags.get(vars.indicator_type, \"NotSupported\")}}",
-                "enrichmentGlobalVarForType": "{{vars.enrichmentTags.get(vars.indicator_type, \"NotSupported\")}}_Playbooks_IRIs"
+                "params": {
+                    "iri": "\/api\/wf\/api\/dynamic-variable\/?limit=40&name={{vars.enrichmentGlobalVarForType}}",
+                    "body": "",
+                    "method": "GET"
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": {
+                    "enrichmentPlaybooksList": "{% if vars.result.data['hydra:member'] | length > 0 %}{{vars.result.data['hydra:member'][0].value}}{% endif %}"
+                }
             },
             "status": null,
-            "top": "360",
-            "left": "680",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "top": "460",
+            "left": "1040",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "95b508b7-10bc-4794-abd4-d75663111f73"
+            "uuid": "38b44efe-c444-42c9-b0d9-a8efbfe3a0c6"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get Indicator Reputation",
+            "name": "No Op",
             "description": null,
             "arguments": {
-                "for_each": {
-                    "item": "{{vars.enrichmentPlaybooksList.split(\",\")}}",
-                    "__bulk": false,
-                    "parallel": true,
-                    "condition": ""
-                },
-                "arguments": {
-                    "style_colors": "{{vars.style_colors}}",
-                    "indicator_value": "{{vars.indicator_value}}",
-                    "reputation_threshold": ""
-                },
-                "apply_async": false,
-                "ignore_errors": true,
-                "step_variables": [],
-                "pass_input_record": true,
-                "workflowReference": "{{vars.item}}"
+                "nextStep": "no_op"
             },
             "status": null,
-            "top": "680",
+            "top": "540",
             "left": "1680",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "56bdb18e-d7f9-416b-b49b-d582dac4d084"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Summary",
-            "description": null,
-            "arguments": {
-                "reputation": "{{vars.Reputation_Type_Text}}",
-                "reputation_iri": "{{vars.Reputation_Type_IRI}}",
-                "enrichment_summary": "{{vars.description}}"
-            },
-            "status": null,
-            "top": "740",
-            "left": "2880",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
-            "uuid": "ff1cda79-4318-46df-afd2-febe2d72c076"
+            "uuid": "38f96cf3-1429-4996-b445-9eff4ddfc3ce"
         },
         {
             "@type": "WorkflowStep",
@@ -497,6 +259,233 @@
         },
         {
             "@type": "WorkflowStep",
+            "name": "Set No Reputation",
+            "description": null,
+            "arguments": {
+                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"No Reputation Available\"))[\"@id\"]}}",
+                "Reputation_Type_Text": "No Reputation Available"
+            },
+            "status": null,
+            "top": "1100",
+            "left": "2160",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "3d7cb74b-d060-4933-9ebe-67579f88452b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Dedicated Tenant Record",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes, Enrich at Tenant Node",
+                        "step_iri": "\/api\/3\/workflow_steps\/678a25cd-14af-49c7-9ea8-c3452585b910",
+                        "condition": "{{ 'tenant' in vars.input.records[0] and vars.input.records[0].tenant.isDedicated and vars.input.records[0].tenant.role != 'self' }}",
+                        "step_name": "Enrichment on Tenant"
+                    },
+                    {
+                        "option": "No, Enrich here",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/fbe06a74-ed1b-4e6c-9ab6-98350daed35f",
+                        "step_name": "Configuration"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "160",
+            "left": "260",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "50a9c51c-6dbb-412c-83b3-fad2d88a9392"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Supported Indicator Type",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "No",
+                        "step_iri": "\/api\/3\/workflow_steps\/a61c987a-3864-49a0-b0b9-8802e00805d2",
+                        "condition": "{{ vars.enrichmentGlobalVarForType == \"NotSupported_Playbooks_IRIs\" }}",
+                        "step_name": "Exit"
+                    },
+                    {
+                        "option": "Yes",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/38b44efe-c444-42c9-b0d9-a8efbfe3a0c6",
+                        "step_name": "Get Enrichment Playbooks List"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "460",
+            "left": "680",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "50ce2052-a344-4374-9b94-e528860c111f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Indicator Reputation",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.enrichmentPlaybooksList.split(\",\")}}",
+                    "__bulk": false,
+                    "parallel": true,
+                    "condition": ""
+                },
+                "arguments": {
+                    "style_colors": "{{vars.style_colors}}",
+                    "indicator_value": "{{vars.indicator_value}}",
+                    "reputation_threshold": ""
+                },
+                "apply_async": false,
+                "ignore_errors": true,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "{{vars.item}}"
+            },
+            "status": null,
+            "top": "680",
+            "left": "1680",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "56bdb18e-d7f9-416b-b49b-d582dac4d084"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Additional Checks for IP",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "style_colors": "{{vars.style_colors}}",
+                    "indicator_value": "{{vars.indicator_value}}",
+                    "enrichmentPlaybooksList": "{{vars.enrichmentPlaybooksList.split(\",\")}}"
+                },
+                "apply_async": false,
+                "ignore_errors": false,
+                "step_variables": [],
+                "pass_input_record": false,
+                "workflowReference": "\/api\/3\/workflows\/846a0e87-c5e9-4181-a9ab-f3b3f1e521cb"
+            },
+            "status": null,
+            "top": "800",
+            "left": "1380",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "5e280ff6-13e6-49eb-878a-217923163080"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Enrichment on Tenant",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "260",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "678a25cd-14af-49c7-9ea8-c3452585b910"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Compute Reputation Data",
+            "description": null,
+            "arguments": {
+                "verdicts": "{{(vars.steps.Get_Indicator_Reputation| json_query('[].verdict')) or (vars.steps.Additional_Checks_for_IP | json_query('[].verdict')) or (vars.steps.Additional_Checks_for_IP.verdict)}}",
+                "cti_names": "{{(vars.steps.Get_Indicator_Reputation|json_query('[].cti_name')) or (vars.steps.Additional_Checks_for_IP | json_query('[].cti_name'))}}",
+                "cti_scores": "{{(vars.steps.Get_Indicator_Reputation|json_query('[].cti_score')) or (vars.steps.Additional_Checks_for_IP | json_query('[].cti_score'))}}",
+                "source_data": "{% set sd = {} %}{% if vars.indicator_type == 'IP Address' %}{% for item in vars.steps.Additional_Checks_for_IP %}{% if item.source_data is defined %}{% set _ = sd.update(item.source_data) %}{% endif %}{% endfor %}{% else %}{% for item in vars.steps.Get_Indicator_Reputation %}{% if item.source_data is defined %}{% set _ = sd.update(item.source_data) %}{% endif %}{% endfor %}{% endif %}{{sd}}",
+                "field_mapping": "{% set fm = {} %}{% if vars.indicator_type == 'IP Address' %}{% for item in vars.steps.Additional_Checks_for_IP %}{% if item.field_mapping is defined %}{% set _ = fm.update(item.field_mapping) %}{% endif %}{% endfor %}{% else %}{% for item in vars.steps.Get_Indicator_Reputation %}{% if item.field_mapping is defined %}{% set _ = fm.update(item.field_mapping) %}{% endif %}{% endfor %}{% endif %}{% set nfm = {} %}{% for k,v in fm.items() %}{% if not v == None %}{% set _ = nfm.update({k: v})  %}{% endif %}{% endfor %}{% if nfm.lastSeen is defined %}{% set ls = nfm.get('lastSeen') %}{% if not ls is integer %}{% set _ = nfm.update({'lastSeen': (arrow.get(ls).int_timestamp)}) %}{%endif%}{% endif %}{% if nfm.firstSeen is defined %}{% set fs = nfm.get('firstSeen') %}{% if not fs is integer %}{% set _ = nfm.update({'firstSeen': (arrow.get(fs).int_timestamp)}) %}{% endif %}{% endif %}{% if nfm.tlp is defined %}{% set tlp = (nfm.get('tlp') | capitalize) %}{% if tlp %}{% set iri = (\"TrafficLightProtocol\" | picklist(tlp, \"@id\")) %}{% set _ = nfm.update({'tlp': iri}) %}{% endif %}{% endif %}{{nfm}}",
+                "is_private_ip": "{{vars.steps.Additional_Checks_for_IP.is_private_ip or vars.is_private_ip}}",
+                "enrichment_summaries": "{{vars.steps.Get_Indicator_Reputation|json_query('[].enrichment_summary') or (vars.steps.Additional_Checks_for_IP | json_query('[].enrichment_summary')) or (vars.steps.Additional_Checks_for_IP.enrichment_summary)}}"
+            },
+            "status": null,
+            "top": "800",
+            "left": "1680",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "8c18e496-91ba-4f0c-8301-917829cc2060"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Good",
+            "description": null,
+            "arguments": {
+                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"Good\"))[\"@id\"]}}",
+                "Reputation_Type_Text": "Good"
+            },
+            "status": null,
+            "top": "980",
+            "left": "2160",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "90602b79-d420-44dd-95ad-c06e6c107585"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Identify Enrichment Playbooks List",
+            "description": null,
+            "arguments": {
+                "enrichmentTag": "\/api\/3\/tags\/{{vars.enrichmentTags.get(vars.indicator_type, \"NotSupported\")}}",
+                "enrichmentGlobalVarForType": "{{vars.enrichmentTags.get(vars.indicator_type, \"NotSupported\")}}_Playbooks_IRIs"
+            },
+            "status": null,
+            "top": "360",
+            "left": "680",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "95b508b7-10bc-4794-abd4-d75663111f73"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Exit",
+            "description": null,
+            "arguments": {
+                "temp": "no_op"
+            },
+            "status": null,
+            "top": "560",
+            "left": "680",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "a61c987a-3864-49a0-b0b9-8802e00805d2"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Field Mapping",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.field_mapping | length > 0}}",
+                "params": {
+                    "iri": "{{vars.input.records[0]['@id']}}",
+                    "body": "{{vars.field_mapping}}"
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "update_cyops_resource",
+                "operationTitle": "FSR: Update Record",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "980",
+            "left": "3220",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "acc4c661-464c-4c5d-b58d-b0e7a88008ee"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Is Type IP",
             "description": null,
             "arguments": {
@@ -524,75 +513,81 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get Enrichment Playbooks List",
+            "name": "Is Referenced",
             "description": null,
             "arguments": {
-                "params": {
-                    "iri": "\/api\/wf\/api\/dynamic-variable\/?limit=40&name={{vars.enrichmentGlobalVarForType}}",
-                    "body": "",
-                    "method": "GET"
-                },
-                "version": "3.2.1",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "FSR: Make FortiSOAR API Call",
-                "step_variables": {
-                    "enrichmentPlaybooksList": "{% if vars.result.data['hydra:member'] | length > 0 %}{{vars.result.data['hydra:member'][0].value}}{% endif %}"
-                }
+                "conditions": [
+                    {
+                        "option": "Referenced",
+                        "step_iri": "\/api\/3\/workflow_steps\/ff1cda79-4318-46df-afd2-febe2d72c076",
+                        "condition": "{{ vars.input.params['indicator_value'] | length > 0 }}",
+                        "step_name": "Summary"
+                    },
+                    {
+                        "option": "Upon Create",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/f250ed61-15a3-458b-9436-7480c809f3ef",
+                        "step_name": "Update Record"
+                    }
+                ]
             },
             "status": null,
-            "top": "460",
-            "left": "1040",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "top": "880",
+            "left": "2540",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
-            "uuid": "38b44efe-c444-42c9-b0d9-a8efbfe3a0c6"
+            "uuid": "dd6f68af-fb89-41c3-9d36-036299d96c6d"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Exit",
+            "name": "Is Malicious",
             "description": null,
             "arguments": {
-                "temp": "no_op"
+                "conditions": [
+                    {
+                        "option": "Malicious",
+                        "step_iri": "\/api\/3\/workflow_steps\/f9efb396-4f6d-496e-95b7-8132b4357f86",
+                        "condition": "{{ \"Malicious\" in vars.verdicts }}",
+                        "step_name": "Set Malicious"
+                    },
+                    {
+                        "option": "No Reputation",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/3d7cb74b-d060-4933-9ebe-67579f88452b",
+                        "step_name": "Set No Reputation"
+                    },
+                    {
+                        "option": "Suspicious",
+                        "step_iri": "\/api\/3\/workflow_steps\/3019b0d0-df56-4738-b599-8752a82af23e",
+                        "condition": "{{ \"Suspicious\" in vars.verdicts }}",
+                        "step_name": "Set Suspicious"
+                    },
+                    {
+                        "option": "Good",
+                        "step_iri": "\/api\/3\/workflow_steps\/90602b79-d420-44dd-95ad-c06e6c107585",
+                        "condition": "{{ \"Good\" in vars.verdicts }}",
+                        "step_name": "Set Good"
+                    }
+                ]
             },
             "status": null,
-            "top": "560",
-            "left": "680",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "a61c987a-3864-49a0-b0b9-8802e00805d2"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Compute Reputation Data",
-            "description": null,
-            "arguments": {
-                "verdicts": "{{(vars.steps.Get_Indicator_Reputation| json_query('[].verdict')) or (vars.steps.Additional_Checks_for_IP | json_query('[].verdict')) or (vars.steps.Additional_Checks_for_IP.verdict)}}",
-                "cti_names": "{{(vars.steps.Get_Indicator_Reputation|json_query('[].cti_name')) or (vars.steps.Additional_Checks_for_IP | json_query('[].cti_name'))}}",
-                "cti_scores": "{{(vars.steps.Get_Indicator_Reputation|json_query('[].cti_score')) or (vars.steps.Additional_Checks_for_IP | json_query('[].cti_score'))}}",
-                "source_data": "{% set sd = {} %}{% if vars.indicator_type == 'IP Address' %}{% for item in vars.steps.Additional_Checks_for_IP %}{% if item.source_data is defined %}{% set _ = sd.update(item.source_data) %}{% endif %}{% endfor %}{% else %}{% for item in vars.steps.Get_Indicator_Reputation %}{% if item.source_data is defined %}{% set _ = sd.update(item.source_data) %}{% endif %}{% endfor %}{% endif %}{{sd}}",
-                "field_mapping": "{% set fm = {} %}{% if vars.indicator_type == 'IP Address' %}{% for item in vars.steps.Additional_Checks_for_IP %}{% if item.field_mapping is defined %}{% set _ = fm.update(item.field_mapping) %}{% endif %}{% endfor %}{% else %}{% for item in vars.steps.Get_Indicator_Reputation %}{% if item.field_mapping is defined %}{% set _ = fm.update(item.field_mapping) %}{% endif %}{% endfor %}{% endif %}{% set nfm = {} %}{% for k,v in fm.items() %}{% if not v == None %}{% set _ = nfm.update({k: v})  %}{% endif %}{% endfor %}{% if nfm.lastSeen is defined %}{% set ls = nfm.get('lastSeen') %}{% if not ls is integer %}{% set _ = nfm.update({'lastSeen': (arrow.get(ls).int_timestamp)}) %}{%endif%}{% endif %}{% if nfm.firstSeen is defined %}{% set fs = nfm.get('firstSeen') %}{% if not fs is integer %}{% set _ = nfm.update({'firstSeen': (arrow.get(fs).int_timestamp)}) %}{% endif %}{% endif %}{% if nfm.tlp is defined %}{% set tlp = (nfm.get('tlp') | capitalize) %}{% if tlp %}{% set iri = (\"TrafficLightProtocol\" | picklist(tlp, \"@id\")) %}{% set _ = nfm.update({'tlp': iri}) %}{% endif %}{% endif %}{{nfm}}",
-                "enrichment_summaries": "{{vars.steps.Get_Indicator_Reputation|json_query('[].enrichment_summary') or (vars.steps.Additional_Checks_for_IP | json_query('[].enrichment_summary')) or (vars.steps.Additional_Checks_for_IP.enrichment_summary)}}"
-            },
-            "status": null,
-            "top": "800",
+            "top": "920",
             "left": "1680",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
-            "uuid": "8c18e496-91ba-4f0c-8301-917829cc2060"
+            "uuid": "ddc214f4-d9c0-4600-b2e9-af0df3bc0377"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Update Record",
+            "name": "Update Enrichment Status to In Progress",
             "description": null,
             "arguments": {
+                "when": "{{not vars.input.params['indicator_value'] == None}}",
                 "resource": {
-                    "reputation": "{{vars.Reputation_Type_IRI}}",
-                    "sourceData": "{{vars.source_data | toJSON}}",
-                    "description": "{% for item in vars.steps.Additional_Checks_for_IP %}{{item.enrichment_summary}}{% endfor %}{% for item in vars.steps.Get_Indicator_Reputation %}{{item.enrichment_summary}}{% endfor %}{% if vars.steps.Additional_Checks_for_IP is mapping %}{{vars.enrichment_summaries}}{% endif %}\n",
-                    "enrichmentStatus": "\/api\/3\/picklists\/c6e46fde-97a2-48cc-8019-938c9c5aebd0"
+                    "enrichmentStatus": "\/api\/3\/picklists\/8a4609d2-8a3d-4bda-9888-5f00bfea43cb"
                 },
                 "_showJson": false,
-                "operation": "Overwrite",
+                "operation": "Append",
                 "collection": "{{vars.input.records[0]['@id']}}",
                 "__recommend": [],
                 "collectionType": "\/api\/3\/indicators",
@@ -602,40 +597,11 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "980",
-            "left": "2880",
+            "top": "260",
+            "left": "680",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
-            "uuid": "f250ed61-15a3-458b-9436-7480c809f3ef"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "No Op",
-            "description": null,
-            "arguments": {
-                "nextStep": "no_op"
-            },
-            "status": null,
-            "top": "540",
-            "left": "1680",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "38f96cf3-1429-4996-b445-9eff4ddfc3ce"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Set Good",
-            "description": null,
-            "arguments": {
-                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"Good\"))[\"@id\"]}}",
-                "Reputation_Type_Text": "Good"
-            },
-            "status": null,
-            "top": "980",
-            "left": "2160",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "90602b79-d420-44dd-95ad-c06e6c107585"
+            "uuid": "e7e931fb-79a9-422a-beb2-bfcee6012817"
         },
         {
             "@type": "WorkflowStep",
@@ -666,42 +632,78 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Initialize Enrichment Playbooks List",
+            "name": "Update Record",
             "description": null,
             "arguments": {
-                "when": "{{vars.steps.Get_Enrichment_Playbooks_List.data['hydra:member'] | length == 0}}",
-                "arguments": {
-                    "enrichmentTag": "{{vars.enrichmentTag}}",
-                    "enrichmentGlobalVar": "{{vars.enrichmentGlobalVarForType}}"
+                "resource": {
+                    "reputation": "{{vars.Reputation_Type_IRI}}",
+                    "sourceData": "{{vars.source_data | toJSON}}",
+                    "description": "{% if vars.is_private_ip %}{{vars.enrichment_summaries}}{% else %}{% for item in vars.steps.Additional_Checks_for_IP %}{{item.enrichment_summary}}{% endfor %}{% for item in vars.steps.Get_Indicator_Reputation %}{{item.enrichment_summary}}{% endfor %}{% endif %}",
+                    "enrichmentStatus": "\/api\/3\/picklists\/c6e46fde-97a2-48cc-8019-938c9c5aebd0"
                 },
-                "apply_async": false,
-                "step_variables": {
-                    "enrichmentPlaybooksList": "{{vars.result.data.value}}"
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/indicators",
+                "fieldOperation": {
+                    "recordTags": "Append"
                 },
-                "pass_input_record": false,
-                "workflowReference": "\/api\/3\/workflows\/1ef505b6-e93b-42ea-9bc7-d7f22b3eac0d"
+                "step_variables": []
             },
             "status": null,
-            "top": "580",
-            "left": "1040",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "top": "980",
+            "left": "2880",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
-            "uuid": "2e62a551-037c-4a68-ade3-a6cf4186a487"
+            "uuid": "f250ed61-15a3-458b-9436-7480c809f3ef"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Set Suspicious",
+            "name": "Set Malicious",
             "description": null,
             "arguments": {
-                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"Suspicious\"))[\"@id\"]}}",
-                "Reputation_Type_Text": "Suspicious"
+                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"Malicious\"))[\"@id\"]}}",
+                "Reputation_Type_Text": "Malicious"
             },
             "status": null,
-            "top": "800",
+            "top": "700",
             "left": "2160",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
-            "uuid": "3019b0d0-df56-4738-b599-8752a82af23e"
+            "uuid": "f9efb396-4f6d-496e-95b7-8132b4357f86"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "style_colors": "{\n\"Good\": \"#52c91a\",\n\"Malicious\": \"#c42323\",\n\"Suspicious\": \"#dbc030\",\n\"TBD\": \"#696969\",\n\"No Reputation Available\": \"#6a9169\"\n}",
+                "is_private_ip": "false",
+                "enrichmentTags": "{\"File\": \"File_Enrichment\",\"IP Address\": \"IP_Enrichment\",\"URL\": \"URL_Enrichment\",\"Domain\": \"Domain_Enrichment\",\"Email Address\": \"Email_Enrichment\",\"FileHash-MD5\": \"FileHash_Enrichment\",\"FileHash-SHA1\": \"FileHash_Enrichment\",\"FileHash-SHA256\": \"FileHash_Enrichment\"}"
+            },
+            "status": null,
+            "top": "160",
+            "left": "680",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "fbe06a74-ed1b-4e6c-9ab6-98350daed35f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Summary",
+            "description": null,
+            "arguments": {
+                "reputation": "{{vars.Reputation_Type_Text}}",
+                "reputation_iri": "{{vars.Reputation_Type_IRI}}",
+                "enrichment_summary": "{{vars.description}}"
+            },
+            "status": null,
+            "top": "740",
+            "left": "2880",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "ff1cda79-4318-46df-afd2-febe2d72c076"
         }
     ],
     "routes": [
