@@ -6,12 +6,15 @@
     "tag": "#Subroutine",
     "description": "Get indicator reputation from all available pluggable enrichment playbooks",
     "isActive": true,
-    "debug": true,
+    "debug": false,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
     "parameters": [
         "indicator_value",
-        "indicator_type"
+        "indicator_type",
+        "indicator_IRI",
+        "indicator_file_IRI",
+        "indicator_file_name"
     ],
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
@@ -99,7 +102,7 @@
                         ]
                     },
                     "indicator_type": "{{vars.input.params['indicator_type'] | ternary(vars.input.params['indicator_type'],vars.input.records[0].typeofindicator.itemValue) }}",
-                    "indicator_value": "{% if vars.input.records[0].typeofindicator.itemValue == \"File\" %}{\"indicator_file_IRI\": \"{{vars.input.records[0].file['@id']}}\", \n \"indicator_file_name\": \"{{vars.input.records[0].file.filename}}\" }{% else %}{{vars.input.params['indicator_value'] | ternary(vars.input.params['indicator_value'],vars.input.records[0].value) }}{% endif %}",
+                    "indicator_value": "{% if vars.input.records[0].typeofindicator.itemValue == \"File\" %}{\"indicator_file_IRI\": \"{{vars.input.params['indicator_file_IRI'] | ternary(vars.input.params['indicator_file_IRI'],vars.input.records[0].file['@id']) }}\", \"indicator_file_name\": \"{{vars.input.params['indicator_file_name'] | ternary(vars.input.params['indicator_file_name'],vars.input.records[0].file.filename) }}\" }{% else %}{{vars.input.params['indicator_value'] | ternary(vars.input.params['indicator_value'],vars.input.records[0].value) }}{% endif %}",
                     "enrichment_playbooks_global_vars_map": "{\n\"Domain\":\"{{globalVars.Domain_Enrichment_Playbooks_IRIs}}\",\n\"Email Address\":\"{{globalVars.Email_Enrichment_Playbooks_IRIs}}\",\n\"Host\":\"{{globalVars.Host_Enrichment_Playbooks_IRIs}}\",\n\"File\":\"{{globalVars.File_Enrichment_Playbooks_IRIs}}\",\n\"FileHash-MD5\":\"{{globalVars.FileHash_Enrichment_Playbooks_IRIs}}\",\n\"FileHash-SHA1\":\"{{globalVars.FileHash_Enrichment_Playbooks_IRIs}}\",\n\"FileHash-SHA256\":\"{{globalVars.FileHash_Enrichment_Playbooks_IRIs}}\",\n\"IP Address\":\"{{globalVars.IP_Enrichment_Playbooks_IRIs}}\",\n\"Port\":\"{{globalVars.Port_Enrichment_Playbooks_IRIs}}\",\n\"Registry\":\"{{globalVars.Registry_Enrichment_Playbooks_IRIs}}\",\n\"Process\":\"{{globalVars.Process_Enrichment_Playbooks_IRIs}}\",\n\"URL\":\"{{globalVars.URL_Enrichment_Playbooks_IRIs}}\",\n\"User\":\"{{globalVars.User_Enrichment_Playbooks_IRIs}}\"\n}"
                 },
                 "fieldbasedtrigger": {
