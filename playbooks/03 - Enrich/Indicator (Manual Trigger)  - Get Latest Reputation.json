@@ -1,7 +1,7 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "Get Indicator Latest Reputation",
+    "name": "Indicator (Manual Trigger) - Get Latest Reputation",
     "aliasName": null,
     "tag": "#ManualAction",
     "description": "Retrieves the reputation of indicators using configured threat intelligence tools. You can trigger this playbook by manually selecting the indicator(s).",
@@ -15,22 +15,6 @@
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/1d28b88d-1c98-4366-84d5-ee3d2f398717",
     "steps": [
-        {
-            "@type": "WorkflowStep",
-            "name": "Configurations",
-            "description": null,
-            "arguments": {
-                "indicator_IRI": "{{vars.input.records[0]['@id']}}",
-                "indicator_type": "{{vars.input.records[0].typeofindicator.itemValue}}",
-                "indicator_value": "{{vars.input.records[0].value}}"
-            },
-            "status": null,
-            "top": "165",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "f46f468a-9ccc-424b-ae66-71e2c9744732"
-        },
         {
             "@type": "WorkflowStep",
             "name": "Start",
@@ -81,7 +65,7 @@
                 "apply_async": false,
                 "step_variables": [],
                 "pass_input_record": true,
-                "workflowReference": "\/api\/3\/workflows\/790ce409-6a9b-42b7-b098-f68645036e92"
+                "workflowReference": "\/api\/3\/workflows\/02000b45-97fc-47f2-a8a7-5b03d2625898"
             },
             "status": null,
             "top": "300",
@@ -89,18 +73,25 @@
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "64c15544-ba7c-4bd7-90d8-5d2c005d1e8f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configurations",
+            "description": null,
+            "arguments": {
+                "indicator_IRI": "{{vars.input.records[0]['@id']}}",
+                "indicator_type": "{{vars.input.records[0].typeofindicator.itemValue}}",
+                "indicator_value": "{{vars.input.records[0].value}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "f46f468a-9ccc-424b-ae66-71e2c9744732"
         }
     ],
     "routes": [
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Configurations",
-            "targetStep": "\/api\/3\/workflow_steps\/f46f468a-9ccc-424b-ae66-71e2c9744732",
-            "sourceStep": "\/api\/3\/workflow_steps\/1d28b88d-1c98-4366-84d5-ee3d2f398717",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "fc6f1896-1242-4fec-a456-618b2c01dcaf"
-        },
         {
             "@type": "WorkflowRoute",
             "name": "Configurations -> Enrich Indicator",
@@ -109,6 +100,15 @@
             "label": null,
             "isExecuted": false,
             "uuid": "be7eff35-9ae4-4534-8e6f-02bde98a9f52"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configurations",
+            "targetStep": "\/api\/3\/workflow_steps\/f46f468a-9ccc-424b-ae66-71e2c9744732",
+            "sourceStep": "\/api\/3\/workflow_steps\/1d28b88d-1c98-4366-84d5-ee3d2f398717",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "fc6f1896-1242-4fec-a456-618b2c01dcaf"
         }
     ],
     "groups": [],
