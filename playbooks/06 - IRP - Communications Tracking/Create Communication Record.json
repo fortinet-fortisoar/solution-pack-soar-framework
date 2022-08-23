@@ -4,7 +4,7 @@
     "name": "Create Communication Record",
     "aliasName": null,
     "tag": null,
-    "description": "Creates a record in the communications module and links it to an alert based off the information that is entered by the security analyst.",
+    "description": "Creates a record in the communications module and links it to an alert\/incident based off the information that is entered by the security analyst.",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -168,8 +168,7 @@
                 "rec_iri": "{{vars.input.records[0]['@id']}}",
                 "rec_type": "{{vars.input.records[0]['@type']}}",
                 "rec_message": "{{vars.input.params.body}}",
-                "rec_descrption": "{{vars.input.records[0].description}}",
-                "rec_type_mapping": "{'Alert': 'alerts', 'Incident': 'incidents', 'Task': 'tasks'}"
+                "rec_descrption": "{{vars.input.records[0].description}}"
             },
             "status": null,
             "top": "300",
@@ -209,8 +208,7 @@
                 "title": "Send Email",
                 "resources": [
                     "alerts",
-                    "incidents",
-                    "tasks"
+                    "incidents"
                 ],
                 "inputVariables": [
                     {
