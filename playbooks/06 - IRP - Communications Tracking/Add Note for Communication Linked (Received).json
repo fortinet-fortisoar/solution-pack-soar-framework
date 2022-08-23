@@ -4,7 +4,7 @@
     "name": "Add Note for Communication Linked (Received)",
     "aliasName": null,
     "tag": null,
-    "description": "Adds a note stating a new communication that was received has been linked to alerts, incidents and tasks.",
+    "description": "Adds a note stating a new communication that was received has been linked to alerts, incidents.",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -22,13 +22,11 @@
             "arguments": {
                 "resource": {
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tasks": "{{vars.taskIRI}}",
-                    "alerts": "{{vars.alertIRI}}",
+                    "alerts": "[\"{{vars.alertIRI}}\"]",
                     "people": [],
                     "content": "<p>A new communication has been linked<br>From - {{vars.input.records[0].from}}<\/p>\n<p>To - {{vars.input.records[0].to}}<br>Subject - {{vars.input.records[0].subject}}<\/p>",
                     "__replace": "",
-                    "incidents": "{{vars.incidentIRI}}",
-                    "isFromEmail": "\/api\/3\/picklists\/f21df441-1df8-4518-a79d-26a2458e92e0",
+                    "incidents": "[\"{{vars.incidentIRI}}\"]",
                     "isImportant": false,
                     "peopleUpdated": false
                 },
@@ -108,7 +106,6 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
-                "taskIRI": "{{vars.data.tasks[0]['@id']}}",
                 "alertIRI": "{{vars.data.alerts[0]['@id']}}",
                 "incidentIRI": "{{vars.data.incidents[0]['@id']}}"
             },
