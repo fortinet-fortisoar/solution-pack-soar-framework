@@ -78,35 +78,6 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get Indicator Reputation",
-            "description": null,
-            "arguments": {
-                "for_each": {
-                    "item": "{{vars.input.params.enrichmentPlaybooksList}}",
-                    "__bulk": false,
-                    "parallel": true,
-                    "condition": ""
-                },
-                "arguments": {
-                    "style_colors": "{{vars.style_colors}}",
-                    "indicator_value": "{{vars.indicator_value}}",
-                    "reputation_threshold": "{{vars.malicious_threshold}}"
-                },
-                "apply_async": false,
-                "ignore_errors": false,
-                "step_variables": [],
-                "pass_input_record": true,
-                "workflowReference": "{{vars.item}}"
-            },
-            "status": null,
-            "top": "100",
-            "left": "800",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "926b7fb1-c267-451c-a540-04819b84c4d3"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Is IP Private",
             "description": null,
             "arguments": {
@@ -153,6 +124,33 @@
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "a20d2fc4-84c2-4f78-adb4-faab14ff3559"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Indicator Reputation",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.input.params.enrichmentPlaybooksList}}",
+                    "__bulk": false,
+                    "parallel": true,
+                    "condition": ""
+                },
+                "arguments": {
+                    "style_colors": "{{vars.style_colors}}",
+                    "indicator_value": "{{vars.indicator_value}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "{{vars.item}}"
+            },
+            "status": null,
+            "top": "100",
+            "left": "800",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "ce3cd633-3799-419d-9e37-8061f5063387"
         },
         {
             "@type": "WorkflowStep",
@@ -215,7 +213,7 @@
                 "conditions": [
                     {
                         "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/926b7fb1-c267-451c-a540-04819b84c4d3",
+                        "step_iri": "\/api\/3\/workflow_steps\/ce3cd633-3799-419d-9e37-8061f5063387",
                         "condition": "{{ \"\/api\/3\/workflows\" in vars.enrichmentPlaybooksList[0] }}",
                         "step_name": "Get Indicator Reputation"
                     },
@@ -223,7 +221,7 @@
                         "option": "No",
                         "default": true,
                         "step_iri": "\/api\/3\/workflow_steps\/50619c50-a0f9-4593-8f1c-2aeb0b4190fe",
-                        "step_name": "No Op"
+                        "step_name": "No Integrations Available for Enrichment"
                     }
                 ]
             },
@@ -274,15 +272,6 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Integrations Available for Enrichment -> Get Indicator Reputation",
-            "targetStep": "\/api\/3\/workflow_steps\/926b7fb1-c267-451c-a540-04819b84c4d3",
-            "sourceStep": "\/api\/3\/workflow_steps\/fc5666b4-68f6-451c-b3d3-98515a676ee0",
-            "label": "Yes",
-            "isExecuted": false,
-            "uuid": "5aa7717b-5a6b-4438-bff5-36a34fc76b33"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Start -> Match IP in Internal Subnets",
             "targetStep": "\/api\/3\/workflow_steps\/a20d2fc4-84c2-4f78-adb4-faab14ff3559",
             "sourceStep": "\/api\/3\/workflow_steps\/15f92d3b-fec5-4224-8b8d-cbf99c3d7413",
@@ -316,6 +305,15 @@
             "label": null,
             "isExecuted": false,
             "uuid": "c1e215f1-9210-4a8b-80c8-c95a1845fd5d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Has Integrations Available for Enrichment -> Get Indicator Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/ce3cd633-3799-419d-9e37-8061f5063387",
+            "sourceStep": "\/api\/3\/workflow_steps\/fc5666b4-68f6-451c-b3d3-98515a676ee0",
+            "label": "Yes",
+            "isExecuted": false,
+            "uuid": "def29758-3dfa-4330-ac46-c07e3e688a51"
         }
     ],
     "groups": [],

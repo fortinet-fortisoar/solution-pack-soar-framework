@@ -467,6 +467,7 @@
                     "__link": {
                         "alerts": "{{vars.alert_iri}}"
                     },
+                    "lastSeen": "{{arrow.utcnow().int_timestamp}}",
                     "__replace": "true",
                     "expiryDate": "{{arrow.utcnow().shift(days=+(globalVars.Default_Indicator_TTL_Days | int)).timestamp}}",
                     "reputation": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
