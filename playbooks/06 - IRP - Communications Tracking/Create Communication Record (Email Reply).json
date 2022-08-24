@@ -278,7 +278,8 @@
                     "cc": "{{vars.input.params.cc}}",
                     "to": "{{vars.input.records[0].from | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+')}}",
                     "bcc": "{{vars.input.params.bcc}}",
-                    "body": "{{vars.input.params.emailBody}}\n<br>\n<br>\n<hr>\nEmail Thread <br>\n\n{{vars.input.records[0].body}} <\/br>\n\n\n<i>--- Do Not Edit Below This Line ---<\/i><br>\nFSR {{vars.input.records[0].body | regex_search('(?<=FSR)(.*?)(?=FSR)') | trim}} FSR",
+                    "body": "{{vars.input.params.emailBody}}\n<br>\n<br>\n<hr>\nEmail Thread <br>\n\n{{vars.input.records[0].body}} <\/br>\n\n\n<i>--- Do Not Edit Below This Line ---<\/i><br>\nFSR {{vars.input.records[0].body | regex_search('(?<=FSR)(.*?)=*\\s(?=FSR)') | string| replace('\n', '')| replace('\t', '')| replace('\r', '') | trim }} FSR",
+
                     "file": "{{vars.input.params.file}}",
                     "type": "\/api\/3\/picklists\/b8e7c917-5299-4a43-9c1a-fac1d9a5438f",
                     "__link": {
@@ -315,7 +316,7 @@
                     "cc": "{{vars.input.params.cc}}",
                     "to": "{{vars.input.records[0].from | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+')}}",
                     "bcc": "{{vars.input.params.bcc}}",
-                    "body": "{{vars.input.params.emailBody}}\n\n<i>--- Do Not Edit Below This Line ---<\/i><br>\nFSR {{vars.input.records[0].body | regex_search('(?<=FSR)(.*?)(?=FSR)') | trim}} FSR",
+                    "body": "{{vars.input.params.emailBody}}\n\n<i>--- Do Not Edit Below This Line ---<\/i><br>\nFSR {{vars.input.records[0].body | regex_search('(?<=FSR)(.*?)=*\\s(?=FSR)') | string| replace('\n', '')| replace('\t', '')| replace('\r', '') | trim}} FSR",
                     "file": "{{vars.input.params.file}}",
                     "type": "\/api\/3\/picklists\/b8e7c917-5299-4a43-9c1a-fac1d9a5438f",
                     "__link": {
@@ -404,7 +405,7 @@
             "name": "Get Correlated Records IRI",
             "description": null,
             "arguments": {
-                "iri": "{{vars.input.records[0].body | regex_search('(?<=FSR)(.*?)(?=FSR)') | trim | b64decode }}"
+                "iri": "{{vars.input.records[0].body | regex_search('(?<=FSR)(.*?)=*\\s(?=FSR)') | string| replace('\n', '')| replace('\t', '')| replace('\r', '') | trim | b64decode }}"
             },
             "status": null,
             "top": "435",
