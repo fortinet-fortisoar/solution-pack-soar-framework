@@ -100,15 +100,12 @@
             "name": "Configuration",
             "description": "You can customize extraction by modifying indicator map in configuration step",
             "arguments": {
-                "ips": "{{globalVars.Excludelist_IPs.split(',')}}",
-                "urls": "{{globalVars.Excludelist_URLs.split(',')}}",
-                "domains": "{{globalVars.Excludelist_Domains.split(',')}}",
                 "alert_iri": "{{vars.input.params.alertMetaData['@id'] | ternary(vars.input.params.alertMetaData['@id'],vars.input.records[0]['@id'])}}",
                 "unified_iocs": "[]",
                 "alert_metadata": "{{vars.input.params.alertMetaData | ternary(vars.input.params.alertMetaData,vars.input.records[0])}}",
                 "alert_field_iocs": "[]",
                 "indicator_type_map": "{{globalVars.Indicator_Type_Map}}",
-                "excluded_indicators": "[]"
+                "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls)}}"
             },
             "status": null,
             "top": "300",
@@ -323,8 +320,7 @@
             "name": "Update Indicator List",
             "description": null,
             "arguments": {
-                "temp": "{% for key,value in vars.indicator_type_map.items()%}{%if vars.alert_metadata.get(key) %}{% set list_vals = vars.alert_metadata.get(key).split(\",\") %}{%for val in list_vals%}{{vars.alert_field_iocs.append({\"type\": value, \"value\":val})}}{%endfor%}{%endif%}{%endfor%}{{vars.alert_field_iocs}}",
-                "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls)}}"
+                "temp": "{% for key,value in vars.indicator_type_map.items()%}{%if vars.alert_metadata.get(key) %}{% set list_vals = vars.alert_metadata.get(key).split(\",\") %}{%for val in list_vals%}{%if val not in vars.excluded_indicators%}{{vars.alert_field_iocs.append({\"type\": value, \"value\":val})}}{%endif%}{%endfor%}{%endif%}{%endfor%}{{vars.alert_field_iocs}}"
             },
             "status": null,
             "top": "435",
@@ -343,14 +339,15 @@
                     "alerts"
                 ],
                 "step_variables": {
+                    "ips": "{{globalVars.Excludelist_IPs.split(',')}}",
+                    "urls": "{{globalVars.Excludelist_URLs.split(',')}}",
                     "input": {
-                        "params": {
-                            "alertMetaData": "{{ vars.alertMetaData }}"
-                        },
+                        "params": [],
                         "records": [
                             "{{vars.input.records[0]}}"
                         ]
-                    }
+                    },
+                    "domains": "{{globalVars.Excludelist_Domains.split(',')}}"
                 },
                 "fieldbasedtrigger": {
                     "sort": [],
@@ -363,7 +360,6 @@
                             "value": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
                             "_value": {
                                 "@id": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
-                                "display": "Indicator Extracted",
                                 "itemValue": "Indicator Extracted"
                             },
                             "operator": "neq"
