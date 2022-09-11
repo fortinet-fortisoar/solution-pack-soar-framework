@@ -23,34 +23,6 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Get Indicator Reputation",
-            "description": null,
-            "arguments": {
-                "for_each": {
-                    "item": "{{vars.enrichmentPlaybooksList.split(\",\")}}",
-                    "__bulk": false,
-                    "parallel": true,
-                    "condition": ""
-                },
-                "arguments": {
-                    "style_colors": "{{vars.style_colors}}",
-                    "indicator_value": "{{vars.indicator_value}}"
-                },
-                "apply_async": false,
-                "ignore_errors": true,
-                "step_variables": [],
-                "pass_input_record": true,
-                "workflowReference": "{{vars.item}}"
-            },
-            "status": null,
-            "top": "680",
-            "left": "1680",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "group": null,
-            "uuid": "9b6a0035-6c1a-4cd5-8638-1ea33b94ab6b"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Initialize Enrichment Playbooks List",
             "description": null,
             "arguments": {
@@ -480,6 +452,34 @@
         },
         {
             "@type": "WorkflowStep",
+            "name": "Get Indicator Reputation",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.enrichmentPlaybooksList.split(\",\")}}",
+                    "__bulk": false,
+                    "parallel": true,
+                    "condition": ""
+                },
+                "arguments": {
+                    "style_colors": "{{vars.style_colors}}",
+                    "indicator_value": "{{vars.indicator_value}}"
+                },
+                "apply_async": false,
+                "ignore_errors": true,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "{{vars.item}}"
+            },
+            "status": null,
+            "top": "680",
+            "left": "1680",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "9b6a0035-6c1a-4cd5-8638-1ea33b94ab6b"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Exit",
             "description": null,
             "arguments": {
@@ -551,7 +551,7 @@
                     {
                         "option": "Referenced",
                         "step_iri": "\/api\/3\/workflow_steps\/ff1cda79-4318-46df-afd2-febe2d72c076",
-                        "condition": "{{ vars.input.params['indicator_value'] | length > 0 }}",
+                        "condition": "{{ vars.is_referenced }}",
                         "step_name": "Summary"
                     },
                     {
@@ -711,6 +711,7 @@
             "arguments": {
                 "style_colors": "{\n\"Good\": \"#52c91a\",\n\"Malicious\": \"#c42323\",\n\"Suspicious\": \"#dbc030\",\n\"TBD\": \"#696969\",\n\"No Reputation Available\": \"#6a9169\"\n}",
                 "is_private_ip": "false",
+                "is_referenced": "{% if vars.input.params['indicator_type'] == \"File\" and vars.input.params['indicator_file_IRI'] | length > 0 %}{{true}}{% elif vars.input.params['indicator_value'] | length > 0 %}{{true}}{% else %}{{false}}{% endif %}",
                 "enrichmentTags": "{\"File\": \"File_Enrichment\",\"IP Address\": \"IP_Enrichment\",\"URL\": \"URL_Enrichment\",\"Domain\": \"Domain_Enrichment\",\"Email Address\": \"Email_Enrichment\",\"FileHash-MD5\": \"FileHash_Enrichment\",\"FileHash-SHA1\": \"FileHash_Enrichment\",\"FileHash-SHA256\": \"FileHash_Enrichment\", \"User\": \"User_Enrichment\"}"
             },
             "status": null,
