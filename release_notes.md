@@ -6,7 +6,18 @@
 - The *Wait* step is now conditional ensuring that the playbook waits only until the new and current indicators are enhanced, not for a set amount of time.
   - Also, if a playbook's *Wait* condition is not met within the allocated time, new sequence of events can be triggered.
 
-- Connector-specific indicator enrichment playbooks can now be referenced from other playbooks. You can run these *pluggable* playbooks as-is or tweak them to suit your requirements. These *pluggable* playbooks make generic enrichment playbooks redundant and help create a more optimized flow for SOAR Framework.
+## Module Enhancements
+- A new field **Was Personal Data Affected?**, in the **Incidents** module, now captures if personal data was affected.
+- The field **MITRE ATT&CK ID** has now been renamed to **Technique ID** to be inline with the MITRE conventions. This change reflects in both *Alerts* and *Incidents* modules.
+    - The **MITRE Technique** field in *Alerts* module has now been renamed to **Technique**.
+- *Open* and *Re-opened* are now available as options under the *Status* drop-down of the **Tasks** module.
+- *Critical* and *Very Critical* are now available as options, under the *Asset Criticality* drop-down of the **Assets** module, instead of *Super High* and *Super Duper High*.
+    - This information has been updated in the *Is Asset Critical* step of the **Prioritize Alerts With VIP Assets** playbook under the **03 - Triage** collection.
+- **ImpactROI** field is now available under the **Incident** module to support *SOC Management widget* for Return on Investment (ROI) calculations.
+
+## Enrichment Framework Enhancements
+
+- Connector-specific "pluggable" indicator enrichment playbooks can now be referenced from other playbooks. You can run these *pluggable* playbooks as-is or tweak them to suit your requirements. These *pluggable* playbooks make generic enrichment playbooks redundant and help create a more optimized flow for SOAR Framework.
     - To achieve these objectives, the entire playbook collection **03 - Enrich(pluggable)** and following playbooks from **03 - Enrich** collection, are no longer used by SOAR Framework solution pack 2.0.0.
       - Indicator (Type All) - Get Latest Reputation
       - Indicator (Type Domain) - Get Reputation
@@ -49,19 +60,10 @@
 
       The enrichment Playbooks included with these connectors are detailed in respective [connector docs](https://docs.fortinet.com/fortisoar/connectors).
 
-      To understand how pluggable enrichment works refer to [Using the "Pluggable" Indicator Enrichment](./docs/extending-default-indicator-enrichment-process.md#using-the-pluggable-indicator-enrichment) section
+      To understand how pluggable enrichment works refer to [Using the "Pluggable" Indicator Enrichment](./docs/extending-default-indicator-enrichment-process.md#using-the-pluggable-indicator-enrichment) section.
 
       >**NOTE**: For help and initial actions required to upgrade to SOAR Framework Solution Pack version 2.0.0, please refer to [Upgrading to FortiSOAR v2.0.0](./docs/moving-to-sfsp-2-0-0.md).
 
-
-## Module Enhancements
-- A new field **Was Personal Data Affected?**, in the **Incidents** module, now captures if personal data was affected.
-- The field **MITRE ATT&CK ID** has now been renamed to **Technique ID** to be inline with the MITRE conventions. This change reflects in both *Alerts* and *Incidents* modules.
-    - The **MITRE Technique** field in *Alerts* module has now been renamed to **Technique**.
-- *Open* and *Re-opened* are now available as options under the *Status* drop-down of the **Tasks** module.
-- *Critical* and *Very Critical* are now available as options, under the *Asset Criticality* drop-down of the **Assets** module, instead of *Super High* and *Super Duper High*.
-    - This information has been updated in the *Is Asset Critical* step of the **Prioritize Alerts With VIP Assets** playbook under the **03 - Triage** collection.
-- **ImpactROI** field now appears under the Incident module to support SOC Management widget for Return on Investment (ROI) calculations.
 
 ## Resolved Issues
 

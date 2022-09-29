@@ -70,6 +70,7 @@ The following diagram helps better understand the overall process and the subseq
 
 ## Additional Resources 
 
+- [Upgrade SOAR Framework to v2.0.0](./docs/moving-to-sfsp-2-0-0.md)
 - [Extending Default Alert Schema](./docs/extending-default-alert-schema.md)
 - [Configuring Alert Ingestion Process](./docs/configuring-alert-Ingestion-process.md)
 - [Extending Default Indicator Extraction Process](./docs/extending-default-indicator-extraction-process.md)
@@ -81,5 +82,5 @@ The following diagram helps better understand the overall process and the subseq
 
 ## Next Steps
 
-| [Installation](./docs/setup.md#installation) | [Configuration](./docs/setup.md#configuration) | [Upgrade to 2.0.0](./docs/moving-to-sfsp-2-0-0.md) | [Usage](./docs/usage.md) | [Contents](./docs/contents.md) |
-|----------------------------------------------|------------------------------------------------|--------------------------|--------------------------------|--|
+| [Installation](./docs/setup.md#installation) | [Configuration](./docs/setup.md#configuration) | [Usage](./docs/usage.md) | [Contents](./docs/contents.md) |
+|----------------------------------------------|------------------------------------------------|--------------------------|--------------------------------|

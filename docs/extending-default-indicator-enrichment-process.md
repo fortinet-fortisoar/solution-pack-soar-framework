@@ -31,11 +31,11 @@ This enrichment process is triggered when an indicator is created. On creation, 
 
 4. **Update Playbook IRI**: The *Update/Initialize Indicator Enrichment Global Variables* playbook adds the associated playbook IRIs to the corresponding global variable. For example, the IRIs, of playbooks tagged with `URL_Enrichment`, are added to the global variable `URL_Enrichment_Playbooks_IRIs`.
 
-5. **Enrichment Begins**: The playbook **Enrich Indicators (Type All)** triggers the associated connector's enrichment playbooks who then return the following:
+5. **Enrichment Begins**: The playbook **Enrich Indicators (Type All)** triggers the associated connector's enrichment playbooks who then return the following CTI (Cyber threat intelligence) information:
 
-    - Cyber threat intelligence (CTI) name
+    - CTI name
     - CTI scores
-    - verdicts
-    - source data
-    - field mapping
-    - enrichment summary
+    - Verdicts
+    - Source data
+    - Field mapping
+    - Enrichment summary

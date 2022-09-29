@@ -16,7 +16,7 @@ An email ingestion process to periodically read email from a designated inbox an
 
 ## Configurations
 
-You need to add the **Communications** field to existing modules before the communication related to them can be tracked. Once added, each of these module's System View Template should then be edited to display a communications tab that tracks all communication related to any alert, incident, indicator, or a task.
+To track any communication related to modules, you need to add the **Communications** field to those modules. Once added, each of these module's System View Template should then be edited to display a communications tab that tracks all communication related to any alert, incident, indicator, or a task.
 
 ### Adding Communications to Modules
 
