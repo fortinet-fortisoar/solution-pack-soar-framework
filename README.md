@@ -55,7 +55,7 @@ The following diagram helps better understand the overall process and the subseq
     6. **Hunt** - Hunt playbooks search the presence of specified domains, files, or other indicators in the organization. For example, a given File &ndash; identified through filehash &ndash; present on any computer in the organization.
 
 4. **Update Alerts** - The intelligence gathered from indicator investigation is fed to the alert source (SIEM, EDR, or similar alert sources) to prevent similar threats in the future.<br/>
-    >**NOTE**: Marking an alert as **Closed** invokes a corresponding [close source alert](./docs/contents.md#06---irp---case-management) playbook. This playbook, by default, simply prompts you to close the alert at the source; however, you must modify that to use the respective product's connectors (such as FortiSIEM) to invoke the closure action. This way you can update the source systems to your desired state.
+    >**NOTE**: Marking an alert as **Closed** invokes a corresponding [close source alert](./docs/contents.md#06-irp-case-management) playbook. This playbook, by default, simply prompts you to close the alert at the source; however, you must modify that to use the respective product's connectors (such as FortiSIEM) to invoke the closure action. This way you can update the source systems to your desired state.
 
 5. **Escalate** - At the end of this cycle, the given alert is either marked as **False Positive** and **closed** or marked as **True Positive** and **Escalated into an Incident**. Note, the Escalation into an incident by default is a manual step (by clicking **Escalate** button), but the same can also be automated via invoking **Escalate to Incident Playbook** into the respective response playbooks.
 
@@ -72,7 +72,7 @@ The following diagram helps better understand the overall process and the subseq
 
 - [Upgrade SOAR Framework to v2.0.0](./docs/moving-to-sfsp-2-0-0.md)
 - [Extending Default Alert Schema](./docs/extending-default-alert-schema.md)
-- [Configuring Alert Ingestion Process](./docs/configuring-alert-Ingestion-process.md)
+- [Configuring Alert Ingestion Process](./docs/configuring-alert-ingestion-process.md)
 - [Extending Default Indicator Extraction Process](./docs/extending-default-indicator-extraction-process.md)
 - [Extending Default Indicator Enrichment Process](./docs/extending-default-indicator-enrichment-process.md)
 - [Building Investigation/Response Playbook](./docs/building-investigation-response-playbook.md)

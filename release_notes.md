@@ -1,5 +1,7 @@
 # What's New
 
+>**Compatible Version**: FortiSOAR v7.2.1 and later
+
 ## Playbook Enhancements
 
 - The playbook **Extract Indicators**, from the collection **03 - Enrich**, has been improved so that, if the linked alert has the same indicator as the indicator being enriched, it links the indicator to the alert and updates the indicator's `Last Seen` field.

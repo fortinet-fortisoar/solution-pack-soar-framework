@@ -267,7 +267,7 @@ This playbook collection has the following playbook
 - 06 - IRP - Reporting
 - 06 - IRP - War Room
 
-| 06 - IRP - Case Management |
+| 06 - IRP - Case Management <a name="06-irp-case-management"></a> |
 |----------------------------|
 
 | Sr. No | Playbook Name                                                           | Description                                                                                                                                                                                                       |
