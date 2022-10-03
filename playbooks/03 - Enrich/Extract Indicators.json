@@ -83,7 +83,7 @@
             "description": null,
             "arguments": {
                 "temp": "{% for key,value in vars.indicator_type_map.items()%}{%if vars.alert_metadata.get(key) %}{% set list_vals = vars.alert_metadata.get(key).split(\",\") %}{%for val in list_vals%}{{vars.alert_field_iocs.append({\"type\": value, \"value\":val})}}{%endfor%}{%endif%}{%endfor%}{{vars.alert_field_iocs}}",
-                "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls)| union(vars.hosts)}}"
+                "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls))}}"
             },
             "status": null,
             "top": "435",
@@ -252,7 +252,6 @@
             "arguments": {
                 "ips": "{{globalVars.Excludelist_IPs.split(',')}}",
                 "urls": "{{globalVars.Excludelist_URLs.split(',')}}",
-                "hosts": "{{globalVars.Excludelist_Hosts.split(',')}}",
                 "domains": "{{globalVars.Excludelist_Domains.split(',')}}",
                 "alert_iri": "{{vars.input.params.alertMetaData['@id'] | ternary(vars.input.params.alertMetaData['@id'],vars.input.records[0]['@id'])}}",
                 "unified_iocs": "[]",
