@@ -1,0 +1,158 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Indicator (Manual Trigger) - Get Latest Reputation",
+    "aliasName": null,
+    "tag": "#ManualAction",
+    "description": "Retrieves the reputation of indicators using configured threat intelligence tools. You can trigger this playbook by manually selecting the indicator(s).",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/1d28b88d-1c98-4366-84d5-ee3d2f398717",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": "",
+            "arguments": {
+                "route": "8a390c95-a791-419d-84b1-0eaa4ee1f590",
+                "title": "Get Latest Reputation",
+                "resources": [
+                    "indicators"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "displayConditions": {
+                    "indicators": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
+            "uuid": "1d28b88d-1c98-4366-84d5-ee3d2f398717"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Enrich Indicator",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "indicator_IRI": "{{vars.indicator_IRI}}",
+                    "indicator_type": "{{vars.indicator_type}}",
+                    "indicator_value": "{{vars.indicator_value}}",
+                    "indicator_file_IRI": "{{vars.input.records[0].file['@id']}}",
+                    "indicator_file_name": "{{vars.input.records[0].file.filename}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/02000b45-97fc-47f2-a8a7-5b03d2625898"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "64c15544-ba7c-4bd7-90d8-5d2c005d1e8f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Indicator",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "reputation": "{{vars.steps.Enrich_Indicator.reputation_iri}}",
+                    "description": "{% for item in vars.steps.Enrich_Indicator.enrichment_summaries %}{{item}}{% endfor %}",
+                    "enrichmentStatus": "\/api\/3\/picklists\/c6e46fde-97a2-48cc-8019-938c9c5aebd0"
+                },
+                "operation": "Append",
+                "collection": "{{vars.indicator_IRI}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/indicators",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "bcf6b8a4-9741-44c8-aeae-215b515ecbbb"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configurations",
+            "description": null,
+            "arguments": {
+                "indicator_IRI": "{{vars.input.records[0]['@id']}}",
+                "indicator_type": "{{vars.input.records[0].typeofindicator.itemValue}}",
+                "indicator_value": "{{vars.input.records[0].value}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "f46f468a-9ccc-424b-ae66-71e2c9744732"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Enrich Indicator -> Update Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/bcf6b8a4-9741-44c8-aeae-215b515ecbbb",
+            "sourceStep": "\/api\/3\/workflow_steps\/64c15544-ba7c-4bd7-90d8-5d2c005d1e8f",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "6789d2f5-ed21-4e4c-834a-85988acca491"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configurations -> Enrich Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/64c15544-ba7c-4bd7-90d8-5d2c005d1e8f",
+            "sourceStep": "\/api\/3\/workflow_steps\/f46f468a-9ccc-424b-ae66-71e2c9744732",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "be7eff35-9ae4-4534-8e6f-02bde98a9f52"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configurations",
+            "targetStep": "\/api\/3\/workflow_steps\/f46f468a-9ccc-424b-ae66-71e2c9744732",
+            "sourceStep": "\/api\/3\/workflow_steps\/1d28b88d-1c98-4366-84d5-ee3d2f398717",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "fc6f1896-1242-4fec-a456-618b2c01dcaf"
+        }
+    ],
+    "groups": [],
+    "priority": null,
+    "uuid": "e6fc8076-d1ae-4b59-8784-da2c7a07e4c8",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "ManualAction"
+    ]
+}

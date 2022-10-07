@@ -1,5 +1,5 @@
-| [Home](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/README.md) |
-|--------------------------------------------|
+| [Home](../README.md) |
+|----------------------|
 
 # Installation
 
@@ -12,3 +12,4 @@
 For detailed instructions on how to configure *each* connector:
 1. Refer to [FortiSOAR Connectors](https://docs.fortinet.com/fortisoar/connectors)
 2. Search for the required connector in the search box and select it
+3. Install and configure the Code Snippet connector. For configuring the Code Snipper connector, Refer to [Configuring Code Snippet connector](https://docs.fortinet.com/document/fortisoar/2.0.0/code-snippet-connector/330/code-snippet-connector-v2-0-0).

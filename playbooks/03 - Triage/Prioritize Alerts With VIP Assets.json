@@ -24,12 +24,14 @@
                     {
                         "option": "Yes",
                         "step_iri": "\/api\/3\/workflow_steps\/8e3c6da3-c501-4048-a5fc-6217fe8fb383",
-                        "condition": "{{ vars.steps.Find_Asset_In_Existing_Assets[0].criticality.itemValue==\"Super High\" }}"
+                        "condition": "{{ \"Critical\" in vars.steps.Find_Asset_In_Existing_Assets[0].criticality.itemValue }}",
+                        "step_name": "Update Alert Severity"
                     },
                     {
                         "option": "No",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/e819f7f8-fc34-45de-ad76-5aab91a50802"
+                        "step_iri": "\/api\/3\/workflow_steps\/e819f7f8-fc34-45de-ad76-5aab91a50802",
+                        "step_name": "Link Asset"
                     }
                 ]
             },
@@ -37,6 +39,7 @@
             "top": "110",
             "left": "1425",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
             "uuid": "0f856679-9327-4604-94eb-c00db668e8b1"
         },
         {
@@ -68,6 +71,7 @@
             "top": "190",
             "left": "775",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
             "uuid": "395033f0-fec3-46d2-bae7-ec9d2f2d6a58"
         },
         {
@@ -94,6 +98,7 @@
             "top": "190",
             "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
             "uuid": "509e80c5-643c-45dd-a61a-2dc4cd0aa2c7"
         },
         {
@@ -117,6 +122,7 @@
             "top": "270",
             "left": "1425",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
             "uuid": "5aebaa61-8afb-4ea6-9860-5adbb59d85c7"
         },
         {
@@ -176,6 +182,7 @@
             "top": "190",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/9300bf69-5063-486d-b3a6-47eb9da24872",
+            "group": null,
             "uuid": "8bf6a590-ba71-47ea-98b8-c016265c18ef"
         },
         {
@@ -202,6 +209,7 @@
             "top": "190",
             "left": "1750",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
             "uuid": "8e3c6da3-c501-4048-a5fc-6217fe8fb383"
         },
         {
@@ -227,6 +235,7 @@
             "top": "30",
             "left": "1750",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
             "uuid": "e819f7f8-fc34-45de-ad76-5aab91a50802"
         },
         {
@@ -240,6 +249,7 @@
             "top": "190",
             "left": "450",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "f5ae2575-3565-45a5-b72b-aa2a09a2ada9"
         }
     ],
@@ -308,6 +318,7 @@
             "uuid": "bae12985-ca5c-467d-b80d-0cfbf70e8626"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "ece5974f-7150-44dd-836a-e7b07e4b3ad2",
     "owners": [],

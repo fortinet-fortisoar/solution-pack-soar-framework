@@ -1,0 +1,159 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Delete Enrichment Global Variables",
+    "aliasName": null,
+    "tag": null,
+    "description": "Delete the pluggable enrichment global variables",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/2f298794-0128-4f00-b1c9-fe0c45dac72e",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Delete Global Variables",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/wf\/api\/dynamic-variable\/{{vars.item}}\/?format=json",
+                    "body": "",
+                    "method": "DELETE"
+                },
+                "version": "3.2.1",
+                "for_each": {
+                    "item": "{{vars.enrichment_global_variable}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "00cff1fb-907b-45a0-80f9-32bb9ba09756"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Global Vartibales",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/wf\/api\/dynamic-variable\/?name in {{vars.global_variable}}&limit=60",
+                    "body": "",
+                    "method": "GET"
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": {
+                    "enrichment_global_variable": "{% set gv = [] %}{% for item in vars.result.data['hydra:member'] %}{% if item.name in vars.global_variable %}{% set _ = gv.append(item.id) %}{% endif %}{% endfor %}{{gv}}"
+                }
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "17246bd5-20e2-4ec6-8c73-ed3040a92d30"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "8cde9f64-c984-4a2e-ba07-9cf7e833092d",
+                "resources": [
+                    "indicators"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "displayConditions": {
+                    "indicators": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
+            "uuid": "2f298794-0128-4f00-b1c9-fe0c45dac72e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "global_variable": "[\"URL_Enrichment_Playbooks_IRIs\", \"File_Enrichment_Playbooks_IRIs\", \"IP_Enrichment_Playbooks_IRIs\", \"Domain_Enrichment_Playbooks_IRIs\", \"FileHash_Enrichment_Playbooks_IRIs\", \"User_Enrichment_Playbooks_IRIs\", \"Email_Enrichment_Playbooks_IRIs\"]"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "84259e7a-e715-43c4-85b0-7dbdb2d1cc1e"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get Global Vartibales",
+            "targetStep": "\/api\/3\/workflow_steps\/17246bd5-20e2-4ec6-8c73-ed3040a92d30",
+            "sourceStep": "\/api\/3\/workflow_steps\/84259e7a-e715-43c4-85b0-7dbdb2d1cc1e",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "278d1fea-f68e-4852-a4e1-ba4a4171b8b9"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Global Vartibales -> Delete Global Variables",
+            "targetStep": "\/api\/3\/workflow_steps\/00cff1fb-907b-45a0-80f9-32bb9ba09756",
+            "sourceStep": "\/api\/3\/workflow_steps\/17246bd5-20e2-4ec6-8c73-ed3040a92d30",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "3c04b160-4741-4b13-bd7c-fa6d93c0ba37"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/84259e7a-e715-43c4-85b0-7dbdb2d1cc1e",
+            "sourceStep": "\/api\/3\/workflow_steps\/2f298794-0128-4f00-b1c9-fe0c45dac72e",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "d3f412f1-6bc0-4119-8dc8-96ef6d1bba40"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "5b1018aa-7528-488c-8306-8b9aa1c8e12b",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Enrichment"
+    ]
+}

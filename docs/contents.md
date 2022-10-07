@@ -1,5 +1,5 @@
-| [Home](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/README.md) |
-|--------------------------------------------|
+| [Home](../README.md) |
+|----------------------|
 
 # Contents
 
@@ -9,30 +9,34 @@ This section lists the various contents of the SOAR Framework Solution Pack.
 
 SOAR framework includes the following connectors:
 
-| Sr. No. | Connector Names                 | Description                                                                                                                                                                                                                                                         |
-|---------|---------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1       | Active Directory                | Helps directly query AD to retrieve information about users, groups, and computers, in an organization, by using the Lightweight Directory Access Protocol (LDAP).                                                                                                  |
-| 2       | AlienVault-OTX                  | AlienVault-OTX is an open source repository of Indicators of Compromise (IOCs) supported by the community. This connector provides actions like Get IP Reputation, Create Pulse, and Get Domain Reputation.                                                         |
-| 3       | CarbonBlack Response            | This connector facilitates automated operation related to endpoint protection like isolate endpoint, unisolate endpoint, hunt file, terminate process etc. with CarbonBlack Response server.                                                                        |
-| 4       | ElasticSearch                   | ElasticSearch is a distributed, RESTful search, and analytics engine capable of solving a number of use cases. This connector facilitates automated operations to execute lucene query, get mapping and cluster details.                                            |
-| 5       | Exchange                        | This connector provides a robust, platform-independent, and simple interface for communicating with Microsoft Exchange 2007-2016 Server or Office 365 using Exchange Web Services (EWS).                                                                            |
-| 6       | Fortinet FortiClient EMS        | This connector provides operations related to quarantine/unquarantine endpoints, get endpoint details, and is a security management solution that enables scalable and centralized management of multiple endpoints (computers).                                    |
-| 7       | Fortinet FortiEDR               | This connector facilitates the automated operations related to events, forensics and collectors.                                                                                                                                                                    |
-| 8       | Fortinet FortiGate              | Fortinet FortiGate enterprise firewall provide high performance, consolidated advanced security and granular visibility for broad protection across the entire digital attack surface.                                                                              |
-| 9       | Fortinet FortiSandbox           | FortiSandbox executes suspicious files in the VM host module to determine if the file is High, Medium, or Low Risk based on the behaviour observed in the VM sandbox module.                                                                                        |
-| 10      | Fortinet FortiSIEM              | FortiSIEM provides integrations that allow you to query and make changes to the CMDB, query events, and send incident notifications.                                                                                                                                |
-| 11      | Fortinet Web Filter Lookup      | Fortinet Web Filter Lookup allows users to check category and classification for any Domain                                                                                                                                                                         |
-| 12      | IBM X-Force                     | This connector helps you rapidly research the latest global security threats, aggregate actionable intelligence, consult with experts, and collaborate with peers.                                                                                                  |
-| 13      | IpStack                         | IPStack provides geolocation facility for IP Address or Domain.                                                                                                                                                                                                     |
-| 14      | MxToolbox                       | MxToolbox offers monitoring solutions and lookup tools. Connector supports automated operations for Lookup, Monitor and Usage                                                                                                                                       |
-| 15      | IP Quality Score <sup>New</sup> | The IP Quality Score (IPQS) Threat Intelligence application provides threat intelligence for IP addresses, email addresses, URLs, and domains via automated interactions with a IP Quality Score server using FortiSOAR™ playbooks.                                 |
-| 16      | NMAP Scanner                    | NMAP (Network Mapper) is a free and open-source security scanner used to discover hosts and services on a computer network, thus building a "map" of the network.                                                                                                   |
-| 17      | SLA Calculator                  | Calculates SLA due date based on locale and work hours. This connector needs content pack for supporting playbooks and module changes                                                                                                                               |
-| 18      | ThreatQ                         | ThreatQuotient (ThreatQ) delivers an open and extensible threat intelligence platform (TIP) to provide defenders the context, customization, and collaboration required to increase security effectiveness and efficiently handle threat operations and management. |
-| 19      | URLScan.io                      | URLScan.io provides a service that analyzes websites and the resources they request. URLScan.io provides actions like search domain, ip, hash scan URL and retrieve report of scanned url.                                                                          |
-| 20      | URLVoid                         | URLVoid provides a service to analyze websites through multiple blacklist engines and online reputation tools to facilitate the detection of fraudulent and malicious websites.                                                                                     |
-| 21      | VirusTotal                      | This connector facilitates automated operations such as scanning and analyzing suspicious files and URLs and retrieving reports from VirusTotal for files, IP addresses, and domains.                                                                               |
-| 22      | Whois RDAP                      | Whois RDAP is a service that enables you to retrieve information about the location of IP addresses, servers, or websites. You can find out the owner of the Internet resource and their contact details.                                                           |
+| Sr. No. | Connector Names                                       | Description                                                                                                                                                                                                                                                         |
+|---------|-------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1       | Active Directory                                      | Helps directly query AD to retrieve information about users, groups, and computers, in an organization, by using the Lightweight Directory Access Protocol (LDAP).                                                                                                  |
+| 2       | AlienVault-OTX                                        | AlienVault-OTX is an open source repository of Indicators of Compromise (IOCs) supported by the community. This connector provides actions like Get IP Reputation, Create Pulse, and Get Domain Reputation.                                                         |
+| 3       | Anomali ThreatStream<sup>New</sup>                    | This connector facilitates automated operations to to pull threat intelligence from the ThreatStream platform, import observables into ThreatStream from any source, manage threat model entities and investigations, and so on.                                    |
+| 4       | apivoid<sup>New</sup>                                 | This connector provides several threat intelligence services ranging from IP/URL/Domain reputation to domain age and website screenshots                                                                                                                            |
+| 5       | CarbonBlack Response                                  | This connector facilitates automated operation related to endpoint protection like isolate endpoint, unisolate endpoint, hunt file, terminate process etc. with CarbonBlack Response server.                                                                        |
+| 6       | ElasticSearch                                         | ElasticSearch is a distributed, RESTful search, and analytics engine capable of solving a number of use cases. This connector facilitates automated operations to execute lucene query, get mapping and cluster details.                                            |
+| 7       | Exchange                                              | This connector provides a robust, platform-independent, and simple interface for communicating with Microsoft Exchange 2007-2016 Server or Office 365 using Exchange Web Services (EWS).                                                                            |
+| 8       | Fortinet FortiClient EMS                              | This connector provides operations related to quarantine/unquarantine endpoints, get endpoint details, and is a security management solution that enables scalable and centralized management of multiple endpoints (computers).                                    |
+| 9       | Fortinet FortiEDR                                     | This connector facilitates the automated operations related to events, forensics and collectors.                                                                                                                                                                    |
+| 10      | Fortinet FortiGate                                    | Fortinet FortiGate enterprise firewall provide high performance, consolidated advanced security and granular visibility for broad protection across the entire digital attack surface.                                                                              |
+| 11      | Fortinet FortiGuard Threat Intelligence<sup>New</sup> | This connector facilitates automated operations to check IP, URL, Domain and File Hash Lookup’s and ingestion of daily threat feeds                                                                                                                                 |
+| 12      | Fortinet FortiSandbox                                 | FortiSandbox executes suspicious files in the VM host module to determine if the file is High, Medium, or Low Risk based on the behaviour observed in the VM sandbox module.                                                                                        |
+| 13      | Fortinet FortiSIEM                                    | FortiSIEM provides integrations that allow you to query and make changes to the CMDB, query events, and send incident notifications.                                                                                                                                |
+| 14      | Fortinet Web Filter Lookup                            | Fortinet Web Filter Lookup allows users to check category and classification for any Domain                                                                                                                                                                         |
+| 15      | IBM XForce                                            | This connector helps you rapidly research the latest global security threats, aggregate actionable intelligence, consult with experts, and collaborate with peers.                                                                                                  |
+| 16      | IP Quality Score                                      | The IP Quality Score (IPQS) Threat Intelligence application provides threat intelligence for IP addresses, email addresses, URLs, and domains via automated interactions with a IP Quality Score server using FortiSOAR™ playbooks.                                 |
+| 17      | IPStack                                               | IPStack provides geolocation facility for IP Address or Domain.                                                                                                                                                                                                     |
+| 18      | MxToolbox                                             | MxToolbox offers monitoring solutions and lookup tools. Connector supports automated operations for Lookup, Monitor and Usage                                                                                                                                       |
+| 19      | NMAP Scanner                                          | NMAP (Network Mapper) is a free and open-source security scanner used to discover hosts and services on a computer network, thus building a "map" of the network.                                                                                                   |
+| 20      | SLA Calculator                                        | Calculates SLA due date based on locale and work hours. This connector needs content pack for supporting playbooks and module changes                                                                                                                               |
+| 21      | Symantec DeepSight Intelligence<sup>New</sup>         | This connector facilitates automated operations like get Filehash , URL, Domain , and IP reputation                                                                                                                                                                 |
+| 22      | ThreatQ                                               | ThreatQuotient (ThreatQ) delivers an open and extensible threat intelligence platform (TIP) to provide defenders the context, customization, and collaboration required to increase security effectiveness and efficiently handle threat operations and management. |
+| 23      | URLScan.io                                            | URLScan.io provides a service that analyzes websites and the resources they request. URLScan.io provides actions like search domain, ip, hash scan URL and retrieve report of scanned url.                                                                          |
+| 24      | URLVoid                                               | URLVoid provides a service to analyze websites through multiple blacklist engines and online reputation tools to facilitate the detection of fraudulent and malicious websites.                                                                                     |
+| 25      | VirusTotal                                            | This connector facilitates automated operations such as scanning and analyzing suspicious files and URLs and retrieving reports from VirusTotal for files, IP addresses, and domains.                                                                               |
+| 26      | Whois RDAP                                            | Whois RDAP is a service that enables you to retrieve information about the location of IP addresses, servers, or websites. You can find out the owner of the Internet resource and their contact details.                                                           |
 
 ## Modules
 
@@ -40,7 +44,7 @@ The SOAR framework includes the following modules:
 
 | Sr. No. | Modules       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 |---------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1       | Alerts        | Alerts are primary actionable data elements that we obtain through a periodic ingestion process. We extract data through multiple channels like emails, SIEM platforms, or EDR platforms to create alerts. Once we have alerts, multiple playbooks are launched to extract and enrich the indicators.<br/><br/>To enhance or extend this default schema, refer to section [Extending Default Alert Schema](#extending-default-alert-schema).                                                                                                                                   |
+| 1       | Alerts        | Alerts are primary actionable data elements that we obtain through a periodic ingestion process. We extract data through multiple channels like emails, SIEM platforms, or EDR platforms to create alerts. Once we have alerts, multiple playbooks are launched to extract and enrich the indicators.<br/><br/>To enhance or extend this default schema, refer to section [Extending Default Alert Schema](./extending-default-alert-schema.md).                                                                                                                                   |
 | 2       | Announcements | The announcements module helps notify users who are a part of a war room.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | 3       | Assets        | Assets represent a unique piece of hardware and any information known about that hardware, such as MAC address, hostname, or IP address. Assets preferably have a unique identifier. The assets module helps add devices within FortiSOAR for use by the SOC team. Computers typically represent the assets of your organization.                                                                                                                                                                                                                                              |
 | 4       | Campaigns     | Campaigns are a collection of incidents relatable to a single threat actor. Many times, disparate incidents are connected attempts of a malicious attacker attempting to probe and gain access to a network.                                                                                                                                                                                                                                                                                                                                                                   |
@@ -51,10 +55,6 @@ The SOAR framework includes the following modules:
 | 9       | Indicators    | **Indicators of compromise** (IOCs) serve as evidence of probable intrusions on a host system or network. These artifacts help personnel at a Security Operations Center (SOC) to detect intrusion attempts or other malicious activities. IOCs help better analyze a particular malware’s techniques and behaviors and provide actionable threat intelligence to further improve an organization’s incident response strategies.<br/><br/>Some of this evidence of potential breach is found on event logs and timestamped entries in the system, applications, and services. |
 | 10      | SLA Template  | SLA Templates in FortiSOAR help create an in-built SLA management for incidents and alerts. For more information, please refer to [SLA Management](https://docs.fortinet.com/document/fortisoar/7.0.2/administration-guide/792686/sla-management).                                                                                                                                                                                                                                                                                                                             |
 | 11      | War Rooms     | War Rooms in FortiSOAR is a collaborative space that enables SOC teams to mitigate a critical cyber threat scenario or campaign. FortiSOAR makes it easy for analysts to quickly and easily provision a War Room that allows participation of all stakeholders to analyze and collaborate to quickly mitigate the threat and restore the services. For more information, see the War Rooms chapter.                                                                                                                                                                            |
-
-## Naming Convention
-
-Playbooks follow a specific order of execution and are arranged in the same sequence as the flow of alert ingestion in the SOAR Framework. Hence the name carries a number that defines the order in which the playbooks run.
 
 ## Rules
 
@@ -127,126 +127,68 @@ SOAR Framework includes the following playbook collections:
 
 - 01 – Drafts
 - 02 - Use Cases
-- 03 – Enrich (22)
-- 03 - Enrich (Pluggable) (36)
+- 03 – Enrich
 - 03 – Triage
-- 04 – Actions (36)
+- 04 – Actions
 - 05 – Hunt
-- 06 - IRP - Case Management (54)
+- 06 - IRP - Case Management
 - 06 - IRP - Communications Tracking
 - 06 - IRP – Reporting
-- 06 - IRP - War Room (12)
+- 06 - IRP - War Room
 - 07 - Incident Response Plan
 - 08 – Utilities
 
+## Naming Convention
+
+Playbooks follow a specific order of execution and are arranged in the same sequence as the flow of alert ingestion in the SOAR Framework. Hence the name carries a number that defines the order in which the playbooks run.
+
 ## Enrich Playbook Collection
 
-<!-- It has two playbook collections
-
-- 03 - Enrich
-- 03 - Enrich (Pluggable)
-
-### 03 - Enrich
-
-Playbooks in the *03-Enrich* collection help perform enrichment of data &ndash; one of the first incident response tasks. Automating data enrichment tasks helps better manage increasing volumes of threats and provides more actionable context to the analysts. An example of an enrichment type playbook would be retrieving the reputation of a file, domain, URL, etc. from threat intelligence platforms such as Anomali ThreatStream and VirusTotal.
-
-Following is a table that lists the playbooks that are part of the *03-Enrich* collection in the Solution Pack: -->
 Playbooks in the *03-Enrich* collection help perform enrichment of data &ndash; one of the first incident response tasks. Automating data enrichment tasks helps better manage increasing volumes of threats and provides more actionable context to the analysts. An example of an enrichment type playbook would be retrieving the reputation of a file, domain, URL, etc. from threat intelligence platforms such as Anomali ThreatStream and VirusTotal.
 
 | 03 - Enrich |
-|--|
+|-------------|
 
-| Sr. No | Name of the playbook                                     | Description                                                                                                                                              |
-|--------|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1      | Asset - Get Running Process                              | Retrieves a list of all processes that are running on the specified host.                                                                                |
-| 2      | Attachment - Get File Reputation                         | Retrieves the reputation of a file that is submitted from FortiSOAR to VirusTotal.                                                                       |
-| 3      | Create Indicators (Batch)                                | Creates indicator records in bulk.                                                                                                                       |
-| 4      | Extract Indicators                                       | Extracts and creates indicators from the specified data and then enriches specific fields in alerts with the indicator data.                             |
-| 5      | Extract Indicators - Manual                              | Extracts and creates indicators from the specified alert records and then enriches specific fields in alerts with the indicator data.                    |
-| 6      | Fotinet Fortisandbox (GetReputation) - Get Scan Results  | Retrieves the job verdict details for submitted samples based on the specified job ID.                                                                   |
-| 7      | Get Related IOCs For An IP                               | Retrieves related IOCs for a specified IP address from threat intel sources.                                                                             |
-| 8      | Get Reputation After SpecifiedTime                       | Re-enriches indicators after a specified time.                                                                                                           |
-| 9      | Indicator (Manual Trigger)-Get Latest Reputation         | Retrieves the reputation of indicators using configured threat intelligence tools. You can trigger this playbook by manually selecting the indicator(s). |
-| 10     | Indicator (Type All) - Get LatestReputation              | Based on the type of indicator, this playbook retrieves the reputation of indicators using configured threat intelligence tools.                         |
-| 11     | Indicator (Type Domain) - GetReputation                  | Retrieves the reputation of indicators of type ‘Domain’ using configured threat intelligence tools.                                                      |
-| 12     | Indicator (Type Email) - GetReputation                   | Retrieves the reputation of indicators of type ‘Email Address’ using configured threat intelligence tools.                                               |
-| 13     | Indicator (Type File) - GetReputation                    | Uploads a file to a sandbox and then retrieves its reputation using configured threat intelligence tools.                                                |
-| 14     | Indicator (Type File) - GetReputation (Fortinet Sandbox) | Submits a file to FortinetSandbox and then retrieves its reputation.                                                                                     |
-| 15     | Indicator (Type File - MD5) - GetReputation              | Retrieves the reputation of a file, identified by its MD5 hash, using configured threat intelligence tools.                                              |
-| 16     | Indicator (Type Host) - GetReputation                    | Retrieves the reputation of indicators of type ‘Host’ using configured threat intelligence tools.                                                        |
-| 17     | Indicator (Type IP) - GetReputation                      | Retrieves the reputation of indicators of type ‘IP Address’ using configured threat intelligence tools.                                                  |
-| 18     | Indicator (Type Port) - GetReputation                    | Retrieves the reputation of indicators of type ‘Port’ using configured threat intelligence tools.                                                        |
-| 19     | Indicator (Type Process) - GetReputation                 | Retrieves the reputation of indicators of type ‘Process’ using configured threat intelligence tools.                                                     |
-| 20     | Indicator (Type URL) - GetReputation                     | Retrieves the reputation of indicators of type ‘URL’ using configured threat intelligence tools.                                                         |
-| 21     | Indicator (Type URL) - GetReputation (Fortinet Sandbox)  | Submit URL to FortinetFortiSandbox.                                                                                                                      |
-| 22     | Indicator (Type User Account) -Get Details               | Retrieves the details of indicators of type ‘User Account’ using configured threat intelligence tools.                                                   |
+| Sr. No | Playbook Name                                                                  | Description                                                                                                                                              |
+|--------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1      | Asset - Get Running Process                                                    | Retrieves a list of all processes that are running on the specified host.                                                                                |
+| 2      | Attachment - Get File Reputation                                               | Retrieves the reputation of a file that is submitted from FortiSOAR to VirusTotal.                                                                       |
+| 3      | Create Indicators (Batch)                                                      | Creates indicator records in bulk.                                                                                                                       |
+| 4      | Extract Indicators                                                             | Extracts and creates indicators from the specified data and then enriches specific fields in alerts with the indicator data.                             |
+| 5      | Extract Indicators - Manual                                                    | Extracts and creates indicators from the specified alert records and then enriches specific fields in alerts with the indicator data.                    |
+| 6      | Get Related IOCs For An IP                                                     | Retrieves related IOCs for a specified IP address from threat intel sources.                                                                             |
+| 7      | Get Reputation After Specified Time                                            | Re-enriches indicators after a specified time.                                                                                                           |
+| 8      | Indicator (Manual Trigger) - Get Latest Reputation                             | Retrieves the reputation of indicators using configured threat intelligence tools. You can trigger this playbook by manually selecting the indicator(s). |
+| 9      | Indicator (Type Host) - Get Reputation                                         | Retrieves the reputation of indicators of type ‘Host’ using configured threat intelligence tools.                                                        |
+| 10     | Indicator (Type Port) - Get Reputation                                         | Retrieves the reputation of indicators of type ‘Port’ using configured threat intelligence tools.                                                        |
+| 11     | Indicator (Type Process) - Get Reputation                                      | Retrieves the reputation of indicators of type ‘Process’ using configured threat intelligence tools.                                                     |
+| 12     | Enrich Indicators (Type All) <sup>New</sup>                                    | Get indicator reputation from all available pluggable enrichment playbooks.                                                                              |
+| 13     | Enrich Indicator (Type IP) <sup>New</sup>                                      | Pre-process the IP Address indicator                                                                                                                     |
+| 14     | Update/Initialize Indicator Enrichment Global Variables <sup>New</sup>         | Update enrichment playbooks list global variable based on indicator type defined as param tag                                                            |
+| 15     | Retrieve Configured Enrichment Connectors <sup>New</sup>                       | Retrieve the configured enrichment connectors and return their playbook IRI's                                                                            |
+| 16     | Delete Enrichment Global Variables <sup>New</sup>                              | Delete the pluggable enrichment global variables                                                                                                         |
+| 17     | Indicator (Type All) - Get Latest Reputation<sup>Deprecated</sup>              | Based on the type of indicator, this playbook retrieves the reputation of indicators using configured threat intelligence tools.                         |
+| 18     | Indicator (Type Domain) - Get Reputation<sup>Deprecated</sup>                  | Retrieves the reputation of indicators of type ‘Domain’ using configured threat intelligence tools.                                                      |
+| 19     | Indicator (Type Email) - Get Reputation<sup>Deprecated</sup>                   | Retrieves the reputation of indicators of type ‘Email Address’ using configured threat intelligence tools.                                               |
+| 20     | Indicator (Type File) - Get Reputation<sup>Deprecated</sup>                    | Uploads a file to a sandbox and then retrieves its reputation using configured threat intelligence tools.                                                |
+| 21     | Indicator (Type File) - Get Reputation (Fortinet Sandbox)<sup>Deprecated</sup> | Submits a file to FortinetSandbox and then retrieves its reputation.                                                                                     |
+| 22     | Indicator (Type File - MD5) - Get Reputation<sup>Deprecated</sup>              | Retrieves the reputation of a file, identified by its MD5 hash, using configured threat intelligence tools.                                              |
+| 23     | Indicator (Type IP) - Get Reputation<sup>Deprecated</sup>                      | Retrieves the reputation of indicators of type ‘IP Address’ using configured threat intelligence tools.                                                  |
+| 24     | Indicator (Type URL) - Get Reputation<sup>Deprecated</sup>                     | Retrieves the reputation of indicators of type ‘URL’ using configured threat intelligence tools.                                                         |
+| 25     | Indicator (Type URL) - Get Reputation (Fortinet Sandbox)<sup>Deprecated</sup>  | Submit URL to FortinetFortiSandbox.                                                                                                                      |
+| 26     | Indicator (Type User Account) - Get Details<sup>Deprecated</sup>               | Retrieves the details of indicators of type ‘User Account’ using configured threat intelligence tools.                                                   |
+| 27     | Fortinet Fortisandbox (Get Reputation) - Get Scan Results<sup>Deprecated</sup> | Retrieves the job verdict details for submitted samples based on the specified job ID.                                                                   |
 
-<!-- ### 03 - Enrich (Pluggable)
-
-The function of the playbooks in both *Enrich* and *Enrich (Pluggable)* collections is the same; however, the design approach is different. In the standard *Enrich* playbook, all threat intelligence platforms for a particular indicator type are configured in a single playbook. In *Enrich (Pluggable)* collection, every threat intelligence platform for a particular indicator type has a separate playbook, which can be plugged in or referenced to the enrichment playbook. -->
-
-The function of the playbooks in both *Enrich* and *Enrich (Pluggable)* collections is the same; however, the design approach is different. In the standard *Enrich* playbook, all threat intelligence platforms for a particular indicator type are configured in a single playbook. In *Enrich (Pluggable)* collection, every threat intelligence platform for a particular indicator type has a separate playbook, which can be plugged in or referenced to the enrichment playbook.
-
-| 03 - Enrich (Pluggable) |
-|--|
-
-| Sr. No. | Name of the playbook                                 | Description                                                                                                                                              |
-|---------|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1       | AlienValut OTX - File MD5Reputation                  | Retrieves the reputation of indicators of type 'FileHash-MD5' using AlienValut OTX.                                                                      |
-| 2       | AlienValut OTX - IP Reputation                       | Retrieves the reputation of indicators of type 'IP Address' using AlienValut OTX.                                                                        |
-| 3       | AlienValut OTX - URL Reputation                      | Retrieves the reputation of indicators of type 'URL' using AlienValut OTX.                                                                               |
-| 4       | AlienVault-OTX - DomainReputation                    | Retrieves the reputation of indicators of type 'Domain' using AlienValut OTX.                                                                            |
-| 5       | Anomali Threatstream - DomainReputation              | Retrieves the reputation of indicators of type 'Domain' using Anomali Threatstream.                                                                      |
-| 6       | Anomali Threatstream - EmailReputation               | Retrieves the reputation of indicators of type 'Email' using Anomali Threatstream.                                                                       |
-| 7       | Anomali Threatstream - File MD5Reputation            | Retrieves the reputation of indicators of type 'FileHash-MD5' using Anomali Threatstream.                                                                |
-| 8       | Anomali Threatstream - IPReputation                  | Retrieves the reputation of indicators of type 'IP Address' using Anomali Threatstream.                                                                  |
-| 9       | Anomali Threatstream - URLReputation                 | Retrieves the reputation of indicators of type 'URL' using Anomali Threatstream.                                                                         |
-| 10      | Cisco Threat Grid - FileReputation                   | Submits a file to Cisco ThreatGrid and then retrieves its reputation.                                                                                    |
-| 11      | Fortinet Web Filter Lookup -Domain Reputation        | Retrieves the reputation of indicators of type 'Domain' using Fortinet Web Filter Lookup.                                                                |
-| 12      | Fortinet Web Filter Lookup - URLReputation           | Retrieves the reputation of indicators of type 'URL' using Fortinet Web Filter Lookup.                                                                   |
-| 13      | IP Stack - Domain Geo Location                       | Retrieves the geolocation of indicators of type 'Domain' using IP Stack.                                                                                 |
-| 14      | IP Stack - IP Reputation                             | Retrieves the geolocation of indicators of type 'IP Address' using IP Stack.                                                                             |
-| 15      | Indicator (Domain) - Get LatestReputation            | Retrieves the reputation of indicators of type 'Domain' using configured threat intelligence playbooks.                                                  |
-| 16      | Indicator (Email) - Get LatestReputation             | Retrieves the reputation of indicators of type 'Email' using configured threat intelligence playbooks.                                                   |
-| 17      | Indicator (File MD5) - Get LatestReputation          | Retrieves the reputation of indicators of type 'Filehash' using configured threat intelligence playbooks.                                                |
-| 18      | Indicator (File) - Get LatestReputation              | Uploads a file to a sandbox and then retrieves its reputation using configured threat intelligence tools playbooks.                                      |
-| 19      | Indicator (IP Address) - GetLatest Reputation        | Retrieves the reputation of indicators of type 'IP Address' using configured threat intelligence playbooks.                                              |
-| 20      | Indicator (Manual Trigger)- Get Latest Reputation    | Retrieves the reputation of indicators using configured threat intelligence tools. You can trigger this playbook by manually selecting the indicator(s). |
-| 21      | Indicator (Type All) - Get LatestReputation          | Based on the type of indicator, this playbook retrieves the reputation of indicators using configured threat intelligence tools.                         |
-| 22      | Indicator (Type File - MD5) - GetReputation          | Retrieves the reputation of a file, identified by its MD5 hash, using configured threat intelligence tools.                                              |
-| 23      | Indicator (Type Host) - GetLatest Reputation         | Retrieves the reputation of indicators of type 'Host' using configured threat intelligence playbooks.                                                    |
-| 24      | Indicator (Type Process) - GetLatest Reputation      | Retrieves the reputation of indicators of type 'Process' using configured threat intelligence tools.                                                     |
-| 25      | Indicator (URL) - Get the latest reputation          | Retrieves the reputation of indicators of type 'URL' using configured threat intelligence playbooks.                                                     |
-| 26      | MXToolBox - IP Reputation                            | Retrieves the reputation of indicators of type 'IP Address' using MXToolBox.                                                                             |
-| 27      | Symantec Deepsight Intelligence -File MD5 Reputation | Retrieves the reputation of a file, identified by its MD5 hash, using Symantec DeepSight Intelligence.                                                   |
-| 28      | ThreatQ - Email Reputation                           | Retrieves the reputation of indicators of type 'Email' using ThreatQ.                                                                                    |
-| 29      | URLVoid - Domain Reputation                          | Retrieves the reputation of indicators of type 'Domain' using URLVoid.                                                                                   |
-| 30      | URLVoid - URL Reputation                             | Retrieves the reputation of indicators of type 'URL' using URLVoid.                                                                                      |
-| 31      | VirusTotal - Domain Reputation                       | Retrieves the reputation of indicators of type 'Domain' using VirusTotal.                                                                                |
-| 32      | VirusTotal - URL Reputation                          | Retrieves the reputation of indicators of type 'URL' using VirusTotal.                                                                                   |
-| 33      | Virustotal - File MD5 Reputation                     | Retrieves the reputation of indicators of type 'File Hash MD5' using VirusTotal.                                                                         |
-| 34      | Virustotal - File Reputation                         | Submits a file to VirusTotal and then retrieves its reputation.                                                                                          |
-| 35      | Virustotal - IP Reputation                           | Retrieves the reputation of indicators of type 'IP Address' using VirusTotal.                                                                            |
-| 36      | Whois - IP Reputation                                | Retrieves whois data for indicators of type 'IP Address' using Whois RDAP.                                                                               |
+>**NOTE**: The playbooks marked *Deprecated* are to be deactivated if you are going for an upgrade.
 
 ## Triaging Playbook Collection
-
-<!-- This playbook collection appears with the name 
-
-- 03 - Triage
-
-### 03 - Triage
-
-Playbooks in the *03-Triage* collection perform actions such as sorting, systematizing, and computing your enriched data to help you quickly investigate the incident and take decisions for containment and resolution of an incident.
-
-Following is a table that lists the playbooks that are part of the *03-Triage* collection in the Solution Pack: -->
 
 Playbooks in the *03-Triage* collection perform actions such as sorting, systematizing, and computing your enriched data to help you quickly investigate the incident and take decisions for containment and resolution of an incident.
 
 | 03 - Triage |
-|--|
+|-------------|
 
-| Sr. No | Name of the playbook                                                     | Description                                                                                                                                                                                                                                                       |
+| Sr. No | Playbook Name                                                            | Description                                                                                                                                                                                                                                                       |
 |--------|--------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1      | Compute Alert Priority Weight(Post Update)                               | Computes and sets the priority weight for an alert, when the alert is updated. The priority weight is calculated based on indicators related to the alert.                                                                                                        |
 | 2      | Compute Alert Priority Weight(Post Update - Indicator Linked)            | Computes and sets the priority weight for an alert, when an indicator related to the alert is updated. The priority weight is calculated based on indicators related to the alert.                                                                                |
@@ -263,9 +205,9 @@ Playbooks in the *03-Triage* collection perform actions such as sorting, systema
 Playbooks in the *04-Actions* collection perform various operations such as blocking or unblocking domains, URLs, and hosts.
 
 | 04 - Actions |
-|--|
+|--------------|
 
-| Sr. No. | Name of the playbook                                | Description                                                                                                                                                                                                                                 |
+| Sr. No. | Playbook Name                                       | Description                                                                                                                                                                                                                                 |
 |---------|-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1       | Action -Asset Mitigation                            | Carries out a sequence of processes such as Clean Asset, AV scan, etc. to decide whether to keep an asset in isolation or remove it from isolation.                                                                                         |
 | 2       | Action - Domain - Block(Indicator)                  | Blocks the indicators of type'Domain' on the firewall and marks the indicator as "Blocked" based on its Block status.                                                                                                                       |
@@ -310,11 +252,11 @@ Playbooks in the *04-Actions* collection perform various operations such as bloc
 Playbooks in the *05-Hunt* collection automate threat hunting processes, search, and identify suspicious domains, malware, and other indicators in your environment and create alerts based on them.
 
 | 05 - Hunt |
-|--|
+|-----------|
 
-| Name of the playbook | Description                                                                                                           |
-|----------------------|-----------------------------------------------------------------------------------------------------------------------|
-| Hunt Indicators      | Searches for the specified indicators in your environment using EDR tools, and create alerts for ones that are found. |
+| Playbook Name   | Description                                                                                                           |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------|
+| Hunt Indicators | Searches for the specified indicators in your environment using EDR tools, and create alerts for ones that are found. |
 
 ## Case Management Collection
 
@@ -325,10 +267,10 @@ This playbook collection has the following playbook
 - 06 - IRP - Reporting
 - 06 - IRP - War Room
 
-| 06 - IRP - Case Management |
-|--|
+| 06 - IRP - Case Management <a name="06-irp-case-management"></a> |
+|----------------------------|
 
-| Sr. No | Name of the playbook                                                    | Description                                                                                                                                                                                                       |
+| Sr. No | Playbook Name                                                           | Description                                                                                                                                                                                                       |
 |--------|-------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1      | Alert - [01] Capture All SLA (Upon Create)                              | Updates the alert's acknowledgement due date and response due date based on the alert’s severity.                                                                                                                 |
 | 2      | Alert - [02] Capture Ack SLA (Upon Update)                              | Updates the alert's acknowledgement date and SLA Status based on when the alert status is changed.                                                                                                                |
@@ -386,9 +328,9 @@ This playbook collection has the following playbook
 | 54     | Create IOC Extracted From CSV File                                      | It is subroutine of “Ingest IOC From CSV File” playbook, which will create IOC extracted from CSV File                                                                                                            |
 
 | 06 - IRP - Communications Tracking |
-|--|
+|------------------------------------|
 
-| Sr. No | Name of the playbook                         | Description                                                                                                                               |
+| Sr. No | Playbook Name                                | Description                                                                                                                               |
 |--------|----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | 1      | Add Note for Communication Linked            | Adds a note stating a new communication has been linked to alert.                                                                         |
 | 2      | Add Note for Communication Linked (Received) | Adds a note stating a new communication that was received has been linked to alert.                                                       |
@@ -400,9 +342,9 @@ This playbook collection has the following playbook
 | 8      | Send Notification                            | Sends auto-notification of any new communication record that is in the “Sending” state to the intended recipients.                        |
 
 | 06 - IRP - Reporting |
-|--|
+|----------------------|
 
-| Sr. No. | Name of the playbook                   | Description                                                                                                             |
+| Sr. No. | Playbook Name                          | Description                                                                                                             |
 |---------|----------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
 | 1       | Export Selected Records                | Exports all selected records to a JSON file and creates an attachment record for the same.                              |
 | 2       | Import Data                            | Imports a valid JSON file to a relevant module and creates subsequent records.                                          |
@@ -412,7 +354,7 @@ This playbook collection has the following playbook
 | 6       | Notify Failed Playbook Executions      | Notifies specified recipients of any playbook failure. It can be scheduled to run at specific intervals.                |
 
 | 06 - IRP - War Room |
-|--|
+|---------------------|
 
 | Sr. No. | Playbook Name                             | Description                                                                                                                                                     |
 |---------|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -432,7 +374,7 @@ This playbook collection has the following playbook
 ## Incident Response Playbook Collection
 
 | 07 - Incident Response Plan |
-|--|
+|-----------------------------|
 
 | Sr. No. | Playbook Name                                        | Description                                                                                                                |
 |---------|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
@@ -445,19 +387,19 @@ This playbook collection has the following playbook
 You can use the playbooks in the *08 - Utilities* collection to perform various operations in FortiSOAR such as creating and linking assets to specified emails, alerts, or incidents, exporting all records or a specified module, or scheduling the health check of connectors and send appropriate notifications.
 
 | 08 - Utilities |
-|--|
+|----------------|
 
-| Sr. No. | Playbook Name                                               | Description                                                                                                                                                       |
-|---------|-------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1       | Add Attacker Tag to Indicator (FortiDeceptor)               | Finds the Attacker IP Address in a FortiDeceptoralert and adds the Attacker Tag to the indicator as well as updates the reputation of the indicator to Malicious. |
-| 2       | Create and Link Asset                                       | Creates an asset (if it doesn't exist already), and links it to the specified email, alert, or incident record.                                                   |
-| 3       | Create and Link Indicator                                   | Create an indicator (if it doesn't exist already), and link it to the specified email, alert, or incident record.                                                 |
-| 4       | Download and Create Attachment                              | Downloads the file from a specified URL and creates an attachment record for the same.                                                                            |
-| 5       | Export as CSV                                               | Export all records of the given module with specified filters in the CSV format.                                                                                  |
-| 6       | Get Paginated Records                                       | Gets paginated records data and appends them in a.CSV file. This playbook is a reference playbook for 'Export as CSV'.                                            |
-| 7       | Notify Connector Health Check Failures                      | Scheduled to check connectors’ health status and notify the specified recipients of any failed health check.                                                      |
-| 8       | Notify Failed Playbook Executions                           | Notify specified recipients of any playbook failure. It can be scheduled to run at specific intervals.                                                            |
-| 9       | Scheduled Configuration Export                              | Export template name and email address to be updated in the 'Configuration' step. Can be used to schedule Configuration Export and send it as an email.           |
-| 10      | Activate Inactive Users <sup>New</sup>                      | Find the Inactive users and activate them                                                                                                                         |
-| 11      | Activate inactive users - Update user status <sup>New</sup> | This is a subroutine playbook to update the user status as active                                                                                                 |
-| 12      | Indicator - Import Bulk Indicator <sup>New</sup>            | Extract Indicators from specified text                                                                                                                            |
+| Sr. No. | Playbook Name                                 | Description                                                                                                                                                       |
+|---------|-----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1       | Add Attacker Tag to Indicator (FortiDeceptor) | Finds the Attacker IP Address in a FortiDeceptoralert and adds the Attacker Tag to the indicator as well as updates the reputation of the indicator to Malicious. |
+| 2       | Create and Link Asset                         | Creates an asset (if it doesn't exist already), and links it to the specified email, alert, or incident record.                                                   |
+| 3       | Create and Link Indicator                     | Create an indicator (if it doesn't exist already), and link it to the specified email, alert, or incident record.                                                 |
+| 4       | Download and Create Attachment                | Downloads the file from a specified URL and creates an attachment record for the same.                                                                            |
+| 5       | Export as CSV                                 | Export all records of the given module with specified filters in the CSV format.                                                                                  |
+| 6       | Get Paginated Records                         | Gets paginated records data and appends them in a.CSV file. This playbook is a reference playbook for 'Export as CSV'.                                            |
+| 7       | Notify Connector Health Check Failures        | Scheduled to check connectors’ health status and notify the specified recipients of any failed health check.                                                      |
+| 8       | Notify Failed Playbook Executions             | Notify specified recipients of any playbook failure. It can be scheduled to run at specific intervals.                                                            |
+| 9       | Scheduled Configuration Export                | Export template name and email address to be updated in the 'Configuration' step. Can be used to schedule Configuration Export and send it as an email.           |
+| 10      | Activate Inactive Users                       | Find the Inactive users and activate them                                                                                                                         |
+| 11      | Activate inactive users - Update user status  | This is a subroutine playbook to update the user status as active                                                                                                 |
+| 12      | Indicator - Import Bulk Indicator             | Extract Indicators from specified text                                                                                                                            |

@@ -13,14 +13,117 @@
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/d98add27-83c9-4f73-a370-16454398e317",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/827ab605-5ad1-4e54-8600-7d4cabe8412e",
+    "triggerStep": "\/api\/3\/workflow_steps\/82913d30-a391-4f4a-8c99-38bc2a8a08e3",
     "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "reply-to": "{{globalVars.Default_Email}}",
+                "attachments": "{%set attach= [ ] %}{% if vars.input.records[0].file %}{%set _tmp=attach.append(vars.input.records[0].file['@id'])%}{%endif%}{{attach}}",
+                "use_exchange_connector": "true"
+            },
+            "status": null,
+            "top": "160",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "10d18c97-0fee-4bce-a056-2f29de695108"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Send Email Using SMTP",
+            "description": null,
+            "arguments": {
+                "config": "88c3d39c-2fa9-4731-b00d-29815008f17c",
+                "params": {
+                    "cc": "{% if vars.input.records[0].cc%}{{vars.input.records[0].cc}}{%else%} {%endif%}",
+                    "to": "{{vars.input.records[0].to}}",
+                    "bcc": "{% if vars.input.records[0].bcc %}{{vars.input.records[0].bcc}}{%else%} {%endif%}",
+                    "from": "",
+                    "type": "Manual Input",
+                    "content": "{{vars.input.records[0].body}}",
+                    "subject": "{{vars.input.records[0].subject}}",
+                    "iri_list": "{{vars.attachments}}",
+                    "body_type": "Rich Text",
+                    "file_name": "",
+                    "file_path": ""
+                },
+                "version": "2.4.0",
+                "from_str": "admin@example.com",
+                "connector": "smtp",
+                "operation": "send_email_new",
+                "operationTitle": "Send Email",
+                "step_variables": {
+                    "connector_name": "smtp"
+                }
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/4c0019b2-055c-44d0-968c-678a0c2d762e",
+            "group": null,
+            "uuid": "3f9f4130-91c5-4f87-8e7d-2d70fe25f508"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Connector Version",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/integration\/connectors\/?ordering=label&page_size=300&search={{vars.connector_name}}",
+                    "body": "",
+                    "method": "GET"
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "CyOPs: Make CyOPs API Call",
+                "step_variables": {
+                    "connector_version": "{{vars.result.data.data[0].version}}"
+                }
+            },
+            "status": null,
+            "top": "570",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "4f8d1209-6b99-4e23-a12a-3c5aa4974eab"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Use Exchange Connector",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/a49a60cb-92ca-4492-b042-66411a4f4b5e",
+                        "condition": "{{ vars.use_exchange_connector }}",
+                        "step_name": "MS Exchange"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/3f9f4130-91c5-4f87-8e7d-2d70fe25f508",
+                        "step_name": "Send Email"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "300",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "545440ee-a55a-4558-bdec-828981ed7210"
+        },
         {
             "@type": "WorkflowStep",
             "name": "Start",
             "description": null,
             "arguments": {
-                "route": "29e9888e-a4f2-498c-a8a8-eb764a2c3fdf",
+                "route": "77316ae3-e89f-45f4-8ca1-16d1b6f6a17e",
                 "title": "Send Email",
                 "resources": [
                     "communication"
@@ -69,82 +172,33 @@
             "top": "30",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-            "uuid": "827ab605-5ad1-4e54-8600-7d4cabe8412e"
+            "group": null,
+            "uuid": "82913d30-a391-4f4a-8c99-38bc2a8a08e3"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Configuration",
+            "name": "Get From Email Id",
             "description": null,
             "arguments": {
-                "reply-to": "{{globalVars.Default_Email}}",
-                "attachments": "{%set attach= [ ] %}{% if vars.input.records[0].file %}{%set _tmp=attach.append(vars.input.records[0].file['@id'])%}{%endif%}{{attach}}",
-                "use_exchange_connector": "true"
-            },
-            "status": null,
-            "top": "165",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "45484664-7aa4-4427-961a-4c255390a921"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Use Exchange Connector",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/c95349cb-a18f-40e8-ba02-dc0f09b32435",
-                        "condition": "{{ vars.use_exchange_connector }}",
-                        "step_name": "MS Exchange"
-                    },
-                    {
-                        "option": "No",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/6a1b76bc-a63b-4aea-8175-5aa723f4fe6c",
-                        "step_name": "Send Email"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "300",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "fd67f1d2-6d64-41bc-96d7-ebc709e67ab4"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Send Email Using SMTP",
-            "description": null,
-            "arguments": {
-                "config": "88c3d39c-2fa9-4731-b00d-29815008f17c",
                 "params": {
-                    "cc": "{% if vars.input.records[0].cc%}{{vars.input.records[0].cc}}{%else%} {%endif%}",
-                    "to": "{{vars.input.records[0].to}}",
-                    "bcc": "{% if vars.input.records[0].bcc %}{{vars.input.records[0].bcc}}{%else%} {%endif%}",
-                    "from": "",
-                    "type": "Manual Input",
-                    "content": "{{vars.input.records[0].body}}",
-                    "subject": "{{vars.input.records[0].subject}}",
-                    "iri_list": "{{vars.attachments}}",
-                    "body_type": "Rich Text",
-                    "file_name": "",
-                    "file_path": ""
+                    "iri": "\/api\/integration\/connectors\/{{vars.connector_name}}\/{{vars.connector_version}}\/",
+                    "body": "",
+                    "method": "GET"
                 },
-                "version": "2.4.0",
-                "from_str": "admin@example.com",
-                "connector": "smtp",
-                "operation": "send_email_new",
-                "operationTitle": "Send Email",
+                "version": "3.0.4",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "CyOPs: Make CyOPs API Call",
                 "step_variables": {
-                    "connector_name": "smtp"
+                    "from_email_id": "{{(vars.result.data | json_query('configuration[? default].config.email_address')) if (vars.result.data | json_query('configuration[? default].config.email_address')) else (vars.result.data | json_query('configuration[? default].config.default_from'))}}"
                 }
             },
             "status": null,
-            "top": "435",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/4c0019b2-055c-44d0-968c-678a0c2d762e",
-            "uuid": "6a1b76bc-a63b-4aea-8175-5aa723f4fe6c"
+            "top": "705",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "9176e528-10c1-4893-932f-50327a72ca9c"
         },
         {
             "@type": "WorkflowStep",
@@ -175,55 +229,8 @@
             "top": "435",
             "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
-            "uuid": "c95349cb-a18f-40e8-ba02-dc0f09b32435"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Get Connector Version",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "\/api\/integration\/connectors\/?ordering=label&page_size=35&search={{vars.connector_name}}",
-                    "body": "",
-                    "method": "GET"
-                },
-                "version": "3.0.4",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "CyOPs: Make CyOPs API Call",
-                "step_variables": {
-                    "connector_version": "{{vars.result.data.data[0].version}}"
-                }
-            },
-            "status": null,
-            "top": "570",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "b758ff3f-6135-44b6-a118-58495188fea1"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Get From Email Id",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "\/api\/integration\/connectors\/{{vars.connector_name}}\/{{vars.connector_version}}\/",
-                    "body": "",
-                    "method": "GET"
-                },
-                "version": "3.0.4",
-                "connector": "cyops_utilities",
-                "operation": "make_cyops_request",
-                "operationTitle": "CyOPs: Make CyOPs API Call",
-                "step_variables": {
-                    "from_email_id": "{{(vars.result.data | json_query('configuration[? default].config.email_address')) if (vars.result.data | json_query('configuration[? default].config.email_address')) else (vars.result.data | json_query('configuration[? default].config.default_from'))}}"
-                }
-            },
-            "status": null,
-            "top": "705",
-            "left": "300",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "608d32df-264b-4c30-b074-6b6d2f3b795f"
+            "group": null,
+            "uuid": "a49a60cb-92ca-4492-b042-66411a4f4b5e"
         },
         {
             "@type": "WorkflowStep",
@@ -268,85 +275,87 @@
             "top": "840",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "aa1cb770-616f-4e38-88a1-d40b5b89f4e5"
+            "group": null,
+            "uuid": "b25d7aa1-1d90-4aa6-8e80-e320c38c50e4"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Get From Email Id -> Update From Email Address",
-            "targetStep": "\/api\/3\/workflow_steps\/aa1cb770-616f-4e38-88a1-d40b5b89f4e5",
-            "sourceStep": "\/api\/3\/workflow_steps\/608d32df-264b-4c30-b074-6b6d2f3b795f",
-            "label": null,
+            "name": "Use Exchange Connector -> Send Email",
+            "targetStep": "\/api\/3\/workflow_steps\/3f9f4130-91c5-4f87-8e7d-2d70fe25f508",
+            "sourceStep": "\/api\/3\/workflow_steps\/545440ee-a55a-4558-bdec-828981ed7210",
+            "label": "No",
             "isExecuted": false,
-            "uuid": "a7f7046c-acc6-4f2f-8cc8-3a768457a8f0"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Get Connector Version -> Get From Email Id",
-            "targetStep": "\/api\/3\/workflow_steps\/608d32df-264b-4c30-b074-6b6d2f3b795f",
-            "sourceStep": "\/api\/3\/workflow_steps\/b758ff3f-6135-44b6-a118-58495188fea1",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "0b921ac5-381a-4be2-89f5-1f5f577e4f6f"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Send Email Using SMTP -> Get Connector Version",
-            "targetStep": "\/api\/3\/workflow_steps\/b758ff3f-6135-44b6-a118-58495188fea1",
-            "sourceStep": "\/api\/3\/workflow_steps\/6a1b76bc-a63b-4aea-8175-5aa723f4fe6c",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "253f1dfe-e017-498a-b6b2-16fc21e61e96"
+            "uuid": "0e017eb8-5bb8-4d0c-a31c-04a6b3bd9c73"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Use Exchange Connector -> MS Exchange",
-            "targetStep": "\/api\/3\/workflow_steps\/c95349cb-a18f-40e8-ba02-dc0f09b32435",
-            "sourceStep": "\/api\/3\/workflow_steps\/fd67f1d2-6d64-41bc-96d7-ebc709e67ab4",
+            "targetStep": "\/api\/3\/workflow_steps\/a49a60cb-92ca-4492-b042-66411a4f4b5e",
+            "sourceStep": "\/api\/3\/workflow_steps\/545440ee-a55a-4558-bdec-828981ed7210",
             "label": "Yes",
             "isExecuted": false,
-            "uuid": "cad931f7-2df3-482d-9d1d-2351c0971806"
+            "uuid": "27262d69-8e35-40bc-89ec-7d7f070892c7"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Send Email Using Exchange -> Get Connector Version",
-            "targetStep": "\/api\/3\/workflow_steps\/b758ff3f-6135-44b6-a118-58495188fea1",
-            "sourceStep": "\/api\/3\/workflow_steps\/c95349cb-a18f-40e8-ba02-dc0f09b32435",
+            "name": "Get From Email Id -> Update From Email Address",
+            "targetStep": "\/api\/3\/workflow_steps\/b25d7aa1-1d90-4aa6-8e80-e320c38c50e4",
+            "sourceStep": "\/api\/3\/workflow_steps\/9176e528-10c1-4893-932f-50327a72ca9c",
             "label": null,
             "isExecuted": false,
-            "uuid": "2fd70d1c-64d3-40c8-9017-87acab42414b"
+            "uuid": "58daa0c6-a452-40ae-ab6c-603d4b1c7ab5"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Connector Version -> Get From Email Id",
+            "targetStep": "\/api\/3\/workflow_steps\/9176e528-10c1-4893-932f-50327a72ca9c",
+            "sourceStep": "\/api\/3\/workflow_steps\/4f8d1209-6b99-4e23-a12a-3c5aa4974eab",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "63bdb439-2e43-4f1b-8c3d-6e84816ee3de"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/45484664-7aa4-4427-961a-4c255390a921",
-            "sourceStep": "\/api\/3\/workflow_steps\/827ab605-5ad1-4e54-8600-7d4cabe8412e",
+            "targetStep": "\/api\/3\/workflow_steps\/10d18c97-0fee-4bce-a056-2f29de695108",
+            "sourceStep": "\/api\/3\/workflow_steps\/82913d30-a391-4f4a-8c99-38bc2a8a08e3",
             "label": null,
             "isExecuted": false,
-            "uuid": "4d75a16d-09c6-4f7f-88b1-d859ef285d44"
+            "uuid": "8b3e7190-90d6-4bab-86f1-c6f80e4f2cd4"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Configuration -> Use Exchange Connector",
-            "targetStep": "\/api\/3\/workflow_steps\/fd67f1d2-6d64-41bc-96d7-ebc709e67ab4",
-            "sourceStep": "\/api\/3\/workflow_steps\/45484664-7aa4-4427-961a-4c255390a921",
+            "targetStep": "\/api\/3\/workflow_steps\/545440ee-a55a-4558-bdec-828981ed7210",
+            "sourceStep": "\/api\/3\/workflow_steps\/10d18c97-0fee-4bce-a056-2f29de695108",
             "label": null,
             "isExecuted": false,
-            "uuid": "af662416-a9b5-4237-a6ec-0b7ca82a9def"
+            "uuid": "afc520f9-f9fe-4e8d-8793-82b0e0ed88cd"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Use Exchange Connector -> Send Email",
-            "targetStep": "\/api\/3\/workflow_steps\/6a1b76bc-a63b-4aea-8175-5aa723f4fe6c",
-            "sourceStep": "\/api\/3\/workflow_steps\/fd67f1d2-6d64-41bc-96d7-ebc709e67ab4",
-            "label": "No",
+            "name": "Send Email Using Exchange -> Get Connector Version",
+            "targetStep": "\/api\/3\/workflow_steps\/4f8d1209-6b99-4e23-a12a-3c5aa4974eab",
+            "sourceStep": "\/api\/3\/workflow_steps\/a49a60cb-92ca-4492-b042-66411a4f4b5e",
+            "label": null,
             "isExecuted": false,
-            "uuid": "d1da301e-aa0a-43f8-a7c4-25a26396c671"
+            "uuid": "db163441-4efc-49b2-8666-48d0b1282b3a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Send Email Using SMTP -> Get Connector Version",
+            "targetStep": "\/api\/3\/workflow_steps\/4f8d1209-6b99-4e23-a12a-3c5aa4974eab",
+            "sourceStep": "\/api\/3\/workflow_steps\/3f9f4130-91c5-4f87-8e7d-2d70fe25f508",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e761294b-4f82-44a4-93ec-30a635c5db99"
         }
     ],
+    "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "fa735cd5-6194-4975-b3c1-a33060cf53d1",
+    "uuid": "2cc59af9-2b5f-452c-8c71-b453991aa233",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

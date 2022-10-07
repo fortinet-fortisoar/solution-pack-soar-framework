@@ -71,6 +71,27 @@
                                                                                     }
                                                                                 ]
                                                                             }
+                                                                        },
+                                                                        {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
+                                                                                "wid": "63193a7e-564f-4c05-860d-26d815c53557",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "impactROI",
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
                                                                         }
                                                                     ],
                                                                     "style": "col-lg-9"
@@ -333,6 +354,34 @@
                                                                             }
                                                                         },
                                                                         {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
+                                                                                "wid": "66bb36d4-5cec-4be3-bda2-9b42e99f940d",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "wasPersonalDataAffected",
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-6"
+                                                                                            },
+                                                                                            {
+                                                                                                "fields": [],
+                                                                                                "style": "col-lg-6"
+                                                                                            }
+                                                                                        ],
+                                                                                        "style": "display-inline-block"
+                                                                                    }
+                                                                                ],
+                                                                                "title": "Personal Data Breach Details"
+                                                                            }
+                                                                        },
+                                                                        {
                                                                             "type": "visualCorrelation",
                                                                             "config": {
                                                                                 "wid": "0b1f32f5-bce9-4336-8201-70428ed8c933",
@@ -561,6 +610,8 @@
                                                                                                     "campaigns",
                                                                                                     "assets",
                                                                                                     "companies",
+                                                                                                    "contact",
+                                                                                                    "dataCompliances",
                                                                                                     "alerts",
                                                                                                     "tasks",
                                                                                                     "vulnerabilities",
@@ -585,11 +636,15 @@
                                                                                                         ],
                                                                                                         "checkBox": true
                                                                                                     }
-                                                                                                }
+                                                                                                },
+                                                                                                "selectionType": "exclude",
+                                                                                                "enableHorizontalScroll": [],
+                                                                                                "includes": []
                                                                                             }
                                                                                         },
                                                                                         "icon": "fa fa-star",
-                                                                                        "show": true
+                                                                                        "show": true,
+                                                                                        "visible": true
                                                                                     },
                                                                                     {
                                                                                         "title": "Timeline",
@@ -1273,7 +1328,8 @@
                                                                                             }
                                                                                         },
                                                                                         "icon": "icon icon-timeline",
-                                                                                        "show": false
+                                                                                        "show": false,
+                                                                                        "visible": true
                                                                                     },
                                                                                     {
                                                                                         "title": "Correlations",
@@ -1292,11 +1348,15 @@
                                                                                                     "indicators",
                                                                                                     "communications"
                                                                                                 ],
-                                                                                                "expandableCol": []
+                                                                                                "expandableCol": [],
+                                                                                                "selectionType": "exclude",
+                                                                                                "enableHorizontalScroll": [],
+                                                                                                "includes": []
                                                                                             }
                                                                                         },
                                                                                         "icon": "fa fa-exchange",
-                                                                                        "show": false
+                                                                                        "show": false,
+                                                                                        "visible": true
                                                                                     },
                                                                                     {
                                                                                         "title": "Tasks",
@@ -1325,18 +1385,24 @@
                                                                                                     "mitretechniques",
                                                                                                     "mitresubtechniques",
                                                                                                     "mitremitigations",
-                                                                                                    "mitresoftware"
+                                                                                                    "mitresoftware",
+                                                                                                    "contact",
+                                                                                                    "dataCompliances"
                                                                                                 ],
                                                                                                 "expandableCol": {
                                                                                                     "tasks": {
                                                                                                         "columns": [],
                                                                                                         "checkBox": false
                                                                                                     }
-                                                                                                }
+                                                                                                },
+                                                                                                "selectionType": "exclude",
+                                                                                                "enableHorizontalScroll": [],
+                                                                                                "includes": []
                                                                                             }
                                                                                         },
                                                                                         "icon": "fa fa-tasks",
-                                                                                        "show": false
+                                                                                        "show": false,
+                                                                                        "visible": true
                                                                                     },
                                                                                     {
                                                                                         "title": "Attachments",
@@ -1353,7 +1419,8 @@
                                                                                             }
                                                                                         },
                                                                                         "icon": "fa fa-paperclip",
-                                                                                        "show": false
+                                                                                        "show": false,
+                                                                                        "visible": true
                                                                                     },
                                                                                     {
                                                                                         "title": "Source Data",
@@ -1382,7 +1449,8 @@
                                                                                             }
                                                                                         },
                                                                                         "icon": "icon icon-source-code",
-                                                                                        "show": false
+                                                                                        "show": false,
+                                                                                        "visible": true
                                                                                     },
                                                                                     {
                                                                                         "title": "Access Control",
@@ -1394,7 +1462,8 @@
                                                                                             "config": {
                                                                                                 "wid": "e91c4e13-4b98-403e-8e10-7c2abfb774f4"
                                                                                             }
-                                                                                        }
+                                                                                        },
+                                                                                        "visible": true
                                                                                     }
                                                                                 ]
                                                                             }
@@ -1410,7 +1479,8 @@
                                                     ]
                                                 }
                                             },
-                                            "show": true
+                                            "show": true,
+                                            "visible": true
                                         },
                                         {
                                             "title": "Playbooks",
@@ -1422,7 +1492,8 @@
                                                 }
                                             },
                                             "icon": "icon icon-playbooks",
-                                            "show": false
+                                            "show": false,
+                                            "visible": true
                                         },
                                         {
                                             "title": "Audit Log",
@@ -1453,7 +1524,8 @@
                                                 }
                                             },
                                             "icon": "fa fa-eye",
-                                            "show": false
+                                            "show": false,
+                                            "visible": true
                                         }
                                     ],
                                     "isPrimaryTab": true

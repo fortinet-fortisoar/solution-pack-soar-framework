@@ -4,7 +4,7 @@
     "name": "Create Communication Record",
     "aliasName": null,
     "tag": null,
-    "description": "Creates a record in the communications module and links it to an alert based off the information that is entered by the security analyst.",
+    "description": "Creates a record in the communications module and links it to an alert\/incident based off the information that is entered by the security analyst.",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -13,51 +13,265 @@
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/d98add27-83c9-4f73-a370-16454398e317",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/946c95d4-75a8-4d0d-8256-84bc0cc867e3",
+    "triggerStep": "\/api\/3\/workflow_steps\/fc1d6030-0e36-44dd-8066-9acd74f521aa",
     "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Link Communication to Alert Incident or Task",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "{{vars.input.records[0]['@id']}}",
+                    "body": "{\"communications\": {{vars.steps.Set_Communication_Relationship.data['code_output']}}}"
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "update_cyops_resource",
+                "operationTitle": "FSR: Update Record",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "20afb077-95d0-476b-a70e-112fa1c17895"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Communications Record",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "cc": "{{vars.input.params.cC}}",
+                    "to": "{{vars.input.params.to}}",
+                    "bcc": "{{vars.input.params.bcc}}",
+                    "body": "\n\n<br>\n{{vars.input.params.body}}\n\n<br>\n{%if vars.input.params.includeDescription %}<b>Title<\/b> :{{vars.input.records[0].name}}<br><b>Description<b> :  {{vars.input.records[0].description}}{%endif%}\n<br>\n<hr>\n<i>--- Do Not Edit Below This Line ---<\/i><br>\nFSR {{vars.input.records[0]['@id'] | string | b64encode}} FSR",
+                    "file": "{{vars.input.params.file}}",
+                    "type": "\/api\/3\/picklists\/b8e7c917-5299-4a43-9c1a-fac1d9a5438f",
+                    "tenant": "\/api\/3\/tenants\/b3a700f7-00be-4ef9-90c6-3c8fe6e1be63",
+                    "subject": "{{vars.rec_type}} {{vars.input.records[0].id}} - {{vars.input.params.subject}}",
+                    "__replace": "",
+                    "msgDirection": "\/api\/3\/picklists\/9f0a2594-2390-4086-9b6f-c7165c70ce27"
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "\/api\/3\/communication",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "24ee63b4-468f-488b-9d81-1cb1d83a0d56"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Find Related Communication Records",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "{{vars.input.records[0]['@id']}}\/communications",
+                    "body": "",
+                    "method": "GET"
+                },
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "25ca9efb-c7bc-4bdc-8f7c-452f508244db"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Find Email Thread",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "subject",
+                            "value": "%ForitSOAR {{vars.input.records[0]['@type']}} ID - {{vars.input.records[0].id}}%",
+                            "operator": "like",
+                            "_operator": "like"
+                        }
+                    ],
+                    "__selectFields": [
+                        "subject"
+                    ]
+                },
+                "module": "communication?$limit=30",
+                "checkboxFields": true,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "6559e76e-4ff8-4cb1-b2d2-b7c6e308a906"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Add Reference",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.steps.Find_Email_Thread | length > 0}}",
+                "for_each": {
+                    "item": "{{vars.steps.Find_Email_Thread}}",
+                    "__bulk": true,
+                    "condition": ""
+                },
+                "resource": {
+                    "__link": {
+                        "communications": "{{vars.item['@id']}}"
+                    }
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.steps.Create_Communications_Record['@id']}}",
+                "collectionType": "\/api\/3\/communication",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "975",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "bba7e4ae-d4f2-459a-a0d2-5f24a7deb7ea"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "emailCC": "{{vars.input.params.cC}}",
+                "emailTo": "{{vars.input.params.to}}",
+                "rec_iri": "{{vars.input.records[0]['@id']}}",
+                "rec_type": "{{vars.input.records[0]['@type']}}",
+                "rec_message": "{{vars.input.params.body}}",
+                "rec_descrption": "{{vars.input.records[0].description}}"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "ea299235-8dd1-40f5-96a4-fbab3aa04243"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Communication Relationship",
+            "description": null,
+            "arguments": {
+                "config": "61514580-4dc2-4418-91a4-53b1bf0e5dc9",
+                "params": {
+                    "python_function": "communication_iri = [\"{{vars.steps.Create_Communications_Record['@id']}}\"]\n\nfor comm in {{vars.steps.Find_Related_Communication_Records.data['hydra:member']}}:\n    communication_iri.append(comm['@id'])\n\nprint(communication_iri)"
+                },
+                "version": "1.2.5",
+                "connector": "code-snippet",
+                "operation": "python_inline",
+                "operationTitle": "Execute Python Code",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
+            "group": null,
+            "uuid": "f2eb5b0d-ebc0-4da0-af4b-8f3a0dfc4a9c"
+        },
         {
             "@type": "WorkflowStep",
             "name": "Start",
             "description": null,
             "arguments": {
-                "route": "bf53c78b-e222-4750-a610-1ee876fed183",
+                "route": "e9b8b212-33c7-4021-b1be-362bf9ad1cf7",
                 "title": "Send Email",
                 "resources": [
-                    "alerts"
+                    "alerts",
+                    "incidents"
                 ],
                 "inputVariables": [
                     {
                         "name": "to",
                         "type": "string",
                         "label": "To",
+                        "title": "Email Field",
+                        "usable": true,
                         "tooltip": "",
                         "dataType": "text",
                         "formType": "text",
                         "required": true,
                         "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/email.html",
+                        "defaultValue": null,
+                        "lengthConstraint": true,
+                        "allowedEncryption": true,
+                        "allowedGridColumn": true,
                         "useRecordFieldDefault": false
                     },
                     {
                         "name": "cC",
                         "type": "string",
                         "label": "CC",
+                        "title": "Email Field",
+                        "usable": true,
                         "tooltip": "",
                         "dataType": "text",
                         "formType": "text",
                         "required": false,
                         "_expanded": true,
-                        "defaultValue": "",
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/email.html",
+                        "defaultValue": null,
+                        "lengthConstraint": true,
+                        "allowedEncryption": true,
+                        "allowedGridColumn": true,
                         "useRecordFieldDefault": false
                     },
                     {
                         "name": "bcc",
                         "type": "string",
                         "label": "Bcc",
+                        "title": "Email Field",
+                        "usable": true,
                         "tooltip": "",
                         "dataType": "text",
                         "formType": "text",
                         "required": false,
                         "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/email.html",
+                        "defaultValue": null,
+                        "lengthConstraint": true,
+                        "allowedEncryption": true,
+                        "allowedGridColumn": true,
                         "useRecordFieldDefault": false
                     },
                     {
@@ -80,7 +294,7 @@
                         "lengthConstraint": true,
                         "allowedEncryption": true,
                         "allowedGridColumn": true,
-                        "useRecordFieldDefault": true
+                        "useRecordFieldDefault": false
                     },
                     {
                         "name": "body",
@@ -167,6 +381,12 @@
                 },
                 "_promptexpanded": true,
                 "displayConditions": {
+                    "tasks": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    },
                     "alerts": {
                         "sort": [],
                         "limit": 30,
@@ -188,215 +408,78 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-            "uuid": "946c95d4-75a8-4d0d-8256-84bc0cc867e3"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Configuration",
-            "description": null,
-            "arguments": {
-                "emailCC": "{{vars.input.params.emailCC.email}}",
-                "emailTo": "{{vars.input.params.emailTo}}",
-                "rec_iri": "{{vars.input.records[0]['@id']}}",
-                "rec_type": "{{vars.input.records[0]['@type']}}",
-                "rec_message": "{{vars.input.params.addMessage}}",
-                "rec_descrption": "{{vars.input.records[0].description}}"
-            },
-            "status": null,
-            "top": "165",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "337a018b-504e-4060-9ab5-9223c6203328"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Create Communications Record",
-            "description": null,
-            "arguments": {
-                "resource": {
-                    "cc": "{{vars.input.params.cC}}",
-                    "to": "{{vars.input.params.to}}",
-                    "bcc": "{{vars.input.params.bcc}}",
-                    "body": "\n\n<br>\n{{vars.input.params.body}}\n\n<br>\n{%if vars.input.params.includeDescription %}<b>Title<\/b> :{{vars.input.records[0].name}}<br><b>Description<b> :  {{vars.input.records[0].description}}{%endif%}\n<br>\n<hr>\n<i>--- Do Not Edit Below This Line ---<\/i><br>\nFSR {{vars.input.records[0]['@id'] | string | b64encode}} FSR",
-                    "file": "{{vars.input.params.file}}",
-                    "type": {
-                        "id": 295,
-                        "@id": "\/api\/3\/picklists\/b8e7c917-5299-4a43-9c1a-fac1d9a5438f",
-                        "icon": null,
-                        "@type": "Picklist",
-                        "color": null,
-                        "display": "Email",
-                        "listName": "\/api\/3\/picklist_names\/57d30379-dbba-4684-b126-ec3ad8766f06",
-                        "itemValue": "Email",
-                        "orderIndex": 0
-                    },
-                    "subject": "{{vars.input.params.subject}}",
-                    "__replace": "",
-                    "includeFiles": true,
-                    "msgDirection": {
-                        "id": 304,
-                        "@id": "\/api\/3\/picklists\/9f0a2594-2390-4086-9b6f-c7165c70ce27",
-                        "icon": null,
-                        "@type": "Picklist",
-                        "color": null,
-                        "display": "Sending",
-                        "listName": "\/api\/3\/picklist_names\/09b97c81-669a-4ac8-8668-920913f3329b",
-                        "itemValue": "Sending",
-                        "orderIndex": 3
-                    }
-                },
-                "_showJson": false,
-                "operation": "Append",
-                "collection": "\/api\/3\/communication",
-                "fieldOperation": {
-                    "recordTags": "Overwrite"
-                },
-                "step_variables": []
-            },
-            "status": null,
-            "top": "435",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
-            "uuid": "ed0b3b98-5bf6-4832-bf14-3aad0027eeab"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Find Email Thread",
-            "description": null,
-            "arguments": {
-                "query": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": [
-                        {
-                            "type": "primitive",
-                            "field": "subject",
-                            "value": "%ForitSOAR {{vars.input.records[0]['@type']}} ID - {{vars.input.records[0].id}}%",
-                            "operator": "like",
-                            "_operator": "like"
-                        }
-                    ],
-                    "__selectFields": [
-                        "subject"
-                    ]
-                },
-                "module": "communication?$limit=30",
-                "checkboxFields": true,
-                "step_variables": []
-            },
-            "status": null,
-            "top": "300",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
-            "uuid": "eb17c07c-b787-4d10-bc6b-a13732cef417"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Add Reference",
-            "description": null,
-            "arguments": {
-                "when": "{{vars.steps.Find_Email_Thread | length > 0}}",
-                "for_each": {
-                    "item": "{{vars.steps.Find_Email_Thread}}",
-                    "__bulk": true,
-                    "condition": ""
-                },
-                "resource": {
-                    "__link": {
-                        "communications": "{{vars.item['@id']}}"
-                    }
-                },
-                "_showJson": false,
-                "operation": "Append",
-                "collection": "{{vars.steps.Create_Communications_Record['@id']}}",
-                "collectionType": "\/api\/3\/communication",
-                "fieldOperation": {
-                    "recordTags": "Append"
-                },
-                "step_variables": []
-            },
-            "status": null,
-            "top": "705",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "600422a9-289d-4aaa-ae80-517ca1307484"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Link Communication to Alert",
-            "description": null,
-            "arguments": {
-                "resource": {
-                    "__link": {
-                        "communications": "{{vars.steps.Create_Communications_Record['@id']}}"
-                    }
-                },
-                "_showJson": false,
-                "operation": "Append",
-                "collection": "{{vars.input.records[0]['@id']}}",
-                "collectionType": "\/api\/3\/alerts",
-                "fieldOperation": {
-                    "recordTags": "Append"
-                },
-                "step_variables": []
-            },
-            "status": null,
-            "top": "570",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "20aa25ec-44be-4917-b707-b61a4bb0a8ea"
+            "group": null,
+            "uuid": "fc1d6030-0e36-44dd-8066-9acd74f521aa"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Configuration -> Find Email Thread",
-            "targetStep": "\/api\/3\/workflow_steps\/eb17c07c-b787-4d10-bc6b-a13732cef417",
-            "sourceStep": "\/api\/3\/workflow_steps\/337a018b-504e-4060-9ab5-9223c6203328",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "5d1554a2-c677-43f8-874f-2b4050d3245c"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Create Communications Record -> Link Communication to Alert",
-            "targetStep": "\/api\/3\/workflow_steps\/20aa25ec-44be-4917-b707-b61a4bb0a8ea",
-            "sourceStep": "\/api\/3\/workflow_steps\/ed0b3b98-5bf6-4832-bf14-3aad0027eeab",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "f1b980c6-7221-4edf-bbbb-d5f40173b275"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Link Communication to Alert -> Add Reference",
-            "targetStep": "\/api\/3\/workflow_steps\/600422a9-289d-4aaa-ae80-517ca1307484",
-            "sourceStep": "\/api\/3\/workflow_steps\/20aa25ec-44be-4917-b707-b61a4bb0a8ea",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "aa8e33a7-63c1-4d68-9d77-841e6651d1e5"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Find Email Thread -> Create Communications Record",
-            "targetStep": "\/api\/3\/workflow_steps\/ed0b3b98-5bf6-4832-bf14-3aad0027eeab",
-            "sourceStep": "\/api\/3\/workflow_steps\/eb17c07c-b787-4d10-bc6b-a13732cef417",
+            "targetStep": "\/api\/3\/workflow_steps\/24ee63b4-468f-488b-9d81-1cb1d83a0d56",
+            "sourceStep": "\/api\/3\/workflow_steps\/6559e76e-4ff8-4cb1-b2d2-b7c6e308a906",
             "label": null,
             "isExecuted": false,
-            "uuid": "f5a7b829-a910-4ea3-89a2-7b9beba92381"
+            "uuid": "23bdc22b-4f13-4119-a702-3241d89af534"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/337a018b-504e-4060-9ab5-9223c6203328",
-            "sourceStep": "\/api\/3\/workflow_steps\/946c95d4-75a8-4d0d-8256-84bc0cc867e3",
+            "name": "Link Communication to Alert Incident or Task -> Add Reference",
+            "targetStep": "\/api\/3\/workflow_steps\/bba7e4ae-d4f2-459a-a0d2-5f24a7deb7ea",
+            "sourceStep": "\/api\/3\/workflow_steps\/20afb077-95d0-476b-a70e-112fa1c17895",
             "label": null,
             "isExecuted": false,
-            "uuid": "a00c8cfb-0437-4f58-bd0c-ad2f3760fef5"
+            "uuid": "3e7742ea-021f-4a5f-9fc6-e5c5b6b0b4c1"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Find Related Communication Records",
+            "targetStep": "\/api\/3\/workflow_steps\/25ca9efb-c7bc-4bdc-8f7c-452f508244db",
+            "sourceStep": "\/api\/3\/workflow_steps\/fc1d6030-0e36-44dd-8066-9acd74f521aa",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e9a178f1-c8d2-458e-9e96-485a4453c876"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Find Email Thread",
+            "targetStep": "\/api\/3\/workflow_steps\/6559e76e-4ff8-4cb1-b2d2-b7c6e308a906",
+            "sourceStep": "\/api\/3\/workflow_steps\/ea299235-8dd1-40f5-96a4-fbab3aa04243",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "10c6bf24-ef75-4daa-b66c-38f5bf8c5b3f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Find Related Communication Records -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/ea299235-8dd1-40f5-96a4-fbab3aa04243",
+            "sourceStep": "\/api\/3\/workflow_steps\/25ca9efb-c7bc-4bdc-8f7c-452f508244db",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "e19433bb-088d-4300-9865-0477c2206d16"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Communications Record -> Set Communication Relationship",
+            "targetStep": "\/api\/3\/workflow_steps\/f2eb5b0d-ebc0-4da0-af4b-8f3a0dfc4a9c",
+            "sourceStep": "\/api\/3\/workflow_steps\/24ee63b4-468f-488b-9d81-1cb1d83a0d56",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "31f966f8-383c-4cf2-9dc1-a7a5dac3cdba"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Set Communication Relationship -> Link Communication to Alert Incident or Task",
+            "targetStep": "\/api\/3\/workflow_steps\/20afb077-95d0-476b-a70e-112fa1c17895",
+            "sourceStep": "\/api\/3\/workflow_steps\/f2eb5b0d-ebc0-4da0-af4b-8f3a0dfc4a9c",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "c0a6d47f-ff8f-4d3a-9538-862fabaed140"
         }
     ],
+    "groups": [],
     "priority": null,
-    "uuid": "992770b0-1d10-4267-94d1-5b627294bedc",
+    "uuid": "a535d1ea-a6bf-40e8-9f84-4e2d3685575e",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

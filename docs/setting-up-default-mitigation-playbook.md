@@ -1,5 +1,5 @@
-| [Home](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/README.md) |
-|--------------------------------------------|
+| [Home](../README.md) |
+|----------------------|
 
 # Setting up Default Mitigation Playbook
 

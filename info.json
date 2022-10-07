@@ -1,6 +1,6 @@
 {
     "name": "sOARFramework",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "type": "solutionpack",
     "local": true,
     "label": "SOAR Framework",
@@ -8,12 +8,12 @@
     "prerequisite": null,
     "publisher": "Fortinet",
     "certified": "true",
-    "description": "The SOAR Framework Solution Pack enables users to experience the power of FortiSOAR incident response.",
-    "help": "https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/README.md",
+    "description": "<p>The SOAR Framework Solution Pack helps users experience the power of FortiSOAR incident response.</p><br/> \n<p><span>The SOAR Framework v2.0.0 Solution Pack introduces a pluggable and scalable enrichment framework. Read more about the new model </span><a title=\"Release Notes\" href=\"https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/2.0.0/release_notes.md\" target=\"_blank\" rel=\"noopener\">here</a>. <span>To view the list of integrations supporting the new model, launch the <strong>Content Hub</strong> from within the FortiSOAR and search for 'Enrichment' using <strong>Search By Tags</strong> option.</span></p>",
+    "help": "https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/2.0.0/README.md",
     "category": [],
     "supportInfo": "Fortinet Customer Support",
     "iconLarge": null,
-    "fsrMinCompatibility": "7.2.0",
+    "fsrMinCompatibility": "7.2.1",
     "date": "2022-03-03T09:19:39+00:00",
     "contents": {
         "picklistNames": [
@@ -111,10 +111,16 @@
                 "name": "SLAState"
             },
             {
+                "name": "TaskStatus"
+            },
+            {
                 "name": "TrafficLightProtocol"
             },
             {
                 "name": "WarRoomStatus"
+            },
+            {
+                "name": "YesNoInput"
             }
         ],
         "modules": {
@@ -305,9 +311,6 @@
                 "name": "03 - Enrich"
             },
             {
-                "name": "03 - Enrich (Pluggable)"
-            },
-            {
                 "name": "03 - Triage"
             },
             {
@@ -361,22 +364,16 @@
                 "default_value": "20"
             },
             {
-                "id": 10,
-                "name": "Reset_SLA",
-                "value": "true",
-                "default_value": "true"
-            },
-            {
-                "id": 15,
-                "name": "Current_Date",
-                "value": "{{arrow.utcnow().timestamp}}",
-                "default_value": "{{arrow.utcnow().timestamp}}"
-            },
-            {
                 "id": 9,
                 "name": "Indicator_Type_Map",
                 "value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}",
                 "default_value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"parentProcessName\": \"Process\",\"otherRecipients\": \"Email Address\"}"
+            },
+            {
+                "id": 10,
+                "name": "Reset_SLA",
+                "value": "true",
+                "default_value": "true"
             },
             {
                 "id": 11,
@@ -395,6 +392,60 @@
                 "name": "Excludelist_Domains",
                 "value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com,fortinet.com,twitter.com,facebook.com,linkedin.com,instagram.com,fortiguard.com,forticloud.com",
                 "default_value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com,fortinet.com,twitter.com,facebook.com,linkedin.com,instagram.com,fortiguard.com,forticloud.com"
+            },
+            {
+                "id": 15,
+                "name": "Current_Date",
+                "value": "{{arrow.utcnow().timestamp}}",
+                "default_value": "{{arrow.utcnow().timestamp}}"
+            },
+            {
+                "id": 18,
+                "name": "Email_Enrichment_Playbooks_IRIs",
+                "value": "NoEnrichmentAvailable",
+                "default_value": "NoEnrichmentAvailable"
+            },
+            {
+                "id": 19,
+                "name": "Demo_mode",
+                "value": "false",
+                "default_value": "false"
+            },
+            {
+                "id": 30,
+                "name": "URL_Enrichment_Playbooks_IRIs",
+                "value": "NoEnrichmentAvailable",
+                "default_value": "NoEnrichmentAvailable"
+            },
+            {
+                "id": 31,
+                "name": "File_Enrichment_Playbooks_IRIs",
+                "value": "NoEnrichmentAvailable",
+                "default_value": "NoEnrichmentAvailable"
+            },
+            {
+                "id": 32,
+                "name": "IP_Enrichment_Playbooks_IRIs",
+                "value": "NoEnrichmentAvailable",
+                "default_value": "NoEnrichmentAvailable"
+            },
+            {
+                "id": 33,
+                "name": "Domain_Enrichment_Playbooks_IRIs",
+                "value": "NoEnrichmentAvailable",
+                "default_value": "NoEnrichmentAvailable"
+            },
+            {
+                "id": 34,
+                "name": "FileHash_Enrichment_Playbooks_IRIs",
+                "value": "NoEnrichmentAvailable",
+                "default_value": "NoEnrichmentAvailable"
+            },
+            {
+                "id": 35,
+                "name": "User_Enrichment_Playbooks_IRIs",
+                "value": "NoEnrichmentAvailable",
+                "default_value": "NoEnrichmentAvailable"
             }
         ],
         "rules": [
@@ -451,20 +502,16 @@
         ],
         "connectors": [
             {
-                "name": "Active Directory",
-                "apiName": "activedirectory"
-            },
-            {
                 "name": "AlienVault-OTX",
                 "apiName": "alienvault-otx"
             },
             {
-                "name": "CarbonBlack Response",
-                "apiName": "carbonblack-response"
+                "name": "APIVoid",
+                "apiName": "apivoid"
             },
             {
-                "name": "ElasticSearch",
-                "apiName": "elasticsearch"
+                "name": "CarbonBlack Response",
+                "apiName": "carbonblack-response"
             },
             {
                 "name": "Exchange",
@@ -483,6 +530,10 @@
                 "apiName": "fortigate-firewall"
             },
             {
+                "name": "Fortinet FortiGuard Threat Intelligence",
+                "apiName": "fortinet-fortiguard-threat-intelligence"
+            },
+            {
                 "name": "Fortinet FortiSandbox",
                 "apiName": "fortinet-fortisandbox"
             },
@@ -491,20 +542,20 @@
                 "apiName": "fortinet-fortisiem"
             },
             {
-                "name": "Fortinet Web Filter Lookup",
-                "apiName": "fortinet-web-filter-lookup"
-            },
-            {
                 "name": "IBM XForce",
                 "apiName": "xforce"
+            },
+            {
+                "name": "IP Quality Score",
+                "apiName": "ip-quality-score"
             },
             {
                 "name": "IPStack",
                 "apiName": "ipstack"
             },
             {
-                "name": "IP Quality Score",
-                "apiName": "ip-quality-score"
+                "name": "Microsoft SCCM",
+                "apiName": "microsoft-sccm"
             },
             {
                 "name": "MxToolbox",
@@ -519,16 +570,8 @@
                 "apiName": "slacalculator"
             },
             {
-                "name": "ThreatQ",
-                "apiName": "threatq"
-            },
-            {
                 "name": "URLScan.io",
                 "apiName": "urlscan-io"
-            },
-            {
-                "name": "URLVoid",
-                "apiName": "urlvoid"
             },
             {
                 "name": "VirusTotal",

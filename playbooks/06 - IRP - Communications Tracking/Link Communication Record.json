@@ -4,7 +4,7 @@
     "name": "Link Communication Record",
     "aliasName": null,
     "tag": null,
-    "description": "Links the communication record to the corresponding alert based on the message ID.",
+    "description": "Links the communication record to the corresponding module based on the message ID.",
     "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
@@ -13,8 +13,76 @@
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/d98add27-83c9-4f73-a370-16454398e317",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/485cf717-1a79-4340-916c-634aa3008999",
+    "triggerStep": "\/api\/3\/workflow_steps\/44727a9f-f4ae-42c6-9c86-a717ac3c3e87",
     "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Find Communications Records",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "emailRefId",
+                            "value": "%{{vars.input.records[0].sourceId}}%",
+                            "operator": "like",
+                            "_operator": "like"
+                        }
+                    ],
+                    "__selectFields": [
+                        "id"
+                    ]
+                },
+                "module": "communication?$limit=30",
+                "checkboxFields": true,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "140",
+            "left": "200",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "0d97a7ca-00cb-4add-bd02-ee68899b4f71"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Link Communications Records",
+            "description": null,
+            "arguments": {
+                "when": "{{(vars.steps.Find_Communications_Records| length > 0 )}}",
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "content": "A new communication has been linked",
+                    "records": ""
+                },
+                "resource": {
+                    "__link": {
+                        "communications": "{{vars.steps.Find_Communications_Records | json_query('[*][\"@id\"][]')}}"
+                    }
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/alerts",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "255",
+            "left": "346",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "1428ea9a-73a4-4f27-8efe-8cdad4e02997"
+        },
         {
             "@type": "WorkflowStep",
             "name": "Start",
@@ -60,97 +128,33 @@
             "top": "40",
             "left": "40",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
-            "uuid": "485cf717-1a79-4340-916c-634aa3008999"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Find Communications Records",
-            "description": null,
-            "arguments": {
-                "query": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": [
-                        {
-                            "type": "primitive",
-                            "field": "emailRefId",
-                            "value": "%{{vars.input.records[0].sourceId}}%",
-                            "operator": "like",
-                            "_operator": "like"
-                        }
-                    ],
-                    "__selectFields": [
-                        "id"
-                    ]
-                },
-                "module": "communication?$limit=30",
-                "checkboxFields": true,
-                "step_variables": []
-            },
-            "status": null,
-            "top": "140",
-            "left": "200",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
-            "uuid": "74af60c5-3a22-4497-abdd-7627852c786c"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Link Communications Records",
-            "description": null,
-            "arguments": {
-                "when": "{{(vars.steps.Find_Communications_Records| length > 0 )}}",
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "content": "A new communication has been linked",
-                    "records": ""
-                },
-                "resource": {
-                    "__link": {
-                        "communications": "{{vars.steps.Find_Communications_Records | json_query('[*][\"@id\"][]')}}"
-                    }
-                },
-                "_showJson": false,
-                "operation": "Append",
-                "collection": "{{vars.input.records[0]['@id']}}",
-                "__recommend": [],
-                "collectionType": "\/api\/3\/alerts",
-                "fieldOperation": {
-                    "recordTags": "Append"
-                },
-                "step_variables": []
-            },
-            "status": null,
-            "top": "255",
-            "left": "346",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "160cdbc5-bd1b-4aea-aaab-4adf617e9730"
+            "group": null,
+            "uuid": "44727a9f-f4ae-42c6-9c86-a717ac3c3e87"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Find Communications Records",
-            "targetStep": "\/api\/3\/workflow_steps\/74af60c5-3a22-4497-abdd-7627852c786c",
-            "sourceStep": "\/api\/3\/workflow_steps\/485cf717-1a79-4340-916c-634aa3008999",
+            "name": "Find Communications Records -> Link Communications Records",
+            "targetStep": "\/api\/3\/workflow_steps\/1428ea9a-73a4-4f27-8efe-8cdad4e02997",
+            "sourceStep": "\/api\/3\/workflow_steps\/0d97a7ca-00cb-4add-bd02-ee68899b4f71",
             "label": null,
             "isExecuted": false,
-            "uuid": "6292a958-ecd5-4672-a529-6316f327d1c5"
+            "uuid": "951594d2-5ae4-4c8e-9806-1d50220e1ecf"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Find Communications Records -> Link Communications Records",
-            "targetStep": "\/api\/3\/workflow_steps\/160cdbc5-bd1b-4aea-aaab-4adf617e9730",
-            "sourceStep": "\/api\/3\/workflow_steps\/74af60c5-3a22-4497-abdd-7627852c786c",
+            "name": "Start -> Find Communications Records",
+            "targetStep": "\/api\/3\/workflow_steps\/0d97a7ca-00cb-4add-bd02-ee68899b4f71",
+            "sourceStep": "\/api\/3\/workflow_steps\/44727a9f-f4ae-42c6-9c86-a717ac3c3e87",
             "label": null,
             "isExecuted": false,
-            "uuid": "2ca42c81-4e98-41a2-87e0-261a0eeea6bf"
+            "uuid": "d63e98f4-3592-4821-8252-409400feccb5"
         }
     ],
+    "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
-    "uuid": "0872ad0c-63b3-48b5-a2f2-22e2b1314f53",
+    "uuid": "8669e6b3-f5a8-4518-a958-dd9e4bcd1d23",
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,

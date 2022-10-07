@@ -1,5 +1,5 @@
-| [Home](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/README.md) |
-|--------------------------------------------|
+| [Home](../README.md) |
+|----------------------|
 
 # Extending Default Indicator Extraction Process
 
@@ -9,21 +9,23 @@ We recommend that you optimize the indicator extraction process and define extra
 
 FortiSOAR has automated the indicator extraction process through sets of playbooks; however, you can enhance the indicator extraction process by adding more fields of interest to a playbook so that it picks more fields apart from the default ones specified in the playbook.
 
-E.g., the default playbook may not collect a field of interest, say “targeted employee email address”. This field of interest must be a part of the alert that we intend to target. To add a field to the alert, refer to the section [Extending Default Alert Schema](#extending-default-alert-schema).
+E.g., the default playbook may not collect a field of interest, say “targeted employee email address”. This field of interest must be a part of the alert that we intend to target. To add a field to the alert, refer to the section [Extending Default Alert Schema](./extending-default-alert-schema.md).
+
+## Extending Default Alert Schema
 
 You can extend the indicator extraction by modifying **Indicator Type Map Global** Variable.
 
 Navigate to **Automation** > **Playbooks** > **03 – Enrich** > **Extract Indicator Playbook**.
 
-> Refer to the playbooks section in this document to check the [playbook collection](#playbook-collection) included with this Solution Pack.
+> Refer to the playbooks section in this document to check the [playbook collection](./contents.md#playbook-collection) included with this Solution Pack.
 
 Navigate to **Automation** > **Playbooks** and click any playbook collection. A list of included playbooks appears on the left. Click any playbook and go to **Tools** > **Global Variables**.
 
-![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/docs/res/global-variables.png)
+![](./res/global-variables.png)
 
 From the Global variables on the left, click the edit button on `Indicator_Type_Map` to edit it.
 
-![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/docs/res/indicator-type-map.png)
+![](./res/indicator-type-map.png)
 
 Following is the default JSON contained in **Field Value** of the `Indicator_Type_Map` global variable. The key-value pairs are in the format `<FieldAPIKey>:<FieldType>`
 
@@ -62,11 +64,11 @@ Following is the default JSON contained in **Field Value** of the `Indicator_Typ
     "otherRecipients": "Email Address"
     }
 
-When you [add a new field to the alert schema](#extending-default-alert-schema), you specify a **Field Type** and – based on your field name – get a **Field API Key** name. 
+When you [add a new field to the alert schema](./extending-default-alert-schema.md), you specify a **Field Type** and – based on your field name – get a **Field API Key** name. 
 
 As an example, let us add a field **Targeted Employee Email Address**, with a field API key `targetedEmployeeEmailAddress` and the **Field Type** as `Email Field`.
 
-Enter the Field API Key and the Field Type in JSON’skey-value pair format in the box labeled **Field Value**. Click **Submit** to save the changes and **Save Playbook** to publish them.
+Enter the Field API Key and the Field Type in JSON’s key-value pair format in the box labeled **Field Value**. Click **Submit** to save the changes and **Save Playbook** to publish them.
 
 > The key value pair for the JSON is `"targetedEmployeeEmailAddress": "Email Address"`.
 
