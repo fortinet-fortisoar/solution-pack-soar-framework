@@ -9,15 +9,12 @@ To make the most of the SOAR Framework v2.0.0, you must perform the following st
     3. Indicator (Type Email) - Get Reputation
     4. Indicator (Type File - MD5) - Get Reputation
     5. Indicator (Type File) - Get Reputation
-    6. Indicator (Type Host) - Get Reputation
-    7. Indicator (Type IP) - Get Reputation
-    8. Indicator (Type Port) - Get Reputation
-    9. Indicator (Type Process) - Get Reputation
-    10. Indicator (Type URL) - Get Reputation
-    11. Indicator (Type User Account) - Get Details
-    12. Indicator (Type File) - Get Reputation (Fortinet Sandbox)
-    13. Indicator (Type URL) - Get Reputation (Fortinet Sandbox)
-    14. Fortinet FortiSandbox (Get Reputation) - Get Scan Results
+    6. Indicator (Type IP) - Get Reputation
+    7. Indicator (Type URL) - Get Reputation
+    8. Indicator (Type User Account) - Get Details
+    9. Indicator (Type File) - Get Reputation (Fortinet Sandbox)
+    10. Indicator (Type URL) - Get Reputation (Fortinet Sandbox)
+    11. Fortinet FortiSandbox (Get Reputation) - Get Scan Results
 3. Update the following connectors to the mentioned version. This action lays the groundwork for using the *pluggable* playbooks included with these connectors.
 
     | Connector                               | Version |
