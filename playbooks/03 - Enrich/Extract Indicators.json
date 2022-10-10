@@ -198,62 +198,36 @@
                     "trigger_condition": {
                         "sort": [],
                         "limit": 30,
-                        "logic": "OR",
+                        "logic": "AND",
                         "filters": [
                             {
-                                "logic": "AND",
-                                "filters": [
-                                    {
-                                        "type": "primitive",
-                                        "field": "id",
-                                        "value": "{{vars.item.id}}",
-                                        "operator": "eq",
-                                        "_operator": "eq"
-                                    },
-                                    {
-                                        "type": "object",
-                                        "field": "reputation",
-                                        "value": "",
-                                        "_value": {
-                                            "@id": "",
-                                            "display": "",
-                                            "itemValue": ""
-                                        },
-                                        "operator": "changed"
-                                    },
-                                    {
-                                        "type": "object",
-                                        "field": "reputation",
-                                        "value": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
-                                        "_value": {
-                                            "@id": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
-                                            "itemValue": "TBD"
-                                        },
-                                        "operator": "neq"
-                                    }
-                                ]
+                                "type": "primitive",
+                                "field": "id",
+                                "value": "{{vars.item.id}}",
+                                "operator": "eq",
+                                "_operator": "eq"
                             },
                             {
-                                "logic": "AND",
-                                "filters": [
-                                    {
-                                        "type": "primitive",
-                                        "field": "id",
-                                        "value": "{{vars.item.id}}",
-                                        "operator": "eq",
-                                        "_operator": "eq"
-                                    },
-                                    {
-                                        "type": "object",
-                                        "field": "enrichmentStatus",
-                                        "value": "\/api\/3\/picklists\/c6e46fde-97a2-48cc-8019-938c9c5aebd0",
-                                        "_value": {
-                                            "@id": "\/api\/3\/picklists\/c6e46fde-97a2-48cc-8019-938c9c5aebd0",
-                                            "itemValue": "Completed"
-                                        },
-                                        "operator": "eq"
-                                    }
-                                ]
+                                "type": "object",
+                                "field": "reputation",
+                                "value": "",
+                                "_value": {
+                                    "@id": "",
+                                    "display": "",
+                                    "itemValue": ""
+                                },
+                                "operator": "changed"
+                            },
+                            {
+                                "type": "object",
+                                "field": "reputation",
+                                "value": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                                    "display": "TBD",
+                                    "itemValue": "TBD"
+                                },
+                                "operator": "neq"
                             }
                         ]
                     }
@@ -274,7 +248,7 @@
                 },
                 "for_each": {
                     "item": "{{vars.steps.Create_Indicator}}",
-                    "condition": ""
+                    "condition": "{{vars.item.enrichmentStatus.itemValue != \"Completed\"}}"
                 },
                 "step_variables": []
             },
