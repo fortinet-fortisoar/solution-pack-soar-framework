@@ -25,5 +25,5 @@ The following is a list of some of the important defects addressed in the **SOAR
   - Alert - [05] Update Response and Ack Due date (Post Severity Change)
   - Incident - [05] Update Response and Ack Due date (Post Severity Change)
 - **Bug# 0849828** - The **Extract Indicators** playbook under the collection **03 - Enrich** has been modified as follows:
-  - Wait for re-enrichment indicators condition is deleted
-  - Added new condition to avaoid the re-enrichment of indicators
+  - Removed the condition *Wait if indicator enrichment status is not completed*
+  - A new condition *if indicator enrichment status is completed* then avoids the re-enrichment of indicators.
