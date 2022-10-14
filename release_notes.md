@@ -11,7 +11,7 @@
   - Indicator (Type Host) - Get Reputation
 
 ## Module Enhancements
-- **threatIntelFeeds** field is now available under the **Indicator** module detail view. After the installation of **Threat Intel Management** Solution Pack, this field shows the relationship between threat intel feeds and the indicator.
+- `threatIntelFeeds` field is now available under the **Indicator** module detail view. After the installation of **Threat Intel Management** Solution Pack, this field shows the relationship between threat intel feeds and the indicator.
 
 ## Resolved Issues
 
@@ -25,5 +25,5 @@ The following is a list of some of the important defects addressed in the **SOAR
   - Alert - [05] Update Response and Ack Due date (Post Severity Change)
   - Incident - [05] Update Response and Ack Due date (Post Severity Change)
 - **Bug# 0849828** - The **Extract Indicators** playbook under the collection **03 - Enrich** has been modified as follows:
-  - Removed the condition *Wait if indicator enrichment status is not completed*
-  - A new condition *if indicator enrichment status is completed* then avoids the re-enrichment of indicators.
+  - Removed the *Wait* condition *indicator enrichment status is not completed*
+  - A new condition *indicator enrichment status is completed* avoids the re-enrichment of indicators.
