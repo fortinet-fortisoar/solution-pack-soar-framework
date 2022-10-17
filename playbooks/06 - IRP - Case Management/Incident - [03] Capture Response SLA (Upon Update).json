@@ -140,7 +140,7 @@
                 "when": "{{(vars.input.records[0].resSla.itemValue== \"Awaiting Action\" or vars.input.records[0].resSla.itemValue== \"Paused\") and vars.input.records[0].status.itemValue != \"Closed\"}}",
                 "config": "4b6b27cf-86a5-4c5d-a7f8-0186dbc623b5",
                 "params": {
-                    "slaTime": "{%if vars.input.records[0].incRemainingAckSLA %}{{vars.input.records[0].incRemainingAckSLA}}{%else%}{{vars.sla_time_list.incAckTime}}{%endif%}",
+                    "slaTime": "{%if vars.input.records[0].incRemainingRespSLA %}{{vars.input.records[0].incRemainingRespSLA}}{%else%}{{vars.sla_time_list.incResTime}}{%endif%}",
                     "recordCreateTime": "{{vars.input.records[0].modifyDate}}"
                 },
                 "version": "2.0.0",
