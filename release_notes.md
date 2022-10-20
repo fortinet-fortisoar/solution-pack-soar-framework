@@ -20,8 +20,8 @@ The following is a list of some of the important defects addressed in the **SOAR
 - **Bug# 0848269**: Handled the race conditions for the following playbooks under the collection **06 - IRP - Case Management**.   
   - Alert - [02] Capture Ack SLA (Upon Update)
   - Incident - [02] Capture Ack SLA (Upon Update)
-  - Alert - [02] Capture Response SLA (Upon Update)
-  - Incident - [02] Capture Response SLA (Upon Update)
+  - Alert - [03] Capture Response SLA (Upon Update)
+  - Incident - [03] Capture Response SLA (Upon Update)
   - Alert - [05] Update Response and Ack Due date (Post Severity Change)
   - Incident - [05] Update Response and Ack Due date (Post Severity Change)
 - **Bug# 0849828** - The **Extract Indicators** playbook under the collection **03 - Enrich** has been modified as follows:

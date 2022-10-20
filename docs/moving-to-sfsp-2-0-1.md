@@ -48,3 +48,5 @@ Now your FortiSOAR system is ready for an upgrade to SOAR Framework v2.0.1.
 >     ```bash
 >     sudo -u nginx php /opt/cyops-api/bin/console fortisoar:contenthub:sync -fs
 >     ```
+
+>**NOTE**: For users, upgrading to 2.0.1 from previous versions, json validators may give an error while validating the contents of `Indicator_Type_Map` global variable. This error is due to the presence of a duplicate key-value pair `"parentProcessName": "Process"`. As a workaround, you may remove this extra key-value pair with no impact to your environment.
