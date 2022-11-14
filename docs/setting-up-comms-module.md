@@ -90,9 +90,11 @@ As an example, we explain how to configure communication tracking playbooks for 
     3. Add the task IRI to the **Task** field. The corresponding Jinja expression is `[“{{vars.data.tasks[0][‘@id’]}}”]`.
     4. Click **Save** to save the changes made to the step.
 5. Create **Create Communication Record (Task)** Playbook.
-    1. Clone **Create Communication Record (Alert)** playbook and rename it to **Create Communication Record (Task)**
-    2. Double click on to open the **Start** step
-    3. Add **Manual** Step with following inputs
-    4. Under **Execution Behaviour**, update **Choose record modules on which the playbook would be available on** from **Alerts** to **Tasks**.
-
+    1. Click the checkbox to select **Create Communication Record (Alert)** playbook.
+    2. Click **Clone** to create a copy of **Create Communication Record (Alert)** playbook.
+    3. Double-click to open the cloned playbook &mdash; **Create Communication Record (Alert) (1)**.
+    4. Click the playbook title on the top to rename the cloned playbook. Change the name to **Create Communication Record (Task)**.
+    5. Double click to open the **Start** step.
+    6. Under **Execution Behavior**, change the value in **Choose record modules on which the playbook would be available on** field from **Alerts** to **Tasks**.
+    
 Now, the **Tasks** module has a tab **External Communications** and tracks any communication sent from, and received in, FortiSOAR.
