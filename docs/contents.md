@@ -335,12 +335,14 @@ This playbook collection has the following playbook
 |--------|----------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | 1      | Add Note for Communication Linked            | Adds a note stating a new communication has been linked to alert.                                                                         |
 | 2      | Add Note for Communication Linked (Received) | Adds a note stating a new communication that was received has been linked to alert.                                                       |
-| 3      | Create Communication Record                  | Creates a record in the communications module and links it to an alert based off the information that is entered by the security analyst. |
+| 3      | Create Communication Record                  | Creates a record in the communications module and links it to a respective module based on the information is entered by the security analyst. |
 | 4      | Create Communication Record (Email Reply)    | Creates a record in the communications module based off a reply to a received email.                                                      |
 | 5      | Link Communication Record                    | Links the communication record to the corresponding alert based on the message ID.                                                        |
 | 6      | Link Previous Communications                 | Links existing communications records to create a conversation thread.                                                                    |
 | 7      | Manual Send Notification                     | Sends email notification for any selected communication record that is in either “Draft” or “Sending” state to the intended recipients.   |
 | 8      | Send Notification                            | Sends auto-notification of any new communication record that is in the “Sending” state to the intended recipients.                        |
+| 9      | Create Communication Record (Alert)          | Creates a record in the communications module and links it to an alert based on the information provided by the security analyst.                        |
+| 10      | Create Communication Record (Incident)       | Creates a record in the communications module and links it to an incident based on the information provided by the security analyst.                        |
 
 | 06 - IRP - Reporting |
 |----------------------|
