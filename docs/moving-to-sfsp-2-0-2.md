@@ -1,6 +1,6 @@
-# Upgrade SOAR Framework from v1.x.x to v2.0.1
+# Upgrade SOAR Framework from v1.x.x to v2.0.2
 
-To make the most of the SOAR Framework v2.0.1, you must perform the following steps before initiating an upgrade to SOAR Framework Solution Pack v2.0.1.
+To make the most of the SOAR Framework v2.0.2, you must perform the following steps before initiating an upgrade to SOAR Framework Solution Pack v2.0.2.
 
 1. Navigate to **Automation** > **Playbooks** > **03 - Enrich**.
 2. Search for and deactivate following playbooks:
@@ -33,7 +33,7 @@ To make the most of the SOAR Framework v2.0.1, you must perform the following st
     | VirusTotal                              |  3.0.2  |
     | Whois RDAP                              |  1.0.2  |
 
-Now your FortiSOAR system is ready for an upgrade to SOAR Framework v2.0.1.
+Now your FortiSOAR system is ready for an upgrade to SOAR Framework v2.0.2.
 
 >**NOTE**: After updating the connectors to the stated version if the enrichment summary is not available on an indicator, you may have to:
 > 1. Execute **Delete Enrichment Global Variables** playbook from **03 – Enrich** collection to delete the following global variables:
@@ -49,4 +49,4 @@ Now your FortiSOAR system is ready for an upgrade to SOAR Framework v2.0.1.
 >     sudo -u nginx php /opt/cyops-api/bin/console fortisoar:contenthub:sync -fs
 >     ```
 
->**NOTE**: For users, upgrading to 2.0.1 from previous versions, json validators may give an error while validating the contents of `Indicator_Type_Map` global variable. This error is due to the presence of a duplicate key-value pair `"parentProcessName": "Process"`. As a workaround, you may remove this extra key-value pair with no impact to your environment.
+>**NOTE**: For users, upgrading to 2.0.2 from previous versions, json validators may give an error while validating the contents of `Indicator_Type_Map` global variable. This error is due to the presence of a duplicate key-value pair `"parentProcessName": "Process"`. As a workaround, you may remove this extra key-value pair with no impact to your environment.

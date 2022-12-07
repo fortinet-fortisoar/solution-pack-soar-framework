@@ -1,0 +1,307 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Create Communication Record (Incident)",
+    "aliasName": null,
+    "tag": null,
+    "description": "Creates a record in the communications module and links it to an incident based on the information provided by the security analyst.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/d98add27-83c9-4f73-a370-16454398e317",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/4ece8462-4f9d-41fe-9464-81b671f552f1",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "emailCC": "{{vars.input.params.cC}}",
+                "emailTo": "{{vars.input.params.to}}",
+                "emailBCC": "{{vars.input.params.bcc}}",
+                "rec_type": "{{vars.input.records[0]['@type']}}",
+                "emailBody": "{{vars.input.params.body}}",
+                "emailfile": "{{vars.input.params.file}}",
+                "emailSubject": "{{vars.input.params.subject}}",
+                "rec_includeDescription": "{{vars.input.params.includeDescription}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "411ec66c-c266-4a2f-8701-cac79af6a9a5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "f7c1c4bb-5ba9-44e4-ae90-6f28c3b7632d",
+                "title": "Send Email",
+                "resources": [
+                    "incidents"
+                ],
+                "inputVariables": [
+                    {
+                        "name": "to",
+                        "type": "string",
+                        "label": "To",
+                        "title": "Email Field",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "text",
+                        "formType": "text",
+                        "required": true,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/email.html",
+                        "defaultValue": null,
+                        "lengthConstraint": true,
+                        "allowedEncryption": true,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "cC",
+                        "type": "string",
+                        "label": "CC",
+                        "title": "Email Field",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "text",
+                        "formType": "text",
+                        "required": false,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/email.html",
+                        "defaultValue": null,
+                        "lengthConstraint": true,
+                        "allowedEncryption": true,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "bcc",
+                        "type": "string",
+                        "label": "Bcc",
+                        "title": "Email Field",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "text",
+                        "formType": "text",
+                        "required": false,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/email.html",
+                        "defaultValue": null,
+                        "lengthConstraint": true,
+                        "allowedEncryption": true,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "subject",
+                        "type": "string",
+                        "label": "Subject",
+                        "title": "Text Field",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "text",
+                        "formType": "text",
+                        "required": true,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "moduleField": "name",
+                        "templateUrl": "app\/components\/form\/fields\/input.html",
+                        "defaultValue": null,
+                        "lengthConstraint": true,
+                        "allowedEncryption": true,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": true
+                    },
+                    {
+                        "name": "body",
+                        "type": "string",
+                        "label": "Body",
+                        "title": "Rich Text",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "text",
+                        "formType": "richtext",
+                        "required": true,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/richtext.html",
+                        "_nameTouched": true,
+                        "defaultValue": null,
+                        "lengthConstraint": false,
+                        "allowedEncryption": true,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "includeDescription",
+                        "type": "boolean",
+                        "label": "Include Alert Details (Title & Description)",
+                        "title": "Checkbox",
+                        "usable": true,
+                        "tooltip": "If checked , will add record's description to email body",
+                        "dataType": "checkbox",
+                        "formType": "checkbox",
+                        "required": false,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/checkbox.html",
+                        "_nameTouched": true,
+                        "defaultValue": null,
+                        "lengthConstraint": false,
+                        "allowedEncryption": false,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "file",
+                        "type": "string",
+                        "label": "File",
+                        "title": "File Field",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "file",
+                        "formType": "file",
+                        "required": false,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "dataSource": {
+                            "model": "files"
+                        },
+                        "searchable": false,
+                        "templateUrl": "app\/components\/form\/fields\/file.html",
+                        "defaultValue": null,
+                        "lengthConstraint": true,
+                        "allowedEncryption": false,
+                        "allowedGridColumn": true,
+                        "useRecordFieldDefault": false
+                    }
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "cC": "{{vars.request.data[\"cC\"]}}",
+                            "to": "{{vars.request.data[\"to\"]}}",
+                            "bcc": "{{vars.request.data[\"bcc\"]}}",
+                            "body": "{{vars.request.data[\"body\"]}}",
+                            "file": "{{vars.request.data[\"file\"]}}",
+                            "subject": "{{vars.request.data[\"subject\"]}}",
+                            "includeDescription": "{{vars.request.data[\"includeDescription\"]}}"
+                        },
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "_promptexpanded": true,
+                "displayConditions": {
+                    "tasks": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    },
+                    "alerts": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    },
+                    "incidents": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    }
+                },
+                "executeButtonText": "Send",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
+            "uuid": "4ece8462-4f9d-41fe-9464-81b671f552f1"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Communication Record",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "emailCC": "{{vars.emailCC}}",
+                    "emailTo": "{{vars.emailTo}}",
+                    "emailBCC": "{{vars.emailBCC}}",
+                    "rec_type": "{{vars.rec_type}}",
+                    "emailBody": "{{vars.emailBody}}",
+                    "emailfile": "{{vars.emailfile}}",
+                    "emailSubject": "{{vars.emailSubject}}",
+                    "rec_includeDescription": "{{vars.rec_includeDescription}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/a535d1ea-a6bf-40e8-9f84-4e2d3685575e"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "a7e76db6-7ddf-46ad-95dc-b371d1454434"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/411ec66c-c266-4a2f-8701-cac79af6a9a5",
+            "sourceStep": "\/api\/3\/workflow_steps\/4ece8462-4f9d-41fe-9464-81b671f552f1",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "1e199b2b-2dad-48e5-b72f-eb753ff29c8f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Create Communication Record",
+            "targetStep": "\/api\/3\/workflow_steps\/a7e76db6-7ddf-46ad-95dc-b371d1454434",
+            "sourceStep": "\/api\/3\/workflow_steps\/411ec66c-c266-4a2f-8701-cac79af6a9a5",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "84844347-6b6e-4f5f-892d-cffdf5731359"
+        }
+    ],
+    "groups": [],
+    "priority": null,
+    "uuid": "b9f03949-97e9-415e-b1e8-506f26c4b522",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "ManualTrigger"
+    ]
+}

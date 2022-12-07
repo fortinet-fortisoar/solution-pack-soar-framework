@@ -1,6 +1,6 @@
 # Release Information
 
-- **Version**:  2.0.1 
+- **Version**:  2.0.2 
 - **Certified**: Yes 
 - **Publisher**: Fortinet 
 - **Compatible Version**: FortiSOAR v7.2.1 and later
@@ -70,7 +70,7 @@ The following diagram helps better understand the overall process and the subseq
 
 ## Additional Resources 
 
-- [Upgrade SOAR Framework to v2.0.1](./docs/moving-to-sfsp-2-0-1.md)
+- [Upgrade SOAR Framework to v2.0.2](./docs/moving-to-sfsp-2-0-2.md)
 - [Extending Default Alert Schema](./docs/extending-default-alert-schema.md)
 - [Configuring Alert Ingestion Process](./docs/configuring-alert-ingestion-process.md)
 - [Extending Default Indicator Extraction Process](./docs/extending-default-indicator-extraction-process.md)
