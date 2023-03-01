@@ -34,15 +34,12 @@
                 "inline_iri_list": ""
             },
             "enabled": true,
-            "is_system": true,
-            "channel_uuid": "2a817063-e12a-496d-934d-381d22a95b3b",
-            "user_preference_key": "email"
+            "channel_uuid": "2a817063-e12a-496d-934d-381d22a95b3b"
         },
         {
             "type": "system",
             "content": "<p>An incident, {{vars.input.record.name}}, has been assigned to you!<\/p>\n<p>{% set idParts = vars.input.record['@id'].split('\/') %}<\/p>\n<p><a href=\"{{ '\/modules\/incidents\/' + (idParts | last) }}\">View Incident<\/a><\/p>",
-            "enabled": true,
-            "is_system": true,
+            "enabled": false,
             "channel_uuid": "7a04788b-5128-4288-a0fc-6e82d18c3b7b",
             "owner_detail": {
                 "isAssigned": true,
@@ -58,5 +55,10 @@
     "event_source": "crudhub",
     "source": null,
     "channel_preference_field": null,
-    "visible": true
+    "visible": true,
+    "category": "generic",
+    "expiry": null,
+    "entity_id": null,
+    "parent_rule": null,
+    "workflow": null
 }
