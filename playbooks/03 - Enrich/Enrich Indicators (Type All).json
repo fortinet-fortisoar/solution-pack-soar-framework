@@ -23,6 +23,22 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "Set Exit Response",
+            "description": null,
+            "arguments": {
+                "reputation": "{{vars.steps.No_Integration_Available.reputation.itemValue}}",
+                "reputation_iri": "{{vars.steps.No_Integration_Available.reputation['@id']}}",
+                "enrichment_summaries": "{{vars.steps.No_Integration_Available.description}}"
+            },
+            "status": null,
+            "top": "520",
+            "left": "2000",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "07b26b32-f4a6-4296-98f7-146507b9e35a"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Initialize Enrichment Playbooks List",
             "description": null,
             "arguments": {
@@ -739,6 +755,15 @@
         }
     ],
     "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "No Integration Available -> Set Exit Response",
+            "targetStep": "\/api\/3\/workflow_steps\/07b26b32-f4a6-4296-98f7-146507b9e35a",
+            "sourceStep": "\/api\/3\/workflow_steps\/4d9603ae-2f1c-48ed-a61a-60704a608db8",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "8819b419-a653-4417-bebb-916beaf5f927"
+        },
         {
             "@type": "WorkflowRoute",
             "name": "Has Integrations Available for Enrichment -> Get Indicator Reputation",
