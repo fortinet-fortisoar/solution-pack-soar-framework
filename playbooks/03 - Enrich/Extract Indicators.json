@@ -101,6 +101,7 @@
             "description": "You can customize extraction by modifying indicator map in configuration step",
             "arguments": {
                 "alert_iri": "{{vars.input.params.alertMetaData['@id'] | ternary(vars.input.params.alertMetaData['@id'],vars.input.records[0]['@id'])}}",
+                "tenant_iri": "{% if vars.input.records[0].tenant %}{{vars.input.params.alertMetaData.tenant['@id'] | ternary(vars.input.params.alertMetaData.tenant['@id'],vars.input.records[0].tenant['@id'])}}{% endif %}",
                 "unified_iocs": "[]",
                 "alert_metadata": "{{vars.input.params.alertMetaData | ternary(vars.input.params.alertMetaData,vars.input.records[0])}}",
                 "alert_field_iocs": "[]",
@@ -437,6 +438,7 @@
                     "__link": {
                         "alerts": "{{vars.alert_iri}}"
                     },
+                    "tenant": "{{vars.tenant_iri}}",
                     "lastSeen": "{{arrow.utcnow().int_timestamp}}",
                     "__replace": "true",
                     "firstSeen": "{{arrow.utcnow().int_timestamp}}",
