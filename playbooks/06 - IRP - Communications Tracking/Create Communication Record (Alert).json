@@ -24,9 +24,9 @@
                 "emailTo": "{{vars.input.params.to}}",
                 "emailBCC": "{{vars.input.params.bcc}}",
                 "rec_type": "{{vars.input.records[0]['@type']}}",
-                "emailBody": "{{vars.input.params.body.content}}",
+                "emailBody": "{{vars.input.params.emailContent.content}}",
                 "emailfile": "{{vars.input.params.file}}",
-                "emailSubject": "{{vars.input.params.body.subject}}",
+                "emailSubject": "{{vars.input.params.emailContent.subject}}",
                 "rec_includeDescription": "{{vars.input.params.includeDescription}}"
             },
             "status": null,
@@ -138,9 +138,9 @@
                         "useRecordFieldDefault": false
                     },
                     {
-                        "name": "body",
+                        "name": "emailContent",
                         "type": "string",
-                        "label": "Body",
+                        "label": "Email Content",
                         "title": "Email Template Field",
                         "usable": true,
                         "tooltip": "",
@@ -155,7 +155,7 @@
                             "subject": null,
                             "selectedTemplate": null
                         },
-                        "_previousName": "b",
+                        "_previousName": "emailConten",
                         "playbookField": true,
                         "useRecordFieldDefault": false
                     },
@@ -212,8 +212,8 @@
                             "cC": "{{vars.request.data[\"cC\"]}}",
                             "to": "{{vars.request.data[\"to\"]}}",
                             "bcc": "{{vars.request.data[\"bcc\"]}}",
-                            "body": "{{vars.request.data[\"body\"]}}",
                             "file": "{{vars.request.data[\"file\"]}}",
+                            "emailContent": "{{vars.request.data[\"emailContent\"]}}",
                             "includeDescription": "{{vars.request.data[\"includeDescription\"]}}"
                         },
                         "records": "{{vars.input.records}}"
