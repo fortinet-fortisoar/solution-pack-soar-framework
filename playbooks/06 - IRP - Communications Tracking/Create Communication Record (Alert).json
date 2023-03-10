@@ -24,9 +24,9 @@
                 "emailTo": "{{vars.input.params.to}}",
                 "emailBCC": "{{vars.input.params.bcc}}",
                 "rec_type": "{{vars.input.records[0]['@type']}}",
-                "emailBody": "{{vars.input.params.body}}",
+                "emailBody": "{{vars.input.params.emailContent.content}}",
                 "emailfile": "{{vars.input.params.file}}",
-                "emailSubject": "{{vars.input.params.subject}}",
+                "emailSubject": "{{vars.input.params.emailContent.subject}}",
                 "rec_includeDescription": "{{vars.input.params.includeDescription}}"
             },
             "status": null,
@@ -138,47 +138,25 @@
                         "useRecordFieldDefault": false
                     },
                     {
-                        "name": "subject",
+                        "name": "emailContent",
                         "type": "string",
-                        "label": "Subject",
-                        "title": "Text Field",
+                        "label": "Email Content",
+                        "title": "Email Template Field",
                         "usable": true,
                         "tooltip": "",
-                        "dataType": "text",
-                        "formType": "text",
-                        "required": true,
+                        "dataType": "emailTemplate",
+                        "formType": "emailTemplate",
+                        "required": false,
                         "_expanded": true,
-                        "mmdUpdate": true,
                         "collection": false,
-                        "searchable": true,
-                        "moduleField": "name",
-                        "templateUrl": "app\/components\/form\/fields\/input.html",
-                        "defaultValue": null,
-                        "lengthConstraint": true,
-                        "allowedEncryption": true,
-                        "allowedGridColumn": true,
-                        "useRecordFieldDefault": true
-                    },
-                    {
-                        "name": "body",
-                        "type": "string",
-                        "label": "Body",
-                        "title": "Rich Text",
-                        "usable": true,
-                        "tooltip": "",
-                        "dataType": "text",
-                        "formType": "richtext",
-                        "required": true,
-                        "_expanded": true,
-                        "mmdUpdate": true,
-                        "collection": false,
-                        "searchable": true,
-                        "templateUrl": "app\/components\/form\/fields\/richtext.html",
-                        "_nameTouched": true,
-                        "defaultValue": null,
-                        "lengthConstraint": false,
-                        "allowedEncryption": true,
-                        "allowedGridColumn": true,
+                        "templateUrl": "app\/components\/form\/fields\/emailTemplate.html",
+                        "defaultValue": {
+                            "content": "",
+                            "subject": null,
+                            "selectedTemplate": null
+                        },
+                        "_previousName": "emailConten",
+                        "playbookField": true,
                         "useRecordFieldDefault": false
                     },
                     {
@@ -234,9 +212,8 @@
                             "cC": "{{vars.request.data[\"cC\"]}}",
                             "to": "{{vars.request.data[\"to\"]}}",
                             "bcc": "{{vars.request.data[\"bcc\"]}}",
-                            "body": "{{vars.request.data[\"body\"]}}",
                             "file": "{{vars.request.data[\"file\"]}}",
-                            "subject": "{{vars.request.data[\"subject\"]}}",
+                            "emailContent": "{{vars.request.data[\"emailContent\"]}}",
                             "includeDescription": "{{vars.request.data[\"includeDescription\"]}}"
                         },
                         "records": "{{vars.input.records}}"
@@ -278,21 +255,21 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Configuration -> Create Communication Record",
-            "targetStep": "\/api\/3\/workflow_steps\/9bd24b74-9da6-41e4-ba51-e80d8ccbff2f",
-            "sourceStep": "\/api\/3\/workflow_steps\/79ffcf55-8e97-4ea7-bd62-4b8c0b9944ad",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "490ec20d-777a-43e4-ad48-2dfec9d0427e"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Start -> Configuration",
             "targetStep": "\/api\/3\/workflow_steps\/79ffcf55-8e97-4ea7-bd62-4b8c0b9944ad",
             "sourceStep": "\/api\/3\/workflow_steps\/c6d9f275-35b2-4144-81a3-11d04fcfcf3c",
             "label": null,
             "isExecuted": false,
             "uuid": "d866dbf5-310d-45d0-b4a3-5bbffcbb5791"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Create Communication Record",
+            "targetStep": "\/api\/3\/workflow_steps\/9bd24b74-9da6-41e4-ba51-e80d8ccbff2f",
+            "sourceStep": "\/api\/3\/workflow_steps\/79ffcf55-8e97-4ea7-bd62-4b8c0b9944ad",
+            "label": null,
+            "isExecuted": false,
+            "uuid": "f0ef562a-9f24-45ed-8db7-2faba5cefd8c"
         }
     ],
     "groups": [],
