@@ -329,7 +329,7 @@
                     {
                         "option": "Yes, Enrich at Tenant Node",
                         "step_iri": "\/api\/3\/workflow_steps\/678a25cd-14af-49c7-9ea8-c3452585b910",
-                        "condition": "{{ 'tenant' in vars.input.records[0] and vars.input.records[0].tenant.isDedicated and vars.input.records[0].tenant.role != 'self' }}",
+                        "condition": "{{ 'tenant' in vars.input.records[0] and vars.input.records[0].tenant.isDedicated == true and vars.input.records[0].tenant.role != 'self' }}",
                         "step_name": "Enrichment on Tenant"
                     },
                     {
