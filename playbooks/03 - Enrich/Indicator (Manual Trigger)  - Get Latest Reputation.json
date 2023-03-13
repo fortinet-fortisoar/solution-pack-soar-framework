@@ -81,7 +81,7 @@
             "arguments": {
                 "resource": {
                     "reputation": "{{vars.steps.Enrich_Indicator.reputation_iri}}",
-                    "description": "{% for item in vars.steps.Enrich_Indicator.enrichment_summaries %}{{item}}{% endfor %}",
+                    "description": "{% if vars.steps.Enrich_Indicator.enrichment_summaries %}{% for item in vars.steps.Enrich_Indicator.enrichment_summaries %}{{item}}{% endfor %}{% endif%}",
                     "enrichmentStatus": "\/api\/3\/picklists\/c6e46fde-97a2-48cc-8019-938c9c5aebd0"
                 },
                 "operation": "Append",
