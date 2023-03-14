@@ -133,7 +133,7 @@
                 "alert_metadata": "{{vars.input.params.alertMetaData | ternary(vars.input.params.alertMetaData,vars.input.records[0])}}",
                 "alert_field_iocs": "[]",
                 "indicator_type_map": "{{globalVars.Indicator_Type_Map}}",
-                "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls)}}"
+                "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls) | map('lower') | list}}"
             },
             "status": null,
             "top": "300",
