@@ -1,0 +1,169 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Using Ignore Error to Avoid Playbook Failure",
+    "description": "<p>This reference block showcases an example of configuring a playbook step with an \"Ignore Error\" Option to avoid stopping playbooks execution due to step failure<\/p>\n<p>Example: You might want a playbook, that checks the reputation of provided IP address and continues playbook execution in case the playbook step fails.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "ip_address": "{{vars.input.records[0].value}}",
+                "isVTReputationFound": "false"
+            },
+            "status": null,
+            "top": "68",
+            "left": "240",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/e56e800d-61aa-4fe8-abce-6246b9a31fd1",
+            "uuid": "0657cc7c-59e1-43a6-a400-caad29c54fb4"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get IP Reputation Stats",
+            "description": null,
+            "arguments": {
+                "reputation_stats": "{{vars.steps.Get_IP_Reputation.data.attributes['last_analysis_stats']}}"
+            },
+            "status": null,
+            "top": "473",
+            "left": "65",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/e56e800d-61aa-4fe8-abce-6246b9a31fd1",
+            "uuid": "d91fe23a-4646-49ed-842d-e0e0ee5b4a04"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Reputation Found",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/d91fe23a-4646-49ed-842d-e0e0ee5b4a04",
+                        "condition": "{{ vars.isVTReputationFound }}",
+                        "step_name": "Get IP Reputation Stats"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/c30f32fd-cffa-4a8c-909d-5f6f46ccfe59",
+                        "step_name": "No Operation"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "338",
+            "left": "240",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": "\/api\/3\/workflow_groups\/e56e800d-61aa-4fe8-abce-6246b9a31fd1",
+            "uuid": "74cea6a3-2c8b-4c93-a244-bdaba49fbe9f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "No Operation",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "473",
+            "left": "415",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": "\/api\/3\/workflow_groups\/e56e800d-61aa-4fe8-abce-6246b9a31fd1",
+            "uuid": "c30f32fd-cffa-4a8c-909d-5f6f46ccfe59"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get IP Reputation",
+            "description": null,
+            "arguments": {
+                "name": "VirusTotal",
+                "config": "d2499d6b-51f0-4aca-a889-5540c12e6bcc",
+                "params": {
+                    "ip": "{{vars.ip_address}}",
+                    "relationships": ""
+                },
+                "version": "3.0.2",
+                "connector": "virustotal",
+                "operation": "query_ip",
+                "ignore_errors": true,
+                "operationTitle": "Get IP Reputation",
+                "pickFromTenant": false,
+                "step_variables": {
+                    "isVTReputationFound": "{% if vars.steps.Get_IP_Reputation.data %}true{% else %}false{% endif %}"
+                }
+            },
+            "status": null,
+            "top": "203",
+            "left": "240",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": "\/api\/3\/workflow_groups\/e56e800d-61aa-4fe8-abce-6246b9a31fd1",
+            "uuid": "ee60b831-8788-43ba-b5cb-cc9e9722601d"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get IP Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/ee60b831-8788-43ba-b5cb-cc9e9722601d",
+            "sourceStep": "\/api\/3\/workflow_steps\/0657cc7c-59e1-43a6-a400-caad29c54fb4",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/e56e800d-61aa-4fe8-abce-6246b9a31fd1",
+            "uuid": "0e74f861-8761-42ee-94a2-0587526317e4"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get IP Reputation -> Is Reputation Found",
+            "targetStep": "\/api\/3\/workflow_steps\/74cea6a3-2c8b-4c93-a244-bdaba49fbe9f",
+            "sourceStep": "\/api\/3\/workflow_steps\/ee60b831-8788-43ba-b5cb-cc9e9722601d",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/e56e800d-61aa-4fe8-abce-6246b9a31fd1",
+            "uuid": "195be447-effc-472d-9398-f481750e93da"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Reputation Found -> Get IP Reputation Stats",
+            "targetStep": "\/api\/3\/workflow_steps\/d91fe23a-4646-49ed-842d-e0e0ee5b4a04",
+            "sourceStep": "\/api\/3\/workflow_steps\/74cea6a3-2c8b-4c93-a244-bdaba49fbe9f",
+            "label": "Yes",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/e56e800d-61aa-4fe8-abce-6246b9a31fd1",
+            "uuid": "1b5f8ae4-bde6-444f-a680-d7fca4fcd94d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Reputation Found -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/c30f32fd-cffa-4a8c-909d-5f6f46ccfe59",
+            "sourceStep": "\/api\/3\/workflow_steps\/74cea6a3-2c8b-4c93-a244-bdaba49fbe9f",
+            "label": "No",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/e56e800d-61aa-4fe8-abce-6246b9a31fd1",
+            "uuid": "83817dc4-5456-4ea5-a2a0-55a40892f223"
+        }
+    ],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "616",
+    "width": "717",
+    "uuid": "e56e800d-61aa-4fe8-abce-6246b9a31fd1",
+    "recordTags": [
+        "Ignore Error",
+        "Playbook",
+        "Failure"
+    ]
+}

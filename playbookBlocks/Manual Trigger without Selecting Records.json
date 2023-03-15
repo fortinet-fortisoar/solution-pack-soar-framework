@@ -1,0 +1,56 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Manual Trigger without Selecting Records",
+    "description": "<p>This reference block showcases an example of configuring manually triggered playbooks that run globally on an alert module without selecting an alert record and are used for ingesting data to create new alerts.<\/p>\n<p>Example: You might want the playbook, \"Ingest Emails\" from Exchange which creates alerts that execute on the alert module and do not have to select a record for the execution.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": true,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "90cc7e45-f451-4f56-a3ff-a0470a50a3ab",
+                "title": "Ingest Emails",
+                "resources": [
+                    "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+            },
+            "status": null,
+            "top": "89",
+            "left": "53",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": "\/api\/3\/workflow_groups\/013b6ac0-3cfb-4bd2-be8f-d692473d755f",
+            "uuid": "26ff5acd-024c-4d12-8782-287912cb1b65"
+        }
+    ],
+    "workflowRoutes": [],
+    "metadata": {
+        "triggerStep": "\/api\/3\/workflow_steps\/26ff5acd-024c-4d12-8782-287912cb1b65"
+    },
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "211",
+    "width": "382",
+    "uuid": "013b6ac0-3cfb-4bd2-be8f-d692473d755f",
+    "recordTags": [
+        "ManualTrigger",
+        "Alerts",
+        "Trigger",
+        "No Record Selection"
+    ]
+}

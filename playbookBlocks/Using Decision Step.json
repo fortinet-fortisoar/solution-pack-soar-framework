@@ -1,0 +1,227 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Using Decision Step",
+    "description": "<p>This reference block showcases an example of the usage of Decision Step in a playbook and executing further playbooks based on the condition provided.<\/p>\n<p>Example: You might want a playbook, to compute IP address reputation based on the verdict provided by Virustotal.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Check IP Reputation",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Malicious",
+                        "step_iri": "\/api\/3\/workflow_steps\/e0ec9064-c24d-4864-80e3-5171e1cfdeeb",
+                        "condition": "{{ vars.last_analysis_stats.malicious > 0 }}",
+                        "step_name": "Set Malicious"
+                    },
+                    {
+                        "option": "No Reputation",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/e405e63a-69de-407f-bdf1-765485a9cae9",
+                        "step_name": "Set No Reputation"
+                    },
+                    {
+                        "option": "Suspicious",
+                        "step_iri": "\/api\/3\/workflow_steps\/0f00ddd4-ac35-4b1e-a668-d14146a91cb7",
+                        "condition": "{{ vars.last_analysis_stats.suspicious > 0 }}",
+                        "step_name": "Set Suspicious"
+                    },
+                    {
+                        "option": "Good",
+                        "step_iri": "\/api\/3\/workflow_steps\/17c1e58f-2001-4898-99b9-348f06bdcc85",
+                        "condition": "{{ vars.last_analysis_stats.harmless > 0 }}",
+                        "step_name": "Set Good"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "350",
+            "left": "713",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": "\/api\/3\/workflow_groups\/fd1dc226-1583-4dd8-a576-d9b350200569",
+            "uuid": "6f6d9162-3322-4300-9590-73e8a3c66a01"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "ip_address": "{{vars.input.records[0].value}}"
+            },
+            "status": null,
+            "top": "350",
+            "left": "53",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/fd1dc226-1583-4dd8-a576-d9b350200569",
+            "uuid": "710dfacd-fcc2-455c-a441-7957cecca38c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get IP Reptation",
+            "description": null,
+            "arguments": {
+                "name": "VirusTotal",
+                "config": "d2499d6b-51f0-4aca-a889-5540c12e6bcc",
+                "params": {
+                    "ip": "{{vars.ip_address}}",
+                    "relationships": ""
+                },
+                "version": "3.0.2",
+                "connector": "virustotal",
+                "operation": "query_ip",
+                "operationTitle": "Get IP Reputation",
+                "pickFromTenant": false,
+                "step_variables": {
+                    "last_analysis_stats": "{{vars.steps.Get_IP_Reptation.data.attributes['last_analysis_stats']}}"
+                }
+            },
+            "status": null,
+            "top": "350",
+            "left": "393",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": "\/api\/3\/workflow_groups\/fd1dc226-1583-4dd8-a576-d9b350200569",
+            "uuid": "1e1c2c22-77ed-4120-95a0-5b2e9f5c26c9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Good",
+            "description": null,
+            "arguments": {
+                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"Good\"))[\"@id\"]}}",
+                "Reputation_Type_Text": "Good"
+            },
+            "status": null,
+            "top": "510",
+            "left": "1113",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/fd1dc226-1583-4dd8-a576-d9b350200569",
+            "uuid": "17c1e58f-2001-4898-99b9-348f06bdcc85"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Malicious",
+            "description": null,
+            "arguments": {
+                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"Malicious\"))[\"@id\"]}}",
+                "Reputation_Type_Text": "Malicious"
+            },
+            "status": null,
+            "top": "110",
+            "left": "1073",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/fd1dc226-1583-4dd8-a576-d9b350200569",
+            "uuid": "e0ec9064-c24d-4864-80e3-5171e1cfdeeb"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set No Reputation",
+            "description": null,
+            "arguments": {
+                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"No Reputation Available\"))[\"@id\"]}}",
+                "Reputation_Type_Text": "No Reputation Available"
+            },
+            "status": null,
+            "top": "650",
+            "left": "1033",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/fd1dc226-1583-4dd8-a576-d9b350200569",
+            "uuid": "e405e63a-69de-407f-bdf1-765485a9cae9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Suspicious",
+            "description": null,
+            "arguments": {
+                "Reputation_Type_IRI": "{{(\"IndicatorReputation\" | picklist(\"Suspicious\"))[\"@id\"]}}",
+                "Reputation_Type_Text": "Suspicious"
+            },
+            "status": null,
+            "top": "250",
+            "left": "1113",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/fd1dc226-1583-4dd8-a576-d9b350200569",
+            "uuid": "0f00ddd4-ac35-4b1e-a668-d14146a91cb7"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check IP Reputation -> Set Good",
+            "targetStep": "\/api\/3\/workflow_steps\/17c1e58f-2001-4898-99b9-348f06bdcc85",
+            "sourceStep": "\/api\/3\/workflow_steps\/6f6d9162-3322-4300-9590-73e8a3c66a01",
+            "label": "Good",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/fd1dc226-1583-4dd8-a576-d9b350200569",
+            "uuid": "e98b0ac1-e0e7-4ee7-8789-57fa90648243"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check IP Reputation -> Set Malicious",
+            "targetStep": "\/api\/3\/workflow_steps\/e0ec9064-c24d-4864-80e3-5171e1cfdeeb",
+            "sourceStep": "\/api\/3\/workflow_steps\/6f6d9162-3322-4300-9590-73e8a3c66a01",
+            "label": "Malicious",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/fd1dc226-1583-4dd8-a576-d9b350200569",
+            "uuid": "3111781f-7ca5-4793-a952-480bd7ec75b8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check IP Reputation -> Set No Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/e405e63a-69de-407f-bdf1-765485a9cae9",
+            "sourceStep": "\/api\/3\/workflow_steps\/6f6d9162-3322-4300-9590-73e8a3c66a01",
+            "label": "No Reputation",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/fd1dc226-1583-4dd8-a576-d9b350200569",
+            "uuid": "3156cef8-45cc-43c5-8d69-8eea903cfe00"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check IP Reputation -> Set Suspicious",
+            "targetStep": "\/api\/3\/workflow_steps\/0f00ddd4-ac35-4b1e-a668-d14146a91cb7",
+            "sourceStep": "\/api\/3\/workflow_steps\/6f6d9162-3322-4300-9590-73e8a3c66a01",
+            "label": "Suspicious",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/fd1dc226-1583-4dd8-a576-d9b350200569",
+            "uuid": "e8ef204e-d981-4a63-a575-371bec07eca6"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get IP Reptation",
+            "targetStep": "\/api\/3\/workflow_steps\/1e1c2c22-77ed-4120-95a0-5b2e9f5c26c9",
+            "sourceStep": "\/api\/3\/workflow_steps\/710dfacd-fcc2-455c-a441-7957cecca38c",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/fd1dc226-1583-4dd8-a576-d9b350200569",
+            "uuid": "491b5148-53d3-4e38-9586-905a5d53c856"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get IP Reptation -> Check IP Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/6f6d9162-3322-4300-9590-73e8a3c66a01",
+            "sourceStep": "\/api\/3\/workflow_steps\/1e1c2c22-77ed-4120-95a0-5b2e9f5c26c9",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/fd1dc226-1583-4dd8-a576-d9b350200569",
+            "uuid": "8f945da9-3149-4901-a08d-2fa394f9fe79"
+        }
+    ],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "774",
+    "width": "1519",
+    "uuid": "fd1dc226-1583-4dd8-a576-d9b350200569",
+    "recordTags": [
+        "Enrichment",
+        "Indicators",
+        "Decision",
+        "Reputation"
+    ]
+}

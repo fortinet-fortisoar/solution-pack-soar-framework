@@ -1,0 +1,100 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Condition-based Post Update Trigger",
+    "description": "<p>This reference block showcases an example of configuring post-update triggered playbooks and limiting its execution when a certain type of alert is updated.<\/p>\n<p>Example: You might want the playbook, that triggers only when the state of \"Ransomware\" type alerts with source FortiSIEM is changed to \"Indicator Extracted\".&nbsp;<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": true,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "alerts",
+                "resources": [
+                    "alerts"
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    }
+                },
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "type",
+                            "value": "\/api\/3\/picklists\/8b6f20f0-08ba-47f7-bc7d-233592309940",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/8b6f20f0-08ba-47f7-bc7d-233592309940",
+                                "display": "Ransomware",
+                                "itemValue": "Ransomware"
+                            },
+                            "operator": "eq"
+                        },
+                        {
+                            "type": "primitive",
+                            "field": "source",
+                            "value": "FortiSIEM",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        },
+                        {
+                            "type": "object",
+                            "field": "state",
+                            "value": "",
+                            "_value": {
+                                "@id": "",
+                                "display": "",
+                                "itemValue": ""
+                            },
+                            "operator": "changed"
+                        },
+                        {
+                            "type": "object",
+                            "field": "state",
+                            "value": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                                "display": "Indicator Extracted",
+                                "itemValue": "Indicator Extracted"
+                            },
+                            "operator": "eq"
+                        }
+                    ]
+                }
+            },
+            "status": null,
+            "top": "107",
+            "left": "98",
+            "stepType": "\/api\/3\/workflow_step_types\/9300bf69-5063-486d-b3a6-47eb9da24872",
+            "group": "\/api\/3\/workflow_groups\/361dda83-1f75-42bb-ba54-9514f1d194c8",
+            "uuid": "b3c43670-74e7-46c8-a08e-6b3c0d7f682f"
+        }
+    ],
+    "workflowRoutes": [],
+    "metadata": {
+        "triggerStep": "\/api\/3\/workflow_steps\/b3c43670-74e7-46c8-a08e-6b3c0d7f682f"
+    },
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "237",
+    "width": "457",
+    "uuid": "361dda83-1f75-42bb-ba54-9514f1d194c8",
+    "recordTags": [
+        "PostUpdate",
+        "Alert",
+        "Trigger",
+        "Condition"
+    ]
+}

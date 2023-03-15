@@ -1,0 +1,81 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Posting a Message on Triggering Record (using Step Utilities)",
+    "description": "<p>This reference block showcases an example of posting a message in the collaboration panel using the Step Utilities on the specified record.<\/p>\n<p>Example: You might want a playbook that adds a message in the alert record upon update of the alert severity.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Cofiguration",
+            "description": null,
+            "arguments": {
+                "recordIRI": "{{vars.input.records[0]['@id']}}"
+            },
+            "status": null,
+            "top": "56",
+            "left": "28",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/023ec590-5a27-421c-9a33-e88c488ef19c",
+            "uuid": "ad12953a-f7c8-4d96-9362-49d48ed6e1b9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Alert Severity",
+            "description": null,
+            "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>Alert severity updated to <span class=\"badge badge-pill badge-danger\" style=\"background: {{vars.steps.Update_Alert_Severity.severity.color}}; color: #fff;\">{{vars.steps.Update_Alert_Severity.severity.itemValue}}<\/span> <\/p>",
+                    "records": "",
+                    "jinjaExpressionView": true
+                },
+                "resource": {
+                    "severity": "\/api\/3\/picklists\/7efa2220-39bb-44e4-961f-ac368776e3b0"
+                },
+                "operation": "Append",
+                "collection": "{{vars.recordIRI}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/alerts",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "191",
+            "left": "28",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": "\/api\/3\/workflow_groups\/023ec590-5a27-421c-9a33-e88c488ef19c",
+            "uuid": "c403cf8d-cba8-4aac-ac6d-9e131430f40c"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Cofiguration -> Update Alert Severity",
+            "targetStep": "\/api\/3\/workflow_steps\/c403cf8d-cba8-4aac-ac6d-9e131430f40c",
+            "sourceStep": "\/api\/3\/workflow_steps\/ad12953a-f7c8-4d96-9362-49d48ed6e1b9",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/023ec590-5a27-421c-9a33-e88c488ef19c",
+            "uuid": "6e46db62-b726-4f80-96a1-d6e2a6907ebe"
+        }
+    ],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "280",
+    "width": "307",
+    "uuid": "023ec590-5a27-421c-9a33-e88c488ef19c",
+    "recordTags": [
+        "Alerts",
+        "Comment",
+        "Message"
+    ]
+}

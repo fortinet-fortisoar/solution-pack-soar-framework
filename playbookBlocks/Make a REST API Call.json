@@ -1,0 +1,54 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Make a REST API Call",
+    "description": "<p>This reference block showcases an example of configuring a playbook to make a REST API call using the \"Utilities\" connector.<\/p>\n<p>Example: you might want the playbook, that makes a REST API call to NIST NVD to get CVE ID information.&nbsp;<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Make REST API Call",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "url": "https:\/\/services.nvd.nist.gov\/rest\/json\/cves\/2.0?cveId=CVE-2019-1010218",
+                    "body": "",
+                    "method": "GET",
+                    "params": "",
+                    "verify": false,
+                    "headers": "{\"apiKey\": \"<valid_api_key>\"}",
+                    "password": "",
+                    "username": "",
+                    "auth_config": ""
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "api_call",
+                "operationTitle": "Utils: Make REST API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "72",
+            "left": "56",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": "\/api\/3\/workflow_groups\/8895767f-b55b-462b-919a-1872b6770988",
+            "uuid": "d97ba27b-b4d5-438e-be0d-ec26a1c3cb86"
+        }
+    ],
+    "workflowRoutes": [],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "182",
+    "width": "379",
+    "uuid": "8895767f-b55b-462b-919a-1872b6770988",
+    "recordTags": [
+        "API",
+        "REST",
+        "Utilities"
+    ]
+}

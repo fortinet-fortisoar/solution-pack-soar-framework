@@ -1,0 +1,287 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Using Manual Input Step",
+    "description": "<p>This reference block showcases an example of configuring a playbook with the Manual Input step<\/p>\n<p>Example: you might want the playbook, that facilitates users to make a decision about taking asset snapshots or cleaning the asset.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Add Note For Clean Asset",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": {
+                        "id": 248,
+                        "@id": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                        "icon": null,
+                        "@type": "Picklist",
+                        "color": null,
+                        "display": "Comment",
+                        "@context": "\/api\/3\/contexts\/Picklist",
+                        "listName": "\/api\/3\/picklist_names\/0841c1eb-a0a3-4abd-b29c-9f68e4d9b14f",
+                        "itemValue": "Comment",
+                        "orderIndex": 1
+                    },
+                    "people": [],
+                    "content": "Asset cleaned Successfully.",
+                    "__replace": "",
+                    "incidents": "{{vars.input.params['incident_iri']}}",
+                    "isImportant": false,
+                    "peopleUpdated": false
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "351",
+            "left": "68",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": "\/api\/3\/workflow_groups\/2ccbef27-6e10-4c53-bd35-319ea0356652",
+            "uuid": "63314e2d-1a56-44f7-9d3e-7e1a0085de50"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Add Note For Snapshot",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": {
+                        "id": 248,
+                        "@id": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                        "icon": null,
+                        "@type": "Picklist",
+                        "color": null,
+                        "display": "Comment",
+                        "@context": "\/api\/3\/contexts\/Picklist",
+                        "listName": "\/api\/3\/picklist_names\/0841c1eb-a0a3-4abd-b29c-9f68e4d9b14f",
+                        "itemValue": "Comment",
+                        "orderIndex": 1
+                    },
+                    "people": [],
+                    "content": "The snapshot has been successfully tekan and cleaned the Asset",
+                    "__replace": "",
+                    "incidents": "{{vars.input.params['incident_iri']}}",
+                    "isImportant": false,
+                    "peopleUpdated": false
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "351",
+            "left": "418",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": "\/api\/3\/workflow_groups\/2ccbef27-6e10-4c53-bd35-319ea0356652",
+            "uuid": "bc2b0da8-b1da-4dd7-8f52-880eb932811e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Clean Assest",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Please Clean the asset",
+                        "description": "Please clean the asset without snapshot",
+                        "inputVariables": []
+                    }
+                },
+                "record": "{{vars.input.params['incident_iri']}}",
+                "agent_id": null,
+                "resources": "alerts",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": true,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Proceed",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/401e6d41-8e86-47d3-bf3a-e1b1ff3e2126"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "216",
+            "left": "68",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": "\/api\/3\/workflow_groups\/2ccbef27-6e10-4c53-bd35-319ea0356652",
+            "uuid": "d6ef04e7-0587-452b-b939-9eac06020001"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Take Asset Snapshot",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Take decision on Snapshot",
+                        "description": "Would you like to take the snapshot before we clean the asset.",
+                        "inputVariables": []
+                    }
+                },
+                "record": "{{vars.input.params['incident_iri']}}",
+                "agent_id": null,
+                "resources": "alerts",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": true,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Yes",
+                            "step_iri": "\/api\/3\/workflow_steps\/ddda2575-d079-4c26-916a-b321c9b1c7d3"
+                        },
+                        {
+                            "option": "No",
+                            "step_iri": "\/api\/3\/workflow_steps\/e99c6f8a-cf3a-46c2-996c-22ade2ae837f"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "76",
+            "left": "248",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": "\/api\/3\/workflow_groups\/2ccbef27-6e10-4c53-bd35-319ea0356652",
+            "uuid": "29c2ac98-a3c6-48a4-9253-a4339453e0e3"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Take Snapshot and Clean the Asset",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Please take the Snapshot and Clean the Asset",
+                        "description": "Please take the Snapshot and Clean the Asset",
+                        "inputVariables": []
+                    }
+                },
+                "record": "{{vars.input.params['incident_iri']}}",
+                "agent_id": null,
+                "resources": "alerts",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": true,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Proceed",
+                            "step_iri": "\/api\/3\/workflow_steps\/6da07930-2188-41d9-8687-1560d5346976"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "216",
+            "left": "418",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": "\/api\/3\/workflow_groups\/2ccbef27-6e10-4c53-bd35-319ea0356652",
+            "uuid": "a20c4d0a-ad80-4b4c-9418-a15363413901"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Clean Assest -> Add Note For Clean Asset",
+            "targetStep": "\/api\/3\/workflow_steps\/63314e2d-1a56-44f7-9d3e-7e1a0085de50",
+            "sourceStep": "\/api\/3\/workflow_steps\/d6ef04e7-0587-452b-b939-9eac06020001",
+            "label": "Proceed",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/2ccbef27-6e10-4c53-bd35-319ea0356652",
+            "uuid": "41d85080-1fcb-4fcc-8089-3b6dc05ad5ee"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Take decision on Snapshot -> Clean Assest",
+            "targetStep": "\/api\/3\/workflow_steps\/d6ef04e7-0587-452b-b939-9eac06020001",
+            "sourceStep": "\/api\/3\/workflow_steps\/29c2ac98-a3c6-48a4-9253-a4339453e0e3",
+            "label": "No",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/2ccbef27-6e10-4c53-bd35-319ea0356652",
+            "uuid": "a55a779e-94b6-4a0d-a24c-41030c93a0ad"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Take decision on Snapshot -> Take Snapshot and clean the Asset",
+            "targetStep": "\/api\/3\/workflow_steps\/a20c4d0a-ad80-4b4c-9418-a15363413901",
+            "sourceStep": "\/api\/3\/workflow_steps\/29c2ac98-a3c6-48a4-9253-a4339453e0e3",
+            "label": "Yes",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/2ccbef27-6e10-4c53-bd35-319ea0356652",
+            "uuid": "62741e1c-a433-4dd5-80c5-6cf4372eb63b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Take Snapshot and clean the Asset -> Add Note For Snapshot",
+            "targetStep": "\/api\/3\/workflow_steps\/bc2b0da8-b1da-4dd7-8f52-880eb932811e",
+            "sourceStep": "\/api\/3\/workflow_steps\/a20c4d0a-ad80-4b4c-9418-a15363413901",
+            "label": "Proceed",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/2ccbef27-6e10-4c53-bd35-319ea0356652",
+            "uuid": "2e8a1cc6-f8c6-4576-af16-e7bafafd21c8"
+        }
+    ],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "481",
+    "width": "772",
+    "uuid": "2ccbef27-6e10-4c53-bd35-319ea0356652",
+    "recordTags": [
+        "ManualAction",
+        "Decision"
+    ]
+}

@@ -1,0 +1,100 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Execute Playbook Step using Do-Until Loop",
+    "description": "<p>This reference block showcases an example of configuring a playbook to keep running a step until a specific condition is met using the 'do-until' loop from Step Utilities.<\/p>\n<p>Example: You might want a playbook, that submits an export vulnerability job in Tenable.io and wait until the export job is finished.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Wait Till Export Job Finished",
+            "description": null,
+            "arguments": {
+                "name": "Tenable.io",
+                "config": "5e7d05d0-cf18-4e10-8b0c-55f01acc4376",
+                "params": {
+                    "export_uuid": "{{vars.export_uuid}}"
+                },
+                "version": "1.3.0",
+                "do_until": {
+                    "delay": 5,
+                    "retries": 3,
+                    "condition": "{{vars.result.data.status == 'FINISHED'}}"
+                },
+                "connector": "tenable-io",
+                "operation": "get_vuln_export_status",
+                "operationTitle": "Get Vulnerability Export Status",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "202",
+            "left": "60",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": "\/api\/3\/workflow_groups\/9000848c-78aa-441c-9b2b-ce38f8db4762",
+            "uuid": "1569b94c-e1c6-4ad4-bed3-9408da3d33a7"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Submit Export Job",
+            "description": null,
+            "arguments": {
+                "name": "Tenable.io",
+                "config": "5e7d05d0-cf18-4e10-8b0c-55f01acc4376",
+                "params": {
+                    "since": "",
+                    "state": [
+                        "Open"
+                    ],
+                    "severity": [
+                        "Critical"
+                    ],
+                    "cidr_range": "",
+                    "num_assets": 50
+                },
+                "version": "1.3.0",
+                "connector": "tenable-io",
+                "operation": "submit_vuln_export_job",
+                "operationTitle": "Submit Vulnerability Export Job",
+                "pickFromTenant": false,
+                "step_variables": {
+                    "export_uuid": "{{vars.result.data['export_uuid']}}"
+                }
+            },
+            "status": null,
+            "top": "67",
+            "left": "60",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": "\/api\/3\/workflow_groups\/9000848c-78aa-441c-9b2b-ce38f8db4762",
+            "uuid": "e7c1897d-0fbc-42bf-8f6a-e54f876771a8"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Submit Export Job -> Wait Till Export Job Finished",
+            "targetStep": "\/api\/3\/workflow_steps\/1569b94c-e1c6-4ad4-bed3-9408da3d33a7",
+            "sourceStep": "\/api\/3\/workflow_steps\/e7c1897d-0fbc-42bf-8f6a-e54f876771a8",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/9000848c-78aa-441c-9b2b-ce38f8db4762",
+            "uuid": "443055fe-85d0-4395-99d8-09c9e3e2ec5f"
+        }
+    ],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "318",
+    "width": "383",
+    "uuid": "9000848c-78aa-441c-9b2b-ce38f8db4762",
+    "recordTags": [
+        "Condition",
+        "Loop",
+        "Do-Until",
+        "Step Utilities"
+    ]
+}
