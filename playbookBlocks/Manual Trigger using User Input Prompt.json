@@ -1,0 +1,151 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Manual Trigger using User Input Prompt",
+    "description": "<p>This reference block showcases an example of configuring a manually triggered playbook with a user prompt and allows the user to provide inputs before triggering a playbook.<\/p>\n<p>Example: you might want the playbook, that gets the Virustotal Reputation of the IP Address provided using the input prompt.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": true,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "ipAddressValue": "{{vars.input.params.iPAddress}}"
+            },
+            "status": null,
+            "top": "194",
+            "left": "27",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/3aeb9326-ebef-4fb7-ad55-a2655cea739c",
+            "uuid": "0779adeb-47bc-4918-8924-b1a268e907ed"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get IP Reputation",
+            "description": null,
+            "arguments": {
+                "name": "VirusTotal",
+                "config": "d2499d6b-51f0-4aca-a889-5540c12e6bcc",
+                "params": {
+                    "ip": "{{vars.ipAddressValue}}",
+                    "relationships": ""
+                },
+                "version": "3.0.2",
+                "connector": "virustotal",
+                "operation": "query_ip",
+                "operationTitle": "Get IP Reputation",
+                "pickFromTenant": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "334",
+            "left": "27",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": "\/api\/3\/workflow_groups\/3aeb9326-ebef-4fb7-ad55-a2655cea739c",
+            "uuid": "60b2d8fa-0200-4c52-ac10-7267b6719b14"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "096088ec-6ec1-4937-bbdf-8139e911c5b6",
+                "title": "Get IP Reputation",
+                "resources": [
+                    "indicators"
+                ],
+                "inputVariables": [
+                    {
+                        "name": "iPAddress",
+                        "type": "string",
+                        "label": "IP Address",
+                        "title": "IPv4",
+                        "usable": true,
+                        "tooltip": "",
+                        "dataType": "text",
+                        "formType": "ipv4",
+                        "required": false,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/webAddress.html",
+                        "defaultValue": null,
+                        "_previousName": "iPA",
+                        "playbookField": true,
+                        "lengthConstraint": false,
+                        "allowedEncryption": true,
+                        "allowedGridColumn": true,
+                        "jinjaExpressionView": true,
+                        "useRecordFieldDefault": false
+                    }
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "iPAddress": "{{vars.request.data[\"iPAddress\"]}}"
+                        },
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "_promptexpanded": true,
+                "displayConditions": {
+                    "alerts": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    }
+                },
+                "executeButtonText": "Submit",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+            },
+            "status": null,
+            "top": "54",
+            "left": "27",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": "\/api\/3\/workflow_groups\/3aeb9326-ebef-4fb7-ad55-a2655cea739c",
+            "uuid": "a3e5a6f4-656a-40ea-8afa-e3056e212fd5"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get IP Reputation",
+            "targetStep": "\/api\/3\/workflow_steps\/60b2d8fa-0200-4c52-ac10-7267b6719b14",
+            "sourceStep": "\/api\/3\/workflow_steps\/0779adeb-47bc-4918-8924-b1a268e907ed",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/3aeb9326-ebef-4fb7-ad55-a2655cea739c",
+            "uuid": "b244fff7-5d33-4858-a8ef-483559f27c2d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/0779adeb-47bc-4918-8924-b1a268e907ed",
+            "sourceStep": "\/api\/3\/workflow_steps\/a3e5a6f4-656a-40ea-8afa-e3056e212fd5",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/3aeb9326-ebef-4fb7-ad55-a2655cea739c",
+            "uuid": "8eddca9d-77bb-467f-9c7e-251a3f38afce"
+        }
+    ],
+    "metadata": {
+        "triggerStep": "\/api\/3\/workflow_steps\/a3e5a6f4-656a-40ea-8afa-e3056e212fd5"
+    },
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "444",
+    "width": "320",
+    "uuid": "3aeb9326-ebef-4fb7-ad55-a2655cea739c",
+    "recordTags": [
+        "Trigger",
+        "Manual",
+        "User Prompt"
+    ]
+}

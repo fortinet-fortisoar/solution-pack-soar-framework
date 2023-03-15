@@ -1,0 +1,78 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Condition-based Post Create Trigger",
+    "description": "<p>This reference block showcases an example of configuring a post-create triggered playbook and limiting its execution for a specific type of alert.<\/p>\n<p><br \/>Example: You might want the playbook, that triggers only when \"Malware\" type alerts with source FortiSIEM are created.&nbsp;<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": true,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "alerts",
+                "resources": [
+                    "alerts"
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    }
+                },
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "type",
+                            "value": "\/api\/3\/picklists\/0cbc2c31-c360-4770-b1e7-3653a8c24ead",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/0cbc2c31-c360-4770-b1e7-3653a8c24ead",
+                                "display": "Malware",
+                                "itemValue": "Malware"
+                            },
+                            "operator": "eq"
+                        },
+                        {
+                            "type": "primitive",
+                            "field": "source",
+                            "value": "FortiSIEM",
+                            "operator": "neq",
+                            "_operator": "neq"
+                        }
+                    ]
+                }
+            },
+            "status": null,
+            "top": "77",
+            "left": "67",
+            "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "group": "\/api\/3\/workflow_groups\/f64748cd-09aa-4fe2-8e36-e0235f4a7144",
+            "uuid": "294d810b-92d8-4fa9-8891-a7087fa86b28"
+        }
+    ],
+    "workflowRoutes": [],
+    "metadata": {
+        "triggerStep": "\/api\/3\/workflow_steps\/294d810b-92d8-4fa9-8891-a7087fa86b28"
+    },
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "190",
+    "width": "386",
+    "uuid": "f64748cd-09aa-4fe2-8e36-e0235f4a7144",
+    "recordTags": [
+        "PostCreate",
+        "Alert",
+        "Trigger",
+        "Condition"
+    ]
+}

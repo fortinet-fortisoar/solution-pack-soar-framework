@@ -1,0 +1,105 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Posting a Message on Triggering Record (using Create Record Step)",
+    "description": "<p>This reference block showcases an example of posting a message in the collaboration panel using the Create Record steps on the triggering record.<\/p>\n<p>Example: You might want a playbook that adds a message in the Alert record upon initiation of the investigation playbook.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": true,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "90cc7e45-f451-4f56-a3ff-a0470a50a3ab",
+                "title": "Investigate Phishing",
+                "resources": [
+                    "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "displayConditions": {
+                    "alerts": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "73",
+            "left": "37",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": "\/api\/3\/workflow_groups\/123e3f56-b295-4d00-b549-ce9f7f98e884",
+            "uuid": "f89f59b8-fcc1-4d89-b0c3-6bde2f574c55"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Add Message",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "alerts": "{{vars.input.records[0]['@id']}}",
+                    "people": [],
+                    "content": "<p>Initiating Phishing Investigation on Alert<\/p>",
+                    "__replace": "",
+                    "isImportant": false,
+                    "peopleUpdated": false
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "213",
+            "left": "37",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": "\/api\/3\/workflow_groups\/123e3f56-b295-4d00-b549-ce9f7f98e884",
+            "uuid": "eb5ef42d-01e7-4efe-be28-1f5b09d0afda"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Add Message",
+            "targetStep": "\/api\/3\/workflow_steps\/eb5ef42d-01e7-4efe-be28-1f5b09d0afda",
+            "sourceStep": "\/api\/3\/workflow_steps\/f89f59b8-fcc1-4d89-b0c3-6bde2f574c55",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/123e3f56-b295-4d00-b549-ce9f7f98e884",
+            "uuid": "37f0a6fc-0336-421f-98fd-28c7814338aa"
+        }
+    ],
+    "metadata": {
+        "triggerStep": "\/api\/3\/workflow_steps\/f89f59b8-fcc1-4d89-b0c3-6bde2f574c55"
+    },
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "313",
+    "width": "336",
+    "uuid": "123e3f56-b295-4d00-b549-ce9f7f98e884",
+    "recordTags": [
+        "ManualTrigger",
+        "Alerts",
+        "Trigger",
+        "Comment",
+        "Message"
+    ]
+}

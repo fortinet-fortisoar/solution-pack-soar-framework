@@ -1,0 +1,88 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Calculate Severity using ResolveRange",
+    "description": "<p>This reference block showcases an example of the use of resolveRange filer to get a specific value for a particular date range.<\/p>\n<p>Example: you might want the playbook, that calculates the severity based on the Severity Score.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Calculate Severity",
+            "description": null,
+            "arguments": {
+                "alertSeverity": "{{vars.severityScore | resolveRange(vars.alertSeverityMapping)}}"
+            },
+            "status": null,
+            "top": "336",
+            "left": "39",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/be84dabf-f499-4ef0-8bcb-94d156a451c3",
+            "uuid": "80694f36-5a0a-4a95-b0aa-c6225d6646a1"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "alertSeverityMapping": "{\n  '0': {{'Severity'| picklist('Minimal') }}, \n  '1,2,3': {{'Severity'| picklist('Low') }}, \n  '4,5,6': {{'Severity'| picklist('Medium') }}, \n  '7,8': {{'Severity'| picklist('High') }}, \n  '9,10': {{'Severity'| picklist('Critical') }}\n}"
+            },
+            "status": null,
+            "top": "66",
+            "left": "39",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/be84dabf-f499-4ef0-8bcb-94d156a451c3",
+            "uuid": "c4b19fc8-7cdf-4cd9-9f94-05dd85374144"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Severity Score",
+            "description": null,
+            "arguments": {
+                "severityScore": "4"
+            },
+            "status": null,
+            "top": "201",
+            "left": "39",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/be84dabf-f499-4ef0-8bcb-94d156a451c3",
+            "uuid": "6aea9cb9-e877-4642-a808-e1d1910f5ffc"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Set Severity Score",
+            "targetStep": "\/api\/3\/workflow_steps\/6aea9cb9-e877-4642-a808-e1d1910f5ffc",
+            "sourceStep": "\/api\/3\/workflow_steps\/c4b19fc8-7cdf-4cd9-9f94-05dd85374144",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/be84dabf-f499-4ef0-8bcb-94d156a451c3",
+            "uuid": "495a1d1d-542f-495b-b802-ee60bb667c96"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Set Severity Score -> Calculate Severity",
+            "targetStep": "\/api\/3\/workflow_steps\/80694f36-5a0a-4a95-b0aa-c6225d6646a1",
+            "sourceStep": "\/api\/3\/workflow_steps\/6aea9cb9-e877-4642-a808-e1d1910f5ffc",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/be84dabf-f499-4ef0-8bcb-94d156a451c3",
+            "uuid": "18b056b9-d246-4abe-948c-fdf5c8c2b4eb"
+        }
+    ],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "450",
+    "width": "347",
+    "uuid": "be84dabf-f499-4ef0-8bcb-94d156a451c3",
+    "recordTags": [
+        "resolveRange",
+        "filter",
+        "jinja"
+    ]
+}

@@ -1,0 +1,76 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Using Custom API Endpoint Trigger",
+    "description": "<p>This reference block showcases an example of configuring an API-triggered playbook and capturing data sent by the API.<\/p>\n<p>Example: you might want the playbook, that fetches email data using the API call from Exchange<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": true,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "email_data": "{{vars.input.params['api_body']}}"
+            },
+            "status": null,
+            "top": "203",
+            "left": "40",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/238dbdca-88ad-4b2c-bb10-d776fca89272",
+            "uuid": "da5768d3-c515-4b8c-a4b3-2de86fc9224a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "fetch_emails_exchange",
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "api_body": "{{vars.request.data}}"
+                        }
+                    }
+                },
+                "authentication_methods": [
+                    ""
+                ]
+            },
+            "status": null,
+            "top": "63",
+            "left": "40",
+            "stepType": "\/api\/3\/workflow_step_types\/df26c7a2-4166-4ca5-91e5-548e24c01b5f",
+            "group": "\/api\/3\/workflow_groups\/238dbdca-88ad-4b2c-bb10-d776fca89272",
+            "uuid": "13d2e91e-5592-478d-89af-de76c84f13b5"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/da5768d3-c515-4b8c-a4b3-2de86fc9224a",
+            "sourceStep": "\/api\/3\/workflow_steps\/13d2e91e-5592-478d-89af-de76c84f13b5",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/238dbdca-88ad-4b2c-bb10-d776fca89272",
+            "uuid": "72708fc2-e4b1-462b-82c4-462248846709"
+        }
+    ],
+    "metadata": {
+        "triggerStep": "\/api\/3\/workflow_steps\/13d2e91e-5592-478d-89af-de76c84f13b5"
+    },
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "316",
+    "width": "342",
+    "uuid": "238dbdca-88ad-4b2c-bb10-d776fca89272",
+    "recordTags": [
+        "Trigger",
+        "API",
+        "Custom API Endpoint"
+    ]
+}

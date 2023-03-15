@@ -1,0 +1,220 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Using Manual Task Step",
+    "description": "<p>This reference block showcases an example of configuring a playbook with the Manual Task step<\/p>\n<p>Example: you might want the playbook, that facilitates users to make a decision about bringing assets back online and creating the manual tasks accordingly snapshots.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Add Note",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "people": [],
+                    "content": "Asset came in Network again.",
+                    "__replace": "",
+                    "incidents": "{{vars.input.params['incident_iri']}}",
+                    "isImportant": false,
+                    "peopleUpdated": false
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "345",
+            "left": "416",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
+            "uuid": "bf69ad7e-b9ad-4e7d-81f5-4620dea7d783"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Approval Bring Asset Back Online",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Provide approval on Asset to bring back online",
+                        "description": "Asset is safe now, provide approval on Asset to bring back online",
+                        "inputVariables": []
+                    }
+                },
+                "record": "{{vars.input.params['incident_iri']}}",
+                "agent_id": null,
+                "resources": "alerts",
+                "owner_detail": {
+                    "isAssigned": false
+                },
+                "isRecordLinked": true,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Approve",
+                            "step_iri": "\/api\/3\/workflow_steps\/b09d4fa6-7a05-4fd2-a067-81f39fc610e0"
+                        },
+                        {
+                            "option": "Reject",
+                            "step_iri": "\/api\/3\/workflow_steps\/84747393-1af3-4dbc-9f23-5169313fa018"
+                        }
+                    ],
+                    "duplicateOption": false
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false
+            },
+            "status": null,
+            "top": "75",
+            "left": "241",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
+            "uuid": "8dcfd4e0-fa46-4e6d-8664-de6318a38271"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Assest Isolation Task",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "name": "Task for Asset isolation",
+                    "status": "\/api\/3\/picklists\/ab65eb0f-e7a7-4993-8474-da5c8b52f380",
+                    "priority": "\/api\/3\/picklists\/90088ebe-0a7d-4aa6-9c9c-93b937a4e4f8",
+                    "incidents": "{{vars.input.params['incident_iri']}}",
+                    "description": "Isolate the Asset",
+                    "assignedToPerson": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce"
+                },
+                "collection": "tasks",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "345",
+            "left": "66",
+            "stepType": "\/api\/3\/workflow_step_types\/dc6ac63d-c5a5-472f-9eb4-6b18473a98b8",
+            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
+            "uuid": "c85bffa7-f9a9-4387-bfbe-d1c967287e42"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Note for Manual Task",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "people": [],
+                    "content": "<p>Request is Rejected to bring the asset online. Manual Task will be created on Analyst to isolate the asset<\/p>",
+                    "__replace": "",
+                    "incidents": "{{vars.input.params['incident_iri']}}",
+                    "isImportant": false,
+                    "peopleUpdated": false
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "210",
+            "left": "66",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
+            "uuid": "9f79c89a-d915-4b0b-aba2-74a5c3ed38a8"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Task to Bring Asset Online",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "name": "Task for Asset isolation",
+                    "status": "\/api\/3\/picklists\/ab65eb0f-e7a7-4993-8474-da5c8b52f380",
+                    "priority": "\/api\/3\/picklists\/90088ebe-0a7d-4aa6-9c9c-93b937a4e4f8",
+                    "incidents": "{{vars.input.params['incident_iri']}}",
+                    "description": "Bring Asset back online",
+                    "assignedToPerson": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce"
+                },
+                "collection": "tasks",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "210",
+            "left": "416",
+            "stepType": "\/api\/3\/workflow_step_types\/dc6ac63d-c5a5-472f-9eb4-6b18473a98b8",
+            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
+            "uuid": "ead0cabc-1f53-4b3a-8eed-31f4c6b8f008"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Approval Bring Asset Back Online -> Copy of Assest Isolation Task",
+            "targetStep": "\/api\/3\/workflow_steps\/ead0cabc-1f53-4b3a-8eed-31f4c6b8f008",
+            "sourceStep": "\/api\/3\/workflow_steps\/8dcfd4e0-fa46-4e6d-8664-de6318a38271",
+            "label": "Approve",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
+            "uuid": "0bcf9cbe-a8d9-48cf-b622-e08ca4507c10"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Approval Bring Asset in network back -> Note for Manual Task",
+            "targetStep": "\/api\/3\/workflow_steps\/9f79c89a-d915-4b0b-aba2-74a5c3ed38a8",
+            "sourceStep": "\/api\/3\/workflow_steps\/8dcfd4e0-fa46-4e6d-8664-de6318a38271",
+            "label": "Reject",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
+            "uuid": "e6fad927-bc6a-4974-ac4d-63cf04162ec1"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Note for Manual Task -> Assest Isolation Task",
+            "targetStep": "\/api\/3\/workflow_steps\/c85bffa7-f9a9-4387-bfbe-d1c967287e42",
+            "sourceStep": "\/api\/3\/workflow_steps\/9f79c89a-d915-4b0b-aba2-74a5c3ed38a8",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
+            "uuid": "0cd966fe-5089-473b-880d-39c13da40f60"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Task to Bring Asset Online -> Add Note",
+            "targetStep": "\/api\/3\/workflow_steps\/bf69ad7e-b9ad-4e7d-81f5-4620dea7d783",
+            "sourceStep": "\/api\/3\/workflow_steps\/ead0cabc-1f53-4b3a-8eed-31f4c6b8f008",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
+            "uuid": "fc940634-62cb-4032-923f-4b7ba1dba097"
+        }
+    ],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "467",
+    "width": "722",
+    "uuid": "e10298e6-e8ba-437e-9aa8-882be1fe2828",
+    "recordTags": [
+        "Manual",
+        "Task"
+    ]
+}

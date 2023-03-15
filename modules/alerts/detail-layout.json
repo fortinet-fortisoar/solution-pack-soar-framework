@@ -1374,6 +1374,47 @@
                     "filters": []
                 },
                 "useSimilarCriteria": true
+            },
+            "suggestedPlaybooks": {
+                "enable": true,
+                "fields": [
+                    {
+                        "name": "name",
+                        "title": "Name",
+                        "type": "text"
+                    },
+                    {
+                        "name": "type",
+                        "title": "Type",
+                        "type": "picklist"
+                    }
+                ],
+                "enableWeightRange": false,
+                "filter": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "logic": "AND",
+                            "filters": [
+                                {
+                                    "field": "createDate",
+                                    "operator": "lte",
+                                    "value": "{{getRelativeDate(0,0,1,\"end\",\"end\",\"end\")}}",
+                                    "type": "datetime"
+                                }
+                            ],
+                            "_field": "createDate",
+                            "_value": {
+                                "differenceType": "days",
+                                "differenceValue": 1
+                            },
+                            "_operator": "lte",
+                            "type": "datetime"
+                        }
+                    ]
+                }
             }
         },
         "metadata": []

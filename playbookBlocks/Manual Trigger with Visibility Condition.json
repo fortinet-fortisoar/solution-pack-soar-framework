@@ -1,0 +1,76 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Manual Trigger with Visibility Condition",
+    "description": "<p>This reference block showcases an example of configuring a manually triggered playbook and limiting its visibility for certain types of alerts.&nbsp;<\/p>\n<p><br \/>Example: you might want the playbook, \"Investigate Phishing\" to show up only for \"Phishing\" type of alerts and not for \"Malware\" type Alerts.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": true,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "9f20a883-8d3c-411a-99c3-e2077814ad78",
+                "title": "Investigate Phishing",
+                "resources": [
+                    "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "displayConditions": {
+                    "alerts": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "type": "object",
+                                "field": "type",
+                                "value": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/0b3ef6f9-eb29-4ab9-ac98-98364bd1a3aa",
+                                    "display": "Phishing",
+                                    "itemValue": "Phishing"
+                                },
+                                "operator": "eq"
+                            }
+                        ]
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "78",
+            "left": "66",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": "\/api\/3\/workflow_groups\/4876b073-41af-4ec8-b526-76c3b59e2bd1",
+            "uuid": "46722c0f-fc7f-4702-84bb-0015e8a63714"
+        }
+    ],
+    "workflowRoutes": [],
+    "metadata": {
+        "triggerStep": "\/api\/3\/workflow_steps\/46722c0f-fc7f-4702-84bb-0015e8a63714"
+    },
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "191",
+    "width": "400",
+    "uuid": "4876b073-41af-4ec8-b526-76c3b59e2bd1",
+    "recordTags": [
+        "Phishing",
+        "ManualTrigger",
+        "Alert",
+        "Trigger"
+    ]
+}
