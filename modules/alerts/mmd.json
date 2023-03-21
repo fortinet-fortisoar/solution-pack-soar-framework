@@ -26,48 +26,142 @@
     "writable": true,
     "attributes": [
         {
-            "@id": "\/api\/3\/attribute_metadatas\/0f0055ac-61ee-4b65-b72c-c7c43fc2322f",
             "@type": "AttributeMetadata",
-            "type": "picklists",
-            "name": "fullyAutomated",
+            "type": "object",
+            "name": "iPAddresses",
             "length": null,
             "orderIndex": 1,
-            "formType": "picklist",
-            "dataSource": {
-                "model": "picklists",
-                "query": {
+            "formType": "object",
+            "dataSource": null,
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": [
+                {
+                    "sort": [],
+                    "limit": 30,
                     "logic": "AND",
                     "filters": [
                         {
-                            "field": "listName__name",
-                            "operator": "eq",
-                            "value": "YesNoInput"
-                        }
-                    ],
-                    "sort": [
-                        {
-                            "field": "orderIndex",
-                            "direction": "ASC"
+                            "field": "iPAddresses",
+                            "operator": "isnull",
+                            "value": "false",
+                            "_value": {
+                                "display": "",
+                                "itemValue": "",
+                                "@id": "false"
+                            },
+                            "type": "object"
                         }
                     ]
-                },
-                "displayConditions": {
-                    "cfd49634-d25a-476f-8485-99585e589a8c": {
-                        "visibility": "visible",
-                        "conditions": null
-                    },
-                    "711303d3-75ea-437d-a871-0a8d14fcdb7d": {
-                        "visibility": "visible",
-                        "conditions": null
-                    },
-                    "27ff216f-6363-4c93-9fc4-e0e8c15cb0b1": {
-                        "visibility": "disabled",
-                        "conditions": null
-                    }
-                },
-                "useDisplayConditions": true
-            },
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ iPAddresses }}",
+            "descriptions": {
+                "singular": "IP Addresses"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "object",
+            "name": "fileHashes",
+            "length": null,
+            "orderIndex": 2,
+            "formType": "object",
+            "dataSource": null,
             "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": [
+                {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "fileHashes",
+                            "operator": "isnull",
+                            "value": "false",
+                            "_value": {
+                                "display": "",
+                                "itemValue": "",
+                                "@id": "false"
+                            },
+                            "type": "object"
+                        }
+                    ]
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ fileHashes }}",
+            "descriptions": {
+                "singular": "File Hashes"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "boolean",
+            "name": "resolvedAutomatedly",
+            "length": null,
+            "orderIndex": 1,
+            "formType": "checkbox",
+            "dataSource": null,
+            "searchable": true,
             "peerReplicable": true,
             "system": false,
             "encrypted": false,
@@ -87,9 +181,9 @@
                 "buttonClass": "btn btn-default btn-sm"
             },
             "dataSourceFilters": null,
-            "defaultValue": null,
+            "defaultValue": "",
             "tooltip": null,
-            "visibility": true,
+            "visibility": false,
             "htmlEscape": false,
             "orphanRemoval": null,
             "readable": true,
@@ -97,10 +191,10 @@
             "identifier": null,
             "unique": false,
             "recommend": false,
-            "uuid": "0f0055ac-61ee-4b65-b72c-c7c43fc2322f",
-            "displayName": "{{ fullyAutomated }}",
+            "skipSerialization": false,
+            "displayName": "{{ resolvedAutomatedly }}",
             "descriptions": {
-                "singular": "Fully Automated"
+                "singular": "Resolved Automatedly"
             }
         },
         {

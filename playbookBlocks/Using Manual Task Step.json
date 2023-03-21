@@ -2,7 +2,7 @@
     "@context": "\/api\/3\/contexts\/WorkflowGroup",
     "@type": "WorkflowGroup",
     "name": "Using Manual Task Step",
-    "description": "<p>This reference block showcases an example of configuring a playbook with the Manual Task step<\/p>\n<p>Example: you might want the playbook, that facilitates users to make a decision about bringing assets back online and creating the manual tasks accordingly snapshots.<\/p>",
+    "description": "<p>This reference block showcases an example of configuring a playbook with the Manual Task step<\/p>\n<p>Example: You might want the playbook that facilitates users to make a decision about bringing assets back online and creating the manual tasks accordingly snapshots.<\/p>",
     "type": "custom",
     "isCollapsed": false,
     "hasTriggerStep": false,
@@ -32,11 +32,11 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "345",
-            "left": "416",
+            "top": "393",
+            "left": "411",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
-            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
-            "uuid": "bf69ad7e-b9ad-4e7d-81f5-4620dea7d783"
+            "group": "\/api\/3\/workflow_groups\/5cd13da5-909d-4ead-adc6-70b7177998cb",
+            "uuid": "672287dd-debe-49ff-9066-42eb7b4fa5b9"
         },
         {
             "@type": "WorkflowStep",
@@ -53,7 +53,7 @@
                 },
                 "record": "{{vars.input.params['incident_iri']}}",
                 "agent_id": null,
-                "resources": "alerts",
+                "resources": "incidents",
                 "owner_detail": {
                     "isAssigned": false
                 },
@@ -63,11 +63,12 @@
                     "options": [
                         {
                             "option": "Approve",
-                            "step_iri": "\/api\/3\/workflow_steps\/b09d4fa6-7a05-4fd2-a067-81f39fc610e0"
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/b4888c13-2057-4f43-875b-e586c85421d5"
                         },
                         {
                             "option": "Reject",
-                            "step_iri": "\/api\/3\/workflow_steps\/84747393-1af3-4dbc-9f23-5169313fa018"
+                            "step_iri": "\/api\/3\/workflow_steps\/42c84527-e071-4133-a882-512925e466e2"
                         }
                     ],
                     "duplicateOption": false
@@ -81,20 +82,21 @@
                 "unauthenticated_input": false
             },
             "status": null,
-            "top": "75",
-            "left": "241",
+            "top": "123",
+            "left": "236",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
-            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
-            "uuid": "8dcfd4e0-fa46-4e6d-8664-de6318a38271"
+            "group": "\/api\/3\/workflow_groups\/5cd13da5-909d-4ead-adc6-70b7177998cb",
+            "uuid": "515d1718-bcce-4fa2-a509-e8206fe6cb64"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Assest Isolation Task",
+            "name": "Asset Isolation Task",
             "description": null,
             "arguments": {
                 "resource": {
-                    "name": "Task for Asset isolation",
-                    "status": "\/api\/3\/picklists\/ab65eb0f-e7a7-4993-8474-da5c8b52f380",
+                    "name": "Task for Asset Isolation",
+                    "status": "\/api\/3\/picklists\/7669725a-28cc-4b19-98a3-9ca71e0f88f4",
+                    "tenant": "\/api\/3\/tenants\/b3a700f7-00be-4ef9-90c6-3c8fe6e1be63",
                     "priority": "\/api\/3\/picklists\/90088ebe-0a7d-4aa6-9c9c-93b937a4e4f8",
                     "incidents": "{{vars.input.params['incident_iri']}}",
                     "description": "Isolate the Asset",
@@ -104,11 +106,11 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "345",
-            "left": "66",
+            "top": "393",
+            "left": "61",
             "stepType": "\/api\/3\/workflow_step_types\/dc6ac63d-c5a5-472f-9eb4-6b18473a98b8",
-            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
-            "uuid": "c85bffa7-f9a9-4387-bfbe-d1c967287e42"
+            "group": "\/api\/3\/workflow_groups\/5cd13da5-909d-4ead-adc6-70b7177998cb",
+            "uuid": "4c9e9853-c575-4725-8bc9-73fc02eea4fb"
         },
         {
             "@type": "WorkflowStep",
@@ -134,11 +136,11 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "210",
-            "left": "66",
+            "top": "258",
+            "left": "61",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
-            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
-            "uuid": "9f79c89a-d915-4b0b-aba2-74a5c3ed38a8"
+            "group": "\/api\/3\/workflow_groups\/5cd13da5-909d-4ead-adc6-70b7177998cb",
+            "uuid": "42c84527-e071-4133-a882-512925e466e2"
         },
         {
             "@type": "WorkflowStep",
@@ -146,8 +148,9 @@
             "description": null,
             "arguments": {
                 "resource": {
-                    "name": "Task for Asset isolation",
-                    "status": "\/api\/3\/picklists\/ab65eb0f-e7a7-4993-8474-da5c8b52f380",
+                    "name": "Task to Bring Asset Online",
+                    "status": "\/api\/3\/picklists\/7669725a-28cc-4b19-98a3-9ca71e0f88f4",
+                    "tenant": "\/api\/3\/tenants\/b3a700f7-00be-4ef9-90c6-3c8fe6e1be63",
                     "priority": "\/api\/3\/picklists\/90088ebe-0a7d-4aa6-9c9c-93b937a4e4f8",
                     "incidents": "{{vars.input.params['incident_iri']}}",
                     "description": "Bring Asset back online",
@@ -157,63 +160,64 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "210",
-            "left": "416",
+            "top": "258",
+            "left": "411",
             "stepType": "\/api\/3\/workflow_step_types\/dc6ac63d-c5a5-472f-9eb4-6b18473a98b8",
-            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
-            "uuid": "ead0cabc-1f53-4b3a-8eed-31f4c6b8f008"
+            "group": "\/api\/3\/workflow_groups\/5cd13da5-909d-4ead-adc6-70b7177998cb",
+            "uuid": "b4888c13-2057-4f43-875b-e586c85421d5"
         }
     ],
     "workflowRoutes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Approval Bring Asset Back Online -> Copy of Assest Isolation Task",
-            "targetStep": "\/api\/3\/workflow_steps\/ead0cabc-1f53-4b3a-8eed-31f4c6b8f008",
-            "sourceStep": "\/api\/3\/workflow_steps\/8dcfd4e0-fa46-4e6d-8664-de6318a38271",
-            "label": "Approve",
-            "isExecuted": false,
-            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
-            "uuid": "0bcf9cbe-a8d9-48cf-b622-e08ca4507c10"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Approval Bring Asset in network back -> Note for Manual Task",
-            "targetStep": "\/api\/3\/workflow_steps\/9f79c89a-d915-4b0b-aba2-74a5c3ed38a8",
-            "sourceStep": "\/api\/3\/workflow_steps\/8dcfd4e0-fa46-4e6d-8664-de6318a38271",
+            "name": "Approval Bring Asset Back Online -> Note for Manual Task",
+            "targetStep": "\/api\/3\/workflow_steps\/42c84527-e071-4133-a882-512925e466e2",
+            "sourceStep": "\/api\/3\/workflow_steps\/515d1718-bcce-4fa2-a509-e8206fe6cb64",
             "label": "Reject",
             "isExecuted": false,
-            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
-            "uuid": "e6fad927-bc6a-4974-ac4d-63cf04162ec1"
+            "group": "\/api\/3\/workflow_groups\/5cd13da5-909d-4ead-adc6-70b7177998cb",
+            "uuid": "0e69f05f-a962-46e7-bf1d-7a1134592cf5"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Note for Manual Task -> Assest Isolation Task",
-            "targetStep": "\/api\/3\/workflow_steps\/c85bffa7-f9a9-4387-bfbe-d1c967287e42",
-            "sourceStep": "\/api\/3\/workflow_steps\/9f79c89a-d915-4b0b-aba2-74a5c3ed38a8",
+            "name": "Approval Bring Asset Back Online -> Task to Bring Asset Online",
+            "targetStep": "\/api\/3\/workflow_steps\/b4888c13-2057-4f43-875b-e586c85421d5",
+            "sourceStep": "\/api\/3\/workflow_steps\/515d1718-bcce-4fa2-a509-e8206fe6cb64",
+            "label": "Approve",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/5cd13da5-909d-4ead-adc6-70b7177998cb",
+            "uuid": "9ba171a2-0f3d-4849-a62f-4972229245b0"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Note for Manual Task -> Asset Isolation Task",
+            "targetStep": "\/api\/3\/workflow_steps\/4c9e9853-c575-4725-8bc9-73fc02eea4fb",
+            "sourceStep": "\/api\/3\/workflow_steps\/42c84527-e071-4133-a882-512925e466e2",
             "label": null,
             "isExecuted": false,
-            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
-            "uuid": "0cd966fe-5089-473b-880d-39c13da40f60"
+            "group": "\/api\/3\/workflow_groups\/5cd13da5-909d-4ead-adc6-70b7177998cb",
+            "uuid": "c69b07c8-2297-4606-9046-59697d4c39d5"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Task to Bring Asset Online -> Add Note",
-            "targetStep": "\/api\/3\/workflow_steps\/bf69ad7e-b9ad-4e7d-81f5-4620dea7d783",
-            "sourceStep": "\/api\/3\/workflow_steps\/ead0cabc-1f53-4b3a-8eed-31f4c6b8f008",
+            "targetStep": "\/api\/3\/workflow_steps\/672287dd-debe-49ff-9066-42eb7b4fa5b9",
+            "sourceStep": "\/api\/3\/workflow_steps\/b4888c13-2057-4f43-875b-e586c85421d5",
             "label": null,
             "isExecuted": false,
-            "group": "\/api\/3\/workflow_groups\/e10298e6-e8ba-437e-9aa8-882be1fe2828",
-            "uuid": "fc940634-62cb-4032-923f-4b7ba1dba097"
+            "group": "\/api\/3\/workflow_groups\/5cd13da5-909d-4ead-adc6-70b7177998cb",
+            "uuid": "9cb9f43d-36b4-41a7-b0d7-d4ad2dcad30f"
         }
     ],
     "metadata": [],
     "reusable": true,
     "top": "0",
     "left": "0",
-    "height": "467",
-    "width": "722",
-    "uuid": "e10298e6-e8ba-437e-9aa8-882be1fe2828",
+    "height": "550",
+    "width": "760",
+    "uuid": "5cd13da5-909d-4ead-adc6-70b7177998cb",
     "recordTags": [
+        "ManualAction",
         "Manual",
         "Task"
     ]

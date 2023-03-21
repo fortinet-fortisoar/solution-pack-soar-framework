@@ -834,7 +834,8 @@
                                                                                 ],
                                                                                 "title": "Announcements",
                                                                                 "module": "announcements",
-                                                                                "fieldName": "announcements"
+                                                                                "fieldName": "announcements",
+                                                                                "assignedToSetting": "onlyMe"
                                                                             }
                                                                         }
                                                                     ],
@@ -922,7 +923,8 @@
                                                                                                             ],
                                                                                                             "title": "Incidents",
                                                                                                             "module": "incidents",
-                                                                                                            "fieldName": "incidents"
+                                                                                                            "fieldName": "incidents",
+                                                                                                            "assignedToSetting": "onlyMe"
                                                                                                         }
                                                                                                     }
                                                                                                 ],
@@ -974,7 +976,8 @@
                                                                                                             ],
                                                                                                             "title": "Alerts",
                                                                                                             "module": "alerts",
-                                                                                                            "fieldName": "alerts"
+                                                                                                            "fieldName": "alerts",
+                                                                                                            "assignedToSetting": "onlyMe"
                                                                                                         }
                                                                                                     }
                                                                                                 ],
@@ -1039,7 +1042,8 @@
                                                                                                             ],
                                                                                                             "title": "Indicators",
                                                                                                             "module": "indicators",
-                                                                                                            "fieldName": "indicators"
+                                                                                                            "fieldName": "indicators",
+                                                                                                            "assignedToSetting": "onlyMe"
                                                                                                         }
                                                                                                     }
                                                                                                 ],
@@ -1104,7 +1108,8 @@
                                                                                                             ],
                                                                                                             "title": "Assets",
                                                                                                             "module": "assets",
-                                                                                                            "fieldName": "assets"
+                                                                                                            "fieldName": "assets",
+                                                                                                            "assignedToSetting": "onlyMe"
                                                                                                         }
                                                                                                     }
                                                                                                 ],
@@ -1130,7 +1135,8 @@
                                                         }
                                                     ]
                                                 }
-                                            }
+                                            },
+                                            "visible": true
                                         },
                                         {
                                             "title": "Task Management",
@@ -1176,7 +1182,8 @@
                                                         }
                                                     ]
                                                 }
-                                            }
+                                            },
+                                            "visible": true
                                         },
                                         {
                                             "title": "Investigate",
@@ -1236,15 +1243,7 @@
                                                                                             "type": "relationship.subtab",
                                                                                             "config": {
                                                                                                 "wid": "1850b34c-570c-43a6-980f-c12682c7a141",
-                                                                                                "excludes": [
-                                                                                                    "notes",
-                                                                                                    "comments",
-                                                                                                    "userOwners",
-                                                                                                    "attachments",
-                                                                                                    "owners",
-                                                                                                    "announcements",
-                                                                                                    "tasks"
-                                                                                                ],
+                                                                                                "excludes": [],
                                                                                                 "expandableCol": {
                                                                                                     "indicators": {
                                                                                                         "columns": [
@@ -1342,7 +1341,16 @@
                                                                                                         ],
                                                                                                         "checkBox": true
                                                                                                     }
-                                                                                                }
+                                                                                                },
+                                                                                                "selectionType": "include",
+                                                                                                "enableHorizontalScroll": [],
+                                                                                                "includes": [
+                                                                                                    "incidents",
+                                                                                                    "alerts",
+                                                                                                    "assets",
+                                                                                                    "indicators",
+                                                                                                    "communication"
+                                                                                                ]
                                                                                             }
                                                                                         }
                                                                                     ],
@@ -1460,7 +1468,8 @@
                                             },
                                             "icon": "fa fa-users",
                                             "subtitle": "Root Cause Analysis",
-                                            "show": false
+                                            "show": false,
+                                            "visible": true
                                         },
                                         {
                                             "title": "Communication",
@@ -1585,24 +1594,19 @@
                                                                             "type": "relationship.subtab",
                                                                             "config": {
                                                                                 "wid": "ab71f550-b6c5-425a-af2f-e3f22e8460bf",
-                                                                                "excludes": [
-                                                                                    "notes",
-                                                                                    "comments",
-                                                                                    "userOwners",
-                                                                                    "attachments",
-                                                                                    "tasks",
-                                                                                    "incidents",
-                                                                                    "alerts",
-                                                                                    "assets",
-                                                                                    "indicators",
-                                                                                    "owners"
-                                                                                ],
+                                                                                "excludes": [],
                                                                                 "expandableCol": {
                                                                                     "communications": {
                                                                                         "columns": [],
                                                                                         "checkBox": false
                                                                                     }
-                                                                                }
+                                                                                },
+                                                                                "selectionType": "include",
+                                                                                "enableHorizontalScroll": [],
+                                                                                "includes": [
+                                                                                    "announcements",
+                                                                                    "communication"
+                                                                                ]
                                                                             }
                                                                         }
                                                                     ],
@@ -1629,7 +1633,8 @@
                                             },
                                             "icon": "icon icon-security-analytics",
                                             "subtitle": "Report & Next Steps",
-                                            "show": false
+                                            "show": false,
+                                            "visible": true
                                         },
                                         {
                                             "title": "Timeline",
@@ -1642,7 +1647,8 @@
                                             },
                                             "icon": "icon icon-timeline",
                                             "subtitle": "War Room Audit Trail",
-                                            "show": false
+                                            "show": false,
+                                            "visible": true
                                         }
                                     ],
                                     "wid": "0df14273-a44a-49f8-9a1f-0626452e12fd",
@@ -1674,7 +1680,8 @@
                 "name": "Send War Room Summary Email",
                 "icon": "icon icon-email-templates"
             }
-        ]
+        ],
+        "metadata": []
     },
     "uuid": "modules-warrooms-detail"
 }

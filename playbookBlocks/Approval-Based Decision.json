@@ -1,8 +1,8 @@
 {
     "@context": "\/api\/3\/contexts\/WorkflowGroup",
     "@type": "WorkflowGroup",
-    "name": "Approval Based Decision",
-    "description": "<p>This reference block showcases an example of configuring a playbook to make a decision based on the approval provided.<\/p>\n<p>&nbsp;<br \/>Example: You might want a playbook, that blocks the IP address only when the approval is provided.<\/p>",
+    "name": "Approval-Based Decision",
+    "description": "<p>This reference block showcases an example of configuring a playbook to make a decision based on the approval provided.<\/p>\n<p>Example: You might want a playbook that blocks the IP address only when the approval is provided.<\/p>",
     "type": "custom",
     "isCollapsed": false,
     "hasTriggerStep": true,
@@ -17,11 +17,11 @@
                 "indicator_value": "{{vars.input.records[0].value}}"
             },
             "status": null,
-            "top": "185",
-            "left": "329",
+            "top": "202",
+            "left": "233",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": "\/api\/3\/workflow_groups\/77eaf90d-1885-4a48-9088-477bd4a9dabd",
-            "uuid": "00b45497-6de0-4bd3-a595-d03911698eaf"
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "44ea9147-af28-4989-81ea-1fe55f1ea7f1"
         },
         {
             "@type": "WorkflowStep",
@@ -66,11 +66,11 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "320",
-            "left": "329",
+            "top": "337",
+            "left": "233",
             "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dcg",
-            "group": "\/api\/3\/workflow_groups\/77eaf90d-1885-4a48-9088-477bd4a9dabd",
-            "uuid": "d241db5f-cdc9-4be2-add7-418ea81283a1"
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "4928870b-2a3b-44c9-84f0-2b03fb00fda2"
         },
         {
             "@type": "WorkflowStep",
@@ -80,24 +80,24 @@
                 "conditions": [
                     {
                         "option": "Approved",
-                        "step_iri": "\/api\/3\/workflow_steps\/4f588f38-0792-4fc7-ba8d-6fb462add8e8",
-                        "condition": "{{ {{vars.steps.Get_Approval_to_Block_IP.approved  }} }}",
+                        "step_iri": "\/api\/3\/workflow_steps\/563c45ea-a195-4975-8e65-b63012b6f5c9",
+                        "condition": "{{ vars.steps.Get_Approval_to_Block_IP.approved }}",
                         "step_name": "Mark IP as Blocked"
                     },
                     {
                         "option": "Rejected",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/90821abd-2470-4622-801f-669bc349c28c",
+                        "step_iri": "\/api\/3\/workflow_steps\/013a7e45-f096-4274-ab5b-dc2d20be1e41",
                         "step_name": "No Operation"
                     }
                 ]
             },
             "status": null,
-            "top": "455",
-            "left": "329",
+            "top": "472",
+            "left": "233",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "group": "\/api\/3\/workflow_groups\/77eaf90d-1885-4a48-9088-477bd4a9dabd",
-            "uuid": "04c70219-1709-434b-9f90-7db1cf58c7f7"
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "0b7210e3-b10d-45be-8ab0-c1d5cfd477ed"
         },
         {
             "@type": "WorkflowStep",
@@ -117,11 +117,11 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "590",
-            "left": "154",
+            "top": "607",
+            "left": "58",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "group": "\/api\/3\/workflow_groups\/77eaf90d-1885-4a48-9088-477bd4a9dabd",
-            "uuid": "4f588f38-0792-4fc7-ba8d-6fb462add8e8"
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "563c45ea-a195-4975-8e65-b63012b6f5c9"
         },
         {
             "@type": "WorkflowStep",
@@ -136,11 +136,11 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "590",
-            "left": "504",
+            "top": "607",
+            "left": "408",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": "\/api\/3\/workflow_groups\/77eaf90d-1885-4a48-9088-477bd4a9dabd",
-            "uuid": "90821abd-2470-4622-801f-669bc349c28c"
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "013a7e45-f096-4274-ab5b-dc2d20be1e41"
         },
         {
             "@type": "WorkflowStep",
@@ -189,74 +189,74 @@
                 "singleRecordExecution": true
             },
             "status": null,
-            "top": "50",
-            "left": "329",
+            "top": "67",
+            "left": "233",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-            "group": "\/api\/3\/workflow_groups\/77eaf90d-1885-4a48-9088-477bd4a9dabd",
-            "uuid": "95871d12-4c02-4da5-a43d-5f60fb2a1d52"
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "74c01b6a-83c2-420b-a25f-eedb652cbb90"
         }
     ],
     "workflowRoutes": [
         {
             "@type": "WorkflowRoute",
             "name": "Configuration -> Get Approval to Block IP",
-            "targetStep": "\/api\/3\/workflow_steps\/d241db5f-cdc9-4be2-add7-418ea81283a1",
-            "sourceStep": "\/api\/3\/workflow_steps\/00b45497-6de0-4bd3-a595-d03911698eaf",
+            "targetStep": "\/api\/3\/workflow_steps\/4928870b-2a3b-44c9-84f0-2b03fb00fda2",
+            "sourceStep": "\/api\/3\/workflow_steps\/44ea9147-af28-4989-81ea-1fe55f1ea7f1",
             "label": null,
             "isExecuted": false,
-            "group": "\/api\/3\/workflow_groups\/77eaf90d-1885-4a48-9088-477bd4a9dabd",
-            "uuid": "2fff50d6-8fa5-4704-94f5-e184187370c7"
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "9fd7a603-2fa9-4d36-96b6-0763c81494c5"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Get Approval to Block IP -> Is Blocking Indicator Approved",
-            "targetStep": "\/api\/3\/workflow_steps\/04c70219-1709-434b-9f90-7db1cf58c7f7",
-            "sourceStep": "\/api\/3\/workflow_steps\/d241db5f-cdc9-4be2-add7-418ea81283a1",
+            "targetStep": "\/api\/3\/workflow_steps\/0b7210e3-b10d-45be-8ab0-c1d5cfd477ed",
+            "sourceStep": "\/api\/3\/workflow_steps\/4928870b-2a3b-44c9-84f0-2b03fb00fda2",
             "label": null,
             "isExecuted": false,
-            "group": "\/api\/3\/workflow_groups\/77eaf90d-1885-4a48-9088-477bd4a9dabd",
-            "uuid": "d7295828-efc9-49e3-96b1-98a8679af0bb"
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "a3f89c6d-e2f2-447c-99ef-58befc7d98d0"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Blocking Indicator Approved -> Mark IP as Blocked",
-            "targetStep": "\/api\/3\/workflow_steps\/4f588f38-0792-4fc7-ba8d-6fb462add8e8",
-            "sourceStep": "\/api\/3\/workflow_steps\/04c70219-1709-434b-9f90-7db1cf58c7f7",
-            "label": null,
+            "targetStep": "\/api\/3\/workflow_steps\/563c45ea-a195-4975-8e65-b63012b6f5c9",
+            "sourceStep": "\/api\/3\/workflow_steps\/0b7210e3-b10d-45be-8ab0-c1d5cfd477ed",
+            "label": "Approved",
             "isExecuted": false,
-            "group": "\/api\/3\/workflow_groups\/77eaf90d-1885-4a48-9088-477bd4a9dabd",
-            "uuid": "a85e75e0-2aaa-40f3-9c28-8b5cb7960923"
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "6e2a36df-2144-4a0f-a90d-1b59aea28f36"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Is Blocking Indicator Approved -> No Operation",
-            "targetStep": "\/api\/3\/workflow_steps\/90821abd-2470-4622-801f-669bc349c28c",
-            "sourceStep": "\/api\/3\/workflow_steps\/04c70219-1709-434b-9f90-7db1cf58c7f7",
-            "label": null,
+            "targetStep": "\/api\/3\/workflow_steps\/013a7e45-f096-4274-ab5b-dc2d20be1e41",
+            "sourceStep": "\/api\/3\/workflow_steps\/0b7210e3-b10d-45be-8ab0-c1d5cfd477ed",
+            "label": "Rejected",
             "isExecuted": false,
-            "group": "\/api\/3\/workflow_groups\/77eaf90d-1885-4a48-9088-477bd4a9dabd",
-            "uuid": "7be6c2f8-2d3e-4d37-a5cc-0f7e1aec0831"
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "fa8e3c93-c914-46b8-9363-8c98fe32163c"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/00b45497-6de0-4bd3-a595-d03911698eaf",
-            "sourceStep": "\/api\/3\/workflow_steps\/95871d12-4c02-4da5-a43d-5f60fb2a1d52",
+            "targetStep": "\/api\/3\/workflow_steps\/44ea9147-af28-4989-81ea-1fe55f1ea7f1",
+            "sourceStep": "\/api\/3\/workflow_steps\/74c01b6a-83c2-420b-a25f-eedb652cbb90",
             "label": null,
             "isExecuted": false,
-            "group": "\/api\/3\/workflow_groups\/77eaf90d-1885-4a48-9088-477bd4a9dabd",
-            "uuid": "b0190c9e-17a0-437b-8ce4-e6f6f0268d4e"
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "c7dc7ec1-b6d4-4402-adcb-62d7af92a4b9"
         }
     ],
     "metadata": {
-        "triggerStep": "\/api\/3\/workflow_steps\/95871d12-4c02-4da5-a43d-5f60fb2a1d52"
+        "triggerStep": "\/api\/3\/workflow_steps\/74c01b6a-83c2-420b-a25f-eedb652cbb90"
     },
     "reusable": true,
     "top": "0",
     "left": "0",
-    "height": "677",
-    "width": "873",
-    "uuid": "77eaf90d-1885-4a48-9088-477bd4a9dabd",
+    "height": "709",
+    "width": "718",
+    "uuid": "03ec9579-e5d4-455a-beef-6ce10824abd1",
     "recordTags": [
         "Indicators",
         "Decision",
