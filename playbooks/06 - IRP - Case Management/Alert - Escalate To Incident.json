@@ -37,8 +37,8 @@
                 "type": "InputBased",
                 "input": {
                     "schema": {
-                        "title": "Error in Alert Escalation",
-                        "description": "Alerts from multiple tenants that is **{{vars.input.records | json_query(\"[].tenant.name\") | unique | join(', ')}}** have been selected to escalate an incident.<br>\nEnsure that all the selected alerts must belong to the same tenant.",
+                        "title": "Escalate",
+                        "description": "<span data-tomark-pass=\"\" style=\"background: #e31b1d;\" class=\"rating\"><b>ERROR<\/b><\/span>\n<br>Alerts that are selected to be escalated to an incident belong to the following multiple tenants:\n\n{% for item in vars.input.records | json_query(\"[].tenant.name\") | unique%}\n* {{item}}{% endfor %}\n\nEnsure the alerts to be escalated to an incident belong to the same tenant.",
                         "inputVariables": []
                     }
                 },
