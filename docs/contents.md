@@ -55,6 +55,7 @@ The SOAR framework includes the following modules:
 | 9       | Indicators    | **Indicators of compromise** (IOCs) serve as evidence of probable intrusions on a host system or network. These artifacts help personnel at a Security Operations Center (SOC) to detect intrusion attempts or other malicious activities. IOCs help better analyze a particular malware’s techniques and behaviors and provide actionable threat intelligence to further improve an organization’s incident response strategies.<br/><br/>Some of this evidence of potential breach is found on event logs and timestamped entries in the system, applications, and services. |
 | 10      | SLA Template  | SLA Templates in FortiSOAR help create an in-built SLA management for incidents and alerts. For more information, please refer to [SLA Management](https://docs.fortinet.com/document/fortisoar/7.0.2/administration-guide/792686/sla-management).                                                                                                                                                                                                                                                                                                                             |
 | 11      | War Rooms     | War Rooms in FortiSOAR is a collaborative space that enables SOC teams to mitigate a critical cyber threat scenario or campaign. FortiSOAR makes it easy for analysts to quickly and easily provision a War Room that allows participation of all stakeholders to analyze and collaborate to quickly mitigate the threat and restore the services. For more information, see the War Rooms chapter.                                                                                                                                                                            |
+| 12      | Key Store  | Key Store module is a place to store records that contains key value pair |
 
 ## Rules
 
@@ -62,10 +63,12 @@ Rules provide a framework to define a condition that generates notifications.
 
 The SOAR Framework includes the following rules:
 
-- Alert > Notify Creation - It sends a notification, via the app or the email, whenever an alert is **created**.
-- Alert > Notify Update - It sends a notification, via the app or the email, whenever an alert is **updated**.
-- Incident > Notify Creation - It sends a notification, via the app or the email, whenever an incident is **created**.
-- Incident > Notify Update - It sends a notification, via the app or the email, whenever an incident is **updated**.
+- Alert > Notify Creation - It sends a notification, via the email, whenever an alert is **created**.
+- Alert > Notify Updates - It sends a notification, via the email, whenever an alert is **updated**.
+- Incident > Notify Creation - It sends a notification, via the email, whenever an incident is **created**.
+- Incident > Notify Updates - It sends a notification, via the email, whenever an incident is **updated**.
+
+**Note:** In-App Notifications has been disabled onwards SOAR Framework v2.1.0 solution pack. If required then enable the **In-App Notifications** for desired rules.
 
 ## Widgets
 
@@ -121,6 +124,44 @@ The reports module displays various reports for specific, defined users. SOAR fr
 | 9       | Weekly IOC Report            |
 | 10      | Weekly Incident Report       |
 
+## Reference Block(s)
+
+SOAR Framework includes following Reference Block(s)
+
+| Sr. No. | Block Name                   | Description |
+|---------|------------------------------|-----------------------|
+| 1       | Approval-Based Decision      | This reference block showcases an example of configuring a playbook to make a decision based on the approval provided.|
+| 2 | Bulk ingest records using the 'Ingest Bulk Feed' Step | This reference block showcases an example of configuring a playbook to insert high volumes of records using the 'Ingest Bulk Feed' step.  | 
+|3 | Check if an IP address is Internal or External | This reference block showcases an example of configuring a playbook to check the IP address is in provided CIDR range. |
+| 4 | Condition-based Post-Create Trigger |This reference block showcases an example of configuring a post-create triggered playbook and limiting its execution for a specific type of alert.|
+| 5 | Condition-based Post-Create Trigger 	| This reference block showcases an example of configuring a post-create triggered playbook and limiting its execution for a specific type of alert.|
+| 6 | Condition-based Post-Update Trigger	| This reference block showcases an example of configuring post-update triggered playbooks and limiting their execution when a certain type of alert is updated.|
+| 7 | Create and Link Asset to Alert	| This reference block showcases an example of configuring a playbook that creates and links assets to the alert. |
+| 8 | Execute Playbook Step using Do-Until Loop	| This reference block showcases an example of configuring a playbook to keep running a step until a specific condition is met using the 'do-until' loop from Step Utilities.|
+| 9 | Execute Playbook Step using Parallel Looping	| This reference block showcases an example of configuring a playbook to iterate the playbook step parallelly over the array of objects using the 'Loop' option from Step Utilities. |
+| 10 | Execute Playbook step using Sequential Looping	| This reference block showcases an example of configuring a playbook to iterate the playbook step sequentially over the array of objects using the 'Loop' option from Step Utilities.|
+| 11 | Execute Playbook using Mock Data	| This reference block showcases an example of configuring a playbook where you add sample data and execute a playbook step simulating the sample data as output.| 
+| 12 | Extracting Artifacts from a String 	| This reference block showcases an example of configuring a playbook to extract indicators from the given string using the Utilities connector | 
+| 13 | Fetch Emails From Particular Inbox in Exchange	| This reference block showcases an example of configuring a playbook to fetch emails from a particular Inbox in Exchange.|
+| 14 | Handling Record Uniqueness (No Change Needed To Existing Record)	| This reference block showcases an example of configuring a 'Create Record Step' to keep playbook execution running and does not make any change to the existing record when a duplicate record is found. |
+| 15 | Handling Record Uniqueness (Stop Process when Duplicate Record Found)	| This reference block showcases an example of configuring a 'Create Record Step' to stop the playbook execution when a duplicate record is found. |
+| 16 |Handling Record Uniqueness (Update Existing Record - All Fields)	| This reference block showcases an example of configuring a 'Create Record Step' to keep the playbook execution going and updates the existing record with the new values when a duplicate record is found. |
+| 17 | Handling Record Uniqueness (Update Existing Record - Only Selected Fields)	| This reference block showcases an example of configuring a 'Create Record Step' to keep the playbook execution going and updates selected fields of the existing record with the new values only when a duplicate record is found.|
+| 18 | Make a REST API Call	| This reference block showcases an example of configuring a playbook to make a REST API call using the ""Utilities"" connector. |
+| 19 |Manual Trigger using User Input Prompt	| This reference block showcases an example of configuring a manually triggered playbook with a user prompt that asks the user to provide inputs before triggering the playbook. |
+| 20 | Manual Trigger with Visibility Condition	| This reference block showcases an example of configuring a manually triggered playbook and limiting its visibility for only certain types of alerts. |
+| 21 | Manual Trigger without Selecting Records	| This reference block showcases an example of configuring manually triggered playbooks that run globally on an alert module without selecting an alert record and are used for ingesting data to create new alerts. | 
+| 22 | Posting a Message on Triggering Record (using Create Record Step)	| This reference block showcases an example of posting a message in the collaboration panel using the Create Record steps on the triggering record.
+| 23 | Posting a Message on Triggering Record (using Step Utilities)	 | This reference block showcases an example of posting a message in the collaboration panel using the Step Utilities on the specified record. |
+| 24 | Set New Variable to Store Record Information 	| This reference block showcases an example of declaring a new variable to store information received from the previous step.|
+| 25 | Using Code Snippet	| This reference block showcases an example of the Code Snippet connector step in playbooks. |
+| 26 | Using Custom API Endpoint Trigger	| This reference block showcases an example of configuring an API-triggered playbook and capturing data sent by the API.|
+| 27 | Using Decision Step	| This reference block showcases an example of the usage of Decision Step in a playbook and executing further playbooks based on the condition provided.| 
+| 28 | Using Ignore Error to Avoid Playbook Failure	| This reference block showcases an example of configuring a playbook step with an ""Ignore Error"" Option to avoid stopping playbooks execution due to step failure | 
+| 29 | Using Manual Input Step	| This reference block showcases an example of configuring a playbook with the Manual Input step | 
+| 30 |Using Manual Task Step	| This reference block showcases an example of configuring a playbook with the Manual Task step |
+| 31 | Calculate Severity using ResolveRange	| This reference block showcases an example of the use of resolveRange filter to get a specific value for a particular date range. |
+
 ## Playbook Collection
 
 SOAR Framework includes the following playbook collections:
@@ -166,7 +207,7 @@ Playbooks in the *03-Enrich* collection help perform enrichment of data &ndash; 
 | 13     | Enrich Indicator (Type IP)                                                     | Pre-process the IP Address indicator                                                                                                                     |
 | 14     | Update/Initialize Indicator Enrichment Global Variables                        | Update enrichment playbooks list global variable based on indicator type defined as param tag                                                            |
 | 15     | Retrieve Configured Enrichment Connectors                                      | Retrieve the configured enrichment connectors and return their playbook IRI's                                                                            |
-| 16     | Delete Enrichment Global Variables                                             | Delete the pluggable enrichment global variables                                                                                                         |
+| 16     | Reset Enrichment Global Variables                                          | Reset the pluggable enrichment global variables                                                                                                         |
 | 17     | Indicator (Type Registry) - Get Reputation                       | Retrieves the reputation of indicators of type ‘Registry’ using configured threat intelligence tools.                                                    |
 | 18     | Indicator (Type All) - Get Latest Reputation<sup>Deprecated</sup>              | Based on the type of indicator, this playbook retrieves the reputation of indicators using configured threat intelligence tools.                         |
 | 19     | Indicator (Type Domain) - Get Reputation<sup>Deprecated</sup>                  | Retrieves the reputation of indicators of type ‘Domain’ using configured threat intelligence tools.                                                      |
@@ -198,7 +239,7 @@ Playbooks in the *03-Triage* collection perform actions such as sorting, systema
 | 5      | Find and Relate Similar Alerts -ML                                       | Finds similar alerts based on the filter criteria you have specified and adds correlations to similar alerts using the recommendation APIs (ML).                                                                                                                  |
 | 6      | Flag Indicators Linked across multiple alerts                            | Flags changes made in indicators that are linked to multiple alerts.                                                                                                                                                                                              |
 | 7      | Map Historical Alerts and escalate for malicious Indicators              | Creates a mapping for historical alerts and then escalates the alerts to incidents if malicious indicators are found in the historical alerts. If the incident already exists, then the information is updated into the incident; else a new incident is created. |
-| 8      | Prioritize Alerts With VIP Assets                                        | Raises the severity of the alert if it is associated with a supercritical asset.                                                                                                                                                                                  |
+| 8      | Prioritize Alerts With VIP Assets                                        | Raises the severity of the alert if it is associated with a supercritical asset.                                                      |
 | 9      | Update Alert Severity for malicious Indicators                           | Sets the severity of the alert to critical if its associated indicators are found to be ‘malicious’.                                                                                                                                                              |
 
 ## Actions Playbook Collection
@@ -285,8 +326,8 @@ This playbook collection has the following playbook
 | 10     | Approval - On Email Receipt (Exchange)                                  | This playbook is triggered whenever an email is received via Exchange; the playbook determines whether the received email is an approval mail, and, if yes, checks its approval status.                           |
 | 11     | Approval - On Email Receipt (IMAP)                                      | This playbook is triggered whenever an email is received via IMAP and it checks whether the received email is an approval mail along with its approval status.                                                    |
 | 12     | Approval - On Email Receipt - Process Email                             | Checks if the email is an approval email and returns its approval status.                                                                                                                                         |
-| 13     | Assign Random User to Unassigned Alerts                                 | Auto assigns alerts if their assignments were missed during alert creation.                                                                                                                                       |
-| 14     | Assign Random User to Unassigned Incidents                              | Auto assigns incidents if their assignments were missing during incident creation.                                                                                                                                |
+| 13     | Assign Random User to Unassigned Alerts                              | Auto assigns alerts if their assignments were missed during alert creation.                                                                                                                                       |
+| 14     | Assign Random User to Unassigned Incidents                             | Auto assigns incidents if their assignments were missing during incident creation.                                                                                                                                |
 | 15     | Fetch SLA Details                                                       | Fetches SLA Details for incidents as per Service, that is, for MSSP or Enterprise.                                                                                                                                |
 | 16     | Incident - [01] Capture All SLA (Upon Create)                           | Updates an alert's acknowledgement due date and response due date based on the severity of the incident.                                                                                                          |
 | 17     | Incident - [02] Capture Ack SLA (Upon Update)                           | Updates an incident's acknowledgement date and SLA status when the status of the incident is changed.                                                                                                             |
@@ -406,3 +447,4 @@ You can use the playbooks in the *08 - Utilities* collection to perform various 
 | 10      | Activate Inactive Users                       | Find the Inactive users and activate them                                                                                                                         |
 | 11      | Activate inactive users - Update user status  | This is a subroutine playbook to update the user status as active                                                                                                 |
 | 12      | Indicator - Import Bulk Indicator             | Extract Indicators from specified text                                                                                                                            |
+| 13      | Fetch and Link Team to Related Records <sup>NEW</sup>| Fetches and links the team of the record to all of its related records. |

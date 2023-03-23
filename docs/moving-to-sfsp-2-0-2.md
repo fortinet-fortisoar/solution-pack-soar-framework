@@ -36,7 +36,7 @@ To make the most of the SOAR Framework v2.0.2, you must perform the following st
 Now your FortiSOAR system is ready for an upgrade to SOAR Framework v2.0.2.
 
 >**NOTE**: After updating the connectors to the stated version if the enrichment summary is not available on an indicator, you may have to:
-> 1. Execute **Delete Enrichment Global Variables** playbook from **03 – Enrich** collection to delete the following global variables:
+> 1. Execute **Reset Enrichment Global Variables** playbook from **03 – Enrich** collection to delete the following global variables:
 >     - `URL_Enrichment_Playbooks_IRIs`
 >     - `File_Enrichment_Playbooks_IRIs`
 >     - `IP_Enrichment_Playbooks_IRIs`
