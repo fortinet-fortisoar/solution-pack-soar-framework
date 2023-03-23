@@ -62,10 +62,12 @@ Rules provide a framework to define a condition that generates notifications.
 
 The SOAR Framework includes the following rules:
 
-- Alert > Notify Creation - It sends a notification, via the app or the email, whenever an alert is **created**.
-- Alert > Notify Update - It sends a notification, via the app or the email, whenever an alert is **updated**.
-- Incident > Notify Creation - It sends a notification, via the app or the email, whenever an incident is **created**.
-- Incident > Notify Update - It sends a notification, via the app or the email, whenever an incident is **updated**.
+- Alert > Notify Creation - It sends a notification, via the email, whenever an alert is **created**.
+- Alert > Notify Updates - It sends a notification, via the email, whenever an alert is **updated**.
+- Incident > Notify Creation - It sends a notification, via the email, whenever an incident is **created**.
+- Incident > Notify Updates - It sends a notification, via the email, whenever an incident is **updated**.
+
+**Note:** In-App Notifications has been disabled onwards SOAR Framework v2.1.0 solution pack. If you required then enable the **In-App Notifications** for desired rule.
 
 ## Widgets
 
@@ -166,7 +168,7 @@ Playbooks in the *03-Enrich* collection help perform enrichment of data &ndash; 
 | 13     | Enrich Indicator (Type IP)                                                     | Pre-process the IP Address indicator                                                                                                                     |
 | 14     | Update/Initialize Indicator Enrichment Global Variables                        | Update enrichment playbooks list global variable based on indicator type defined as param tag                                                            |
 | 15     | Retrieve Configured Enrichment Connectors                                      | Retrieve the configured enrichment connectors and return their playbook IRI's                                                                            |
-| 16     | Delete Enrichment Global Variables                                             | Delete the pluggable enrichment global variables                                                                                                         |
+| 16     | Delete Enrichment Global Variables  -> Renamed to  `Reset Enrichment Global Variables`                                          | Reset the pluggable enrichment global variables                                                                                                         |
 | 17     | Indicator (Type Registry) - Get Reputation                       | Retrieves the reputation of indicators of type ‘Registry’ using configured threat intelligence tools.                                                    |
 | 18     | Indicator (Type All) - Get Latest Reputation<sup>Deprecated</sup>              | Based on the type of indicator, this playbook retrieves the reputation of indicators using configured threat intelligence tools.                         |
 | 19     | Indicator (Type Domain) - Get Reputation<sup>Deprecated</sup>                  | Retrieves the reputation of indicators of type ‘Domain’ using configured threat intelligence tools.                                                      |
@@ -198,7 +200,7 @@ Playbooks in the *03-Triage* collection perform actions such as sorting, systema
 | 5      | Find and Relate Similar Alerts -ML                                       | Finds similar alerts based on the filter criteria you have specified and adds correlations to similar alerts using the recommendation APIs (ML).                                                                                                                  |
 | 6      | Flag Indicators Linked across multiple alerts                            | Flags changes made in indicators that are linked to multiple alerts.                                                                                                                                                                                              |
 | 7      | Map Historical Alerts and escalate for malicious Indicators              | Creates a mapping for historical alerts and then escalates the alerts to incidents if malicious indicators are found in the historical alerts. If the incident already exists, then the information is updated into the incident; else a new incident is created. |
-| 8      | Prioritize Alerts With VIP Assets                                        | Raises the severity of the alert if it is associated with a supercritical asset.                                                                                                                                                                                  |
+| 8      | Prioritize Alerts With VIP Assets   <sup>DEACTIVATED</sup>                                     | Raises the severity of the alert if it is associated with a supercritical asset. **Note:**   User need to activate this playbook if user wants to create the Asset record for the hostname mentioned in the `Target Asset` field of the alert                                                                                                                                                                                |
 | 9      | Update Alert Severity for malicious Indicators                           | Sets the severity of the alert to critical if its associated indicators are found to be ‘malicious’.                                                                                                                                                              |
 
 ## Actions Playbook Collection
@@ -285,8 +287,8 @@ This playbook collection has the following playbook
 | 10     | Approval - On Email Receipt (Exchange)                                  | This playbook is triggered whenever an email is received via Exchange; the playbook determines whether the received email is an approval mail, and, if yes, checks its approval status.                           |
 | 11     | Approval - On Email Receipt (IMAP)                                      | This playbook is triggered whenever an email is received via IMAP and it checks whether the received email is an approval mail along with its approval status.                                                    |
 | 12     | Approval - On Email Receipt - Process Email                             | Checks if the email is an approval email and returns its approval status.                                                                                                                                         |
-| 13     | Assign Random User to Unassigned Alerts                                 | Auto assigns alerts if their assignments were missed during alert creation.                                                                                                                                       |
-| 14     | Assign Random User to Unassigned Incidents                              | Auto assigns incidents if their assignments were missing during incident creation.                                                                                                                                |
+| 13     | Assign Random User to Unassigned Alerts<sup>DEACTIVATED</sup>                              | Auto assigns alerts if their assignments were missed during alert creation.                                                                                                                                       |
+| 14     | Assign Random User to Unassigned Incidents <sup>DEACTIVATED</sup>                              | Auto assigns incidents if their assignments were missing during incident creation.                                                                                                                                |
 | 15     | Fetch SLA Details                                                       | Fetches SLA Details for incidents as per Service, that is, for MSSP or Enterprise.                                                                                                                                |
 | 16     | Incident - [01] Capture All SLA (Upon Create)                           | Updates an alert's acknowledgement due date and response due date based on the severity of the incident.                                                                                                          |
 | 17     | Incident - [02] Capture Ack SLA (Upon Update)                           | Updates an incident's acknowledgement date and SLA status when the status of the incident is changed.                                                                                                             |
@@ -406,3 +408,4 @@ You can use the playbooks in the *08 - Utilities* collection to perform various 
 | 10      | Activate Inactive Users                       | Find the Inactive users and activate them                                                                                                                         |
 | 11      | Activate inactive users - Update user status  | This is a subroutine playbook to update the user status as active                                                                                                 |
 | 12      | Indicator - Import Bulk Indicator             | Extract Indicators from specified text                                                                                                                            |
+| 13      | Fetch and Link Team to Related Records <sup>NEW</sup>| Fetches and links the team of the record to all of its related records. |
