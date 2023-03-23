@@ -24,7 +24,7 @@
 
 - Deactivated below playbooks
     - `Assign Random User to Unassigned Alerts` and `Assign Random User to Unassigned Incidents` under the collection `06 - IRP - Case Management` 
-    - `Prioritize Alerts With VIP Assets` under collection `03 - Triage`
+    - `Prioritize Alerts With VIP Assets` under collection `03 - Triage`   
     **NOTE** User need to activate this playbook if user wants to create the Asset record for the hostname mentioned in the `Target Asset` field of the alert
 
 ## Module Enhancements
