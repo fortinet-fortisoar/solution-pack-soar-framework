@@ -4,59 +4,62 @@
 
 ## Playbook Enhancements
 
+- New playbook `Fetch and Link Team to Related Records` has been added under the collection `08 - Utilities` 
+    - When triggered, this playbook fetches a team of the selected record and links it to all related records
+        > **For Example**: Teams `TeamA` and `TeamB` are assigned to `Alert-1` which further links to five indicators. Upon running this playbook, it also links teams `TeamA` and `TeamB` to the five associated indicators.
+
 - Modified `Extract Indicator` playbook under the collection `03 - Enrich`
-    - `First Seen` and `Last Seen` date fields will be populated in newly created indicator
-    - Indicators will be created from newly added `IP Addresses` and `File Hashes` fields in **Alert** module
-    - In case of multi-tenancy, tenant from Alert record will be assigned to an indicator as well
-    - Email indicators will be ignored that are part of exclude domain indicators list (`Excludelist_Domains` global variable)
+    - `First Seen` and `Last Seen` date fields are now present in the newly created indicator
+    - Indicators are now created from newly added `IP Addresses` and `File Hashes` fields in the **Alert** module
+    - In case of multi-tenancy, a tenant from the alert record is also assigned to the indicator
+    - Email indicators that are part of the exclude domain indicators list (`Excludelist_Domains` global variable) are now ignored
 
 - Modified `Create Communication Record (Alert)` playbook under the collection `06 - IRP - Communications Tracking`
-    - User can now select an email templates while sending an email from **Alert** detail view
+    - User can now select email templates while sending an email from **Alert** detail view
 
-- Modified `Alert - Escalate To Incident` playbook under the collection `06 - IRP - Case Management` 
-    - In case of multi-tenancy, this playbook will assign escalated Alert(s) tenant value to an newly created Incident record 
-
-- New playbook `Fetch and Link Team to Related Records` has been added under the collection `08 - Utilities` 
-    - when triggered, it will fetch a team of the selected record and link it to all related records
-    - e.g. Team 'TeamA' and 'TeamB' are assigned to 'Alert-1' and 5 Indicators are also linked to 'Alert-1'. Upon running above playbook, it will also link team 'TeamA' and 'TeamB' to associated 5 indicators.
+- Modified `Alert - Escalate To Incident` playbook under the collection `06 - IRP - Case Management 
+    - In case of multi-tenancy, this playbook assigns escalated alert tenant value to a newly created Incident record 
 
 - Renamed `Delete Enrichment Global Variables` playbook to `Reset Enrichment Global Variables` under the collection `03 - Enrich`
 
-- Deactivated below playbooks
-    - `Assign Random User to Unassigned Alerts` and `Assign Random User to Unassigned Incidents` under the collection `06 - IRP - Case Management` 
+- Deactivated the following playbooks:
+    - `Assign Random User to Unassigned Alerts` and `Assign Random User to Unassigned Incidents` playbooks under the collection `06 - IRP - Case Management`
     - `Prioritize Alerts With VIP Assets` under collection `03 - Triage`   
-    **NOTE** User need to activate this playbook if user wants to create the Asset record for the hostname mentioned in the `Target Asset` field of the alert
+    >**NOTE** Users need to activate this playbook if they want to create the asset record for the hostname mentioned in the alert's `Target Asset` field
 
 ## Module Enhancements
 
 - **Queue Management Module**
-    - By default, the **Default** queue record will be `Inactive`
-    **NOTE** In every SOAR Framework Solution Pack upgrade the **Default** queue record will be marked `Inactive`. Re-activate, if you use the **Default** queue
+    - By default, the **Default** queue record now is `Inactive`
+
+        >**NOTE**: In every SOAR Framework solution pack upgrade, the **Default** queue record is marked `Inactive`. To use the **Default** queue, you need to activate it.
     
 - **Tasks Module**
     - `Re-Opened` dropdown item is removed from the *Status* drop-down
 
 - **Asset Module**
-    - A new *Asset Risk* drop-down added with an options `Minimal`, `Low`, `Medium`, `High` and `Critical`
+    - A new *Asset Risk* drop-down was added with the options `Minimal`, `Low`, `Medium`, `High`, and `Critical`
     
 - **Event Module**
-    - Updated SVT as per module best practices
+    - Updated System View Template (SVT) as per the module's best practices
 
 - **Alert Module**
     - Added new `Resolved Automatedly` hidden boolean field
     - Added new `Recommendation setting` for Playbook suggestion based on Name and Type of **Alerts**
-    - Added new `IP Addresses` and `File Hashes` fields 
-    **NOTE** `Indicator_Type_Map` global variable is also updated with `IP Addresses` and `File Hashes` fields. These fields will also be used during indicator extraction
+    - Added new `IP Addresses` and `File Hashes` fields
+
+        >**NOTE** `Indicator_Type_Map` global variable is also updated with the `IP Addresses` and `File Hashes` fields. These fields are now also used during indicator extraction
 
 - **Incident Module**
-    - Added new `Recommendation Setting` for Playbook suggestion based on Name and Type of **Incidents**
+    - Added new `Recommendation Setting` for playbook suggestion based on Name and Type of **Incidents**
 
-- Added new `Key Store` module. You can find it under `Resources` navigation panal
+- Added new `Key Store` module. You can find it under the `Resources` navigation panel
 
 
 ## Rules Enhancements
 
-- `In-App Notifications` has been disabled for following `Rules`
+- `In-App Notifications` have been disabled for following `Rules`
+
     - Alert - Notify Creation
     - Alert - Notify Updates 
     - Incident - Notify Creation 
@@ -98,8 +101,11 @@
 
 ## Resolved Issues
 
-- Asset record with empty hostnames were created by `Prioritize Alerts With VIP Assets` playbook under the collection `03 - Triage`. Now, the hostname input value is correctly passed
-- Page not found error occured while accessing FortiSOAR Community Page from `Navigation Panel > User Community`. Corrected FortiSOAR Community Page URL
-- Indicator reputation was set to `blank` in case of absence of TIP connector. Now, `Indicator (Manual Trigger) - Get Latest Reputation` playbook under the collection `03 - Enrich` will update indicator reputation to `No Reputation Available`
-- Fixed `Relationship widget` configuration in Alert, Incidents and Warroom detailed view to show modules which are part of included list of widget configuration
+- Asset records with empty hostnames were being created by the `Prioritize Alerts With VIP Assets` playbook under the collection `03 - Triage`. Now, the hostname input value is correctly passed so asset records have correct hostnames
+
+- Updated the FortiSOAR Community page URL to fix the Page not found error while accessing FortiSOAR Community Page from `Navigation Panel > User Community`.
+
+- When an appropriate Threat Intel connector is not present, the `Indicator (Manual Trigger) - Get Latest Reputation` playbook under the collection `03 - Enrich` updates the indicator reputation to `No Reputation Available` instead of `blank`
+
+- Fixed `Relationship widget` configuration in *Alert*, *Incidents*, and *Warroom* detailed view to show modules that are part of the included list of the widget configuration
 

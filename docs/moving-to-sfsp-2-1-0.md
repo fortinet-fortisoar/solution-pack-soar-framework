@@ -1,5 +1,19 @@
 # Upgrade SOAR Framework from v2.x.x to v2.1.0
 
-If you upgrading this solution pack on FortiSOAR v7.2.2. Please refer to the following steps:
-1. It is recommended that before upgrading to SFSP v2.1.0, take backup of `Create Communication Record (Alert)` playbook under the collection `06 - IRP - Communications Tracking` 
-2. Once upgrade to SFSP v2.1.0 is completed, replace above-mentioned playbook with backedup copy
+Before upgrading SOAR Framework to v2.1.0, perform the following steps:
+
+1. Add following key-value pair in `Indicator_Type_Map` global variable. To add a key-value pair, refer to the section [Extending Default Alert Schema](./extending-default-indicator-extraction-process.md#extending-default-alert-schema):
+
+    ```json
+    {
+    "iPAddresses": "IP Address",
+    "fileHashes": "FileHash-MD5"
+    }
+    ```
+
+2. To upgrade the SOAR Framework solution pack to version 2.1.0 on FortiSOAR v7.2.2, perform the following steps:
+    <ol type="a">
+      <li>Take a backup of <strong>Create Communication Record (Alert)</strong> playbook under the collection <em>06 - IRP - Communications Tracking</em>.</li>
+      <li>Add the the key-value pair as mentioned in step 1.</li>
+      <li>Replace <strong>Create Communication Record (Alert)</strong> playbook under the collection <em>06 - IRP - Communications Tracking</em> with the back up copy you have.</li>
+    <ol>
