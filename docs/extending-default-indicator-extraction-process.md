@@ -13,7 +13,7 @@ E.g., the default playbook may not collect a field of interest, say “targeted 
 
 ## Extending Default Alert Schema
 
-You can extend the indicator extraction by modifying **Indicator Type Map Global** Variable.
+You can extend the indicator extraction by modifying `Indicator_Type_Map` global variable.
 
 Navigate to **Automation** > **Playbooks** > **03 – Enrich** > **Extract Indicator Playbook**.
 
