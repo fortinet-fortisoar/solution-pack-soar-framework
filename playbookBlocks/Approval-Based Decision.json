@@ -1,0 +1,267 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Approval-Based Decision",
+    "description": "<p>This reference block showcases an example of configuring a playbook to make a decision based on the approval provided.<\/p>\n<p>Example: You might want a playbook that blocks the IP address only when the approval is provided.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": true,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "indicator_iri": "{{vars.input.records[0]['@id']}}",
+                "indicator_value": "{{vars.input.records[0].value}}"
+            },
+            "status": null,
+            "top": "202",
+            "left": "233",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "44ea9147-af28-4989-81ea-1fe55f1ea7f1"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Approval to Block IP",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "method": {
+                        "id": 47,
+                        "@id": "\/api\/3\/picklists\/7a04788b-5128-4288-a0fc-6e82d18c3b7b",
+                        "icon": null,
+                        "uuid": "7a04788b-5128-4288-a0fc-6e82d18c3b7b",
+                        "@type": "Picklist",
+                        "color": null,
+                        "display": "System",
+                        "listName": "\/api\/3\/picklist_names\/d7bdd0ba-d721-4324-bec5-410e23f0f485",
+                        "itemValue": "System",
+                        "importedBy": [],
+                        "orderIndex": 1
+                    },
+                    "owners": [
+                        "\/api\/3\/teams\/6e569c09-3bd4-40f1-98b0-cc994464c3c5"
+                    ],
+                    "status": {
+                        "id": 82,
+                        "@id": "\/api\/3\/picklists\/d26464e0-1df4-46c2-a032-018911ba0c40",
+                        "icon": null,
+                        "uuid": "d26464e0-1df4-46c2-a032-018911ba0c40",
+                        "@type": "Picklist",
+                        "color": "#bf9937",
+                        "listName": "\/api\/3\/picklist_names\/ce294c1f-9318-425f-9a12-2957292f4cbf",
+                        "itemValue": "Pending",
+                        "importedBy": [],
+                        "orderIndex": 2
+                    },
+                    "playbookiri": "api\/3\/workflows\/f935562d-7bf1-48dc-902d-11b0ff7f9dc2",
+                    "playbookname": "Create Block",
+                    "playbookuuid": "f935562d-7bf1-48dc-902d-11b0ff7f9dc2",
+                    "approvaldescription": "Please provide your approval to block IP {{vars.indicator_value}}"
+                },
+                "collection": "approvals",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "337",
+            "left": "233",
+            "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dcg",
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "4928870b-2a3b-44c9-84f0-2b03fb00fda2"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Blocking Indicator Approved",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Approved",
+                        "step_iri": "\/api\/3\/workflow_steps\/563c45ea-a195-4975-8e65-b63012b6f5c9",
+                        "condition": "{{ vars.steps.Get_Approval_to_Block_IP.approved }}",
+                        "step_name": "Mark IP as Blocked"
+                    },
+                    {
+                        "option": "Rejected",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/013a7e45-f096-4274-ab5b-dc2d20be1e41",
+                        "step_name": "No Operation"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "472",
+            "left": "233",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "0b7210e3-b10d-45be-8ab0-c1d5cfd477ed"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Mark IP as Blocked",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "indicatorStatus": "\/api\/3\/picklists\/fa29fe48-f01e-476f-bb33-c910f5795b57"
+                },
+                "operation": "Append",
+                "collection": "{{vars.indicator_iri}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/indicators",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "607",
+            "left": "58",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "563c45ea-a195-4975-8e65-b63012b6f5c9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "No Operation",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "607",
+            "left": "408",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "013a7e45-f096-4274-ab5b-dc2d20be1e41"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "febc7ac6-4854-4084-9764-5d40cb4a309a",
+                "resources": [
+                    "indicators"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "displayConditions": {
+                    "alerts": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    },
+                    "indicators": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "type": "object",
+                                "field": "typeofindicator",
+                                "value": "\/api\/3\/picklists\/c0beeda4-2c7a-4214-b7e5-53ba1649539c",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/c0beeda4-2c7a-4214-b7e5-53ba1649539c",
+                                    "display": "IP Address",
+                                    "itemValue": "IP Address"
+                                },
+                                "operator": "eq"
+                            }
+                        ]
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "67",
+            "left": "233",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "74c01b6a-83c2-420b-a25f-eedb652cbb90"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get Approval to Block IP",
+            "targetStep": "\/api\/3\/workflow_steps\/4928870b-2a3b-44c9-84f0-2b03fb00fda2",
+            "sourceStep": "\/api\/3\/workflow_steps\/44ea9147-af28-4989-81ea-1fe55f1ea7f1",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "9fd7a603-2fa9-4d36-96b6-0763c81494c5"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Approval to Block IP -> Is Blocking Indicator Approved",
+            "targetStep": "\/api\/3\/workflow_steps\/0b7210e3-b10d-45be-8ab0-c1d5cfd477ed",
+            "sourceStep": "\/api\/3\/workflow_steps\/4928870b-2a3b-44c9-84f0-2b03fb00fda2",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "a3f89c6d-e2f2-447c-99ef-58befc7d98d0"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Blocking Indicator Approved -> Mark IP as Blocked",
+            "targetStep": "\/api\/3\/workflow_steps\/563c45ea-a195-4975-8e65-b63012b6f5c9",
+            "sourceStep": "\/api\/3\/workflow_steps\/0b7210e3-b10d-45be-8ab0-c1d5cfd477ed",
+            "label": "Approved",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "6e2a36df-2144-4a0f-a90d-1b59aea28f36"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Blocking Indicator Approved -> No Operation",
+            "targetStep": "\/api\/3\/workflow_steps\/013a7e45-f096-4274-ab5b-dc2d20be1e41",
+            "sourceStep": "\/api\/3\/workflow_steps\/0b7210e3-b10d-45be-8ab0-c1d5cfd477ed",
+            "label": "Rejected",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "fa8e3c93-c914-46b8-9363-8c98fe32163c"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/44ea9147-af28-4989-81ea-1fe55f1ea7f1",
+            "sourceStep": "\/api\/3\/workflow_steps\/74c01b6a-83c2-420b-a25f-eedb652cbb90",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/03ec9579-e5d4-455a-beef-6ce10824abd1",
+            "uuid": "c7dc7ec1-b6d4-4402-adcb-62d7af92a4b9"
+        }
+    ],
+    "metadata": {
+        "triggerStep": "\/api\/3\/workflow_steps\/74c01b6a-83c2-420b-a25f-eedb652cbb90"
+    },
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "709",
+    "width": "718",
+    "uuid": "03ec9579-e5d4-455a-beef-6ce10824abd1",
+    "recordTags": [
+        "Indicators",
+        "Decision",
+        "IP Address",
+        "Approval",
+        "Block IOC"
+    ]
+}

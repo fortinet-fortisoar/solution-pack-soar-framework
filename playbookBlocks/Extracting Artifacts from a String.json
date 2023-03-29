@@ -1,0 +1,77 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Extracting Artifacts from a String",
+    "description": "<p>This reference block showcases an example of configuring a playbook to extract indicators from the given string using the Utilities connector<\/p>\n<p>Example: You might want a playbook that extracts indicators from a given string but allow domains such as fortinet.com or google.com<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "sample_string": "c0202cf6aeab8437c638533d14563d35, gumblar.cn, 103.224.182.249, fortinet.com, google.com,"
+            },
+            "status": null,
+            "top": "67",
+            "left": "36",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/a5dd165e-dc61-45d0-aae8-2abee7e10580",
+            "uuid": "0fe69c67-8f11-493f-b618-d54fe888152a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Extracting Artifacts from a String",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "data": "{{vars.sample_string}}",
+                    "whitelist": "fortinet.com, google.com",
+                    "case_sensitive": false,
+                    "override_regex": false,
+                    "private_whitelist": true
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "extract_artifacts",
+                "operationTitle": "FSR: Extract Artifacts from String",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "202",
+            "left": "36",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": "\/api\/3\/workflow_groups\/a5dd165e-dc61-45d0-aae8-2abee7e10580",
+            "uuid": "4975b08c-9dab-4a56-a92e-9f66b25d20e0"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Extracting Artifacts from a String",
+            "targetStep": "\/api\/3\/workflow_steps\/4975b08c-9dab-4a56-a92e-9f66b25d20e0",
+            "sourceStep": "\/api\/3\/workflow_steps\/0fe69c67-8f11-493f-b618-d54fe888152a",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/a5dd165e-dc61-45d0-aae8-2abee7e10580",
+            "uuid": "dcb8dda0-4ef6-4525-ab81-5cf752d78a99"
+        }
+    ],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "312",
+    "width": "328",
+    "uuid": "a5dd165e-dc61-45d0-aae8-2abee7e10580",
+    "recordTags": [
+        "CyOPsUtilities",
+        "Indicators",
+        "Extract",
+        "String",
+        "Whitelist"
+    ]
+}

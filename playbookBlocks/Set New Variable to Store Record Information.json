@@ -1,0 +1,88 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Set New Variable to Store Record Information",
+    "description": "<p>This reference block showcases an example of declaring a new variable to store information received from the previous step.<\/p>\n<p>Example: You might want a playbook to store the source IP address from the triggering alert record<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": true,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "sourceIP": "{{vars.input.records[0].sourceIp}}"
+            },
+            "status": null,
+            "top": "202",
+            "left": "37",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/65967969-d405-46ee-b80d-f2b096e77e2d",
+            "uuid": "40eacddf-991a-4a00-9503-8f019ac65ab5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "4c3f4e74-5e06-4776-ba6b-276a4b641ce3",
+                "title": "Investigate Phishing",
+                "resources": [
+                    "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "displayConditions": {
+                    "alerts": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": true
+            },
+            "status": null,
+            "top": "62",
+            "left": "37",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": "\/api\/3\/workflow_groups\/65967969-d405-46ee-b80d-f2b096e77e2d",
+            "uuid": "433b3662-0431-4d61-8dab-ef1ec089e439"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/40eacddf-991a-4a00-9503-8f019ac65ab5",
+            "sourceStep": "\/api\/3\/workflow_steps\/433b3662-0431-4d61-8dab-ef1ec089e439",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/65967969-d405-46ee-b80d-f2b096e77e2d",
+            "uuid": "2ac90594-6fe3-4f37-8f18-4c100ea8f881"
+        }
+    ],
+    "metadata": {
+        "triggerStep": "\/api\/3\/workflow_steps\/433b3662-0431-4d61-8dab-ef1ec089e439"
+    },
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "322",
+    "width": "331",
+    "uuid": "65967969-d405-46ee-b80d-f2b096e77e2d",
+    "recordTags": [
+        "Set Variable",
+        "Variable",
+        "Dynamic"
+    ]
+}

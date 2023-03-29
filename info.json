@@ -1,6 +1,6 @@
 {
     "name": "sOARFramework",
-    "version": "2.0.2",
+    "version": "2.1.0",
     "type": "solutionpack",
     "local": true,
     "label": "SOAR Framework",
@@ -8,12 +8,12 @@
     "prerequisite": null,
     "publisher": "Fortinet",
     "certified": "true",
-    "description": "<p>The SOAR Framework Solution Pack helps users experience the power of FortiSOAR incident response.</p><br/> \n<p><span>The SOAR Framework v2.0.2 Solution Pack introduces a pluggable and scalable enrichment framework. Read more about the new model </span><a title=\"Release Notes\" href=\"https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/2.0.2/release_notes.md\" target=\"_blank\" rel=\"noopener\">here</a>. <span>To view the list of integrations supporting the new model, launch the <strong>Content Hub</strong> from within the FortiSOAR and search for 'Enrichment' using <strong>Search By Tags</strong> option.</span></p>",
-    "help": "https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/2.0.2/README.md",
+    "description": "<p>The SOAR Framework Solution Pack helps users experience the power of FortiSOAR incident response.</p>",
+    "help": "https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/2.1.0/README.md",
     "category": [],
     "supportInfo": "Fortinet Customer Support",
     "iconLarge": null,
-    "fsrMinCompatibility": "7.2.1",
+    "fsrMinCompatibility": "7.2.2",
     "date": "2022-03-03T09:19:39+00:00",
     "contents": {
         "picklistNames": [
@@ -37,6 +37,9 @@
             },
             {
                 "name": "AssetClass"
+            },
+            {
+                "name": "AssetRisk"
             },
             {
                 "name": "AssetState"
@@ -160,6 +163,10 @@
                 "name": "Indicators",
                 "apiName": "indicators"
             },
+            "keys": {
+                "name": "Key Store",
+                "apiName": "keys"
+            },
             "sla_template": {
                 "name": "SLA Templates",
                 "apiName": "sla_template"
@@ -253,6 +260,15 @@
                     "detail",
                     "form",
                     "settings"
+                ]
+            },
+            "keys": {
+                "name": "Key Store",
+                "apiName": "keys",
+                "views": [
+                    "list",
+                    "detail",
+                    "form"
                 ]
             },
             "sla_template": {
@@ -366,8 +382,8 @@
             {
                 "id": 9,
                 "name": "Indicator_Type_Map",
-                "value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"otherRecipients\": \"Email Address\"}",
-                "default_value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"otherRecipients\": \"Email Address\"}"
+                "value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"otherRecipients\": \"Email Address\",\"iPAddresses\": \"IP Address\",\"fileHashes\": \"FileHash-MD5\"}",
+                "default_value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"otherRecipients\": \"Email Address\",\"iPAddresses\": \"IP Address\",\"fileHashes\": \"FileHash-MD5\"}"
             },
             {
                 "id": 10,
@@ -446,6 +462,98 @@
                 "name": "User_Enrichment_Playbooks_IRIs",
                 "value": "NoEnrichmentAvailable",
                 "default_value": "NoEnrichmentAvailable"
+            }
+        ],
+        "playbookBlocks": [
+            {
+                "name": "Approval-Based Decision"
+            },
+            {
+                "name": "Bulk ingest records using the 'Ingest Bulk Feed' Step"
+            },
+            {
+                "name": "Calculate Severity using ResolveRange"
+            },
+            {
+                "name": "Check if an IP address is Internal or External"
+            },
+            {
+                "name": "Condition-based Post-Create Trigger"
+            },
+            {
+                "name": "Condition-based Post-Update Trigger"
+            },
+            {
+                "name": "Create and Link Asset to Alert"
+            },
+            {
+                "name": "Execute Playbook Step using Do-Until Loop"
+            },
+            {
+                "name": "Execute Playbook Step using Parallel Looping"
+            },
+            {
+                "name": "Execute Playbook step using Sequential Looping"
+            },
+            {
+                "name": "Execute Playbook using Mock Data"
+            },
+            {
+                "name": "Extracting Artifacts from a String"
+            },
+            {
+                "name": "Fetch Emails From Particular Inbox in Exchange"
+            },
+            {
+                "name": "Handling Record Uniqueness (No Change Needed To Existing Record)"
+            },
+            {
+                "name": "Handling Record Uniqueness (Stop Process when Duplicate Record Found)"
+            },
+            {
+                "name": "Handling Record Uniqueness (Update Existing Record - All Fields)"
+            },
+            {
+                "name": "Handling Record Uniqueness (Update Existing Record - Only Selected Fields)"
+            },
+            {
+                "name": "Make a REST API Call"
+            },
+            {
+                "name": "Manual Trigger using User Input Prompt"
+            },
+            {
+                "name": "Manual Trigger without Selecting Records"
+            },
+            {
+                "name": "Manual Trigger with Visibility Condition"
+            },
+            {
+                "name": "Posting a Message on Triggering Record (using Create Record Step)"
+            },
+            {
+                "name": "Posting a Message on Triggering Record (using Step Utilities)"
+            },
+            {
+                "name": "Set New Variable to Store Record Information"
+            },
+            {
+                "name": "Using Code Snippet"
+            },
+            {
+                "name": "Using Custom API Endpoint Trigger"
+            },
+            {
+                "name": "Using Decision Step"
+            },
+            {
+                "name": "Using Ignore Error to Avoid Playbook Failure"
+            },
+            {
+                "name": "Using Manual Input Step"
+            },
+            {
+                "name": "Using Manual Task Step"
             }
         ],
         "rules": [

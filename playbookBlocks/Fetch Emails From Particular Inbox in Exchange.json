@@ -1,0 +1,57 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Fetch Emails From Particular Inbox in Exchange",
+    "description": "<p>This reference block showcases an example of configuring a playbook to fetch emails from a particular Inbox in Exchange.<\/p>\n<p>Example: You might want a playbook that fetches emails from a custom folder such as a folder named\"Phishing\" in Exchange<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Fetch Emails",
+            "description": null,
+            "arguments": {
+                "name": "Exchange",
+                "config": "88533b52-38fc-4e43-b36c-2aaa061e6906",
+                "params": {
+                    "limit": "",
+                    "source": "Custom Folder",
+                    "mark_read": true,
+                    "pull_oldest": "",
+                    "parse_inline": true,
+                    "source_folder": "Phishing",
+                    "save_as_attachment": false,
+                    "extract_attach_data": true,
+                    "exclude_absolute_path": ""
+                },
+                "version": "4.1.0",
+                "connector": "exchange",
+                "operation": "get_email_new",
+                "operationTitle": "Get Unread Emails",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "73",
+            "left": "48",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": "\/api\/3\/workflow_groups\/0c1a54bb-90e7-4a9f-ac4f-f5e00fbf81f8",
+            "uuid": "9d953cbe-9683-48b3-ac83-83c2e4be41ca"
+        }
+    ],
+    "workflowRoutes": [],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "187",
+    "width": "341",
+    "uuid": "0c1a54bb-90e7-4a9f-ac4f-f5e00fbf81f8",
+    "recordTags": [
+        "Fetch",
+        "Exchange",
+        "Emails",
+        "Inbox"
+    ]
+}

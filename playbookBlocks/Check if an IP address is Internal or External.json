@@ -1,0 +1,158 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Check if an IP address is Internal or External",
+    "description": "<p>This reference block showcases an example of configuring a playbook to check the IP address is in provided CIDR range.<\/p>\n<p>Example: You might want a playbook that checks if the IP address is External or belongs to an internal subnet.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "indicator_value": "{{vars.input.records[0].value}}"
+            },
+            "status": null,
+            "top": "110",
+            "left": "270",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/6a7d82cc-5e6f-4ab1-9cfd-439aad677192",
+            "uuid": "680e33a3-e095-4a0a-b9d6-92132021441b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "External IP Address",
+            "description": null,
+            "arguments": {
+                "isExternal": "true"
+            },
+            "status": null,
+            "top": "515",
+            "left": "95",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/6a7d82cc-5e6f-4ab1-9cfd-439aad677192",
+            "uuid": "9655cd83-43f7-45d6-8d48-6e9686b69c5d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is IP Private",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/9655cd83-43f7-45d6-8d48-6e9686b69c5d",
+                        "step_name": "External IP Address"
+                    },
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/183b6781-b66f-4fb3-a221-1dbf5d9381ae",
+                        "condition": "{{ vars.steps.Match_IP_in_Internal_Subnets.data['matched_cidr_ip']|length > 0 }}",
+                        "step_name": "Private IP Address"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "380",
+            "left": "270",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": "\/api\/3\/workflow_groups\/6a7d82cc-5e6f-4ab1-9cfd-439aad677192",
+            "uuid": "0eb38522-9627-4003-adaf-7c65efca3e19"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Match IP in Internal Subnets",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "cidr": "['10.0.0.0\/8','172.16.0.0\/12','192.168.0.0\/16']",
+                    "ip_address": "{{vars.indicator_value}}"
+                },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "ip_cidr_check",
+                "operationTitle": "Utils: Is IP in CIDR",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "245",
+            "left": "270",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": "\/api\/3\/workflow_groups\/6a7d82cc-5e6f-4ab1-9cfd-439aad677192",
+            "uuid": "bce88bee-7e05-4360-80ad-78513a32d5b0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Private IP Address",
+            "description": null,
+            "arguments": {
+                "isInternal": "true"
+            },
+            "status": null,
+            "top": "515",
+            "left": "445",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/6a7d82cc-5e6f-4ab1-9cfd-439aad677192",
+            "uuid": "183b6781-b66f-4fb3-a221-1dbf5d9381ae"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Match IP in Internal Subnets",
+            "targetStep": "\/api\/3\/workflow_steps\/bce88bee-7e05-4360-80ad-78513a32d5b0",
+            "sourceStep": "\/api\/3\/workflow_steps\/680e33a3-e095-4a0a-b9d6-92132021441b",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/6a7d82cc-5e6f-4ab1-9cfd-439aad677192",
+            "uuid": "d6586598-606c-4a5b-884f-d1eb6c6e2e60"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is IP Private -> External IP Address",
+            "targetStep": "\/api\/3\/workflow_steps\/9655cd83-43f7-45d6-8d48-6e9686b69c5d",
+            "sourceStep": "\/api\/3\/workflow_steps\/0eb38522-9627-4003-adaf-7c65efca3e19",
+            "label": "No",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/6a7d82cc-5e6f-4ab1-9cfd-439aad677192",
+            "uuid": "13513a8f-2492-4ef3-9a37-71f0c2365c0b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is IP Private -> Private IP Address",
+            "targetStep": "\/api\/3\/workflow_steps\/183b6781-b66f-4fb3-a221-1dbf5d9381ae",
+            "sourceStep": "\/api\/3\/workflow_steps\/0eb38522-9627-4003-adaf-7c65efca3e19",
+            "label": "Yes",
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/6a7d82cc-5e6f-4ab1-9cfd-439aad677192",
+            "uuid": "beda685e-3306-4c36-b83f-66f8343cc397"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Match IP in Internal Subnets -> Is IP Private",
+            "targetStep": "\/api\/3\/workflow_steps\/0eb38522-9627-4003-adaf-7c65efca3e19",
+            "sourceStep": "\/api\/3\/workflow_steps\/bce88bee-7e05-4360-80ad-78513a32d5b0",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/6a7d82cc-5e6f-4ab1-9cfd-439aad677192",
+            "uuid": "699f1382-480b-41cd-856b-e101ecd62a93"
+        }
+    ],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "623",
+    "width": "771",
+    "uuid": "6a7d82cc-5e6f-4ab1-9cfd-439aad677192",
+    "recordTags": [
+        "IP Address",
+        "CIDR",
+        "Internal",
+        "External"
+    ]
+}

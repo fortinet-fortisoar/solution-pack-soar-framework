@@ -1,0 +1,102 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Create and Link Asset to Alert",
+    "description": "<p>This reference block showcases an example of configuring a playbook that creates and links assets to the alert.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Alert",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "name": "Repeated Login Failures on 192.168.60.172",
+                    "type": "\/api\/3\/picklists\/574a6ee2-7265-4701-815e-cff83b053bce",
+                    "state": "\/api\/3\/picklists\/a1bac09b-1441-45aa-ad1b-c88744e48e72",
+                    "source": "Syslog",
+                    "status": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                    "severity": "\/api\/3\/picklists\/58d0753f-f7e4-403b-953c-b0f521eab759",
+                    "sourceIp": "85.61.165.153",
+                    "__replace": "",
+                    "description": "Suspicious Login Failures on asset marketing.server.1 from 43.225.46.25 \n\n",
+                    "targetAsset": "marketing.server.1",
+                    "ackSlaStatus": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
+                    "destinationIp": "192.168.60.172",
+                    "respSlaStatus": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
+                    "priorityWeight": 1,
+                    "destinationPort": "443",
+                    "escalatedtoincident": "\/api\/3\/picklists\/2128a09c-153d-4db3-985d-de6be33deae5",
+                    "alertRemainingAckSLA": 0
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/alerts",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "67",
+            "left": "52",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": "\/api\/3\/workflow_groups\/f7daf8a9-ab11-48fa-b479-7cc8a73d10e1",
+            "uuid": "eb057129-9057-4922-add3-920481a84b1c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create and Link Assets",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "assetIP": "",
+                    "indicatorIRI": "",
+                    "assetHostname": "{{vars.steps.Create_Alert.targetAsset}}",
+                    "alertRecordIRI": "{{vars.steps.Create_Alert['@id']}}",
+                    "incidentRecordIRI": ""
+                },
+                "apply_async": false,
+                "ignore_errors": false,
+                "step_variables": [],
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/24f12289-5860-4857-ac0e-354e65f46e18"
+            },
+            "status": null,
+            "top": "202",
+            "left": "52",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": "\/api\/3\/workflow_groups\/f7daf8a9-ab11-48fa-b479-7cc8a73d10e1",
+            "uuid": "0c606130-365d-41ef-a0ec-a4d8a0f6edbc"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Alert -> Create and Link Assets",
+            "targetStep": "\/api\/3\/workflow_steps\/0c606130-365d-41ef-a0ec-a4d8a0f6edbc",
+            "sourceStep": "\/api\/3\/workflow_steps\/eb057129-9057-4922-add3-920481a84b1c",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/f7daf8a9-ab11-48fa-b479-7cc8a73d10e1",
+            "uuid": "9b851976-4ff6-4b6a-98ce-3c460332d6b3"
+        }
+    ],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "321",
+    "width": "364",
+    "uuid": "f7daf8a9-ab11-48fa-b479-7cc8a73d10e1",
+    "recordTags": [
+        "Alert",
+        "Create",
+        "Referenced",
+        "Link",
+        "Asset"
+    ]
+}

@@ -604,6 +604,44 @@
                                                                         {
                                                                             "type": "editableFormGroup",
                                                                             "config": {
+                                                                                "title": "",
+                                                                                "rows": [
+                                                                                    {
+                                                                                        "columns": [
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "iPAddresses",
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "renderWidget": "json",
+                                                                                                        "renderWidgetHeight": 250
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-6"
+                                                                                            },
+                                                                                            {
+                                                                                                "fields": [
+                                                                                                    {
+                                                                                                        "name": "fileHashes",
+                                                                                                        "highlightMode": true,
+                                                                                                        "readOnly": false,
+                                                                                                        "renderWidget": "json",
+                                                                                                        "renderWidgetHeight": 250
+                                                                                                    }
+                                                                                                ],
+                                                                                                "style": "col-lg-6"
+                                                                                            }
+                                                                                        ],
+                                                                                        "style": ""
+                                                                                    }
+                                                                                ],
+                                                                                "wid": "a74d351a-8c0e-4efb-952f-aa6b2d4a0186"
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "type": "editableFormGroup",
+                                                                            "config": {
                                                                                 "title": "Reporter Details",
                                                                                 "rows": [
                                                                                     {
@@ -750,37 +788,7 @@
                                                                                         "widget": {
                                                                                             "type": "relationship.subtab",
                                                                                             "config": {
-                                                                                                "excludes": [
-                                                                                                    "notes",
-                                                                                                    "comments",
-                                                                                                    "attachments",
-                                                                                                    "alerts",
-                                                                                                    "appliances",
-                                                                                                    "companies",
-                                                                                                    "assets",
-                                                                                                    "email",
-                                                                                                    "events",
-                                                                                                    "files",
-                                                                                                    "incidents",
-                                                                                                    "people",
-                                                                                                    "scans",
-                                                                                                    "system_assigned_queues",
-                                                                                                    "tasks",
-                                                                                                    "vulnerabilities",
-                                                                                                    "owners",
-                                                                                                    "persons",
-                                                                                                    "emails",
-                                                                                                    "users",
-                                                                                                    "hunts",
-                                                                                                    "campaigns",
-                                                                                                    "mitrelink",
-                                                                                                    "communications",
-                                                                                                    "warrooms",
-                                                                                                    "mitre_sub_techniques",
-                                                                                                    "mitre_techniques",
-                                                                                                    "mitremitigations",
-                                                                                                    "mitresoftware"
-                                                                                                ],
+                                                                                                "excludes": [],
                                                                                                 "expandableCol": {
                                                                                                     "indicators": {
                                                                                                         "columns": [
@@ -886,7 +894,12 @@
                                                                                                         ]
                                                                                                     }
                                                                                                 },
-                                                                                                "wid": "4f3af1c0-6727-466d-b4cc-ac57bbd5f640"
+                                                                                                "wid": "4f3af1c0-6727-466d-b4cc-ac57bbd5f640",
+                                                                                                "selectionType": "include",
+                                                                                                "enableHorizontalScroll": [],
+                                                                                                "includes": [
+                                                                                                    "indicators"
+                                                                                                ]
                                                                                             }
                                                                                         },
                                                                                         "flag": true,
@@ -981,7 +994,10 @@
                                                                                                     }
                                                                                                 },
                                                                                                 "wid": "440a9eca-b6e7-4486-990b-f2cc7407dd0d",
-                                                                                                "expandableCol": []
+                                                                                                "expandableCol": [],
+                                                                                                "selectionType": "exclude",
+                                                                                                "enableHorizontalScroll": [],
+                                                                                                "includes": []
                                                                                             }
                                                                                         },
                                                                                         "title": "Correlations",
@@ -993,33 +1009,14 @@
                                                                                         "widget": {
                                                                                             "type": "relationship.subtab",
                                                                                             "config": {
-                                                                                                "excludes": [
-                                                                                                    "notes",
-                                                                                                    "comments",
-                                                                                                    "attachments",
-                                                                                                    "assets",
-                                                                                                    "companies",
-                                                                                                    "incidents",
-                                                                                                    "vulnerabilities",
-                                                                                                    "persons",
-                                                                                                    "emails",
-                                                                                                    "indicators",
-                                                                                                    "events",
-                                                                                                    "alerts",
-                                                                                                    "owners",
-                                                                                                    "users",
-                                                                                                    "hunts",
-                                                                                                    "campaigns",
-                                                                                                    "mitrelink",
-                                                                                                    "communications",
-                                                                                                    "warrooms",
-                                                                                                    "mitre_sub_techniques",
-                                                                                                    "mitre_techniques",
-                                                                                                    "mitremitigations",
-                                                                                                    "mitresoftware"
-                                                                                                ],
+                                                                                                "excludes": [],
                                                                                                 "expandableCol": [],
-                                                                                                "wid": "21fc0315-b03d-425e-8c57-b9d03dfcd298"
+                                                                                                "wid": "21fc0315-b03d-425e-8c57-b9d03dfcd298",
+                                                                                                "selectionType": "include",
+                                                                                                "enableHorizontalScroll": [],
+                                                                                                "includes": [
+                                                                                                    "tasks"
+                                                                                                ]
                                                                                             }
                                                                                         },
                                                                                         "active": 0,
@@ -1084,31 +1081,7 @@
                                                                                             "type": "relationship.subtab",
                                                                                             "config": {
                                                                                                 "wid": "003fe0f5-8fc3-4505-9449-fa7ac380911d",
-                                                                                                "excludes": [
-                                                                                                    "notes",
-                                                                                                    "comments",
-                                                                                                    "attachments",
-                                                                                                    "mitrelink",
-                                                                                                    "alerts",
-                                                                                                    "assets",
-                                                                                                    "campaigns",
-                                                                                                    "companies",
-                                                                                                    "emails",
-                                                                                                    "events",
-                                                                                                    "hunts",
-                                                                                                    "incidents",
-                                                                                                    "indicators",
-                                                                                                    "persons",
-                                                                                                    "tasks",
-                                                                                                    "vulnerabilities",
-                                                                                                    "owners",
-                                                                                                    "users",
-                                                                                                    "warrooms",
-                                                                                                    "mitremitigations",
-                                                                                                    "mitre_sub_techniques",
-                                                                                                    "mitre_techniques",
-                                                                                                    "mitresoftware"
-                                                                                                ],
+                                                                                                "excludes": [],
                                                                                                 "expandableCol": {
                                                                                                     "communications": {
                                                                                                         "columns": [
@@ -1119,7 +1092,12 @@
                                                                                                         ],
                                                                                                         "checkBox": true
                                                                                                     }
-                                                                                                }
+                                                                                                },
+                                                                                                "selectionType": "include",
+                                                                                                "enableHorizontalScroll": [],
+                                                                                                "includes": [
+                                                                                                    "communications"
+                                                                                                ]
                                                                                             }
                                                                                         },
                                                                                         "icon": "icon icon-email-templates",
@@ -1288,6 +1266,8 @@
                                         "userDetails",
                                         "registryKeyValue",
                                         "deviceOwner",
+                                        "iPAddresses",
+                                        "fileHashes",
                                         "reporter",
                                         "reporterEmailBody",
                                         "senderEmailAddress",
@@ -1301,6 +1281,7 @@
                                         "sourcedata"
                                     ],
                                     "excludedFields": [
+                                        "resolvedAutomatedly",
                                         "emailClassification",
                                         "respSLApausedon",
                                         "ackSLApausedon",
@@ -1330,7 +1311,8 @@
                                         "recordTags",
                                         "createUser",
                                         "createDate",
-                                        "fsrQueue"
+                                        "fsrQueue",
+                                        "iPAddresses"
                                     ],
                                     "title": "Uncategorized Fields"
                                 }
@@ -1357,12 +1339,6 @@
                     {
                         "name": "assets",
                         "title": "Assets",
-                        "type": "manyToMany",
-                        "weight": 10
-                    },
-                    {
-                        "name": "users",
-                        "title": "Users",
                         "type": "manyToMany",
                         "weight": 10
                     }
@@ -1440,6 +1416,47 @@
                     "filters": []
                 },
                 "useSimilarCriteria": true
+            },
+            "suggestedPlaybooks": {
+                "enable": true,
+                "fields": [
+                    {
+                        "name": "name",
+                        "title": "Name",
+                        "type": "text"
+                    },
+                    {
+                        "name": "type",
+                        "title": "Type",
+                        "type": "picklist"
+                    }
+                ],
+                "enableWeightRange": false,
+                "filter": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "logic": "AND",
+                            "filters": [
+                                {
+                                    "field": "createDate",
+                                    "operator": "lte",
+                                    "value": "{{getRelativeDate(0,0,1,\"end\",\"end\",\"end\")}}",
+                                    "type": "datetime"
+                                }
+                            ],
+                            "_field": "createDate",
+                            "_value": {
+                                "differenceType": "days",
+                                "differenceValue": 1
+                            },
+                            "_operator": "lte",
+                            "type": "datetime"
+                        }
+                    ]
+                }
             }
         },
         "metadata": []

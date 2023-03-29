@@ -602,48 +602,17 @@
                                                                                             "type": "relationship.subtab",
                                                                                             "config": {
                                                                                                 "wid": "02bd913d-8a70-4bfa-bc30-7599584c464f",
-                                                                                                "excludes": [
-                                                                                                    "notes",
-                                                                                                    "comments",
-                                                                                                    "attachments",
-                                                                                                    "users",
-                                                                                                    "campaigns",
-                                                                                                    "assets",
-                                                                                                    "companies",
-                                                                                                    "contact",
-                                                                                                    "dataCompliances",
-                                                                                                    "alerts",
-                                                                                                    "tasks",
-                                                                                                    "vulnerabilities",
-                                                                                                    "persons",
-                                                                                                    "emails",
-                                                                                                    "owners",
-                                                                                                    "mitreincidentlink",
-                                                                                                    "communications",
-                                                                                                    "warrooms",
-                                                                                                    "mitremitigations",
-                                                                                                    "mitresoftware",
-                                                                                                    "mitresubtechniques",
-                                                                                                    "mitretechniques"
-                                                                                                ],
-                                                                                                "expandableCol": {
-                                                                                                    "indicators": {
-                                                                                                        "columns": [
-                                                                                                            {
-                                                                                                                "name": "description",
-                                                                                                                "title": "Description"
-                                                                                                            }
-                                                                                                        ],
-                                                                                                        "checkBox": true
-                                                                                                    }
-                                                                                                },
-                                                                                                "selectionType": "exclude",
+                                                                                                "excludes": [],
+                                                                                                "expandableCol": [],
+                                                                                                "selectionType": "include",
                                                                                                 "enableHorizontalScroll": [],
-                                                                                                "includes": []
+                                                                                                "includes": [
+                                                                                                    "indicators"
+                                                                                                ]
                                                                                             }
                                                                                         },
                                                                                         "icon": "fa fa-star",
-                                                                                        "show": false,
+                                                                                        "show": true,
                                                                                         "visible": true
                                                                                     },
                                                                                     {
@@ -1365,39 +1334,13 @@
                                                                                             "type": "relationship.subtab",
                                                                                             "config": {
                                                                                                 "wid": "f56a021b-c6b5-48da-b1bd-2839e5d76011",
-                                                                                                "excludes": [
-                                                                                                    "notes",
-                                                                                                    "comments",
-                                                                                                    "attachments",
-                                                                                                    "users",
-                                                                                                    "campaigns",
-                                                                                                    "assets",
-                                                                                                    "companies",
-                                                                                                    "alerts",
-                                                                                                    "vulnerabilities",
-                                                                                                    "persons",
-                                                                                                    "indicators",
-                                                                                                    "emails",
-                                                                                                    "owners",
-                                                                                                    "mitreincidentlink",
-                                                                                                    "communications",
-                                                                                                    "warrooms",
-                                                                                                    "mitretechniques",
-                                                                                                    "mitresubtechniques",
-                                                                                                    "mitremitigations",
-                                                                                                    "mitresoftware",
-                                                                                                    "contact",
-                                                                                                    "dataCompliances"
-                                                                                                ],
-                                                                                                "expandableCol": {
-                                                                                                    "tasks": {
-                                                                                                        "columns": [],
-                                                                                                        "checkBox": false
-                                                                                                    }
-                                                                                                },
-                                                                                                "selectionType": "exclude",
+                                                                                                "excludes": [],
+                                                                                                "expandableCol": [],
+                                                                                                "selectionType": "include",
                                                                                                 "enableHorizontalScroll": [],
-                                                                                                "includes": []
+                                                                                                "includes": [
+                                                                                                    "tasks"
+                                                                                                ]
                                                                                             }
                                                                                         },
                                                                                         "icon": "fa fa-tasks",
@@ -1459,29 +1402,17 @@
                                                                                             "type": "relationship.subtab",
                                                                                             "config": {
                                                                                                 "wid": "894818c1-f3e8-4835-8eb8-7793b3bfbb7f",
-                                                                                                "excludes": [
-                                                                                                    "notes",
-                                                                                                    "comments",
-                                                                                                    "userOwners",
-                                                                                                    "attachments",
-                                                                                                    "alerts",
-                                                                                                    "assets",
-                                                                                                    "campaigns",
-                                                                                                    "companies",
-                                                                                                    "indicators",
-                                                                                                    "owners",
-                                                                                                    "persons",
-                                                                                                    "tasks",
-                                                                                                    "warrooms"
-                                                                                                ],
-                                                                                                "selectionType": "exclude",
+                                                                                                "excludes": [],
+                                                                                                "selectionType": "include",
                                                                                                 "expandableCol": [],
                                                                                                 "enableHorizontalScroll": [],
-                                                                                                "includes": []
+                                                                                                "includes": [
+                                                                                                    "communications"
+                                                                                                ]
                                                                                             }
                                                                                         },
                                                                                         "icon": "icon icon-email-templates",
-                                                                                        "show": true,
+                                                                                        "show": false,
                                                                                         "visible": true
                                                                                     },
                                                                                     {
@@ -1719,6 +1650,47 @@
                     "subTitle2": "category",
                     "subTitle3": "incidentLead",
                     "picklistBar": "severity"
+                }
+            },
+            "suggestedPlaybooks": {
+                "enable": true,
+                "fields": [
+                    {
+                        "name": "name",
+                        "title": "Name",
+                        "type": "text"
+                    },
+                    {
+                        "name": "category",
+                        "title": "Type",
+                        "type": "picklist"
+                    }
+                ],
+                "enableWeightRange": false,
+                "filter": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "logic": "AND",
+                            "filters": [
+                                {
+                                    "field": "createDate",
+                                    "operator": "lte",
+                                    "value": "{{getRelativeDate(0,0,1,\"end\",\"end\",\"end\")}}",
+                                    "type": "datetime"
+                                }
+                            ],
+                            "_field": "createDate",
+                            "_value": {
+                                "differenceType": "days",
+                                "differenceValue": 1
+                            },
+                            "_operator": "lte",
+                            "type": "datetime"
+                        }
+                    ]
                 }
             }
         },

@@ -1,0 +1,93 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Bulk ingest records using the 'Ingest Bulk Feed' Step",
+    "description": "<p>This reference block showcases an example of configuring a playbook to insert high volumes of records using the 'Ingest Bulk Feed' step.<\/p>\n<p>Example: You might want a playbook to ingest a large volume of assets records from Tenable.io<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Bulk Ingest Asset Records",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.steps.Fetch_Scan_Assets.data}}",
+                    "__bulk": true,
+                    "parallel": false,
+                    "condition": "",
+                    "batch_size": 100
+                },
+                "resource": {
+                    "ip": "{{vars.item.ip  | replace(\"[\", \"\") | replace(\"]\",\"\") | replace(\"'\",\"\") }}",
+                    "name": "{% if vars.item.fqdn %}{{vars.item.fqdn | replace(\"[\", \"\") | replace(\"]\",\"\") | replace(\"\\\"\",\"\") }}{% else %}{{vars.item.ip  | replace(\"[\", \"\") | replace(\"]\",\"\") | replace(\"'\",\"\") }}{% endif %}",
+                    "hostname": "{{vars.item.fqdn | replace(\"[\", \"\") | replace(\"]\",\"\") | replace(\"\\\"\",\"\") }}",
+                    "__replace": "",
+                    "deviceUid": "{{vars.item.uuid  | replace(\"[\", \"\") | replace(\"]\",\"\") | replace(\"'\",\"\") }}",
+                    "macAddress": "{{vars.item.mac  | replace(\"[\", \"\") | replace(\"]\",\"\") | replace(\"'\",\"\") }}",
+                    "dateScanned": "{{ arrow.get(vars.item.time_end).timestamp }}",
+                    "registrationDate": "{{ arrow.get(vars.item.time_start).timestamp }}"
+                },
+                "collection": "\/api\/ingest-feeds\/assets",
+                "__recommend": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "202",
+            "left": "66",
+            "stepType": "\/api\/3\/workflow_step_types\/7b221880-716b-4726-a2ca-5e568d330b3e",
+            "group": "\/api\/3\/workflow_groups\/8d78e298-abc6-498d-a1bd-78abfc0d79a7",
+            "uuid": "5ac3276c-9533-459f-b000-9908e1632392"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Fetch Scan Assets",
+            "description": "Fetches asset details associated with scan.",
+            "arguments": {
+                "name": "Tenable.io",
+                "config": "0427d980-5772-4609-89d8-85cdcac497a1",
+                "params": {
+                    "scan_id": "{{vars.scanId}}"
+                },
+                "version": "1.3.0",
+                "connector": "tenable-io",
+                "operation": "get_scan_assets",
+                "operationTitle": "List Scan's Assets",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "67",
+            "left": "66",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": "\/api\/3\/workflow_groups\/8d78e298-abc6-498d-a1bd-78abfc0d79a7",
+            "uuid": "114d5633-aa7d-4e8c-814f-fad731457b46"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Fetch Scan Assets -> Bulk Ingest Asset Records",
+            "targetStep": "\/api\/3\/workflow_steps\/5ac3276c-9533-459f-b000-9908e1632392",
+            "sourceStep": "\/api\/3\/workflow_steps\/114d5633-aa7d-4e8c-814f-fad731457b46",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/8d78e298-abc6-498d-a1bd-78abfc0d79a7",
+            "uuid": "08aa9e20-f344-4a7e-bfe8-645c8d71ca55"
+        }
+    ],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "314",
+    "width": "376",
+    "uuid": "8d78e298-abc6-498d-a1bd-78abfc0d79a7",
+    "recordTags": [
+        "Create",
+        "Bulk",
+        "Ingest",
+        "Assets"
+    ]
+}

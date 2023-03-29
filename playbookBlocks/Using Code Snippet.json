@@ -1,0 +1,72 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Using Code Snippet",
+    "description": "<p>This reference block showcases an example of the Code Snippet connector step in playbooks.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Code Snippet",
+            "description": null,
+            "arguments": {
+                "config": "b89f270b-44ef-46e8-ac86-7bf93b4d5371",
+                "params": {
+                    "python_function": "string_val = '{{vars.stringVal}}' #Make sure to enclose jinja for string in quotes\nlist_val = {{vars.listVal}} \ndict_val = {{vars.dictVal}}\n\ndef test(sval, lval, dval):\n  res = sval + ' ' + \" \".join(lval) + ' ' + dict_val.get('name')\n  return res\n\nresponse = test(string_val, list_val, dict_val)\n\nprint(response) #Always end your script with print to get step output\n"
+                },
+                "version": "2.0.3",
+                "connector": "code-snippet",
+                "operation": "python_inline_code_editor",
+                "operationTitle": "Execute Python Code",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "194",
+            "left": "39",
+            "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
+            "group": "\/api\/3\/workflow_groups\/c6d238fa-fa8c-4fec-b563-d053a0f989e8",
+            "uuid": "54c3bc16-74e5-4e12-8100-cc4c759468a7"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "dictVal": "{\"name\" : \"UseCase\"}",
+                "listVal": "[\"Phishing\", \"Email\"]",
+                "stringVal": "Investigating"
+            },
+            "status": null,
+            "top": "59",
+            "left": "39",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": "\/api\/3\/workflow_groups\/c6d238fa-fa8c-4fec-b563-d053a0f989e8",
+            "uuid": "9ea28e78-5d6c-4586-9398-76de0e814868"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Code Snippet",
+            "targetStep": "\/api\/3\/workflow_steps\/54c3bc16-74e5-4e12-8100-cc4c759468a7",
+            "sourceStep": "\/api\/3\/workflow_steps\/9ea28e78-5d6c-4586-9398-76de0e814868",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/c6d238fa-fa8c-4fec-b563-d053a0f989e8",
+            "uuid": "d522c1af-d1e9-40e1-9a0b-4009c551782e"
+        }
+    ],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "310",
+    "width": "333",
+    "uuid": "c6d238fa-fa8c-4fec-b563-d053a0f989e8",
+    "recordTags": [
+        "Code Snippet"
+    ]
+}

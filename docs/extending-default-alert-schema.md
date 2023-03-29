@@ -140,3 +140,6 @@ As part of the alert ingestion process, you may need to add additional fields. F
 | 101   | UUID                             | `uuid`                  |                |
 | 102   | Vulnerability  Severity          | `vulnerabilitySeverity` | `Integer`      |
 | 103   | War Rooms                        | `warrooms`              | `Many To Many` |
+| 104   | Resolved Automatedly             | `resolvedAutomatedly`   | `Checkbox`     |
+| 105   | IP Addresses                     | `iPAddresses`           | `JSON`         |
+| 106   | File Hashes                      | `fileHashes`            | `JSON`         |

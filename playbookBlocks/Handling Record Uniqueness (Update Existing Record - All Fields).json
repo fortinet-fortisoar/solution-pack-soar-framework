@@ -1,0 +1,126 @@
+{
+    "@context": "\/api\/3\/contexts\/WorkflowGroup",
+    "@type": "WorkflowGroup",
+    "name": "Handling Record Uniqueness (Update Existing Record - All Fields)",
+    "description": "<p>This reference block showcases an example of configuring a 'Create Record Step' to keep the playbook execution going and updates the existing record with the new values when a duplicate record is found.<\/p>\n<p>Example: You might want a playbook which, when a duplicate alert is found, updates the existing record with new values and does not stop playbook execution.<\/p>",
+    "type": "custom",
+    "isCollapsed": false,
+    "hasTriggerStep": false,
+    "hideInLogs": false,
+    "workflowSteps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Fetch Emails",
+            "description": null,
+            "arguments": {
+                "name": "Exchange",
+                "config": "Demo",
+                "params": {
+                    "limit": "",
+                    "source": "Inbox",
+                    "mark_read": true,
+                    "pull_oldest": "",
+                    "parse_inline": true,
+                    "source_folder": "{{vars.source_folder}}",
+                    "save_as_attachment": false,
+                    "extract_attach_data": true,
+                    "exclude_absolute_path": ""
+                },
+                "version": "4.1.0",
+                "connector": "exchange",
+                "operation": "get_email_new",
+                "operationTitle": "Get Unread Emails",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "61",
+            "left": "30",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": "\/api\/3\/workflow_groups\/766391ab-30f2-4b94-9096-4328e17470ef",
+            "uuid": "a61360d5-88d2-429d-835e-58eaf560db07"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Record",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.steps.Fetch_Emails.data}}",
+                    "__bulk": true,
+                    "parallel": false,
+                    "condition": "{{(vars.item[\"body\"][\"html\"] | regex_search('(?<=FSR)(.*?)(?=FSR)') is none) if vars.item[\"body\"][\"html\"] else (vars.item[\"body\"][\"text\"] | regex_search('(?<=FSR)(.*?)(?=FSR)') is none)}}",
+                    "batch_size": 100
+                },
+                "resource": {
+                    "name": "{% if vars.item.headers.subject %} {{vars.item.headers.subject}} {% else %} None {% endif %}",
+                    "type": "\/api\/3\/picklists\/c145394b-069a-449b-a05e-67980d0f4b82",
+                    "state": "\/api\/3\/picklists\/a1bac09b-1441-45aa-ad1b-c88744e48e72",
+                    "source": "{% if  'reporterEmailAddress' in vars.item %}User Reported{% else %}Email Server{% endif %}",
+                    "status": "\/api\/3\/picklists\/7de816ff-7140-4ee5-bd05-93ce22002146",
+                    "emailTo": "{{vars.item[\"headers\"][\"to\"]}}",
+                    "fileHash": "{% if vars.item.attachments | json_query(\"[*].metadata.md5\") | join(',') %}{{vars.item.attachments | json_query(\"[*].metadata.md5\") | join(', ')}}{%else%}NA{% endif%}",
+                    "reporter": "{{vars.item.reporterEmailAddress}}",
+                    "severity": "\/api\/3\/picklists\/b3c20a3a-ecfd-4adc-a225-0205968e6793",
+                    "sourceId": "{% if vars.item.headers['message-id'] %} {{ vars.item.headers['message-id'] | join }} {% else %} null {% endif %}",
+                    "__replace": "true",
+                    "emailBody": "<p>{%if vars.item[\"body\"][\"html\"] %}{{vars.item[\"body\"][\"html\"]}}{%else%}{{vars.item[\"body\"][\"text\"]}}{%endif%}<\/p>",
+                    "emailFrom": "{{vars.item[\"headers\"][\"from\"]}}",
+                    "fileNames": "{% if vars.item.attachments | json_query(\"[*].metadata.md5\") | join(',') %}{{vars.item.attachments | json_query(\"[*].metadata.md5\") | join(', ')}}{%else%}NA{% endif%}",
+                    "returnPath": "{% if vars.item.headers['return-path'] %}{{ (vars.item.headers['return-path'] |join(\", \") if vars.item.headers['return-path'] is not string else vars.item.headers['return-path']) | replace(\"<\",\"\") | replace(\">\",\"\")}}{% endif %}",
+                    "sourcedata": "{{vars.item | toJSON}}",
+                    "ackSlaStatus": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
+                    "emailHeaders": "{{vars.item[\"headers\"] | toJSON}}",
+                    "emailSubject": "{{vars.item[\"headers\"][\"subject\"]}}",
+                    "senderDomain": "{% if vars.item.headers.from %}{{(vars.item.headers.from.split('<')[-1] | replace(\">\",\"\")).split('@')[-1] | replace(\">\",\"\")}}{% endif %}",
+                    "respSlaStatus": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
+                    "priorityWeight": 1,
+                    "reporterEmailBody": "<p>{% if vars.item[\"reporterEmailBody\"][\"html\"] %}{{vars.item[\"reporterEmailBody\"][\"html\"]}} {%else%}{{vars.item[\"reporterEmailBody\"][\"text\"]}}{%endif%}<\/p>",
+                    "senderEmailAddress": "{% if vars.item.headers.from %}{{vars.item.headers.from }}{% endif %}",
+                    "escalatedtoincident": "\/api\/3\/picklists\/2128a09c-153d-4db3-985d-de6be33deae5",
+                    "alertRemainingAckSLA": 0,
+                    "recipientEmailAddress": "{% if vars.item.headers['to'] is not string %}{{vars.item.headers['to'] | join(',') }}{%else%}{{vars.item.headers['to']}}{% endif%}"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/upsert\/alerts",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "196",
+            "left": "30",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": "\/api\/3\/workflow_groups\/766391ab-30f2-4b94-9096-4328e17470ef",
+            "uuid": "a675f97a-b838-45e5-af7c-0e3f297b5400"
+        }
+    ],
+    "workflowRoutes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Fetch Emails -> Create Record",
+            "targetStep": "\/api\/3\/workflow_steps\/a675f97a-b838-45e5-af7c-0e3f297b5400",
+            "sourceStep": "\/api\/3\/workflow_steps\/a61360d5-88d2-429d-835e-58eaf560db07",
+            "label": null,
+            "isExecuted": false,
+            "group": "\/api\/3\/workflow_groups\/766391ab-30f2-4b94-9096-4328e17470ef",
+            "uuid": "3b559e6a-6484-4c04-ba7d-c9f7ddc484e6"
+        }
+    ],
+    "metadata": [],
+    "reusable": true,
+    "top": "0",
+    "left": "0",
+    "height": "297",
+    "width": "317",
+    "uuid": "766391ab-30f2-4b94-9096-4328e17470ef",
+    "recordTags": [
+        "DeDuplicate",
+        "Alerts",
+        "Create",
+        "Uniquness",
+        "Update All Fields"
+    ]
+}
