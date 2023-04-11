@@ -47,7 +47,7 @@
             "name": "Get Records and Teams IRI",
             "description": null,
             "arguments": {
-                "placeholder": "{% for item in vars.correlatedRecordsData %}\n{% if item not in vars.excludedModuleList %}\n  {% if vars.correlatedRecordsData.get(item) is iterable and (vars.correlatedRecordsData.get(item) is not string and vars.correlatedRecordsData.get(item) is not mapping and vars.correlatedRecordsData.get(item) is not integer) and vars.correlatedRecordsData.get(item) | length > 0 %}\n      {% if item == 'owners' %}\n         {{vars.recordTeamIRIs.extend(vars.correlatedRecordsData.get(item))}}\n      {% elif 'picklist' not in vars.correlatedRecordsData.get(item)[0] %}\n         {{vars.relatedRecordIRIList.extend(vars.correlatedRecordsData.get(item))}}\n      {% endif %}\n  {% endif %}\n{% endif %}\n{% endfor %}"
+                "placeholder": "{% for item in vars.correlatedRecordsData %}\n   {% if (vars.correlatedRecordsData.get(item) | type_debug == 'list') and (vars.correlatedRecordsData.get(item) | length > 0) %}\n      {% if item == 'owners' %}\n         {{vars.recordTeamIRIs.extend(vars.correlatedRecordsData.get(item))}}\n      {% elif item not in vars.excludedModuleList %}\n         {% if ('\/api\/3' in vars.correlatedRecordsData.get(item)[0]) and ('picklist' not in vars.correlatedRecordsData.get(item)[0]) %}\n            {{vars.relatedRecordIRIList.extend(vars.correlatedRecordsData.get(item))}}\n         {% endif %}\n      {% endif %}\n   {% endif %}\n{% endfor %}"
             },
             "status": null,
             "top": "435",
