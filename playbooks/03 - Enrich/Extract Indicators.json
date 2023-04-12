@@ -108,7 +108,7 @@
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
-                "collection": "{{vars.input.records[0]['@id']}}",
+                "collection": "{{vars.alert_iri}}",
                 "collectionType": "\/api\/3\/alerts",
                 "fieldOperation": {
                     "recordTags": "Overwrite"
@@ -322,7 +322,7 @@
             "name": "Update Indicator List",
             "description": null,
             "arguments": {
-                "temp": "{% for key,value in vars.indicator_type_map.items()%}\n    {%if vars.alert_metadata.get(key) %}\n        {% set list_vals = vars.alert_metadata.get(key) if vars.alert_metadata.get(key) is iterable and (vars.alert_metadata.get(key) is not string and vars.alert_metadata.get(key) is not mapping and vars.alert_metadata.get(key) is not integer) else vars.alert_metadata.get(key).split(\",\") %}\n        {%for val in list_vals%}\n            {% set _val = val | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+') %}\n            {% if (_val == None) and (val|string|lower not in vars.excluded_indicators) %}\n                {{vars.alert_field_iocs.append({\"type\": value, \"value\":val})}}\n            {% elif (_val != None) and _val.split('@')[-1]|lower not in vars.excluded_indicators %}\n                {{vars.alert_field_iocs.append({\"type\": value, \"value\":_val})}}\n            {% endif %}\n        {%endfor%}\n    {%endif%}\n{%endfor%}"
+                "temp": "{% for key,value in vars.indicator_type_map.items()%}\n    {%if vars.alert_metadata.get(key) %}\n        {% set list_vals = vars.alert_metadata.get(key) if vars.alert_metadata.get(key) | type_debug == 'list' else vars.alert_metadata.get(key).split(\",\") %}\n        {%for val in list_vals%}\n            {% set _val = val | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+') %}\n            {% if (_val == None) and (val|string|lower not in vars.excluded_indicators) %}\n                {{vars.alert_field_iocs.append({\"type\": value, \"value\":val})}}\n            {% elif (_val != None) and _val.split('@')[-1]|lower not in vars.excluded_indicators %}\n                {{vars.alert_field_iocs.append({\"type\": value, \"value\":_val})}}\n            {% endif %}\n        {%endfor%}\n    {%endif%}\n{%endfor%}"
             },
             "status": null,
             "top": "435",
