@@ -41,3 +41,21 @@ This enrichment process is triggered when an indicator is created. On creation, 
     - Source data
     - Field mapping
     - Enrichment summary
+
+Refer to the below connector list for which pluggable enrichment is available:
+
+    | Connector                               |
+    |:----------------------------------------|
+    | APIVoid                                 |
+    | Active Directory                        |
+    | Anomali ThreatStream                    |
+    | Fortinet FortiGuard Threat Intelligence |
+    | Fortinet FortiSandbox                   |
+    | Fortinet Web Filter Lookup              |
+    | IBM XForce                              | 
+    | IP Quality Score                        | 
+    | IP Stack                                | 
+    | Symantec DeepSight Intelligence         | 
+    | URLScan.io                              | 
+    | VirusTotal                              | 
+    | Whois RDAP                              |  
