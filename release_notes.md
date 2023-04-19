@@ -17,6 +17,9 @@
     - Added the `Event` module in the `Correlations` tab of the Alert detailed view
     - Added the tooltips for fields `IP Addresses` and `File Hashes`
 
+- **Indicator Module*
+    - A new `Failed` picklist item is added to the *Enrichment Status* picklist
+
 ## Resolved Issues
 
 - Fixed the `Fetch and Link Team to Related Records` playbook under `08 Utilities` collection which was failing when "IP Addresses" and "File Hashes" fields are populated in the alert record 
