@@ -69,14 +69,31 @@
             "name": "Get Related Records",
             "description": null,
             "arguments": {
-                "alert_data": "{{ (vars.input.records[0]['@id'] + \"?$relationships=true\") | fromIRI }}"
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "id",
+                            "value": "{{vars.input.records[0].id}}",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ]
+                },
+                "module": "alerts?$limit=30&$relationships=true&$fsr_max_relation_count=100",
+                "step_variables": {
+                    "alert_data": "{{vars.steps.Get_Related_Records[0]}}"
+                }
             },
             "status": null,
             "top": "300",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
-            "uuid": "020cc557-ae71-4bdf-8c4f-7d1338aab52c"
+            "uuid": "2d8e8ebf-ced7-446f-88aa-f0994d3b7510"
         },
         {
             "@type": "WorkflowStep",
@@ -220,12 +237,13 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Get Related Records -> Configuration",
+            "name": "Get Related Records -> Alert Indicator Data",
             "targetStep": "\/api\/3\/workflow_steps\/e8e26972-07c0-48de-a803-dabb8cc1c4b5",
-            "sourceStep": "\/api\/3\/workflow_steps\/020cc557-ae71-4bdf-8c4f-7d1338aab52c",
+            "sourceStep": "\/api\/3\/workflow_steps\/2d8e8ebf-ced7-446f-88aa-f0994d3b7510",
             "label": null,
             "isExecuted": false,
-            "uuid": "5f66f201-a34e-40c8-b969-70c47a8dcbd2"
+            "group": null,
+            "uuid": "4459f0b3-4bce-40f4-8263-07a448393d52"
         },
         {
             "@type": "WorkflowRoute",
@@ -234,16 +252,18 @@
             "sourceStep": "\/api\/3\/workflow_steps\/97821d61-e74b-48bf-964e-5db8194279bb",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "6c1d14f1-e2c1-4f96-81c4-91da22c883dd"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Configuration -> Get Related Records",
-            "targetStep": "\/api\/3\/workflow_steps\/020cc557-ae71-4bdf-8c4f-7d1338aab52c",
+            "targetStep": "\/api\/3\/workflow_steps\/2d8e8ebf-ced7-446f-88aa-f0994d3b7510",
             "sourceStep": "\/api\/3\/workflow_steps\/1944809d-e190-4463-af41-60a8dfbe165d",
             "label": null,
             "isExecuted": false,
-            "uuid": "3462b9e5-0d0f-4073-b753-965121657f35"
+            "group": null,
+            "uuid": "01521777-4c5f-49fb-8867-3086a1fc96ec"
         },
         {
             "@type": "WorkflowRoute",
@@ -252,6 +272,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/e8e26972-07c0-48de-a803-dabb8cc1c4b5",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "4bd663df-36d8-4dca-9992-15af7e5dba79"
         },
         {
@@ -261,6 +282,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/b988fa02-634f-4554-af1d-f592ea7934be",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "5b911c33-92c9-4eb7-816b-66507b67794f"
         },
         {
@@ -270,6 +292,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/8cfff921-0420-45b8-81a2-88dd8a4ad671",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "8d305d8c-8dd6-4df2-bba5-62206dd728d5"
         },
         {
@@ -279,6 +302,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/948df453-c3b4-4158-84f9-121a9d54251f",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "1fe4fa2a-45c1-4f31-a30f-c6bcfe5fb961"
         }
     ],
