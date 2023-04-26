@@ -30,60 +30,34 @@
             "description": null,
             "arguments": {
                 "resource": {
+                    "tlp": "\/api\/3\/picklists\/7bff95b7-6438-4b01-b23a-0fe8cb5b33d3",
                     "file": "{{ vars.input.params.indicatorFileIri or None }}",
-                    "tags": null,
-                    "hunts": null,
-                    "notes": null,
                     "value": "{{vars.indicatorValue}}",
                     "alerts": "{% if vars.input.params.alertRecordIRI != \"\" %}[\"{{vars.input.params.alertRecordIRI}}\"] {% endif %}",
                     "assets": "{% if vars.input.params.assetIRI != \"\" %}[\"{{vars.input.params.assetIRI}}\"] {% endif %}",
-                    "emails": "{% if vars.input.params.emailRecordIRI != \"\" %}[\"{{vars.input.params.emailRecordIRI}}\"] {% endif %}",
-                    "events": null,
-                    "owners": null,
-                    "persons": null,
-                    "sources": null,
-                    "comments": null,
                     "__replace": "true",
-                    "campaigns": null,
-                    "companies": null,
-                    "evidences": null,
                     "incidents": "{% if vars.input.params.incidentRecordIRI != \"\" %}[\"{{vars.input.params.incidentRecordIRI}}\"] {% endif %}",
-                    "reputation": {
-                        "id": 6435,
-                        "@id": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
-                        "icon": null,
-                        "@type": "Picklist",
-                        "color": "#696969",
-                        "display": "TBD",
-                        "listName": "\/api\/3\/picklist_names\/e75ed3c3-9f23-4a43-832b-0daf236209ba",
-                        "itemValue": "TBD",
-                        "orderIndex": 3
-                    },
-                    "attachments": null,
-                    "description": null,
-                    "indicatorStatus": {
-                        "id": 346,
-                        "@id": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
-                        "icon": null,
-                        "@type": "Picklist",
-                        "color": null,
-                        "display": "TBD",
-                        "listName": "\/api\/3\/picklist_names\/e6639d57-94a9-432f-a46f-b2b530402077",
-                        "itemValue": "TBD",
-                        "orderIndex": 2
-                    },
+                    "reputation": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                    "indicatorStatus": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
                     "typeofindicator": "{{vars.indicatorType}}",
-                    "vulnerabilities": null,
-                    "correlationGraph": null
+                    "enrichmentStatus": "\/api\/3\/picklists\/a6d9da29-27b1-4b8a-965d-8d91518540d5"
                 },
                 "_showJson": false,
+                "operation": "Overwrite",
                 "collection": "\/api\/3\/upsert\/indicators",
-                "step_variables": []
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": {
+                    "indicator_iri": "{{vars.steps.Is_Indicator_Exist[0]['@id']}}"
+                }
             },
             "status": null,
             "top": "560",
             "left": "480",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
             "uuid": "aec1334b-4ead-4eb3-b04f-6875ae705b02"
         },
         {
@@ -95,28 +69,33 @@
             "top": "165",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "b46357dd-5705-4bdf-9f1b-e247b668dca8"
         },
+
         {
             "@type": "WorkflowStep",
             "name": "Enrich Indicator",
             "description": null,
             "arguments": {
                 "arguments": {
-                    "indicator_IRI": "{{vars.steps.Create_New_Indicator['@id']}}",
-                    "indicator_type": "{{vars.steps.Create_New_Indicator.typeofindicator.itemValue}}",
-                    "indicator_value": "{{vars.steps.Create_New_Indicator.value}}",
+                    "indicator_IRI": "{{vars.steps.Is_Indicator_Exist[0]['@id'] or vars.steps.Create_New_Indicator['@id']}}",
+                    "indicator_type": "{{vars.steps.Create_New_Indicator.typeofindicator.itemValue or vars.steps.Is_Indicator_Exist[0].typeofindicator.itemValue}}",
+                    "indicator_value": "{{vars.steps.Create_New_Indicator.value or vars.steps.Is_Indicator_Exist[0].value}}",
                     "indicator_file_IRI": "{{vars.input.params.indicatorFileIri}}",
                     "indicator_file_name": ""
                 },
                 "apply_async": false,
                 "step_variables": [],
-                "workflowReference": "\/api\/3\/workflows\/cd29411a-5588-4800-abf1-56ccf1cb7c35"
+                "pass_parent_env": false,
+                "pass_input_record": false,
+                "workflowReference": "\/api\/3\/workflows\/02000b45-97fc-47f2-a8a7-5b03d2625898"
             },
             "status": null,
             "top": "560",
             "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
             "uuid": "aad5d903-9153-4740-ab27-033c4e5e4756"
         },
         {
@@ -143,6 +122,7 @@
             "top": "30",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
             "uuid": "efbae715-ca6d-4307-86ed-5d090f5d0259"
         },
         {
@@ -171,6 +151,7 @@
             "top": "300",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
             "uuid": "993e8428-89a4-47ea-b760-2b11fc9a1dcd"
         },
         {
@@ -197,6 +178,7 @@
             "top": "435",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
             "uuid": "01211331-9958-4df3-8786-31de4bae5117"
         }
     ],
@@ -208,6 +190,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/efbae715-ca6d-4307-86ed-5d090f5d0259",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "ec2bfcf5-80eb-462d-8e42-a643ca80b651"
         },
         {
@@ -217,6 +200,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/b46357dd-5705-4bdf-9f1b-e247b668dca8",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "d7c5b17d-d4fd-4d11-ad64-e52e0e0530aa"
         },
         {
@@ -226,6 +210,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/993e8428-89a4-47ea-b760-2b11fc9a1dcd",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "b23a855d-8217-4dfb-ae51-a7adc254a1b4"
         },
         {
@@ -235,6 +220,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/01211331-9958-4df3-8786-31de4bae5117",
             "label": "Yes",
             "isExecuted": false,
+            "group": null,
             "uuid": "e9780448-138b-476c-ac90-0fe440ddd6e0"
         },
         {
@@ -244,6 +230,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/01211331-9958-4df3-8786-31de4bae5117",
             "label": "No",
             "isExecuted": false,
+            "group": null,
             "uuid": "bfa9f806-9567-4535-aade-856348e84c4a"
         },
         {
@@ -253,9 +240,11 @@
             "sourceStep": "\/api\/3\/workflow_steps\/aec1334b-4ead-4eb3-b04f-6875ae705b02",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "71b9868c-b7b0-4006-9a45-836297362acc"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "69af07bb-0ce0-4c27-add3-a30a1818d421",
     "owners": [],

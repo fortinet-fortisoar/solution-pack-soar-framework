@@ -6,6 +6,7 @@
 
 - Modified `Generate War Room Report` playbook under the collection `06 - IRP - War Room`
     - The loading icon will now visible for the `Generate Report` button till the report is generated for the war room record
+- Removed `Link Similar Emails` playbook under the collection `06 - IRP - Case Management` 
 
 ## Module Enhancements
 
