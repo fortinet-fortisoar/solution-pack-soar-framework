@@ -5,7 +5,7 @@
     "aliasName": null,
     "tag": "#system",
     "description": "This playbook is triggered whenever an approval is requested from a playbook. This playbook is triggered whenever an approval record is created, and an email is sent out to the intended approver(s).",
-    "isActive": false,
+    "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
@@ -27,6 +27,7 @@
             "top": "113",
             "left": "209",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "35f77f93-87c1-41df-b0d0-08638a7a0b97"
         },
         {
@@ -61,6 +62,7 @@
             "top": "20",
             "left": "60",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "group": null,
             "uuid": "091c5be2-7b8e-4769-8cbc-f13b70e3af78"
         },
         {
@@ -72,12 +74,14 @@
                     {
                         "option": "Yes",
                         "step_iri": "\/api\/3\/workflow_steps\/13724551-7482-41c5-86d4-8c0486c66bd5",
-                        "condition": "{{ vars.record.assignedTo != None }}"
+                        "condition": "{{ vars.record.assignedTo != None }}",
+                        "step_name": "Set Recepient"
                     },
                     {
                         "option": "No",
-                        "step_iri": "\/api\/3\/workflow_steps\/55590e75-ac0c-4d2f-b2ad-9310de5465eb",
-                        "condition": "{{ vars.record.assignedTo == None }}"
+                        "step_iri": "\/api\/3\/workflow_steps\/b998780a-b24d-406a-99be-f8d423e57385",
+                        "condition": "{{ vars.record.assignedTo == None }}",
+                        "step_name": "Fetch Relations of the Record"
                     }
                 ]
             },
@@ -85,28 +89,33 @@
             "top": "211",
             "left": "354",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
             "uuid": "447200a7-d40e-4b8c-87a1-bcf3a1d857e1"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Fetch relations of the record",
+            "name": "Fetch Relations of the Record",
             "description": null,
             "arguments": {
-                "script": "\/wf\/workflow\/tasks\/crudhub_crud",
-                "arguments": {
-                    "method": "GET",
-                    "resource": "",
-                    "collection": "{{ vars.record['@id'] }}?$relationships=true"
+                "params": {
+                    "iri": "{{ vars.record['@id'] }}?$relationships=true",
+                    "body": "",
+                    "method": "GET"
                 },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
                 "step_variables": {
-                    "team_uuid": "{% set parts = vars.result['owners'][0]['@id'].split('\/') %}{{ parts[-1] }}"
+                    "team_uuid": "{% set parts = vars.steps.Fetch_Relations_of_the_Record.data['owners'][0]['@id'].split('\/') %}{{ parts[-1] }}"
                 }
             },
             "status": null,
             "top": "300",
             "left": "660",
-            "stepType": "\/api\/3\/workflow_step_types\/ee73e569-2188-43fe-a7f0-1964ba82a4de",
-            "uuid": "55590e75-ac0c-4d2f-b2ad-9310de5465eb"
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "b998780a-b24d-406a-99be-f8d423e57385"
         },
         {
             "@type": "WorkflowStep",
@@ -138,6 +147,7 @@
             "top": "300",
             "left": "1120",
             "stepType": "\/api\/3\/workflow_step_types\/4c0019b2-055c-44d0-968c-678a0c2d762e",
+            "group": null,
             "uuid": "3a6ee9f3-7281-45cc-8440-db58eb64d731"
         },
         {
@@ -151,28 +161,33 @@
             "top": "120",
             "left": "660",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "13724551-7482-41c5-86d4-8c0486c66bd5"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Get emails of the team members",
+            "name": "Get Emails of the Team Members",
             "description": null,
             "arguments": {
-                "script": "\/wf\/workflow\/tasks\/crudhub_crud",
-                "arguments": {
-                    "method": "GET",
-                    "resource": "",
-                    "collection": "\/api\/3\/people?teams={{ vars.team_uuid }}"
+                "params": {
+                    "iri": "\/api\/3\/people?teams={{ vars.team_uuid }}",
+                    "body": "",
+                    "method": "GET"
                 },
+                "version": "3.2.3",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
                 "step_variables": {
-                    "emails": "{{ vars.result[\"hydra:member\"] | json_query('[*].email')}}"
+                    "emails": "{{ vars.steps.Get_Emails_of_the_Team_Members.data[\"hydra:member\"] | json_query('[*].email') | unique}}"
                 }
             },
             "status": null,
             "top": "400",
             "left": "660",
-            "stepType": "\/api\/3\/workflow_step_types\/ee73e569-2188-43fe-a7f0-1964ba82a4de",
-            "uuid": "905d648c-b73d-46a1-87eb-15b17b2a4f28"
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "5108b668-45a9-470d-9d36-9456e5d9d2f5"
         },
         {
             "@type": "WorkflowStep",
@@ -185,45 +200,20 @@
             "top": "500",
             "left": "660",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "2e75d1b5-daa0-4d29-9ca6-4bc0f1ee0688"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Get emails of the team members -> emails join",
-            "targetStep": "\/api\/3\/workflow_steps\/2e75d1b5-daa0-4d29-9ca6-4bc0f1ee0688",
-            "sourceStep": "\/api\/3\/workflow_steps\/905d648c-b73d-46a1-87eb-15b17b2a4f28",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "fa968aef-bf71-48ad-9e41-d72e3c4abd99"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Check for assigned to -> Fetch relations of the record",
-            "targetStep": "\/api\/3\/workflow_steps\/55590e75-ac0c-4d2f-b2ad-9310de5465eb",
+            "name": "Assigned to User -> Fetch Relations of the Record",
+            "targetStep": "\/api\/3\/workflow_steps\/b998780a-b24d-406a-99be-f8d423e57385",
             "sourceStep": "\/api\/3\/workflow_steps\/447200a7-d40e-4b8c-87a1-bcf3a1d857e1",
             "label": "No",
             "isExecuted": false,
-            "uuid": "21deae92-8a8f-41be-9cc1-c63a6daf5045"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Configuration -> Check for assigned to",
-            "targetStep": "\/api\/3\/workflow_steps\/447200a7-d40e-4b8c-87a1-bcf3a1d857e1",
-            "sourceStep": "\/api\/3\/workflow_steps\/35f77f93-87c1-41df-b0d0-08638a7a0b97",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "eeae4ce9-ce9d-4467-ba2c-813a423d3a5c"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/35f77f93-87c1-41df-b0d0-08638a7a0b97",
-            "sourceStep": "\/api\/3\/workflow_steps\/091c5be2-7b8e-4769-8cbc-f13b70e3af78",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "03983e10-3b1f-456c-8e06-cd8638b43219"
+            "group": null,
+            "uuid": "ce4e9d17-7e3d-418f-9370-b82fe5c304df"
         },
         {
             "@type": "WorkflowRoute",
@@ -232,16 +222,38 @@
             "sourceStep": "\/api\/3\/workflow_steps\/447200a7-d40e-4b8c-87a1-bcf3a1d857e1",
             "label": "Yes",
             "isExecuted": false,
+            "group": null,
             "uuid": "6b861604-22e4-40ad-95b5-4e3546aa3dc2"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Fetch relations of the record -> Get emails of the team members",
-            "targetStep": "\/api\/3\/workflow_steps\/905d648c-b73d-46a1-87eb-15b17b2a4f28",
-            "sourceStep": "\/api\/3\/workflow_steps\/55590e75-ac0c-4d2f-b2ad-9310de5465eb",
+            "name": "Configuration -> Check for assigned to",
+            "targetStep": "\/api\/3\/workflow_steps\/447200a7-d40e-4b8c-87a1-bcf3a1d857e1",
+            "sourceStep": "\/api\/3\/workflow_steps\/35f77f93-87c1-41df-b0d0-08638a7a0b97",
             "label": null,
             "isExecuted": false,
-            "uuid": "6effaa5d-7d27-4f7e-aa53-5100149cc97a"
+            "group": null,
+            "uuid": "eeae4ce9-ce9d-4467-ba2c-813a423d3a5c"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Fetch -> Get Email",
+            "targetStep": "\/api\/3\/workflow_steps\/5108b668-45a9-470d-9d36-9456e5d9d2f5",
+            "sourceStep": "\/api\/3\/workflow_steps\/b998780a-b24d-406a-99be-f8d423e57385",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "9180a9ba-4dea-4ddc-a4c9-9fdb2dee929a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Emails of the Team Members New -> Set All Receipients",
+            "targetStep": "\/api\/3\/workflow_steps\/2e75d1b5-daa0-4d29-9ca6-4bc0f1ee0688",
+            "sourceStep": "\/api\/3\/workflow_steps\/5108b668-45a9-470d-9d36-9456e5d9d2f5",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "d67794ad-d9ba-4af8-a727-1671af00150d"
         },
         {
             "@type": "WorkflowRoute",
@@ -250,6 +262,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/2e75d1b5-daa0-4d29-9ca6-4bc0f1ee0688",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "ae50570c-4b5e-4574-a40e-e73862a303b2"
         },
         {
@@ -259,9 +272,21 @@
             "sourceStep": "\/api\/3\/workflow_steps\/13724551-7482-41c5-86d4-8c0486c66bd5",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "e4f0fc88-3fc2-40bc-bbe7-045fd1953cc6"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/35f77f93-87c1-41df-b0d0-08638a7a0b97",
+            "sourceStep": "\/api\/3\/workflow_steps\/091c5be2-7b8e-4769-8cbc-f13b70e3af78",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "03983e10-3b1f-456c-8e06-cd8638b43219"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "4f42adbd-0eb4-4ffb-b208-d1781ce6cc01",
     "owners": [],
