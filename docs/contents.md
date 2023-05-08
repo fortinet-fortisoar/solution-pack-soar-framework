@@ -447,4 +447,4 @@ You can use the playbooks in the *08 - Utilities* collection to perform various 
 | 10      | Activate Inactive Users                       | Find the Inactive users and activate them                                                                                                                         |
 | 11      | Activate inactive users - Update user status  | This is a subroutine playbook to update the user status as active                                                                                                 |
 | 12      | Indicator - Import Bulk Indicator             | Extract Indicators from specified text                                                                                                                            |
-| 13      | Fetch and Link Team to Related Records <sup>NEW</sup>| Fetches and links the team of the record to all of its related records. |
+| 13      | Cascade Permissions to all Related Records <sup>RENAMED</sup>| Fetches and links the team of the record to all of its related records. |
