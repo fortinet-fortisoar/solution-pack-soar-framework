@@ -16,8 +16,7 @@
         "escalationReason",
         "incidentLead",
         "incidentOwners",
-        "incidentType",
-        "sharedTenantIRI"
+        "incidentType"
     ],
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/3c3b049e-5ecb-464a-83f6-5af6a230c0ed",
@@ -31,7 +30,6 @@
             "arguments": {
                 "for_each": {
                     "item": "{{vars.steps.Get_Related_Records}}",
-                    "parallel": false,
                     "condition": ""
                 },
                 "temp_var1": "{% for val in vars.item.assets_record_list %}{{vars.asset_list.append(val)}}{%endfor%}",
@@ -115,20 +113,64 @@
             "arguments": {
                 "resource": {
                     "name": "{{vars.input.params.incidentName}}",
-                    "phase": "\/api\/3\/picklists\/bb740542-f699-11e7-8c3f-9a214cf093ae",
+                    "phase": {
+                        "id": 136,
+                        "@id": "\/api\/3\/picklists\/bb740542-f699-11e7-8c3f-9a214cf093ae",
+                        "icon": null,
+                        "@type": "Picklist",
+                        "color": null,
+                        "display": "Detection",
+                        "@context": "\/api\/3\/contexts\/Picklist",
+                        "listName": "\/api\/3\/picklist_names\/b862eb1f-b385-40ca-baa7-5a1b1f91a651",
+                        "itemValue": "Detection",
+                        "orderIndex": 0
+                    },
                     "alerts": "{{ vars.input.params.records | json_query('[*].\"@id\"[]') }}",
                     "assets": "{{vars.sorted_assets_list or None}}",
                     "owners": "{{vars.input.params.incidentOwners}}",
-                    "resSla": "\/api\/3\/picklists\/090115d7-90fc-4dc6-97ca-27950fc30c1c",
-                    "status": "\/api\/3\/picklists\/bb73fe9e-f699-11e7-8c3f-9a214cf093ae",
-                    "tenant": "{{vars.input.params.sharedTenantIRI}}",
+                    "resSla": {
+                        "id": 7,
+                        "@id": "\/api\/3\/picklists\/090115d7-90fc-4dc6-97ca-27950fc30c1c",
+                        "icon": null,
+                        "uuid": "090115d7-90fc-4dc6-97ca-27950fc30c1c",
+                        "@type": "Picklist",
+                        "color": "#14b341",
+                        "display": "Met",
+                        "@context": "\/api\/3\/contexts\/Picklist",
+                        "listName": "\/api\/3\/picklist_names\/fe36a8f2-fcba-4221-b4ab-1081f596b153",
+                        "itemValue": "Met",
+                        "orderIndex": 0
+                    },
+                    "status": {
+                        "id": 109,
+                        "@id": "\/api\/3\/picklists\/bb73fe9e-f699-11e7-8c3f-9a214cf093ae",
+                        "icon": null,
+                        "@type": "Picklist",
+                        "color": null,
+                        "display": "Open",
+                        "@context": "\/api\/3\/contexts\/Picklist",
+                        "listName": "\/api\/3\/picklist_names\/a549e41c-31ca-406d-89ae-eab3de5c06c4",
+                        "itemValue": "Open",
+                        "orderIndex": 0
+                    },
                     "category": "{{vars.input.params.incidentType or None}}",
                     "severity": "{{vars.input.params.severity or None}}",
-                    "slaState": "\/api\/3\/picklists\/090115d7-90fc-4dc6-97ca-27950fc30c1c",
+                    "slaState": {
+                        "id": 7,
+                        "@id": "\/api\/3\/picklists\/090115d7-90fc-4dc6-97ca-27950fc30c1c",
+                        "icon": null,
+                        "uuid": "090115d7-90fc-4dc6-97ca-27950fc30c1c",
+                        "@type": "Picklist",
+                        "color": "#14b341",
+                        "display": "Met",
+                        "@context": "\/api\/3\/contexts\/Picklist",
+                        "listName": "\/api\/3\/picklist_names\/fe36a8f2-fcba-4221-b4ab-1081f596b153",
+                        "itemValue": "Met",
+                        "orderIndex": 0
+                    },
                     "__replace": "",
                     "indicators": "{{vars.sorted_indicator_list or None}}",
-                    "incidentLead": "{{vars.input.params.incidentLead or None}}",
-                    "slaPercentage": 0
+                    "incidentLead": "{{vars.input.params.incidentLead or None}}"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
@@ -143,8 +185,8 @@
                 }
             },
             "status": null,
-            "top": "570",
-            "left": "125",
+            "top": "560",
+            "left": "120",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
             "uuid": "86b78abf-9efc-4c75-811c-329128019f23"
@@ -213,7 +255,6 @@
                             "incidentName": "{{ vars.incidentName }}",
                             "incidentType": "{{ vars.incidentType }}",
                             "incidentOwners": "{{ vars.incidentOwners }}",
-                            "sharedTenantIRI": "{{ vars.sharedTenantIRI }}",
                             "escalationReason": "{{ vars.escalationReason }}"
                         }
                     },

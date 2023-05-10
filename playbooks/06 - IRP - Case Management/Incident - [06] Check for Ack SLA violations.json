@@ -17,14 +17,29 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Start",
+            "name": "Check and Notify SLA Violations",
             "description": null,
-            "arguments": [],
+            "arguments": {
+                "when": "{{vars.steps.Retrieve_all_New_incidents | length !=0}}",
+                "for_each": {
+                    "item": "{{vars.steps.Retrieve_all_New_incidents}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "arguments": {
+                    "severity": "{{vars.item.severity.itemValue}}",
+                    "incident_IRI": "{{vars.item['@id']}}",
+                    "incident_createdDate": "{{vars.item.createDate}}"
+                },
+                "step_variables": [],
+                "workflowReference": "\/api\/3\/workflows\/c293c365-bd34-4eb0-b5c5-512fc5a5297c"
+            },
             "status": null,
-            "top": "30",
+            "top": "300",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "dd545774-02fe-4222-9b9b-3ce4c971a539"
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "f29faa62-8ef9-4dcc-a21b-ccba56139fc1"
         },
         {
             "@type": "WorkflowStep",
@@ -61,32 +76,20 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
             "uuid": "58369991-4fdb-433b-9942-239796f76d32"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Check and Notify SLA Violations",
+            "name": "Start",
             "description": null,
-            "arguments": {
-                "when": "{{vars.steps.Retrieve_all_New_incidents | length !=0}}",
-                "for_each": {
-                    "item": "{{vars.steps.Retrieve_all_New_incidents}}",
-                    "parallel": false,
-                    "condition": ""
-                },
-                "arguments": {
-                    "severity": "{{vars.item.severity.itemValue}}",
-                    "incident_IRI": "{{vars.item['@id']}}",
-                    "incident_createdDate": "{{vars.item.createDate}}"
-                },
-                "step_variables": [],
-                "workflowReference": "\/api\/3\/workflows\/c293c365-bd34-4eb0-b5c5-512fc5a5297c"
-            },
+            "arguments": [],
             "status": null,
-            "top": "300",
+            "top": "30",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "uuid": "f29faa62-8ef9-4dcc-a21b-ccba56139fc1"
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "dd545774-02fe-4222-9b9b-3ce4c971a539"
         }
     ],
     "routes": [
@@ -97,6 +100,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/58369991-4fdb-433b-9942-239796f76d32",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "2c56a0fd-c0ac-4247-9f11-d7edfd7e05ec"
         },
         {
@@ -106,9 +110,11 @@
             "sourceStep": "\/api\/3\/workflow_steps\/dd545774-02fe-4222-9b9b-3ce4c971a539",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "5fd6949b-f7f5-49e6-8567-c2d76e66a43a"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "7d278c39-166e-4659-b28c-c979a4eb2df2",
     "owners": [],

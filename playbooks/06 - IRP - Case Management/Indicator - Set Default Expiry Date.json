@@ -17,43 +17,6 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Start",
-            "description": null,
-            "arguments": {
-                "resource": "indicators",
-                "resources": [
-                    "indicators"
-                ],
-                "step_variables": {
-                    "input": {
-                        "params": [],
-                        "records": [
-                            "{{vars.input.records[0]}}"
-                        ]
-                    }
-                },
-                "fieldbasedtrigger": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": [
-                        {
-                            "type": "datetime",
-                            "field": "expiryDate",
-                            "value": "true",
-                            "operator": "isnull"
-                        }
-                    ]
-                }
-            },
-            "status": null,
-            "top": "40",
-            "left": "40",
-            "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
-            "uuid": "8e3ee3fa-1a24-44e1-9c7e-fdf94994e5e3"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Set Expiry Date",
             "description": null,
             "arguments": {
@@ -98,7 +61,46 @@
             "top": "171",
             "left": "186",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
             "uuid": "a6bdd1ef-d0a7-444d-8df0-f3a7c75dd4f4"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "indicators",
+                "resources": [
+                    "indicators"
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    }
+                },
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "datetime",
+                            "field": "expiryDate",
+                            "value": "true",
+                            "operator": "isnull"
+                        }
+                    ]
+                }
+            },
+            "status": null,
+            "top": "40",
+            "left": "40",
+            "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "group": null,
+            "uuid": "8e3ee3fa-1a24-44e1-9c7e-fdf94994e5e3"
         }
     ],
     "routes": [
@@ -109,9 +111,11 @@
             "sourceStep": "\/api\/3\/workflow_steps\/8e3ee3fa-1a24-44e1-9c7e-fdf94994e5e3",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "a3e17552-a4ea-43b6-902a-966870e258f9"
         }
     ],
+    "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
     "uuid": "622ac9e7-3be2-443c-be1f-b1f923adafea",
     "owners": [],

@@ -17,6 +17,31 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "Set First Seen Date",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "lastSeen": "{{vars.input.records[0].createDate}}",
+                    "firstSeen": "{{vars.input.records[0].createDate}}"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "collectionType": "\/api\/3\/indicators",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "174",
+            "left": "220",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "85e2fefe-4def-4353-856b-f5948498183e"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Start",
             "description": null,
             "arguments": {
@@ -49,31 +74,8 @@
             "top": "40",
             "left": "40",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "group": null,
             "uuid": "99062502-7710-42c3-9747-1b9f8469af76"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Set First Seen Date",
-            "description": null,
-            "arguments": {
-                "resource": {
-                    "lastSeen": "{{vars.input.records[0].createDate}}",
-                    "firstSeen": "{{vars.input.records[0].createDate}}"
-                },
-                "_showJson": false,
-                "operation": "Overwrite",
-                "collection": "{{vars.input.records[0]['@id']}}",
-                "collectionType": "\/api\/3\/indicators",
-                "fieldOperation": {
-                    "recordTags": "Overwrite"
-                },
-                "step_variables": []
-            },
-            "status": null,
-            "top": "174",
-            "left": "220",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "85e2fefe-4def-4353-856b-f5948498183e"
         }
     ],
     "routes": [
@@ -84,9 +86,11 @@
             "sourceStep": "\/api\/3\/workflow_steps\/99062502-7710-42c3-9747-1b9f8469af76",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "33a82391-1f62-451a-bacd-dfe7e6c20227"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "bc7f9a6f-3cf3-47e5-9eb0-8b9a7e349200",
     "owners": [],

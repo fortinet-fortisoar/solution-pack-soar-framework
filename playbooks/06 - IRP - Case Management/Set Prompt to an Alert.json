@@ -23,20 +23,39 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Start",
+            "name": "Add Note and Link Campaign",
             "description": null,
             "arguments": {
-                "step_variables": {
-                    "input": {
-                        "params": []
+                "message": {
+                    "tags": [
+                        "\/api\/3\/tags\/LinkedToCampaign"
+                    ],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "content": "<p>Indicator {{vars.input.params['indicator_value']}} is linked to <span class=\"badge badge-pill badge-danger\" style=\"background: #e31b1d; color: #fff;\">campaign(s)<\/span> - {{vars.input.params['camp_data'] | replace(\"[\",\"\") | replace(\"]\",\"\") }}<\/p>",
+                    "records": ""
+                },
+                "resource": {
+                    "__link": {
+                        "campaigns": "{{vars.input.params['camp_iri']}}"
                     }
-                }
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.input.params['alert_iri_list']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/alerts",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
             },
             "status": null,
-            "top": "30",
+            "top": "300",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "1caaeaab-0bec-4df8-aebd-704249e0dca1"
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "f11d4f42-e1aa-4c7a-9718-b155f686f722"
         },
         {
             "@type": "WorkflowStep",
@@ -75,42 +94,26 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
             "uuid": "46cc7c02-1edc-4303-9be5-91bf4c6f78b9"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Add Note and Link Campaign",
+            "name": "Start",
             "description": null,
             "arguments": {
-                "message": {
-                    "tags": [
-                        "\/api\/3\/tags\/LinkedToCampaign"
-                    ],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "tenant": "",
-                    "content": "<p>Indicator {{vars.input.params['indicator_value']}} is linked to <span class=\"badge badge-pill badge-danger\" style=\"background: #e31b1d; color: #fff;\">campaign(s)<\/span> - {{vars.input.params['camp_data'] | replace(\"[\",\"\") | replace(\"]\",\"\") }}<\/p>",
-                    "records": ""
-                },
-                "resource": {
-                    "__link": {
-                        "campaigns": "{{vars.input.params['camp_iri']}}"
+                "step_variables": {
+                    "input": {
+                        "params": []
                     }
-                },
-                "_showJson": false,
-                "operation": "Append",
-                "collection": "{{vars.input.params['alert_iri_list']}}",
-                "__recommend": [],
-                "collectionType": "\/api\/3\/alerts",
-                "fieldOperation": {
-                    "recordTags": "Append"
-                },
-                "step_variables": []
+                }
             },
             "status": null,
-            "top": "300",
+            "top": "30",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "f11d4f42-e1aa-4c7a-9718-b155f686f722"
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "1caaeaab-0bec-4df8-aebd-704249e0dca1"
         }
     ],
     "routes": [
@@ -121,6 +124,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/46cc7c02-1edc-4303-9be5-91bf4c6f78b9",
             "label": "Ok",
             "isExecuted": false,
+            "group": null,
             "uuid": "d47cce96-9b9b-4fb6-8d01-9feff2a45a4d"
         },
         {
@@ -130,9 +134,11 @@
             "sourceStep": "\/api\/3\/workflow_steps\/1caaeaab-0bec-4df8-aebd-704249e0dca1",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "aba09889-904e-440a-aa5f-a4cce919dc28"
         }
     ],
+    "groups": [],
     "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
     "uuid": "b808f4be-88fa-4b72-a5d7-8edf45407309",
     "owners": [],

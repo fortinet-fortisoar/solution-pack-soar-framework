@@ -26,6 +26,54 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "Configurations",
+            "description": null,
+            "arguments": {
+                "currentValue": "{{vars.input.params.currPhaseValue}}",
+                "recoverydate": "{{vars.input.params.recoverydt}}",
+                "aftermathdate": "{{vars.input.params.aftermathdt}}",
+                "picklistValues": "{{\"IncidentPhase\" | picklist(True)}}",
+                "containmentdate": "{{vars.input.params.containtmentdt}}",
+                "eradicationdate": "{{vars.input.params.eradicationdt}}",
+                "confirmationdate": "{{vars.input.params.confirmationdt}}",
+                "identificationdate": "{{vars.input.params.indenticationdt}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "7fb812a4-d730-47ff-a176-fad379950773"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "recoverydt": "{{ vars.recoverydt }}",
+                            "aftermathdt": "{{ vars.aftermathdt }}",
+                            "incident_iri": "{{ vars.incident_iri }}",
+                            "eradicationdt": "{{ vars.eradicationdt }}",
+                            "confirmationdt": "{{ vars.confirmationdt }}",
+                            "containtmentdt": "{{ vars.containtmentdt }}",
+                            "currPhaseValue": "{{ vars.currPhaseValue }}",
+                            "indenticationdt": "{{ vars.indenticationdt }}"
+                        }
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "d5d494fe-5720-480d-9d26-b41c8ac5e3dc"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Update Incident Phase",
             "description": null,
             "arguments": {
@@ -56,53 +104,8 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
             "uuid": "6cf2af66-35df-42cd-ae0f-64904d898bc6"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Configurations",
-            "description": null,
-            "arguments": {
-                "currentValue": "{{vars.input.params.currPhaseValue}}",
-                "recoverydate": "{{vars.input.params.recoverydt}}",
-                "aftermathdate": "{{vars.input.params.aftermathdt}}",
-                "picklistValues": "{{\"IncidentPhase\" | picklist(True)}}",
-                "containmentdate": "{{vars.input.params.containtmentdt}}",
-                "eradicationdate": "{{vars.input.params.eradicationdt}}",
-                "confirmationdate": "{{vars.input.params.confirmationdt}}",
-                "identificationdate": "{{vars.input.params.indenticationdt}}"
-            },
-            "status": null,
-            "top": "165",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "7fb812a4-d730-47ff-a176-fad379950773"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Start",
-            "description": null,
-            "arguments": {
-                "step_variables": {
-                    "input": {
-                        "params": {
-                            "recoverydt": "{{ vars.recoverydt }}",
-                            "aftermathdt": "{{ vars.aftermathdt }}",
-                            "incident_iri": "{{ vars.incident_iri }}",
-                            "eradicationdt": "{{ vars.eradicationdt }}",
-                            "confirmationdt": "{{ vars.confirmationdt }}",
-                            "containtmentdt": "{{ vars.containtmentdt }}",
-                            "currPhaseValue": "{{ vars.currPhaseValue }}",
-                            "indenticationdt": "{{ vars.indenticationdt }}"
-                        }
-                    }
-                }
-            },
-            "status": null,
-            "top": "30",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
-            "uuid": "d5d494fe-5720-480d-9d26-b41c8ac5e3dc"
         }
     ],
     "routes": [
@@ -113,6 +116,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/7fb812a4-d730-47ff-a176-fad379950773",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "c93698a2-d9b0-41ac-9858-42a1dd87c5de"
         },
         {
@@ -122,9 +126,11 @@
             "sourceStep": "\/api\/3\/workflow_steps\/d5d494fe-5720-480d-9d26-b41c8ac5e3dc",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "eddee157-7369-4e24-922c-66b29aa09af7"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "f9a7d4b4-b16b-4b1b-b63a-8dd65b4437d0",
     "owners": [],

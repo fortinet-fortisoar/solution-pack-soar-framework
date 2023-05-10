@@ -38,6 +38,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
             "uuid": "94c31636-f2c3-430f-8b31-b001e2a38306"
         },
         {
@@ -75,6 +76,7 @@
             "top": "165",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
             "uuid": "51bb51f0-058b-41e1-a92e-5d323a8035dd"
         },
         {
@@ -86,19 +88,11 @@
             "top": "30",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
             "uuid": "15e1e5d6-c95f-4ae7-aa81-702389ee572f"
         }
     ],
     "routes": [
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Retrieve all Acknowledged incidents",
-            "targetStep": "\/api\/3\/workflow_steps\/51bb51f0-058b-41e1-a92e-5d323a8035dd",
-            "sourceStep": "\/api\/3\/workflow_steps\/15e1e5d6-c95f-4ae7-aa81-702389ee572f",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "b3c3035c-bb45-43ab-a044-1a767fa41e79"
-        },
         {
             "@type": "WorkflowRoute",
             "name": "Retrieve all Acknowledged incidents -> Check and Notify SLA Violation",
@@ -106,9 +100,21 @@
             "sourceStep": "\/api\/3\/workflow_steps\/51bb51f0-058b-41e1-a92e-5d323a8035dd",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "f4ab4a1d-5ab7-4553-b03d-9b926cfa16be"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Retrieve all Acknowledged incidents",
+            "targetStep": "\/api\/3\/workflow_steps\/51bb51f0-058b-41e1-a92e-5d323a8035dd",
+            "sourceStep": "\/api\/3\/workflow_steps\/15e1e5d6-c95f-4ae7-aa81-702389ee572f",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "b3c3035c-bb45-43ab-a044-1a767fa41e79"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "e0af41c5-134c-48e4-b58e-805a3f6d9a21",
     "owners": [],

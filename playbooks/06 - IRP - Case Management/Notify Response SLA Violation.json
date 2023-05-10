@@ -21,78 +21,6 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Fetch SLA Details",
-            "description": null,
-            "arguments": {
-                "arguments": {
-                    "inc_severity": "{{vars.input.params.severity}}"
-                },
-                "step_variables": {
-                    "slaResult": "{{vars.result}}"
-                },
-                "workflowReference": "\/api\/3\/workflows\/4c4d8e7e-de26-4afa-8110-50c5a555b2ec"
-            },
-            "status": null,
-            "top": "190",
-            "left": "775",
-            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
-            "uuid": "962345ad-68e7-4e1c-ab10-776293f654dc"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Compute Elapsed Time In Minutes",
-            "description": "",
-            "arguments": {
-                "elapsed_time": "{{ ((arrow.utcnow() - arrow.get(vars.input.params['incident_AckDate'])).total_seconds()\/60) | int }}"
-            },
-            "status": null,
-            "top": "190",
-            "left": "450",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "c9e220f4-52cc-4f89-8e91-d6b309660d1e"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Set 75 Percent SLA Violation",
-            "description": null,
-            "arguments": {
-                "resource": {
-                    "resPercentSLA": 75
-                },
-                "_showJson": false,
-                "operation": "Overwrite",
-                "collection": "{{vars.input.params['incident_IRI']}}",
-                "collectionType": "\/api\/3\/incidents",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "440",
-            "left": "2488",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "e01393a5-6571-47e0-bf3d-63cd96e6488b"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "No SLA Details Fetched",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "msg": "No SLA Fetched"
-                },
-                "version": "2.1.0",
-                "connector": "cyops_utilities",
-                "operation": "raise_exception",
-                "operationTitle": "Utils: Raise Exception",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "110",
-            "left": "1425",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "42f91677-5b02-4973-b678-320eccab53fc"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Alert User for SLA Violation",
             "description": null,
             "arguments": {
@@ -123,7 +51,119 @@
             "top": "270",
             "left": "2075",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
             "uuid": "e998c706-b3c9-41c7-b232-c9842f7a77ba"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Compute Elapsed Time In Minutes",
+            "description": "",
+            "arguments": {
+                "elapsed_time": "{{ ((arrow.utcnow() - arrow.get(vars.input.params['incident_AckDate'])).total_seconds()\/60) | int }}"
+            },
+            "status": null,
+            "top": "190",
+            "left": "450",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "c9e220f4-52cc-4f89-8e91-d6b309660d1e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Compute Percentage Elapsed Time Passed",
+            "description": "",
+            "arguments": {
+                "time_elapsed_percentage": "{{(((vars.elapsed_time - vars.ack_sla_eta) \/ vars.res_sla_eta) * 100) | int}}"
+            },
+            "status": null,
+            "top": "270",
+            "left": "1750",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "158b4ece-fca9-4c1e-bb4f-598ebc3c62df"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Fetch SLA Details",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "inc_severity": "{{vars.input.params.severity}}"
+                },
+                "step_variables": {
+                    "slaResult": "{{vars.result}}"
+                },
+                "workflowReference": "\/api\/3\/workflows\/4c4d8e7e-de26-4afa-8110-50c5a555b2ec"
+            },
+            "status": null,
+            "top": "190",
+            "left": "775",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "962345ad-68e7-4e1c-ab10-776293f654dc"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "No SLA Details Fetched",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "msg": "No SLA Fetched"
+                },
+                "version": "2.1.0",
+                "connector": "cyops_utilities",
+                "operation": "raise_exception",
+                "operationTitle": "Utils: Raise Exception",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "110",
+            "left": "1425",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "42f91677-5b02-4973-b678-320eccab53fc"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set 50 Percent SLA Violation",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "resPercentSLA": 50
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "{{vars.input.params['incident_IRI']}}",
+                "collectionType": "\/api\/3\/incidents",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "129",
+            "left": "2488",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "3f8fed5c-c502-47e9-85be-52dd944b8c95"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set 75 Percent SLA Violation",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "resPercentSLA": 75
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "{{vars.input.params['incident_IRI']}}",
+                "collectionType": "\/api\/3\/incidents",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "440",
+            "left": "2488",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "e01393a5-6571-47e0-bf3d-63cd96e6488b"
         },
         {
             "@type": "WorkflowStep",
@@ -137,44 +177,8 @@
             "top": "270",
             "left": "1425",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "7974a051-e4f8-46b4-a964-ea1b7bc0fc79"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Compute Percentage Elapsed Time Passed",
-            "description": "",
-            "arguments": {
-                "time_elapsed_percentage": "{{(((vars.elapsed_time - vars.ack_sla_eta) \/ vars.res_sla_eta) * 100) | int}}"
-            },
-            "status": null,
-            "top": "270",
-            "left": "1750",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "158b4ece-fca9-4c1e-bb4f-598ebc3c62df"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Verify SLA Details",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Not Fetched",
-                        "step_iri": "\/api\/3\/workflow_steps\/42f91677-5b02-4973-b678-320eccab53fc",
-                        "condition": "{{ vars.slaResult | length != 1 }}"
-                    },
-                    {
-                        "option": "Fetched",
-                        "step_iri": "\/api\/3\/workflow_steps\/7974a051-e4f8-46b4-a964-ea1b7bc0fc79",
-                        "condition": "{{ vars.slaResult | length == 1 }}"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "190",
-            "left": "1100",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "18afc3da-3093-4a4d-8961-b29f0f3cec79"
         },
         {
             "@type": "WorkflowStep",
@@ -205,27 +209,8 @@
             "top": "560",
             "left": "2420",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
             "uuid": "9889db29-3b2b-49bc-b8be-981050799ea8"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Set 50 Percent SLA Violation",
-            "description": null,
-            "arguments": {
-                "resource": {
-                    "resPercentSLA": 50
-                },
-                "_showJson": false,
-                "operation": "Overwrite",
-                "collection": "{{vars.input.params['incident_IRI']}}",
-                "collectionType": "\/api\/3\/incidents",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "129",
-            "left": "2488",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "3f8fed5c-c502-47e9-85be-52dd944b8c95"
         },
         {
             "@type": "WorkflowStep",
@@ -246,6 +231,7 @@
             "top": "190",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
             "uuid": "ac21e9c4-1e7b-4599-8f88-fd307dd71a10"
         },
         {
@@ -265,28 +251,36 @@
             "top": "30",
             "left": "2400",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
             "uuid": "1a1e2acf-e857-4bbd-ba9f-3585f09d997e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Verify SLA Details",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Not Fetched",
+                        "step_iri": "\/api\/3\/workflow_steps\/42f91677-5b02-4973-b678-320eccab53fc",
+                        "condition": "{{ vars.slaResult | length != 1 }}"
+                    },
+                    {
+                        "option": "Fetched",
+                        "step_iri": "\/api\/3\/workflow_steps\/7974a051-e4f8-46b4-a964-ea1b7bc0fc79",
+                        "condition": "{{ vars.slaResult | length == 1 }}"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "190",
+            "left": "1100",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "18afc3da-3093-4a4d-8961-b29f0f3cec79"
         }
     ],
     "routes": [
-        {
-            "@type": "WorkflowRoute",
-            "name": "Verify SLA Details -> No SLA Details Fetched",
-            "targetStep": "\/api\/3\/workflow_steps\/42f91677-5b02-4973-b678-320eccab53fc",
-            "sourceStep": "\/api\/3\/workflow_steps\/18afc3da-3093-4a4d-8961-b29f0f3cec79",
-            "label": "Not Fetched",
-            "isExecuted": false,
-            "uuid": "653361fa-c57f-4482-a478-935bf6337017"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Compute Elapsed Time In Minutes -> Fetch SLA Details",
-            "targetStep": "\/api\/3\/workflow_steps\/962345ad-68e7-4e1c-ab10-776293f654dc",
-            "sourceStep": "\/api\/3\/workflow_steps\/c9e220f4-52cc-4f89-8e91-d6b309660d1e",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "2701df23-382b-46b9-a587-85195815612d"
-        },
         {
             "@type": "WorkflowRoute",
             "name": "Alert User for SLA Violation -> Set 50 Percent SLA Violation",
@@ -294,25 +288,8 @@
             "sourceStep": "\/api\/3\/workflow_steps\/e998c706-b3c9-41c7-b232-c9842f7a77ba",
             "label": ">= 50%",
             "isExecuted": false,
+            "group": null,
             "uuid": "399766d3-8aef-4aaf-8ad2-b8e3497d016c"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Set SLA details -> Compute Percentage Elapsed Time Passed For P1",
-            "targetStep": "\/api\/3\/workflow_steps\/158b4ece-fca9-4c1e-bb4f-598ebc3c62df",
-            "sourceStep": "\/api\/3\/workflow_steps\/7974a051-e4f8-46b4-a964-ea1b7bc0fc79",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "108d545d-9312-4683-a0ec-8ed646b0225f"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Compute Percentage Elapsed Time Passed For P1 -> Alert User for SLA Violation",
-            "targetStep": "\/api\/3\/workflow_steps\/e998c706-b3c9-41c7-b232-c9842f7a77ba",
-            "sourceStep": "\/api\/3\/workflow_steps\/158b4ece-fca9-4c1e-bb4f-598ebc3c62df",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "8d322d45-044c-492d-9e18-35818cf1c955"
         },
         {
             "@type": "WorkflowRoute",
@@ -321,25 +298,8 @@
             "sourceStep": "\/api\/3\/workflow_steps\/e998c706-b3c9-41c7-b232-c9842f7a77ba",
             "label": ">= 75%",
             "isExecuted": false,
+            "group": null,
             "uuid": "cea8baa4-c03e-495c-9a69-2972d4cdbbb8"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Alert User for SLA Violation -> Terminate Playbook Percentage in safe Range",
-            "targetStep": "\/api\/3\/workflow_steps\/1a1e2acf-e857-4bbd-ba9f-3585f09d997e",
-            "sourceStep": "\/api\/3\/workflow_steps\/e998c706-b3c9-41c7-b232-c9842f7a77ba",
-            "label": "< 50%",
-            "isExecuted": false,
-            "uuid": "62e93847-cc0c-4ccb-a65e-17274a3d9802"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Start -> Compute Elapsed Time In Minutes",
-            "targetStep": "\/api\/3\/workflow_steps\/c9e220f4-52cc-4f89-8e91-d6b309660d1e",
-            "sourceStep": "\/api\/3\/workflow_steps\/ac21e9c4-1e7b-4599-8f88-fd307dd71a10",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "0833c844-b5b7-4c44-ac63-a2a6e93698f8"
         },
         {
             "@type": "WorkflowRoute",
@@ -348,7 +308,38 @@
             "sourceStep": "\/api\/3\/workflow_steps\/e998c706-b3c9-41c7-b232-c9842f7a77ba",
             "label": ">= 100%",
             "isExecuted": false,
+            "group": null,
             "uuid": "d3227035-b737-44de-a1ed-9c3ec5f93bf0"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Alert User for SLA Violation -> Terminate Playbook Percentage in safe Range",
+            "targetStep": "\/api\/3\/workflow_steps\/1a1e2acf-e857-4bbd-ba9f-3585f09d997e",
+            "sourceStep": "\/api\/3\/workflow_steps\/e998c706-b3c9-41c7-b232-c9842f7a77ba",
+            "label": "< 50%",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "62e93847-cc0c-4ccb-a65e-17274a3d9802"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Compute Elapsed Time In Minutes -> Fetch SLA Details",
+            "targetStep": "\/api\/3\/workflow_steps\/962345ad-68e7-4e1c-ab10-776293f654dc",
+            "sourceStep": "\/api\/3\/workflow_steps\/c9e220f4-52cc-4f89-8e91-d6b309660d1e",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "2701df23-382b-46b9-a587-85195815612d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Compute Percentage Elapsed Time Passed For P1 -> Alert User for SLA Violation",
+            "targetStep": "\/api\/3\/workflow_steps\/e998c706-b3c9-41c7-b232-c9842f7a77ba",
+            "sourceStep": "\/api\/3\/workflow_steps\/158b4ece-fca9-4c1e-bb4f-598ebc3c62df",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "8d322d45-044c-492d-9e18-35818cf1c955"
         },
         {
             "@type": "WorkflowRoute",
@@ -357,7 +348,38 @@
             "sourceStep": "\/api\/3\/workflow_steps\/962345ad-68e7-4e1c-ab10-776293f654dc",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "bad5b5ae-6df9-4efd-8885-6dfdb4f5c042"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Set SLA details -> Compute Percentage Elapsed Time Passed For P1",
+            "targetStep": "\/api\/3\/workflow_steps\/158b4ece-fca9-4c1e-bb4f-598ebc3c62df",
+            "sourceStep": "\/api\/3\/workflow_steps\/7974a051-e4f8-46b4-a964-ea1b7bc0fc79",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "108d545d-9312-4683-a0ec-8ed646b0225f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Compute Elapsed Time In Minutes",
+            "targetStep": "\/api\/3\/workflow_steps\/c9e220f4-52cc-4f89-8e91-d6b309660d1e",
+            "sourceStep": "\/api\/3\/workflow_steps\/ac21e9c4-1e7b-4599-8f88-fd307dd71a10",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "0833c844-b5b7-4c44-ac63-a2a6e93698f8"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Verify SLA Details -> No SLA Details Fetched",
+            "targetStep": "\/api\/3\/workflow_steps\/42f91677-5b02-4973-b678-320eccab53fc",
+            "sourceStep": "\/api\/3\/workflow_steps\/18afc3da-3093-4a4d-8961-b29f0f3cec79",
+            "label": "Not Fetched",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "653361fa-c57f-4482-a478-935bf6337017"
         },
         {
             "@type": "WorkflowRoute",
@@ -366,9 +388,11 @@
             "sourceStep": "\/api\/3\/workflow_steps\/18afc3da-3093-4a4d-8961-b29f0f3cec79",
             "label": "Fetched",
             "isExecuted": false,
+            "group": null,
             "uuid": "aad53f2c-4dce-4f89-a27d-aeb03ffa3981"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "77ec3e8f-2b3a-48b9-a9cc-ac22cec3fd7c",
     "owners": [],

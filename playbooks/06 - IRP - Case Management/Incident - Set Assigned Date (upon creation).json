@@ -17,6 +17,26 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "Set Assigned Date",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "assigneddate": "{{arrow.utcnow().timestamp}}"
+                },
+                "_showJson": false,
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "collectionType": "\/api\/3\/incidents",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "160",
+            "left": "411",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "f978c290-dd41-462d-872c-03c558b8e7b7"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Start",
             "description": null,
             "arguments": {
@@ -40,26 +60,8 @@
             "top": "67",
             "left": "100",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "group": null,
             "uuid": "761fbf7c-a1c8-47d8-8c79-525e98208c69"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Set Assigned Date",
-            "description": null,
-            "arguments": {
-                "resource": {
-                    "assigneddate": "{{arrow.utcnow().timestamp}}"
-                },
-                "_showJson": false,
-                "collection": "{{vars.input.records[0]['@id']}}",
-                "collectionType": "\/api\/3\/incidents",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "160",
-            "left": "411",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "f978c290-dd41-462d-872c-03c558b8e7b7"
         }
     ],
     "routes": [
@@ -70,9 +72,11 @@
             "sourceStep": "\/api\/3\/workflow_steps\/761fbf7c-a1c8-47d8-8c79-525e98208c69",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "07d540cd-3431-44c6-8105-2371c7b5174f"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "cfc8eaf0-86c4-4aa7-9d27-8799d61bd2d5",
     "owners": [],

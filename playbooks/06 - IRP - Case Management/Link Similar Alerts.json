@@ -17,20 +17,6 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Config",
-            "description": null,
-            "arguments": {
-                "parentAlert": "{{vars.request.data.__parentRecordId}}",
-                "selectedSimilarAlerts": "{{vars.request.data.records}}"
-            },
-            "status": null,
-            "top": "146",
-            "left": "189",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "aaad20ce-76dd-43ec-b246-b442736b621f"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Check if triggered from similarity section",
             "description": null,
             "arguments": {
@@ -51,27 +37,23 @@
             "top": "260",
             "left": "340",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
             "uuid": "fa2fc6a7-ed51-4ab5-9655-b2ce16f0744c"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Raise Error",
+            "name": "Config",
             "description": null,
             "arguments": {
-                "params": {
-                    "msg": "This playbook is meant for using with Recommendation engine and expects similar records as one of the inputs."
-                },
-                "version": "3.0.0",
-                "connector": "cyops_utilities",
-                "operation": "raise_exception",
-                "operationTitle": "Utils: Raise Exception",
-                "step_variables": []
+                "parentAlert": "{{vars.request.data.__parentRecordId}}",
+                "selectedSimilarAlerts": "{{vars.request.data.records}}"
             },
             "status": null,
-            "top": "393",
-            "left": "660",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "768406d5-fce8-4bde-a18c-6f55d53cf4c2"
+            "top": "146",
+            "left": "189",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "aaad20ce-76dd-43ec-b246-b442736b621f"
         },
         {
             "@type": "WorkflowStep",
@@ -100,7 +82,29 @@
             "top": "149",
             "left": "660",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
             "uuid": "33171ceb-2caa-4622-93c6-edc8b07a2917"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Raise Error",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "msg": "This playbook is meant for using with Recommendation engine and expects similar records as one of the inputs."
+                },
+                "version": "3.0.0",
+                "connector": "cyops_utilities",
+                "operation": "raise_exception",
+                "operationTitle": "Utils: Raise Exception",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "393",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "768406d5-fce8-4bde-a18c-6f55d53cf4c2"
         },
         {
             "@type": "WorkflowStep",
@@ -142,27 +146,20 @@
             "top": "40",
             "left": "40",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
             "uuid": "000848ef-2946-437d-b4c1-6283686e78ff"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Config",
-            "targetStep": "\/api\/3\/workflow_steps\/aaad20ce-76dd-43ec-b246-b442736b621f",
-            "sourceStep": "\/api\/3\/workflow_steps\/000848ef-2946-437d-b4c1-6283686e78ff",
-            "label": null,
+            "name": "Check if triggered from similarity section -> Error",
+            "targetStep": "\/api\/3\/workflow_steps\/768406d5-fce8-4bde-a18c-6f55d53cf4c2",
+            "sourceStep": "\/api\/3\/workflow_steps\/fa2fc6a7-ed51-4ab5-9655-b2ce16f0744c",
+            "label": "No",
             "isExecuted": false,
-            "uuid": "9ef571f5-4baa-4c97-9d8c-164eaec8fb7d"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Config -> Check if triggered from similarity section",
-            "targetStep": "\/api\/3\/workflow_steps\/fa2fc6a7-ed51-4ab5-9655-b2ce16f0744c",
-            "sourceStep": "\/api\/3\/workflow_steps\/aaad20ce-76dd-43ec-b246-b442736b621f",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "dff8975a-cb6a-45aa-ac2b-db5da6f560a5"
+            "group": null,
+            "uuid": "30ec4ae4-e494-4a67-941a-ba62e3978052"
         },
         {
             "@type": "WorkflowRoute",
@@ -171,18 +168,31 @@
             "sourceStep": "\/api\/3\/workflow_steps\/fa2fc6a7-ed51-4ab5-9655-b2ce16f0744c",
             "label": "Yes",
             "isExecuted": false,
+            "group": null,
             "uuid": "4bcd604b-f507-4097-b65c-593a5c659466"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Check if triggered from similarity section -> Error",
-            "targetStep": "\/api\/3\/workflow_steps\/768406d5-fce8-4bde-a18c-6f55d53cf4c2",
-            "sourceStep": "\/api\/3\/workflow_steps\/fa2fc6a7-ed51-4ab5-9655-b2ce16f0744c",
-            "label": "No",
+            "name": "Config -> Check if triggered from similarity section",
+            "targetStep": "\/api\/3\/workflow_steps\/fa2fc6a7-ed51-4ab5-9655-b2ce16f0744c",
+            "sourceStep": "\/api\/3\/workflow_steps\/aaad20ce-76dd-43ec-b246-b442736b621f",
+            "label": null,
             "isExecuted": false,
-            "uuid": "30ec4ae4-e494-4a67-941a-ba62e3978052"
+            "group": null,
+            "uuid": "dff8975a-cb6a-45aa-ac2b-db5da6f560a5"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Config",
+            "targetStep": "\/api\/3\/workflow_steps\/aaad20ce-76dd-43ec-b246-b442736b621f",
+            "sourceStep": "\/api\/3\/workflow_steps\/000848ef-2946-437d-b4c1-6283686e78ff",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "9ef571f5-4baa-4c97-9d8c-164eaec8fb7d"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "20f32ef0-5ca1-4293-b961-2cfea235d4bc",
     "owners": [],

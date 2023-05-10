@@ -17,6 +17,26 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "Set Assigned Date",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "assigneddate": "{{arrow.utcnow().timestamp}}"
+                },
+                "_showJson": false,
+                "collection": "{{vars.input.records[0][\"@id\"]}}",
+                "collectionType": "\/api\/3\/alerts",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "160",
+            "left": "411",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "73351dfa-8e1a-4c89-80f2-fc6e9871522c"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Start",
             "description": null,
             "arguments": {
@@ -50,26 +70,8 @@
             "top": "60",
             "left": "100",
             "stepType": "\/api\/3\/workflow_step_types\/9300bf69-5063-486d-b3a6-47eb9da24872",
+            "group": null,
             "uuid": "d7153d64-0ae9-429e-8237-1322d421798e"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Set Assigned Date",
-            "description": null,
-            "arguments": {
-                "resource": {
-                    "assigneddate": "{{arrow.utcnow().timestamp}}"
-                },
-                "_showJson": false,
-                "collection": "{{vars.input.records[0][\"@id\"]}}",
-                "collectionType": "\/api\/3\/alerts",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "160",
-            "left": "411",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "73351dfa-8e1a-4c89-80f2-fc6e9871522c"
         }
     ],
     "routes": [
@@ -80,9 +82,11 @@
             "sourceStep": "\/api\/3\/workflow_steps\/d7153d64-0ae9-429e-8237-1322d421798e",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "36450f00-21db-4d29-9540-9dc791a4e627"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "0ce19390-c2d5-4c7c-8bd3-f3298a144210",
     "owners": [],

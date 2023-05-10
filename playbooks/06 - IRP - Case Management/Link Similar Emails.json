@@ -17,6 +17,76 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "Check if triggered from similarity section",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "No",
+                        "step_iri": "\/api\/3\/workflow_steps\/c77bc4b4-9aa4-4df8-a4b1-d4ee2a67efa2",
+                        "condition": "{{ vars.parentEmail|length == 0 }}"
+                    },
+                    {
+                        "option": "Yes",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/030c69f7-130c-47c3-a111-36afe0dc130d"
+                    }
+                ]
+            },
+            "status": null,
+            "top": "260",
+            "left": "340",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "e7c87a95-edc7-42a1-951f-8bf522847210"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Config",
+            "description": null,
+            "arguments": {
+                "parentEmail": "{{vars.request.data.__parentRecordId}}",
+                "selectedSimilarEmails": "{{vars.request.data.records}}"
+            },
+            "status": null,
+            "top": "146",
+            "left": "189",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "560acc64-be3a-4f41-ae61-520c682a90e3"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Link Similar Emails To Parent",
+            "description": null,
+            "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "content": "<p>Linked<strong> {{vars.selectedSimilarEmails|length}}<\/strong>&nbsp;similar email(s) to this&nbsp;email successfully.&nbsp;<\/p>\n<p>&nbsp;<\/p>\n<p>&nbsp;<\/p>",
+                    "records": "{{vars.parentEmail}}"
+                },
+                "resource": {
+                    "emails": "{{vars.selectedSimilarEmails}}"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "{{vars.parentEmail}}",
+                "collectionType": "\/api\/3\/emails",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "149",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "030c69f7-130c-47c3-a111-36afe0dc130d"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Raise Error",
             "description": null,
             "arguments": {
@@ -33,6 +103,7 @@
             "top": "393",
             "left": "660",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
             "uuid": "c77bc4b4-9aa4-4df8-a4b1-d4ee2a67efa2"
         },
         {
@@ -101,94 +172,20 @@
             "top": "40",
             "left": "40",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
             "uuid": "2b3ab1ee-7edf-4dcf-8809-ec0978d43026"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Config",
-            "description": null,
-            "arguments": {
-                "parentEmail": "{{vars.request.data.__parentRecordId}}",
-                "selectedSimilarEmails": "{{vars.request.data.records}}"
-            },
-            "status": null,
-            "top": "146",
-            "left": "189",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "560acc64-be3a-4f41-ae61-520c682a90e3"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Link Similar Emails To Parent",
-            "description": null,
-            "arguments": {
-                "message": {
-                    "tags": [],
-                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "content": "<p>Linked<strong> {{vars.selectedSimilarEmails|length}}<\/strong>&nbsp;similar email(s) to this&nbsp;email successfully.&nbsp;<\/p>\n<p>&nbsp;<\/p>\n<p>&nbsp;<\/p>",
-                    "records": "{{vars.parentEmail}}"
-                },
-                "resource": {
-                    "emails": "{{vars.selectedSimilarEmails}}"
-                },
-                "_showJson": false,
-                "operation": "Overwrite",
-                "collection": "{{vars.parentEmail}}",
-                "collectionType": "\/api\/3\/emails",
-                "fieldOperation": {
-                    "recordTags": "Overwrite"
-                },
-                "step_variables": []
-            },
-            "status": null,
-            "top": "149",
-            "left": "660",
-            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "030c69f7-130c-47c3-a111-36afe0dc130d"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Check if triggered from similarity section",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "No",
-                        "step_iri": "\/api\/3\/workflow_steps\/c77bc4b4-9aa4-4df8-a4b1-d4ee2a67efa2",
-                        "condition": "{{ vars.parentEmail|length == 0 }}"
-                    },
-                    {
-                        "option": "Yes",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/030c69f7-130c-47c3-a111-36afe0dc130d"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "260",
-            "left": "340",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "uuid": "e7c87a95-edc7-42a1-951f-8bf522847210"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Config",
-            "targetStep": "\/api\/3\/workflow_steps\/560acc64-be3a-4f41-ae61-520c682a90e3",
-            "sourceStep": "\/api\/3\/workflow_steps\/2b3ab1ee-7edf-4dcf-8809-ec0978d43026",
-            "label": null,
+            "name": "Check if triggered from similarity section -> Error",
+            "targetStep": "\/api\/3\/workflow_steps\/c77bc4b4-9aa4-4df8-a4b1-d4ee2a67efa2",
+            "sourceStep": "\/api\/3\/workflow_steps\/e7c87a95-edc7-42a1-951f-8bf522847210",
+            "label": "No",
             "isExecuted": false,
-            "uuid": "a8da5bae-4e19-43e8-ae80-b110be91c1ec"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Config -> Check if triggered from similarity section",
-            "targetStep": "\/api\/3\/workflow_steps\/e7c87a95-edc7-42a1-951f-8bf522847210",
-            "sourceStep": "\/api\/3\/workflow_steps\/560acc64-be3a-4f41-ae61-520c682a90e3",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "93268317-8b23-439f-8c99-af8b70cf9741"
+            "group": null,
+            "uuid": "9fa8102a-1dfa-475f-a64a-7e9c5ef19785"
         },
         {
             "@type": "WorkflowRoute",
@@ -197,18 +194,31 @@
             "sourceStep": "\/api\/3\/workflow_steps\/e7c87a95-edc7-42a1-951f-8bf522847210",
             "label": "Yes",
             "isExecuted": false,
+            "group": null,
             "uuid": "3f5baea6-f5b6-467c-a06e-8e4c2775e81c"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Check if triggered from similarity section -> Error",
-            "targetStep": "\/api\/3\/workflow_steps\/c77bc4b4-9aa4-4df8-a4b1-d4ee2a67efa2",
-            "sourceStep": "\/api\/3\/workflow_steps\/e7c87a95-edc7-42a1-951f-8bf522847210",
-            "label": "No",
+            "name": "Config -> Check if triggered from similarity section",
+            "targetStep": "\/api\/3\/workflow_steps\/e7c87a95-edc7-42a1-951f-8bf522847210",
+            "sourceStep": "\/api\/3\/workflow_steps\/560acc64-be3a-4f41-ae61-520c682a90e3",
+            "label": null,
             "isExecuted": false,
-            "uuid": "9fa8102a-1dfa-475f-a64a-7e9c5ef19785"
+            "group": null,
+            "uuid": "93268317-8b23-439f-8c99-af8b70cf9741"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Config",
+            "targetStep": "\/api\/3\/workflow_steps\/560acc64-be3a-4f41-ae61-520c682a90e3",
+            "sourceStep": "\/api\/3\/workflow_steps\/2b3ab1ee-7edf-4dcf-8809-ec0978d43026",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "a8da5bae-4e19-43e8-ae80-b110be91c1ec"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "1451cfe2-61c0-4ac6-a194-c874c93ddb56",
     "owners": [],
