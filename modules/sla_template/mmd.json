@@ -1,6 +1,6 @@
 {
     "@context": "\/api\/3\/contexts\/StagingModelMetadata",
-    "@id": "\/api\/3\/staging_model_metadatas\/29817331-6f88-44a7-80be-c69dc8b8c95d",
+    "@id": "\/api\/3\/staging_model_metadatas\/edbc0bd0-e229-4ed6-8224-91919289c7ef",
     "@type": "StagingModelMetadata",
     "type": "sla_template",
     "parentType": null,
@@ -26,15 +26,14 @@
     "writable": true,
     "attributes": [
         {
-            "@id": "\/api\/3\/attribute_metadatas\/104dc9b2-c586-46c4-8f43-2de0c38f59b9",
             "@type": "AttributeMetadata",
-            "type": "string",
-            "name": "alertAckTime",
-            "length": 0,
-            "orderIndex": 8,
-            "formType": "text",
-            "dataSource": [],
-            "searchable": false,
+            "type": "boolean",
+            "name": "restartSLA",
+            "length": null,
+            "orderIndex": 1,
+            "formType": "checkbox",
+            "dataSource": null,
+            "searchable": true,
             "peerReplicable": true,
             "system": false,
             "encrypted": false,
@@ -43,41 +42,39 @@
             "inversedField": null,
             "ownsRelationship": false,
             "validation": {
-                "maxlength": 10485761,
-                "minlength": 0,
                 "required": false,
-                "_enableRange": false
+                "minlength": 0,
+                "maxlength": 10485761
             },
             "bulkAction": {
                 "allow": false,
-                "buttonClass": "btn btn-default btn-sm",
+                "buttonText": "",
                 "buttonIcon": "",
-                "buttonText": ""
+                "buttonClass": "btn btn-default btn-sm"
             },
-            "dataSourceFilters": [],
-            "defaultValue": "0",
-            "tooltip": "Enter time in minutes",
+            "dataSourceFilters": null,
+            "defaultValue": "",
+            "tooltip": "Select this checkbox if you would like to recalculate the due dates on acknowledgement and severity change",
             "visibility": true,
             "htmlEscape": false,
-            "orphanRemoval": false,
+            "orphanRemoval": null,
             "readable": true,
             "writeable": true,
-            "identifier": false,
+            "identifier": null,
             "unique": false,
             "recommend": false,
-            "uuid": "104dc9b2-c586-46c4-8f43-2de0c38f59b9",
-            "displayName": "{{ alertAckTime }}",
+            "skipSerialization": false,
+            "displayName": "{{ restartSLA }}",
             "descriptions": {
-                "singular": "Alert Ack Time"
+                "singular": "Restart SLA?"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/64bf8110-e2be-4125-ae8b-4a2070e25324",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "incPauseSLAOn",
             "length": 0,
-            "orderIndex": 1,
+            "orderIndex": 3,
             "formType": "picklist",
             "dataSource": {
                 "model": "picklists",
@@ -121,7 +118,7 @@
                 }
             },
             "searchable": false,
-            "peerReplicable": true,
+            "peerReplicable": false,
             "system": false,
             "encrypted": false,
             "gridColumn": false,
@@ -151,19 +148,18 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "uuid": "64bf8110-e2be-4125-ae8b-4a2070e25324",
+            "skipSerialization": false,
             "displayName": "{{ incPauseSLAOn }}",
             "descriptions": {
                 "singular": "Pause Incident SLA On"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/f5cc30d8-89ba-461b-b07a-8f89452b4cf2",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "altPauseSLAOn",
             "length": 0,
-            "orderIndex": 2,
+            "orderIndex": 4,
             "formType": "picklist",
             "dataSource": {
                 "model": "picklists",
@@ -207,7 +203,7 @@
                 }
             },
             "searchable": false,
-            "peerReplicable": true,
+            "peerReplicable": false,
             "system": false,
             "encrypted": false,
             "gridColumn": false,
@@ -237,19 +233,63 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "uuid": "f5cc30d8-89ba-461b-b07a-8f89452b4cf2",
+            "skipSerialization": false,
             "displayName": "{{ altPauseSLAOn }}",
             "descriptions": {
                 "singular": "Pause Alert SLA On"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/e930b5e9-bb1d-423a-a9bc-e0beefe98991",
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "ackSlaTime",
+            "length": 0,
+            "orderIndex": 5,
+            "formType": "text",
+            "dataSource": [],
+            "searchable": false,
+            "peerReplicable": false,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "_enableRange": false,
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "0",
+            "tooltip": "Enter time in minutes",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ ackSlaTime }}",
+            "descriptions": {
+                "singular": "Incident Ack Time"
+            }
+        },
+        {
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "incSeverity",
             "length": 0,
-            "orderIndex": 4,
+            "orderIndex": 6,
             "formType": "picklist",
             "dataSource": {
                 "model": "picklists",
@@ -293,7 +333,7 @@
                 }
             },
             "searchable": false,
-            "peerReplicable": true,
+            "peerReplicable": false,
             "system": false,
             "encrypted": false,
             "gridColumn": true,
@@ -323,69 +363,22 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "uuid": "e930b5e9-bb1d-423a-a9bc-e0beefe98991",
+            "skipSerialization": false,
             "displayName": "{{ incSeverity }}",
             "descriptions": {
                 "singular": "Severity"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/2467ec9f-0682-4b40-a48e-b8a2cd63d545",
-            "@type": "AttributeMetadata",
-            "type": "string",
-            "name": "ackSlaTime",
-            "length": 0,
-            "orderIndex": 3,
-            "formType": "text",
-            "dataSource": [],
-            "searchable": false,
-            "peerReplicable": true,
-            "system": false,
-            "encrypted": false,
-            "gridColumn": true,
-            "collection": false,
-            "inversedField": null,
-            "ownsRelationship": false,
-            "validation": {
-                "_enableRange": false,
-                "maxlength": 10485761,
-                "minlength": 0,
-                "required": false
-            },
-            "bulkAction": {
-                "allow": false,
-                "buttonClass": "btn btn-default btn-sm",
-                "buttonIcon": "",
-                "buttonText": ""
-            },
-            "dataSourceFilters": [],
-            "defaultValue": "0",
-            "tooltip": "Enter time in minutes",
-            "visibility": true,
-            "htmlEscape": false,
-            "orphanRemoval": false,
-            "readable": true,
-            "writeable": true,
-            "identifier": false,
-            "unique": false,
-            "recommend": false,
-            "uuid": "2467ec9f-0682-4b40-a48e-b8a2cd63d545",
-            "displayName": "{{ ackSlaTime }}",
-            "descriptions": {
-                "singular": "Incident Ack Time"
-            }
-        },
-        {
-            "@id": "\/api\/3\/attribute_metadatas\/daf2272e-3730-417c-aff0-fe43fc9996b5",
             "@type": "AttributeMetadata",
             "type": "string",
             "name": "resTime",
             "length": 0,
-            "orderIndex": 5,
+            "orderIndex": 7,
             "formType": "text",
             "dataSource": [],
             "searchable": false,
-            "peerReplicable": true,
+            "peerReplicable": false,
             "system": false,
             "encrypted": false,
             "gridColumn": true,
@@ -415,19 +408,18 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "uuid": "daf2272e-3730-417c-aff0-fe43fc9996b5",
+            "skipSerialization": false,
             "displayName": "{{ resTime }}",
             "descriptions": {
                 "singular": "Incident Response Time"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/998ce90a-edb6-4434-95e8-91f3eff79e72",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "slaTrackedOn",
             "length": 0,
-            "orderIndex": 6,
+            "orderIndex": 8,
             "formType": "picklist",
             "dataSource": {
                 "displayConditions": {
@@ -471,7 +463,7 @@
                 }
             },
             "searchable": false,
-            "peerReplicable": true,
+            "peerReplicable": false,
             "system": false,
             "encrypted": false,
             "gridColumn": true,
@@ -501,19 +493,18 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "uuid": "998ce90a-edb6-4434-95e8-91f3eff79e72",
+            "skipSerialization": false,
             "displayName": "{{ slaTrackedOn }}",
             "descriptions": {
                 "singular": "Incident Ack SLA Tracked on"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/eee6546a-3f30-4fa6-be1d-79d8c5487126",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "resSlaTrackedOn",
             "length": 0,
-            "orderIndex": 7,
+            "orderIndex": 9,
             "formType": "picklist",
             "dataSource": {
                 "displayConditions": {
@@ -557,7 +548,7 @@
                 }
             },
             "searchable": false,
-            "peerReplicable": true,
+            "peerReplicable": false,
             "system": false,
             "encrypted": false,
             "gridColumn": true,
@@ -587,23 +578,22 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "uuid": "eee6546a-3f30-4fa6-be1d-79d8c5487126",
+            "skipSerialization": false,
             "displayName": "{{ resSlaTrackedOn }}",
             "descriptions": {
                 "singular": "Incident Response SLA Tracked on"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/a1b2bb31-5dc6-4487-9f47-c09322ef0878",
             "@type": "AttributeMetadata",
             "type": "string",
-            "name": "alertResTime",
+            "name": "alertAckTime",
             "length": 0,
-            "orderIndex": 9,
+            "orderIndex": 10,
             "formType": "text",
             "dataSource": [],
             "searchable": false,
-            "peerReplicable": true,
+            "peerReplicable": false,
             "system": false,
             "encrypted": false,
             "gridColumn": false,
@@ -633,19 +623,63 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "uuid": "a1b2bb31-5dc6-4487-9f47-c09322ef0878",
+            "skipSerialization": false,
+            "displayName": "{{ alertAckTime }}",
+            "descriptions": {
+                "singular": "Alert Ack Time"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "alertResTime",
+            "length": 0,
+            "orderIndex": 11,
+            "formType": "text",
+            "dataSource": [],
+            "searchable": false,
+            "peerReplicable": false,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "maxlength": 10485761,
+                "minlength": 0,
+                "required": false,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonClass": "btn btn-default btn-sm",
+                "buttonIcon": "",
+                "buttonText": ""
+            },
+            "dataSourceFilters": [],
+            "defaultValue": "0",
+            "tooltip": "Enter time in minutes",
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": false,
+            "readable": true,
+            "writeable": true,
+            "identifier": false,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
             "displayName": "{{ alertResTime }}",
             "descriptions": {
                 "singular": "Alert Response Time"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/83d69be9-f08e-435f-8e7c-89442de6995b",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "alertAckTrackedOn",
             "length": 0,
-            "orderIndex": 10,
+            "orderIndex": 12,
             "formType": "picklist",
             "dataSource": {
                 "displayConditions": {
@@ -693,7 +727,7 @@
                 }
             },
             "searchable": false,
-            "peerReplicable": true,
+            "peerReplicable": false,
             "system": false,
             "encrypted": false,
             "gridColumn": false,
@@ -723,19 +757,18 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "uuid": "83d69be9-f08e-435f-8e7c-89442de6995b",
+            "skipSerialization": false,
             "displayName": "{{ alertAckTrackedOn }}",
             "descriptions": {
                 "singular": "Alert Ack Tracked On"
             }
         },
         {
-            "@id": "\/api\/3\/attribute_metadatas\/64085ba2-3eda-4f69-b402-49b25c0319c6",
             "@type": "AttributeMetadata",
             "type": "picklists",
             "name": "alertResTrackedOn",
             "length": 0,
-            "orderIndex": 11,
+            "orderIndex": 13,
             "formType": "picklist",
             "dataSource": {
                 "displayConditions": {
@@ -783,7 +816,7 @@
                 }
             },
             "searchable": false,
-            "peerReplicable": true,
+            "peerReplicable": false,
             "system": false,
             "encrypted": false,
             "gridColumn": false,
@@ -813,7 +846,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
-            "uuid": "64085ba2-3eda-4f69-b402-49b25c0319c6",
+            "skipSerialization": false,
             "displayName": "{{ alertResTrackedOn }}",
             "descriptions": {
                 "singular": "Alert Response Tracked On"
@@ -831,7 +864,7 @@
         "delete_primary_data_after": 60
     },
     "archivalFilters": [],
-    "uuid": "29817331-6f88-44a7-80be-c69dc8b8c95d",
+    "uuid": "edbc0bd0-e229-4ed6-8224-91919289c7ef",
     "displayName": "SLA Template",
     "descriptions": {
         "plural": "SLA Templates",
