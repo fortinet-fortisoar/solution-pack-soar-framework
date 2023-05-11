@@ -34,8 +34,12 @@
                     "parallel": false,
                     "condition": ""
                 },
-                "temp_var1": "{% for val in vars.item.assets_record_list %}{{vars.asset_list.append(val)}}{%endfor%}",
-                "temp_var2": "{% for val in vars.item.indicators_record_list %}{{vars.indicator_list.append(val)}}{%endfor%}"
+                "temp_var1": "{{vars.asset_list.extend(vars.item.assets_record_list)}}",
+                "temp_var2": "{{vars.indicator_list.extend(vars.item.indicators_record_list)}}",
+                "temp_var3": "{{vars.mitigation_list.extend(vars.item.mitigation_record_list)}}",
+                "temp_var4": "{{vars.software_list.extend(vars.item.software_record_list)}}",
+                "temp_var5": "{{vars.sub_technique_list.extend(vars.item.sub_technique_record_IRI)}}",
+                "temp_var6": "{{vars.technique_list.extend(vars.item.technique_record_IRI)}}"
             },
             "status": null,
             "top": "300",
@@ -60,6 +64,8 @@
                 },
                 "apply_async": false,
                 "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": false,
                 "workflowReference": "\/api\/3\/workflows\/f35b7874-4a53-45e1-a686-86a605ea7dcf"
             },
             "status": null,
@@ -75,7 +81,11 @@
             "description": null,
             "arguments": {
                 "sorted_assets_list": "{{vars.asset_list | flatten | unique }}",
-                "sorted_indicator_list": "{{vars.indicator_list | flatten | unique }}"
+                "sorted_software_list": "{{vars.software_list | flatten | unique }}",
+                "sorted_indicator_list": "{{vars.indicator_list | flatten | unique }}",
+                "sorted_technique_list": "{{vars.technique_list | flatten | unique }}",
+                "soreted_mitigation_list": "{{vars.mitigation_list | flatten | unique }}",
+                "sorted_sub_technique_list": "{{vars.sub_technique_list | flatten | unique }}"
             },
             "status": null,
             "top": "435",
@@ -128,7 +138,11 @@
                     "__replace": "",
                     "indicators": "{{vars.sorted_indicator_list or None}}",
                     "incidentLead": "{{vars.input.params.incidentLead or None}}",
-                    "slaPercentage": 0
+                    "mitresoftware": "{{vars.sorted_software_list or None}}",
+                    "slaPercentage": 0,
+                    "mitretechniques": "{{vars.sorted_technique_list or None}}",
+                    "mitremitigations": "{{vars.soreted_mitigation_list or None}}",
+                    "mitresubtechniques": "{{vars.sorted_sub_technique_list or None}}"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
@@ -206,19 +220,14 @@
             "arguments": {
                 "step_variables": {
                     "input": {
-                        "params": {
-                            "records": "{{ vars.records }}",
-                            "severity": "{{ vars.severity }}",
-                            "incidentLead": "{{ vars.incidentLead }}",
-                            "incidentName": "{{ vars.incidentName }}",
-                            "incidentType": "{{ vars.incidentType }}",
-                            "incidentOwners": "{{ vars.incidentOwners }}",
-                            "sharedTenantIRI": "{{ vars.sharedTenantIRI }}",
-                            "escalationReason": "{{ vars.escalationReason }}"
-                        }
+                        "params": []
                     },
                     "asset_list": "[]",
-                    "indicator_list": "[]"
+                    "software_list": "[]",
+                    "indicator_list": "[]",
+                    "technique_list": "[]",
+                    "mitigation_list": "[]",
+                    "sub_technique_list": "[]"
                 }
             },
             "status": null,
@@ -230,6 +239,16 @@
         }
     ],
     "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Consolidate Related Records -> Get Unique Related Records",
+            "targetStep": "\/api\/3\/workflow_steps\/9b02c44d-ed11-47d8-b94a-42798700613e",
+            "sourceStep": "\/api\/3\/workflow_steps\/6cc1b871-b390-464e-9b8d-66ad85054039",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "3dde9cf6-c3f9-47af-8789-ecd6c01dda06"
+        },
         {
             "@type": "WorkflowRoute",
             "name": "Get Related Records -> Set Related Records",
@@ -248,7 +267,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "8eed5159-0707-486e-9a3b-1047607cfbba"
+            "uuid": "21b38f9b-bd88-473a-8b0c-7831b3c7b056"
         },
         {
             "@type": "WorkflowRoute",
@@ -279,16 +298,6 @@
             "isExecuted": false,
             "group": null,
             "uuid": "bd1cb0b9-39ad-42d2-a633-d3f5cbc4311b"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Set Related Assets Records -> fg",
-            "targetStep": "\/api\/3\/workflow_steps\/9b02c44d-ed11-47d8-b94a-42798700613e",
-            "sourceStep": "\/api\/3\/workflow_steps\/6cc1b871-b390-464e-9b8d-66ad85054039",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "06956366-416d-47df-881b-37c067efd4d5"
         },
         {
             "@type": "WorkflowRoute",
