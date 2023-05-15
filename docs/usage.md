@@ -66,3 +66,6 @@ Alternatively,
 1. The playbook **Block IP** is launched.
 2. A prompt asks you to enter a blocking reason.
 3. The playbook follows the course of blocking and marks the indicator status as **Blocked**.
+
+| [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Contents](./contents.md) |
+|-----------------------------------------|-------------------------------------------|---------------------------|

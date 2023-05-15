@@ -143,3 +143,6 @@ As part of the alert ingestion process, you may need to add additional fields. F
 | 104   | Resolved Automatedly             | `resolvedAutomatedly`   | `Checkbox`     |
 | 105   | IP Addresses                     | `iPAddresses`           | `JSON`         |
 | 106   | File Hashes                      | `fileHashes`            | `JSON`         |
+
+| [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
+|-----------------------------------------|-------------------------------------------|---------------------|---------------------------|

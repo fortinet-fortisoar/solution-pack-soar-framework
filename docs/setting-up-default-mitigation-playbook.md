@@ -21,3 +21,6 @@ Following image shows the necessary configurations required for adding the **Blo
 Click **Save** to add the step and draw the routes to complete the process. This action &ndash; of using Fortinet FortiGate to block a URL &ndash; is now ready to be included as a mitigation playbook.
 
 To reference any playbook in an existing playbook's flow, refer to [Referencing a Playbook](https://docs.fortinet.com/document/fortisoar/7.2.0/playbooks-guide/784146/triggers-steps#Reference_a_Playbook).
+
+| [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
+|-----------------------------------------|-------------------------------------------|---------------------|---------------------------|
