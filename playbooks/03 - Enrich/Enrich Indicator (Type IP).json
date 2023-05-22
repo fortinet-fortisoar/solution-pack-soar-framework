@@ -46,9 +46,9 @@
                 "params": {
                     "python_function": "try:\n    import dns.resolver,dns.reversename\n    addrs = dns.reversename.from_address(\"{{vars.record}}\")\n    print(str(dns.resolver.query(addrs,\"PTR\")[0]))\nexcept:\n    print('Not Resolvable')"
                 },
-                "version": "2.0.0",
+                "version": "2.0.3",
                 "connector": "code-snippet",
-                "operation": "python_inline",
+                "operation": "python_inline_code_editor",
                 "operationTitle": "Execute Python Code",
                 "step_variables": {
                     "hostname": "{{vars.result.data['code_output']}}"

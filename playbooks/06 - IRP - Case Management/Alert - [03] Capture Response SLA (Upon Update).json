@@ -129,7 +129,7 @@
                 "config": "4b6b27cf-86a5-4c5d-a7f8-0186dbc623b5",
                 "params": {
                     "slaTime": "{% if vars.input.records[0].alertRemainingRespSLA%}{{vars.input.records[0].alertRemainingRespSLA}}{%else%}{{vars.sla_time_list.alertResTime}}{%endif%}",
-                    "recordCreateTime": "{% if vars.sla_time_list == True%} {{vars.input.records[0].modifyDate}} {% else %} {{vars.input.records[0].createDate}} {% endif %}"
+                    "recordCreateTime": "{% if vars.sla_time_list %} {{vars.input.records[0].modifyDate}} {% else %} {{vars.input.records[0].createDate}} {% endif %}"
                 },
                 "version": "2.0.0",
                 "connector": "slacalculator",
