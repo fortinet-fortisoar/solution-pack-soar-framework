@@ -42,17 +42,17 @@
             "name": "Reverse DNS",
             "description": null,
             "arguments": {
-              "config": "0e7a1d6d-1ab7-4d97-bbd3-f680d4dc676a",
-              "params": {
-                "python_function": "try:\n    import dns.resolver,dns.reversename\n    addrs = dns.reversename.from_address(\"{{vars.record}}\")\n    print(str(dns.resolver.query(addrs,\"PTR\")[0]))\nexcept:\n    print('Not Resolvable')"
-              },
-              "version": "2.0.3",
-              "connector": "code-snippet",
-              "operation": "python_inline_code_editor",
-              "operationTitle": "Execute Python Code",
-              "step_variables": {
-                "hostname": "{{vars.result.data['code_output']}}"
-              }
+                "config": "0e7a1d6d-1ab7-4d97-bbd3-f680d4dc676a",
+                "params": {
+                    "python_function": "try:\n    import dns.resolver,dns.reversename\n    addrs = dns.reversename.from_address(\"{{vars.record}}\")\n    print(str(dns.resolver.query(addrs,\"PTR\")[0]))\nexcept:\n    print('Not Resolvable')"
+                },
+                "version": "2.0.3",
+                "connector": "code-snippet",
+                "operation": "python_inline_code_editor",
+                "operationTitle": "Execute Python Code",
+                "step_variables": {
+                    "hostname": "{{vars.result.data['code_output']}}"
+                }
             },
             "status": null,
             "top": "380",
