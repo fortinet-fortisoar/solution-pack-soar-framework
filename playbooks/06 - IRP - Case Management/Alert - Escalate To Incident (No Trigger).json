@@ -119,50 +119,50 @@
             "uuid": "b600dcb0-3476-477e-a108-4426b8e9e092"
         },
         {
-            "@type": "WorkflowStep",
-            "name": "Insert One Incident_Many_to_One",
-            "description": null,
-            "arguments": {
-              "resource": {
-                "name": "{{vars.input.params.incidentName}}",
-                "phase": "\/api\/3\/picklists\/bb740542-f699-11e7-8c3f-9a214cf093ae",
-                "alerts": "{{ vars.input.params.records | json_query('[*].\"@id\"[]') }}",
-                "assets": "{{vars.sorted_assets_list or None}}",
-                "owners": "{{vars.input.params.incidentOwners}}",
-                "resSla": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
-                "status": "\/api\/3\/picklists\/bb73fe9e-f699-11e7-8c3f-9a214cf093ae",
-                "tenant": "{{vars.input.params.sharedTenantIRI}}",
-                "category": "{{vars.input.params.incidentType or None}}",
-                "severity": "{{vars.input.params.severity or None}}",
-                "slaState": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
-                "__replace": "",
-                "indicators": "{{vars.sorted_indicator_list or None}}",
-                "incidentLead": "{{vars.input.params.incidentLead or None}}",
-                "mitresoftware": "{{vars.sorted_software_list or None}}",
-                "slaPercentage": 0,
-                "mitretechniques": "{{vars.sorted_technique_list or None}}",
-                "mitremitigations": "{{vars.soreted_mitigation_list or None}}",
-                "mitresubtechniques": "{{vars.sorted_sub_technique_list or None}}"
-              },
-              "_showJson": false,
-              "operation": "Overwrite",
-              "collection": "\/api\/3\/incidents",
-              "__recommend": [],
-              "tagsOperation": "OverwriteTags",
-              "fieldOperation": {
-                "recordTags": "Overwrite"
-              },
-              "step_variables": {
-                "incident": "{{ vars.result }}"
-              }
+                "@type": "WorkflowStep",
+                "name": "Insert One Incident_Many_to_One",
+                "description": null,
+                "arguments": {
+                "resource": {
+                    "name": "{{vars.input.params.incidentName}}",
+                    "phase": "\/api\/3\/picklists\/bb740542-f699-11e7-8c3f-9a214cf093ae",
+                    "alerts": "{{ vars.input.params.records | json_query('[*].\"@id\"[]') }}",
+                    "assets": "{{vars.sorted_assets_list or None}}",
+                    "owners": "{{vars.input.params.incidentOwners}}",
+                    "resSla": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
+                    "status": "\/api\/3\/picklists\/bb73fe9e-f699-11e7-8c3f-9a214cf093ae",
+                    "tenant": "{{vars.input.params.sharedTenantIRI}}",
+                    "category": "{{vars.input.params.incidentType or None}}",
+                    "severity": "{{vars.input.params.severity or None}}",
+                    "slaState": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
+                    "__replace": "",
+                    "indicators": "{{vars.sorted_indicator_list or None}}",
+                    "incidentLead": "{{vars.input.params.incidentLead or None}}",
+                    "mitresoftware": "{{vars.sorted_software_list or None}}",
+                    "slaPercentage": 0,
+                    "mitretechniques": "{{vars.sorted_technique_list or None}}",
+                    "mitremitigations": "{{vars.soreted_mitigation_list or None}}",
+                    "mitresubtechniques": "{{vars.sorted_sub_technique_list or None}}"
+                },
+                "_showJson": false,
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/incidents",
+                "__recommend": [],
+                "tagsOperation": "OverwriteTags",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": {
+                    "incident": "{{ vars.result }}"
+                }
+                },
+                "status": null,
+                "top": "570",
+                "left": "125",
+                "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+                "group": null,
+                "uuid": "86b78abf-9efc-4c75-811c-329128019f23"
             },
-            "status": null,
-            "top": "570",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
-            "group": null,
-            "uuid": "86b78abf-9efc-4c75-811c-329128019f23"
-          },
         {
             "@type": "WorkflowStep",
             "name": "Set Escalate Status on Alert",
