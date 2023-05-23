@@ -31,7 +31,8 @@
             "arguments": {
                 "for_each": {
                     "item": "{{vars.steps.Get_Related_Records}}",
-                    "parallel": false,
+                    "__bulk": false,
+                    "parallel": true,
                     "condition": ""
                 },
                 "temp_var1": "{{vars.asset_list.extend(vars.item.assets_record_list)}}",
@@ -39,7 +40,9 @@
                 "temp_var3": "{{vars.mitigation_list.extend(vars.item.mitigation_record_list)}}",
                 "temp_var4": "{{vars.software_list.extend(vars.item.software_record_list)}}",
                 "temp_var5": "{{vars.sub_technique_list.extend(vars.item.sub_technique_record_IRI)}}",
-                "temp_var6": "{{vars.technique_list.extend(vars.item.technique_record_IRI)}}"
+                "temp_var6": "{{vars.technique_list.extend(vars.item.technique_record_IRI)}}",
+                "temp_var7": "{{vars.tactics_list.extend(vars.item.tactics_record_IRI)}}",
+                "temp_var8": "{{vars.group_list.extend(vars.item.group_record_IRI)}}"
             },
             "status": null,
             "top": "300",
@@ -80,11 +83,13 @@
             "name": "Get Unique Related Records",
             "description": null,
             "arguments": {
+                "sorted_group_list": "{{vars.group_list | flatten | unique }}",
                 "sorted_assets_list": "{{vars.asset_list | flatten | unique }}",
+                "sorted_tactics_list": "{{vars.tactics_list | flatten | unique }}",
                 "sorted_software_list": "{{vars.software_list | flatten | unique }}",
                 "sorted_indicator_list": "{{vars.indicator_list | flatten | unique }}",
                 "sorted_technique_list": "{{vars.technique_list | flatten | unique }}",
-                "soreted_mitigation_list": "{{vars.mitigation_list | flatten | unique }}",
+                "sorted_mitigation_list": "{{vars.mitigation_list | flatten | unique }}",
                 "sorted_sub_technique_list": "{{vars.sub_technique_list | flatten | unique }}"
             },
             "status": null,
@@ -137,11 +142,13 @@
                     "slaState": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
                     "__replace": "",
                     "indicators": "{{vars.sorted_indicator_list or None}}",
+                    "mitregroups": "{{vars.sorted_group_list or None}}",
                     "incidentLead": "{{vars.input.params.incidentLead or None}}",
+                    "mitretactics": "{{vars.sorted_tactics_list or None}}",
                     "mitresoftware": "{{vars.sorted_software_list or None}}",
                     "slaPercentage": 0,
                     "mitretechniques": "{{vars.sorted_technique_list or None}}",
-                    "mitremitigations": "{{vars.soreted_mitigation_list or None}}",
+                    "mitremitigations": "{{vars.sorted_mitigation_list or None}}",
                     "mitresubtechniques": "{{vars.sorted_sub_technique_list or None}}"
                 },
                 "_showJson": false,
@@ -223,6 +230,8 @@
                         "params": []
                     },
                     "asset_list": "[]",
+                    "group_list": "[]",
+                    "tactics_list": "[]",
                     "software_list": "[]",
                     "indicator_list": "[]",
                     "technique_list": "[]",
