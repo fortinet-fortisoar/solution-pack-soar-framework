@@ -121,7 +121,7 @@
                         "reputation"
                     ]
                 },
-                "module": "indicators?$limit=30",
+                "module": "indicators?$limit=5000",
                 "checkboxFields": true,
                 "step_variables": {
                     "malicious_ind_count": "{{vars.result | json_query('[*][reputation][?itemValue ==\\'Malicious\\'][]') | length | int }}",
@@ -132,6 +132,7 @@
             "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
             "uuid": "e7b5395f-cc22-4c1f-b9a7-4419d7395051"
         },
         {

@@ -214,13 +214,13 @@
             "name": "Set Communication Relationship",
             "description": null,
             "arguments": {
-                "config": "61514580-4dc2-4418-91a4-53b1bf0e5dc9",
+                "config": "{{\"b5195722-9917-4e6e-ac0f-cddab46620ee\"}}",
                 "params": {
                     "python_function": "communication_iri = [\"{{vars.steps.Create_Communications_Record['@id']}}\"]\n\nfor comm in {{vars.steps.Find_Related_Communication_Records.data['hydra:member']}}:\n    communication_iri.append(comm['@id'])\n\nprint(communication_iri)"
                 },
-                "version": "1.2.5",
+                "version": "2.0.3",
                 "connector": "code-snippet",
-                "operation": "python_inline",
+                "operation": "python_inline_code_editor",
                 "operationTitle": "Execute Python Code",
                 "step_variables": []
             },
