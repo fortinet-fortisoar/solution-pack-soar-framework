@@ -22,11 +22,11 @@
             "arguments": {
                 "resource": {
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "alerts": "[\"{{vars.alertIRI}}\"]",
+                    "alerts": "{% if vars.alertIRI %}[\"{{vars.alertIRI}}\"]{% endif %}",
                     "people": [],
                     "content": "<p>A new communication has been linked<br>From - {{vars.input.records[0].from}}<\/p>\n<p>To - {{vars.input.records[0].to}}<br>Subject - {{vars.input.records[0].subject}}<\/p>",
                     "__replace": "",
-                    "incidents": "[\"{{vars.incidentIRI}}\"]",
+                    "incidents": "{% if vars.incidentIRI %}[\"{{vars.incidentIRI}}\"]{% endif %}",
                     "isImportant": false,
                     "peopleUpdated": false
                 },
