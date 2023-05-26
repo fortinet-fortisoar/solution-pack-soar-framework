@@ -17,9 +17,9 @@ While these playbooks provide a strong foundation for enriching indicators in Fo
 
 >**NOTE**: With the new "Pluggable" enrichment in place, the enrichment process is now faster and more optimized. We recommend using it to augment or enhance your indicator enrichment process.
 
-# Using the "Pluggable" Indicator Enrichment
+# Using the *Pluggable* Indicator Enrichment
 
-"Pluggable" Indicator Enrichment process uses the playbooks contained within installed connectors to enrich the context of an indicator.
+*Pluggable* Indicator Enrichment process uses the playbooks contained within installed connectors to enrich the context of an indicator.
 
 This enrichment process is triggered when an indicator is created. On creation, the playbook **Enrich Indicators (Type All) playbook** runs and puts the following sequence in motion.
 
@@ -42,20 +42,23 @@ This enrichment process is triggered when an indicator is created. On creation, 
     - Field mapping
     - Enrichment summary
 
-Refer to the below connector list for which pluggable enrichment is available:
+*Pluggable* enrichment is available for the following list of connectors:
 
-    | Connector                               |
-    |:----------------------------------------|
-    | APIVoid                                 |
-    | Active Directory                        |
-    | Anomali ThreatStream                    |
-    | Fortinet FortiGuard Threat Intelligence |
-    | Fortinet FortiSandbox                   |
-    | Fortinet Web Filter Lookup              |
-    | IBM XForce                              | 
-    | IP Quality Score                        | 
-    | IP Stack                                | 
-    | Symantec DeepSight Intelligence         | 
-    | URLScan.io                              | 
-    | VirusTotal                              | 
-    | Whois RDAP                              |  
+| Connector                               |
+|:----------------------------------------|
+| APIVoid                                 |
+| Active Directory                        |
+| Anomali ThreatStream                    |
+| Fortinet FortiGuard Threat Intelligence |
+| Fortinet FortiSandbox                   |
+| Fortinet Web Filter Lookup              |
+| IBM XForce                              | 
+| IP Quality Score                        | 
+| IP Stack                                | 
+| Symantec DeepSight Intelligence         | 
+| URLScan.io                              | 
+| VirusTotal                              | 
+| Whois RDAP                              |
+
+| [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
+|-----------------------------------------|-------------------------------------------|---------------------|---------------------------|

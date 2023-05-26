@@ -9,7 +9,7 @@ The **Data Ingestion** page displays all the connectors that are installed and c
 
 To view the **Data Ingestion** page, log on to FortiSOAR. On the left navigation pane, click **Automation** > **Data Ingestion**. This page displays connectors that are enabled for data ingestion, along with the count of configurations available for that connector.
 
-![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/docs/res/data-ingestion-page.png)
+![](./res/data-ingestion-page.png)
 
 1. To configure a connector for data ingestion, refer to the document [Configuring a connector in FortiSOAR](https://docs.fortinet.com/document/fortisoar/0.0.0/configuring-a-connector/1/configuring-a-connector#Configuring_a_connector_in_FortiSOAR_). Following connectors are installed, by default, with SOAR Framework Solution Pack:
 
@@ -24,3 +24,6 @@ There are multiple connectors each with separate instructions to configure data 
     > **NOTE**: Some connectors, like the **Exchange** connector, support **Email Notification Service**. This service sets up a listener that instantly notifies FortiSOAR when a new email arrives in the mailbox.
 
 After the configuration is complete, the system is ready to ingest data and as per the defined mapping, create alerts in FortiSOAR.
+
+| [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
+|-----------------------------------------|-------------------------------------------|---------------------|---------------------------|

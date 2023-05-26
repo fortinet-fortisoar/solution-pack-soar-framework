@@ -111,3 +111,6 @@ After adding the above key-value pair, the JSON you need to enter in the **Field
     }
 
 Now your playbook captures indicators corresponding to the **Targeted Employee Email Address** field.
+
+| [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
+|-----------------------------------------|-------------------------------------------|---------------------|---------------------------|

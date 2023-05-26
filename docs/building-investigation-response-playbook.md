@@ -1,5 +1,5 @@
 | [Home](../README.md) |
-|----------------------|
+|-----------------|
 
 # Building Investigation/Response Playbook
 
@@ -13,7 +13,7 @@ You can build specific playbooks that help you in investigation or respond to va
         >Indicator *Type* is *URL*  
         >*Status* is not *Blocked*.
 
-        ![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/docs/res/playbook-manual-trigger-display-conditions.png)
+        ![](./res/playbook-manual-trigger-display-conditions.png)
 
         * You can trigger a playbook, manually, based on a selected module without selecting a record in the specified module. E.g. a manual trigger to check for new alerts from a SIEM tool, can be run globally on the **Alerts** module.
 
@@ -23,17 +23,20 @@ You can build specific playbooks that help you in investigation or respond to va
         >*State* *is changed*     
         >*State* is *Indicator Extracted*
 
-        ![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/docs/res/post-update-state-indicator-extracted.png)
+        ![](./res/post-update-state-indicator-extracted.png)
 
 - Investigation/Response playbooks should typically be executed, once indicator extraction and enrichment is complete. Hence, a response playbook's trigger should be set to
 
     >On Update  
     >*State* is *Indicator Extracted*
     
-    ![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/docs/res/on-update-state-indicator-extracted.png)
+    ![](./res/on-update-state-indicator-extracted.png)
 
     This step ensures that your investigation/response playbook is executed only after indicators are extracted and enriched.
 
 - SFSP includes an escalation playbook that escalates an alert to an incident. You may want to reference that playbook, in your response flow, instead of creating a new playbook that performs the same actions.
 
-    ![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/docs/res/reference-playbook-escalate-to-incident.png)
+    ![](./res/reference-playbook-escalate-to-incident.png)
+
+| [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
+|-----------------------------------------|-------------------------------------------|---------------------|---------------------------|

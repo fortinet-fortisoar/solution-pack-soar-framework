@@ -1,3 +1,6 @@
+| [Home](../README.md) |
+|----------------------|
+
 # Upgrade SOAR Framework from v2.x.x to v2.1.0
 
 Before upgrading SOAR Framework to v2.1.0, perform the following steps:
@@ -17,3 +20,6 @@ Before upgrading SOAR Framework to v2.1.0, perform the following steps:
       <li>Add the the key-value pair as mentioned in step 1.</li>
       <li>Replace <strong>Create Communication Record (Alert)</strong> playbook under the collection <em>06 - IRP - Communications Tracking</em> with the back up copy you have.</li>
     <ol>
+
+| [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
+|-----------------------------------------|-------------------------------------------|---------------------|---------------------------|
