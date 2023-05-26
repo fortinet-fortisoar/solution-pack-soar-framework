@@ -44,7 +44,7 @@
             "arguments": {
                 "config": "{{\"b5195722-9917-4e6e-ac0f-cddab46620ee\"}}",
                 "params": {
-                    "python_function": "try:\n    addrs = dns.reversename.from_address(\"{{vars.record}}\")\n    print(str(dns.resolver.query(addrs,\"PTR\")[0]))\nexcept:\n    print('Not Resolvable')"
+                    "python_function": "try:\n    addrs = dns.reversename.from_address(\"{{vars.input.params['indicator_value']}}\")\n    print(str(dns.resolver.query(addrs,\"PTR\")[0]))\nexcept:\n    print('Not Resolvable')"
                 },
                 "version": "2.0.3",
                 "connector": "code-snippet",
