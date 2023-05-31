@@ -135,13 +135,13 @@
             "name": "Write Headers To File",
             "description": null,
             "arguments": {
-                "config": "0fd89191-0436-4ba1-8eca-88771f17e159",
+                "config": "{{\"b5195722-9917-4e6e-ac0f-cddab46620ee\"}}",
                 "params": {
-                    "python_function": "import csv\n\nrecordsToSave = {{vars.steps.Find_Records_Paginated.data[\"hydra:member\"]}} \ncolumns = recordsToSave[0].keys()\ncolumnsToAdd = [item for item in columns if item in {{ vars.incidentsFilter.__selectFields}}]\nwith open('\/tmp\/{{vars.resultsFileName}}.csv','w') as out_file:\n    csv_w = csv.writer(out_file)\n    csv_w.writerow(columnsToAdd)"
+                    "python_function": "recordsToSave = {{vars.steps.Find_Records_Paginated.data[\"hydra:member\"]}} \ncolumns = recordsToSave[0].keys()\ncolumnsToAdd = [item for item in columns if item in {{ vars.incidentsFilter.__selectFields}}]\nwith open('\/tmp\/{{vars.resultsFileName}}.csv','w') as out_file:\n    csv_w = csv.writer(out_file)\n    csv_w.writerow(columnsToAdd)"
                 },
-                "version": "1.2.1",
+                "version": "2.0.3",
                 "connector": "code-snippet",
-                "operation": "python_inline",
+                "operation": "python_inline_code_editor",
                 "operationTitle": "Execute Python Code",
                 "step_variables": []
             },
@@ -149,6 +149,7 @@
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
+            "group": null,
             "uuid": "f3bbac99-d211-4cc8-9639-34ee1b1c6c09"
         },
         {

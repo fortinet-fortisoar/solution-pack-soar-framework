@@ -1,0 +1,150 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Convert FortiSOAR User to SAML - Collect User Email IDs",
+    "aliasName": null,
+    "tag": null,
+    "description": "Collects comma-separated Email-IDs of the existing FortiSOAR users that to be converted to SAML Users.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/20289298-cdd6-4052-8fa0-11e2603dca00",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/573c55f0-6c59-4957-bb55-83381f91d595",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "emails": "{{ vars.input.params.sAMLEmailIDs.split(',') }}",
+                "user_type": "6",
+                "fsr_hostname": "{{globalVars.Server_fqhn}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "58c7c031-0e0c-4d18-b7bc-3e7c24d6084b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "route": "fed5199e-9aca-42b7-b279-ca1a7eb49032",
+                "title": "Convert FortiSOAR User to SAML",
+                "resources": [
+                    "alerts"
+                ],
+                "inputVariables": [
+                    {
+                        "name": "sAMLEmailIDs",
+                        "type": "string",
+                        "label": "SAML Email IDs",
+                        "title": "Text Area",
+                        "usable": true,
+                        "tooltip": "Comma-separated list of Email IDs of existing users to convert to SAML",
+                        "dataType": "text",
+                        "formType": "textarea",
+                        "required": true,
+                        "_expanded": true,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/textarea.html",
+                        "defaultValue": "email1@domain.com,email2@domain.com,...",
+                        "_previousName": "sAMLEmail",
+                        "lengthConstraint": true,
+                        "allowedEncryption": true,
+                        "allowedGridColumn": true,
+                        "jinjaExpressionView": true,
+                        "useRecordFieldDefault": false
+                    }
+                ],
+                "step_variables": {
+                    "input": {
+                        "params": {
+                            "sAMLEmailIDs": "{{vars.request.data[\"sAMLEmailIDs\"]}}"
+                        },
+                        "records": "{{vars.input.records}}"
+                    }
+                },
+                "_promptexpanded": true,
+                "executeButtonText": "Convert",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
+            "uuid": "573c55f0-6c59-4957-bb55-83381f91d595"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update User Type to SAML",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.emails}}",
+                    "parallel": false,
+                    "condition": ""
+                },
+                "arguments": {
+                    "email": "{{vars.item}}",
+                    "userType": "{{vars.user_type}}",
+                    "fsrHostname": "{{vars.fsr_hostname}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": false,
+                "workflowReference": "\/api\/3\/workflows\/b0223472-16ac-4e4b-a34c-4642961fafe1"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "f57e640b-0aec-40d5-bf8e-8c35a33b7b63"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Set variables -> Reference import sub playbook",
+            "targetStep": "\/api\/3\/workflow_steps\/f57e640b-0aec-40d5-bf8e-8c35a33b7b63",
+            "sourceStep": "\/api\/3\/workflow_steps\/58c7c031-0e0c-4d18-b7bc-3e7c24d6084b",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "c924c7be-32c5-42cc-b258-50621e7d84ed"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/58c7c031-0e0c-4d18-b7bc-3e7c24d6084b",
+            "sourceStep": "\/api\/3\/workflow_steps\/573c55f0-6c59-4957-bb55-83381f91d595",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "83e32833-f3b1-4396-9179-0c24673ccc58"
+        }
+    ],
+    "groups": [],
+    "priority": null,
+    "uuid": "b22a9238-a66f-4063-8b8f-aa8ff430c943",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "ManualTrigger",
+        "Utilities"
+    ]
+}

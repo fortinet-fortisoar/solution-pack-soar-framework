@@ -15,24 +15,38 @@
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/20289298-cdd6-4052-8fa0-11e2603dca00",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/7b77fd6e-06fb-4bca-9293-9b1b658508d6",
+    "triggerStep": "\/api\/3\/workflow_steps\/d282f258-9a85-416a-acbb-ddfba25fe7de",
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Get Related Records",
+            "name": "Configuration",
             "description": null,
             "arguments": {
+                "excludedRelations": "['comments',\"owners\", 'userOwners']"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "24f48f23-87f8-4c51-a9e6-3d3b6f960c2f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Non Ownable Modules",
+            "description": "This step list out all the non ownable modules that will be excluded from linking team to it",
+            "arguments": {
                 "params": {
-                    "iri": "\/api\/query\/{{vars.moduleName}}?$relationships=true&$export=true",
-                    "body": "{\n      \"sort\": [],\n      \"limit\": 30,\n      \"logic\": \"AND\",\n      \"filters\": [\n        {\n          \"type\": \"primitive\",\n          \"field\": \"id\",\n          \"value\": {{vars.recordID}},\n          \"operator\": \"eq\",\n          \"_operator\": \"eq\"\n        }\n      ]\n    }",
-                    "method": "POST"
+                    "iri": "\/api\/3\/model_metadatas?&$limit=2147483647&ownable=false&__selectFields=module",
+                    "body": "",
+                    "method": "GET"
                 },
-                "version": "3.2.2",
+                "version": "3.2.4",
                 "connector": "cyops_utilities",
                 "operation": "make_cyops_request",
                 "operationTitle": "FSR: Make FortiSOAR API Call",
                 "step_variables": {
-                    "correlatedRecordsData": "{{vars.result.data['hydra:member'][0]}}"
+                    "nonOwnableModules": "{{vars.steps.Get_Non_Ownable_Modules.data['hydra:member'] | json_query(\"[].module\")}}"
                 }
             },
             "status": null,
@@ -40,28 +54,81 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "25c877fa-040c-4a32-80cf-a90a1a096ded"
+            "uuid": "25c9c375-ec09-4bbb-a11e-5140267c548d"
         },
         {
             "@type": "WorkflowStep",
             "name": "Get Records and Teams IRI",
             "description": null,
             "arguments": {
-                "placeholder": "{% for item in vars.correlatedRecordsData %}\n   {% if (vars.correlatedRecordsData.get(item) | type_debug == 'list') and (vars.correlatedRecordsData.get(item) | length > 0) %}\n      {% if item == 'owners' %}\n         {{vars.recordTeamIRIs.extend(vars.correlatedRecordsData.get(item))}}\n      {% elif item not in vars.excludedModuleList %}\n         {% if ('\/api\/3' in vars.correlatedRecordsData.get(item)[0]) and ('picklist' not in vars.correlatedRecordsData.get(item)[0]) %}\n            {{vars.relatedRecordIRIList.extend(vars.correlatedRecordsData.get(item))}}\n         {% endif %}\n      {% endif %}\n   {% endif %}\n{% endfor %}"
+                "relations": "{%set _relations=[] %}\n{% for k, v in vars.steps.Get_Related_Records.data.items() %}\n\t{% if v and v is iterable and v is not string and k not in vars.excludedRelations and \"picklists\" not in v[0] and \"\/api\/3\" in v[0] %}\n  \t\t{% for eachV in v %}\n    \t\t{% if eachV.split('\/')[3] not in vars.nonOwnableModules %}\n    \t\t\t{% set _=_relations.append(eachV) %}\n        \t{% endif %}\n      \t{% endfor %}\n    {% endif %}\n{% endfor %}\n{{_relations}}",
+                "recordOwners": "{{vars.steps.Get_Related_Records.data.owners}}"
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "3f206141-fe0b-4659-a6c5-6f37c054a9e0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Related Records",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "{{vars.input.records[0]['@id']}}?$relationships=true&$export=true",
+                    "body": "",
+                    "method": "GET"
+                },
+                "version": "3.2.4",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
             },
             "status": null,
             "top": "435",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "32b578dc-2390-42c5-b5a5-7bc12de75e69"
+            "uuid": "f643edd3-dcd5-4f52-8a88-507bb7664b37"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Link Team to Related Records",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "{{vars.item}}",
+                    "body": "{\n      \"__link\": {\n        \"owners\": {{vars.recordOwners}}\n    }\n}"
+                },
+                "version": "3.2.4",
+                "for_each": {
+                    "item": "{{vars.relations}}",
+                    "__bulk": false,
+                    "parallel": true,
+                    "condition": ""
+                },
+                "connector": "cyops_utilities",
+                "operation": "update_cyops_resource",
+                "ignore_errors": false,
+                "operationTitle": "FSR: Update Record",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "05ee8cc5-5ac8-4f28-9b78-107009cd4579"
         },
         {
             "@type": "WorkflowStep",
             "name": "Start",
             "description": null,
             "arguments": {
-                "route": "548ceab2-0fff-41aa-82b2-3a8c7263646b",
+                "route": "277d56b6-e55d-4fe7-bf7a-748d8587bc93",
                 "resources": [
                     "alerts",
                     "incidents",
@@ -117,93 +184,59 @@
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
             "group": null,
-            "uuid": "7b77fd6e-06fb-4bca-9293-9b1b658508d6"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Configuration",
-            "description": null,
-            "arguments": {
-                "recordID": "{{vars.input.records[0].id}}",
-                "chunkList": "[]",
-                "recordIRI": "{{vars.input.records[0]['@id']}}",
-                "moduleName": "{{vars.input.records[0]['@id'].split('\/')[3]}}",
-                "recordTeamIRIs": "[]",
-                "excludedModuleList": "['comments','userOwners']",
-                "relatedRecordIRIList": "[]"
-            },
-            "status": null,
-            "top": "165",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "group": null,
-            "uuid": "8f99fdf8-ca59-449a-89ef-a9d9fc89f313"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Link Team to Related Records",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "iri": "{{vars.item}}",
-                    "body": "{\n      \"__link\": {\n        \"owners\": {{vars.recordTeamIRIs}}\n    }\n}"
-                },
-                "version": "3.2.2",
-                "for_each": {
-                    "item": "{{vars.relatedRecordIRIList}}",
-                    "__bulk": false,
-                    "parallel": true,
-                    "condition": "{{'picklist' not in vars.item}}"
-                },
-                "connector": "cyops_utilities",
-                "operation": "update_cyops_resource",
-                "operationTitle": "FSR: Update Record",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "570",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "966ea7eb-c9b8-4430-9cf1-8976a6b67ee2"
+            "uuid": "d282f258-9a85-416a-acbb-ddfba25fe7de"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Get Records and Teams IRI -> Link Team to Related Records",
-            "targetStep": "\/api\/3\/workflow_steps\/966ea7eb-c9b8-4430-9cf1-8976a6b67ee2",
-            "sourceStep": "\/api\/3\/workflow_steps\/32b578dc-2390-42c5-b5a5-7bc12de75e69",
+            "name": "Configuration -> Get Non Team Ownable Modules",
+            "targetStep": "\/api\/3\/workflow_steps\/25c9c375-ec09-4bbb-a11e-5140267c548d",
+            "sourceStep": "\/api\/3\/workflow_steps\/24f48f23-87f8-4c51-a9e6-3d3b6f960c2f",
             "label": null,
             "isExecuted": false,
-            "uuid": "501ae6cf-3bf3-4fb5-8843-253c53b37a65"
+            "group": null,
+            "uuid": "3827401a-1440-4a02-a8de-d24d07739e36"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Non Ownable Modules -> Get Related Records",
+            "targetStep": "\/api\/3\/workflow_steps\/f643edd3-dcd5-4f52-8a88-507bb7664b37",
+            "sourceStep": "\/api\/3\/workflow_steps\/25c9c375-ec09-4bbb-a11e-5140267c548d",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "223a1851-9e7f-4269-880a-b1e89bad5c91"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Records and Teams IRI -> Link Team to Related Records",
+            "targetStep": "\/api\/3\/workflow_steps\/05ee8cc5-5ac8-4f28-9b78-107009cd4579",
+            "sourceStep": "\/api\/3\/workflow_steps\/3f206141-fe0b-4659-a6c5-6f37c054a9e0",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "004eaf43-9802-42ee-a4b3-35a9671fd1f7"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Related Records -> Get Records and Teams IRI",
+            "targetStep": "\/api\/3\/workflow_steps\/3f206141-fe0b-4659-a6c5-6f37c054a9e0",
+            "sourceStep": "\/api\/3\/workflow_steps\/f643edd3-dcd5-4f52-8a88-507bb7664b37",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "1a2a8211-fdb6-473c-bbf2-4e3415d18477"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Start -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/8f99fdf8-ca59-449a-89ef-a9d9fc89f313",
-            "sourceStep": "\/api\/3\/workflow_steps\/7b77fd6e-06fb-4bca-9293-9b1b658508d6",
+            "targetStep": "\/api\/3\/workflow_steps\/24f48f23-87f8-4c51-a9e6-3d3b6f960c2f",
+            "sourceStep": "\/api\/3\/workflow_steps\/d282f258-9a85-416a-acbb-ddfba25fe7de",
             "label": null,
             "isExecuted": false,
-            "uuid": "9ca176f4-1508-4670-8fcb-02cead433d4a"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Get Correlated Records -> Get Correlated Records IRI",
-            "targetStep": "\/api\/3\/workflow_steps\/32b578dc-2390-42c5-b5a5-7bc12de75e69",
-            "sourceStep": "\/api\/3\/workflow_steps\/25c877fa-040c-4a32-80cf-a90a1a096ded",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "a2806f92-718e-42fd-9a06-3116ce39115a"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Configuration -> Get Related Records",
-            "targetStep": "\/api\/3\/workflow_steps\/25c877fa-040c-4a32-80cf-a90a1a096ded",
-            "sourceStep": "\/api\/3\/workflow_steps\/8f99fdf8-ca59-449a-89ef-a9d9fc89f313",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "e6f8054d-1d16-469c-bc42-aed48e54d905"
+            "group": null,
+            "uuid": "1e30228f-5316-4540-bd14-f19f7102cef3"
         }
     ],
     "groups": [],

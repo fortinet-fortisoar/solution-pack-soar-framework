@@ -88,13 +88,13 @@
             "name": "Extract IOC Data",
             "description": null,
             "arguments": {
-                "config": "7417d4a1-5e80-4398-8bb8-4b0952bf4fa3",
+                "config": "{{\"b5195722-9917-4e6e-ac0f-cddab46620ee\"}}",
                 "params": {
-                    "python_function": "import pandas as pd\nimport numpy as np\nimport re\nimport json\n\n# Read first column of CSV and change column header to IOC\ndf = pd.read_csv('\/tmp\/{{vars.ioc_csv}}',usecols=[0],names=['IOC'])\n\n# Drop duplicate entries \ndf.drop_duplicates()\n\n# Create empty data structure\n \nip_ioc = pd.DataFrame()\nurl_ioc = pd.DataFrame()\ndomain_ioc= pd.DataFrame()\n\n#Extract IP Address using regex \n#This regex ignores IP Address with ports . If you need ports as well,remove $ sign from regex, you will have to handle same in create record reference playbook\n\nip_ioc=df[df['IOC'].str.match('\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$')==True]\n#Drop empty rows\nip_ioc=ip_ioc.dropna()\n\n#Extract Domain using regex\ndomain_ioc=df[df['IOC'].str.match('^(?!-)[A-Za-z0-9-]+([\\\\-\\\\.]{1}[a-z0-9]+)*\\\\.[A-Za-z]{2,6}$')==True]\n\n#Drop empty rows\ndomain_ioc=domain_ioc.dropna()\n\n#Extract URL using regex\nurl_ioc=df[df['IOC'].str.match(\"http[s]?:\/\/(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+\")==True]\n\n#Drop empty rows\nurl_ioc=url_ioc.dropna()\n\n#Create Small subsets for ingestion by FortiSOAR\nsmaller_datasets = np.array_split(ip_ioc,20)\nall_ipaddress = []\nfor batch in smaller_datasets:\n    all_ipaddress.append(batch.to_dict(\"list\"))\n\n\nsmaller_datasets = np.array_split(domain_ioc,20)\nall_domain = []\nfor batch in smaller_datasets:\n    all_domain.append(batch.to_dict(\"list\"))\n\nsmaller_datasets = np.array_split(url_ioc,20)\nall_urls = []\nfor batch in smaller_datasets:\n    all_urls.append(batch.to_dict(\"list\"))\n\n\nfinal_result={\"ipAddress\": all_ipaddress,\"domain\":all_domain,\"urls\":all_urls}\nprint(json.dumps(final_result))"
+                    "python_function": "# Read first column of CSV and change column header to IOC\ndf = pandas.read_csv('/tmp/{{vars.ioc_csv}}',usecols=[0],names=['IOC'])\n\n# Drop duplicate entries \ndf.drop_duplicates()\n\n# Create empty data structure\n \nip_ioc = pandas.DataFrame()\nurl_ioc = pandas.DataFrame()\ndomain_ioc= pandas.DataFrame()\n\n#Extract IP Address using regex \n#This regex ignores IP Address with ports . If you need ports as well,remove $ sign from regex, you will have to handle same in create record reference playbook\n\nip_ioc=df[df['IOC'].str.match('\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$')==True]\n#Drop empty rows\nip_ioc=ip_ioc.dropna()\n\n#Extract Domain using regex\ndomain_ioc=df[df['IOC'].str.match('^(?!-)[A-Za-z0-9-]+([\\\\-\\\\.]{1}[a-z0-9]+)*\\\\.[A-Za-z]{2,6}$')==True]\n\n#Drop empty rows\ndomain_ioc=domain_ioc.dropna()\n\n#Extract URL using regex\nurl_ioc=df[df['IOC'].str.match(\"http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+\")==True]\n\n#Drop empty rows\nurl_ioc=url_ioc.dropna()\n\n#Create Small subsets for ingestion by FortiSOAR\nsmaller_datasets = numpy.array_split(ip_ioc,20)\nall_ipaddress = []\nfor batch in smaller_datasets:\n    all_ipaddress.append(batch.to_dict(\"list\"))\n\n\nsmaller_datasets = numpy.array_split(domain_ioc,20)\nall_domain = []\nfor batch in smaller_datasets:\n    all_domain.append(batch.to_dict(\"list\"))\n\nsmaller_datasets = numpy.array_split(url_ioc,20)\nall_urls = []\nfor batch in smaller_datasets:\n    all_urls.append(batch.to_dict(\"list\"))\n\n\nfinal_result={\"ipAddress\": all_ipaddress,\"domain\":all_domain,\"urls\":all_urls}\nprint(json.dumps(final_result))"
                 },
-                "version": "1.2.4",
+                "version": "2.0.3",
                 "connector": "code-snippet",
-                "operation": "python_inline",
+                "operation": "python_inline_code_editor",
                 "operationTitle": "Execute Python Code",
                 "step_variables": []
             },
@@ -102,6 +102,7 @@
             "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
+            "group": null,
             "uuid": "2c62c175-81c9-4371-9147-caed07c1741f"
         },
         {
