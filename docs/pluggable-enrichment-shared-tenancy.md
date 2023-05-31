@@ -63,3 +63,9 @@ Following steps help edit the *03 – Enrich > Enrich Indicators (Type All)* pla
     5. Set the value of this argument as `{{vars.input.params['alert_tenant_name']}}`.
     6. Return to the **Enrich Indicators (Type All)** playbook. The step *Additional checks for IP* now lists the added variable - `alert_tenant_name`.
     7. Set the value of this variable as `{{vars.alertTenantName}}`.
+
+## Known Issues
+
+1. A connector upgrade overwrites the modified enrichment playbooks. Hence, keep a backup of the modified playbooks before a connector upgrade.
+
+2. If users have moved the *pluggable* enrichment playbooks to another collection, on connector upgrade, they have to deactivate all the *pluggable* enrichment playbooks in the upgraded connector's sample playbook collection. 
