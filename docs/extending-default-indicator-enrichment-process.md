@@ -15,7 +15,7 @@ Taking the data from these sources it formats and populates the description fiel
 
 While these playbooks provide a strong foundation for enriching indicators in FortiSOAR, multiple configurations and subsequent playbook actions become available even after deployment. Going beyond investigation, you can add additional playbooks to run the indicators through various sources and services to get reputation and another context about indicators.
 
->**NOTE**: With the new "Pluggable" enrichment in place, the enrichment process is now faster and more optimized. We recommend using it to augment or enhance your indicator enrichment process.
+>**NOTE**: With the new *Pluggable* enrichment in place, the enrichment process is now faster and more optimized. We recommend using it to augment or enhance your indicator enrichment process.
 
 # Using the *Pluggable* Indicator Enrichment
 
