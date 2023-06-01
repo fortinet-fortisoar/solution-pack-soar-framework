@@ -98,3 +98,6 @@ As an example, we explain how to configure communication tracking playbooks for 
     6. Under **Execution Behavior**, change the value in **Choose record modules on which the playbook would be available on** field from **Alerts** to **Tasks**.
     
 Now, the **Tasks** module has a tab **External Communications** and tracks any communication sent from, and received in, FortiSOAR.
+
+| [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
+|-----------------------------------------|-------------------------------------------|---------------------|---------------------------|

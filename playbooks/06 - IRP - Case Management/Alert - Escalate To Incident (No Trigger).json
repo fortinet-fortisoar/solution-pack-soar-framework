@@ -31,11 +31,18 @@
             "arguments": {
                 "for_each": {
                     "item": "{{vars.steps.Get_Related_Records}}",
-                    "parallel": false,
+                    "__bulk": false,
+                    "parallel": true,
                     "condition": ""
                 },
-                "temp_var1": "{% for val in vars.item.assets_record_list %}{{vars.asset_list.append(val)}}{%endfor%}",
-                "temp_var2": "{% for val in vars.item.indicators_record_list %}{{vars.indicator_list.append(val)}}{%endfor%}"
+                "temp_var1": "{{vars.asset_list.extend(vars.item.assets_record_list)}}",
+                "temp_var2": "{{vars.indicator_list.extend(vars.item.indicators_record_list)}}",
+                "temp_var3": "{{vars.mitigation_list.extend(vars.item.mitigation_record_list)}}",
+                "temp_var4": "{{vars.software_list.extend(vars.item.software_record_list)}}",
+                "temp_var5": "{{vars.sub_technique_list.extend(vars.item.sub_technique_record_IRI)}}",
+                "temp_var6": "{{vars.technique_list.extend(vars.item.technique_record_IRI)}}",
+                "temp_var7": "{{vars.tactics_list.extend(vars.item.tactics_record_IRI)}}",
+                "temp_var8": "{{vars.group_list.extend(vars.item.group_record_IRI)}}"
             },
             "status": null,
             "top": "300",
@@ -60,6 +67,8 @@
                 },
                 "apply_async": false,
                 "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": false,
                 "workflowReference": "\/api\/3\/workflows\/f35b7874-4a53-45e1-a686-86a605ea7dcf"
             },
             "status": null,
@@ -74,8 +83,14 @@
             "name": "Get Unique Related Records",
             "description": null,
             "arguments": {
+                "sorted_group_list": "{{vars.group_list | flatten | unique }}",
                 "sorted_assets_list": "{{vars.asset_list | flatten | unique }}",
-                "sorted_indicator_list": "{{vars.indicator_list | flatten | unique }}"
+                "sorted_tactics_list": "{{vars.tactics_list | flatten | unique }}",
+                "sorted_software_list": "{{vars.software_list | flatten | unique }}",
+                "sorted_indicator_list": "{{vars.indicator_list | flatten | unique }}",
+                "sorted_technique_list": "{{vars.technique_list | flatten | unique }}",
+                "sorted_mitigation_list": "{{vars.mitigation_list | flatten | unique }}",
+                "sorted_sub_technique_list": "{{vars.sub_technique_list | flatten | unique }}"
             },
             "status": null,
             "top": "435",
@@ -119,16 +134,22 @@
                     "alerts": "{{ vars.input.params.records | json_query('[*].\"@id\"[]') }}",
                     "assets": "{{vars.sorted_assets_list or None}}",
                     "owners": "{{vars.input.params.incidentOwners}}",
-                    "resSla": "\/api\/3\/picklists\/090115d7-90fc-4dc6-97ca-27950fc30c1c",
+                    "resSla": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
                     "status": "\/api\/3\/picklists\/bb73fe9e-f699-11e7-8c3f-9a214cf093ae",
                     "tenant": "{{vars.input.params.sharedTenantIRI}}",
                     "category": "{{vars.input.params.incidentType or None}}",
                     "severity": "{{vars.input.params.severity or None}}",
-                    "slaState": "\/api\/3\/picklists\/090115d7-90fc-4dc6-97ca-27950fc30c1c",
+                    "slaState": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
                     "__replace": "",
                     "indicators": "{{vars.sorted_indicator_list or None}}",
+                    "mitregroups": "{{vars.sorted_group_list or None}}",
                     "incidentLead": "{{vars.input.params.incidentLead or None}}",
-                    "slaPercentage": 0
+                    "mitretactics": "{{vars.sorted_tactics_list or None}}",
+                    "mitresoftware": "{{vars.sorted_software_list or None}}",
+                    "slaPercentage": 0,
+                    "mitretechniques": "{{vars.sorted_technique_list or None}}",
+                    "mitremitigations": "{{vars.sorted_mitigation_list or None}}",
+                    "mitresubtechniques": "{{vars.sorted_sub_technique_list or None}}"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
@@ -206,19 +227,16 @@
             "arguments": {
                 "step_variables": {
                     "input": {
-                        "params": {
-                            "records": "{{ vars.records }}",
-                            "severity": "{{ vars.severity }}",
-                            "incidentLead": "{{ vars.incidentLead }}",
-                            "incidentName": "{{ vars.incidentName }}",
-                            "incidentType": "{{ vars.incidentType }}",
-                            "incidentOwners": "{{ vars.incidentOwners }}",
-                            "sharedTenantIRI": "{{ vars.sharedTenantIRI }}",
-                            "escalationReason": "{{ vars.escalationReason }}"
-                        }
+                        "params": []
                     },
                     "asset_list": "[]",
-                    "indicator_list": "[]"
+                    "group_list": "[]",
+                    "tactics_list": "[]",
+                    "software_list": "[]",
+                    "indicator_list": "[]",
+                    "technique_list": "[]",
+                    "mitigation_list": "[]",
+                    "sub_technique_list": "[]"
                 }
             },
             "status": null,
@@ -230,6 +248,16 @@
         }
     ],
     "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Consolidate Related Records -> Get Unique Related Records",
+            "targetStep": "\/api\/3\/workflow_steps\/9b02c44d-ed11-47d8-b94a-42798700613e",
+            "sourceStep": "\/api\/3\/workflow_steps\/6cc1b871-b390-464e-9b8d-66ad85054039",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "3dde9cf6-c3f9-47af-8789-ecd6c01dda06"
+        },
         {
             "@type": "WorkflowRoute",
             "name": "Get Related Records -> Set Related Records",
@@ -248,7 +276,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "8eed5159-0707-486e-9a3b-1047607cfbba"
+            "uuid": "21b38f9b-bd88-473a-8b0c-7831b3c7b056"
         },
         {
             "@type": "WorkflowRoute",
@@ -279,16 +307,6 @@
             "isExecuted": false,
             "group": null,
             "uuid": "bd1cb0b9-39ad-42d2-a633-d3f5cbc4311b"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Set Related Assets Records -> fg",
-            "targetStep": "\/api\/3\/workflow_steps\/9b02c44d-ed11-47d8-b94a-42798700613e",
-            "sourceStep": "\/api\/3\/workflow_steps\/6cc1b871-b390-464e-9b8d-66ad85054039",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "06956366-416d-47df-881b-37c067efd4d5"
         },
         {
             "@type": "WorkflowRoute",

@@ -12,7 +12,8 @@
     "parameters": [
         "severity",
         "incident_IRI",
-        "incident_AckDate"
+        "incident_AckDate",
+        "tenant_IRI"
     ],
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/3c3b049e-5ecb-464a-83f6-5af6a230c0ed",
@@ -25,17 +26,22 @@
             "description": null,
             "arguments": {
                 "arguments": {
+                    "tenant_iri": "{{vars.input.params['tenant_IRI']}}",
                     "inc_severity": "{{vars.input.params.severity}}"
                 },
+                "apply_async": false,
                 "step_variables": {
                     "slaResult": "{{vars.result}}"
                 },
-                "workflowReference": "\/api\/3\/workflows\/4c4d8e7e-de26-4afa-8110-50c5a555b2ec"
+                "pass_parent_env": false,
+                "pass_input_record": false,
+                "workflowReference": "\/api\/3\/workflows\/45096dd1-6f64-4f86-937f-711a1054d436"
             },
             "status": null,
             "top": "190",
             "left": "775",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
             "uuid": "962345ad-68e7-4e1c-ab10-776293f654dc"
         },
         {
@@ -49,6 +55,7 @@
             "top": "190",
             "left": "450",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "c9e220f4-52cc-4f89-8e91-d6b309660d1e"
         },
         {
@@ -69,6 +76,7 @@
             "top": "440",
             "left": "2488",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
             "uuid": "e01393a5-6571-47e0-bf3d-63cd96e6488b"
         },
         {
@@ -89,6 +97,7 @@
             "top": "110",
             "left": "1425",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
             "uuid": "42f91677-5b02-4973-b678-320eccab53fc"
         },
         {
@@ -123,6 +132,7 @@
             "top": "270",
             "left": "2075",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
             "uuid": "e998c706-b3c9-41c7-b232-c9842f7a77ba"
         },
         {
@@ -130,13 +140,14 @@
             "name": "Set SLA details",
             "description": null,
             "arguments": {
-                "ack_sla_eta": "{{vars.slaResult.sla_time_list[0]}}",
-                "res_sla_eta": "{{vars.slaResult.sla_time_list[1]}}"
+                "ack_sla_eta": "{{vars.slaResult.sla_time_list['incAckTime']}}",
+                "res_sla_eta": "{{vars.slaResult.sla_time_list['incResTime']}}"
             },
             "status": null,
             "top": "270",
             "left": "1425",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "7974a051-e4f8-46b4-a964-ea1b7bc0fc79"
         },
         {
@@ -150,6 +161,7 @@
             "top": "270",
             "left": "1750",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
             "uuid": "158b4ece-fca9-4c1e-bb4f-598ebc3c62df"
         },
         {
@@ -174,6 +186,7 @@
             "top": "190",
             "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
             "uuid": "18afc3da-3093-4a4d-8961-b29f0f3cec79"
         },
         {
@@ -205,6 +218,7 @@
             "top": "560",
             "left": "2420",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
             "uuid": "9889db29-3b2b-49bc-b8be-981050799ea8"
         },
         {
@@ -225,6 +239,7 @@
             "top": "129",
             "left": "2488",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
             "uuid": "3f8fed5c-c502-47e9-85be-52dd944b8c95"
         },
         {
@@ -236,6 +251,7 @@
                     "input": {
                         "params": {
                             "severity": "{{ vars.severity }}",
+                            "tenant_IRI": "{{ vars.tenant_IRI }}",
                             "incident_IRI": "{{ vars.incident_IRI }}",
                             "incident_AckDate": "{{ vars.incident_AckDate }}"
                         }
@@ -246,6 +262,7 @@
             "top": "190",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
             "uuid": "ac21e9c4-1e7b-4599-8f88-fd307dd71a10"
         },
         {
@@ -265,6 +282,7 @@
             "top": "30",
             "left": "2400",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
             "uuid": "1a1e2acf-e857-4bbd-ba9f-3585f09d997e"
         }
     ],
@@ -369,6 +387,7 @@
             "uuid": "aad53f2c-4dce-4f89-a27d-aeb03ffa3981"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "77ec3e8f-2b3a-48b9-a9cc-ac22cec3fd7c",
     "owners": [],
