@@ -131,13 +131,6 @@
                                 },
                                 {
                                     "type": "primitive",
-                                    "field": "urlFull",
-                                    "value": "{{vars.input.records[0].urlFull}}",
-                                    "operator": "eq",
-                                    "_operator": "eq"
-                                },
-                                {
-                                    "type": "primitive",
                                     "field": "domain",
                                     "value": "{{vars.input.records[0].domain}}",
                                     "operator": "eq",
@@ -207,6 +200,35 @@
                                     "_operator": "eq"
                                 }
                             ]
+                        },
+                        {
+                            "type": "datetime",
+                            "logic": "AND",
+                            "_field": "createDate",
+                            "_value": {
+                            "differenceType": "days",
+                            "differenceValue": -30
+                            },
+                            "filters": [
+                            {
+                                "type": "datetime",
+                                "field": "createDate",
+                                "value": "{{getRelativeDate(0,0,-30,\"start\",\"start\",\"start\")}}",
+                                "operator": "gte"
+                            }
+                            ],
+                            "_operator": "gte"
+                        },
+                        {
+                            "type": "object",
+                            "field": "tenant",
+                            "value": "{{vars.input.records[0].tenant['@id']}}",
+                            "_value": {
+                            "@id": "{{vars.input.records[0].tenant['@id']}}",
+                            "display": "",
+                            "itemValue": ""
+                            },
+                            "operator": "eq"
                         }
                     ]
                 },
@@ -218,6 +240,7 @@
             "top": "133",
             "left": "286",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
             "uuid": "1f3d3ebf-80bd-4d95-8bf9-a94b89171cf5"
         }
     ],
