@@ -10,8 +10,13 @@
     "queueable": false,
     "trackable": true,
     "taggable": true,
-    "peerReplicable": false,
-    "defaultSort": [],
+    "peerReplicable": true,
+    "defaultSort": [
+        {
+            "direction": "ASC",
+            "field": "id"
+        }
+    ],
     "uniqueConstraint": [
         {
             "keys_unique": {
@@ -112,6 +117,95 @@
             "displayName": "{{ value }}",
             "descriptions": {
                 "singular": "Value"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "object",
+            "name": "jSONValue",
+            "length": null,
+            "orderIndex": 3,
+            "formType": "object",
+            "dataSource": null,
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ jSONValue }}",
+            "descriptions": {
+                "singular": "JSON Value"
+            }
+        },
+        {
+            "@type": "AttributeMetadata",
+            "type": "string",
+            "name": "notes",
+            "length": null,
+            "orderIndex": 4,
+            "formType": "text",
+            "dataSource": null,
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": true,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": "",
+            "tooltip": null,
+            "visibility": true,
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ notes }}",
+            "descriptions": {
+                "singular": "Notes"
             }
         }
     ],
