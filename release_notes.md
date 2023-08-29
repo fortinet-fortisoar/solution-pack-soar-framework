@@ -18,3 +18,6 @@
 
 ### Indicators
 - `TLP`, `Expired` and `Expired On` fields in the indicator module have been marked by default replicable from the tenant node in the MSSP environment 
+
+### Key Store
+- Introduced new fields named `JSON Value` and `Notes`
