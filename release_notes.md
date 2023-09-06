@@ -21,3 +21,32 @@
 
 ### Key Store
 - Introduced new fields named `JSON Value` and `Notes`
+
+### Assets
+
+Rearranged the Asset List View Columns. The sequence of Asset fields in the list view is as following
+
+- Id
+- Display Name
+- Hostname
+- MAC Address
+- IP Address
+- Device UUID
+- Vendor
+- Product
+- Category
+- Asset Criticality
+- Asset State
+- Asset Status
+- Asset Risk
+- Asset Registration Date
+- Last Scanned On
+- Property Of
+
+### Incidents
+- Added `Technique ID` field to the `Incident` Module detailed view
+
+## Dashboard Enhancements
+
+### Analyst Dashboard
+-  In the `Analyst` dashboard's Critical Alerts Tab, updated the display condition to show only high and critical severity alerts.
