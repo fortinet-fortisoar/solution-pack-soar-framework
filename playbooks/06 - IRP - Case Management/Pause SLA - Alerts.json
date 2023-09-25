@@ -63,7 +63,7 @@
             "arguments": {
                 "when": "{{vars.input.records[0].ackSlaStatus.itemValue == \"Awaiting Action\"}}",
                 "resource": {
-                    "status": "{{\"AlertStatus\" | picklist(vars.sla_time_list.altPauseSLAOn, \"@id\")}}",
+                    "status": "{{\"AlertStatus\" | picklist(vars.sla_time_list.altPauseSLAOn[0], \"@id\")}}",
                     "ackSlaStatus": "{% if vars.input.records[0].dueBy < vars.input.records[0].modifyDate%}{{\"SLAState\" | picklist(\"Missed\", \"@id\")}}{%else%}{{\"SLAState\" | picklist(\"Paused\", \"@id\")}}{%endif%}",
                     "ackSLApausedon": "{{globalVars.Current_Date}}",
                     "alertRemainingAckSLA": "{{((vars.input.records[0].dueBy - vars.input.records[0].modifyDate)\/60) | round | int}}"
@@ -112,7 +112,7 @@
             "arguments": {
                 "when": "{{vars.input.records[0].respSlaStatus.itemValue == \"Awaiting Action\"}}",
                 "resource": {
-                    "status": "{{\"AlertStatus\" | picklist(vars.sla_time_list.altPauseSLAOn, \"@id\")}}",
+                    "status": "{{\"AlertStatus\" | picklist(vars.sla_time_list.altPauseSLAOn[0], \"@id\")}}",
                     "respSlaStatus": "{%if vars.input.records[0].respDueDate < vars.input.records[0].modifyDate %}{{\"SLAState\" | picklist(\"Missed\", \"@id\")}}{%else%}{{\"SLAState\" | picklist(\"Paused\", \"@id\")}}{%endif%}",
                     "ackSLApausedon": "{{globalVars.Current_Date}}",
                     "respSLApausedon": "{{globalVars.Current_Date}}",

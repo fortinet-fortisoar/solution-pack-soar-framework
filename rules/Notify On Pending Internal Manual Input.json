@@ -1,0 +1,48 @@
+{
+    "uuid": "771875da-f111-46c3-ad26-e183f6b0ff74",
+    "name": "Notify On Pending Internal Manual Input",
+    "entity_type": "manualinput",
+    "event_type": "create",
+    "trigger_condition": {
+        "sort": [],
+        "limit": 30,
+        "logic": "AND",
+        "filters": [
+            {
+                "type": "primitive",
+                "field": "unauthenticated_input",
+                "value": "true",
+                "operator": "neq",
+                "_operator": "neq"
+            }
+        ]
+    },
+    "actions": [
+        {
+            "type": "email",
+            "params": {
+                "body": "<p>Hello,<\/p>\n<p>A FortiSOAR playbook is requesting your input. Please log in to your FortiSOAR environment using the account associated with the recipient of this email to view the request.<\/p>\n<p>Regards,<\/p>\n<p>FortiSOAR Admin.<\/p>",
+                "subject": "A FortiSOAR playbook is requesting your input",
+                "iri_list": "",
+                "cc_recipients": "",
+                "to_recipients": "admin@example.com",
+                "bcc_recipients": "",
+                "inline_iri_list": ""
+            },
+            "enabled": true,
+            "channel_uuid": "2a817063-e12a-496d-934d-381d22a95b3b"
+        }
+    ],
+    "is_system": false,
+    "is_active": true,
+    "priority": 10,
+    "event_source": "sealab",
+    "source": null,
+    "channel_preference_field": null,
+    "visible": true,
+    "category": "generic",
+    "expiry": null,
+    "entity_id": null,
+    "parent_rule": null,
+    "workflow": null
+}
