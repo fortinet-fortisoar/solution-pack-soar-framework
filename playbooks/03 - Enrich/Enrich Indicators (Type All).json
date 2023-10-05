@@ -633,6 +633,7 @@
             "arguments": {
                 "when": "{{not vars.input.params['indicator_value'] == None}}",
                 "resource": {
+                    "indicatorStatus": "{% if vars.indicator_type == 'File' and 'Excluded' in (vars.indicator_iri | fromIRI).recordTags %}{{\"IndicatorStatus\" | picklist(\"Excluded\", \"@id\")}}{% else %}{{\"IndicatorStatus\" | picklist(\"TBD\", \"@id\")}}{% endif %}",
                     "enrichmentStatus": "\/api\/3\/picklists\/8a4609d2-8a3d-4bda-9888-5f00bfea43cb"
                 },
                 "_showJson": false,
