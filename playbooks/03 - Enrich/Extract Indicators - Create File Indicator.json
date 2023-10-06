@@ -1,0 +1,219 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Extract Indicators - Create File Indicator",
+    "aliasName": null,
+    "tag": null,
+    "description": "Create File IOCs extracted from suspicious email attachments",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "fileIRI",
+        "alertIRI",
+        "tenantIRI",
+        "isExcluded"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/c90f8dec-ce4f-44e9-954b-ee1dda573f0a",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Compute Hash",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "{{vars.input.params.fileIRI}}"
+                },
+                "version": "3.2.4",
+                "connector": "cyops_utilities",
+                "operation": "download_file_from_cyops",
+                "operationTitle": "File: Compute Hash",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "f8a65627-7b35-4c9d-ab23-8701aa426baa"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create FileHash MD5 Indicator",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "tlp": "\/api\/3\/picklists\/7bff95b7-6438-4b01-b23a-0fe8cb5b33d3",
+                    "value": "{{vars.steps.Compute_Hash.data.md5}}",
+                    "__link": {
+                        "alerts": "{{vars.input.params.alertIRI}}",
+                        "indicators": "{{vars.steps.Create_File_Indicator['@id']}}"
+                    },
+                    "tenant": "{{vars.input.params.tenantIRI}}",
+                    "lastSeen": "{{arrow.utcnow().int_timestamp}}",
+                    "__replace": "true",
+                    "firstSeen": "{{arrow.utcnow().int_timestamp}}",
+                    "expiryDate": "{{arrow.utcnow().shift(days=+(globalVars.Default_Indicator_TTL_Days | int)).timestamp}}",
+                    "reputation": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                    "expiredStatus": "\/api\/3\/picklists\/d4ca4a72-7974-4b93-843e-da9efa235c6e",
+                    "indicatorStatus": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
+                    "typeofindicator": "\/api\/3\/picklists\/0ca054f2-d923-4992-a4a7-c516e6df281e",
+                    "__fieldsToUpdate": [
+                        "lastSeen",
+                        "alerts",
+                        "indicators"
+                    ],
+                    "enrichmentStatus": "\/api\/3\/picklists\/a6d9da29-27b1-4b8a-965d-8d91518540d5"
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "\/api\/3\/upsert\/indicators",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "a76eb49b-66c1-40e1-b4f9-cdf0bd51a47d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create File Indicator",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "tlp": "\/api\/3\/picklists\/7bff95b7-6438-4b01-b23a-0fe8cb5b33d3",
+                    "file": "{{vars.input.params.fileIRI}}",
+                    "value": "File - {{vars.steps.Compute_Hash.data.filename}} - {{vars.steps.Compute_Hash.data.md5}}",
+                    "__link": {
+                        "alerts": "{{vars.input.params.alertIRI}}",
+                        "recordTags": "{% if vars.input.params.isExcluded %}Excluded{% endif %}"
+                    },
+                    "tenant": "{{vars.input.params.tenantIRI}}",
+                    "lastSeen": "{{arrow.utcnow().int_timestamp}}",
+                    "__replace": "true",
+                    "firstSeen": "{{arrow.utcnow().int_timestamp}}",
+                    "expiryDate": "{{arrow.utcnow().shift(days=+(globalVars.Default_Indicator_TTL_Days | int)).timestamp}}",
+                    "reputation": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                    "filehashMD5": "{{vars.steps.Compute_Hash.data.md5}}",
+                    "filehashSHA1": "{{vars.steps.Compute_Hash.data.sha1}}",
+                    "expiredStatus": "\/api\/3\/picklists\/d4ca4a72-7974-4b93-843e-da9efa235c6e",
+                    "filehashSHA256": "{{vars.steps.Compute_Hash.data.sha256}}",
+                    "indicatorStatus": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
+                    "typeofindicator": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                    "__fieldsToUpdate": [
+                        "lastSeen",
+                        "alerts"
+                    ],
+                    "enrichmentStatus": "\/api\/3\/picklists\/a6d9da29-27b1-4b8a-965d-8d91518540d5"
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "\/api\/3\/upsert\/indicators",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "7b8a17b1-0062-448b-9141-6a27ead0559c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Set Result",
+            "description": null,
+            "arguments": {
+                "file_ioc_details": "[\n  {\n    \"type\" : \"File\",\n    \"value\" : \"File - {{vars.steps.Compute_Hash.data.filename}} - {{vars.steps.Compute_Hash.data.md5}}\"\n  },\n  {\n    \"type\" : \"FileHash-MD5\",\n    \"value\" : \"{{vars.steps.Compute_Hash.data.md5}}\"\n  }\n]"
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "97f1bfb8-4bba-4e01-84dd-bd7c373da824"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "c90f8dec-ce4f-44e9-954b-ee1dda573f0a"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Compute Hash -> Create Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/7b8a17b1-0062-448b-9141-6a27ead0559c",
+            "sourceStep": "\/api\/3\/workflow_steps\/f8a65627-7b35-4c9d-ab23-8701aa426baa",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "cf9fa56b-ec1b-4954-b911-67d1f8699963"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create FileHash MD5 Indicator -> Set Result",
+            "targetStep": "\/api\/3\/workflow_steps\/97f1bfb8-4bba-4e01-84dd-bd7c373da824",
+            "sourceStep": "\/api\/3\/workflow_steps\/a76eb49b-66c1-40e1-b4f9-cdf0bd51a47d",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "354df1da-ac81-4a93-b391-8e216824db7b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create File Indicator -> Copy of Create File Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/a76eb49b-66c1-40e1-b4f9-cdf0bd51a47d",
+            "sourceStep": "\/api\/3\/workflow_steps\/7b8a17b1-0062-448b-9141-6a27ead0559c",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "72be713d-ab04-4f09-874d-6383e6c4e64d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Compute Hash",
+            "targetStep": "\/api\/3\/workflow_steps\/f8a65627-7b35-4c9d-ab23-8701aa426baa",
+            "sourceStep": "\/api\/3\/workflow_steps\/c90f8dec-ce4f-44e9-954b-ee1dda573f0a",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "9b31ac7d-1b5b-4874-83f3-1248070f3c43"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "60544219-bf3c-4212-b5b7-a088060fd503",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Referenced"
+    ]
+}
