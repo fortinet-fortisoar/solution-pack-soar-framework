@@ -108,7 +108,7 @@
                     "filehashSHA1": "{{vars.steps.Compute_Hash.data.sha1}}",
                     "expiredStatus": "\/api\/3\/picklists\/d4ca4a72-7974-4b93-843e-da9efa235c6e",
                     "filehashSHA256": "{{vars.steps.Compute_Hash.data.sha256}}",
-                    "indicatorStatus": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
+                    "indicatorStatus": "{% if vars.input.params.isExcluded %}{{\"IndicatorStatus\" | picklist(\"Excluded\", \"@id\")}}{% else %}{{\"IndicatorStatus\" | picklist(\"TBD\", \"@id\")}}{% endif %}",
                     "typeofindicator": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
                     "__fieldsToUpdate": [
                         "lastSeen",
