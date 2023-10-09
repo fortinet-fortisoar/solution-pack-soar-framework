@@ -124,7 +124,7 @@
                 "unified_iocs": "[]",
                 "alert_metadata": "{{vars.input.params.alertMetaData | ternary(vars.input.params.alertMetaData,vars.input.records[0])}}",
                 "alert_field_iocs": "[]",
-                "create_file_iocs": "false",
+                "create_file_iocs": "true",
                 "excluded_file_iocs": "{{(globalVars.Excludelist_Files | replace(\"*\", \"\") | replace(\" \", \"\")).split(\",\")}}",
                 "indicator_type_map": "{{globalVars.Indicator_Type_Map}}",
                 "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls) | map('lower') | list}}"
@@ -246,6 +246,7 @@
                                 "value": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
                                 "_value": {
                                     "@id": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                                    "display": "TBD",
                                     "itemValue": "TBD"
                                 },
                                 "operator": "neq"
@@ -269,7 +270,7 @@
                 },
                 "for_each": {
                     "item": "{{vars.steps.Create_Indicator}}",
-                    "condition": "{{vars.item.enrichmentStatus.itemValue != \"Completed\"}}"
+                    "condition": "{{vars.item.enrichmentStatus.itemValue != \"Completed\" and vars.item.indicatorStatus.itemValue != \"Excluded\"}}"
                 },
                 "step_variables": []
             },
