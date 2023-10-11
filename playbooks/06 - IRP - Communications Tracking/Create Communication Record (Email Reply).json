@@ -52,7 +52,7 @@
                 "resource": {
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "people": [],
-                    "content": "<p>No correlated alert link found for this communication.<\/p>",
+                    "content": "<p>No correlated alert link found in email body for this communication record.<\/p>",
                     "__replace": "",
                     "isImportant": false,
                     "communication": "{{vars.input.records[0]['@id']}}",
@@ -256,7 +256,7 @@
                 "input": {
                     "schema": {
                         "title": "No Corelation Found",
-                        "description": "Unable to execute this playbook as there is no correlated records found for this communication.",
+                        "description": "No correlated alert link found in email body for this communication record.",
                         "inputVariables": []
                     }
                 },
@@ -272,8 +272,9 @@
                 "response_mapping": {
                     "options": [
                         {
-                            "option": "Close",
-                            "primary": true
+                            "option": "Ok",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/0b7b9030-f92e-491c-9cc1-c9621792c5c3"
                         }
                     ],
                     "duplicateOption": false,
@@ -636,7 +637,7 @@
             "name": "Prompt User -> No Operations",
             "targetStep": "\/api\/3\/workflow_steps\/0b7b9030-f92e-491c-9cc1-c9621792c5c3",
             "sourceStep": "\/api\/3\/workflow_steps\/2c7b07c0-d3ad-4c66-a8c0-843f6101bb6b",
-            "label": null,
+            "label": "Ok",
             "isExecuted": false,
             "group": null,
             "uuid": "2ddbbd63-9d8d-4042-aae7-90d55be815a1"
