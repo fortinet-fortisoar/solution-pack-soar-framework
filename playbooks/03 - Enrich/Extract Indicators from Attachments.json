@@ -29,7 +29,8 @@
             "arguments": {
                 "unified_iocs": "[]",
                 "extracted_text": "[]",
-                "file_names_to_extract": "[]"
+                "file_names_to_extract": "[]",
+                "excluded_file_indicators": "[]"
             },
             "status": null,
             "top": "165",
@@ -48,13 +49,12 @@
                     "item": "{{vars.steps.Find_Related_Attachments}}",
                     "__bulk": false,
                     "parallel": false,
-                    "condition": "{{(vars.item.file.filename not in vars.input.params.excludedFileIOCs) or (\".\" + vars.item.file.filename.split('.')[-1] not in vars.input.params.excludedFileIOCs)}}"
+                    "condition": "{{vars.item.file.filename not in vars.excluded_file_indicators}}"
                 },
                 "arguments": {
                     "fileIRI": "{{vars.item.file['@id']}}",
                     "alertIRI": "{{vars.input.params.alertIRI}}",
-                    "tenantIRI": "{{vars.input.params.tenantIRI}}",
-                    "isExcluded": "{% if (vars.item.file.filename in vars.input.params.excludedFileIOCs) or (\".\" + vars.item.file.filename.split('.')[-1] in vars.input.params.excludedFileIOCs) %}true{% else %}false{% endif %}"
+                    "tenantIRI": "{{vars.input.params.tenantIRI}}"
                 },
                 "apply_async": false,
                 "step_variables": [],
@@ -63,7 +63,7 @@
                 "workflowReference": "\/api\/3\/workflows\/60544219-bf3c-4212-b5b7-a088060fd503"
             },
             "status": null,
-            "top": "1380",
+            "top": "1515",
             "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -87,6 +87,20 @@
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "c48b363d-9bb6-4845-9603-29926459e697"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Extract Excluded File Names",
+            "description": null,
+            "arguments": {
+                "__excluded_file_iocs": "{% for item in vars.steps.Find_Related_Attachments | json_query(\"[].file.filename\") %}{% if (item in vars.input.params.excludedFileIOCs) or (\".\" + item.split('.')[-1] in vars.input.params.excludedFileIOCs) %}{{vars.excluded_file_indicators.append(item)}}{% endif %}{% endfor %}"
+            },
+            "status": null,
+            "top": "1380",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "a74a871f-7e15-4ed9-bac4-a2d43ad4dcba"
         },
         {
             "@type": "WorkflowStep",
@@ -219,7 +233,7 @@
                 "__unified_iocs": "{{ vars.unified_iocs.extend(vars.steps.Extract_Indicators | json_query(\"[].data.results\") | flatten(levels=1) | json_query(\"[?type != `File`]\") | unique) }}\n\n{% if vars.input.params.createFileIOCs %}\n{{ vars.unified_iocs.extend(vars.steps.Create_File_IOCs | json_query(\"[].file_ioc_details\") | flatten(levels=1)) }}\n{% endif %}"
             },
             "status": null,
-            "top": "1515",
+            "top": "1650",
             "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -276,10 +290,11 @@
             "name": "Set Result",
             "description": null,
             "arguments": {
-                "attachment_indicators": "{{vars.unified_iocs | unique }}"
+                "attachment_indicators": "{{vars.unified_iocs | unique }}",
+                "excluded_file_indicators": "{{vars.excluded_file_indicators}}"
             },
             "status": null,
-            "top": "1650",
+            "top": "1785",
             "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -383,13 +398,23 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Extract Indicators -> Create File IOCs",
+            "name": "Extract Excluded File Names -> Create File IOCs",
             "targetStep": "\/api\/3\/workflow_steps\/7e92f479-ab93-40b7-98a4-a37af6f6a2e9",
+            "sourceStep": "\/api\/3\/workflow_steps\/a74a871f-7e15-4ed9-bac4-a2d43ad4dcba",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "8b86220f-58ca-4bda-bc58-7590eaac386b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract Indicators -> Get File IOCs List",
+            "targetStep": "\/api\/3\/workflow_steps\/a74a871f-7e15-4ed9-bac4-a2d43ad4dcba",
             "sourceStep": "\/api\/3\/workflow_steps\/b82e7069-76f8-45cd-af8c-0a815b21c37b",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "54a206c0-dc86-4e07-8af3-367bbdfa0b02"
+            "uuid": "6b37b38b-2df5-4f25-886b-73570b2a3846"
         },
         {
             "@type": "WorkflowRoute",
