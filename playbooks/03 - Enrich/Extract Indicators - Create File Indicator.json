@@ -12,8 +12,7 @@
     "parameters": [
         "fileIRI",
         "alertIRI",
-        "tenantIRI",
-        "isExcluded"
+        "tenantIRI"
     ],
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
@@ -95,8 +94,7 @@
                     "file": "{{vars.input.params.fileIRI}}",
                     "value": "File - {{vars.steps.Compute_Hash.data.filename}} - {{vars.steps.Compute_Hash.data.md5}}",
                     "__link": {
-                        "alerts": "{{vars.input.params.alertIRI}}",
-                        "recordTags": "{% if vars.input.params.isExcluded %}Excluded{% endif %}"
+                        "alerts": "{{vars.input.params.alertIRI}}"
                     },
                     "tenant": "{{vars.input.params.tenantIRI}}",
                     "lastSeen": "{{arrow.utcnow().int_timestamp}}",
@@ -108,7 +106,7 @@
                     "filehashSHA1": "{{vars.steps.Compute_Hash.data.sha1}}",
                     "expiredStatus": "\/api\/3\/picklists\/d4ca4a72-7974-4b93-843e-da9efa235c6e",
                     "filehashSHA256": "{{vars.steps.Compute_Hash.data.sha256}}",
-                    "indicatorStatus": "{% if vars.input.params.isExcluded %}{{\"IndicatorStatus\" | picklist(\"Excluded\", \"@id\")}}{% else %}{{\"IndicatorStatus\" | picklist(\"TBD\", \"@id\")}}{% endif %}",
+                    "indicatorStatus": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
                     "typeofindicator": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
                     "__fieldsToUpdate": [
                         "lastSeen",
@@ -204,7 +202,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "9b31ac7d-1b5b-4874-83f3-1248070f3c43"
+            "uuid": "dd993581-ea4e-4048-b26e-be55be53ebf8"
         }
     ],
     "groups": [],

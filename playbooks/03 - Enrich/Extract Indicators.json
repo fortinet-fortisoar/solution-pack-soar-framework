@@ -127,7 +127,8 @@
                 "create_file_iocs": "true",
                 "excluded_file_iocs": "{{(globalVars.Excludelist_Files | replace(\"*\", \"\") | replace(\" \", \"\")).split(\",\")}}",
                 "indicator_type_map": "{{globalVars.Indicator_Type_Map}}",
-                "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls) | map('lower') | list}}"
+                "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls) | map('lower') | list}}",
+                "add_excluded_file_comment": "false"
             },
             "status": null,
             "top": "300",
@@ -429,6 +430,36 @@
         },
         {
             "@type": "WorkflowStep",
+            "name": "Add Comment for Excluded Files",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.add_excluded_file_comment}}",
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "alerts": "{{vars.alert_iri}}",
+                    "people": [],
+                    "content": "<p>Files {% for item in vars.steps.Extract_Attachment_Indicators['excluded_file_indicators'] %}<span class=\"badge badge-pill badge-danger\" style=\"background: #6a9169; color: #fff;\">{{item}}<\/span>{% if not loop.last%}, {% endif %}{% endfor %} has been excluded from File indicator creation.<\/p>",
+                    "__replace": "",
+                    "isImportant": false,
+                    "peopleUpdated": false
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "2000",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "99808fd2-e833-4c01-ac8e-c2dfb35b9d29"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Get Indicators",
             "description": null,
             "arguments": {
@@ -672,6 +703,16 @@
             "isExecuted": false,
             "group": null,
             "uuid": "02b5aefa-5a48-4f99-9c98-b34d19c1f759"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Alert State -> Add Comment for Excluded Files",
+            "targetStep": "\/api\/3\/workflow_steps\/99808fd2-e833-4c01-ac8e-c2dfb35b9d29",
+            "sourceStep": "\/api\/3\/workflow_steps\/1c47615b-90b3-439d-9d45-eb29b14064ed",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "1d36b56c-f304-4da4-aa07-0f695da65e48"
         },
         {
             "@type": "WorkflowRoute",
