@@ -68,6 +68,7 @@ The SOAR Framework includes the following rules:
 - Alert > Notify Updates - It sends a notification, via the email, whenever an alert is **updated**.
 - Incident > Notify Creation - It sends a notification, via the email, whenever an incident is **created**.
 - Incident > Notify Updates - It sends a notification, via the email, whenever an incident is **updated**.
+- Notify On Pending Internal Manual Input - It sends a notification, via the email, whenever a manual input is created for an internal user with the option to send a customized email.
 
 **Note:** In-App Notifications has been disabled onwards SOAR Framework v2.1.0 solution pack. If required then enable the **In-App Notifications** for desired rules.
 
@@ -195,32 +196,34 @@ Playbooks in the *03-Enrich* collection help perform enrichment of data &ndash; 
 | 1      | Asset - Get Running Process                                                    | Retrieves a list of all processes that are running on the specified host.                                                                                |
 | 2      | Attachment - Get File Reputation                                               | Retrieves the reputation of a file that is submitted from FortiSOAR to VirusTotal.                                                                       |
 | 3      | Create Indicators (Batch)                                                      | Creates indicator records in bulk.                                                                                                                       |
-| 4      | Extract Indicators                                                             | Extracts and creates indicators from the specified data and then enriches specific fields in alerts with the indicator data.                             |
-| 5      | Extract Indicators - Manual                                                    | Extracts and creates indicators from the specified alert records and then enriches specific fields in alerts with the indicator data.                    |
-| 6      | Get Related IOCs For An IP                                                     | Retrieves related IOCs for a specified IP address from threat intel sources.                                                                             |
-| 7      | Get Reputation After Specified Time                                            | Re-enriches indicators after a specified time.                                                                                                           |
-| 8      | Indicator (Manual Trigger) - Get Latest Reputation                             | Retrieves the reputation of indicators using configured threat intelligence tools. You can trigger this playbook by manually selecting the indicator(s). |
-| 9      | Indicator (Type Host) - Get Reputation                                         | Retrieves the reputation of indicators of type ‘Host’ using configured threat intelligence tools.                                                        |
-| 10     | Indicator (Type Port) - Get Reputation                                         | Retrieves the reputation of indicators of type ‘Port’ using configured threat intelligence tools.                                                        |
-| 11     | Indicator (Type Process) - Get Reputation                                      | Retrieves the reputation of indicators of type ‘Process’ using configured threat intelligence tools.                                                     |
-| 12     | Enrich Indicators (Type All)                                                   | Get indicator reputation from all available **pluggable** enrichment playbooks.                                                                              |
-| 13     | Enrich Indicator (Type IP)                                                     | Pre-process the IP Address indicator                                                                                                                     |
-| 14     | Update/Initialize Indicator Enrichment Global Variables                        | Update enrichment playbooks list global variable based on indicator type defined as param tag                                                            |
-| 15     | Retrieve Configured Enrichment Connectors                                      | Retrieve the configured enrichment connectors and return their playbook IRI's                                                                            |
-| 16     | Reset Enrichment Global Variables                                              | Reset the *pluggable* enrichment global variables                                                                                                          |
-| 17     | Indicator (Type Registry) - Get Reputation                                     | Retrieves the reputation of indicators of type ‘Registry’ using configured threat intelligence tools.                                                    |
-| 18     | Indicator (Type All) - Get Latest Reputation<sup>Deprecated</sup>              | Based on the type of indicator, this playbook retrieves the reputation of indicators using configured threat intelligence tools.                         |
-| 19     | Indicator (Type Domain) - Get Reputation<sup>Deprecated</sup>                  | Retrieves the reputation of indicators of type ‘Domain’ using configured threat intelligence tools.                                                      |
-| 20     | Indicator (Type Email) - Get Reputation<sup>Deprecated</sup>                   | Retrieves the reputation of indicators of type ‘Email Address’ using configured threat intelligence tools.                                               |
-| 21     | Indicator (Type File) - Get Reputation<sup>Deprecated</sup>                    | Uploads a file to a sandbox and then retrieves its reputation using configured threat intelligence tools.                                                |
-| 22     | Indicator (Type File) - Get Reputation (Fortinet Sandbox)<sup>Deprecated</sup> | Submits a file to FortinetSandbox and then retrieves its reputation.                                                                                     |
-| 23     | Indicator (Type File - MD5) - Get Reputation<sup>Deprecated</sup>              | Retrieves the reputation of a file, identified by its MD5 hash, using configured threat intelligence tools.                                              |
-| 24     | Indicator (Type IP) - Get Reputation<sup>Deprecated</sup>                      | Retrieves the reputation of indicators of type ‘IP Address’ using configured threat intelligence tools.                                                  |
-| 25     | Indicator (Type URL) - Get Reputation<sup>Deprecated</sup>                     | Retrieves the reputation of indicators of type ‘URL’ using configured threat intelligence tools.                                                         |
-| 26     | Indicator (Type URL) - Get Reputation (Fortinet Sandbox)<sup>Deprecated</sup>  | Submit URL to FortinetFortiSandbox.                                                                                                                      |
-| 27     | Indicator (Type User Account) - Get Details<sup>Deprecated</sup>               | Retrieves the details of indicators of type ‘User Account’ using configured threat intelligence tools.                                                   |
-| 28     | Fortinet Fortisandbox (Get Reputation) - Get Scan Results<sup>Deprecated</sup> | Retrieves the job verdict details for submitted samples based on the specified job ID.                                                                   |
-| 29     | Extract Indicators from Attachments | Extracts indicators from the attachment of the suspicious email |
+| 4      | Enrich Indicator (Type IP)                               | Pre-process the IP Address indicator                                                                                 |
+| 5      | Enrich Indicators (Type All)                             | Get indicator reputation from all available **pluggable** enrichment playbooks.                                        |
+| 6      | Extract Indicators                                                             | Extracts and creates indicators from the specified data and then enriches specific fields in alerts with the indicator data.                             |
+| 7      | Extract Indicators - Create File Indicator<sup>New</sup>               | Creates File IOCs extracted from suspicious email attachments                                                          |
+| 8      | Extract Indicators - Manual                                                    | Extracts and creates indicators from the specified alert records and then enriches specific fields in alerts with the indicator data.                    |
+| 9      | Extract Indicators from Attachments | Extracts indicators from the attachment of the suspicious email |
+| 10     | Fortinet Fortisandbox (Get Reputation) - Get Scan Results<sup>Deprecated</sup> | Retrieves the job verdict details for submitted samples based on the specified job ID. |
+| 11     | Get Related IOCs For An IP                              | Retrieves related IOCs for a specified IP address from threat intel sources.                                           |
+| 12     | Get Reputation After Specified Time                       | Re-enriches indicators after a specified time.                                                                        |
+| 13     | Get Unprocessed Indicators<sup>New</sup>                              | Fetches the indicators for which enrichment has been failed and mark their `Enrichment Status` to Failed               |
+| 14     | Indicator (Manual Trigger) - Get Latest Reputation        | Retrieves the reputation of indicators using configured threat intelligence tools. You can trigger this playbook by manually selecting the indicator(s). |
+| 15     | Indicator (Type All) - Get Latest Reputation<sup>Deprecated</sup> | Based on the type of indicator, this playbook retrieves the reputation of indicators using configured threat intelligence tools. |
+| 16     | Indicator (Type Domain) - Get Reputation<sup>Deprecated</sup> | Retrieves the reputation of indicators of type ‘Domain’ using configured threat intelligence tools.                  |
+| 17     | Indicator (Type Email) - Get Reputation<sup>Deprecated</sup> | Retrieves the reputation of indicators of type ‘Email Address’ using configured threat intelligence tools.            |
+| 18     | Indicator (Type File - MD5) - Get Reputation<sup>Deprecated</sup> | Retrieves the reputation of a file, identified by its MD5 hash, using configured threat intelligence tools. |
+| 19     | Indicator (Type File) - Get Reputation (Fortinet Sandbox)<sup>Deprecated</sup> | Submits a file to FortinetSandbox and then retrieves its reputation. |
+| 20     | Indicator (Type File) - Get Reputation<sup>Deprecated</sup> | Uploads a file to a sandbox and then retrieves its reputation using configured threat intelligence tools. |
+| 21     | Indicator (Type Host) - Get Reputation                    | Retrieves the reputation of indicators of type ‘Host’ using configured threat intelligence tools.                     |
+| 22     | Indicator (Type IP) - Get Reputation<sup>Deprecated</sup> | Retrieves the reputation of indicators of type ‘IP Address’ using configured threat intelligence tools.                |
+| 23     | Indicator (Type Port) - Get Reputation                    | Retrieves the reputation of indicators of type ‘Port’ using configured threat intelligence tools.                     |
+| 24     | Indicator (Type Process) - Get Reputation                 | Retrieves the reputation of indicators of type ‘Process’ using configured threat intelligence tools.                  |
+| 25     | Indicator (Type Registry) - Get Reputation                | Retrieves the reputation of indicators of type ‘Registry’ using configured threat intelligence tools.                |
+| 26     | Indicator (Type URL) - Get Reputation (Fortinet Sandbox)<sup>Deprecated</sup> | Submit URL to FortinetFortiSandbox. |
+| 27     | Indicator (Type URL) - Get Reputation<sup>Deprecated</sup> | Retrieves the reputation of indicators of type ‘URL’ using configured threat intelligence tools. |
+| 28     | Indicator (Type User Account) - Get Details<sup>Deprecated</sup> | Retrieves the details of indicators of type ‘User Account’ using configured threat intelligence tools. |
+| 29     | Reset Enrichment Global Variables                          | Reset the *pluggable* enrichment global variables                                                                      |
+| 30     | Retrieve Configured Enrichment Connectors                  | Retrieve the configured enrichment connectors and return their playbook IRI's                                            |
+| 31     | Update/Initialize Indicator Enrichment Global Variables    | Update enrichment playbooks list global variable based on indicator type defined as param tag                        |
 
 >**NOTE**: The playbooks marked *Deprecated* are to be deactivated if you are going for an upgrade.
 
