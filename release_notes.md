@@ -9,13 +9,15 @@
 | NOTE | If you have updated any of the System View Templates(SVTs), Module Metadata (MMD), and playbooks, ensure to take a backup before updating SOAR Framework solution pack, as any changes that you have made will be overwritten. |
 |------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
-## Playbook Enhancements
+## New Feature
 
 - Introduced a new **Extract Indicators - Create File Indicator** playbook in the *03 - Enrich* collection, the playbook creates file indicators extracted from suspicious email attachments and follow the nomenclature for the file indicator value as `File - <FileName> - <FileHash-MD5>`
 
 - The **Extract Indicators** playbook in the *03 - Enrich* collection now provides a facility to exclude files from file indicator creation.
 
     >**Note:** A new global variable `Excludelist_Files` has been introduced for the same. the file names or extensions mentioned in this global variable will be excluded from the file indicator creation. By default, this global variable will be shipped empty.
+
+## Playbook Enhancements
 
 - The **Find and Relate Similar Alerts** playbook in the *03 - Triage* collection now finds alerts for the last 30 days and in MSSP env it finds alerts belonging to the same tenant the playbook executing on.
 
