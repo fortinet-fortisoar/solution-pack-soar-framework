@@ -95,7 +95,8 @@
             "arguments": {
                 "resource": {
                     "state": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
-                    "emailBody": "{% if vars.input.records[0].emailBody or vars.input.params.alertMetaData.emailBody %}\n{% set emailBody = vars.input.records[0].emailBody or vars.input.params.alertMetaData.emailBody  %}\n{{ emailBody | regex_replace('http','hxxp')  }}\n{% endif %}"
+                    "emailBody": "{% if vars.input.records[0].emailBody or vars.input.params.alertMetaData.emailBody %}\n{% set emailBody = vars.input.records[0].emailBody or vars.input.params.alertMetaData.emailBody  %}\n{{ emailBody | regex_replace('http','hxxp')  }}\n{% endif %}",
+                    "indicators": "{{vars.indicators_iri}}"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
@@ -489,9 +490,6 @@
                     "tlp": "\/api\/3\/picklists\/7bff95b7-6438-4b01-b23a-0fe8cb5b33d3",
                     "file": "{{ vars.item.indicatorFileIri or None }}",
                     "value": "{%if vars.item.type == \"IndicatorType\" | picklist(\"Email Address\", \"itemValue\")%}{{vars.item.value | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+')}}{%else%}{{vars.item.value}}{%endif%}",
-                    "__link": {
-                        "alerts": "{{vars.alert_iri}}"
-                    },
                     "tenant": "{{vars.tenant_iri}}",
                     "lastSeen": "{{arrow.utcnow().int_timestamp}}",
                     "__replace": "true",
@@ -502,7 +500,6 @@
                     "indicatorStatus": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
                     "typeofindicator": "{{('IndicatorType' | picklist(vars.item.type))['@id']}}",
                     "__fieldsToUpdate": [
-                        "alerts",
                         "lastSeen"
                     ],
                     "enrichmentStatus": "\/api\/3\/picklists\/a6d9da29-27b1-4b8a-965d-8d91518540d5"
@@ -514,7 +511,9 @@
                 "fieldOperation": {
                     "recordTags": "Append"
                 },
-                "step_variables": []
+                "step_variables": {
+                    "indicators_iri": "{{vars.steps.Create_Indicator | json_query('[].\"@id\"') | unique}}"
+                }
             },
             "status": null,
             "top": "1515",
