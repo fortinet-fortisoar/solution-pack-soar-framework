@@ -434,7 +434,7 @@
             "name": "Add Comment for Excluded Files",
             "description": null,
             "arguments": {
-                "when": "{{vars.add_excluded_file_comment}}",
+                "when": "{{(vars.add_excluded_file_comment) and (vars.steps.Extract_Attachment_Indicators['excluded_file_indicators'] | length > 0)}}",
                 "resource": {
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
                     "alerts": "{{vars.alert_iri}}",
