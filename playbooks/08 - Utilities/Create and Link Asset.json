@@ -28,12 +28,12 @@
             "arguments": {
                 "conditions": [
                     {
-                        "option": "No",
+                        "option": "Yes",
                         "step_iri": "\/api\/3\/workflow_steps\/8b3a1bde-9e65-4e97-aead-48f74021e32a",
                         "condition": "{{ vars.resultRecordscount != 0 }}"
                     },
                     {
-                        "option": "Yes",
+                        "option": "No",
                         "default": true,
                         "step_iri": "\/api\/3\/workflow_steps\/0f15f409-eabf-4488-ba53-a7dac23d4437"
                     }
@@ -135,9 +135,9 @@
             "arguments": {
                 "resource": {
                     "__link": {
-                        "alerts": "{{vars.input.params.alertRecordIRI or None}}",
-                        "incidents": "{{vars.input.params.incidentRecordIRI or None}}",
-                        "indicators": "{{vars.input.params.indicatorIRI or None}}"
+                        "alerts": "{{vars.input.params.alertRecordIRI}}",
+                        "incidents": "{{vars.input.params.incidentRecordIRI}}",
+                        "indicators": "{{vars.input.params.indicatorIRI}}"
                     }
                 },
                 "_showJson": false,
@@ -217,7 +217,7 @@
             "name": "Do Records Exist -> Create New Asset",
             "targetStep": "\/api\/3\/workflow_steps\/0f15f409-eabf-4488-ba53-a7dac23d4437",
             "sourceStep": "\/api\/3\/workflow_steps\/c5c15670-a39d-4ef7-a5fe-fabce07850c2",
-            "label": "Yes",
+            "label": "No",
             "isExecuted": false,
             "uuid": "6f71134c-0373-477d-a949-e3ab82d0fa23"
         },
@@ -244,7 +244,7 @@
             "name": "Do Records Exist -> Link Asset",
             "targetStep": "\/api\/3\/workflow_steps\/8b3a1bde-9e65-4e97-aead-48f74021e32a",
             "sourceStep": "\/api\/3\/workflow_steps\/c5c15670-a39d-4ef7-a5fe-fabce07850c2",
-            "label": "No",
+            "label": "Yes",
             "isExecuted": false,
             "uuid": "4d62f82c-9438-4cd8-9d2f-ef1d0657fa7d"
         }
