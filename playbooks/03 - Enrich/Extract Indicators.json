@@ -129,7 +129,8 @@
                 "excluded_file_iocs": "{{(globalVars.Excludelist_Files | replace(\"*\", \"\") | replace(\" \", \"\")).split(\",\")}}",
                 "indicator_type_map": "{{globalVars.Indicator_Type_Map}}",
                 "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls) | map('lower') | list}}",
-                "add_excluded_file_comment": "false"
+                "add_excluded_file_comment": "false",
+                "excluded_ports": "{{globalVars.Excludelist_Ports}}"
             },
             "status": null,
             "top": "300",
