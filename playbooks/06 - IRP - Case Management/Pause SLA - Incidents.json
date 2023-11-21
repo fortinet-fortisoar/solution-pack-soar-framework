@@ -92,7 +92,7 @@
             "arguments": {
                 "when": "{{vars.input.records[0].slaState.itemValue == \"Awaiting Action\"}}",
                 "resource": {
-                    "status": "{{\"IncidentStatus\" | picklist(vars.sla_time_list.incPauseSLAOn[0], \"@id\")}}",
+                    "status": "{% if vars.sla_time_list.incPauseSLAOn | type_debug == 'list' %}{{\"IncidentStatus\" | picklist(vars.sla_time_list.incPauseSLAOn[0], \"@id\")}}{% else %}{{\"IncidentStatus\" | picklist(vars.sla_time_list.incPauseSLAOn, \"@id\")}}{% endif %}",
                     "slaState": "{% if vars.input.records[0].ackDueDate < vars.input.records[0].modifyDate%}{{\"SLAState\" | picklist(\"Missed\", \"@id\")}}{%else%}{{\"SLAState\" | picklist(\"Paused\", \"@id\")}}{%endif%}",
                     "ackSLApausedon": "{{globalVars.Current_Date}}",
                     "incRemainingAckSLA": "{{((vars.input.records[0].ackDueDate - vars.input.records[0].modifyDate)\/60) | round | int}}"
@@ -122,7 +122,7 @@
                 "when": "{{vars.input.records[0].resSla.itemValue == \"Awaiting Action\"}}",
                 "resource": {
                     "resSla": "{%if vars.input.records[0].resDueBy < vars.input.records[0].modifyDate %}{{\"SLAState\" | picklist(\"Missed\", \"@id\")}}{%else%}{{\"SLAState\" | picklist(\"Paused\", \"@id\")}}{%endif%}",
-                    "status": "{{\"IncidentStatus\" | picklist(vars.sla_time_list.incPauseSLAOn[0], \"@id\")}}",
+                    "status": "{% if vars.sla_time_list.incPauseSLAOn | type_debug == 'list' %}{{\"IncidentStatus\" | picklist(vars.sla_time_list.incPauseSLAOn[0], \"@id\")}}{% else %}{{\"IncidentStatus\" | picklist(vars.sla_time_list.incPauseSLAOn, \"@id\")}}{% endif %}",
                     "respSLApausedon": "{{globalVars.Current_Date}}",
                     "incRemainingRespSLA": "{{((vars.input.records[0].resDueBy - vars.input.records[0].modifyDate)\/60) | round | int}}"
                 },
@@ -182,5 +182,7 @@
     "owners": [],
     "isPrivate": false,
     "deletedAt": null,
-    "recordTags": []
+    "recordTags": [
+        "ManualTrigger"
+    ]
 }
