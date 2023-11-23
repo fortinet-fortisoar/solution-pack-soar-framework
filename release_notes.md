@@ -33,6 +33,8 @@
 
 - The **Create Communication Record (Email Reply)** playbook in the *06 - IRP - Communications Tracking* now handle email replies without encrypted text in the body, and adds a comment in the alert instead of failing a playbook.
 
+- The **Create and Link Asset** playbook in the *"08 - Utilities"* collection now fixed the branch tooltips for the "Do Records Exist" decision step, ensuring accurate labels in alignment with the flow. Additionally, the playbook has enhanced the record correlation logic for improved functionality.
+
 
 ## Module Enhancements
 

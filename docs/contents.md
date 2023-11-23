@@ -87,7 +87,10 @@ SOAR Framework has the following widgets:
 | Incident Correlations      | This widget displays the correlation graph of an incident.                                                                                                            |
 | Custom Picklist Message    | This widget helps display custom messages above the record details page.                                                                                              |
 | Incident Timeline          | This widget displays a vertical timeline showing an Incident record's correlated Alerts and Indicators, sorted based on user-selectable date fields.                  |
-
+| MITRE ATT&CK Alert Incident Spread         | This widget displays detailed table view of Alerts and Incidents linked to MITRE ATT&CK records             |
+| Incident Timeline          | This widget displays a vertical timeline showing an Incident record's correlated Alerts and Indicators, sorted based on user-selectable date fields.                  |
+| Record Distribution | This widget provides ability to visualize items/records and their correlations in different levels based on a given grouping context. |
+| Fields Of Interest | This widget displays fields in the detailed view, regardless of the 'Visiblity Constraint' |
 
 ## Roles
 

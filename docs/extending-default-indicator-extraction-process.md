@@ -112,5 +112,35 @@ After adding the above key-value pair, the JSON you need to enter in the **Field
 
 Now your playbook captures indicators corresponding to the **Targeted Employee Email Address** field.
 
+## Whitelist Indicators from the extraction
+
+You can whitelist the indicator extraction by modifying `Excludelist` global variable.
+
+Navigate to **Automation** > **Playbooks** and click any playbook collection. A list of included playbooks appears on the left. Click any playbook and go to **Tools** > **Global Variables**.
+
+![](./res/global-variables.png)
+
+From the Global variables on the left, click the edit button on any `Excludelist` that you want to edit.
+
+![](./res/excludelist_indicators.png)
+
+Following is the default JSON contained in **Field Value** of the `Excludelist` global variable. The comma-separated value of indicators needs to be provided. 
+
+![](./res/excludelist_indicators_values.png)
+
+These are the `Excludelist` global variables included out of the box in the solution pack:
+
+- **Excludelist_IPs:** Excludes default IP addresses (`8.8.8.8, 10.1.1.2`)
+
+- **Excludelist_URLs:** Excludes default URLs (`https://www.google.com, https://mail.yahoo.com/login.html, https://www.office.com/`)
+
+- **Excludelist_Domains:** Excludes default domains (`google.com, yahoo.com, fortinet.net, cybersponse.com, gmail.com, outlook.com, microsoft.com, fortinet.com, twitter.com, facebook.com, linkedin.com, instagram.com, fortiguard.com, forticloud.com, w3.org`)
+
+- **Excludelist_Files:** Excludes specified file names or extensions (empty by default; **case-sensitive**)
+
+- **Excludelist_Ports:** Excludes specified ports (empty by default)
+
+**Note:** Configure these global variables to avoid creating and linking non-essential or whitelisted indicators.
+
 | [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
 |-----------------------------------------|-------------------------------------------|---------------------|---------------------------|
