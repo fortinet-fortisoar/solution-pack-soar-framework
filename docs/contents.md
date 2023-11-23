@@ -99,6 +99,7 @@ SOAR framework has the following roles included:
 - SOC Analyst
 - SOC Manager
 - Full app permissions
+- Read-Only User
 
 ## Dashboards
 

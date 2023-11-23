@@ -95,3 +95,7 @@
 ## Reference Blocks Enhancement
 ### Approval-Based Decision
 - Replaced the old Approval Step with the latest version to improve performance.
+
+## Roles Enhancement 
+### Read-Only User
+- Added a new role that provides access with viewing rights only, no editing or modification capabilities.
