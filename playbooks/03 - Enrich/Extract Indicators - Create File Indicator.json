@@ -1,4 +1,5 @@
 {
+    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Extract Indicators - Create File Indicator",
@@ -25,20 +26,22 @@
             "description": null,
             "arguments": {
                 "params": {
-                    "iri": "{{vars.input.params.fileIRI}}"
+                    "filename": "{{vars.steps.Download_File.data.filename}}",
+                    "file_path": "{{vars.steps.Download_File.data['cyops_file_path']}}",
+                    "create_attachment": false
                 },
-                "version": "3.2.4",
+                "version": "3.2.5",
                 "connector": "cyops_utilities",
-                "operation": "download_file_from_cyops",
-                "operationTitle": "File: Compute Hash",
+                "operation": "upload_file_to_cyops",
+                "operationTitle": "File: Upload a file in the system and Create an Attachment",
                 "step_variables": []
             },
             "status": null,
-            "top": "165",
+            "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "f8a65627-7b35-4c9d-ab23-8701aa426baa"
+            "uuid": "4cb4dd36-82f7-4d1b-bf7c-be889d7519ac"
         },
         {
             "@type": "WorkflowStep",
@@ -47,7 +50,7 @@
             "arguments": {
                 "resource": {
                     "tlp": "\/api\/3\/picklists\/7bff95b7-6438-4b01-b23a-0fe8cb5b33d3",
-                    "value": "{{vars.steps.Compute_Hash.data.md5}}",
+                    "value": "{{vars.steps.Compute_Hash.data.metadata.md5}}",
                     "__link": {
                         "alerts": "{{vars.input.params.alertIRI}}",
                         "indicators": "{{vars.steps.Create_File_Indicator['@id']}}"
@@ -78,7 +81,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "435",
+            "top": "570",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
@@ -91,8 +94,8 @@
             "arguments": {
                 "resource": {
                     "tlp": "\/api\/3\/picklists\/7bff95b7-6438-4b01-b23a-0fe8cb5b33d3",
-                    "file": "{{vars.input.params.fileIRI}}",
-                    "value": "File - {{vars.steps.Compute_Hash.data.filename}} - {{vars.steps.Compute_Hash.data.md5}}",
+                    "file": "{{vars.steps.Compute_Hash.data['@id']}}",
+                    "value": "File - {{vars.steps.Compute_Hash.data.filename}} - {{vars.steps.Compute_Hash.data.metadata.md5}}",
                     "__link": {
                         "alerts": "{{vars.input.params.alertIRI}}"
                     },
@@ -102,10 +105,10 @@
                     "firstSeen": "{{arrow.utcnow().int_timestamp}}",
                     "expiryDate": "{{arrow.utcnow().shift(days=+(globalVars.Default_Indicator_TTL_Days | int)).timestamp}}",
                     "reputation": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
-                    "filehashMD5": "{{vars.steps.Compute_Hash.data.md5}}",
-                    "filehashSHA1": "{{vars.steps.Compute_Hash.data.sha1}}",
+                    "filehashMD5": "{{vars.steps.Compute_Hash.data.metadata.md5}}",
+                    "filehashSHA1": "{{vars.steps.Compute_Hash.data.metadata.sha1}}",
                     "expiredStatus": "\/api\/3\/picklists\/d4ca4a72-7974-4b93-843e-da9efa235c6e",
-                    "filehashSHA256": "{{vars.steps.Compute_Hash.data.sha256}}",
+                    "filehashSHA256": "{{vars.steps.Compute_Hash.data.metadata.sha256}}",
                     "indicatorStatus": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
                     "typeofindicator": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
                     "__fieldsToUpdate": [
@@ -124,7 +127,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "300",
+            "top": "435",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
@@ -132,13 +135,34 @@
         },
         {
             "@type": "WorkflowStep",
+            "name": "Download File",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "{{vars.input.params.fileIRI}}"
+                },
+                "version": "3.2.5",
+                "connector": "cyops_utilities",
+                "operation": "download_file_from_cyops_alias",
+                "operationTitle": "File: Download File From FortiSOAR",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "3ed1557d-b0c1-4407-a397-c6ec9405711b"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Set Result",
             "description": null,
             "arguments": {
-                "file_ioc_details": "[\n  {\n    \"type\" : \"File\",\n    \"value\" : \"File - {{vars.steps.Compute_Hash.data.filename}} - {{vars.steps.Compute_Hash.data.md5}}\"\n  },\n  {\n    \"type\" : \"FileHash-MD5\",\n    \"value\" : \"{{vars.steps.Compute_Hash.data.md5}}\"\n  }\n]"
+                "file_ioc_details": "[\n  {\n    \"type\" : \"File\",\n    \"value\" : \"File - {{vars.steps.Compute_Hash.data.filename}} - {{vars.steps.Compute_Hash.data.metadata.md5}}\"\n  },\n  {\n    \"type\" : \"FileHash-MD5\",\n    \"value\" : \"{{vars.steps.Compute_Hash.data.metadata.md5}}\"\n  }\n]"
             },
             "status": null,
-            "top": "570",
+            "top": "705",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -166,13 +190,13 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Compute Hash -> Create Indicator",
+            "name": "Compute Hash -> Create File Indicator",
             "targetStep": "\/api\/3\/workflow_steps\/7b8a17b1-0062-448b-9141-6a27ead0559c",
-            "sourceStep": "\/api\/3\/workflow_steps\/f8a65627-7b35-4c9d-ab23-8701aa426baa",
+            "sourceStep": "\/api\/3\/workflow_steps\/4cb4dd36-82f7-4d1b-bf7c-be889d7519ac",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "cf9fa56b-ec1b-4954-b911-67d1f8699963"
+            "uuid": "8f333bea-bbc7-427b-ae9b-70d708483c3e"
         },
         {
             "@type": "WorkflowRoute",
@@ -196,13 +220,23 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Compute Hash",
-            "targetStep": "\/api\/3\/workflow_steps\/f8a65627-7b35-4c9d-ab23-8701aa426baa",
+            "name": "Download File -> Upload File",
+            "targetStep": "\/api\/3\/workflow_steps\/4cb4dd36-82f7-4d1b-bf7c-be889d7519ac",
+            "sourceStep": "\/api\/3\/workflow_steps\/3ed1557d-b0c1-4407-a397-c6ec9405711b",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "6588a7b3-1dfb-46c2-9af2-b55d4dec8810"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Download File",
+            "targetStep": "\/api\/3\/workflow_steps\/3ed1557d-b0c1-4407-a397-c6ec9405711b",
             "sourceStep": "\/api\/3\/workflow_steps\/c90f8dec-ce4f-44e9-954b-ee1dda573f0a",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "dd993581-ea4e-4048-b26e-be55be53ebf8"
+            "uuid": "23dcc767-79f2-4901-9c99-bf88c3720441"
         }
     ],
     "groups": [],
