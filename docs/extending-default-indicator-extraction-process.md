@@ -116,40 +116,9 @@ After adding the above key-value pair, the JSON you need to enter in the **Field
 
 Now your playbook captures indicators corresponding to the **Targeted Employee Email Address** field.
 
-<<<<<<< Updated upstream
-## Whitelist Indicators from the extraction
-
-You can whitelist the indicator extraction by modifying `Excludelist` global variable.
-
-Navigate to **Automation** > **Playbooks** and click any playbook collection. A list of included playbooks appears on the left. Click any playbook and go to **Tools** > **Global Variables**.
-
-![](./res/global-variables.png)
-
-From the Global variables on the left, click the edit button on any `Excludelist` that you want to edit.
-
-![](./res/excludelist_indicators.png)
-
-Following is the default JSON contained in **Field Value** of the `Excludelist` global variable. The comma-separated value of indicators needs to be provided. 
-
-![](./res/excludelist_indicators_values.png)
-
-These are the `Excludelist` global variables included out of the box in the solution pack:
-
-- **Excludelist_IPs:** Excludes default IP addresses (`8.8.8.8, 10.1.1.2`)
-
-- **Excludelist_URLs:** Excludes default URLs (`https://www.google.com, https://mail.yahoo.com/login.html, https://www.office.com/`)
-
-- **Excludelist_Domains:** Excludes default domains (`google.com, yahoo.com, fortinet.net, cybersponse.com, gmail.com, outlook.com, microsoft.com, fortinet.com, twitter.com, facebook.com, linkedin.com, instagram.com, fortiguard.com, forticloud.com, w3.org`)
-
-- **Excludelist_Files:** Excludes specified file names or extensions (empty by default; **case-sensitive**)
-
-- **Excludelist_Ports:** Excludes specified ports (empty by default)
-
-**Note:** Configure these global variables to avoid creating and linking non-essential or whitelisted indicators.
-=======
 ## Excluding Extracted Indicators from Enrichment
 
-You can exclude certain extracted indicators from enrichment by adding them to an exclude list. This is done by adding the indicators being allowed to an exclude list global variable. Following are the global variables for each indicator type being allowed:
+You can exclude certain extracted indicators from enrichment by adding them to an exclude list. This is done by adding the indicators being allowed to a global variable. Following are the global variables for each indicator type being allowed:
 
 1. `Excludelist_IPs`: Specify comma-separated **IP addresses** to exclude
 
@@ -182,14 +151,39 @@ You can exclude certain extracted indicators from enrichment by adding them to a
 
 Following are the exclude list values out-of-the-box with the SOAR Framework solution pack:
 
-| Global Variable       | Default Field Value                                                                                                                                                                        |
-|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Excludelist_IPs`     | `8.8.8.8, 10.1.1.2`                                                                                                                                                                        |
-| `Excludelist_URLs`    | `https://www.google.com, https://mail.yahoo.com/login.html, https://www.office.com/`                                                                                                       |
-| `Excludelist_Domains` | `google.com, yahoo.com, fortinet.net, gmail.com, outlook.com, microsoft.com, fortinet.com, twitter.com, facebook.com, linkedin.com, instagram.com, fortiguard.com, forticloud.com, w3.org` |
-| `Excludelist_Files`   | blank                                                                                                                                                                                      |
-| `Excludelist_Ports`   | blank                                                                                                                                                                                      |
->>>>>>> Stashed changes
+<table>
+    <thead>
+        <tr>
+            <th>Global Variable</th>
+            <th>Default Field Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>Excludelist_IPs</code></td>
+            <td><code>8.8.8.8, 10.1.1.2</code></td>
+        </tr>
+        <tr>
+            <td><code>Excludelist_URLs</code></td>
+            <td><code>https://www.google.com, https://mail.yahoo.com/login.html, https://www.office.com/</code></td>
+        </tr>
+        <tr>
+            <td><code>Excludelist_Domains</code></td>
+            <td><code>google.com, yahoo.com, fortinet.net, gmail.com, outlook.com, microsoft.com,</code><br/>
+            <code>fortinet.com, twitter.com, facebook.com, linkedin.com, instagram.com, fortiguard.com,</code><br/>
+            <code>forticloud.com, w3.org</code></td>
+        </tr>
+        <tr>
+            <td><code>Excludelist_Files</code><img src="./res/icon-new.svg" alt=""></td>
+            <td>blank</td>
+        </tr>
+        <tr>
+            <td><code>Excludelist_Ports</code><img src="./res/icon-new.svg" alt=""></td>
+            <td>blank</td>
+        </tr>
+    </tbody>
+</table>
+
 
 | [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
 |-----------------------------------------|-------------------------------------------|---------------------|---------------------------|

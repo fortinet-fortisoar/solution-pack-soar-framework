@@ -70,13 +70,20 @@ The following diagram helps better understand the overall process and the subseq
 
 ## Additional Resources 
 
-- [Upgrade SOAR Framework to v2.1.0](./docs/moving-to-sfsp-2-1-0.md)
+- [Upgrade SOAR Framework to v2.1.0 and later](./docs/moving-to-sfsp-2-1-0.md)
+
 - [Extending Default Alert Schema](./docs/extending-default-alert-schema.md)
+
 - [Configuring Alert Ingestion Process](./docs/configuring-alert-ingestion-process.md)
+
 - [Extending Default Indicator Extraction Process](./docs/extending-default-indicator-extraction-process.md)
+
 - [Extending Default Indicator Enrichment Process](./docs/extending-default-indicator-enrichment-process.md)
+
 - [Building Investigation/Response Playbook](./docs/building-investigation-response-playbook.md)
+
 - [Setting up Default Mitigation Playbooks](./docs/setting-up-default-mitigation-playbook.md)
+
 - [Setting up Communications Tracking for Custom Modules](./docs/setting-up-comms-module.md)
 
 - [Excluding Extracted Indicators from Enrichment](./docs/extending-default-indicator-extraction-process.md#excluding-extracted-indicators-from-enrichment)

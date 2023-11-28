@@ -34,7 +34,7 @@
 
         - The global variable is empty, by default
 
-    - Links indicators to alerts by updating the alert record instead of during indicator creation for increased performance
+        For more information, refer to the section [Excluding Extracted Indicators from Enrichment](./docs/extending-default-indicator-extraction-process.md#excluding-extracted-indicators-from-enrichment)
 
 - The **Find and Relate Similar Alerts** playbook in the *03 - Triage* collection now finds alerts for the last 30 days. In the MSSP environment, it finds alerts that belong to the tenant on which the playbook is being executed.
 
@@ -43,13 +43,15 @@
 - The **Create Communication Record (Email Reply)** playbook in the *06 - IRP - Communications Tracking* collection now handles email replies without the encrypted text in the body> It adds a comment in the alert instead of failing a playbook.
 
 - The **Create and Link Asset** playbook in the *08 - Utilities* collection now ensures accurate labels in alignment with the flow by fixing the branch tooltips for the `Do Records Exist` decision step.
-    - This playbook has enhanced the overall functionality by optimizing the record correlation logic.
+
 
 ## Module Enhancements
 
 - The default value for **`Team Ownable`** is now `false` in all modules.
 
-    Select the **Team Ownable** field, i.e. set it to `true`, in the module editor when running playbooks that fetch module owners. For example, in a War Room, **_before_** running the playbook that notifies the War room owner, enable the **Team Ownable** and **User Ownable** fields.
+    Select the **Team Ownable** field, i.e. set it to `true`, in the module editor when running playbooks that fetch module owners. 
+    
+    >For example, in a War Room, **_before_** running the playbook that notifies the War room owner, like **_Go Live_** and **_Send Email Update_**, enable the **Team Ownable** and **User Ownable** fields to avoid playbook failure.
 
     <table>
         <tr>
@@ -118,17 +120,20 @@
 
 ## Dashboard Enhancements
 
-### Analyst Dashboard
 -  Updated the **Analyst** dashboard's *Critical Alerts* tab to display only *High* and *Critical* severity alerts.
 
 ## Rules Enhancements
 
 - **_Notification On Pending Internal Manual Input_**: Created a rule that sends email notifications to FortiSOAR users. When creating manual input for internal users, select the option to customize the email body to send this email notification.
 
-## Reference Blocks Enhancement
-
-- Enhanced the **_Approval-Based Decision_** step to improve performance.
-
 ## Roles Enhancement 
 
 - Added a new **Read-Only** role that only has viewing rights. This role has does not have any editing or modification rights.
+
+## Performance Enhancement
+
+- Links indicators to alerts by updating the alert record instead of during indicator creation for increased performance
+
+- The **Create and Link Asset** playbook has enhanced the overall functionality by optimizing the record correlation logic.
+
+- Enhanced the **_Approval-Based Decision_** step to improve performance.
