@@ -15,7 +15,7 @@ E.g., the default playbook may not collect a field of interest, say “targeted 
 
 You can extend the indicator extraction by modifying `Indicator_Type_Map` global variable.
 
-Navigate to **Automation** > **Playbooks** > **03 – Enrich** > **Extract Indicator Playbook**.
+Navigate to **Automation** > **Playbooks** > **03 - Enrich** > **Extract Indicator Playbook**.
 
 > Refer to the playbooks section in this document to check the [playbook collection](./contents.md#playbook-collection) included with this Solution Pack.
 
@@ -29,7 +29,8 @@ From the Global variables on the left, click the edit button on `Indicator_Type_
 
 Following is the default JSON contained in **Field Value** of the `Indicator_Type_Map` global variable. The key-value pairs are in the format `<FieldAPIKey>:<FieldType>`
 
-    {
+```JSON
+{
     "attachmentNames": "File",
     "commandLine": "Process",
     "computerName": "Host",
@@ -62,7 +63,8 @@ Following is the default JSON contained in **Field Value** of the `Indicator_Typ
     "userDetails": "User",
     "urlFull": "URL",
     "otherRecipients": "Email Address"
-    }
+}
+```
 
 When you [add a new field to the alert schema](./extending-default-alert-schema.md), you specify a **Field Type** and – based on your field name – get a **Field API Key** name. 
 
@@ -74,7 +76,8 @@ Enter the Field API Key and the Field Type in JSON’s key-value pair format in 
 
 After adding the above key-value pair, the JSON you need to enter in the **Field Value** of `Indicator_Type_Map` is:
 
-    {
+```JSON
+{
     "attachmentNames": "File",
     "commandLine": "Process",
     "computerName": "Host",
@@ -108,10 +111,12 @@ After adding the above key-value pair, the JSON you need to enter in the **Field
     "urlFull": "URL",
     "otherRecipients": "Email Address",
     "targetedEmployeeEmailAddress": "Email Address"
-    }
+}
+```
 
 Now your playbook captures indicators corresponding to the **Targeted Employee Email Address** field.
 
+<<<<<<< Updated upstream
 ## Whitelist Indicators from the extraction
 
 You can whitelist the indicator extraction by modifying `Excludelist` global variable.
@@ -141,6 +146,50 @@ These are the `Excludelist` global variables included out of the box in the solu
 - **Excludelist_Ports:** Excludes specified ports (empty by default)
 
 **Note:** Configure these global variables to avoid creating and linking non-essential or whitelisted indicators.
+=======
+## Excluding Extracted Indicators from Enrichment
+
+You can exclude certain extracted indicators from enrichment by adding them to an exclude list. This is done by adding the indicators being allowed to an exclude list global variable. Following are the global variables for each indicator type being allowed:
+
+1. `Excludelist_IPs`: Specify comma-separated **IP addresses** to exclude
+
+2. `Excludelist_URLs`: Specify comma-separated **URLs** to exclude
+
+3. `Excludelist_Domains`: Specify comma-separated **Domains** to exclude
+
+4. `Excludelist_Files`: Specify comma-separated **File Names** or **File Extensions** to exclude
+
+5. `Excludelist_Ports`: Specify comma-separated **Ports** to exclude
+
+<table>
+    <tr>
+        <th>NOTE</th>
+        <td>For managing and modifying global variables, refer to the section <a href="https://docs.fortinet.com/document/fortisoar/7.2.0/playbooks-guide/488685/dynamic-values#Global_Variables" target="_blank"><strong>Global Variables</strong></a> of the <strong>Playbooks Guide</strong> in <strong>FortiSOAR documentation</strong>.</td>
+    </tr>
+</table>
+
+1. Click **Global Variables** from the **Tools** menu.
+
+    ![](./res/global-variables.png)
+
+2. Click the edit button ![](./res/icon-edit-page.svg) to edit a relevant exclude list. You can type **`exclude`** in the search bar (highlighted) to narrow-down the list of global variables.
+
+    ![](./res/excludelist_indicators.png)
+
+3. Enter comma-separated indicators to add in the **Field Value** of the selected global variable. Following image shows the `Excludelist_IPs` global variable and its contents.
+
+    ![](./res/excludelist_indicators_values.png)
+
+Following are the exclude list values out-of-the-box with the SOAR Framework solution pack:
+
+| Global Variable       | Default Field Value                                                                                                                                                                        |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Excludelist_IPs`     | `8.8.8.8, 10.1.1.2`                                                                                                                                                                        |
+| `Excludelist_URLs`    | `https://www.google.com, https://mail.yahoo.com/login.html, https://www.office.com/`                                                                                                       |
+| `Excludelist_Domains` | `google.com, yahoo.com, fortinet.net, gmail.com, outlook.com, microsoft.com, fortinet.com, twitter.com, facebook.com, linkedin.com, instagram.com, fortiguard.com, forticloud.com, w3.org` |
+| `Excludelist_Files`   | blank                                                                                                                                                                                      |
+| `Excludelist_Ports`   | blank                                                                                                                                                                                      |
+>>>>>>> Stashed changes
 
 | [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
 |-----------------------------------------|-------------------------------------------|---------------------|---------------------------|

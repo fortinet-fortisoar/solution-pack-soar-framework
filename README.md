@@ -78,6 +78,8 @@ The following diagram helps better understand the overall process and the subseq
 - [Building Investigation/Response Playbook](./docs/building-investigation-response-playbook.md)
 - [Setting up Default Mitigation Playbooks](./docs/setting-up-default-mitigation-playbook.md)
 - [Setting up Communications Tracking for Custom Modules](./docs/setting-up-comms-module.md)
+
+- [Excluding Extracted Indicators from Enrichment](./docs/extending-default-indicator-extraction-process.md#excluding-extracted-indicators-from-enrichment)
 <!-- * [Setting up Default Hunt Playbooks](./docs/setting-up-default-hunt-playbook.md) -->
 
 ## Next Steps

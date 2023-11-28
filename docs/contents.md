@@ -56,7 +56,7 @@ The SOAR framework includes the following modules:
 | 9       | Indicators    | **Indicators of compromise** (IOCs) serve as evidence of probable intrusions on a host system or network. These artifacts help personnel at a Security Operations Center (SOC) to detect intrusion attempts or other malicious activities. IOCs help better analyze a particular malware’s techniques and behaviors and provide actionable threat intelligence to further improve an organization’s incident response strategies.<br/><br/>Some of this evidence of potential breach is found on event logs and timestamped entries in the system, applications, and services. |
 | 10      | SLA Template  | SLA Templates in FortiSOAR help create an in-built SLA management for incidents and alerts. For more information, please refer to [SLA Management](https://docs.fortinet.com/document/fortisoar/7.0.2/administration-guide/792686/sla-management).                                                                                                                                                                                                                                                                                                                             |
 | 11      | War Rooms     | War Rooms in FortiSOAR is a collaborative space that enables SOC teams to mitigate a critical cyber threat scenario or campaign. FortiSOAR makes it easy for analysts to quickly and easily provision a War Room that allows participation of all stakeholders to analyze and collaborate to quickly mitigate the threat and restore the services. For more information, see the War Rooms chapter.                                                                                                                                                                            |
-| 12      | Key Store     | Key Store module is a place to store records that contains key value pair                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| 12      | Key Store     | Key Store module is a place to store records that contains key-value pair                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 ## Rules
 
@@ -70,7 +70,12 @@ The SOAR Framework includes the following rules:
 - Incident > Notify Updates - It sends a notification, via the email, whenever an incident is **updated**.
 - Notify On Pending Internal Manual Input - It sends a notification, via the email, whenever a manual input is created for an internal user with the option to send a customized email.
 
-**Note:** In-App Notifications has been disabled onwards SOAR Framework v2.1.0 solution pack. If required then enable the **In-App Notifications** for desired rules.
+<table>
+    <tr>
+        <th>NOTE</th>
+        <td>In-App Notifications have been disabled in SOAR Framework solution pack <code>v2.1.0</code> and later. If required then enable the <strong>In-App Notifications</strong> for desired rules.</td>
+    </tr>
+</table>
 
 ## Widgets
 
@@ -78,19 +83,19 @@ Widgets render information for the visual display inside View Template. Widget t
 
 SOAR Framework has the following widgets:
 
-| Widgets                    | Description                                                                                                                                                           |
-|----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Task Management (War Room) | It is a comprehensive task management widget that helps users manage tasks and get visibility into the current task board.                                            |
-| Record Summary (War Room)  | It is primarily designed to showcase a particular record's highlights or summary, this widget houses multiple utility widgets within it to allow for customized uses. |
-| SLA Count Down Timer       | This widget displays the remaining time for an SLA.                                                                                                                   |
-| User Tile                  | This widget shows relevant information like alerts, incidents, and tasks to users.                                                                                    |
-| Incident Correlations      | This widget displays the correlation graph of an incident.                                                                                                            |
-| Custom Picklist Message    | This widget helps display custom messages above the record details page.                                                                                              |
-| Incident Timeline          | This widget displays a vertical timeline showing an Incident record's correlated Alerts and Indicators, sorted based on user-selectable date fields.                  |
-| MITRE ATT&CK Alert Incident Spread         | This widget displays detailed table view of Alerts and Incidents linked to MITRE ATT&CK records             |
-| Incident Timeline          | This widget displays a vertical timeline showing an Incident record's correlated Alerts and Indicators, sorted based on user-selectable date fields.                  |
-| Record Distribution | This widget provides ability to visualize items/records and their correlations in different levels based on a given grouping context. |
-| Fields Of Interest | This widget displays fields in the detailed view, regardless of the 'Visiblity Constraint' |
+| Widgets                            | Description                                                                                                                                                           |
+|------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Task Management (War Room)         | It is a comprehensive task management widget that helps users manage tasks and get visibility into the current task board.                                            |
+| Record Summary (War Room)          | It is primarily designed to showcase a particular record's highlights or summary, this widget houses multiple utility widgets within it to allow for customized uses. |
+| SLA Count Down Timer               | This widget displays the remaining time for an SLA.                                                                                                                   |
+| User Tile                          | This widget shows relevant information like alerts, incidents, and tasks to users.                                                                                    |
+| Incident Correlations              | This widget displays the correlation graph of an incident.                                                                                                            |
+| Custom Picklist Message            | This widget helps display custom messages above the record details page.                                                                                              |
+| Incident Timeline                  | This widget displays a vertical timeline showing an Incident record's correlated Alerts and Indicators, sorted based on user-selectable date fields.                  |
+| MITRE ATT&CK Alert Incident Spread | This widget displays detailed table view of Alerts and Incidents linked to MITRE ATT&CK records                                                                       |
+| Incident Timeline                  | This widget displays a vertical timeline showing an Incident record's correlated Alerts and Indicators, sorted based on user-selectable date fields.                  |
+| Record Distribution                | This widget provides ability to visualize items/records and their correlations in different levels based on a given grouping context.                                 |
+| Fields Of Interest                 | This widget helps users select fields to display in a module's detailed view, regardless of the *Visibility Constraint*                                               |
 
 ## Roles
 
