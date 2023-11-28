@@ -13,7 +13,7 @@
 <table>
     <tr>
         <th>NOTE</th>
-        <td>If you have updated any of the <strong>System View Templates (SVTs)</strong>, <strong>Module Metadata (MMD)</strong>, and <strong>playbooks</strong>, ensure to take a backup before updating the <strong>SOAR Framework</strong> solution pack, as any changes that you have made will be overwritten.</td>
+        <td>Before updating the SOAR Framework solution pack, make sure to back up any modifications you have made to <strong>System View Templates (SVTs)</strong>, <strong>Module Metadata (MMD)</strong>, and <strong>playbooks</strong>. This is essential because updating the solution pack overwrites any changes you might have made.</td>
     </tr>
 </table>
 
@@ -49,12 +49,14 @@
 
 - The default value for **`Team Ownable`** is now `false` in all modules.
 
-<table>
-    <tr>
-        <th>NOTE </th>
-        <td>This change won't affect FortiSOAR&trade; instances with upgraded SOAR Framework; it only applies to newly deployed instances, where users manually set <strong><code>Team Ownable</code></strong>, as needed, for each module.</td>
-    </tr>
-</table>
+    Select the **Team Ownable** field, i.e. set it to `true`, in the module editor when running playbooks that fetch module owners. For example, in a War Room, **_before_** running the playbook that notifies the War room owner, enable the **Team Ownable** and **User Ownable** fields.
+
+    <table>
+        <tr>
+            <th>NOTE </th>
+            <td>This change won't affect FortiSOAR&trade; instances with upgraded SOAR Framework; it only applies to newly deployed instances, where users manually set <strong><code>Team Ownable</code></strong>, as needed, for each module.</td>
+        </tr>
+    </table>
 
 ### Alerts
 
