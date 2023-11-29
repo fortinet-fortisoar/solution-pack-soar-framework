@@ -44,21 +44,24 @@ This enrichment process is triggered when an indicator is created. On creation, 
 
 *Pluggable* enrichment is available for the following list of connectors:
 
-| Connector                               |
-|:----------------------------------------|
-| APIVoid                                 |
-| Active Directory                        |
-| Anomali ThreatStream                    |
-| Fortinet FortiGuard Threat Intelligence |
-| Fortinet FortiSandbox                   |
-| Fortinet Web Filter Lookup              |
-| IBM XForce                              | 
-| IP Quality Score                        | 
-| IP Stack                                | 
-| Symantec DeepSight Intelligence         | 
-| URLScan.io                              | 
-| VirusTotal                              | 
-| Whois RDAP                              |
+| Connector                                              |
+|:-------------------------------------------------------|
+| Active Directory                                       |
+| Anomali ThreatStream                                   |
+| APIVoid                                                |
+| Azure Active Directory![](./res/icon-new.svg)          |
+| CrowdStrike Falcon Intelligence![](./res/icon-new.svg) |
+| Fortinet FortiGuard Threat Intelligence                |
+| Fortinet FortiSandbox                                  |
+| Fortinet Web Filter Lookup                             |
+| IBM XForce                                             |
+| IP Quality Score                                       |
+| IP Stack                                               |
+| Symantec DeepSight Intelligence                        |
+| URLScan.io                                             |
+| Virus Total Premium![](./res/icon-new.svg)             |
+| VirusTotal                                             |
+| Whois RDAP                                             |
 
 | [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
 |-----------------------------------------|-------------------------------------------|---------------------|---------------------------|

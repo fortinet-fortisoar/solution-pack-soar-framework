@@ -68,7 +68,7 @@ The SOAR Framework includes the following rules:
 - Alert > Notify Updates - It sends a notification, via the email, whenever an alert is **updated**.
 - Incident > Notify Creation - It sends a notification, via the email, whenever an incident is **created**.
 - Incident > Notify Updates - It sends a notification, via the email, whenever an incident is **updated**.
-- Notify On Pending Internal Manual Input - It sends a notification, via the email, whenever a manual input is created for an internal user with the option to send a customized email.
+- Notify On Pending Internal Manual Input![](./res/icon-new.svg) - It sends a notification, via the email, whenever a manual input is created for an internal user with the option to send a customized email.
 
 <table>
     <tr>
@@ -83,19 +83,19 @@ Widgets render information for the visual display inside View Template. Widget t
 
 SOAR Framework has the following widgets:
 
-| Widgets                            | Description                                                                                                                                                           |
-|------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Task Management (War Room)         | It is a comprehensive task management widget that helps users manage tasks and get visibility into the current task board.                                            |
-| Record Summary (War Room)          | It is primarily designed to showcase a particular record's highlights or summary, this widget houses multiple utility widgets within it to allow for customized uses. |
-| SLA Count Down Timer               | This widget displays the remaining time for an SLA.                                                                                                                   |
-| User Tile                          | This widget shows relevant information like alerts, incidents, and tasks to users.                                                                                    |
-| Incident Correlations              | This widget displays the correlation graph of an incident.                                                                                                            |
-| Custom Picklist Message            | This widget helps display custom messages above the record details page.                                                                                              |
-| Incident Timeline                  | This widget displays a vertical timeline showing an Incident record's correlated Alerts and Indicators, sorted based on user-selectable date fields.                  |
-| MITRE ATT&CK Alert Incident Spread | This widget displays detailed table view of Alerts and Incidents linked to MITRE ATT&CK records                                                                       |
-| Incident Timeline                  | This widget displays a vertical timeline showing an Incident record's correlated Alerts and Indicators, sorted based on user-selectable date fields.                  |
-| Record Distribution                | This widget provides ability to visualize items/records and their correlations in different levels based on a given grouping context.                                 |
-| Fields Of Interest                 | This widget helps users select fields to display in a module's detailed view, regardless of the *Visibility Constraint*                                               |
+| Widgets                                   | Description                                                                                                                                                           |
+|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Task Management (War Room)                | It is a comprehensive task management widget that helps users manage tasks and get visibility into the current task board.                                            |
+| Record Summary (War Room)                 | It is primarily designed to showcase a particular record's highlights or summary, this widget houses multiple utility widgets within it to allow for customized uses. |
+| SLA Count Down Timer                      | This widget displays the remaining time for an SLA.                                                                                                                   |
+| User Tile                                 | This widget shows relevant information like alerts, incidents, and tasks to users.                                                                                    |
+| Incident Correlations                     | This widget displays the correlation graph of an incident.                                                                                                            |
+| Custom Picklist Message                   | This widget helps display custom messages above the record details page.                                                                                              |
+| Incident Timeline                         | This widget displays a vertical timeline showing an Incident record's correlated Alerts and Indicators, sorted based on user-selectable date fields.                  |
+| MITRE ATT&CK Alert Incident Spread        | This widget displays detailed table view of Alerts and Incidents linked to MITRE ATT&CK records                                                                       |
+| Incident Timeline                         | This widget displays a vertical timeline showing an Incident record's correlated Alerts and Indicators, sorted based on user-selectable date fields.                  |
+| Record Distribution                       | This widget provides ability to visualize items/records and their correlations in different levels based on a given grouping context.                                 |
+| Fields Of Interest![](./res/icon-new.svg) | This widget helps users select fields to display in a module's detailed view, regardless of the *Visibility Constraint*                                               |
 
 ## Roles
 
@@ -104,7 +104,7 @@ SOAR framework has the following roles included:
 - SOC Analyst
 - SOC Manager
 - Full app permissions
-- Read-Only User
+- Read-Only User![](./res/icon-new.svg)
 
 ## Dashboards
 
@@ -456,7 +456,7 @@ You can use the playbooks in the *08 - Utilities* collection to perform various 
 | 6       | Activate Inactive Users                                      | Find the Inactive users and activate them                                                                                                                         |
 | 7       | Activate inactive users - Update user status                 | This is a subroutine playbook to update the user status as active                                                                                                 |
 | 8       | Indicator - Import Bulk Indicator                            | Extract Indicators from specified text                                                                                                                            |
-| 9       | Cascade Permissions to all Related Records<sup>Renamed</sup> | Cascades the team of the record to all of its related records. Earlier known as *Fetch and Link Team to Related Records*                                          |
+| 9       | Cascade Permissions to all Related Records                   | Cascades the team of the record to all of its related records. Earlier known as *Fetch and Link Team to Related Records*                                          |
 | 10      | Convert FortiSOAR User to SAML - Collect User Email IDs      | Collects comma-separated Email-IDs of the existing FortiSOAR users that to be converted to SAML Users.                                                            |
 | 11      | Convert FortiSOAR User to SAML - Update User Type            | Updates user type of existing FortiSOAR user to SAML.                                                                                                             |
 

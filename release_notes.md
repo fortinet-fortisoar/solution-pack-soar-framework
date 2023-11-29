@@ -30,6 +30,10 @@
         - The global variable is empty, by default
         - Values provided in this global variable are case-sensitive
 
+        - The variable `add_excluded_file_comment`, in the **Configuration** step of the playbook **Extract indicators** in the collection **03- Enrich**, is set to `false` by default. Hence, the step `Add Comment for Excluded Files` in the same playbook is not executed and no comment is added to the alert, *when a file is skipped from the indicator creation process*.
+
+        - The variable `create_file_iocs`, in the **Configuration** step of the playbook **Extract indicators** in the collection **03- Enrich**, is `true` by default. Users can set this variable to `false` and skip creating indicators of type *file*, entirely.
+
     - Does not create indicators for ports specified in the global variable `Excludelist_Ports`
 
         - The global variable is empty, by default
@@ -109,7 +113,7 @@
 
 ### SLA Templates
 
-- Updated the field types of the following fields from **`picklist`** to **`multipicklist`**:
+- Updated the field types of the following fields from **`picklist`** to **`multipicklist`**. This is available on a new installation of SOAR Framework solution pack `v2.2.1`. For users **_upgrading_** to `v2.2.1`, these fields remain a regular picklist:
 
     - Pause Incident SLA On
     - Pause Alert SLA On
@@ -128,7 +132,7 @@
 
 ## Roles Enhancement 
 
-- Added a new **Read-Only** role that only has viewing rights. This role has does not have any editing or modification rights.
+- Added a new **Read-Only User** role that only has viewing rights. This role has does not have any editing or modification rights.
 
 ## Performance Enhancement
 
@@ -136,4 +140,4 @@
 
 - The **Create and Link Asset** playbook has enhanced the overall functionality by optimizing the record correlation logic.
 
-- Enhanced the **_Approval-Based Decision_** step to improve performance.
+- Replaced the old approval step with the new enhanced **_Approval-Based Decision_** step to improve performance.
