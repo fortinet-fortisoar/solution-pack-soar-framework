@@ -184,6 +184,27 @@ Following are the exclude list values out-of-the-box with the SOAR Framework sol
     </tbody>
 </table>
 
+### Adding Comment to Excluded File Alerts
+
+You can choose to add a comment to alerts associated with the excluded files. By default, no comments are added to alerts associated with these files.
+
+1. Open the **Configuration** step of the playbook **Extract indicators** in the collection **03- Enrich**.
+
+2. Edit the variable `add_excluded_file_comment` and set it to `true`.
+
+    This results in execution of the last step `Add Comment for Excluded Files` and a comment is added to the alert *when a file is skipped from the indicator creation process*.
+
+    You can change the content of the comment by editing the **Content** field of the `Add Comment for Excluded Files` step.
+
+### Skip Creating File Indicators
+
+You can choose to skip creating file indicators entirely so the indicators of type *file* are never created.
+
+1. Open the **Configuration** step of the playbook **Extract indicators** in the collection **03- Enrich**.
+
+2. Edit the variable `create_file_iocs` and set it to `false`.
+
+    This results in file indicators not being created at all.
 
 | [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
 |-----------------------------------------|-------------------------------------------|---------------------|---------------------------|

@@ -30,10 +30,6 @@
         - The global variable is empty, by default
         - Values provided in this global variable are case-sensitive
 
-        - The variable `add_excluded_file_comment`, in the **Configuration** step of the playbook **Extract indicators** in the collection **03- Enrich**, is set to `false` by default. Hence, the step `Add Comment for Excluded Files` in the same playbook is not executed and no comment is added to the alert, *when a file is skipped from the indicator creation process*.
-
-        - The variable `create_file_iocs`, in the **Configuration** step of the playbook **Extract indicators** in the collection **03- Enrich**, is `true` by default. Users can set this variable to `false` and skip creating indicators of type *file*, entirely.
-
     - Does not create indicators for ports specified in the global variable `Excludelist_Ports`
 
         - The global variable is empty, by default
@@ -140,4 +136,35 @@
 
 - The **Create and Link Asset** playbook has enhanced the overall functionality by optimizing the record correlation logic.
 
-- Replaced the old approval step with the new enhanced **_Approval-Based Decision_** step to improve performance.
+- Enhanced the **_Approval-Based Decision_** reference block by replacing the old approval step with a new step to improve performance.
+
+## Known Issue
+
+When the Exchange connector playbooks create attachment records in the **Attachments** module for each file attachment in the email, they remove all special characters in the filename except `-`, `\`, and `.`. So a file indicator is created for files that may contain other characters in their names, even if they are in the exclude list.
+
+<table>
+    <tr>
+        <th>Example</th>
+        <td>A filename <code>Demo-File_Attachment.txt</code> in the exclude list has no effect as the underscore (<code>_</code>) is suppressed and a file indicator with the filename <code>Demo-FileAttachment.txt</code> is still created.</td>
+    </tr>
+</table>
+
+### Workaround
+
+Here are 2 possible workarounds to avoid this scenario:
+
+1. Avoid using characters other than `-`, `\`, and `.` when adding filenames in the exclude list. For example, add the filename `Demo-FileAttachment.txt` instead of `Demo-File_Attachment.txt`, as the underscore (`_`) is suppressed by the Exchange ingestion playbooks.
+
+2. Edit the `Upload File IOC and Create Attachment` step of the **> Exchange > Create Indicators and Attachments** playbook in the **Sample - Exchange - 4.2.2** collection and modify the regex so that it does not suppress `_` or similar harmless characters in filenames.
+
+    Remove the following:
+
+    ```
+    "{{vars.input.params.attachmentMetadata.metadata.filename.split("/")[-1] | regex_replace("[^A-Za-z0-9. /\-]", "") if "/tmp/" in vars.input.params.attachmentMetadata.metadata.filename else vars.input.params.attachmentMetadata.metadata.filename |regex_replace("[^A-Za-z0-9. /\-]", "")}}"
+    ```
+
+    Replace with the following:
+
+    ```
+    "{{vars.input.params.attachmentMetadata.metadata.filename.split("/")[-1] | regex_replace("[^A-Za-z0-9. /\-_]", "") if "/tmp/" in vars.input.params.attachmentMetadata.metadata.filename else vars.input.params.attachmentMetadata.metadata.filename |regex_replace("[^A-Za-z0-9. /\-_]", "")}}"
+    ```
