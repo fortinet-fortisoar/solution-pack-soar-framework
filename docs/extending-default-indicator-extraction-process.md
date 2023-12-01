@@ -221,7 +221,7 @@ Here are 2 possible ways to work around this situation:
 
 1. Avoid using characters other than `-`, `\`, and `.` when adding filenames in the exclude list. For example, add the filename `Demo-FileAttachment.txt` instead of `Demo-File_Attachment.txt`, as the underscore (`_`) is suppressed by the Exchange ingestion playbooks.
 
-2. Edit the `Upload File IOC and Create Attachment` step of the **> Exchange > Create Indicators and Attachments** playbook in the **Sample - Exchange - 4.2.2** collection and modify the regex so that it does not suppress `_` or similar harmless characters in filenames.
+2. Edit the `Upload File IOC and Create Attachment` step of the **> Exchange > Create Indicators and Attachments** playbook in the **Sample - Exchange - <version>** collection and modify the regex so that it does not suppress `_` or similar harmless characters in filenames.
 
     Remove the following:
 
