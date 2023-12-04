@@ -5,8 +5,8 @@
     "type": "assets",
     "parentType": null,
     "tableName": "assets",
-    "ownable": true,
-    "userOwnable": true,
+    "ownable": false,
+    "userOwnable": false,
     "queueable": false,
     "trackable": true,
     "taggable": true,
@@ -25,6 +25,106 @@
     "indexable": true,
     "writable": true,
     "attributes": [
+        {
+            "@type": "AttributeMetadata",
+            "type": "picklists",
+            "name": "bESCyberAssetCategory",
+            "length": null,
+            "orderIndex": 52,
+            "formType": "picklist",
+            "dataSource": {
+                "model": "picklists",
+                "query": {
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "listName__name",
+                            "operator": "eq",
+                            "value": "BES Cyber Asset Category"
+                        }
+                    ],
+                    "sort": [
+                        {
+                            "field": "orderIndex",
+                            "direction": "ASC"
+                        }
+                    ]
+                },
+                "displayConditions": {
+                    "807a51b8-ef06-4f0c-91be-ee99c6f649e9": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "c9093965-69b5-4bc4-90ba-d59e256a957e": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "740d017c-7c92-4e42-ac53-7fda17122722": {
+                        "visibility": "visible",
+                        "conditions": null
+                    },
+                    "f9145b90-6cae-4a6a-b5d9-0e0607982829": {
+                        "visibility": "visible",
+                        "conditions": null
+                    }
+                }
+            },
+            "searchable": false,
+            "peerReplicable": true,
+            "system": false,
+            "encrypted": false,
+            "gridColumn": false,
+            "collection": false,
+            "inversedField": null,
+            "ownsRelationship": false,
+            "validation": {
+                "required": false,
+                "minlength": 0,
+                "maxlength": 10485761,
+                "_enableRange": false
+            },
+            "bulkAction": {
+                "allow": false,
+                "buttonText": "",
+                "buttonIcon": "",
+                "buttonClass": "btn btn-default btn-sm"
+            },
+            "dataSourceFilters": null,
+            "defaultValue": null,
+            "tooltip": null,
+            "visibility": [
+                {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "field": "bESCyberAssetCategory",
+                            "operator": "isnull",
+                            "value": "false",
+                            "_value": {
+                                "display": "",
+                                "itemValue": "",
+                                "@id": "false"
+                            },
+                            "type": "object"
+                        }
+                    ]
+                }
+            ],
+            "htmlEscape": false,
+            "orphanRemoval": null,
+            "readable": true,
+            "writeable": true,
+            "identifier": null,
+            "unique": false,
+            "recommend": false,
+            "skipSerialization": false,
+            "displayName": "{{ bESCyberAssetCategory }}",
+            "descriptions": {
+                "singular": "BES Cyber Asset Category"
+            }
+        },
         {
             "@type": "AttributeMetadata",
             "type": "picklists",
@@ -97,7 +197,7 @@
             "peerReplicable": true,
             "system": false,
             "encrypted": false,
-            "gridColumn": false,
+            "gridColumn": true,
             "collection": false,
             "inversedField": null,
             "ownsRelationship": false,
@@ -1236,7 +1336,7 @@
             "peerReplicable": true,
             "system": false,
             "encrypted": false,
-            "gridColumn": false,
+            "gridColumn": true,
             "collection": false,
             "inversedField": null,
             "ownsRelationship": false,
@@ -1531,7 +1631,7 @@
             "peerReplicable": true,
             "system": false,
             "encrypted": false,
-            "gridColumn": false,
+            "gridColumn": true,
             "collection": false,
             "inversedField": null,
             "ownsRelationship": false,
@@ -1590,7 +1690,7 @@
             "peerReplicable": true,
             "system": false,
             "encrypted": false,
-            "gridColumn": false,
+            "gridColumn": true,
             "collection": false,
             "inversedField": null,
             "ownsRelationship": false,

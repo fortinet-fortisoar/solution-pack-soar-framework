@@ -266,7 +266,7 @@
                     {
                         "option": "Pause SLA",
                         "step_iri": "\/api\/3\/workflow_steps\/fc727bbd-5a5e-4491-946b-b8b81528a583",
-                        "condition": "{{ vars.input.records[0].status.itemValue == vars.sla_time_list.incPauseSLAOn }}",
+                        "condition": "{{ (vars.input.records[0].status.itemValue in vars.sla_time_list.incPauseSLAOn) or (vars.input.records[0].status.itemValue == vars.sla_time_list.incPauseSLAOn) }}",
                         "step_name": "Pause SLA"
                     },
                     {

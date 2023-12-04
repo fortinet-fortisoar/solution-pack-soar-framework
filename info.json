@@ -1,6 +1,6 @@
 {
     "name": "sOARFramework",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "type": "solutionpack",
     "local": true,
     "label": "SOAR Framework",
@@ -9,7 +9,7 @@
     "publisher": "Fortinet",
     "certified": "true",
     "description": "The SOAR Framework Solution Pack helps users experience the power of FortiSOAR incident response.",
-    "help": "https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/2.2.0/README.md",
+    "help": "https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/2.2.1/README.md",
     "category": [],
     "supportInfo": "Fortinet Customer Support",
     "iconLarge": null,
@@ -58,6 +58,9 @@
             },
             {
                 "name": "AssetZone"
+            },
+            {
+                "name": "BES Cyber Asset Category"
             },
             {
                 "name": "CampaignStatus"
@@ -325,6 +328,9 @@
                 "name": "Full App Permissions"
             },
             {
+                "name": "Read-Only User"
+            },
+            {
                 "name": "SOC Manager"
             },
             {
@@ -421,8 +427,8 @@
             {
                 "id": 13,
                 "name": "Excludelist_Domains",
-                "value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com,fortinet.com,twitter.com,facebook.com,linkedin.com,instagram.com,fortiguard.com,forticloud.com,w3.org",
-                "default_value": "google.com,yahoo.com,fortinet.net,cybersponse.com,gmail.com,outlook.com,microsoft.com,fortinet.com,twitter.com,facebook.com,linkedin.com,instagram.com,fortiguard.com,forticloud.com,w3.org"
+                "value": "google.com,yahoo.com,fortinet.net,gmail.com,outlook.com,microsoft.com,fortinet.com,twitter.com,facebook.com,linkedin.com,instagram.com,fortiguard.com,forticloud.com,w3.org",
+                "default_value": "google.com,yahoo.com,fortinet.net,gmail.com,outlook.com,microsoft.com,fortinet.com,twitter.com,facebook.com,linkedin.com,instagram.com,fortiguard.com,forticloud.com,w3.org"
             },
             {
                 "id": 15,
@@ -477,6 +483,18 @@
                 "name": "User_Enrichment_Playbooks_IRIs",
                 "value": "NoEnrichmentAvailable",
                 "default_value": "NoEnrichmentAvailable"
+            },
+            {
+                "id": 36,
+                "name": "Excludelist_Files",
+                "value": "",
+                "default_value": ""
+            },
+            {
+                "id": 37,
+                "name": "Excludelist_Ports",
+                "value": "",
+                "default_value": ""
             }
         ],
         "playbookBlocks": [
@@ -575,7 +593,8 @@
             "Incident - Notify Updates",
             "Alert - Notify Updates",
             "Alert - Notify Creation",
-            "Incident - Notify Creation"
+            "Incident - Notify Creation",
+            "Notify On Pending Internal Manual Input"
         ],
         "reports": [
             {
@@ -749,6 +768,10 @@
             {
                 "apiName": "recordDistribution",
                 "name": "Record Distribution"
+            },
+            {
+                "apiName": "fieldsOfInterest",
+                "name": "Fields Of Interest"
             }
         ],
         "recordSets": [

@@ -289,7 +289,7 @@
                     {
                         "option": "Pause SLA",
                         "step_iri": "\/api\/3\/workflow_steps\/604cc06d-9a8b-400f-879c-eebca89b8271",
-                        "condition": "{{ vars.input.records[0].status.itemValue == vars.sla_time_list.altPauseSLAOn }}",
+                        "condition": "{{ (vars.input.records[0].status.itemValue in vars.sla_time_list.altPauseSLAOn) or (vars.input.records[0].status.itemValue == vars.sla_time_list.altPauseSLAOn) }}",
                         "step_name": "Pause Response SLA"
                     },
                     {

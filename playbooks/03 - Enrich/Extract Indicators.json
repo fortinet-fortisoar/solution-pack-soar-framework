@@ -60,7 +60,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Extract Indicators from description",
+            "name": "Extract Indicators from Description",
             "description": "This is step is specifically designed for 'Suspicious Email' Alert",
             "arguments": {
                 "name": "CyOps Utilities",
@@ -72,12 +72,12 @@
                     "override_regex": "",
                     "private_whitelist": ""
                 },
-                "version": "3.2.0",
+                "version": "3.2.4",
                 "connector": "cyops_utilities",
                 "operation": "extract_artifacts",
                 "operationTitle": "CyOPs: Extract Artifacts from string",
                 "step_variables": {
-                    "description_iocs": "{{vars.result.data.results}}"
+                    "description_iocs": "{{vars.result.data.results | json_query(\"[?type != `File`]\")}}"
                 },
                 "operationOutput": []
             },
@@ -95,7 +95,8 @@
             "arguments": {
                 "resource": {
                     "state": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
-                    "emailBody": "{% if vars.input.records[0].emailBody or vars.input.params.alertMetaData.emailBody %}\n{% set emailBody = vars.input.records[0].emailBody or vars.input.params.alertMetaData.emailBody  %}\n{{ emailBody | regex_replace('http','hxxp')  }}\n{% endif %}"
+                    "emailBody": "{% if vars.input.records[0].emailBody or vars.input.params.alertMetaData.emailBody %}\n{% set emailBody = vars.input.records[0].emailBody or vars.input.params.alertMetaData.emailBody  %}\n{{ emailBody | regex_replace('http','hxxp')  }}\n{% endif %}",
+                    "indicators": "{{vars.indicators_iri}}"
                 },
                 "_showJson": false,
                 "operation": "Overwrite",
@@ -124,8 +125,12 @@
                 "unified_iocs": "[]",
                 "alert_metadata": "{{vars.input.params.alertMetaData | ternary(vars.input.params.alertMetaData,vars.input.records[0])}}",
                 "alert_field_iocs": "[]",
+                "create_file_iocs": "true",
+                "excluded_file_iocs": "{{(globalVars.Excludelist_Files | replace(\"*\", \"\") | replace(\" \", \"\")).split(\",\")}}",
                 "indicator_type_map": "{{globalVars.Indicator_Type_Map}}",
-                "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls) | map('lower') | list}}"
+                "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls) | map('lower') | list}}",
+                "add_excluded_file_comment": "false",
+                "excluded_ports": "{{(globalVars.Excludelist_Ports | replace(\" \", \"\")).split(\",\")}}"
             },
             "status": null,
             "top": "300",
@@ -136,7 +141,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Extract Indicators from body",
+            "name": "Extract Indicators from Body",
             "description": "This is step is specifically designed for 'Suspicious Email' Alert",
             "arguments": {
                 "name": "CyOps Utilities",
@@ -148,12 +153,12 @@
                     "override_regex": "",
                     "private_whitelist": ""
                 },
-                "version": "3.0.3",
+                "version": "3.2.4",
                 "connector": "cyops_utilities",
                 "operation": "extract_artifacts",
                 "operationTitle": "CyOPs: Extract Artifacts from string",
                 "step_variables": {
-                    "email_body_iocs": "{{vars.result.data.results}}"
+                    "email_body_iocs": "{{vars.result.data.results | json_query(\"[?type != `File`]\")}}"
                 },
                 "operationOutput": []
             },
@@ -244,6 +249,7 @@
                                 "value": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
                                 "_value": {
                                     "@id": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                                    "display": "TBD",
                                     "itemValue": "TBD"
                                 },
                                 "operator": "neq"
@@ -280,7 +286,7 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Extract Indicators from header",
+            "name": "Extract Indicators from Header",
             "description": "This is step is specifically designed for 'Suspicious Email' Alert",
             "arguments": {
                 "name": "CyOps Utilities",
@@ -292,12 +298,12 @@
                     "override_regex": "",
                     "private_whitelist": ""
                 },
-                "version": "3.0.3",
+                "version": "3.2.4",
                 "connector": "cyops_utilities",
                 "operation": "extract_artifacts",
                 "operationTitle": "CyOPs: Extract Artifacts from string",
                 "step_variables": {
-                    "header_iocs": "{{vars.result.data.results}}"
+                    "header_iocs": "{{vars.result.data.results | json_query(\"[?type != `File`]\")}}"
                 },
                 "operationOutput": []
             },
@@ -313,7 +319,7 @@
             "name": "Update Indicator List",
             "description": null,
             "arguments": {
-                "temp": "{% for key,value in vars.indicator_type_map.items()%}\n    {%if vars.alert_metadata.get(key) %}\n        {% set list_vals = vars.alert_metadata.get(key) if vars.alert_metadata.get(key) | type_debug == 'list' else vars.alert_metadata.get(key).split(\",\") %}\n        {%for val in list_vals%}\n            {% set _val = val | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+') %}\n            {% if (_val == None) and (val|string|lower not in vars.excluded_indicators) %}\n                {{vars.alert_field_iocs.append({\"type\": value, \"value\":val})}}\n            {% elif (_val != None) and _val.split('@')[-1]|lower not in vars.excluded_indicators %}\n                {{vars.alert_field_iocs.append({\"type\": value, \"value\":_val})}}\n            {% endif %}\n        {%endfor%}\n    {%endif%}\n{%endfor%}"
+                "temp": "{% for key,value in vars.indicator_type_map.items()%}\n    {%if vars.alert_metadata.get(key) %}\n        {% set list_vals = vars.alert_metadata.get(key) if vars.alert_metadata.get(key) | type_debug == 'list' else vars.alert_metadata.get(key).split(\",\") %}\n        {%for item in list_vals%}\n            {% set val = item |replace(' ','') %}\n            {% set _val = val | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+') %}\n            {% if (_val == None) and (value == 'Port') and (val|string not in vars.excluded_ports) %}\n                {{vars.alert_field_iocs.append({\"type\": value, \"value\":val})}}\n            {% elif (_val == None) and (value != 'Port') and (val|string|lower not in vars.excluded_indicators) %}\n                {{vars.alert_field_iocs.append({\"type\": value, \"value\":val})}}\n            {% elif (_val != None) and _val.split('@')[-1]|lower not in vars.excluded_indicators %}\n                {{vars.alert_field_iocs.append({\"type\": value, \"value\":_val})}}\n            {% endif %}\n        {%endfor%}\n    {%endif%}\n{%endfor%}"
             },
             "status": null,
             "top": "435",
@@ -353,6 +359,7 @@
                             "value": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
                             "_value": {
                                 "@id": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                                "display": "Indicator Extracted",
                                 "itemValue": "Indicator Extracted"
                             },
                             "operator": "neq"
@@ -425,9 +432,40 @@
         },
         {
             "@type": "WorkflowStep",
+            "name": "Add Comment for Excluded Files",
+            "description": null,
+            "arguments": {
+                "when": "{{(vars.add_excluded_file_comment) and (vars.steps.Extract_Attachment_Indicators['excluded_file_indicators'] | length > 0)}}",
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "alerts": "{{vars.alert_iri}}",
+                    "people": [],
+                    "content": "<p>Files {% for item in vars.steps.Extract_Attachment_Indicators['excluded_file_indicators'] %}<span class=\"badge badge-pill badge-danger\" style=\"background: #6a9169; color: #fff;\">{{item}}<\/span>{% if not loop.last%}, {% endif %}{% endfor %} has been excluded from file indicator creation.<\/p>",
+                    "__replace": "",
+                    "isImportant": false,
+                    "peopleUpdated": false
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "2000",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "99808fd2-e833-4c01-ac8e-c2dfb35b9d29"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Get Indicators",
             "description": null,
             "arguments": {
+                "temp": "",
                 "alert_field_iocs": "{{ vars.alert_field_iocs | json_query('[?value != null]') }}"
             },
             "status": null,
@@ -453,9 +491,6 @@
                     "tlp": "\/api\/3\/picklists\/7bff95b7-6438-4b01-b23a-0fe8cb5b33d3",
                     "file": "{{ vars.item.indicatorFileIri or None }}",
                     "value": "{%if vars.item.type == \"IndicatorType\" | picklist(\"Email Address\", \"itemValue\")%}{{vars.item.value | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+')}}{%else%}{{vars.item.value}}{%endif%}",
-                    "__link": {
-                        "alerts": "{{vars.alert_iri}}"
-                    },
                     "tenant": "{{vars.tenant_iri}}",
                     "lastSeen": "{{arrow.utcnow().int_timestamp}}",
                     "__replace": "true",
@@ -466,7 +501,6 @@
                     "indicatorStatus": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
                     "typeofindicator": "{{('IndicatorType' | picklist(vars.item.type))['@id']}}",
                     "__fieldsToUpdate": [
-                        "alerts",
                         "lastSeen"
                     ],
                     "enrichmentStatus": "\/api\/3\/picklists\/a6d9da29-27b1-4b8a-965d-8d91518540d5"
@@ -478,7 +512,9 @@
                 "fieldOperation": {
                     "recordTags": "Append"
                 },
-                "step_variables": []
+                "step_variables": {
+                    "indicators_iri": "{{vars.steps.Create_Indicator | json_query('[].\"@id\"') | unique}}"
+                }
             },
             "status": null,
             "top": "1515",
@@ -494,8 +530,12 @@
             "arguments": {
                 "when": "{{vars.input.records[0].type.itemValue in ['Suspicious Email', 'Phishing']}}",
                 "arguments": {
-                    "Alert ID": "{{vars.input.records[0].id}}",
-                    "excluded_iocs": "{{vars.excluded_indicators}}"
+                    "alertID": "{{vars.alert_metadata.id}}",
+                    "alertIRI": "{{vars.alert_iri}}",
+                    "tenantIRI": "{{vars.tenant_iri}}",
+                    "createFileIOCs": "{{vars.create_file_iocs}}",
+                    "excludedFileIOCs": "{{vars.excluded_file_iocs}}",
+                    "excludedIndicators": "{{vars.excluded_indicators}}"
                 },
                 "apply_async": false,
                 "step_variables": {
@@ -576,7 +616,7 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Extract Indicators from body -> Extract Indicators from description",
+            "name": "Extract Indicators from Body -> Extract Indicators from Description",
             "targetStep": "\/api\/3\/workflow_steps\/18f57e7b-c825-430a-9b86-fb1c8274b257",
             "sourceStep": "\/api\/3\/workflow_steps\/6ea0365a-3a12-495c-82d9-17c787bda75f",
             "label": null,
@@ -586,7 +626,7 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Extract Indicators from description -> Extract Attachment Indicators",
+            "name": "Extract Indicators from Description -> Extract Attachment Indicators",
             "targetStep": "\/api\/3\/workflow_steps\/a5b6f558-5b1a-4953-9c97-d83fd818bc3a",
             "sourceStep": "\/api\/3\/workflow_steps\/18f57e7b-c825-430a-9b86-fb1c8274b257",
             "label": null,
@@ -596,7 +636,7 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Extract Indicators from header -> Extract Indicators from body",
+            "name": "Extract Indicators from Header -> Extract Indicators from Body",
             "targetStep": "\/api\/3\/workflow_steps\/6ea0365a-3a12-495c-82d9-17c787bda75f",
             "sourceStep": "\/api\/3\/workflow_steps\/9394cafa-441a-4131-b328-bbd2e3339c12",
             "label": null,
@@ -606,7 +646,7 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get Indicators -> Extract Indicators from header",
+            "name": "Get Indicators -> Extract Indicators from Header",
             "targetStep": "\/api\/3\/workflow_steps\/9394cafa-441a-4131-b328-bbd2e3339c12",
             "sourceStep": "\/api\/3\/workflow_steps\/e7bbfc81-c4c6-4768-a875-e24d81d30de5",
             "label": null,
@@ -663,6 +703,16 @@
             "isExecuted": false,
             "group": null,
             "uuid": "02b5aefa-5a48-4f99-9c98-b34d19c1f759"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Alert State -> Add Comment for Excluded Files",
+            "targetStep": "\/api\/3\/workflow_steps\/99808fd2-e833-4c01-ac8e-c2dfb35b9d29",
+            "sourceStep": "\/api\/3\/workflow_steps\/1c47615b-90b3-439d-9d45-eb29b14064ed",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "1d36b56c-f304-4da4-aa07-0f695da65e48"
         },
         {
             "@type": "WorkflowRoute",
