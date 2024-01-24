@@ -1,6 +1,6 @@
 # Release Information
 
-- **Version**:  2.2.1
+- **Version**:  3.0.0
 - **Certified**: Yes 
 - **Publisher**: Fortinet 
 - **Compatible Version**: FortiSOAR v7.4.1 and later
