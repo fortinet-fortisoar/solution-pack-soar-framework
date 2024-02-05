@@ -23,3 +23,7 @@
 
 - Marked the `File` field of indicator module mandatory for the `File` type indicator
 - Added `Tenant` field of indicator module in *Record Uniqueness* settings
+
+## Playbook Enhancements
+
+- The "Extract Indicators" playbook in the *03 - Enrich* playbooks collection now appends the indicators to the alert record
