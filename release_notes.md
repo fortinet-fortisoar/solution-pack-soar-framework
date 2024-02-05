@@ -17,13 +17,9 @@
     </tr>
 </table>
 
-## Playbook Enhancements
-
-
 ## Module Enhancements
 
 ### Indicators
 
 - Marked the `File` field of indicator module mandatory for the `File` type indicator
 - Added `Tenant` field of indicator module in *Record Uniqueness* settings
-
