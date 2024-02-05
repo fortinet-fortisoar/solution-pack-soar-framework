@@ -17,7 +17,8 @@
             "indicators_unique": {
                 "columns": [
                     "typeofindicator",
-                    "value"
+                    "value",
+                    "tenant"
                 ]
             }
         }
@@ -1278,9 +1279,29 @@
             "inversedField": null,
             "ownsRelationship": false,
             "validation": {
-                "maxlength": -1,
+                "maxlength": 10485761,
                 "minlength": 0,
-                "required": false
+                "required": [
+                    {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "field": "typeofindicator",
+                                "operator": "eq",
+                                "value": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                                "_value": {
+                                    "display": "File",
+                                    "itemValue": "File",
+                                    "@id": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd"
+                                },
+                                "type": "object"
+                            }
+                        ]
+                    }
+                ],
+                "_enableRange": false
             },
             "bulkAction": {
                 "allow": false,
@@ -1315,6 +1336,7 @@
             "identifier": false,
             "unique": false,
             "recommend": false,
+            "skipSerialization": false,
             "uuid": "fb0d1ae2-44ff-4c77-905b-8af9370ec20f",
             "displayName": "{{ file }}",
             "descriptions": {
