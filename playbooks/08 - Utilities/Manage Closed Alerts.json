@@ -1,0 +1,175 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Manage Closed Alerts",
+    "aliasName": null,
+    "tag": null,
+    "description": "This scheduled playbook identifies closed alerts from the past seven days and retrieves associated pending manual inputs.",
+    "isActive": false,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/20289298-cdd6-4052-8fa0-11e2603dca00",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/3b57912d-563c-4953-9cef-740871c5cb7a",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Close Pending Manual Inputs",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.steps.Find_Closed_Alerts}}",
+                    "__bulk": false,
+                    "parallel": true,
+                    "condition": ""
+                },
+                "arguments": {
+                    "alertIRI": "{{vars.item['@id']}}"
+                },
+                "apply_async": true,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": false,
+                "workflowReference": "\/api\/3\/workflows\/134c7c01-0c4f-48e6-810f-e16632b10e63"
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "ebc4e539-3d32-441c-9c03-836910c6a3e9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": [],
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "9bd73118-e959-4bc2-99ee-e8561348246f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Find Closed Alerts",
+            "description": "Find alerts that are closed in last 8 days",
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "status",
+                            "value": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                                "display": "Closed",
+                                "itemValue": "Closed"
+                            },
+                            "operator": "eq"
+                        },
+                        {
+                            "type": "datetime",
+                            "logic": "AND",
+                            "_field": "resolveddate",
+                            "_value": {
+                                "differenceType": "days",
+                                "differenceValue": 8
+                            },
+                            "filters": [
+                                {
+                                    "type": "datetime",
+                                    "field": "resolveddate",
+                                    "value": "{{getRelativeDate(0,0,8,\"end\",\"end\",\"end\")}}",
+                                    "operator": "lte"
+                                }
+                            ],
+                            "_operator": "lte"
+                        }
+                    ],
+                    "__selectFields": [
+                        "id"
+                    ]
+                },
+                "module": "alerts?$limit=30",
+                "checkboxFields": true,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "5c11b973-5cd9-4249-b250-f0c2f071a169"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "__triggerLimit": true,
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                },
+                "triggerOnSource": true,
+                "triggerOnReplicate": false
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "3b57912d-563c-4953-9cef-740871c5cb7a"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Find Closed Alerts",
+            "targetStep": "\/api\/3\/workflow_steps\/5c11b973-5cd9-4249-b250-f0c2f071a169",
+            "sourceStep": "\/api\/3\/workflow_steps\/9bd73118-e959-4bc2-99ee-e8561348246f",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "6efef0f1-c793-4399-9e82-1fbf45d831c1"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Find Closed Alerts -> Close Pending Manual Inputs",
+            "targetStep": "\/api\/3\/workflow_steps\/ebc4e539-3d32-441c-9c03-836910c6a3e9",
+            "sourceStep": "\/api\/3\/workflow_steps\/5c11b973-5cd9-4249-b250-f0c2f071a169",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "c169ddf9-369a-4315-9cf6-9b3be1929b0e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/9bd73118-e959-4bc2-99ee-e8561348246f",
+            "sourceStep": "\/api\/3\/workflow_steps\/3b57912d-563c-4953-9cef-740871c5cb7a",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "ad5bcfe8-ce18-414e-80e2-c44bd5822984"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "5eae4d97-195e-48d1-aab0-7b38e53f06a8",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Scheduled"
+    ]
+}
