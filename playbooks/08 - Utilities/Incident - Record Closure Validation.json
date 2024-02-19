@@ -1,4 +1,5 @@
 {
+    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Incident - Record Closure Validation",
@@ -36,7 +37,7 @@
             "name": "Create Comment Content",
             "description": null,
             "arguments": {
-                "comment_content": "Pending {% if (vars.steps.Get_Pending_Tasks | length > 0) and (vars.steps.Get_Pending_Manual_Inputs.data['hydra:member'] | length > 0) %}manual inputs and associated tasks{% elif vars.steps.Get_Pending_Tasks | length > 0%} associated tasks{% elif vars.steps.Get_Pending_Manual_Inputs.data['hydra:member'] | length > 0 %}manual inputs{% endif %} are found for the incident.\n{% if vars.steps.Get_Pending_Tasks | length > 0%}\n<h6>Tasks:<\/h6>\n{% for item in vars.steps.Get_Pending_Tasks[0].tasks %}<a href=\"\/modules\/view-panel\/tasks\/{{item.uuid}}\" target=\"_blank\" rel=\"noopener\">Task#{{item.id}} - {{item.name}}<\/a><br>{% endfor %}\n{% endif %}\n<p>&nbsp;<\/p>\nPlease confirm if you want to reopen or close the alert."
+                "comment_content": "{% if (vars.steps.Get_Pending_Tasks | length > 0) and (vars.steps.Get_Pending_Manual_Inputs.data['hydra:member'] | length > 0) %}Pending manual inputs and following incomplete tasks{% elif vars.steps.Get_Pending_Tasks | length > 0%} Following incomplete tasks{% elif vars.steps.Get_Pending_Manual_Inputs.data['hydra:member'] | length > 0 %}Pending manual inputs{% endif %} are found associated with this resolved incident.\n{% if vars.steps.Get_Pending_Tasks | length > 0%}\n<h6>Tasks:<\/h6>\n{% for item in vars.steps.Get_Pending_Tasks[0].tasks %}<a href=\"\/modules\/view-panel\/tasks\/{{item.uuid}}\" target=\"_blank\" rel=\"noopener\">Task#{{item.id}} - {{item.name}}<\/a><br>{% endfor %}\n{% endif %}\n<p>&nbsp;<\/p>"
             },
             "status": null,
             "top": "705",
@@ -133,22 +134,24 @@
                             "_operator": "eq"
                         },
                         {
-                            "type": "object",
-                            "field": "tasks.status",
-                            "value": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed",
-                            "_value": {
-                                "@id": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed",
-                                "display": "Completed",
-                                "itemValue": "Completed"
-                            },
-                            "operator": "neq"
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "type": "object",
+                                    "field": "tasks.status",
+                                    "value": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed",
+                                    "_value": {
+                                        "@id": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed",
+                                        "display": "Completed",
+                                        "itemValue": "Completed"
+                                    },
+                                    "operator": "neq"
+                                }
+                            ]
                         }
-                    ],
-                    "__selectFields": [
-                        "tasks"
                     ]
                 },
-                "module": "alerts?$limit=30&$relationships=true&$fsr_max_relation_count=100",
+                "module": "incidents?$limit=30&$relationships=true&$fsr_max_relation_count=100",
                 "checkboxFields": true,
                 "step_variables": []
             },
@@ -161,14 +164,14 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Incident Reopen Approval",
+            "name": "Incident ReOpen Approval",
             "description": null,
             "arguments": {
                 "type": "InputBased",
                 "input": {
                     "schema": {
                         "title": "Pending Items Found",
-                        "description": "{{vars.comment_content}}",
+                        "description": "{{vars.comment_content}}\nPlease confirm if you want to reopen the incident.",
                         "inputVariables": []
                     }
                 },
@@ -185,9 +188,9 @@
                 "response_mapping": {
                     "options": [
                         {
-                            "option": "Reopen Alert",
+                            "option": "ReOpen Incident",
                             "primary": true,
-                            "step_iri": "\/api\/3\/workflow_steps\/e7ddf5c8-4814-4eba-8ead-3dec38796ed8"
+                            "step_iri": "\/api\/3\/workflow_steps\/4997baf2-e6e2-45b7-a584-80205ce3bebd"
                         },
                         {
                             "option": "Close",
@@ -256,10 +259,12 @@
                 "fieldOperation": {
                     "recordTags": "Overwrite"
                 },
-                "step_variables": []
+                "step_variables": {
+                    "reopen_comment": "<span style=\"font-size: 15px; color: #DE7A13;\" class=\"fa fa-exclamation-triangle\"><\/span> The incident has been ReOpened."
+                }
             },
             "status": null,
-            "top": "1110",
+            "top": "975",
             "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
@@ -270,18 +275,27 @@
             "name": "Revert to Previous Status",
             "description": null,
             "arguments": {
+                "message": {
+                    "tags": [],
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "tenant": "",
+                    "thread": false,
+                    "content": "<p>{{vars.reopen_comment}}<\/p>",
+                    "records": ""
+                },
                 "resource": {
                     "status": "{{vars.previousStatus}}"
                 },
+                "_showJson": false,
                 "operation": "Append",
-                "collection": "{{vars.alertIRI}}",
+                "collection": "{{vars.incidentIRI}}",
                 "__recommend": [],
                 "collectionType": "\/api\/3\/alerts",
                 "fieldOperation": [],
                 "step_variables": []
             },
             "status": null,
-            "top": "975",
+            "top": "1110",
             "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
@@ -348,16 +362,6 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Alert Reopen Approval -> Revert to Previous Status",
-            "targetStep": "\/api\/3\/workflow_steps\/e7ddf5c8-4814-4eba-8ead-3dec38796ed8",
-            "sourceStep": "\/api\/3\/workflow_steps\/add24999-dd59-4943-87ca-43d38349ae66",
-            "label": "Reopen Alert",
-            "isExecuted": false,
-            "group": null,
-            "uuid": "a066d4a0-c863-475d-bdc4-1c320b7a04ae"
-        },
-        {
-            "@type": "WorkflowRoute",
             "name": "Any Pending Items Present -> No Operation",
             "targetStep": "\/api\/3\/workflow_steps\/52f2f19c-eab5-4365-99e4-601047e7bc96",
             "sourceStep": "\/api\/3\/workflow_steps\/556bcdb9-61fb-4b1f-aa2b-e5f8ae466629",
@@ -418,6 +422,26 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Incident ReOpen Approval -> Note for Pending Items",
+            "targetStep": "\/api\/3\/workflow_steps\/4997baf2-e6e2-45b7-a584-80205ce3bebd",
+            "sourceStep": "\/api\/3\/workflow_steps\/add24999-dd59-4943-87ca-43d38349ae66",
+            "label": "ReOpen Incident",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "ddda7c49-b9be-48bd-8a55-8187f3106665"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Note for Pending Items -> Revert to Previous Status",
+            "targetStep": "\/api\/3\/workflow_steps\/e7ddf5c8-4814-4eba-8ead-3dec38796ed8",
+            "sourceStep": "\/api\/3\/workflow_steps\/4997baf2-e6e2-45b7-a584-80205ce3bebd",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "0b88c389-54d7-4204-9123-5d7e792375e2"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Pending Items Notification -> Finish Execution",
             "targetStep": "\/api\/3\/workflow_steps\/7113350d-b720-4657-ac88-0d03b3732845",
             "sourceStep": "\/api\/3\/workflow_steps\/add24999-dd59-4943-87ca-43d38349ae66",
@@ -435,16 +459,6 @@
             "isExecuted": false,
             "group": null,
             "uuid": "31ffca89-b212-4d42-bb16-8e1dcdb87e49"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Update to Previous Status -> Create Note for Pending Items",
-            "targetStep": "\/api\/3\/workflow_steps\/4997baf2-e6e2-45b7-a584-80205ce3bebd",
-            "sourceStep": "\/api\/3\/workflow_steps\/e7ddf5c8-4814-4eba-8ead-3dec38796ed8",
-            "label": null,
-            "isExecuted": false,
-            "group": null,
-            "uuid": "669ff9db-a79f-4859-889e-5bc937f21dfb"
         }
     ],
     "groups": [],

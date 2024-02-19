@@ -1,11 +1,12 @@
 {
+    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Manage Closed Alerts",
     "aliasName": null,
     "tag": null,
-    "description": "This scheduled playbook identifies closed alerts from the past seven days and retrieves associated pending manual inputs.",
-    "isActive": false,
+    "description": "This playbook identifies closed alerts from the past seven days and retrieves associated pending manual inputs and delete them.",
+    "isActive": true,
     "debug": false,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
@@ -13,11 +14,11 @@
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/20289298-cdd6-4052-8fa0-11e2603dca00",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/3b57912d-563c-4953-9cef-740871c5cb7a",
+    "triggerStep": "\/api\/3\/workflow_steps\/cc184c6e-c296-4a87-b8f7-07c199aa65d8",
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Close Pending Manual Inputs",
+            "name": "Remove Pending Manual Inputs",
             "description": null,
             "arguments": {
                 "for_each": {
@@ -57,7 +58,7 @@
         {
             "@type": "WorkflowStep",
             "name": "Find Closed Alerts",
-            "description": "Find alerts that are closed in last 8 days",
+            "description": "Find alerts that are closed in last 7 days",
             "arguments": {
                 "query": {
                     "sort": [],
@@ -81,13 +82,13 @@
                             "_field": "resolveddate",
                             "_value": {
                                 "differenceType": "days",
-                                "differenceValue": 8
+                                "differenceValue": 7
                             },
                             "filters": [
                                 {
                                     "type": "datetime",
                                     "field": "resolveddate",
-                                    "value": "{{getRelativeDate(0,0,8,\"end\",\"end\",\"end\")}}",
+                                    "value": "{{getRelativeDate(0,0,7,\"end\",\"end\",\"end\")}}",
                                     "operator": "lte"
                                 }
                             ],
@@ -98,7 +99,7 @@
                         "id"
                     ]
                 },
-                "module": "alerts?$limit=30",
+                "module": "alerts?$limit=5000",
                 "checkboxFields": true,
                 "step_variables": []
             },
@@ -114,21 +115,43 @@
             "name": "Start",
             "description": null,
             "arguments": {
+                "route": "a3cebd0a-bf50-4b03-a8d0-a2ccfb787429",
+                "title": "Alert - Remove Pending Manual Inputs",
+                "resources": [
+                    "alerts"
+                ],
                 "__triggerLimit": true,
+                "inputVariables": [],
                 "step_variables": {
                     "input": {
-                        "params": []
+                        "params": [],
+                        "records": "{{vars.input.records}}"
                     }
                 },
                 "triggerOnSource": true,
-                "triggerOnReplicate": false
+                "displayConditions": {
+                    "alerts": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": []
+                    }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "showToasterMessage": {
+                    "visible": false,
+                    "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": false
             },
             "status": null,
             "top": "30",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
             "group": null,
-            "uuid": "3b57912d-563c-4953-9cef-740871c5cb7a"
+            "uuid": "cc184c6e-c296-4a87-b8f7-07c199aa65d8"
         }
     ],
     "routes": [
@@ -144,7 +167,7 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Find Closed Alerts -> Close Pending Manual Inputs",
+            "name": "Find Closed Alerts -> Remove Pending Manual Inputs",
             "targetStep": "\/api\/3\/workflow_steps\/ebc4e539-3d32-441c-9c03-836910c6a3e9",
             "sourceStep": "\/api\/3\/workflow_steps\/5c11b973-5cd9-4249-b250-f0c2f071a169",
             "label": null,
@@ -156,11 +179,11 @@
             "@type": "WorkflowRoute",
             "name": "Start -> Configuration",
             "targetStep": "\/api\/3\/workflow_steps\/9bd73118-e959-4bc2-99ee-e8561348246f",
-            "sourceStep": "\/api\/3\/workflow_steps\/3b57912d-563c-4953-9cef-740871c5cb7a",
+            "sourceStep": "\/api\/3\/workflow_steps\/cc184c6e-c296-4a87-b8f7-07c199aa65d8",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "ad5bcfe8-ce18-414e-80e2-c44bd5822984"
+            "uuid": "05745669-a511-42f1-9b0b-218818278cc8"
         }
     ],
     "groups": [],
@@ -170,6 +193,6 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "Scheduled"
+        "ManualTrigger"
     ]
 }
