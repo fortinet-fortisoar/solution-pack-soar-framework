@@ -19,11 +19,41 @@
     "steps": [
         {
             "@type": "WorkflowStep",
+            "name": "Get Alert Metadata",
+            "description": "The trigger step's default metadata lacks alert owner details; this step retrieves that info along with other correlated data.",
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "id",
+                            "value": "{{vars.input.records[0].id}}",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ]
+                },
+                "module": "alerts?$limit=30&$relationships=true&$fsr_max_relation_count=100",
+                "checkboxFields": false,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "264e10e4-123c-44a6-9db8-3cb47798c008"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Refer Extract Indicators",
             "description": null,
             "arguments": {
                 "arguments": {
-                    "alertMetaData": "{{vars.input.records[0]}}"
+                    "alertMetaData": "{{vars.steps.Get_Alert_Metadata[0]}}"
                 },
                 "apply_async": false,
                 "step_variables": [],
@@ -31,7 +61,7 @@
                 "workflowReference": "\/api\/3\/workflows\/bff221c6-1a9b-4486-8180-6841e7a59f34"
             },
             "status": null,
-            "top": "165",
+            "top": "300",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
@@ -47,16 +77,16 @@
                 "resources": [
                     "alerts"
                 ],
+                "__triggerLimit": true,
                 "inputVariables": [],
                 "step_variables": {
                     "input": {
-                        "params": {
-                            "alertMetaData": "{{ vars.alertMetaData }}"
-                        },
+                        "params": [],
                         "records": "{{vars.input.records}}"
                     }
                 },
                 "_promptexpanded": true,
+                "triggerOnSource": true,
                 "displayConditions": {
                     "alerts": {
                         "sort": [],
@@ -69,6 +99,7 @@
                                 "value": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
                                 "_value": {
                                     "@id": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                                    "display": "Indicator Extracted",
                                     "itemValue": "Indicator Extracted"
                                 },
                                 "operator": "neq"
@@ -78,7 +109,12 @@
                 },
                 "executeButtonText": "Execute",
                 "noRecordExecution": false,
-                "singleRecordExecution": false
+                "showToasterMessage": {
+                    "visible": false,
+                    "messageVisible": true
+                },
+                "triggerOnReplicate": false,
+                "singleRecordExecution": true
             },
             "status": null,
             "top": "30",
@@ -91,12 +127,23 @@
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Refer Extract Indicators",
+            "name": "Get Alert Metadata -> Refer Extract Indicators",
             "targetStep": "\/api\/3\/workflow_steps\/253a3a97-e433-4d68-bf25-d242908cd6b3",
+            "sourceStep": "\/api\/3\/workflow_steps\/264e10e4-123c-44a6-9db8-3cb47798c008",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "a2959c80-a896-4cbf-83c5-44ee56c16500"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Alert Metadata",
+            "targetStep": "\/api\/3\/workflow_steps\/264e10e4-123c-44a6-9db8-3cb47798c008",
             "sourceStep": "\/api\/3\/workflow_steps\/817fa377-9753-486e-8b67-934fa3abf9e1",
             "label": null,
             "isExecuted": false,
-            "uuid": "47e0d067-850b-46d9-857e-65be68d5d7a7"
+            "group": null,
+            "uuid": "83f04c2c-4276-4b7d-bf4d-b213cc479c74"
         }
     ],
     "groups": [],
