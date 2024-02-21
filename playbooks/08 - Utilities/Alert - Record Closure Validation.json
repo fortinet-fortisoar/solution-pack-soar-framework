@@ -23,8 +23,8 @@
                 "type": "InputBased",
                 "input": {
                     "schema": {
-                        "title": "Pending Items Found",
-                        "description": "{{vars.commentContent}}\n\n**Please choose one of the following actions**",
+                        "title": "Review Pending Items",
+                        "description": "{{vars.commentContent}}\n\nChoose one of the following actions",
                         "inputVariables": []
                     }
                 },
@@ -50,7 +50,7 @@
                             "step_iri": "\/api\/3\/workflow_steps\/48eaa862-28f8-421c-afaf-b8d5d59cba51"
                         },
                         {
-                            "option": "Cancel",
+                            "option": "Do Nothing",
                             "step_iri": "\/api\/3\/workflow_steps\/9027da0b-a8a7-4a63-bd07-4da2fa9bf9ea"
                         }
                     ],
@@ -83,7 +83,8 @@
             "description": null,
             "arguments": {
                 "alertID": "{{vars.input.records[0].id}}",
-                "alertIRI": "{{vars.input.records[0]['@id']}}"
+                "alertIRI": "{{vars.input.records[0]['@id']}}",
+                "alertName": "{{vars.input.records[0].name}}"
             },
             "status": null,
             "top": "165",
@@ -97,7 +98,7 @@
             "name": "Create Comment Content",
             "description": null,
             "arguments": {
-                "commentContent": "{% if vars.pendingManualInputsFound and vars.pendingTasksFound %}Pending manual inputs and following tasks{% elif vars.pendingTasksFound%}Following pending tasks{% elif vars.pendingManualInputsFound %}Pending manual inputs{% endif %} are found associated with this closed alert.\n{% if vars.pendingTasksFound %}\n<h6>Tasks:<\/h6>\n{% for item in vars.steps.Get_Pending_Tasks[0].tasks %}{% if item.status != (\"TaskStatus\" | picklist(\"Completed\", \"@id\")) %}<a href=\"\/modules\/view-panel\/tasks\/{{item.uuid}}\" target=\"_blank\" rel=\"noopener\">Task#{{item.id}} - {{item.name}}<\/a><br>{% endif %}{% endfor %}\n{% endif %}\n<p>&nbsp;<\/p>",
+                "commentContent": "Found <strong>\"Alert#{{vars.alertID}} - {{vars.alertName}}\"<\/strong> closed without completing its associated {% if vars.pendingManualInputsFound and vars.pendingTasksFound %}tasks and manual inputs.{% elif vars.pendingTasksFound%}tasks.{% elif vars.pendingManualInputsFound %}manual inputs.{% endif %}\n<p>&nbsp;<\/p>\n{% if vars.pendingTasksFound %}\nReview below incomplete tasks:\n{% for item in vars.steps.Get_Pending_Tasks[0].tasks %}{% if item.status != (\"TaskStatus\" | picklist(\"Completed\", \"@id\")) %}<a href=\"\/modules\/view-panel\/tasks\/{{item.uuid}}\" target=\"_blank\" rel=\"noopener\">Task#{{item.id}} - {{item.name}}<\/a><br>{% endif %}{% endfor %}\n<p>&nbsp;<\/p>\n{% endif %}",
                 "pendingItemsClosureComment": "{% if vars.pendingTasksFound and vars.pendingManualInputsFound %}Pending manual inputs and following tasks{% elif vars.pendingTasksFound%}Following pending tasks{% elif vars.pendingManualInputsFound %}Pending manual inputs{% endif %} associated with this alert has been closed.\n{% if vars.pendingTasksFound %}\n<h6>Tasks:<\/h6>\n{% for item in vars.steps.Get_Pending_Tasks[0].tasks %}{% if item.status != (\"TaskStatus\" | picklist(\"Completed\", \"@id\")) %}<a href=\"\/modules\/view-panel\/tasks\/{{item.uuid}}\" target=\"_blank\" rel=\"noopener\">Task#{{item.id}} - {{item.name}}<\/a><br>{% endif %}{% endfor %}\n{% endif %}\n<p>&nbsp;<\/p>"
             },
             "status": null,
@@ -244,9 +245,9 @@
                                 {
                                     "type": "object",
                                     "field": "tasks.status",
-                                    "value": "null",
+                                    "value": "true",
                                     "_value": {
-                                        "@id": "null",
+                                        "@id": "true",
                                         "display": "",
                                         "itemValue": ""
                                     },
@@ -590,7 +591,7 @@
             "name": "Pending Items Notification -> Finish Execution",
             "targetStep": "\/api\/3\/workflow_steps\/9027da0b-a8a7-4a63-bd07-4da2fa9bf9ea",
             "sourceStep": "\/api\/3\/workflow_steps\/0904946c-b343-43b2-a330-ca4379a33338",
-            "label": "Cancel",
+            "label": "Do Nothing",
             "isExecuted": false,
             "group": null,
             "uuid": "86201d6d-193c-4e3a-b29f-d01172dd93d3"

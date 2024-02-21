@@ -36,7 +36,7 @@
             "name": "Create Comment Content",
             "description": null,
             "arguments": {
-                "commentContent": "{% if vars.pendingManualInputsFound and vars.pendingTasksFound %}Pending manual inputs and following tasks{% elif vars.pendingTasksFound%}Following pending tasks{% elif vars.pendingManualInputsFound %}Pending manual inputs{% endif %} are found associated with this resolved incident.\n{% if vars.pendingTasksFound %}\n<h6>Tasks:<\/h6>\n{% for item in vars.steps.Get_Pending_Tasks[0].tasks %}{% if item.status != (\"TaskStatus\" | picklist(\"Completed\", \"@id\")) %}<a href=\"\/modules\/view-panel\/tasks\/{{item.uuid}}\" target=\"_blank\" rel=\"noopener\">Task#{{item.id}} - {{item.name}}<\/a><br>{% endif %}{% endfor %}\n{% endif %}\n<p>&nbsp;<\/p>",
+                "commentContent": "Found <strong>\"Incident#{{vars.incidentID}} - {{vars.incidentName}}\"<\/strong> closed without completing its associated {% if vars.pendingManualInputsFound and vars.pendingTasksFound %}tasks and manual inputs.{% elif vars.pendingTasksFound%}tasks.{% elif vars.pendingManualInputsFound %}manual inputs.{% endif %}\n<p>&nbsp;<\/p>\n{% if vars.pendingTasksFound %}\nReview below incomplete tasks:\n{% for item in vars.steps.Get_Pending_Tasks[0].tasks %}{% if item.status != (\"TaskStatus\" | picklist(\"Completed\", \"@id\")) %}<a href=\"\/modules\/view-panel\/tasks\/{{item.uuid}}\" target=\"_blank\" rel=\"noopener\">Task#{{item.id}} - {{item.name}}<\/a><br>{% endif %}{% endfor %}\n<p>&nbsp;<\/p>\n{% endif %}",
                 "pendingItemsClosureComment": "{% if vars.pendingTasksFound and vars.pendingManualInputsFound %}Pending manual inputs and following tasks{% elif vars.pendingTasksFound%}Following pending tasks{% elif vars.pendingManualInputsFound %}Pending manual inputs{% endif %} associated with this incident has been closed.\n{% if vars.pendingTasksFound %}\n<h6>Tasks:<\/h6>\n{% for item in vars.steps.Get_Pending_Tasks[0].tasks %}{% if item.status != (\"TaskStatus\" | picklist(\"Completed\", \"@id\")) %}<a href=\"\/modules\/view-panel\/tasks\/{{item.uuid}}\" target=\"_blank\" rel=\"noopener\">Task#{{item.id}} - {{item.name}}<\/a><br>{% endif %}{% endfor %}\n{% endif %}\n<p>&nbsp;<\/p>"
             },
             "status": null,
@@ -216,8 +216,8 @@
                 "type": "InputBased",
                 "input": {
                     "schema": {
-                        "title": "Pending Items Found",
-                        "description": "{{vars.commentContent}}\n\n**Please choose one of the following actions**",
+                        "title": "Review Pending Items",
+                        "description": "{{vars.commentContent}}\n\n**Choose one of the following actions**",
                         "inputVariables": []
                     }
                 },
@@ -243,7 +243,7 @@
                             "step_iri": "\/api\/3\/workflow_steps\/e36c951f-002d-4376-bd1a-48049ba4e20c"
                         },
                         {
-                            "option": "Cancel",
+                            "option": "Do Nothing",
                             "step_iri": "\/api\/3\/workflow_steps\/7113350d-b720-4657-ac88-0d03b3732845"
                         }
                     ],
@@ -589,7 +589,7 @@
             "name": "Pending Items Notification -> Finish Execution",
             "targetStep": "\/api\/3\/workflow_steps\/7113350d-b720-4657-ac88-0d03b3732845",
             "sourceStep": "\/api\/3\/workflow_steps\/add24999-dd59-4943-87ca-43d38349ae66",
-            "label": "Cancel",
+            "label": "Do Nothing",
             "isExecuted": false,
             "group": null,
             "uuid": "b632aed7-1f76-43e7-9a52-7b764ed1d99e"
