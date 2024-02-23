@@ -1,5 +1,4 @@
 {
-    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Fetch SLA Details",
@@ -19,6 +18,25 @@
     "versions": [],
     "triggerStep": "\/api\/3\/workflow_steps\/8c30af89-22a7-4d39-8268-9f0620ba2ecb",
     "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Do Nothing",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.2.5",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "06f16046-449e-4d6e-bc3e-96ac56376f60"
+        },
         {
             "@type": "WorkflowStep",
             "name": "Get SLA Details Enterprise",
@@ -44,6 +62,7 @@
                 },
                 "module": "sla_template?$limit=30",
                 "step_variables": {
+                    "is_mssp": "false",
                     "sla_data": "{{vars.result}}"
                 }
             },
@@ -65,32 +84,44 @@
                     "logic": "AND",
                     "filters": [
                         {
-                            "type": "object",
+                            "type": "primitive",
                             "field": "incSeverity",
                             "value": "{{(\"Severity\" | picklist(vars.input.params['inc_severity']))[\"@id\"]}}",
-                            "_value": {
-                                "@id": "{{(\"Severity\" | picklist(vars.input.params['inc_severity']))[\"@id\"]}}",
-                                "display": "",
-                                "itemValue": ""
-                            },
-                            "operator": "eq"
+                            "operator": "eq",
+                            "_operator": "eq"
                         },
                         {
-                            "type": "object",
-                            "field": "tenant",
-                            "value": "{{vars.input.params['tenant_iri']}}",
-                            "_value": {
-                                "@id": "{{vars.input.params['tenant_iri']}}",
-                                "display": "",
-                                "itemValue": ""
-                            },
-                            "operator": "eq"
+                            "logic": "OR",
+                            "filters": [
+                                {
+                                    "type": "object",
+                                    "field": "tenant",
+                                    "value": "\/api\/3\/tenants\/b3a700f7-00be-4ef9-90c6-3c8fe6e1be63",
+                                    "_value": {
+                                        "@id": "\/api\/3\/tenants\/b3a700f7-00be-4ef9-90c6-3c8fe6e1be63",
+                                        "display": "Self"
+                                    },
+                                    "operator": "eq"
+                                },
+                                {
+                                    "type": "object",
+                                    "field": "tenant",
+                                    "value": "{{vars.input.params['tenant_iri']}}",
+                                    "_value": {
+                                        "@id": "{{vars.input.params['tenant_iri']}}",
+                                        "display": "",
+                                        "itemValue": ""
+                                    },
+                                    "operator": "eq"
+                                }
+                            ]
                         }
                     ]
                 },
                 "module": "sla_template?$limit=30",
                 "step_variables": {
-                    "sla_data": "{{vars.result}}"
+                    "is_mssp": "true",
+                    "sla_data": "{% if vars.steps.Get_SLA_Details_MSSP | length > 0 %}{% set tenant_name = ( vars.input.params['tenant_iri'] | fromIRI ).name %}{{vars.steps.Get_SLA_Details_MSSP | json_query(\"[?contains(tenant.name, '\"+tenant_name+\"')]\") or vars.steps.Get_SLA_Details_MSSP }}{% else %}[]{% endif %}"
                 }
             },
             "status": null,
@@ -129,42 +160,21 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Raise Exception",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "msg": "No SLA Templates provided in Tenant: {{vars.input.params['tenant_iri']}}"
-                },
-                "version": "3.2.5",
-                "connector": "cyops_utilities",
-                "operation": "raise_exception",
-                "operationTitle": "Utils: Raise Exception",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "570",
-            "left": "475",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "group": null,
-            "uuid": "06f16046-449e-4d6e-bc3e-96ac56376f60"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Select SLA",
             "description": null,
             "arguments": {
                 "conditions": [
                     {
-                        "option": "Raise Exception",
+                        "option": "Do Nothing",
                         "default": true,
                         "step_iri": "\/api\/3\/workflow_steps\/06f16046-449e-4d6e-bc3e-96ac56376f60",
-                        "step_name": "Raise Exception"
+                        "step_name": "Do Nothing"
                     },
                     {
                         "option": "Return SLA",
-                        "step_iri": "\/api\/3\/workflow_steps\/4172b7f1-fd4c-4054-b8e8-98c9a14f9405",
+                        "step_iri": "\/api\/3\/workflow_steps\/db6848cf-a362-4e94-bb6d-962ed18b09ac",
                         "condition": "{{ vars.sla_data | length > 0 }}",
-                        "step_name": "SLA Time List"
+                        "step_name": "Set Conditions for SLA"
                     }
                 ],
                 "step_variables": []
@@ -178,14 +188,28 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "SLA Time List",
-            "description": null,
+            "name": "Set Conditions for SLA",
+            "description": "Provides the index of sla_details to take and a flag named defaultSLA which is used in Alert\/Incidents playbooks to add a tag \"Default SLA\" in case SLA templates are not found for tenant.",
             "arguments": {
-                "sla_time_list": "{\n  \"incAckTime\" : \"{{vars.sla_data[0].ackSlaTime}}\",\n  \"incResTime\" : \"{{vars.sla_data[0].resTime}}\",\n  \"incAckTrackedOn\" : \"{{vars.sla_data[0].slaTrackedOn.itemValue}}\",\n  \"incResTrackedOn\" : \"{{vars.sla_data[0].resSlaTrackedOn.itemValue}}\",\n  \"alertAckTime\" : \"{{vars.sla_data[0].alertAckTime}}\",\n  \"alertResTime\" : \"{{vars.sla_data[0].alertResTime}}\",\n  \"alertAackTrackedOn\" : \"{{vars.sla_data[0].alertAckTrackedOn.itemValue}}\",\n  \"alertResTrackedOn\" : \"{{vars.sla_data[0].alertResTrackedOn.itemValue}}\",\n  \"altPauseSLAOn\" : {% if vars.sla_data[0].altPauseSLAOn | type_debug == 'list' %}{{vars.sla_data[0].altPauseSLAOn | json_query('[].itemValue')}}{% else %}\"{{vars.sla_data[0].altPauseSLAOn.itemValue}}\"{% endif %},\n  \"incPauseSLAOn\" : {% if vars.sla_data[0].incPauseSLAOn | type_debug == 'list' %}{{vars.sla_data[0].incPauseSLAOn | json_query('[].itemValue')}}{% else %}\"{{vars.sla_data[0].incPauseSLAOn.itemValue}}\"{% endif %}\n}"
+                "default_sla": "{% if vars.is_mssp %}{% if ( vars.input.params['tenant_iri'] | fromIRI ).name != vars.sla_data[0].tenant.name %}true{% else %}false{% endif %}{% else %}false{% endif %}"
             },
             "status": null,
             "top": "570",
-            "left": "125",
+            "left": "475",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "db6848cf-a362-4e94-bb6d-962ed18b09ac"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "SLA Time List",
+            "description": null,
+            "arguments": {
+                "sla_time_list": "{\n  \"defaultSLA\" : {{vars.default_sla}},\n  \"incAckTime\" : \"{{vars.sla_data[0].ackSlaTime}}\",\n  \"incResTime\" : \"{{vars.sla_data[0].resTime}}\",\n  \"incAckTrackedOn\" : \"{{vars.sla_data[0].slaTrackedOn.itemValue}}\",\n  \"incResTrackedOn\" : \"{{vars.sla_data[0].resSlaTrackedOn.itemValue}}\",\n  \"alertAckTime\" : \"{{vars.sla_data[0].alertAckTime}}\",\n  \"alertResTime\" : \"{{vars.sla_data[0].alertResTime}}\",\n  \"alertAackTrackedOn\" : \"{{vars.sla_data[0].alertAckTrackedOn.itemValue}}\",\n  \"alertResTrackedOn\" : \"{{vars.sla_data[0].alertResTrackedOn.itemValue}}\",\n  \"altPauseSLAOn\" : {% if vars.sla_data[0].altPauseSLAOn | type_debug == 'list' %}{{vars.sla_data[0].altPauseSLAOn | json_query('[].itemValue')}}{% else %}\"{{vars.sla_data[0].altPauseSLAOn.itemValue}}\"{% endif %},\n  \"incPauseSLAOn\" : {% if vars.sla_data[0].incPauseSLAOn | type_debug == 'list' %}{{vars.sla_data[0].incPauseSLAOn | json_query('[].itemValue')}}{% else %}\"{{vars.sla_data[0].incPauseSLAOn.itemValue}}\"{% endif %}\n}"
+            },
+            "status": null,
+            "top": "705",
+            "left": "475",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "4172b7f1-fd4c-4054-b8e8-98c9a14f9405"
@@ -227,13 +251,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get SLA Details -> Select SLA",
+            "name": "Get SLA Details MSSP -> Select SLA",
             "targetStep": "\/api\/3\/workflow_steps\/d36319ae-9d63-4665-88e5-45ab4b0c453e",
             "sourceStep": "\/api\/3\/workflow_steps\/3ac17b90-f916-427e-8a7d-3b2debd0add5",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "779c2597-6522-4583-9ce6-24db6f82d706"
+            "uuid": "211e9f03-cc33-4070-a1a9-377d1328e222"
         },
         {
             "@type": "WorkflowRoute",
@@ -260,20 +284,30 @@
             "name": "Select SLA -> Raise Exception",
             "targetStep": "\/api\/3\/workflow_steps\/06f16046-449e-4d6e-bc3e-96ac56376f60",
             "sourceStep": "\/api\/3\/workflow_steps\/d36319ae-9d63-4665-88e5-45ab4b0c453e",
-            "label": "Raise Exception",
+            "label": "Do Nothing",
             "isExecuted": false,
             "group": null,
             "uuid": "6cf49ffa-9885-4220-b1af-96b02e99a566"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Select SLA -> SLA Time List",
-            "targetStep": "\/api\/3\/workflow_steps\/4172b7f1-fd4c-4054-b8e8-98c9a14f9405",
+            "name": "Select SLA -> Set Conditions for SLA",
+            "targetStep": "\/api\/3\/workflow_steps\/db6848cf-a362-4e94-bb6d-962ed18b09ac",
             "sourceStep": "\/api\/3\/workflow_steps\/d36319ae-9d63-4665-88e5-45ab4b0c453e",
             "label": "Return SLA",
             "isExecuted": false,
             "group": null,
-            "uuid": "c1f4692c-5bd1-4ab9-ad6b-ca463237b375"
+            "uuid": "9f3279b7-5b66-4960-b68f-4c564684a18a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Set Conditions for SLA -> SLA Time List",
+            "targetStep": "\/api\/3\/workflow_steps\/4172b7f1-fd4c-4054-b8e8-98c9a14f9405",
+            "sourceStep": "\/api\/3\/workflow_steps\/db6848cf-a362-4e94-bb6d-962ed18b09ac",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "2f1c6c13-5426-40fa-af71-5900d9110ddb"
         },
         {
             "@type": "WorkflowRoute",
