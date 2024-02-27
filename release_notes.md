@@ -29,6 +29,14 @@
 > **Note:** This change won't show up in SFSP upgrades. It's best to apply it manually to prevent the incorrect creation of file indicators.
 - Added `Tenant` field of indicator module in *Record Uniqueness* settings
 
+### War Rooms
+- The war room module is marked as `Team Ownable` and `User Ownable`
+
+### i18n changes
+- Added *English* and *French* language support to all the modules comes OOB with SFSP
+> **Note:** This change will only show up in FortiSOAR 7.5.0 onwards
+
 ## Playbook Enhancements
 
 - The "Extract Indicators" playbook in the *03 - Enrich* playbooks collection now appends the indicators to the alert record
+
