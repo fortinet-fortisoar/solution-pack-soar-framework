@@ -19,10 +19,14 @@
 
 ## Module Enhancements
 
+### Alerts
+
+- Marked the `Hide Empty Fields` checkbox `true` by default in Alert Detailed View
+
 ### Indicators
 
-- Marked the `File` field of indicator module mandatory for the `File` type indicator
-> **Note:** This change won't show up in SFSP upgrades. It's best to apply it manually to prevent incorrect creation of file indicators.
+- Marked the `File` field of the indicator module mandatory for the `File` type indicator
+> **Note:** This change won't show up in SFSP upgrades. It's best to apply it manually to prevent the incorrect creation of file indicators.
 - Added `Tenant` field of indicator module in *Record Uniqueness* settings
 
 ## Playbook Enhancements
