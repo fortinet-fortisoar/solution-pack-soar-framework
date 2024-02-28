@@ -128,7 +128,7 @@
                 "resource": {
                     "resSla": "{%if vars.input.records[0].resDueBy < vars.input.records[0].modifyDate %}{{\"SLAState\" | picklist(\"Missed\", \"@id\")}}{%else%}{{\"SLAState\" | picklist(\"Paused\", \"@id\")}}{%endif%}",
                     "respSLApausedon": "{{globalVars.Current_Date}}",
-                    "incRemainingRespSLA": "{{vars.steps.Calculate_Time_Left_for_Response_before_Pausing.data['minutes_left'] | round | int}}"
+                    "incRemainingRespSLA": "{{vars.steps.Calculate_Time_Left_for_Response_before_Pausing.data['minutes_left'] | int}}"
                 },
                 "_showJson": false,
                 "operation": "Append",
