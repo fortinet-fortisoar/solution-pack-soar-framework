@@ -129,7 +129,7 @@
                     "resSla": "\/api\/3\/picklists\/3f4ef2dc-7f56-4886-b215-ee08b344cbdf",
                     "slaState": "{% if vars.input.records[0].ackDueDate < vars.input.records[0].modifyDate%}{{\"SLAState\" | picklist(\"Missed\", \"@id\")}}{%else%}{{\"SLAState\" | picklist(\"Paused\", \"@id\")}}{%endif%}",
                     "ackSLApausedon": "{{globalVars.Current_Date}}",
-                    "incRemainingAckSLA": "{{vars.steps.Calculate_Time_Left_for_Ack_before_Pausing.data['minutes_left'] | round | int}}"
+                    "incRemainingAckSLA": "{{vars.steps.Calculate_Time_Left_for_Ack_before_Pausing.data['minutes_left'] | int}}"
                 },
                 "_showJson": false,
                 "operation": "Append",

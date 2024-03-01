@@ -189,7 +189,7 @@
         {
             "@type": "WorkflowStep",
             "name": "Set Conditions for SLA",
-            "description": "Provides the index of sla_details to take and a flag named defaultSLA which is used in Alert\/Incidents playbooks to add a tag \"Default SLA\" in case SLA templates are not found for tenant.",
+            "description": null,
             "arguments": {
                 "default_sla": "{% if vars.is_mssp %}{% if ( vars.input.params['tenant_iri'] | fromIRI ).name != vars.sla_data[0].tenant.name %}true{% else %}false{% endif %}{% else %}false{% endif %}"
             },
