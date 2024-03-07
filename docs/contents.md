@@ -449,23 +449,23 @@ You can use the playbooks in the *08 - Utilities* collection to perform various 
 |----------------|
 
 
-| # | Playbook Name                                     | Description                                                                                                     |
-|---|---------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| 1 | Activate Inactive Users                          | Find the Inactive users and activate them                                                                       |
-| 2 | Activate inactive users - Update user status     | This is a subroutine playbook to update the user status as active                                               |
-| 3 | Add Attacker Tag to Indicator (FortiDeceptor)    | Finds the Attacker IP Address in a FortiDeceptoralert and adds the Attacker Tag to the indicator as well as updates the reputation of the indicator to Malicious. |
-| 4 | Alert - Record Closure Validation                | Ensures alerts cannot be closed if tasks or manual inputs are incomplete, prompting user confirmation for reopening or closure. |
-| 5 | Cascade Permissions to all Related Records       | Cascades the team of the record to all of its related records. Earlier known as Fetch and Link Team to Related Records |
-| 6 | Convert FortiSOAR User to SAML - Collect User Email IDs | Collects comma-separated Email-IDs of the existing FortiSOAR users that to be converted to SAML Users. |
-| 7 | Convert FortiSOAR User to SAML - Update User Type| Updates user type of existing FortiSOAR user to SAML.                                                            |
-| 8 | Create and Link Asset                             | Creates an asset (if it doesn't exist already), and links it to the specified email, alert, or incident record. |
-| 9 | Create and Link Indicator                         | Create an indicator (if it doesn't exist already), and link it to the specified email, alert, or incident record. |
-|10 | Download and Create Attachment                    | Downloads the file from a specified URL and creates an attachment record for the same.                           |
-|11 | Incident - Record Closure Validation             | Ensures incidents cannot be closed if tasks or manual inputs are incomplete, prompting user confirmation for reopening or closure. |
-|12 | Indicator - Import Bulk Indicator                | Extract Indicators from specified text                                                                            |
-|13 | Manage Closed Alerts                              | Identifies closed alerts from the past seven days.                                                               |
-|14 | Manage Closed Alerts - Remove Pending Manual Inputs | Retrieves associated pending manual inputs and deletes them.                                                    |
-|15 | Scheduled Configuration Export                   | Export template name and email address to be updated in the 'Configuration' step. Can be used to schedule Configuration Export and send it as an email. |
+| #  | Playbook Name                                                                      | Description                                                                                                                                                       |
+|----|------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1  | Activate Inactive Users                                                            | Find the Inactive users and activate them                                                                                                                         |
+| 2  | Activate inactive users - Update user status                                       | This is a subroutine playbook to update the user status as active                                                                                                 |
+| 3  | Add Attacker Tag to Indicator (FortiDeceptor)                                      | Finds the Attacker IP Address in a FortiDeceptoralert and adds the Attacker Tag to the indicator as well as updates the reputation of the indicator to Malicious. |
+| 4  | Alert - Record Closure Validation![icon-new](./res/icon-new.svg)                   | Ensures alerts cannot be closed if tasks or manual inputs are incomplete, prompting user confirmation for reopening or closure.                                   |
+| 5  | Cascade Permissions to all Related Records                                         | Cascades the team of the record to all of its related records. Earlier known as Fetch and Link Team to Related Records                                            |
+| 6  | Convert FortiSOAR User to SAML - Collect User Email IDs                            | Collects comma-separated Email-IDs of the existing FortiSOAR users that to be converted to SAML Users.                                                            |
+| 7  | Convert FortiSOAR User to SAML - Update User Type                                  | Updates user type of existing FortiSOAR user to SAML.                                                                                                             |
+| 8  | Create and Link Asset                                                              | Creates an asset (if it doesn't exist already), and links it to the specified email, alert, or incident record.                                                   |
+| 9  | Create and Link Indicator                                                          | Create an indicator (if it doesn't exist already), and link it to the specified email, alert, or incident record.                                                 |
+| 10 | Download and Create Attachment                                                     | Downloads the file from a specified URL and creates an attachment record for the same.                                                                            |
+| 11 | Incident - Record Closure Validation![icon-new](./res/icon-new.svg)                | Ensures incidents cannot be closed if tasks or manual inputs are incomplete, prompting user confirmation for reopening or closure.                                |
+| 12 | Indicator - Import Bulk Indicator                                                  | Extract Indicators from specified text                                                                                                                            |
+| 13 | Manage Closed Alerts![icon-new](./res/icon-new.svg)                                | Identifies closed alerts from the past seven days.                                                                                                                |
+| 14 | Manage Closed Alerts - Remove Pending Manual Inputs![icon-new](./res/icon-new.svg) | Retrieves associated pending manual inputs and deletes them.                                                                                                      |
+| 15 | Scheduled Configuration Export                                                     | Export template name and email address to be updated in the 'Configuration' step. Can be used to schedule Configuration Export and send it as an email.           |
 
 
 | [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) |

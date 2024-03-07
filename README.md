@@ -72,6 +72,8 @@ The following diagram helps better understand the overall process and the subseq
 
 - [Upgrade SOAR Framework to v2.1.0 and later](./docs/moving-to-sfsp-2-1-0.md)
 
+- [Managing Team Ownable Settings](./docs/managing-team-ownable-settings.md)
+
 - [Extending Default Alert Schema](./docs/extending-default-alert-schema.md)
 
 - [Configuring Alert Ingestion Process](./docs/configuring-alert-ingestion-process.md)
