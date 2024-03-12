@@ -31,10 +31,9 @@
 
 - The war room module is marked as `Team Ownable` and `User Ownable`, by default
 
-### Language Support
+### Internationalization
 
 - Added support for following languages, in all modules, out-of-the-box:
-    - English
     - Chinese (Simplified)
     - Japanese
     - Korean
