@@ -1,0 +1,151 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Manage Closed Alerts - Remove Pending Manual Inputs",
+    "aliasName": null,
+    "tag": null,
+    "description": "This playbook finds and removes pending manual inputs associated with the alert",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "alertIRI"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/20289298-cdd6-4052-8fa0-11e2603dca00",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/fbad3a7c-0041-4e57-8db5-c3da99797a05",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": {
+                "alert_iri": "{{vars.input.params.alertIRI}}"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "b3bfa12e-6df7-4768-a57d-78937ee33894"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Delete Pending Manual Input",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.steps.Get_Pending_Manual_Inputs.data['hydra:member'] | length > 0}}",
+                "params": {
+                    "iri": "\/api\/wf\/api\/manual-wf-input\/{{vars.item.id}}\/?format=json",
+                    "body": "",
+                    "method": "DELETE"
+                },
+                "version": "3.2.6",
+                "for_each": {
+                    "item": "{{vars.steps.Get_Pending_Manual_Inputs.data['hydra:member']}}",
+                    "__bulk": false,
+                    "parallel": true,
+                    "condition": ""
+                },
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "ignore_errors": true,
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "5d3ae298-f80e-4063-9baf-d7b8889ee2d0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Pending Manual Inputs",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "iri": "\/api\/wf\/api\/manual-wf-input\/list_wfinput\/?format=json&limit=10&record={{vars.alert_iri}}",
+                    "body": "",
+                    "method": "POST"
+                },
+                "version": "3.2.6",
+                "connector": "cyops_utilities",
+                "operation": "make_cyops_request",
+                "operationTitle": "FSR: Make FortiSOAR API Call",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "7f1f54ca-aaa6-43ed-99e9-8e63bbd1e50a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "__triggerLimit": true,
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                },
+                "triggerOnSource": true,
+                "triggerOnReplicate": false
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "fbad3a7c-0041-4e57-8db5-c3da99797a05"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get Pending Manual Inputs",
+            "targetStep": "\/api\/3\/workflow_steps\/7f1f54ca-aaa6-43ed-99e9-8e63bbd1e50a",
+            "sourceStep": "\/api\/3\/workflow_steps\/b3bfa12e-6df7-4768-a57d-78937ee33894",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "d5165547-49ef-465e-b453-9caafdb63df3"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Pending Manual Inputs -> Delete Pending Manual Input",
+            "targetStep": "\/api\/3\/workflow_steps\/5d3ae298-f80e-4063-9baf-d7b8889ee2d0",
+            "sourceStep": "\/api\/3\/workflow_steps\/7f1f54ca-aaa6-43ed-99e9-8e63bbd1e50a",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "72ef5884-e968-41b2-a98f-be65be726240"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/b3bfa12e-6df7-4768-a57d-78937ee33894",
+            "sourceStep": "\/api\/3\/workflow_steps\/fbad3a7c-0041-4e57-8db5-c3da99797a05",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "d81bfd63-df90-4afb-9fd0-98a39c638236"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "134c7c01-0c4f-48e6-810f-e16632b10e63",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Referenced"
+    ]
+}

@@ -1,6 +1,6 @@
 # Release Information
 
-- **Version**:  2.2.1
+- **Version**:  2.3.0
 - **Certified**: Yes 
 - **Publisher**: Fortinet 
 - **Compatible Version**: FortiSOAR v7.4.1 and later
@@ -71,6 +71,8 @@ The following diagram helps better understand the overall process and the subseq
 ## Additional Resources 
 
 - [Upgrade SOAR Framework to v2.1.0 and later](./docs/moving-to-sfsp-2-1-0.md)
+
+- [Managing Team Ownable Settings](./docs/managing-team-ownable-settings.md)
 
 - [Extending Default Alert Schema](./docs/extending-default-alert-schema.md)
 
