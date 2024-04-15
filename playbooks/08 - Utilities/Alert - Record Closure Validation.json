@@ -98,8 +98,8 @@
             "name": "Create Comment Content",
             "description": null,
             "arguments": {
-                "commentContent": "Found <strong>\"Alert#{{vars.alertID}} - {{vars.alertName}}\"<\/strong> closed without completing its associated {% if vars.pendingManualInputsFound and vars.pendingTasksFound %}tasks and manual inputs.{% elif vars.pendingTasksFound%}tasks.{% elif vars.pendingManualInputsFound %}manual inputs.{% endif %}\n<p>&nbsp;<\/p>\n{% if vars.pendingTasksFound %}\nReview below incomplete tasks:\n{% for item in vars.steps.Get_Pending_Tasks[0].tasks %}{% if item.status != (\"TaskStatus\" | picklist(\"Completed\", \"@id\")) %}<a href=\"\/modules\/view-panel\/tasks\/{{item.uuid}}\" target=\"_blank\" rel=\"noopener\">Task#{{item.id}} - {{item.name}}<\/a><br>{% endif %}{% endfor %}\n<p>&nbsp;<\/p>\n{% endif %}",
-                "pendingItemsClosureComment": "{% if vars.pendingTasksFound and vars.pendingManualInputsFound %}Pending manual inputs and following tasks{% elif vars.pendingTasksFound%}Following pending tasks{% elif vars.pendingManualInputsFound %}Pending manual inputs{% endif %} associated with this alert has been closed.\n{% if vars.pendingTasksFound %}\n<h6>Tasks:<\/h6>\n{% for item in vars.steps.Get_Pending_Tasks[0].tasks %}{% if item.status != (\"TaskStatus\" | picklist(\"Completed\", \"@id\")) %}<a href=\"\/modules\/view-panel\/tasks\/{{item.uuid}}\" target=\"_blank\" rel=\"noopener\">Task#{{item.id}} - {{item.name}}<\/a><br>{% endif %}{% endfor %}\n{% endif %}\n<p>&nbsp;<\/p>"
+                "commentContent": "Found <strong>\"Alert#{{vars.alertID}} - {{vars.alertName}}\"<\/strong> closed without completing its associated {% if vars.pendingManualInputsFound and vars.pendingTasksFound %}tasks and manual inputs.{% elif vars.pendingTasksFound%}tasks.{% elif vars.pendingManualInputsFound %}manual inputs.{% endif %}\n<p>&nbsp;<\/p>\n{% if vars.pendingTasksFound %}\nReview below incomplete tasks:\n{% for item in vars.steps.Get_Pending_Tasks %}{% if item.status != (\"TaskStatus\" | picklist(\"Completed\", \"@id\")) %}<a href=\"\/modules\/view-panel\/tasks\/{{item.uuid}}\" target=\"_blank\" rel=\"noopener\">Task#{{item.id}} - {{item.name}}<\/a><br>{% endif %}{% endfor %}\n<p>&nbsp;<\/p>\n{% endif %}",
+                "pendingItemsClosureComment": "{% if vars.pendingTasksFound and vars.pendingManualInputsFound %}Pending manual inputs and following tasks{% elif vars.pendingTasksFound%}Following pending tasks{% elif vars.pendingManualInputsFound %}Pending manual inputs{% endif %} associated with this alert has been closed.\n{% if vars.pendingTasksFound %}\n<h6>Tasks:<\/h6>\n{% for item in vars.steps.Get_Pending_Tasks %}{% if item.status != (\"TaskStatus\" | picklist(\"Completed\", \"@id\")) %}<a href=\"\/modules\/view-panel\/tasks\/{{item.uuid}}\" target=\"_blank\" rel=\"noopener\">Task#{{item.id}} - {{item.name}}<\/a><br>{% endif %}{% endfor %}\n{% endif %}\n<p>&nbsp;<\/p>"
             },
             "status": null,
             "top": "705",
@@ -222,29 +222,11 @@
                     "logic": "AND",
                     "filters": [
                         {
-                            "type": "primitive",
-                            "field": "id",
-                            "value": "{{vars.alertID}}",
-                            "operator": "eq",
-                            "_operator": "eq"
-                        },
-                        {
                             "logic": "OR",
                             "filters": [
                                 {
                                     "type": "object",
-                                    "field": "tasks.status",
-                                    "value": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed",
-                                    "_value": {
-                                        "@id": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed",
-                                        "display": "Completed",
-                                        "itemValue": "Completed"
-                                    },
-                                    "operator": "neq"
-                                },
-                                {
-                                    "type": "object",
-                                    "field": "tasks.status",
+                                    "field": "status",
                                     "value": "true",
                                     "_value": {
                                         "@id": "true",
@@ -252,15 +234,35 @@
                                         "itemValue": ""
                                     },
                                     "operator": "isnull"
+                                },
+                                {
+                                    "type": "object",
+                                    "field": "status",
+                                    "value": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed",
+                                    "_value": {
+                                        "@id": "\/api\/3\/picklists\/343f4b67-e929-4205-bf95-ba5b70545fed",
+                                        "display": "Completed",
+                                        "itemValue": "Completed"
+                                    },
+                                    "operator": "neq"
                                 }
                             ]
+                        },
+                        {
+                            "type": "primitive",
+                            "field": "alerts.id",
+                            "value": "{{vars.alertID}}",
+                            "operator": "eq",
+                            "_operator": "eq"
                         }
                     ],
                     "__selectFields": [
-                        "tasks"
+                        "status",
+                        "alerts",
+                        "name"
                     ]
                 },
-                "module": "alerts?$limit=30&$relationships=true&$fsr_max_relation_count=100",
+                "module": "tasks?$limit=30&$relationships=true&$fsr_max_relation_count=100",
                 "checkboxFields": true,
                 "step_variables": {
                     "pendingTasksFound": "{% if vars.steps.Get_Pending_Tasks | length > 0 %}true{% else %}false{% endif %}"
@@ -271,7 +273,7 @@
             "left": "650",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
-            "uuid": "4553e7ce-da5c-4c22-8e1c-97a596c88415"
+            "uuid": "84a87b49-0f09-4d38-bb07-a5b01c44a2f4"
         },
         {
             "@type": "WorkflowStep",
@@ -280,7 +282,7 @@
             "arguments": {
                 "when": "{{vars.pendingTasksFound}}",
                 "for_each": {
-                    "item": "{{vars.steps.Get_Pending_Tasks[0].tasks}}",
+                    "item": "{{vars.steps.Get_Pending_Tasks}}",
                     "__bulk": true,
                     "parallel": false,
                     "condition": "",
@@ -549,22 +551,22 @@
         {
             "@type": "WorkflowRoute",
             "name": "Get Pending Manual Inputs -> Get Pending Tasks",
-            "targetStep": "\/api\/3\/workflow_steps\/4553e7ce-da5c-4c22-8e1c-97a596c88415",
+            "targetStep": "\/api\/3\/workflow_steps\/84a87b49-0f09-4d38-bb07-a5b01c44a2f4",
             "sourceStep": "\/api\/3\/workflow_steps\/c4ee0c48-f0e3-495c-8e6e-cd70f8f01129",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "9ddb74f4-17d1-4034-8552-9a6e7ef03acb"
+            "uuid": "44181ebc-8877-4a6e-ae16-9095a6d927f9"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Get Pending Tasks -> Any Pending Items Present",
+            "name": "Get Pending Tasks -> Found Pending Items",
             "targetStep": "\/api\/3\/workflow_steps\/6a7bf4ed-010f-42c5-a84a-478fdde93b4c",
-            "sourceStep": "\/api\/3\/workflow_steps\/4553e7ce-da5c-4c22-8e1c-97a596c88415",
+            "sourceStep": "\/api\/3\/workflow_steps\/84a87b49-0f09-4d38-bb07-a5b01c44a2f4",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "1a9f89bd-6f2a-4834-9080-7c03c5217696"
+            "uuid": "2de45d54-b52b-4346-a15f-cafbc33dd6d9"
         },
         {
             "@type": "WorkflowRoute",
