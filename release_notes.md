@@ -19,45 +19,8 @@
 
 ## Module Enhancements
 
-### Alerts
-
-- Under **_Type Details_** section in the Alert Detailed View template (SVT), empty fields are hidden by default.
-
-### Indicators
-
-- The field `Tenant` has now been added to the module's *Record Uniqueness* settings.
-
-### War Rooms
-
-- The war room module is marked as `Team Ownable` and `User Ownable`, by default
-
-### Internationalization
-
-- Added support for following languages, in all modules, out-of-the-box:
-    - Chinese (Simplified)
-    - Japanese
-    - Korean
-
-> **Note:** This change is applicable from FortiSOAR 7.5.0 and later.
 
 ## Playbook Enhancements
 
-- Following changes have been made to the playbook **Extract Indicators** in the collection *03 - Enrich*:
-    - Appends the indicators to the alert record instead of overwriting
-    - Links an alert's teams to the indicators extracted from an alert. This linking ensures that the extracted indicators are visible to the owners of the alert.
-
-- Following playbooks in the collection *06 - IRP - Case Management* now calculate **_Pause SLA_** time using the **SLA Calculator** connector:
-    - Alert - [02] Capture Ack SLA (Upon Update)
-    - Alert - [03] Capture Response SLA (Upon Update)
-    - Incident - [02] Capture Ack SLA (Upon Update)
-    - Incident - [03] Capture Response SLA (Upon Update)
-
-- Following playbooks in the collection *06 - IRP - Case Management* fallback to the default SLA template, in a shared tenancy environment, if SLA templates for the tenant are not present:
-    - *Fetch SLA Details*
-    - *Alerts - Update SLA Details*
-    - *Incidents - Update SLA Details*
-
-- Following new playbooks have been added to the collection *08 - Utilities*:
-    - **Manage Closed Alerts**: A manually triggered playbook that identifies alerts closed in the last seven days.
-    - **Alert - Record Closure Validation**: Stops an alert's closure until associated tasks and manual inputs are complete. It prompts the user to reopen or close the associated task or manual input before they close the alert.
-    - **Incident - Record Closure Validation**: Stops an incident's closure until associated tasks and manual inputs are complete. It prompts the user to reopen or close the associated task or manual input before they close the incident.
+## Pre-Processing Rule
+- Introduced new pre-processing rule to prevent file indicator creation when it is created without file attached to it
