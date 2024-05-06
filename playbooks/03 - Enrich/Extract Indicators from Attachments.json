@@ -10,9 +10,9 @@
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
     "parameters": [
-        "alertID",
+        "recordID",
         "excludedIndicators",
-        "alertIRI",
+        "recordIRI",
         "excludedFileIOCs",
         "tenantIRI",
         "createFileIOCs"
@@ -53,7 +53,7 @@
                 },
                 "arguments": {
                     "fileIRI": "{{vars.item.file['@id']}}",
-                    "alertIRI": "{{vars.input.params.alertIRI}}",
+                    "recordIRI": "{{vars.input.params.recordIRI}}",
                     "tenantIRI": "{{vars.input.params.tenantIRI}}"
                 },
                 "apply_async": false,
@@ -114,11 +114,11 @@
                     "override_regex": false,
                     "private_whitelist": true
                 },
-                "version": "3.2.4",
+                "version": "3.3.0",
                 "for_each": {
                     "item": "{{vars.extracted_text}}",
                     "parallel": false,
-                    "condition": ""
+                    "condition": "{{vars.item.data['extracted_text']}}"
                 },
                 "connector": "cyops_utilities",
                 "operation": "extract_artifacts",
@@ -209,7 +209,7 @@
                         {
                             "type": "primitive",
                             "field": "alerts.id",
-                            "value": "{{vars.input.params.alertID}}",
+                            "value": "{{vars.input.params.recordID}}",
                             "operator": "eq",
                             "_operator": "eq"
                         }
@@ -524,8 +524,8 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "Referenced",
         "Advisory",
-        "File-Content-Extraction"
+        "File-Content-Extraction",
+        "Referenced"
     ]
 }

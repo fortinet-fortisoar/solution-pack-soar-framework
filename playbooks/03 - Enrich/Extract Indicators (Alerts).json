@@ -1,0 +1,108 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Extract Indicators (Alerts)",
+    "aliasName": null,
+    "tag": null,
+    "description": "Extracts and creates indicators from the specified alert records and then enriches specific fields in alerts with the indicator data.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/73682df3-6388-403a-9cef-017a6078c30d",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Extract Indicators",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "recordModule": "Alert",
+                    "recordMetaData": "{{vars.input.records[0]}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/bff221c6-1a9b-4486-8180-6841e7a59f34"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "9e37b943-be37-4875-b742-6b64f4a9614d"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "alerts",
+                "resources": [
+                    "alerts"
+                ],
+                "__triggerLimit": true,
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    }
+                },
+                "triggerOnSource": true,
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "state",
+                            "value": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                                "display": "Indicator Extracted",
+                                "itemValue": "Indicator Extracted"
+                            },
+                            "operator": "neq"
+                        }
+                    ]
+                },
+                "triggerOnReplicate": false
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "group": null,
+            "uuid": "73682df3-6388-403a-9cef-017a6078c30d"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Extract Indicators",
+            "targetStep": "\/api\/3\/workflow_steps\/9e37b943-be37-4875-b742-6b64f4a9614d",
+            "sourceStep": "\/api\/3\/workflow_steps\/73682df3-6388-403a-9cef-017a6078c30d",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "2367db57-ce57-45cc-bbf2-3704ae9b853e"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "2d159804-9134-4e9d-a0cb-331c533ec54b",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "PostCreate"
+    ]
+}

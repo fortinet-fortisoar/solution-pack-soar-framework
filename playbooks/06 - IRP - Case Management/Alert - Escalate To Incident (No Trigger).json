@@ -131,6 +131,7 @@
                 "resource": {
                     "name": "{{vars.input.params.incidentName}}",
                     "phase": "\/api\/3\/picklists\/bb740542-f699-11e7-8c3f-9a214cf093ae",
+                    "state": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
                     "alerts": "{{ vars.input.params.records | json_query('[*].\"@id\"[]') }}",
                     "assets": "{{vars.sorted_assets_list or None}}",
                     "owners": "{{vars.input.params.incidentOwners}}",
@@ -141,6 +142,7 @@
                     "severity": "{{vars.input.params.severity or None}}",
                     "slaState": "\/api\/3\/picklists\/72979f64-e8b9-4888-a965-957e0ec24818",
                     "__replace": "",
+                    "escalated": "\/api\/3\/picklists\/cfd49634-d25a-476f-8485-99585e589a8c",
                     "indicators": "{{vars.sorted_indicator_list or None}}",
                     "mitregroups": "{{vars.sorted_group_list or None}}",
                     "incidentLead": "{{vars.input.params.incidentLead or None}}",

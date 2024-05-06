@@ -1,0 +1,119 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Extract Indicators (Incidents)",
+    "aliasName": null,
+    "tag": null,
+    "description": "Extracts and creates indicators from the specified incident records and then enriches specific fields in alerts with the indicator data.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/38639c3b-a2d7-42a6-a007-8409f3a82c95",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Extract Indicators",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "recordModule": "Incident",
+                    "recordMetaData": "{{vars.input.records[0]}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": false,
+                "workflowReference": "\/api\/3\/workflows\/bff221c6-1a9b-4486-8180-6841e7a59f34"
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "a1cee141-3a52-4331-8c8c-dc3eaaf7e2f0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "incidents",
+                "resources": [
+                    "incidents"
+                ],
+                "__triggerLimit": true,
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    }
+                },
+                "triggerOnSource": true,
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "escalated",
+                            "value": "\/api\/3\/picklists\/711303d3-75ea-437d-a871-0a8d14fcdb7d",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/711303d3-75ea-437d-a871-0a8d14fcdb7d",
+                                "display": "No",
+                                "itemValue": "No"
+                            },
+                            "operator": "eq"
+                        },
+                        {
+                            "type": "object",
+                            "field": "state",
+                            "value": "\/api\/3\/picklists\/a1bac09b-1441-45aa-ad1b-c88744e48e72",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/a1bac09b-1441-45aa-ad1b-c88744e48e72",
+                                "display": "New",
+                                "itemValue": "New"
+                            },
+                            "operator": "eq"
+                        }
+                    ]
+                },
+                "triggerOnReplicate": false
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "group": null,
+            "uuid": "38639c3b-a2d7-42a6-a007-8409f3a82c95"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Extract Indicators",
+            "targetStep": "\/api\/3\/workflow_steps\/a1cee141-3a52-4331-8c8c-dc3eaaf7e2f0",
+            "sourceStep": "\/api\/3\/workflow_steps\/38639c3b-a2d7-42a6-a007-8409f3a82c95",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "9fde483d-f0e6-4433-9235-ef24ee37ae64"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "01df62ec-cee0-4238-bcf9-8dc9ad5247f7",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "PostCreate"
+    ]
+}
