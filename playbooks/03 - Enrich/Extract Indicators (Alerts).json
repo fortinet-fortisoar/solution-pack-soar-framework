@@ -1,7 +1,7 @@
 {
     "@type": "Workflow",
     "triggerLimit": null,
-    "name": "Extract Indicators",
+    "name": "Extract Indicators (Alerts)",
     "aliasName": null,
     "tag": "#PostCreate #system",
     "description": "Extracts and creates indicators from the specified data and then enriches specific fields in alerts with the indicator data.",
@@ -10,12 +10,12 @@
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
     "parameters": [
-        "alertMetaData"
+        "recordMetaData"
     ],
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
     "versions": [],
-    "triggerStep": "\/api\/3\/workflow_steps\/c5791d4a-fa1c-41d2-8175-b459c32620e9",
+    "triggerStep": "\/api\/3\/workflow_steps\/ff41efab-469a-4ab9-856e-f50fdcccf030",
     "steps": [
         {
             "@type": "WorkflowStep",
@@ -24,7 +24,7 @@
             "arguments": {
                 "resource": {
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "alerts": "[\"{{vars.alert_iri}}\"]",
+                    "alerts": "{{vars.record_iri}}",
                     "people": [],
                     "content": "<p>Enrichment for the extracted indicators did not complete in the default wait time of 2 minutes. Some indicators still have a reputation as <span class=\"badge badge-secondary\">TBD<\/span>.<\/p>",
                     "__replace": "",
@@ -40,8 +40,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2000",
-            "left": "460",
+            "top": "2140",
+            "left": "660",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
             "uuid": "cd14393f-d928-4a4f-ba16-c10d67d53af6"
@@ -54,7 +54,7 @@
                 "when": "{{(vars.add_excluded_file_comment) and (vars.steps.Extract_Attachment_Indicators['excluded_file_indicators'] | length > 0)}}",
                 "resource": {
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
-                    "alerts": "{{vars.alert_iri}}",
+                    "alerts": "{{vars.record_iri}}",
                     "people": [],
                     "content": "<p>Files {% for item in vars.steps.Extract_Attachment_Indicators['excluded_file_indicators'] %}<span class=\"badge badge-pill badge-danger\" style=\"background: #6a9169; color: #fff;\">{{item}}<\/span>{% if not loop.last%}, {% endif %}{% endfor %} has been excluded from file indicator creation.<\/p>",
                     "__replace": "",
@@ -70,60 +70,33 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2140",
-            "left": "120",
+            "top": "2280",
+            "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
             "uuid": "99808fd2-e833-4c01-ac8e-c2dfb35b9d29"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Are New Indicators Created",
-            "description": null,
-            "arguments": {
-                "conditions": [
-                    {
-                        "option": "Yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/925de451-5069-41a6-9a5b-ec1a9b071d71",
-                        "condition": "{{ vars.steps.Create_Indicator | json_query(\"[?contains(reputation.itemValue, 'TBD')]\") | length > 0 }}",
-                        "step_name": "Wait For Enrichment"
-                    },
-                    {
-                        "option": "No",
-                        "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/1c47615b-90b3-439d-9d45-eb29b14064ed",
-                        "step_name": "Update Alert State"
-                    }
-                ]
-            },
-            "status": null,
-            "top": "1785",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
-            "group": null,
-            "uuid": "036dfd34-7505-4d8f-9b5d-49f5d130062b"
-        },
-        {
-            "@type": "WorkflowStep",
             "name": "Configuration",
             "description": "You can customize extraction by modifying indicator map in configuration step",
             "arguments": {
-                "alert_iri": "{{vars.input.params.alertMetaData['@id'] | ternary(vars.input.params.alertMetaData['@id'],vars.input.records[0]['@id'])}}",
-                "tenant_iri": "{% if vars.input.records[0].tenant %}{{vars.input.params.alertMetaData.tenant['@id'] | ternary(vars.input.params.alertMetaData.tenant['@id'],vars.input.records[0].tenant['@id'])}}{% endif %}",
+                "record_iri": "{{vars.input.params.recordMetaData['@id'] | ternary(vars.input.params.recordMetaData['@id'],vars.input.records[0]['@id'])}}",
+                "tenant_iri": "{% if vars.input.records[0].tenant %}{{vars.input.params.recordMetaData.tenant['@id'] | ternary(vars.input.params.recordMetaData.tenant['@id'],vars.input.records[0].tenant['@id'])}}{% endif %}",
                 "unified_iocs": "[]",
-                "alert_metadata": "{{vars.input.params.alertMetaData | ternary(vars.input.params.alertMetaData,vars.input.records[0])}}",
-                "excluded_ports": "{{(globalVars.Excludelist_Ports | replace(\" \", \"\")).split(\",\")}}",
-                "alert_field_iocs": "[]",
+                "excluded_ports": "{{(vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `Excludelist_Ports`]\"))[0].value}}",
+                "record_metadata": "{{vars.input.params.recordMetaData | ternary(vars.input.params.recordMetaData,vars.input.records[0])}}",
                 "create_file_iocs": "true",
-                "excluded_file_iocs": "{{(globalVars.Excludelist_Files | replace(\"*\", \"\") | replace(\" \", \"\")).split(\",\")}}",
+                "record_field_iocs": "[]",
+                "excluded_file_iocs": "{{((vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `Excludelist_Files`]\"))[0].value | replace(\"*\", \"\") | replace(\" \", \"\")).split(\",\")}}",
                 "indicator_type_map": "{{globalVars.Indicator_Type_Map}}",
-                "excluded_indicators": "{{vars.ips | union(vars.domains) | union(vars.urls) | map('lower') | list}}",
-                "alert_owners_iri_list": "{{ vars.input.params.alertMetaData.owners | ternary((vars.input.params.alertMetaData.owners | json_query('[].\"@id\"')),vars.input.records[0].owners)}}",
+                "excluded_indicators": "{{(vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `Excludelist_URLs` || key == `Excludelist_Domains` || key == `Excludelist_IPs`].value\") | join(\",\") | lower).split(\",\")}}",
+                "record_owners_iri_list": "{{ vars.input.params.recordMetaData.owners | ternary((vars.input.params.recordMetaData.owners | json_query('[].\"@id\"')),vars.input.records[0].owners)}}",
                 "add_excluded_file_comment": "false"
             },
             "status": null,
-            "top": "300",
-            "left": "125",
+            "top": "440",
+            "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "21ffcc50-7679-4df9-bacb-ad7480c465cd"
@@ -170,8 +143,8 @@
                 }
             },
             "status": null,
-            "top": "1515",
-            "left": "125",
+            "top": "1640",
+            "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
             "uuid": "f815b438-2e48-40c2-83c1-003b32f19760"
@@ -189,8 +162,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "300",
-            "left": "475",
+            "top": "320",
+            "left": "660",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "915e6a13-58cc-435f-9b7e-ed6250393195"
@@ -202,8 +175,8 @@
             "arguments": {
                 "when": "{{vars.input.records[0].type.itemValue in ['Suspicious Email', 'Phishing']}}",
                 "arguments": {
-                    "alertID": "{{vars.alert_metadata.id}}",
-                    "alertIRI": "{{vars.alert_iri}}",
+                    "recordID": "{{vars.record_metadata.id}}",
+                    "recordIRI": "{{vars.record_iri}}",
                     "tenantIRI": "{{vars.tenant_iri}}",
                     "createFileIOCs": "{{vars.create_file_iocs}}",
                     "excludedFileIOCs": "{{vars.excluded_file_iocs}}",
@@ -218,8 +191,8 @@
                 "workflowReference": "\/api\/3\/workflows\/b7cd4c27-6298-4093-9689-dfc7b26d0e7e"
             },
             "status": null,
-            "top": "1110",
-            "left": "125",
+            "top": "1220",
+            "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
             "group": null,
             "uuid": "a5b6f558-5b1a-4953-9c97-d83fd818bc3a"
@@ -230,26 +203,26 @@
             "description": "This is step is specifically designed for 'Suspicious Email' Alert",
             "arguments": {
                 "name": "CyOps Utilities",
-                "when": "{{vars.input.records[0].emailBody or vars.input.params.alertMetaData.emailBody}}",
+                "when": "{{vars.input.records[0].emailBody or vars.input.params.recordMetaData.emailBody}}",
                 "params": {
-                    "data": "{{vars.input.params.alertMetaData.emailBody | ternary(vars.input.params.alertMetaData.emailBody,vars.input.records[0].emailBody)}}",
+                    "data": "{{vars.input.params.recordMetaData.emailBody | ternary(vars.input.params.recordMetaData.emailBody,vars.input.records[0].emailBody)}}",
                     "whitelist": "{{vars.excluded_indicators}}",
                     "case_sensitive": "",
                     "override_regex": "",
                     "private_whitelist": ""
                 },
-                "version": "3.2.4",
+                "version": "3.3.1",
                 "connector": "cyops_utilities",
                 "operation": "extract_artifacts",
                 "operationTitle": "CyOPs: Extract Artifacts from string",
                 "step_variables": {
-                    "email_body_iocs": "{{vars.result.data.results | json_query(\"[?type != `File`]\")}}"
+                    "email_body_iocs": "{{vars.steps.Extract_Indicators_from_Body.data.results | json_query(\"[?type != `File`]\")}}"
                 },
                 "operationOutput": []
             },
             "status": null,
-            "top": "840",
-            "left": "125",
+            "top": "960",
+            "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "6ea0365a-3a12-495c-82d9-17c787bda75f"
@@ -260,26 +233,26 @@
             "description": "This is step is specifically designed for 'Suspicious Email' Alert",
             "arguments": {
                 "name": "CyOps Utilities",
-                "when": "{{vars.input.records[0].description or vars.input.params.alertMetaData.description}}",
+                "when": "{{vars.input.params.recordMetaData.description or vars.input.records[0].description}}",
                 "params": {
-                    "data": "{{vars.input.params.alertMetaData.description | ternary(vars.input.params.alertMetaData.description,vars.input.records[0].description)}}",
+                    "data": "{{vars.input.params.recordMetaData.description | ternary(vars.input.params.recordMetaData.description,vars.input.records[0].description)}}",
                     "whitelist": "{{vars.excluded_indicators}}",
                     "case_sensitive": "",
                     "override_regex": "",
                     "private_whitelist": ""
                 },
-                "version": "3.2.4",
+                "version": "3.3.1",
                 "connector": "cyops_utilities",
                 "operation": "extract_artifacts",
                 "operationTitle": "CyOPs: Extract Artifacts from string",
                 "step_variables": {
-                    "description_iocs": "{{vars.result.data.results | json_query(\"[?type != `File`]\")}}"
+                    "description_iocs": "{{vars.steps.Extract_Indicators_from_Description.data.results | json_query(\"[?type != `File`]\")}}"
                 },
                 "operationOutput": []
             },
             "status": null,
-            "top": "975",
-            "left": "125",
+            "top": "1100",
+            "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "18f57e7b-c825-430a-9b86-fb1c8274b257"
@@ -290,29 +263,63 @@
             "description": "This is step is specifically designed for 'Suspicious Email' Alert",
             "arguments": {
                 "name": "CyOps Utilities",
-                "when": "{{vars.input.records[0].returnPath or vars.input.params.alertMetaData.returnPath}}",
+                "when": "{{vars.input.records[0].returnPath or vars.input.params.recordMetaData.returnPath}}",
                 "params": {
-                    "data": "{{vars.input.params.alertMetaData.returnPath| ternary(vars.input.params.alertMetaData.returnPath,vars.input.records[0].returnPath)}}",
+                    "data": "{{vars.input.params.recordMetaData.returnPath| ternary(vars.input.params.recordMetaData.returnPath,vars.input.records[0].returnPath)}}",
                     "whitelist": "{{vars.excluded_indicators}}",
                     "case_sensitive": "",
                     "override_regex": "",
                     "private_whitelist": ""
                 },
-                "version": "3.2.4",
+                "version": "3.3.1",
                 "connector": "cyops_utilities",
                 "operation": "extract_artifacts",
                 "operationTitle": "CyOPs: Extract Artifacts from string",
                 "step_variables": {
-                    "header_iocs": "{{vars.result.data.results | json_query(\"[?type != `File`]\")}}"
+                    "header_iocs": "{{vars.steps.Extract_Indicators_from_Header.data.results | json_query(\"[?type != `File`]\")}}"
                 },
                 "operationOutput": []
             },
             "status": null,
-            "top": "705",
-            "left": "125",
+            "top": "820",
+            "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "9394cafa-441a-4131-b328-bbd2e3339c12"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Exclude IOCs List",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "key",
+                            "value": "%Excludelist%",
+                            "operator": "like",
+                            "_operator": "like"
+                        }
+                    ],
+                    "__selectFields": [
+                        "value",
+                        "key"
+                    ]
+                },
+                "module": "keys?$limit=30",
+                "checkboxFields": true,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "320",
+            "left": "320",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "850c70e7-c079-47ec-8379-41ca5f9dd8ff"
         },
         {
             "@type": "WorkflowStep",
@@ -320,11 +327,11 @@
             "description": null,
             "arguments": {
                 "temp": "",
-                "alert_field_iocs": "{{ vars.alert_field_iocs | json_query('[?value != null]') }}"
+                "record_field_iocs": "{{ vars.record_field_iocs | json_query('[?value != null]') }}"
             },
             "status": null,
-            "top": "570",
-            "left": "125",
+            "top": "680",
+            "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "e7bbfc81-c4c6-4768-a875-e24d81d30de5"
@@ -344,24 +351,25 @@
                     {
                         "option": "No, Extract Here",
                         "default": true,
-                        "step_iri": "\/api\/3\/workflow_steps\/21ffcc50-7679-4df9-bacb-ad7480c465cd",
-                        "step_name": "Configuration"
+                        "step_iri": "\/api\/3\/workflow_steps\/850c70e7-c079-47ec-8379-41ca5f9dd8ff",
+                        "step_name": "Find Exclude List IOCs"
                     }
-                ]
+                ],
+                "step_variables": []
             },
             "status": null,
-            "top": "165",
-            "left": "300",
+            "top": "180",
+            "left": "480",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
             "uuid": "c639685a-e65e-4be4-8fcf-e57613edb51b"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Link Alert Team to Indicators",
+            "name": "Link Record Team to Indicators",
             "description": null,
             "arguments": {
-                "when": "{{vars.alert_owners_iri_list}}",
+                "when": "{{vars.record_owners_iri_list}}",
                 "for_each": {
                     "item": "{{vars.indicators_iri}}",
                     "__bulk": true,
@@ -371,7 +379,7 @@
                 },
                 "resource": {
                     "__link": {
-                        "owners": "{{vars.alert_owners_iri_list}}"
+                        "owners": "{{vars.record_owners_iri_list}}"
                     }
                 },
                 "_showJson": false,
@@ -386,8 +394,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1650",
-            "left": "125",
+            "top": "1760",
+            "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "833bae2b-bd4a-4367-bc7b-b9faaf3ca931"
@@ -400,8 +408,8 @@
                 "unified_iocs": "{{ vars.unified_iocs | json_query('[?value != null]') | unique}}"
             },
             "status": null,
-            "top": "1380",
-            "left": "125",
+            "top": "1500",
+            "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "0311b9ca-831e-45df-ae02-e522633881cf"
@@ -415,17 +423,16 @@
                 "resources": [
                     "alerts"
                 ],
+                "__triggerLimit": true,
                 "step_variables": {
-                    "ips": "{{globalVars.Excludelist_IPs.split(',')}}",
-                    "urls": "{{globalVars.Excludelist_URLs.split(',')}}",
                     "input": {
                         "params": [],
                         "records": [
                             "{{vars.input.records[0]}}"
                         ]
-                    },
-                    "domains": "{{globalVars.Excludelist_Domains.split(',')}}"
+                    }
                 },
+                "triggerOnSource": true,
                 "fieldbasedtrigger": {
                     "sort": [],
                     "limit": 30,
@@ -443,25 +450,26 @@
                             "operator": "neq"
                         }
                     ]
-                }
+                },
+                "triggerOnReplicate": false
             },
             "status": null,
-            "top": "30",
-            "left": "300",
+            "top": "40",
+            "left": "480",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
             "group": null,
-            "uuid": "c5791d4a-fa1c-41d2-8175-b459c32620e9"
+            "uuid": "ff41efab-469a-4ab9-856e-f50fdcccf030"
         },
         {
             "@type": "WorkflowStep",
             "name": "Unified Email IOCs",
             "description": null,
             "arguments": {
-                "_dummy": "{%if vars.email_body_iocs %}{{vars.unified_iocs.extend(vars.email_body_iocs)}}{%endif%}\n\n{%if vars.header_iocs%}\n{{vars.unified_iocs.extend(vars.header_iocs)}}\n{%endif%}\n\n{%if vars.description_iocs%}{{vars.unified_iocs.extend(vars.description_iocs)}}{%endif%}\n\n{%if vars.file_hash_iocs %}{{vars.unified_iocs.extend(vars.file_hash_iocs)}}{%endif%}\n\n{% if vars.alert_field_iocs %}{{vars.unified_iocs.extend(vars.alert_field_iocs)}}{% endif %}\n\n{% if vars.email_attachment_iocs %}{{vars.unified_iocs.extend(vars.email_attachment_iocs)}}{% endif %}"
+                "_dummy": "{%if vars.email_body_iocs %}{{vars.unified_iocs.extend(vars.email_body_iocs)}}{%endif%}\n\n{%if vars.header_iocs%}\n{{vars.unified_iocs.extend(vars.header_iocs)}}\n{%endif%}\n\n{%if vars.description_iocs%}{{vars.unified_iocs.extend(vars.description_iocs)}}{%endif%}\n\n{%if vars.file_hash_iocs %}{{vars.unified_iocs.extend(vars.file_hash_iocs)}}{%endif%}\n\n{% if vars.record_field_iocs %}{{vars.unified_iocs.extend(vars.record_field_iocs)}}{% endif %}\n\n{% if vars.email_attachment_iocs %}{{vars.unified_iocs.extend(vars.email_attachment_iocs)}}{% endif %}"
             },
             "status": null,
-            "top": "1245",
-            "left": "125",
+            "top": "1360",
+            "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "79976d9e-2f2b-43c1-87a1-76db28946e0e"
@@ -476,11 +484,11 @@
                     "__link": {
                         "indicators": "{{vars.indicators_iri}}"
                     },
-                    "emailBody": "{% if vars.input.records[0].emailBody or vars.input.params.alertMetaData.emailBody %}\n{% set emailBody = vars.input.records[0].emailBody or vars.input.params.alertMetaData.emailBody  %}\n{{ emailBody | regex_replace('http','hxxp')  }}\n{% endif %}"
+                    "emailBody": "{% if vars.input.records[0].emailBody or vars.input.params.recordMetaData.emailBody %}\n{% set emailBody = vars.input.records[0].emailBody or vars.input.params.recordMetaData.emailBody  %}\n{{ emailBody | regex_replace('http','hxxp')  }}\n{% endif %}"
                 },
                 "_showJson": false,
                 "operation": "Append",
-                "collection": "{{vars.alert_iri}}",
+                "collection": "{{vars.record_iri}}",
                 "__recommend": [],
                 "collectionType": "\/api\/3\/alerts",
                 "fieldOperation": {
@@ -489,8 +497,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "2000",
-            "left": "120",
+            "top": "2140",
+            "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "1c47615b-90b3-439d-9d45-eb29b14064ed"
@@ -500,11 +508,11 @@
             "name": "Update Indicator List",
             "description": null,
             "arguments": {
-                "temp": "{% for key,value in vars.indicator_type_map.items()%}\n    {%if vars.alert_metadata.get(key) %}\n        {% set list_vals = vars.alert_metadata.get(key) if vars.alert_metadata.get(key) | type_debug == 'list' else vars.alert_metadata.get(key).split(\",\") %}\n        {%for item in list_vals%}\n            {% set val = item |replace(' ','') %}\n            {% set _val = val | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+') %}\n            {% if (_val == None) and (value == 'Port') and (val|string not in vars.excluded_ports) %}\n                {{vars.alert_field_iocs.append({\"type\": value, \"value\":val})}}\n            {% elif (_val == None) and (value != 'Port') and (val|string|lower not in vars.excluded_indicators) %}\n                {{vars.alert_field_iocs.append({\"type\": value, \"value\":val})}}\n            {% elif (_val != None) and _val.split('@')[-1]|lower not in vars.excluded_indicators %}\n                {{vars.alert_field_iocs.append({\"type\": value, \"value\":_val})}}\n            {% endif %}\n        {%endfor%}\n    {%endif%}\n{%endfor%}"
+                "temp": "{% for key,value in vars.indicator_type_map.items()%}\n    {%if vars.record_metadata.get(key) %}\n        {% set list_vals = vars.record_metadata.get(key) if vars.record_metadata.get(key) | type_debug == 'list' else vars.record_metadata.get(key).split(\",\") %}\n        {%for item in list_vals%}\n            {% set val = item |replace(' ','') %}\n            {% set _val = val | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+') %}\n            {% if (_val == None) and (value == 'Port') and (val|string not in vars.excluded_ports) %}\n                {{vars.record_field_iocs.append({\"type\": value, \"value\":val})}}\n            {% elif (_val == None) and (value != 'Port') and (val|string|lower not in vars.excluded_indicators) %}\n                {{vars.record_field_iocs.append({\"type\": value, \"value\":val})}}\n            {% elif (_val != None) and _val.split('@')[-1]|lower not in vars.excluded_indicators %}\n                {{vars.record_field_iocs.append({\"type\": value, \"value\":_val})}}\n            {% endif %}\n        {%endfor%}\n    {%endif%}\n{%endfor%}"
             },
             "status": null,
-            "top": "435",
-            "left": "125",
+            "top": "560",
+            "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "b31ff3b1-db1b-4b2d-b170-ebe51e2a63c7"
@@ -585,33 +593,51 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1860",
-            "left": "460",
+            "top": "2000",
+            "left": "660",
             "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dbf",
             "group": null,
             "uuid": "925de451-5069-41a6-9a5b-ec1a9b071d71"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Were New Indicators Created",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/925de451-5069-41a6-9a5b-ec1a9b071d71",
+                        "condition": "{{ vars.steps.Create_Indicator | json_query(\"[?contains(reputation.itemValue, 'TBD')]\") | length > 0 }}",
+                        "step_name": "Wait For Enrichment"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/1c47615b-90b3-439d-9d45-eb29b14064ed",
+                        "step_name": "Update Alert State"
+                    }
+                ],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1900",
+            "left": "320",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "036dfd34-7505-4d8f-9b5d-49f5d130062b"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Add Comment for Not Enrich Indicators -> Update Alert State",
+            "name": "Add Comment for Enrichment Not Complete -> Update Alert State",
             "targetStep": "\/api\/3\/workflow_steps\/1c47615b-90b3-439d-9d45-eb29b14064ed",
             "sourceStep": "\/api\/3\/workflow_steps\/cd14393f-d928-4a4f-ba16-c10d67d53af6",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "0f9ca6c6-2f87-4ed9-9fa8-156fa5d76564"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Are New Indicators Created -> Update Alert State",
-            "targetStep": "\/api\/3\/workflow_steps\/1c47615b-90b3-439d-9d45-eb29b14064ed",
-            "sourceStep": "\/api\/3\/workflow_steps\/036dfd34-7505-4d8f-9b5d-49f5d130062b",
-            "label": "No",
-            "isExecuted": false,
-            "group": null,
-            "uuid": "0c61b05d-00d1-4628-8962-6252414c9aaa"
+            "uuid": "15c21de6-f9bf-46d8-9979-7b1554f3ca37"
         },
         {
             "@type": "WorkflowRoute",
@@ -631,7 +657,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "83b66922-356d-475b-bd1d-1afa5cbf6810"
+            "uuid": "f380276a-08e0-4228-a1be-c035991e1d12"
         },
         {
             "@type": "WorkflowRoute",
@@ -651,7 +677,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "fbedec94-96b1-43f4-baa8-d9629e3caa1f"
+            "uuid": "40a91d96-b14b-4524-8b78-5c6f96e4f653"
         },
         {
             "@type": "WorkflowRoute",
@@ -671,7 +697,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "c7f4ba7c-3c96-4979-8987-fc9e9c4b0bc4"
+            "uuid": "98f4fa41-40d1-4e27-bd3b-c41850e1cc90"
         },
         {
             "@type": "WorkflowRoute",
@@ -685,23 +711,33 @@
         },
         {
             "@type": "WorkflowRoute",
+            "name": "Find Exclude List IOCs -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/21ffcc50-7679-4df9-bacb-ad7480c465cd",
+            "sourceStep": "\/api\/3\/workflow_steps\/850c70e7-c079-47ec-8379-41ca5f9dd8ff",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "94d92336-319e-4860-9a13-c65a7ac665a7"
+        },
+        {
+            "@type": "WorkflowRoute",
             "name": "Get Indicators -> Extract Indicators from Header",
             "targetStep": "\/api\/3\/workflow_steps\/9394cafa-441a-4131-b328-bbd2e3339c12",
             "sourceStep": "\/api\/3\/workflow_steps\/e7bbfc81-c4c6-4768-a875-e24d81d30de5",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "98e591b8-0886-42f2-92c9-afe5d08507ff"
+            "uuid": "6f0f2817-acc8-49f3-bb95-a9274e14ef9c"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Is the record for a dedicated tenant -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/21ffcc50-7679-4df9-bacb-ad7480c465cd",
+            "name": "Is Dedicated Tenant Record -> Find Exclude List IOCs",
+            "targetStep": "\/api\/3\/workflow_steps\/850c70e7-c079-47ec-8379-41ca5f9dd8ff",
             "sourceStep": "\/api\/3\/workflow_steps\/c639685a-e65e-4be4-8fcf-e57613edb51b",
             "label": "No, Extract Here",
             "isExecuted": false,
             "group": null,
-            "uuid": "298d26b7-1dc1-4ae1-b224-570f4e8c70c9"
+            "uuid": "b2e35a30-5309-41b7-aafd-353d9da0d2dc"
         },
         {
             "@type": "WorkflowRoute",
@@ -735,13 +771,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Start -> Is the record for a dedicated tenant",
+            "name": "Start -> Is Dedicated Tenant Record",
             "targetStep": "\/api\/3\/workflow_steps\/c639685a-e65e-4be4-8fcf-e57613edb51b",
-            "sourceStep": "\/api\/3\/workflow_steps\/c5791d4a-fa1c-41d2-8175-b459c32620e9",
+            "sourceStep": "\/api\/3\/workflow_steps\/ff41efab-469a-4ab9-856e-f50fdcccf030",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "bf45ba17-fd3d-45eb-8fa9-565b725d7a09"
+            "uuid": "4ce88527-7eab-4cb1-a935-a3607109b4ec"
         },
         {
             "@type": "WorkflowRoute",
@@ -751,7 +787,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "02b5aefa-5a48-4f99-9c98-b34d19c1f759"
+            "uuid": "efc1c3f4-4da5-4c55-a3a3-67588f3e92ab"
         },
         {
             "@type": "WorkflowRoute",
@@ -761,7 +797,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "1d36b56c-f304-4da4-aa07-0f695da65e48"
+            "uuid": "367f66c8-ea04-4872-86c4-cd07b8c20d0c"
         },
         {
             "@type": "WorkflowRoute",
@@ -771,7 +807,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "81002f94-f655-40c1-b589-676b16873ce5"
+            "uuid": "50b34b3d-1dbd-45a7-ae2e-cad2aa7aa59c"
         },
         {
             "@type": "WorkflowRoute",
@@ -791,7 +827,17 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "26271bea-685b-4532-acf1-e12ee0c2fe6c"
+            "uuid": "a7afe784-ebbe-4c11-9179-1fdb78a10c15"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Were New Indicators Created -> Update Alert State",
+            "targetStep": "\/api\/3\/workflow_steps\/1c47615b-90b3-439d-9d45-eb29b14064ed",
+            "sourceStep": "\/api\/3\/workflow_steps\/036dfd34-7505-4d8f-9b5d-49f5d130062b",
+            "label": "No",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "da359d59-2086-43c4-bd4e-a106972b1232"
         }
     ],
     "groups": [],
@@ -801,7 +847,7 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "Alert",
+        "Alerts",
         "PostCreate"
     ]
 }

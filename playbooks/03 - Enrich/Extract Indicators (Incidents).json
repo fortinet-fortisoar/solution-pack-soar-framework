@@ -1,0 +1,704 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Extract Indicators (Incidents)",
+    "aliasName": "#PostCreate #system",
+    "tag": null,
+    "description": "Extracts and creates indicators from the specified incident records and then enriches specific fields in alerts with the indicator data.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "recordMetaData"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/deaa4d19-7444-4f3a-a80e-9577436f25ef",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/38639c3b-a2d7-42a6-a007-8409f3a82c95",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Add Comment for Enrichment Not Complete",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
+                    "people": [],
+                    "content": "<p>Enrichment for the extracted indicators did not complete in the default wait time of 2 minutes. Some indicators still have a reputation as <span class=\"badge badge-secondary\">TBD<\/span>.<\/p>",
+                    "__replace": "",
+                    "incidents": "{{vars.record_iri}}",
+                    "isImportant": false,
+                    "peopleUpdated": false
+                },
+                "operation": "Overwrite",
+                "collection": "\/api\/3\/comments",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1620",
+            "left": "640",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "f3398bf7-a057-439f-8fdc-9fadb1a6d560"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": "You can customize extraction by modifying indicator map in configuration step",
+            "arguments": {
+                "record_iri": "{{vars.input.params.recordMetaData['@id'] | ternary(vars.input.params.recordMetaData['@id'],vars.input.records[0]['@id'])}}",
+                "tenant_iri": "{% if vars.input.records[0].tenant %}{{vars.input.params.recordMetaData.tenant['@id'] | ternary(vars.input.params.recordMetaData.tenant['@id'],vars.input.records[0].tenant['@id'])}}{% endif %}",
+                "unified_iocs": "[]",
+                "excluded_ports": "{{(vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `Excludelist_Ports`]\"))[0].value}}",
+                "record_metadata": "{{vars.input.params.recordMetaData | ternary(vars.input.params.recordMetaData,vars.input.records[0])}}",
+                "create_file_iocs": "true",
+                "record_field_iocs": "[]",
+                "excluded_file_iocs": "{{((vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `Excludelist_Files`]\"))[0].value | replace(\"*\", \"\") | replace(\" \", \"\")).split(\",\")}}",
+                "indicator_type_map": "{{globalVars.Indicator_Type_Map}}",
+                "excluded_indicators": "{{(vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `Excludelist_URLs` || key == `Excludelist_Domains` || key == `Excludelist_IPs`].value\") | join(\",\") | lower).split(\",\")}}",
+                "record_owners_iri_list": "{{ vars.input.params.recordMetaData.owners | ternary((vars.input.params.recordMetaData.owners | json_query('[].\"@id\"')),vars.input.records[0].owners)}}",
+                "add_excluded_file_comment": "false"
+            },
+            "status": null,
+            "top": "420",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "0d8fb151-8bee-410a-b4cb-a73f777f096f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Create Indicator",
+            "description": "Note, Skipping Host Indicator Creation",
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.unified_iocs}}",
+                    "__bulk": true,
+                    "parallel": false,
+                    "condition": "{{vars.item.value != \"NA\"}}",
+                    "batch_size": 200
+                },
+                "resource": {
+                    "tlp": "\/api\/3\/picklists\/7bff95b7-6438-4b01-b23a-0fe8cb5b33d3",
+                    "file": "{{ vars.item.indicatorFileIri or None }}",
+                    "value": "{%if vars.item.type == \"IndicatorType\" | picklist(\"Email Address\", \"itemValue\")%}{{vars.item.value | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+')}}{%else%}{{vars.item.value}}{%endif%}",
+                    "tenant": "{{vars.tenant_iri}}",
+                    "lastSeen": "{{arrow.utcnow().int_timestamp}}",
+                    "__replace": "true",
+                    "firstSeen": "{{arrow.utcnow().int_timestamp}}",
+                    "expiryDate": "{{arrow.utcnow().shift(days=+(globalVars.Default_Indicator_TTL_Days | int)).timestamp}}",
+                    "reputation": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                    "expiredStatus": "\/api\/3\/picklists\/d4ca4a72-7974-4b93-843e-da9efa235c6e",
+                    "indicatorStatus": "\/api\/3\/picklists\/2f5cff61-fbff-4bb3-96be-302b78a9fb47",
+                    "typeofindicator": "{{('IndicatorType' | picklist(vars.item.type))['@id']}}",
+                    "__fieldsToUpdate": [
+                        "lastSeen"
+                    ],
+                    "enrichmentStatus": "\/api\/3\/picklists\/a6d9da29-27b1-4b8a-965d-8d91518540d5"
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "\/api\/3\/upsert\/indicators",
+                "__recommend": [],
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": {
+                    "indicators_iri": "{{vars.steps.Create_Indicator | json_query('[].\"@id\"') | unique}}"
+                }
+            },
+            "status": null,
+            "top": "1140",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
+            "group": null,
+            "uuid": "06d50d72-e07a-45b4-a423-c6bf7c5df013"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Exit",
+            "description": null,
+            "arguments": {
+                "params": [],
+                "version": "3.2.1",
+                "connector": "cyops_utilities",
+                "operation": "no_op",
+                "operationTitle": "Utils: No Operation",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "02e4987d-1e3c-46ae-bae8-9d265de28c88"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Extract Indicators from Description",
+            "description": "This is step is specifically designed for 'Suspicious Email' Alert",
+            "arguments": {
+                "name": "CyOps Utilities",
+                "when": "{{vars.input.params.recordMetaData.description or vars.input.records[0].description}}",
+                "params": {
+                    "data": "{{vars.input.params.recordMetaData.description | ternary(vars.input.params.recordMetaData.description,vars.input.records[0].description)}}",
+                    "whitelist": "{{vars.excluded_indicators}}",
+                    "case_sensitive": "",
+                    "override_regex": "",
+                    "private_whitelist": ""
+                },
+                "version": "3.3.1",
+                "connector": "cyops_utilities",
+                "operation": "extract_artifacts",
+                "operationTitle": "CyOPs: Extract Artifacts from string",
+                "step_variables": {
+                    "description_iocs": "{{vars.steps.Extract_Indicators_from_Description.data.results | json_query(\"[?type != `File`]\")}}"
+                },
+                "operationOutput": []
+            },
+            "status": null,
+            "top": "780",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
+            "group": null,
+            "uuid": "732b38e9-8753-4ccb-a708-999da812d9c5"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Exclude IOCs List",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "key",
+                            "value": "%Excludelist%",
+                            "operator": "like",
+                            "_operator": "like"
+                        }
+                    ],
+                    "__selectFields": [
+                        "value",
+                        "key"
+                    ]
+                },
+                "module": "keys?$limit=30",
+                "checkboxFields": true,
+                "step_variables": []
+            },
+            "status": null,
+            "top": "300",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "dca141a5-903d-4ce1-8d3e-4f49619f302e"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Indicators",
+            "description": null,
+            "arguments": {
+                "temp": "",
+                "record_field_iocs": "{{ vars.record_field_iocs | json_query('[?value != null]') }}"
+            },
+            "status": null,
+            "top": "660",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "7bb56a08-857e-49bb-b5d7-017669500ef0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Dedicated Tenant Record",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes, Extract at Tenant Node",
+                        "step_iri": "\/api\/3\/workflow_steps\/02e4987d-1e3c-46ae-bae8-9d265de28c88",
+                        "condition": "{{ 'tenant' in vars.input.records[0] and vars.input.records[0].tenant.isDedicated and vars.input.records[0].tenant.role != 'self' }}",
+                        "step_name": "Exit"
+                    },
+                    {
+                        "option": "No, Extract Here",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/dca141a5-903d-4ce1-8d3e-4f49619f302e",
+                        "step_name": "Find Exclude List IOCs"
+                    }
+                ],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "160",
+            "left": "480",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "65905fc4-75b5-4d2a-9ef6-148ba8834c9a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Link Record Team to Indicators",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.record_owners_iri_list}}",
+                "for_each": {
+                    "item": "{{vars.indicators_iri}}",
+                    "__bulk": true,
+                    "parallel": false,
+                    "condition": "",
+                    "batch_size": 100
+                },
+                "resource": {
+                    "__link": {
+                        "owners": "{{vars.record_owners_iri_list}}"
+                    }
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.item}}",
+                "__recommend": [],
+                "ignore_errors": true,
+                "collectionType": "\/api\/3\/indicators",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1260",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "cbe170fa-bfcb-4103-947a-871f3b72effc"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Removing NULL Indicators",
+            "description": "Removing null indicators extracted from email",
+            "arguments": {
+                "unified_iocs": "{{ vars.unified_iocs | json_query('[?value != null]') | unique}}"
+            },
+            "status": null,
+            "top": "1020",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "b6c8db49-1708-4bc1-b693-bb1e60a03e12"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "resource": "incidents",
+                "resources": [
+                    "incidents"
+                ],
+                "__triggerLimit": true,
+                "step_variables": {
+                    "input": {
+                        "params": [],
+                        "records": [
+                            "{{vars.input.records[0]}}"
+                        ]
+                    }
+                },
+                "triggerOnSource": true,
+                "fieldbasedtrigger": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "object",
+                            "field": "escalated",
+                            "value": "\/api\/3\/picklists\/711303d3-75ea-437d-a871-0a8d14fcdb7d",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/711303d3-75ea-437d-a871-0a8d14fcdb7d",
+                                "display": "No",
+                                "itemValue": "No"
+                            },
+                            "operator": "eq"
+                        },
+                        {
+                            "type": "object",
+                            "field": "state",
+                            "value": "\/api\/3\/picklists\/a1bac09b-1441-45aa-ad1b-c88744e48e72",
+                            "_value": {
+                                "@id": "\/api\/3\/picklists\/a1bac09b-1441-45aa-ad1b-c88744e48e72",
+                                "display": "New",
+                                "itemValue": "New"
+                            },
+                            "operator": "eq"
+                        }
+                    ]
+                },
+                "triggerOnReplicate": false
+            },
+            "status": null,
+            "top": "20",
+            "left": "480",
+            "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
+            "group": null,
+            "uuid": "38639c3b-a2d7-42a6-a007-8409f3a82c95"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Unified Email IOCs",
+            "description": null,
+            "arguments": {
+                "_dummy": "{%if vars.email_body_iocs %}{{vars.unified_iocs.extend(vars.email_body_iocs)}}{%endif%}\n\n{%if vars.header_iocs%}\n{{vars.unified_iocs.extend(vars.header_iocs)}}\n{%endif%}\n\n{%if vars.description_iocs%}{{vars.unified_iocs.extend(vars.description_iocs)}}{%endif%}\n\n{%if vars.file_hash_iocs %}{{vars.unified_iocs.extend(vars.file_hash_iocs)}}{%endif%}\n\n{% if vars.record_field_iocs %}{{vars.unified_iocs.extend(vars.record_field_iocs)}}{% endif %}\n\n{% if vars.email_attachment_iocs %}{{vars.unified_iocs.extend(vars.email_attachment_iocs)}}{% endif %}"
+            },
+            "status": null,
+            "top": "900",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "384314fe-a999-4664-b578-b800288b6ac9"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Incident State",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "state": "\/api\/3\/picklists\/501d0562-89a0-4079-9a9e-cdde7d34e3ed",
+                    "__link": {
+                        "indicators": "{{vars.indicators_iri}}"
+                    }
+                },
+                "_showJson": true,
+                "operation": "Append",
+                "collection": "{{vars.record_iri}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/incidents",
+                "fieldOperation": {
+                    "recordTags": "Overwrite"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1620",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "ee5602c0-625e-44c0-bdea-a08a0035067a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Indicator List",
+            "description": null,
+            "arguments": {
+                "temp": "{% for key,value in vars.indicator_type_map.items()%}\n    {%if vars.record_metadata.get(key) %}\n        {% set list_vals = vars.record_metadata.get(key) if vars.record_metadata.get(key) | type_debug == 'list' else vars.record_metadata.get(key).split(\",\") %}\n        {%for item in list_vals%}\n            {% set val = item |replace(' ','') %}\n            {% set _val = val | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+') %}\n            {% if (_val == None) and (value == 'Port') and (val|string not in vars.excluded_ports) %}\n                {{vars.record_field_iocs.append({\"type\": value, \"value\":val})}}\n            {% elif (_val == None) and (value != 'Port') and (val|string|lower not in vars.excluded_indicators) %}\n                {{vars.record_field_iocs.append({\"type\": value, \"value\":val})}}\n            {% elif (_val != None) and _val.split('@')[-1]|lower not in vars.excluded_indicators %}\n                {{vars.record_field_iocs.append({\"type\": value, \"value\":_val})}}\n            {% endif %}\n        {%endfor%}\n    {%endif%}\n{%endfor%}"
+            },
+            "status": null,
+            "top": "540",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "df38ec5d-c692-47a5-b6bf-b1180e90eb5f"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Wait For Enrichment",
+            "description": null,
+            "arguments": {
+                "rule": {
+                    "actions": [
+                        {
+                            "type": "resume_playbook",
+                            "enabled": true,
+                            "channel_uuid": "e2ce87c2-c55a-11ec-9d64-0242ac120002"
+                        }
+                    ],
+                    "is_active": true,
+                    "event_type": "update",
+                    "entity_name": "Indicators",
+                    "entity_type": "indicators",
+                    "event_source": "crudhub",
+                    "trigger_condition": {
+                        "sort": [],
+                        "limit": 30,
+                        "logic": "AND",
+                        "filters": [
+                            {
+                                "type": "primitive",
+                                "field": "id",
+                                "value": "{{vars.item.id}}",
+                                "operator": "eq",
+                                "_operator": "eq"
+                            },
+                            {
+                                "type": "object",
+                                "field": "reputation",
+                                "value": "",
+                                "_value": {
+                                    "@id": "",
+                                    "display": "",
+                                    "itemValue": ""
+                                },
+                                "operator": "changed"
+                            },
+                            {
+                                "type": "object",
+                                "field": "reputation",
+                                "value": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/ae98ebc6-beef-4882-9980-1d88fc6d87cd",
+                                    "display": "TBD",
+                                    "itemValue": "TBD"
+                                },
+                                "operator": "neq"
+                            }
+                        ]
+                    }
+                },
+                "type": "ConditionBased",
+                "delay": {
+                    "days": 0,
+                    "hours": 0,
+                    "weeks": 0,
+                    "minutes": 0,
+                    "seconds": 0
+                },
+                "timeout": {
+                    "days": 0,
+                    "hours": 0,
+                    "minutes": 2,
+                    "step_iri": "\/api\/3\/workflow_steps\/f3398bf7-a057-439f-8fdc-9fadb1a6d560"
+                },
+                "for_each": {
+                    "item": "{{vars.steps.Create_Indicator}}",
+                    "condition": "{{vars.item.enrichmentStatus.itemValue != \"Completed\"}}"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1480",
+            "left": "640",
+            "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dbf",
+            "group": null,
+            "uuid": "db8b6bec-bedc-450f-bca9-89128ec11763"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Were New Indicators Created",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/db8b6bec-bedc-450f-bca9-89128ec11763",
+                        "condition": "{{ vars.steps.Create_Indicator | json_query(\"[?contains(reputation.itemValue, 'TBD')]\") | length > 0 }}",
+                        "step_name": "Wait For Enrichment"
+                    },
+                    {
+                        "option": "No",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/ee5602c0-625e-44c0-bdea-a08a0035067a",
+                        "step_name": "Update Incident State"
+                    }
+                ],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "1380",
+            "left": "300",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "36ac977c-d69b-49fe-a642-046833a6056c"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Add Comment for Enrichment Not Complete -> Update Alert State",
+            "targetStep": "\/api\/3\/workflow_steps\/ee5602c0-625e-44c0-bdea-a08a0035067a",
+            "sourceStep": "\/api\/3\/workflow_steps\/f3398bf7-a057-439f-8fdc-9fadb1a6d560",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "53f3a4c7-eb39-4e3b-9dbd-4b5aa97b2d11"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Update Indicator List",
+            "targetStep": "\/api\/3\/workflow_steps\/df38ec5d-c692-47a5-b6bf-b1180e90eb5f",
+            "sourceStep": "\/api\/3\/workflow_steps\/0d8fb151-8bee-410a-b4cb-a73f777f096f",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "e7171907-b3f1-4e1a-9cdb-4469c92d1521"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Create Indicator -> Link Record Team to Indicators",
+            "targetStep": "\/api\/3\/workflow_steps\/cbe170fa-bfcb-4103-947a-871f3b72effc",
+            "sourceStep": "\/api\/3\/workflow_steps\/06d50d72-e07a-45b4-a423-c6bf7c5df013",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "a7485179-79e5-4c69-b878-cbb1e1efd105"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Extract Indicators from Description -> Unified Email IOCs",
+            "targetStep": "\/api\/3\/workflow_steps\/384314fe-a999-4664-b578-b800288b6ac9",
+            "sourceStep": "\/api\/3\/workflow_steps\/732b38e9-8753-4ccb-a708-999da812d9c5",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "b5ec5969-8c74-4c48-ae0f-dfb2b123ad94"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Find Exclude List IOCs -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/0d8fb151-8bee-410a-b4cb-a73f777f096f",
+            "sourceStep": "\/api\/3\/workflow_steps\/dca141a5-903d-4ce1-8d3e-4f49619f302e",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "74da0d78-57b2-47d9-92c4-ad54a48ce966"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Indicators -> Extract Indicators from Description",
+            "targetStep": "\/api\/3\/workflow_steps\/732b38e9-8753-4ccb-a708-999da812d9c5",
+            "sourceStep": "\/api\/3\/workflow_steps\/7bb56a08-857e-49bb-b5d7-017669500ef0",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "8c62bcc9-3f80-460f-a389-f100aed29dd0"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Dedicated Tenant Record -> Exit",
+            "targetStep": "\/api\/3\/workflow_steps\/02e4987d-1e3c-46ae-bae8-9d265de28c88",
+            "sourceStep": "\/api\/3\/workflow_steps\/65905fc4-75b5-4d2a-9ef6-148ba8834c9a",
+            "label": "Yes, Extract at Tenant Node",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "c4a24269-5c6f-4e6a-9e6e-595e61b77e84"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Dedicated Tenant Record -> Find Exclude List IOCs",
+            "targetStep": "\/api\/3\/workflow_steps\/dca141a5-903d-4ce1-8d3e-4f49619f302e",
+            "sourceStep": "\/api\/3\/workflow_steps\/65905fc4-75b5-4d2a-9ef6-148ba8834c9a",
+            "label": "No, Extract Here",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "5a0cf78c-b43f-43c8-a51c-e71da6b8f03d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Link Record Team to Indicators -> Were New Indicators Created",
+            "targetStep": "\/api\/3\/workflow_steps\/36ac977c-d69b-49fe-a642-046833a6056c",
+            "sourceStep": "\/api\/3\/workflow_steps\/cbe170fa-bfcb-4103-947a-871f3b72effc",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "73a39517-863e-4b42-afac-b6eedb2eee6f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Removing NULL Indicators -> Create Indicator",
+            "targetStep": "\/api\/3\/workflow_steps\/06d50d72-e07a-45b4-a423-c6bf7c5df013",
+            "sourceStep": "\/api\/3\/workflow_steps\/b6c8db49-1708-4bc1-b693-bb1e60a03e12",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "891d693e-78d1-4b95-a95a-2f9e23acdc4b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Is Dedicated Tenant Record",
+            "targetStep": "\/api\/3\/workflow_steps\/65905fc4-75b5-4d2a-9ef6-148ba8834c9a",
+            "sourceStep": "\/api\/3\/workflow_steps\/38639c3b-a2d7-42a6-a007-8409f3a82c95",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "8260d71e-093e-4b7b-a815-861d9c8a4193"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Unified Email IOCs -> Removing NULL Indicators",
+            "targetStep": "\/api\/3\/workflow_steps\/b6c8db49-1708-4bc1-b693-bb1e60a03e12",
+            "sourceStep": "\/api\/3\/workflow_steps\/384314fe-a999-4664-b578-b800288b6ac9",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "d3a53568-5a9f-4080-99c3-6c41aa9d918b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Update Indicator List -> Get Indicators",
+            "targetStep": "\/api\/3\/workflow_steps\/7bb56a08-857e-49bb-b5d7-017669500ef0",
+            "sourceStep": "\/api\/3\/workflow_steps\/df38ec5d-c692-47a5-b6bf-b1180e90eb5f",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "4ae66e50-de9f-4ddd-a990-74ae95e0ae81"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Wait For Enrichment -> Add Comment for Enrichment Not Complete",
+            "targetStep": "\/api\/3\/workflow_steps\/f3398bf7-a057-439f-8fdc-9fadb1a6d560",
+            "sourceStep": "\/api\/3\/workflow_steps\/db8b6bec-bedc-450f-bca9-89128ec11763",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "712f7055-253e-4e8d-8266-1b7448151af9"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Wait For Enrichment -> Update Alert State",
+            "targetStep": "\/api\/3\/workflow_steps\/ee5602c0-625e-44c0-bdea-a08a0035067a",
+            "sourceStep": "\/api\/3\/workflow_steps\/db8b6bec-bedc-450f-bca9-89128ec11763",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "724e9b00-723d-4409-9e1a-98cb69c0427f"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Were New Indicators Created -> Update Alert State",
+            "targetStep": "\/api\/3\/workflow_steps\/ee5602c0-625e-44c0-bdea-a08a0035067a",
+            "sourceStep": "\/api\/3\/workflow_steps\/36ac977c-d69b-49fe-a642-046833a6056c",
+            "label": "No",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "73d008df-81b9-48f2-ad87-f1db29deb72a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Were New Indicators Created -> Wait For Enrichment",
+            "targetStep": "\/api\/3\/workflow_steps\/db8b6bec-bedc-450f-bca9-89128ec11763",
+            "sourceStep": "\/api\/3\/workflow_steps\/36ac977c-d69b-49fe-a642-046833a6056c",
+            "label": "Yes",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "155fb555-2a05-4f2e-9954-dc69c04c7bcd"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "01df62ec-cee0-4238-bcf9-8dc9ad5247f7",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "PostCreate",
+        "Incidents"
+    ]
+}

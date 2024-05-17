@@ -1,5 +1,4 @@
 {
-    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Extract Indicators - Create File Indicator",
@@ -12,7 +11,7 @@
     "remoteExecutableFlag": false,
     "parameters": [
         "fileIRI",
-        "alertIRI",
+        "recordIRI",
         "tenantIRI"
     ],
     "synchronous": false,
@@ -52,7 +51,7 @@
                     "tlp": "\/api\/3\/picklists\/7bff95b7-6438-4b01-b23a-0fe8cb5b33d3",
                     "value": "{{vars.steps.Compute_Hash.data.metadata.md5}}",
                     "__link": {
-                        "alerts": "{{vars.input.params.alertIRI}}",
+                        "alerts": "{{vars.input.params.recordIRI}}",
                         "indicators": "{{vars.steps.Create_File_Indicator['@id']}}"
                     },
                     "tenant": "{{vars.input.params.tenantIRI}}",
@@ -97,7 +96,7 @@
                     "file": "{{vars.steps.Compute_Hash.data['@id']}}",
                     "value": "File - {{vars.steps.Compute_Hash.data.filename}} - {{vars.steps.Compute_Hash.data.metadata.md5}}",
                     "__link": {
-                        "alerts": "{{vars.input.params.alertIRI}}"
+                        "alerts": "{{vars.input.params.recordIRI}}"
                     },
                     "tenant": "{{vars.input.params.tenantIRI}}",
                     "lastSeen": "{{arrow.utcnow().int_timestamp}}",
