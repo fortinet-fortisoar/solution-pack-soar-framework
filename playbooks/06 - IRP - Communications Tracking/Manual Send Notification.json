@@ -20,7 +20,6 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
-                "reply-to": "{{globalVars.Default_Email}}",
                 "attachments": "{%set attach= [ ] %}{% if vars.input.records[0].file %}{%set _tmp=attach.append(vars.input.records[0].file['@id'])%}{%endif%}{{attach}}",
                 "use_exchange_connector": "true"
             },
@@ -183,7 +182,7 @@
                 "params": {
                     "iri": "\/api\/integration\/connectors\/{{vars.connector_name}}\/{{vars.connector_version}}\/",
                     "body": "",
-                    "method": "GET"
+                    "method": "POST"
                 },
                 "version": "3.0.4",
                 "connector": "cyops_utilities",
