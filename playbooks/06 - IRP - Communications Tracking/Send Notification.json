@@ -130,7 +130,6 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
-                "reply-to": "{{globalVars.Default_Email}}",
                 "emailBody": "{{vars.steps.Convert_Markdown_Email_Body_to_HTML.data.html}}",
                 "attachments": "{%set attach= [ ] %}{% if vars.input.records[0].file %}{%set _tmp=attach.append(vars.input.records[0].file['@id'])%}{%endif%}{{attach}}",
                 "use_exchange_connector": "true"
