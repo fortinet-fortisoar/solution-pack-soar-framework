@@ -203,9 +203,6 @@ Playbooks in the *03-Enrich* collection help perform enrichment of data &ndash; 
 | 03 - Enrich |
 |-------------|
 
-
-Here is the table with all the rows marked as "Deprecated" removed:
-
 | #  | Playbook Name                                              | Description                                                                                                                                              |
 |----|------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1  | Asset - Get Running Process                                | Retrieves a list of all processes that are running on the specified host.                                                                                |
