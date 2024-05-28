@@ -116,9 +116,25 @@ After adding the above key-value pair, the JSON you need to enter in the **Field
 
 Now your playbook captures indicators corresponding to the **Targeted Employee Email Address** field.
 
+Similarly, to enable functionality to extract indicators from new incidents, you need to add incident field value provided below to the JSON in `Indicator_Type_Map`
+
+```JSON
+    {
+        "dLLName": "Process", 
+        "filehash": "FileHash-MD5", 
+        "processName": "Process", 
+        "destinationIP": "IP Address", 
+        "sourceIP": "IP Address", 
+        "receipientEmailAddress": "Email Address" ,
+        "targetAsset": "Host", 
+        "senderDomain": "Domain", 
+        "senderEmailAddress": "Email Address"
+    }
+```
+
 ## Excluding Extracted Indicators from Enrichment
 
-You can exclude certain extracted indicators from enrichment by adding them to an exclude list. This is done by adding the indicators being allowed to a global variable. Following are the global variables for each indicator type being allowed:
+You can exclude certain extracted indicators from enrichment by adding them to an exclude list. This is done by adding the indicators to the key store records. Following are the keystore records for each indicator type being allowed:
 
 1. `Excludelist_IPs`: Specify comma-separated **IP addresses** to exclude
 
@@ -133,21 +149,17 @@ You can exclude certain extracted indicators from enrichment by adding them to a
 <table>
     <tr>
         <th>NOTE</th>
-        <td>For managing and modifying global variables, refer to the section <a href="https://docs.fortinet.com/document/fortisoar/7.2.0/playbooks-guide/488685/dynamic-values#Global_Variables" target="_blank"><strong>Global Variables</strong></a> of the <strong>Playbooks Guide</strong> in <strong>FortiSOAR documentation</strong>.</td>
+        <td>For managing and modifying key store records, refer to the below</td>
     </tr>
 </table>
 
-1. Click **Global Variables** from the **Tools** menu.
+1. Navigate to **Resources > Key Store**, Select relevant key store record 
 
-    ![](./res/global-variables.png)
+    ![](./res/key-store-records.png)
 
-2. Click the edit button ![](./res/icon-edit-page.svg) to edit a relevant exclude list. You can type **`exclude`** in the search bar (highlighted) to narrow-down the list of global variables.
+2. Enter comma-separated indicators to add in the **Field Value** of the selected keystore record. Following image shows the `Excludelist_IPs` keystore record and its contents.
 
-    ![](./res/excludelist_indicators.png)
-
-3. Enter comma-separated indicators to add in the **Field Value** of the selected global variable. Following image shows the `Excludelist_IPs` global variable and its contents.
-
-    ![](./res/excludelist_indicators_values.png)
+    ![](./res/excludelist-indicators.png)
 
 Following are the exclude list values out-of-the-box with the SOAR Framework solution pack:
 
@@ -174,11 +186,15 @@ Following are the exclude list values out-of-the-box with the SOAR Framework sol
             <code>forticloud.com, w3.org</code></td>
         </tr>
         <tr>
-            <td><code>Excludelist_Files</code><img src="./res/icon-new.svg" alt=""></td>
+            <td><code>Excludelist_Files</code></td>
             <td>blank</td>
         </tr>
         <tr>
-            <td><code>Excludelist_Ports</code><img src="./res/icon-new.svg" alt=""></td>
+            <td><code>Excludelist_Ports</code></td>
+            <td>blank</td>
+        </tr>
+                <tr>
+            <td><code>CIDR_Range</code><img src="./res/icon-new.svg" alt=""></td>
             <td>blank</td>
         </tr>
     </tbody>
