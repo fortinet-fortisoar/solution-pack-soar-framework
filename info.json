@@ -1,20 +1,27 @@
 {
     "name": "sOARFramework",
     "version": "3.0.0",
+    "fsrMinCompatibility": "7.5.0",
     "type": "solutionpack",
     "local": true,
     "label": "SOAR Framework",
-    "dependencies": [],
+    "dependencies": [
+        {
+            "name": "sOARFrameworkUtilities",
+            "type": "solutionpack",
+            "label": "SOAR Framework Utilities",
+            "minVersion": null
+        }
+    ],
     "prerequisite": null,
     "publisher": "Fortinet",
-    "certified": "true",
     "description": "The SOAR Framework Solution Pack helps users experience the power of FortiSOAR incident response.",
     "help": "https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/3.0.0/README.md",
     "category": [],
     "supportInfo": "Fortinet Customer Support",
     "iconLarge": null,
-    "fsrMinCompatibility": "7.5.0",
-    "date": "2022-03-03T09:19:39+00:00",
+    "postInstallConfig": null,
+    "date": "2024-06-04T09:04:33+00:00",
     "contents": {
         "picklistNames": [
             {
@@ -145,45 +152,9 @@
             }
         ],
         "modules": {
-            "alerts": {
-                "name": "Alerts",
-                "apiName": "alerts"
-            },
-            "announcements": {
-                "name": "Announcements",
-                "apiName": "announcements"
-            },
-            "assets": {
-                "name": "Assets",
-                "apiName": "assets"
-            },
-            "campaigns": {
-                "name": "Campaigns",
-                "apiName": "campaigns"
-            },
-            "communication": {
-                "name": "Communications",
-                "apiName": "communication"
-            },
-            "events": {
-                "name": "Events",
-                "apiName": "events"
-            },
-            "hunt": {
-                "name": "Hunts",
-                "apiName": "hunt"
-            },
-            "incidents": {
-                "name": "Incidents",
-                "apiName": "incidents"
-            },
-            "indicators": {
-                "name": "Indicators",
-                "apiName": "indicators"
-            },
-            "warrooms": {
-                "name": "War Rooms",
-                "apiName": "warrooms"
+            "fsr_queues": {
+                "name": "Queues",
+                "apiName": "fsr_queues"
             }
         },
         "viewTemplates": {
@@ -193,8 +164,7 @@
                 "views": [
                     "list",
                     "detail",
-                    "form",
-                    "settings"
+                    "form"
                 ]
             },
             "announcements": {
@@ -212,8 +182,7 @@
                 "views": [
                     "list",
                     "detail",
-                    "form",
-                    "settings"
+                    "form"
                 ]
             },
             "campaigns": {
@@ -258,8 +227,7 @@
                 "views": [
                     "list",
                     "detail",
-                    "form",
-                    "settings"
+                    "form"
                 ]
             },
             "indicators": {
@@ -268,8 +236,7 @@
                 "views": [
                     "list",
                     "detail",
-                    "form",
-                    "settings"
+                    "form"
                 ]
             },
             "warrooms": {
@@ -278,8 +245,7 @@
                 "views": [
                     "list",
                     "detail",
-                    "form",
-                    "settings"
+                    "form"
                 ]
             }
         },
@@ -299,16 +265,16 @@
         },
         "roles": [
             {
-                "name": "Full App Permissions"
-            },
-            {
-                "name": "Read-Only User"
-            },
-            {
                 "name": "SOC Manager"
             },
             {
+                "name": "Full App Permissions"
+            },
+            {
                 "name": "SOC Analyst"
+            },
+            {
+                "name": "Read-Only User"
             }
         ],
         "playbooks": [
@@ -347,92 +313,6 @@
             },
             {
                 "name": "08 - Utilities"
-            }
-        ],
-        "globalVariables": [
-            {
-                "id": 2,
-                "name": "Default_Email",
-                "value": "noreply@example.com",
-                "default_value": null
-            },
-            {
-                "id": 6,
-                "name": "PB_Log_TTL",
-                "value": "30",
-                "default_value": null
-            },
-            {
-                "id": 7,
-                "name": "Server_fqhn",
-                "value": "master.fortisoar.in",
-                "default_value": null
-            },
-            {
-                "id": 8,
-                "name": "Default_Indicator_TTL_Days",
-                "value": "20",
-                "default_value": "20"
-            },
-            {
-                "id": 9,
-                "name": "Indicator_Type_Map",
-                "value": "{\n    \"attachmentNames\": \"File\", \n    \"commandLine\": \"Process\", \n    \"computerName\": \"Host\",\n    \"decodedCommandLine\": \"Process\",\n    \"destinationIp\": \"IP Address\", \n    \"destinationPort\": \"Port\",\n    \"domain\": \"Domain\",\n    \"dllLoaded\": \"Process\",\n    \"emailFrom\": \"Email Address\",\n    \"emailCc\": \"Email Address\",\n    \"emailTo\": \"Email Address\",\n    \"fileHash\": \"FileHash-MD5\",\n    \"parentProcessCmdLine\": \"Process\",\n    \"parentProcessName\": \"Process\",\n    \"recipientEmailAddress\": \"Email Address\",\n    \"registryKey\": \"Registry\",\n    \"registryKeyValue\": \"Registry\",\n    \"reporter\": \"Email Address\",\n    \"returnPath\": \"Email Address\",\n    \"senderDomain\": \"Domain\", \n    \"senderEmailAddress\": \"Email Address\", \n    \"services\": \"Process\", \n    \"sourceIp\": \"IP Address\",\n    \"sourcePort\": \"Port\",\n    \"sourceProcess\": \"Process\",\n    \"targetAsset\": \"Host\", \n    \"targetProcess\": \"Process\",\n    \"url\": \"URL\",\n    \"userName\": \"User\",\n    \"userDetails\": \"User\",\n    \"urlFull\": \"URL\",\n    \"otherRecipients\": \"Email Address\",\n    \"iPAddresses\": \"IP Address\",\n    \"fileHashes\": \"FileHash-MD5\",\n    \"dLLName\": \"Process\", \n    \"filehash\": \"FileHash-MD5\", \n    \"processName\": \"Process\", \n    \"destinationIP\": \"IP Address\", \n    \"sourceIP\": \"IP Address\", \n    \"receipientEmailAddress\": \"Email Address\" \n}",
-                "default_value": "{\n    \"attachmentNames\": \"File\", \n    \"commandLine\": \"Process\", \n    \"computerName\": \"Host\",\n    \"decodedCommandLine\": \"Process\",\n    \"destinationIp\": \"IP Address\", \n    \"destinationPort\": \"Port\",\n    \"domain\": \"Domain\",\n    \"dllLoaded\": \"Process\",\n    \"emailFrom\": \"Email Address\",\n    \"emailCc\": \"Email Address\",\n    \"emailTo\": \"Email Address\",\n    \"fileHash\": \"FileHash-MD5\",\n    \"parentProcessCmdLine\": \"Process\",\n    \"parentProcessName\": \"Process\",\n    \"recipientEmailAddress\": \"Email Address\",\n    \"registryKey\": \"Registry\",\n    \"registryKeyValue\": \"Registry\",\n    \"reporter\": \"Email Address\",\n    \"returnPath\": \"Email Address\",\n    \"senderDomain\": \"Domain\", \n    \"senderEmailAddress\": \"Email Address\", \n    \"services\": \"Process\", \n    \"sourceIp\": \"IP Address\",\n    \"sourcePort\": \"Port\",\n    \"sourceProcess\": \"Process\",\n    \"targetAsset\": \"Host\", \n    \"targetProcess\": \"Process\",\n    \"url\": \"URL\",\n    \"userName\": \"User\",\n    \"userDetails\": \"User\",\n    \"urlFull\": \"URL\",\n    \"otherRecipients\": \"Email Address\",\n    \"iPAddresses\": \"IP Address\",\n    \"fileHashes\": \"FileHash-MD5\",\n    \"dLLName\": \"Process\", \n    \"filehash\": \"FileHash-MD5\", \n    \"processName\": \"Process\", \n    \"destinationIP\": \"IP Address\", \n    \"sourceIP\": \"IP Address\", \n    \"receipientEmailAddress\": \"Email Address\" \n}"
-            },
-            {
-                "id": 15,
-                "name": "Current_Date",
-                "value": "{{arrow.utcnow().timestamp}}",
-                "default_value": "{{arrow.utcnow().timestamp}}"
-            },
-            {
-                "id": 18,
-                "name": "Email_Enrichment_Playbooks_IRIs",
-                "value": "NoEnrichmentAvailable",
-                "default_value": "NoEnrichmentAvailable"
-            },
-            {
-                "id": 19,
-                "name": "Demo_mode",
-                "value": "false",
-                "default_value": "false"
-            },
-            {
-                "id": 30,
-                "name": "URL_Enrichment_Playbooks_IRIs",
-                "value": "NoEnrichmentAvailable",
-                "default_value": "NoEnrichmentAvailable"
-            },
-            {
-                "id": 31,
-                "name": "File_Enrichment_Playbooks_IRIs",
-                "value": "NoEnrichmentAvailable",
-                "default_value": "NoEnrichmentAvailable"
-            },
-            {
-                "id": 32,
-                "name": "IP_Enrichment_Playbooks_IRIs",
-                "value": "NoEnrichmentAvailable",
-                "default_value": "NoEnrichmentAvailable"
-            },
-            {
-                "id": 33,
-                "name": "Domain_Enrichment_Playbooks_IRIs",
-                "value": "NoEnrichmentAvailable",
-                "default_value": "NoEnrichmentAvailable"
-            },
-            {
-                "id": 34,
-                "name": "FileHash_Enrichment_Playbooks_IRIs",
-                "value": "NoEnrichmentAvailable",
-                "default_value": "NoEnrichmentAvailable"
-            },
-            {
-                "id": 35,
-                "name": "User_Enrichment_Playbooks_IRIs",
-                "value": "NoEnrichmentAvailable",
-                "default_value": "NoEnrichmentAvailable"
             }
         ],
         "playbookBlocks": [
@@ -528,10 +408,10 @@
             }
         ],
         "rules": [
-            "Incident - Notify Updates",
-            "Alert - Notify Updates",
             "Alert - Notify Creation",
+            "Alert - Notify Updates",
             "Incident - Notify Creation",
+            "Incident - Notify Updates",
             "Notify On Pending Internal Manual Input"
         ],
         "reports": [
@@ -588,10 +468,6 @@
             {
                 "name": "APIVoid",
                 "apiName": "apivoid"
-            },
-            {
-                "name": "CarbonBlack Response",
-                "apiName": "carbonblack-response"
             },
             {
                 "name": "Code Snippet",
@@ -662,34 +538,22 @@
                 "apiName": "virustotal"
             },
             {
+                "name": "VMware Carbon Black EDR",
+                "apiName": "carbonblack-response"
+            },
+            {
                 "name": "Whois RDAP",
                 "apiName": "whois-rdap"
             }
         ],
         "widgets": [
             {
-                "apiName": "userAssignments",
-                "name": "User Tile"
-            },
-            {
-                "apiName": "recordSummary",
-                "name": "Record Summary"
-            },
-            {
-                "apiName": "slaCountDownClock",
-                "name": "SLA Count Down Timer"
-            },
-            {
                 "apiName": "taskManagement",
                 "name": "Task Management"
             },
             {
-                "apiName": "incidentCorrelations",
-                "name": "Incident Correlations"
-            },
-            {
-                "apiName": "customPicklistMessage",
-                "name": "Custom Picklist Message"
+                "apiName": "recordSummary",
+                "name": "Record Summary"
             },
             {
                 "apiName": "incidentTimeline",
@@ -700,8 +564,24 @@
                 "name": "MITRE ATT&CK Alert Incident Spread"
             },
             {
+                "apiName": "slaCountDownClock",
+                "name": "SLA Count Down Timer"
+            },
+            {
                 "apiName": "recordDistribution",
                 "name": "Record Distribution"
+            },
+            {
+                "apiName": "customPicklistMessage",
+                "name": "Custom Picklist Message"
+            },
+            {
+                "apiName": "incidentCorrelations",
+                "name": "Incident Correlations"
+            },
+            {
+                "apiName": "userAssignments",
+                "name": "User Tile"
             },
             {
                 "apiName": "fieldsOfInterest",
