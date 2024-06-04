@@ -405,7 +405,7 @@ This playbook collection has the following playbook
 | 1 | Export as CSV                          | Export all records of the given module with specified filters in the CSV format.                                        |
 | 2 | Export Selected Records<sup style="color: red;">Migrated</sup>                | Exports all selected records to a JSON file and creates an attachment record for the same.                              |
 | 3 | Get Paginated Records                  | Gets paginated records data and appends them in a .CSV file. This playbook is a reference playbook for 'Export as CSV'. |
-| 4 | Import Data                            | Imports a valid JSON file to a relevant module and creates subsequent records.                                          |
+| 4 | Import Data<sup style="color: red;">Migrated</sup>                            | Imports a valid JSON file to a relevant module and creates subsequent records.                                          |
 | 5 | Notify Connector Health Check Failures | Scheduled to check connectors’ health status and notify the specified recipients of any failed health check.            |
 | 6 | Notify Failed Playbook Executions      | Notifies specified recipients of any playbook failure. It can be scheduled to run at specific intervals.                |
 
