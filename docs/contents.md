@@ -85,18 +85,20 @@ SOAR Framework has the following widgets:
 
 Here is the table sorted alphabetically by the "Widgets" column:
 
+Here is the corrected table with the Serial Number column:
+
 | #  | Widgets                                   | Description                                                                                                                                                           |
 |----|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1  | Custom Picklist Message                   | This widget helps display custom messages above the record details page.                                                                                              |
-| 2  | Fields Of Interest                        | This widget helps users select fields to display in a module's detailed view, regardless of the *Visibility Constraint*                                               |
+| 2  | Fields Of Interest                        | This widget helps users select fields to display in a module's detailed view, regardless of the *Visibility Constraint*.                                               |
 | 3  | Incident Correlations                     | This widget displays the correlation graph of an incident.                                                                                                            |
 | 4  | Incident Timeline                         | This widget displays a vertical timeline showing an Incident record's correlated Alerts and Indicators, sorted based on user-selectable date fields.                  |
-| 5  | Incident Timeline                         | This widget displays a vertical timeline showing an Incident record's correlated Alerts and Indicators, sorted based on user-selectable date fields.                  |
-| 6  | MITRE ATT&CK Alert Incident Spread        | This widget displays detailed table view of Alerts and Incidents linked to MITRE ATT&CK records.                                                                      |
-| 7  | Picklist as Phases![](./res/icon-new.svg) | The widget displays picklist values as phases in a flow diagram format. Each phase represents a specific state or stage in a process.                                 |
-| 8  | Record Distribution                       | This widget provides ability to visualize items/records and their correlations in different levels based on a given grouping context.                                 |
-| 9  | Record Summary (War Room)                 | It is primarily designed to showcase a particular record's highlights or summary, this widget houses multiple utility widgets within it to allow for customized uses. |
-| 10 | SLA Count Down Timer                      | This widget displays the remaining time for an SLA.                                                                                                                   |
+| 5  | MITRE ATT&CK Alert Incident Spread        | This widget displays detailed table view of Alerts and Incidents linked to MITRE ATT&CK records.                                                                      |
+| 6  | Picklist as Phases![](./res/icon-new.svg) | The widget displays picklist values as phases in a flow diagram format. Each phase represents a specific state or stage in a process.                                 |
+| 7  | Record Distribution                       | This widget provides ability to visualize items/records and their correlations in different levels based on a given grouping context.                                 |
+| 8  | Record Summary (War Room)                 | It is primarily designed to showcase a particular record's highlights or summary, this widget houses multiple utility widgets within it to allow for customized uses. |
+| 9  | SLA Count Down Timer                      | This widget displays the remaining time for an SLA.                                                                                                                   |
+| 10 | SOAR Framework Configuration Wizard![](./res/icon-new.svg)      | The wizard assists user in configuring SOAR settings within FortiSOAR environment. |
 | 11 | Task Management (War Room)                | It is a comprehensive task management widget that helps users manage tasks and get visibility into the current task board.                                            |
 | 12 | User Tile                                 | This widget shows relevant information like alerts, incidents, and tasks to users.                                                                                    |
 
