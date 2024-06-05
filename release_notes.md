@@ -96,3 +96,8 @@ Added functionality to extract indicators from new incidents
         - Excludelist_URLs
         - Excludelist_Domains
 
+
+## Widgets Changes
+Added 2 new widgets 
+1. Picklist as Phases
+2. SOAR Framework Configuration Wizard
