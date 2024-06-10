@@ -84,13 +84,13 @@
                 "record_iri": "{{vars.input.params.recordMetaData['@id'] | ternary(vars.input.params.recordMetaData['@id'],vars.input.records[0]['@id'])}}",
                 "tenant_iri": "{% if vars.input.records[0].tenant %}{{vars.input.params.recordMetaData.tenant['@id'] | ternary(vars.input.params.recordMetaData.tenant['@id'],vars.input.records[0].tenant['@id'])}}{% endif %}",
                 "unified_iocs": "[]",
-                "excluded_ports": "{{(vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `Excludelist_Ports`]\"))[0].value}}",
+                "excluded_ports": "{{(vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `sfsp-excludelist-ports`]\"))[0].jSONValue}}",
                 "record_metadata": "{{vars.input.params.recordMetaData | ternary(vars.input.params.recordMetaData,vars.input.records[0])}}",
                 "create_file_iocs": "true",
                 "record_field_iocs": "[]",
-                "excluded_file_iocs": "{{((vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `Excludelist_Files`]\"))[0].value | replace(\"*\", \"\") | replace(\" \", \"\")).split(\",\")}}",
+                "excluded_file_iocs": "{{((vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `sfsp-excludelist-files`]\"))[0].jSONValue | replace(\"*\", \"\") | replace(\" \", \"\"))}}",
                 "indicator_type_map": "{{globalVars.Indicator_Type_Map}}",
-                "excluded_indicators": "{{(vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `Excludelist_URLs` || key == `Excludelist_Domains` || key == `Excludelist_IPs`].value\") | join(\",\") | lower).split(\",\")}}",
+                "excluded_indicators": "{{(vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `sfsp-excludelist-urls` || key == `sfsp-excludelist-domains` || key == `sfsp-excludelist-ips`].jSONValue\") | flatten(levels=1) | join(\",\") | lower).split(\",\")}}",
                 "record_owners_iri_list": "{{ vars.input.params.recordMetaData.owners | ternary((vars.input.params.recordMetaData.owners | json_query('[].\"@id\"')),vars.input.records[0].owners)}}",
                 "add_excluded_file_comment": "false"
             },
@@ -300,14 +300,14 @@
                         {
                             "type": "primitive",
                             "field": "key",
-                            "value": "%Excludelist%",
+                            "value": "%sfsp-excludelist%",
                             "operator": "like",
                             "_operator": "like"
                         }
                     ],
                     "__selectFields": [
-                        "value",
-                        "key"
+                        "key",
+                        "jSONValue"
                     ]
                 },
                 "module": "keys?$limit=30",
@@ -657,7 +657,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "f380276a-08e0-4228-a1be-c035991e1d12"
+            "uuid": "cfa386b1-7a91-44ff-97fe-1d640839b722"
         },
         {
             "@type": "WorkflowRoute",
@@ -711,13 +711,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Find Exclude List IOCs -> Configuration",
+            "name": "Get Exclude IOCs List -> Configuration",
             "targetStep": "\/api\/3\/workflow_steps\/21ffcc50-7679-4df9-bacb-ad7480c465cd",
             "sourceStep": "\/api\/3\/workflow_steps\/850c70e7-c079-47ec-8379-41ca5f9dd8ff",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "94d92336-319e-4860-9a13-c65a7ac665a7"
+            "uuid": "5662dcc6-2bf3-4091-bef5-71f51c659fd8"
         },
         {
             "@type": "WorkflowRoute",
