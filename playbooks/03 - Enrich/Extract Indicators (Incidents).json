@@ -54,13 +54,13 @@
                 "record_iri": "{{vars.input.params.recordMetaData['@id'] | ternary(vars.input.params.recordMetaData['@id'],vars.input.records[0]['@id'])}}",
                 "tenant_iri": "{% if vars.input.records[0].tenant %}{{vars.input.params.recordMetaData.tenant['@id'] | ternary(vars.input.params.recordMetaData.tenant['@id'],vars.input.records[0].tenant['@id'])}}{% endif %}",
                 "unified_iocs": "[]",
-                "excluded_ports": "{{(vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `Excludelist_Ports`]\"))[0].value}}",
+                "excluded_ports": "{{(vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `sfsp-excludelist-ports`]\"))[0].jSONValue}}",
                 "record_metadata": "{{vars.input.params.recordMetaData | ternary(vars.input.params.recordMetaData,vars.input.records[0])}}",
                 "create_file_iocs": "true",
                 "record_field_iocs": "[]",
-                "excluded_file_iocs": "{{((vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `Excludelist_Files`]\"))[0].value | replace(\"*\", \"\") | replace(\" \", \"\")).split(\",\")}}",
+                "excluded_file_iocs": "{{((vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `sfsp-excludelist-files`]\"))[0].jSONValue | replace(\"*\", \"\") | replace(\" \", \"\"))}}",
                 "indicator_type_map": "{{globalVars.Indicator_Type_Map}}",
-                "excluded_indicators": "{{(vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `Excludelist_URLs` || key == `Excludelist_Domains` || key == `Excludelist_IPs`].value\") | join(\",\") | lower).split(\",\")}}",
+                "excluded_indicators": "{{(vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `sfsp-excludelist-urls` || key == `sfsp-excludelist-domains` || key == `sfsp-excludelist-ips`].jSONValue\") | flatten(levels=1) | join(\",\") | lower).split(\",\")}}",
                 "record_owners_iri_list": "{{ vars.input.params.recordMetaData.owners | ternary((vars.input.params.recordMetaData.owners | json_query('[].\"@id\"')),vars.input.records[0].owners)}}",
                 "add_excluded_file_comment": "false"
             },
@@ -181,14 +181,14 @@
                         {
                             "type": "primitive",
                             "field": "key",
-                            "value": "%Excludelist%",
+                            "value": "%sfsp-excludelist%",
                             "operator": "like",
                             "_operator": "like"
                         }
                     ],
                     "__selectFields": [
-                        "value",
-                        "key"
+                        "key",
+                        "jSONValue"
                     ]
                 },
                 "module": "keys?$limit=30",
@@ -698,7 +698,7 @@
     "isPrivate": false,
     "deletedAt": null,
     "recordTags": [
-        "PostCreate",
-        "Incidents"
+        "Incidents",
+        "PostCreate"
     ]
 }
