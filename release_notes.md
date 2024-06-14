@@ -17,8 +17,6 @@
     </tr>
 </table>
 
-## Pre-Processing Rule
-- Introduced new pre-processing rule to prevent file indicator creation when it is created without file attached to it
 
 ## Module Changes
 ### Incident Module

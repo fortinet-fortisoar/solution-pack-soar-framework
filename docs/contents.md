@@ -70,13 +70,6 @@ The SOAR Framework includes the following rules:
     </tr>
 </table>
 
-## Pre-Processing Rules
-
-Pre-processing rules provides a facility to make decisions based on predefined criteria before incoming records are created
-
-The SOAR Framework includes the following pre-processing rule:
-- Enforcing File Attachments for File Indicators - The rule ensures file indicators are only created when files are attached.
-
 ## Widgets
 
 Widgets render information for the visual display inside View Template. Widget types vary such that specific widgets only correspond to certain view types. For example, the detail view has some exclusive widgets, such as Visual Correlation, Comments, Timeline, etc.
