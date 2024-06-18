@@ -31,9 +31,9 @@
             "arguments": {
                 "params": {
                     "iri": "{{vars.input.records[0]['@id']}}",
-                    "body": "{\"communications\": {{vars.steps.Set_Communication_Relationship.data['code_output']}}}"
+                    "body": "{\"communications\": {{vars.communication_iri}}}"
                 },
-                "version": "3.2.1",
+                "version": "3.3.1",
                 "connector": "cyops_utilities",
                 "operation": "update_cyops_resource",
                 "operationTitle": "FSR: Update Record",
@@ -114,6 +114,7 @@
                 "emailBody": "{{vars.input.params.emailBody}}",
                 "emailfile": "{{vars.input.params.emailfile}}",
                 "emailSubject": "{{vars.input.params.emailSubject}}",
+                "communication_iri": "{{vars.steps.Find_Related_Communication_Records.data['hydra:member'] | json_query('[].\"@id\"')}}",
                 "rec_includeDescription": "{{vars.input.params['rec_includeDescription']}}"
             },
             "status": null,
@@ -214,22 +215,14 @@
             "name": "Set Communication Relationship",
             "description": null,
             "arguments": {
-                "config": "{{\"b5195722-9917-4e6e-ac0f-cddab46620ee\"}}",
-                "params": {
-                    "python_function": "communication_iri = [\"{{vars.steps.Create_Communications_Record['@id']}}\"]\n\nfor comm in {{vars.steps.Find_Related_Communication_Records.data['hydra:member']}}:\n    communication_iri.append(comm['@id'])\n\nprint(communication_iri)"
-                },
-                "version": "2.0.3",
-                "connector": "code-snippet",
-                "operation": "python_inline_code_editor",
-                "operationTitle": "Execute Python Code",
-                "step_variables": []
+                "_temp": "{{vars.communication_iri.append(vars.steps.Create_Communications_Record['@id'])}}"
             },
             "status": null,
             "top": "705",
             "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
-            "uuid": "f2eb5b0d-ebc0-4da0-af4b-8f3a0dfc4a9c"
+            "uuid": "d8cdee07-2007-49cf-8323-013afdc2f9da"
         }
     ],
     "routes": [
@@ -240,6 +233,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/9ee95d46-2933-4322-a042-8554dfa0c019",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "05b4b01f-6ed1-4096-bca7-81374ee87386"
         },
         {
@@ -249,6 +243,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/25ca9efb-c7bc-4bdc-8f7c-452f508244db",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "20817274-31ad-4645-afbd-f0e9d8591c40"
         },
         {
@@ -258,16 +253,18 @@
             "sourceStep": "\/api\/3\/workflow_steps\/6559e76e-4ff8-4cb1-b2d2-b7c6e308a906",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "23bdc22b-4f13-4119-a702-3241d89af534"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Create Communications Record -> Set Communication Relationship",
-            "targetStep": "\/api\/3\/workflow_steps\/f2eb5b0d-ebc0-4da0-af4b-8f3a0dfc4a9c",
+            "targetStep": "\/api\/3\/workflow_steps\/d8cdee07-2007-49cf-8323-013afdc2f9da",
             "sourceStep": "\/api\/3\/workflow_steps\/24ee63b4-468f-488b-9d81-1cb1d83a0d56",
             "label": null,
             "isExecuted": false,
-            "uuid": "31f966f8-383c-4cf2-9dc1-a7a5dac3cdba"
+            "group": null,
+            "uuid": "cfe141a0-c93b-4065-ac06-1d9ecea51e9b"
         },
         {
             "@type": "WorkflowRoute",
@@ -276,6 +273,7 @@
             "sourceStep": "\/api\/3\/workflow_steps\/20afb077-95d0-476b-a70e-112fa1c17895",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "3e7742ea-021f-4a5f-9fc6-e5c5b6b0b4c1"
         },
         {
@@ -285,16 +283,18 @@
             "sourceStep": "\/api\/3\/workflow_steps\/599e5b70-1ce6-4b88-b0eb-5960f2fcdc91",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "52b7afb0-7cc9-44c4-973c-927f54c36211"
         },
         {
             "@type": "WorkflowRoute",
             "name": "Set Communication Relationship -> Link Communication to Alert Incident or Task",
             "targetStep": "\/api\/3\/workflow_steps\/20afb077-95d0-476b-a70e-112fa1c17895",
-            "sourceStep": "\/api\/3\/workflow_steps\/f2eb5b0d-ebc0-4da0-af4b-8f3a0dfc4a9c",
+            "sourceStep": "\/api\/3\/workflow_steps\/d8cdee07-2007-49cf-8323-013afdc2f9da",
             "label": null,
             "isExecuted": false,
-            "uuid": "c0a6d47f-ff8f-4d3a-9538-862fabaed140"
+            "group": null,
+            "uuid": "6aeed494-9c64-4b1f-8f75-1695ef7ef1b9"
         }
     ],
     "groups": [],
