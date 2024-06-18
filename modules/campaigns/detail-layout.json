@@ -1,0 +1,190 @@
+{
+    "@context": "\/api\/3\/contexts\/SystemViewTemplate",
+    "@type": "SystemViewTemplate",
+    "type": "rows",
+    "config": {
+        "rows": [
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "primaryDetail",
+                                "config": {
+                                    "wid": "0f84ae13-053f-40bc-b2ec-0ad62152847a",
+                                    "idField": "id",
+                                    "picklistFieldReadOnly": false,
+                                    "titleFieldReadOnly": false,
+                                    "titleFieldLinky": true,
+                                    "picklistField": "status",
+                                    "titleField": "name"
+                                }
+                            },
+                            {
+                                "type": "editableFormGroup",
+                                "config": {
+                                    "wid": "c83412c8-e135-4d42-b1bf-cd32398df8ed",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "description",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "intendedEffect",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "status",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "title": "Summary"
+                                }
+                            },
+                            {
+                                "type": "editableFormGroup",
+                                "config": {
+                                    "wid": "965b46b2-2bfa-4f3a-b49b-c4528a42042d",
+                                    "rows": [
+                                        {
+                                            "columns": [
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "threatActor",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "malwareEmployed",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "attackVector",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                },
+                                                {
+                                                    "fields": [
+                                                        {
+                                                            "name": "campaignStart",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "lastSeen",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "targetedCves",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        },
+                                                        {
+                                                            "name": "phishingLure",
+                                                            "highlightMode": true,
+                                                            "linky": true,
+                                                            "readOnly": false
+                                                        }
+                                                    ],
+                                                    "style": "col-lg-6"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "bd14974e-92e9-4b7d-8f1a-4f7b1f423009"
+            },
+            {
+                "columns": [
+                    {
+                        "widgets": [
+                            {
+                                "type": "tabs",
+                                "config": {
+                                    "tabs": [
+                                        {
+                                            "title": "Correlations",
+                                            "widget": {
+                                                "type": "relationship.subtab",
+                                                "config": {
+                                                    "excludes": [
+                                                        "notes",
+                                                        "comments",
+                                                        "attachments",
+                                                        "owners"
+                                                    ],
+                                                    "wid": "da6ceef2-4975-4959-a71d-bc389bf0f52c",
+                                                    "expandableCol": []
+                                                }
+                                            },
+                                            "show": true,
+                                            "icon": "fa fa-exchange"
+                                        },
+                                        {
+                                            "title": "Access Control",
+                                            "active": 0,
+                                            "widget": {
+                                                "type": "relationship.subtab",
+                                                "config": {
+                                                    "wid": "a30264bc-53eb-4833-b93b-3733a466de52",
+                                                    "excludes": [
+                                                        "notes",
+                                                        "comments",
+                                                        "attachments",
+                                                        "alerts",
+                                                        "incidents",
+                                                        "indicators"
+                                                    ],
+                                                    "expandableCol": []
+                                                }
+                                            },
+                                            "icon": "fa fa-shield",
+                                            "show": false
+                                        }
+                                    ],
+                                    "wid": "5ad92b1d-c071-4c20-89a3-5ab8209b3308"
+                                }
+                            }
+                        ],
+                        "style": "col-lg-12"
+                    }
+                ],
+                "wid": "1009c8fa-259a-46e0-9981-ae965682b95d"
+            }
+        ],
+        "actionButtons": [],
+        "wid": "a53ba5bf-7d5c-44e2-ab9b-50ebe55bd4fa"
+    },
+    "uuid": "modules-campaigns-detail"
+}
