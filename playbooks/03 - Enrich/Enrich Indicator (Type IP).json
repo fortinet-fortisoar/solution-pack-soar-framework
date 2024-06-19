@@ -28,7 +28,7 @@
                 "params": {
                     "value": "<table class=\"no-border\">\n    <tr>\n        <th colspan=\"1\" class=\"no-background padding-0\">\n            <div class=\"font-size-11 ng-binding padding-bottom-sm\">\n                <h4 style=\"color: orange;\"\n                    class=\"body-default-bgcolor margin-bottom-0 padding-bottom-md padding-left-md padding-top-md text-align-left\">\n                    Internal IP Summary<\/h4>\n            <\/div>\n        <\/th>\n    <\/tr>\n    <tr class=\"solid-border\">\n        <td>\n            <div small class=\"control-label\">Hostname<\/div>\n            <div class=\"card-container-body margin-left-0\" style=\"width: auto;\">\n                <div>{% if vars.hostname %}<\/div>\n                <div class=\"body-default-bgcolor card-number padding-left-md\"\n                    style=\"border-left: 5px solid {{vars.input.params.style_colors['No Reputation Available']}};padding: 11px;font-size: 18px !important;\">\n                    {{vars.hostname}}<\/div>\n                <div>{% else %}<\/div>\n                <div class=\"body-default-bgcolor card-number padding-left-md\"\n                style=\"border-left: 5px solid {{vars.input.params.style_colors['No Reputation Available']}};padding: 11px;font-size: 18px !important;\">\n                Not Available<\/div>\n                <div>{% endif %}<\/div>\n            <\/div>\n        <\/td>\n    <\/tr>\n<\/table>"
                 },
-                "version": "3.2.1",
+                "version": "3.3.1",
                 "connector": "cyops_utilities",
                 "operation": "format_richtext",
                 "operationTitle": "Utils: Format as RichText",
@@ -136,18 +136,19 @@
             "arguments": {
                 "conditions": [
                     {
-                        "option": "no",
+                        "option": "No",
                         "default": true,
                         "step_iri": "\/api\/3\/workflow_steps\/fc5666b4-68f6-451c-b3d3-98515a676ee0",
-                        "step_name": "Integrations Available for Enrichment"
+                        "step_name": "Has Integrations Available for Enrichment"
                     },
                     {
-                        "option": "yes",
-                        "step_iri": "\/api\/3\/workflow_steps\/375ae5ee-2062-43a7-a2fa-cb38e29616ee",
+                        "option": "Yes",
+                        "step_iri": "\/api\/3\/workflow_steps\/f16f7f9e-95e7-4ad0-b25a-323dee4685f7",
                         "condition": "{{ vars.steps.Match_IP_in_Internal_Subnets.data['matched_cidr_ip']|length > 0 }}",
                         "step_name": "Reverse DNS"
                     }
-                ]
+                ],
+                "step_variables": []
             },
             "status": null,
             "top": "380",
@@ -165,7 +166,7 @@
                     "cidr": "{{vars.steps.Get_CIDR_Range[0].jSONValue}}",
                     "ip_address": "{{vars.input.params['indicator_value']}}"
                 },
-                "version": "3.3.0",
+                "version": "3.3.1",
                 "connector": "cyops_utilities",
                 "operation": "ip_cidr_check",
                 "operationTitle": "Utils: Is IP in CIDR",
@@ -211,27 +212,26 @@
         },
         {
             "@type": "WorkflowStep",
-            "name": "Reverse DNS",
+            "name": "Reverse DNS Lookup",
             "description": null,
             "arguments": {
-                "config": "{{\"b5195722-9917-4e6e-ac0f-cddab46620ee\"}}",
                 "params": {
-                    "python_function": "try:\n    addrs = dns.reversename.from_address(\"{{vars.input.params['indicator_value']}}\")\n    print(str(dns.resolver.query(addrs,\"PTR\")[0]))\nexcept:\n    print('Not Resolvable')"
+                    "ip_address": "{{vars.input.params['indicator_value']}}"
                 },
-                "version": "2.0.3",
-                "connector": "code-snippet",
-                "operation": "python_inline_code_editor",
-                "operationTitle": "Execute Python Code",
+                "version": "3.3.1",
+                "connector": "cyops_utilities",
+                "operation": "reverse_dns_lookup",
+                "operationTitle": "Reverse DNS Lookup",
                 "step_variables": {
-                    "hostname": "{{vars.result.data['code_output']}}"
+                    "hostname": "{{vars.steps.Reverse_DNS_Lookup.data}}"
                 }
             },
             "status": null,
-            "top": "500",
+            "top": "480",
             "left": "480",
-            "stepType": "\/api\/3\/workflow_step_types\/1fdd14cc-d6b4-4335-a3af-ab49c8ed2fd8",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
-            "uuid": "375ae5ee-2062-43a7-a2fa-cb38e29616ee"
+            "uuid": "f16f7f9e-95e7-4ad0-b25a-323dee4685f7"
         },
         {
             "@type": "WorkflowStep",
@@ -313,7 +313,7 @@
             "name": "Is IP Private -> Integrations Available for Enrichment",
             "targetStep": "\/api\/3\/workflow_steps\/fc5666b4-68f6-451c-b3d3-98515a676ee0",
             "sourceStep": "\/api\/3\/workflow_steps\/9665ac21-f0ed-47ca-bf65-b4eb65ae0513",
-            "label": "no",
+            "label": "No",
             "isExecuted": false,
             "group": null,
             "uuid": "18c466ea-696d-4459-a8e4-63e7d8e447d2"
@@ -321,12 +321,12 @@
         {
             "@type": "WorkflowRoute",
             "name": "Is IP Private -> Reverse DNS",
-            "targetStep": "\/api\/3\/workflow_steps\/375ae5ee-2062-43a7-a2fa-cb38e29616ee",
+            "targetStep": "\/api\/3\/workflow_steps\/f16f7f9e-95e7-4ad0-b25a-323dee4685f7",
             "sourceStep": "\/api\/3\/workflow_steps\/9665ac21-f0ed-47ca-bf65-b4eb65ae0513",
-            "label": "yes",
+            "label": "Yes",
             "isExecuted": false,
             "group": null,
-            "uuid": "39e2b91b-9ed4-480d-bc5d-b188bc5da15b"
+            "uuid": "981598a3-0f54-4a9f-8a0d-89af703d830a"
         },
         {
             "@type": "WorkflowRoute",
@@ -342,11 +342,11 @@
             "@type": "WorkflowRoute",
             "name": "Reverse DNS -> Compute Private IP Summary",
             "targetStep": "\/api\/3\/workflow_steps\/d1f8693a-58ea-48c5-8a07-f01aba52b582",
-            "sourceStep": "\/api\/3\/workflow_steps\/375ae5ee-2062-43a7-a2fa-cb38e29616ee",
+            "sourceStep": "\/api\/3\/workflow_steps\/f16f7f9e-95e7-4ad0-b25a-323dee4685f7",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "4ba11da1-8777-4838-af98-d9e1bc6b5d07"
+            "uuid": "7994d22e-5a27-4681-89cb-7e1215e0fcc1"
         },
         {
             "@type": "WorkflowRoute",
