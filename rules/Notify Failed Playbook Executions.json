@@ -1,0 +1,46 @@
+{
+    "uuid": "5badff4d-8349-47c1-988a-590056e54328",
+    "name": "Notify Failed Playbook Executions",
+    "entity_type": "workflow_logs",
+    "event_type": "failed",
+    "trigger_condition": {
+        "sort": [],
+        "limit": 30,
+        "logic": "AND",
+        "filters": [
+            {
+                "type": "primitive",
+                "field": "debug",
+                "value": true,
+                "operator": "neq",
+                "_operator": "neq"
+            }
+        ]
+    },
+    "actions": [
+        {
+            "type": "system",
+            "content": "<p>{% set idParts = vars.input.record['template_iri'].split('\/') %}<\/p>\n<p>Playbook <a href=\"{{ '\/playbooks\/' + (idParts | last) }}\">{{vars.input.record['name']}}<\/a> failed!<\/p>\n<p>Message is: {{vars.input.record['result']['Error message']}}<\/p>\n<p><a>View Execution Log<\/a><\/p>",
+            "enabled": true,
+            "channel_uuid": "7a04788b-5128-4288-a0fc-6e82d18c3b7b",
+            "owner_detail": {
+                "isAssigned": true,
+                "assignedToTeam": "{{vars.input.record.owners}}",
+                "assignedToField": null,
+                "assignedToPerson": []
+            }
+        }
+    ],
+    "is_system": false,
+    "is_active": false,
+    "priority": 10,
+    "event_source": "sealab",
+    "source": null,
+    "channel_preference_field": null,
+    "visible": true,
+    "category": "generic",
+    "expiry": null,
+    "entity_id": null,
+    "parent_rule": null,
+    "workflow": null
+}
