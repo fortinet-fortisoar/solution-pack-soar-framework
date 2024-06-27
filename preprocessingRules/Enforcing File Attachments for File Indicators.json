@@ -1,0 +1,49 @@
+{
+    "@context": "\/api\/3\/contexts\/PreprocessingRule",
+    "@type": "PreprocessingRule",
+    "applicableOn": "incoming",
+    "skipPlaybookExecution": null,
+    "isActive": true,
+    "priority": 1,
+    "entityType": "indicators",
+    "description": "The rule ensures file indicators are only created when files are attached.",
+    "action": {
+        "link": false,
+        "update": []
+    },
+    "criteria": {
+        "days": "1",
+        "condition": {
+            "sort": [],
+            "limit": 30,
+            "logic": "AND",
+            "filters": [
+                {
+                    "type": "primitive",
+                    "field": "file",
+                    "value": "",
+                    "operator": "eq",
+                    "_operator": "eq"
+                },
+                {
+                    "type": "object",
+                    "field": "typeofindicator",
+                    "value": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                    "_value": {
+                        "@id": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                        "display": "File",
+                        "itemValue": "File"
+                    },
+                    "operator": "eq"
+                }
+            ]
+        }
+    },
+    "name": "Enforcing File Attachments for File Indicators",
+    "actionType": "\/api\/3\/picklists\/e71346e9-408f-4989-8eef-fa170ca05515",
+    "endDate": null,
+    "uuid": "2cd85eae-6d90-4644-a741-792c6c97fb30",
+    "createDate": 1713438404.81781,
+    "modifyDate": 1715940556.195349,
+    "recordTags": []
+}
