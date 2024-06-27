@@ -40,7 +40,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1620",
+            "top": "1900",
             "left": "640",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
@@ -65,8 +65,8 @@
                 "add_excluded_file_comment": "false"
             },
             "status": null,
-            "top": "420",
-            "left": "300",
+            "top": "570",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "0d8fb151-8bee-410a-b4cb-a73f777f096f"
@@ -113,8 +113,8 @@
                 }
             },
             "status": null,
-            "top": "1140",
-            "left": "300",
+            "top": "1380",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
             "uuid": "06d50d72-e07a-45b4-a423-c6bf7c5df013"
@@ -133,7 +133,7 @@
             },
             "status": null,
             "top": "300",
-            "left": "660",
+            "left": "135",
             "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
             "group": null,
             "uuid": "02e4987d-1e3c-46ae-bae8-9d265de28c88"
@@ -162,8 +162,8 @@
                 "operationOutput": []
             },
             "status": null,
-            "top": "780",
-            "left": "300",
+            "top": "975",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/0bfed618-0316-11e7-93ae-92361f002671",
             "group": null,
             "uuid": "732b38e9-8753-4ccb-a708-999da812d9c5"
@@ -197,7 +197,7 @@
             },
             "status": null,
             "top": "300",
-            "left": "300",
+            "left": "485",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
             "group": null,
             "uuid": "dca141a5-903d-4ce1-8d3e-4f49619f302e"
@@ -211,8 +211,8 @@
                 "record_field_iocs": "{{ vars.record_field_iocs | json_query('[?value != null]') }}"
             },
             "status": null,
-            "top": "660",
-            "left": "300",
+            "top": "840",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "7bb56a08-857e-49bb-b5d7-017669500ef0"
@@ -239,11 +239,39 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "160",
-            "left": "480",
+            "top": "165",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
             "uuid": "65905fc4-75b5-4d2a-9ef6-148ba8834c9a"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Is Exclude IOCs List Configured",
+            "description": null,
+            "arguments": {
+                "conditions": [
+                    {
+                        "option": "Yes",
+                        "default": true,
+                        "step_iri": "\/api\/3\/workflow_steps\/0d8fb151-8bee-410a-b4cb-a73f777f096f",
+                        "step_name": "Configuration"
+                    },
+                    {
+                        "option": "No",
+                        "step_iri": "\/api\/3\/workflow_steps\/fb1ca02d-bdf6-4e72-9ded-31c61a1baaf6",
+                        "condition": "{{ vars.steps.Get_Exclude_IOCs_List | length < 5 }}",
+                        "step_name": "Raise Exception"
+                    }
+                ],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "435",
+            "left": "485",
+            "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
+            "uuid": "1facecb8-7022-442a-81db-6201d3d8fb9e"
         },
         {
             "@type": "WorkflowStep",
@@ -275,11 +303,32 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1260",
-            "left": "300",
+            "top": "1515",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "cbe170fa-bfcb-4103-947a-871f3b72effc"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Raise Exception",
+            "description": null,
+            "arguments": {
+                "params": {
+                    "msg": "{% set _key_store_list = [\"sfsp-excludelist-domains\", \"sfsp-excludelist-urls\", \"sfsp-excludelist-ports\",\"sfsp-excludelist-files\", \"sfsp-excludelist-ips\"] %}{% set _actual_keystore_list = vars.steps.Get_Exclude_IOCs_List | json_query(\"[].key\") %}{% set _diff = _key_store_list | difference(_actual_keystore_list) %}The exclude list records '{{_diff | join(\"', '\")}}' are missing. Configure them using the SOAR Framework wizard."
+                },
+                "version": "3.3.0",
+                "connector": "cyops_utilities",
+                "operation": "raise_exception",
+                "operationTitle": "Utils: Raise Exception",
+                "step_variables": []
+            },
+            "status": null,
+            "top": "570",
+            "left": "660",
+            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
+            "group": null,
+            "uuid": "fb1ca02d-bdf6-4e72-9ded-31c61a1baaf6"
         },
         {
             "@type": "WorkflowStep",
@@ -289,8 +338,8 @@
                 "unified_iocs": "{{ vars.unified_iocs | json_query('[?value != null]') | unique}}"
             },
             "status": null,
-            "top": "1020",
-            "left": "300",
+            "top": "1245",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "b6c8db49-1708-4bc1-b693-bb1e60a03e12"
@@ -346,8 +395,8 @@
                 "triggerOnReplicate": false
             },
             "status": null,
-            "top": "20",
-            "left": "480",
+            "top": "30",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/ea155646-3821-4542-9702-b246da430a8d",
             "group": null,
             "uuid": "38639c3b-a2d7-42a6-a007-8409f3a82c95"
@@ -360,8 +409,8 @@
                 "_dummy": "{%if vars.email_body_iocs %}{{vars.unified_iocs.extend(vars.email_body_iocs)}}{%endif%}\n\n{%if vars.header_iocs%}\n{{vars.unified_iocs.extend(vars.header_iocs)}}\n{%endif%}\n\n{%if vars.description_iocs%}{{vars.unified_iocs.extend(vars.description_iocs)}}{%endif%}\n\n{%if vars.file_hash_iocs %}{{vars.unified_iocs.extend(vars.file_hash_iocs)}}{%endif%}\n\n{% if vars.record_field_iocs %}{{vars.unified_iocs.extend(vars.record_field_iocs)}}{% endif %}\n\n{% if vars.email_attachment_iocs %}{{vars.unified_iocs.extend(vars.email_attachment_iocs)}}{% endif %}"
             },
             "status": null,
-            "top": "900",
-            "left": "300",
+            "top": "1110",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "384314fe-a999-4664-b578-b800288b6ac9"
@@ -388,8 +437,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1620",
-            "left": "300",
+            "top": "1920",
+            "left": "320",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
             "group": null,
             "uuid": "ee5602c0-625e-44c0-bdea-a08a0035067a"
@@ -402,8 +451,8 @@
                 "temp": "{% for key,value in vars.indicator_type_map.items()%}\n    {%if vars.record_metadata.get(key) %}\n        {% set list_vals = vars.record_metadata.get(key) if vars.record_metadata.get(key) | type_debug == 'list' else vars.record_metadata.get(key).split(\",\") %}\n        {%for item in list_vals%}\n            {% set val = item |replace(' ','') %}\n            {% set _val = val | regex_search('[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+') %}\n            {% if (_val == None) and (value == 'Port') and (val|string not in vars.excluded_ports) %}\n                {{vars.record_field_iocs.append({\"type\": value, \"value\":val})}}\n            {% elif (_val == None) and (value != 'Port') and (val|string|lower not in vars.excluded_indicators) %}\n                {{vars.record_field_iocs.append({\"type\": value, \"value\":val})}}\n            {% elif (_val != None) and _val.split('@')[-1]|lower not in vars.excluded_indicators %}\n                {{vars.record_field_iocs.append({\"type\": value, \"value\":_val})}}\n            {% endif %}\n        {%endfor%}\n    {%endif%}\n{%endfor%}"
             },
             "status": null,
-            "top": "540",
-            "left": "300",
+            "top": "705",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
             "uuid": "df38ec5d-c692-47a5-b6bf-b1180e90eb5f"
@@ -484,8 +533,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1480",
-            "left": "640",
+            "top": "1760",
+            "left": "620",
             "stepType": "\/api\/3\/workflow_step_types\/6832e556-b9c7-497a-babe-feda3bd27dbf",
             "group": null,
             "uuid": "db8b6bec-bedc-450f-bca9-89128ec11763"
@@ -512,8 +561,8 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "1380",
-            "left": "300",
+            "top": "1650",
+            "left": "310",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
             "group": null,
             "uuid": "36ac977c-d69b-49fe-a642-046833a6056c"
@@ -562,13 +611,13 @@
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Find Exclude List IOCs -> Configuration",
-            "targetStep": "\/api\/3\/workflow_steps\/0d8fb151-8bee-410a-b4cb-a73f777f096f",
+            "name": "Get Exclude IOCs List -> Is Exclude IOCs List Configured",
+            "targetStep": "\/api\/3\/workflow_steps\/1facecb8-7022-442a-81db-6201d3d8fb9e",
             "sourceStep": "\/api\/3\/workflow_steps\/dca141a5-903d-4ce1-8d3e-4f49619f302e",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "74da0d78-57b2-47d9-92c4-ad54a48ce966"
+            "uuid": "347ffd1e-dcc7-4ab4-94b7-a7c271733920"
         },
         {
             "@type": "WorkflowRoute",
@@ -599,6 +648,26 @@
             "isExecuted": false,
             "group": null,
             "uuid": "5a0cf78c-b43f-43c8-a51c-e71da6b8f03d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Exclude IOCs List Configured -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/0d8fb151-8bee-410a-b4cb-a73f777f096f",
+            "sourceStep": "\/api\/3\/workflow_steps\/1facecb8-7022-442a-81db-6201d3d8fb9e",
+            "label": "Yes",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "f9319c0c-0372-4e16-a024-eb206dc98605"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Is Exclude IOCs List Configured -> Raise Exception",
+            "targetStep": "\/api\/3\/workflow_steps\/fb1ca02d-bdf6-4e72-9ded-31c61a1baaf6",
+            "sourceStep": "\/api\/3\/workflow_steps\/1facecb8-7022-442a-81db-6201d3d8fb9e",
+            "label": "No",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "3a5c61bf-a8d8-4830-9d32-218dcd84c325"
         },
         {
             "@type": "WorkflowRoute",
