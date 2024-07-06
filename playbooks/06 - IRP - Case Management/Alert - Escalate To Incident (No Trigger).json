@@ -1,4 +1,5 @@
 {
+    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Alert - Escalate To Incident (No Trigger)",
@@ -17,7 +18,10 @@
         "incidentLead",
         "incidentOwners",
         "incidentType",
-        "sharedTenantIRI"
+        "sharedTenantIRI",
+        "closeAlerts",
+        "closureReason",
+        "closureNotes"
     ],
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/3c3b049e-5ecb-464a-83f6-5af6a230c0ed",
@@ -117,7 +121,7 @@
                 "step_variables": []
             },
             "status": null,
-            "top": "840",
+            "top": "975",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/2597053c-e718-44b4-8394-4d40fe26d357",
             "group": null,
@@ -174,31 +178,59 @@
         },
         {
             "@type": "WorkflowStep",
+            "name": "Set Alert Status Closed",
+            "description": null,
+            "arguments": {
+                "when": "{{vars.input.params.closeAlerts}}",
+                "for_each": {
+                    "item": "{{vars.input.params.records}}",
+                    "__bulk": true,
+                    "parallel": false,
+                    "condition": "",
+                    "batch_size": 100
+                },
+                "resource": {
+                    "status": "\/api\/3\/picklists\/fac53e73-8d16-4189-98d5-95fbd1555232",
+                    "closureNotes": "{{vars.input.params.closureNotes}}",
+                    "closureReason": "{{vars.input.params.closureReason}}"
+                },
+                "_showJson": false,
+                "operation": "Create New",
+                "collection": "{{vars.item[\"@id\"]}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/alerts",
+                "fieldOperation": [],
+                "step_variables": []
+            },
+            "status": null,
+            "top": "840",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "8aa76bf0-df15-41ea-84de-ff41b40a33e9"
+        },
+        {
+            "@type": "WorkflowStep",
             "name": "Set Escalate Status on Alert",
             "description": null,
             "arguments": {
                 "for_each": {
                     "item": "{{vars.input.params.records}}",
-                    "condition": ""
+                    "__bulk": true,
+                    "parallel": false,
+                    "condition": "",
+                    "batch_size": 100
                 },
                 "resource": {
                     "escalationReason": "<p>{{vars.input.params.escalationReason}}<\/p>",
-                    "escalatedtoincident": {
-                        "id": 6807,
-                        "@id": "\/api\/3\/picklists\/fa12313b-66af-4a2e-864e-a5f19241b734",
-                        "icon": null,
-                        "@type": "Picklist",
-                        "color": "#bf0a0a",
-                        "display": "Yes",
-                        "listName": "\/api\/3\/picklist_names\/e131cc54-9ae4-43c9-b830-af6e331fe024",
-                        "itemValue": "Yes",
-                        "orderIndex": 0
-                    }
+                    "escalatedtoincident": "\/api\/3\/picklists\/fa12313b-66af-4a2e-864e-a5f19241b734"
                 },
-                "_showJson": false,
+                "_showJson": true,
                 "operation": "Create New",
                 "collection": "{{vars.item[\"@id\"]}}",
+                "__recommend": [],
                 "collectionType": "\/api\/3\/alerts",
+                "fieldOperation": [],
                 "step_variables": []
             },
             "status": null,
@@ -216,7 +248,7 @@
                 "@id": "{{vars.steps.Insert_One_Incident_Many_to_One['@id']}}"
             },
             "status": null,
-            "top": "975",
+            "top": "1110",
             "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
             "group": null,
@@ -298,17 +330,27 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "3a27a30f-ae41-43c0-bce2-3b3a2d5bdade"
+            "uuid": "4751f420-12ee-4845-8bf2-ed09a55fbfcb"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Set Escalate Status on Alert -> Insert Comment",
+            "name": "Set Alert Status Closed -> Insert Comment",
             "targetStep": "\/api\/3\/workflow_steps\/b600dcb0-3476-477e-a108-4426b8e9e092",
+            "sourceStep": "\/api\/3\/workflow_steps\/8aa76bf0-df15-41ea-84de-ff41b40a33e9",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "30cac403-6ce1-4969-9d6e-439c7824da64"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Set Escalate Status on Alert -> Set Alert Status Closed",
+            "targetStep": "\/api\/3\/workflow_steps\/8aa76bf0-df15-41ea-84de-ff41b40a33e9",
             "sourceStep": "\/api\/3\/workflow_steps\/4cdab544-2e40-43d7-bc54-143b883cb670",
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "bd1cb0b9-39ad-42d2-a633-d3f5cbc4311b"
+            "uuid": "d20db343-1de0-4e1e-82d3-3db2dc21dc82"
         },
         {
             "@type": "WorkflowRoute",
