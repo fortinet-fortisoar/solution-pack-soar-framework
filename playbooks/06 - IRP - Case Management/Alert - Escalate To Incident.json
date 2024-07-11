@@ -1,5 +1,4 @@
 {
-    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Alert - Escalate To Incident",
@@ -478,7 +477,7 @@
                         "label": "Close Alerts",
                         "title": "Checkbox",
                         "usable": true,
-                        "tooltip": "",
+                        "tooltip": "Select this option to close all selected alerts upon incident escalation.",
                         "dataType": "checkbox",
                         "formType": "checkbox",
                         "required": true,
@@ -645,7 +644,19 @@
                         "sort": [],
                         "limit": 30,
                         "logic": "AND",
-                        "filters": []
+                        "filters": [
+                            {
+                                "type": "object",
+                                "field": "escalatedtoincident",
+                                "value": "\/api\/3\/picklists\/2128a09c-153d-4db3-985d-de6be33deae5",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/2128a09c-153d-4db3-985d-de6be33deae5",
+                                    "display": "No",
+                                    "itemValue": "No"
+                                },
+                                "operator": "eq"
+                            }
+                        ]
                     }
                 },
                 "executeButtonText": "Escalate",
