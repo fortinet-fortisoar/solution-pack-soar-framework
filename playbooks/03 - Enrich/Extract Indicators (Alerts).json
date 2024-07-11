@@ -222,7 +222,7 @@
                 "operation": "extract_artifacts",
                 "operationTitle": "CyOPs: Extract Artifacts from string",
                 "step_variables": {
-                    "email_body_iocs": "{{vars.steps.Extract_Indicators_from_Body.data.results | json_query(\"[?type != `File`]\")}}"
+                    "email_body_iocs": "{{vars.steps.Extract_Indicators_from_Body.data.results | json_query(\"[?type != `File` && type != `CVE`]\")}}"
                 },
                 "operationOutput": []
             },
@@ -258,7 +258,7 @@
                 "operation": "extract_artifacts",
                 "operationTitle": "CyOPs: Extract Artifacts from string",
                 "step_variables": {
-                    "description_iocs": "{{vars.steps.Extract_Indicators_from_Description.data.results | json_query(\"[?type != `File`]\")}}"
+                    "description_iocs": "{{vars.steps.Extract_Indicators_from_Description.data.results | json_query(\"[?type != `File` && type != `CVE`]\")}}"
                 },
                 "operationOutput": []
             },
@@ -294,7 +294,7 @@
                 "operation": "extract_artifacts",
                 "operationTitle": "CyOPs: Extract Artifacts from string",
                 "step_variables": {
-                    "header_iocs": "{{vars.steps.Extract_Indicators_from_Header.data.results | json_query(\"[?type != `File`]\")}}"
+                    "header_iocs": "{{vars.steps.Extract_Indicators_from_Header.data.results | json_query(\"[?type != `File` && type != `CVE`]\")}}"
                 },
                 "operationOutput": []
             },

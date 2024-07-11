@@ -163,7 +163,7 @@
                 "operation": "extract_artifacts",
                 "operationTitle": "CyOPs: Extract Artifacts from string",
                 "step_variables": {
-                    "description_iocs": "{{vars.steps.Extract_Indicators_from_Description.data.results | json_query(\"[?type != `File`]\")}}"
+                    "description_iocs": "{{vars.steps.Extract_Indicators_from_Description.data.results | json_query(\"[?type != `File` && type != `CVE`]\")}}"
                 },
                 "operationOutput": []
             },
