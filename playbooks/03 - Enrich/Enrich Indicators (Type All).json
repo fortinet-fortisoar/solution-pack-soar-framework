@@ -26,8 +26,8 @@
             "name": "Set Exit Response",
             "description": null,
             "arguments": {
-                "reputation": "{{vars.steps.No_Integration_Available.reputation.itemValue}}",
-                "reputation_iri": "{{vars.steps.No_Integration_Available.reputation['@id']}}",
+                "reputation": "{{vars.steps.No_Integration_Available.reputation.itemValue or 'No Reputation Available'}}",
+                "reputation_iri": "{{vars.steps.No_Integration_Available.reputation['@id'] or ((\"IndicatorReputation\" | picklist(\"No Reputation Available\"))[\"@id\"]) }}",
                 "enrichment_summaries": "{{vars.steps.No_Integration_Available.description}}"
             },
             "status": null,
@@ -293,6 +293,7 @@
             "name": "No Integration Available",
             "description": null,
             "arguments": {
+                "when": "{{not vars.input.params['indicator_IRI'] == None}}",
                 "message": {
                     "tags": [],
                     "type": "\/api\/3\/picklists\/ff599189-3eeb-4c86-acb0-a7915e85ac3b",
@@ -631,7 +632,7 @@
             "name": "Update Enrichment Status to In Progress",
             "description": null,
             "arguments": {
-                "when": "{{not vars.input.params['indicator_value'] == None}}",
+                "when": "{{not vars.input.params['indicator_IRI'] == None}}",
                 "resource": {
                     "enrichmentStatus": "\/api\/3\/picklists\/8a4609d2-8a3d-4bda-9888-5f00bfea43cb"
                 },
