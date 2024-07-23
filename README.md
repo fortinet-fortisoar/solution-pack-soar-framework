@@ -70,7 +70,7 @@ The following diagram helps better understand the overall process and the subseq
 
 ## Additional Resources 
 
-- [Upgrade SOAR Framework to v2.1.0 and later](./docs/moving-to-sfsp-2-1-0.md)
+- [Upgrading SOAR Framework to latest](./docs/upgrading-sfsp-to-latest.md)
 
 - [Managing Team Ownable Settings](./docs/managing-team-ownable-settings.md)
 
@@ -89,7 +89,6 @@ The following diagram helps better understand the overall process and the subseq
 - [Setting up Communications Tracking for Custom Modules](./docs/setting-up-comms-module.md)
 
 - [Excluding Extracted Indicators from Enrichment](./docs/extending-default-indicator-extraction-process.md#excluding-extracted-indicators-from-enrichment)
-<!-- * [Setting up Default Hunt Playbooks](./docs/setting-up-default-hunt-playbook.md) -->
 
 ## Next Steps
 
