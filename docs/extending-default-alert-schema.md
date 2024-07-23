@@ -17,7 +17,7 @@ As part of the alert ingestion process, you may need to add additional fields. F
     <li>Click an alert to open the detailed view.</li>
     <li>Click the <strong>Edit Template</strong> icon on the top right.</li>
     <img src="./res/edit-template-alert.png">
-    <li>Navigate to <strong>Fields Of Interest</strong> under <strong>Tabs</strong> > <strong>Alert Details</strong>. TO know more about the fields of interest widget, refer to <a href="https://fortisoar.contenthub.fortinet.com//list.html?contentType=all&searchContent=fields%20of%20interest">Fields of Interest</a> widget on Content Hub.</li>
+    <li>Navigate to <strong>Fields Of Interest</strong> under <strong>Tabs</strong> > <strong>Alert Details</strong>. To know more about the fields of interest widget, refer to <a href="https://fortisoar.contenthub.fortinet.com//list.html?contentType=all&searchContent=fields%20of%20interest">Fields of Interest</a> widget on Content Hub.</li>
     <li>Click the <strong>Edit</strong> icon <img src="./res/icon-page-edit.svg"> to edit it.</li>
     <img src="./res/editable-form-group-alert.png">
     <li>From the drop-down, select the field that you added &ndash; <code>Targeted Employee Email Address</code> &ndash; and click <strong>Add</strong>.</li>
