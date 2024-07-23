@@ -15,7 +15,7 @@ The **SOAR Framework Solution Pack** solution pack installs the following soluti
 
 # Configuration
 
-**SOAR Framework Solution Pack** comes with a host of connectors listed [here](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/docs/contents.md#connector-list). There are multiple other connectors with which this solution pack can connect. To configure any connector, refer [Configuring a connector](https://docs.fortinet.com/document/fortisoar/0.0.0/configuring-a-connector/1/configuring-a-connector).
+**SOAR Framework Solution Pack** comes with a host of connectors listed [here](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/develop/docs/contents.md#connector-list). There are multiple other connectors with which this solution pack can connect. To configure any connector, refer [Configuring a connector](https://docs.fortinet.com/document/fortisoar/0.0.0/configuring-a-connector/1/configuring-a-connector).
 
 For detailed instructions on how to configure *each* connector:
 
