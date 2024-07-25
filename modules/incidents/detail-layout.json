@@ -51,25 +51,57 @@
                                                                 {
                                                                     "widgets": [
                                                                         {
-                                                                            "type": "editableFormGroup",
+                                                                            "type": "customPicklistMessage-1.1.1",
                                                                             "config": {
-                                                                                "wid": "aaa80095-8d61-4c2b-8a33-cd3b0a361b15",
-                                                                                "rows": [
-                                                                                    {
-                                                                                        "columns": [
-                                                                                            {
-                                                                                                "fields": [
-                                                                                                    {
-                                                                                                        "name": "incidentphase",
-                                                                                                        "highlightMode": true,
-                                                                                                        "linky": true,
-                                                                                                        "readOnly": true
-                                                                                                    }
-                                                                                                ]
-                                                                                            }
-                                                                                        ]
-                                                                                    }
-                                                                                ]
+                                                                                "wid": "48c3ac49-86c1-457a-8f94-73920719cd59",
+                                                                                "picklits_mapping": {
+                                                                                    "options": [
+                                                                                        {
+                                                                                            "picklistValue": "New",
+                                                                                            "picklistLoadingTitle": "Please wait while Indicators are being extracted",
+                                                                                            "showSpinner": true
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                "picklistItem": "state"
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "type": "customPicklistMessage-1.1.2",
+                                                                            "config": {
+                                                                                "wid": "b378d991-3b11-4e12-a029-74de6340ceeb",
+                                                                                "picklits_mapping": {
+                                                                                    "options": [
+                                                                                        {
+                                                                                            "picklistValue": "Resolved",
+                                                                                            "picklistLoadingTitle": "Incident is Resolved.",
+                                                                                            "showIcon": true,
+                                                                                            "picklistMessageIcon": "icon icon-resolve",
+                                                                                            "showSpinner": false
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                "picklistItem": "status"
+                                                                            }
+                                                                        }
+                                                                    ],
+                                                                    "style": "col-lg-12"
+                                                                }
+                                                            ],
+                                                            "wid": "7714071f-77a8-49af-a141-c6ac0451b619",
+                                                            "_collapsed": false
+                                                        },
+                                                        {
+                                                            "columns": [
+                                                                {
+                                                                    "widgets": [
+                                                                        {
+                                                                            "type": "picklistAsPhases-1.0.1",
+                                                                            "config": {
+                                                                                "wid": "302d2057-19c4-4513-9d30-0725aab18d4d",
+                                                                                "title": "Phase Infographics",
+                                                                                "picklistItem": "phase",
+                                                                                "picklistFieldObjectIRI": "\/api\/3\/picklist_names\/b862eb1f-b385-40ca-baa7-5a1b1f91a651"
                                                                             }
                                                                         },
                                                                         {
@@ -111,7 +143,23 @@
                                                                                 "timeToDisplay": "consumedTime",
                                                                                 "slapaused": "ackSLApausedon",
                                                                                 "slaPausedOn": "slaState",
-                                                                                "pausedItemvalue": "Paused"
+                                                                                "pausedItemvalue": "Paused",
+                                                                                "visibility": {
+                                                                                    "conditionalVisibility": true,
+                                                                                    "filter": {
+                                                                                        "sort": [],
+                                                                                        "limit": 30,
+                                                                                        "logic": "AND",
+                                                                                        "filters": [
+                                                                                            {
+                                                                                                "field": "ackDueDate",
+                                                                                                "value": "false",
+                                                                                                "operator": "isnull",
+                                                                                                "type": "datetime"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                }
                                                                             }
                                                                         },
                                                                         {
@@ -127,7 +175,23 @@
                                                                                 "timeToDisplay": "consumedTime",
                                                                                 "slapaused": "respSLApausedon",
                                                                                 "slaPausedOn": "resSla",
-                                                                                "pausedItemvalue": "Paused"
+                                                                                "pausedItemvalue": "Paused",
+                                                                                "visibility": {
+                                                                                    "conditionalVisibility": true,
+                                                                                    "filter": {
+                                                                                        "sort": [],
+                                                                                        "limit": 30,
+                                                                                        "logic": "AND",
+                                                                                        "filters": [
+                                                                                            {
+                                                                                                "field": "ackDueDate",
+                                                                                                "value": "false",
+                                                                                                "operator": "isnull",
+                                                                                                "type": "datetime"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                }
                                                                             }
                                                                         }
                                                                     ],
@@ -565,7 +629,8 @@
                                                                                                     "itemValue": "Other",
                                                                                                     "@id": "\/api\/3\/picklists\/15fa2e79-88ac-4a63-a623-3ac03980b850"
                                                                                                 },
-                                                                                                "type": "object"
+                                                                                                "type": "object",
+                                                                                                "display": "Other"
                                                                                             }
                                                                                         ]
                                                                                     }
@@ -645,7 +710,23 @@
                                                                                         "style": "display-inline-block"
                                                                                     }
                                                                                 ],
-                                                                                "title": "Acknowledge SLA"
+                                                                                "title": "Acknowledge SLA",
+                                                                                "visibility": {
+                                                                                    "conditionalVisibility": true,
+                                                                                    "filter": {
+                                                                                        "sort": [],
+                                                                                        "limit": 30,
+                                                                                        "logic": "AND",
+                                                                                        "filters": [
+                                                                                            {
+                                                                                                "field": "ackDueDate",
+                                                                                                "value": "false",
+                                                                                                "operator": "isnull",
+                                                                                                "type": "datetime"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                }
                                                                             }
                                                                         },
                                                                         {
@@ -681,7 +762,23 @@
                                                                                         "style": "display-inline-block"
                                                                                     }
                                                                                 ],
-                                                                                "title": "Response SLA"
+                                                                                "title": "Response SLA",
+                                                                                "visibility": {
+                                                                                    "conditionalVisibility": true,
+                                                                                    "filter": {
+                                                                                        "sort": [],
+                                                                                        "limit": 30,
+                                                                                        "logic": "AND",
+                                                                                        "filters": [
+                                                                                            {
+                                                                                                "field": "ackDueDate",
+                                                                                                "value": "false",
+                                                                                                "operator": "isnull",
+                                                                                                "type": "datetime"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                }
                                                                             }
                                                                         },
                                                                         {
@@ -772,7 +869,8 @@
                                                                                                 "includes": [
                                                                                                     "indicators"
                                                                                                 ]
-                                                                                            }
+                                                                                            },
+                                                                                            "visible": true
                                                                                         },
                                                                                         "icon": "fa fa-star",
                                                                                         "show": true,
@@ -1457,7 +1555,8 @@
                                                                                                         "readOnly": false
                                                                                                     }
                                                                                                 ]
-                                                                                            }
+                                                                                            },
+                                                                                            "visible": true
                                                                                         },
                                                                                         "icon": "icon icon-timeline",
                                                                                         "show": false,
@@ -1484,7 +1583,8 @@
                                                                                                 "selectionType": "exclude",
                                                                                                 "enableHorizontalScroll": [],
                                                                                                 "includes": []
-                                                                                            }
+                                                                                            },
+                                                                                            "visible": true
                                                                                         },
                                                                                         "icon": "fa fa-exchange",
                                                                                         "show": false,
@@ -1504,7 +1604,8 @@
                                                                                                 "includes": [
                                                                                                     "tasks"
                                                                                                 ]
-                                                                                            }
+                                                                                            },
+                                                                                            "visible": true
                                                                                         },
                                                                                         "icon": "fa fa-tasks",
                                                                                         "show": false,
@@ -1522,7 +1623,8 @@
                                                                                                     "fileFieldName": "file",
                                                                                                     "nameFieldName": "name"
                                                                                                 }
-                                                                                            }
+                                                                                            },
+                                                                                            "visible": true
                                                                                         },
                                                                                         "icon": "fa fa-paperclip",
                                                                                         "show": false,
@@ -1552,7 +1654,8 @@
                                                                                                         ]
                                                                                                     }
                                                                                                 ]
-                                                                                            }
+                                                                                            },
+                                                                                            "visible": true
                                                                                         },
                                                                                         "icon": "icon icon-source-code",
                                                                                         "show": false,
@@ -1572,7 +1675,8 @@
                                                                                                 "includes": [
                                                                                                     "communications"
                                                                                                 ]
-                                                                                            }
+                                                                                            },
+                                                                                            "visible": true
                                                                                         },
                                                                                         "icon": "icon icon-email-templates",
                                                                                         "show": false,
@@ -1587,7 +1691,8 @@
                                                                                             "type": "accessControl",
                                                                                             "config": {
                                                                                                 "wid": "e91c4e13-4b98-403e-8e10-7c2abfb774f4"
-                                                                                            }
+                                                                                            },
+                                                                                            "visible": true
                                                                                         },
                                                                                         "visible": true
                                                                                     }
@@ -1659,7 +1764,8 @@
                                                             "_collapsed": false
                                                         }
                                                     ]
-                                                }
+                                                },
+                                                "visible": true
                                             },
                                             "show": true,
                                             "visible": true
@@ -1671,7 +1777,8 @@
                                                 "type": "executedPlaybooks",
                                                 "config": {
                                                     "wid": "287d33ae-c83f-419a-b7c1-5ae8456e7b51"
-                                                }
+                                                },
+                                                "visible": true
                                             },
                                             "icon": "icon icon-playbooks",
                                             "show": false,
@@ -1703,7 +1810,8 @@
                                                             "_collapsed": false
                                                         }
                                                     ]
-                                                }
+                                                },
+                                                "visible": true
                                             },
                                             "icon": "fa fa-eye",
                                             "show": false,

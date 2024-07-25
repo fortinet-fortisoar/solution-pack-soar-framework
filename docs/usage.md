@@ -14,11 +14,9 @@ SOAR Framework Solution Pack provides standardized modules for various operation
 4. Campaigns
 5. Communication
 6. Events
-7. Hunt
-8. Incidents
-9. Indicators
-10. SLA Template
-11. War Rooms
+7. Incidents
+8. Indicators
+9. War Rooms
 
 <table>
     <th>NOTE</th>

@@ -1,0 +1,249 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Set up War Room from Incidents (Referenced)",
+    "aliasName": null,
+    "tag": null,
+    "description": "Set up War Room for the Incidents",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "records"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/c9282ce9-1cef-4e0b-94da-3b84c32381ff",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/42c7d7cb-5235-4331-9f9c-67cab2ed9022",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Setup War Room Inputs",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Setup War Room",
+                        "description": "Provide inputs required to Setup War Room",
+                        "inputVariables": [
+                            {
+                                "name": "status",
+                                "type": "picklists",
+                                "label": "Status",
+                                "title": "Picklist",
+                                "usable": true,
+                                "tooltip": "",
+                                "dataType": "picklist",
+                                "formType": "picklist",
+                                "required": false,
+                                "_expanded": true,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "dataSource": {
+                                    "model": "picklists",
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "field": "orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ],
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "listName__name",
+                                                "value": "WarRoomStatus",
+                                                "operator": "eq"
+                                            }
+                                        ]
+                                    },
+                                    "displayConditions": {
+                                        "1c4fe134-de72-40d9-b35f-deb8dadc6800": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "55a2f3e7-8354-4c41-9120-f6c3559903f8": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "f433458e-0cf8-4130-94d3-31b60ed4add7": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        }
+                                    }
+                                },
+                                "searchable": false,
+                                "templateUrl": "app\/components\/form\/fields\/typeahead.html",
+                                "defaultValue": {
+                                    "id": 450,
+                                    "@id": "\/api\/3\/picklists\/55a2f3e7-8354-4c41-9120-f6c3559903f8",
+                                    "icon": null,
+                                    "uuid": "55a2f3e7-8354-4c41-9120-f6c3559903f8",
+                                    "@type": "Picklist",
+                                    "color": "#f8ba0b",
+                                    "display": "Draft",
+                                    "listName": "\/api\/3\/picklist_names\/ab8bbdb4-2cf9-4695-90ef-9f1f825d2b1f",
+                                    "itemValue": "Draft",
+                                    "importedBy": [],
+                                    "orderIndex": 0
+                                },
+                                "_previousName": "status",
+                                "playbookField": true,
+                                "displayTemplate": "%7B%7B%20itemValue%20%7D%7D",
+                                "lengthConstraint": false,
+                                "allowedEncryption": false,
+                                "allowedGridColumn": true,
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "warRoomTitle",
+                                "type": "string",
+                                "label": "War Room Title",
+                                "tooltip": "",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": true,
+                                "defaultValue": null,
+                                "_previousName": "",
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "warRoomDescription",
+                                "type": "string",
+                                "label": "War Room Description",
+                                "tooltip": "",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": false,
+                                "_expanded": true,
+                                "defaultValue": null,
+                                "_previousName": "",
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false
+                            }
+                        ]
+                    }
+                },
+                "record": "{{vars.input.params.records[0]['@id']}}",
+                "agent_id": null,
+                "resources": "incidents",
+                "is_approval": false,
+                "owner_detail": {
+                    "isAssigned": false,
+                    "emailRecipients": ""
+                },
+                "isRecordLinked": true,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Setup",
+                            "step_iri": "\/api\/3\/workflow_steps\/583e41e9-5806-47c4-a7f2-aa395cdd0653"
+                        }
+                    ],
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "customEmailExternal": false,
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false,
+                "external_email_subject": null,
+                "internal_email_subject": "A FortiSOAR playbook is requesting your input",
+                "custom_email_body_external": null,
+                "external_email_attachments": null
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "6c1a38ab-8f40-4072-b994-e8c46e2f4601"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Setup War Room",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "status": "{{vars.steps.Get_Setup_War_Room_Inputs.input.status}}",
+                    "warRoomTitle": "{{vars.steps.Get_Setup_War_Room_Inputs.input.warRoomTitle}}",
+                    "incidentRecord": "{{vars.input.params.records}}",
+                    "warRoomDescription": "{{vars.steps.Get_Setup_War_Room_Inputs.input.warRoomDescription}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/4dbf2b58-95fa-49e2-bc58-1684a37f50b4"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "583e41e9-5806-47c4-a7f2-aa395cdd0653"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "__triggerLimit": true,
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                },
+                "triggerOnSource": true,
+                "triggerOnReplicate": false
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "42c7d7cb-5235-4331-9f9c-67cab2ed9022"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Setup War Room Inputs -> Setup War Room",
+            "targetStep": "\/api\/3\/workflow_steps\/583e41e9-5806-47c4-a7f2-aa395cdd0653",
+            "sourceStep": "\/api\/3\/workflow_steps\/6c1a38ab-8f40-4072-b994-e8c46e2f4601",
+            "label": "Setup",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "6a9a4fdd-955d-4a35-ab44-1cde8b95bc2e"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Setup War Room Inputs",
+            "targetStep": "\/api\/3\/workflow_steps\/6c1a38ab-8f40-4072-b994-e8c46e2f4601",
+            "sourceStep": "\/api\/3\/workflow_steps\/42c7d7cb-5235-4331-9f9c-67cab2ed9022",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "789a30cc-1106-43eb-9c06-8e296c90c0f4"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "20d51abe-1398-4882-be7a-64033db0329e",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Referenced"
+    ]
+}

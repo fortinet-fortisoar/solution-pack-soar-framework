@@ -17,29 +17,28 @@
     "steps": [
         {
             "@type": "WorkflowStep",
-            "name": "Add URL to Excluded URL List",
+            "name": "Add Indicator to Exclude List",
             "description": null,
             "arguments": {
-                "urls": "{{globalVars.Excludelist_URLs + ',' + vars.input.records[0].value}}"
+                "resource": {
+                    "indicatorStatus": "\/api\/3\/picklists\/4218cb58-4de5-4eff-ad08-185d36ef9bab"
+                },
+                "_showJson": false,
+                "operation": "Append",
+                "collection": "{{vars.input.records[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/indicators",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
             },
             "status": null,
-            "top": "300",
-            "left": "826",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "fdd66082-5862-4927-85a0-c5e63470d3db"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Add Domain to Excluded Domains List",
-            "description": null,
-            "arguments": {
-                "domains": "{{globalVars.Excludelist_Domains + ',' + vars.input.records[0].value}}"
-            },
-            "status": null,
-            "top": "300",
-            "left": "475",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "1cf76ab3-ad50-4c3e-9f7e-26ddc10bc603"
+            "top": "350",
+            "left": "1425",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "93440c02-bafc-46a0-8c1b-3824dd5b366b"
         },
         {
             "@type": "WorkflowStep",
@@ -49,29 +48,223 @@
                 "conditions": [
                     {
                         "option": "Domain",
-                        "step_iri": "\/api\/3\/workflow_steps\/1cf76ab3-ad50-4c3e-9f7e-26ddc10bc603",
+                        "step_iri": "\/api\/3\/workflow_steps\/6cdbdf4e-c58e-4e72-b9c8-ebe621e797d3",
                         "condition": "{{ vars.input.records[0].typeofindicator.itemValue == 'Domain' }}",
-                        "step_name": "Add Domain to Whitelisted Domains List"
+                        "step_name": "Get Excluded Domain List"
                     },
                     {
                         "option": "URL",
-                        "step_iri": "\/api\/3\/workflow_steps\/fdd66082-5862-4927-85a0-c5e63470d3db",
+                        "step_iri": "\/api\/3\/workflow_steps\/6612b6a6-a526-4171-942d-4d8dfa65f9c6",
                         "condition": "{{ vars.input.records[0].typeofindicator.itemValue == 'URL' }}",
-                        "step_name": "Add URL to Whitelisted URL List"
+                        "step_name": "Get Excluded URL List"
                     },
                     {
-                        "option": "IP",
-                        "step_iri": "\/api\/3\/workflow_steps\/111677f9-21d8-4a8e-a98a-4643504faf65",
+                        "option": "IP Address",
+                        "step_iri": "\/api\/3\/workflow_steps\/02ce9dd2-79c8-41ba-8546-35e777110ae0",
                         "condition": "{{ vars.input.records[0].typeofindicator.itemValue == 'IP Address' }}",
-                        "step_name": "Add IP to Whitelisted IP List"
+                        "step_name": "Get Excluded IP List"
+                    },
+                    {
+                        "option": "Port",
+                        "step_iri": "\/api\/3\/workflow_steps\/fed3b120-7bc0-4f15-9e9d-44f5897575af",
+                        "condition": "{{ vars.input.records[0].typeofindicator.itemValue == 'Port' }}",
+                        "step_name": "Get Excluded Ports List"
+                    },
+                    {
+                        "option": "File",
+                        "step_iri": "\/api\/3\/workflow_steps\/c0b0151a-4d85-4ec1-b8ec-fd487b589252",
+                        "condition": "{{ vars.input.records[0].typeofindicator.itemValue == 'File' }}",
+                        "step_name": "Get Excluded Files List"
                     }
-                ]
+                ],
+                "step_variables": []
             },
             "status": null,
-            "top": "165",
-            "left": "475",
+            "top": "350",
+            "left": "450",
             "stepType": "\/api\/3\/workflow_step_types\/12254cf5-5db7-4b1a-8cb1-3af081924b28",
+            "group": null,
             "uuid": "c21436bf-178c-4bb7-a195-c8982731b083"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Excluded Domain List",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "key",
+                            "value": "sfsp-excludelist-domains",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ],
+                    "__selectFields": [
+                        "jSONValue"
+                    ]
+                },
+                "module": "keys?$limit=30",
+                "checkboxFields": true,
+                "step_variables": {
+                    "key_store_iri": "{{vars.steps.Get_Excluded_Domain_List[0]['@id']}}",
+                    "excluded_ioc_list": "{% set ioc_list = vars.steps.Get_Excluded_Domain_List[0].jSONValue or [] %}{% set _temp = ioc_list.append(vars.input.records[0].value) %}{{ioc_list}}"
+                }
+            },
+            "status": null,
+            "top": "30",
+            "left": "775",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "6cdbdf4e-c58e-4e72-b9c8-ebe621e797d3"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Excluded Files List",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "key",
+                            "value": "sfsp-excludelist-files",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ],
+                    "__selectFields": [
+                        "jSONValue"
+                    ]
+                },
+                "module": "keys?$limit=30",
+                "checkboxFields": true,
+                "step_variables": {
+                    "key_store_iri": "{{vars.steps.Get_Excluded_Files_List[0]['@id']}}",
+                    "excluded_ioc_list": "{% set ioc_list = vars.steps.Get_Excluded_Files_List[0].jSONValue or [] %}{% set _temp = ioc_list.append(vars.input.records[0].value) %}{{ioc_list}}"
+                }
+            },
+            "status": null,
+            "top": "190",
+            "left": "775",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "c0b0151a-4d85-4ec1-b8ec-fd487b589252"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Excluded IP List",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "key",
+                            "value": "sfsp-excludelist-ips",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ],
+                    "__selectFields": [
+                        "jSONValue"
+                    ]
+                },
+                "module": "keys?$limit=30",
+                "checkboxFields": true,
+                "step_variables": {
+                    "key_store_iri": "{{vars.steps.Get_Excluded_IP_List[0]['@id']}}",
+                    "excluded_ioc_list": "{% set ioc_list = vars.steps.Get_Excluded_IP_List[0].jSONValue or [] %}{% set _temp = ioc_list.append(vars.input.records[0].value) %}{{ioc_list}}"
+                }
+            },
+            "status": null,
+            "top": "350",
+            "left": "775",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "02ce9dd2-79c8-41ba-8546-35e777110ae0"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Excluded Ports List",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "key",
+                            "value": "sfsp-excludelist-ports",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ],
+                    "__selectFields": [
+                        "jSONValue"
+                    ]
+                },
+                "module": "keys?$limit=30",
+                "checkboxFields": true,
+                "step_variables": {
+                    "key_store_iri": "{{vars.steps.Get_Excluded_Ports_List[0]['@id']}}",
+                    "excluded_ioc_list": "{% set ioc_list = vars.steps.Get_Excluded_Ports_List[0].jSONValue or [] %}{% set _temp = ioc_list.append(vars.input.records[0].value) %}{{ioc_list}}"
+                }
+            },
+            "status": null,
+            "top": "510",
+            "left": "775",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "fed3b120-7bc0-4f15-9e9d-44f5897575af"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Excluded URL List",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "key",
+                            "value": "sfsp-excludelist-urls",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ],
+                    "__selectFields": [
+                        "jSONValue"
+                    ]
+                },
+                "module": "keys?$limit=30",
+                "checkboxFields": true,
+                "step_variables": {
+                    "key_store_iri": "{{vars.steps.Get_Excluded_URL_List[0]['@id']}}",
+                    "excluded_ioc_list": "{% set ioc_list = vars.steps.Get_Excluded_URL_List[0].jSONValue or [] %}{% set _temp = ioc_list.append(vars.input.records[0].value) %}{{ioc_list}}"
+                }
+            },
+            "status": null,
+            "top": "670",
+            "left": "775",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "6612b6a6-a526-4171-942d-4d8dfa65f9c6"
         },
         {
             "@type": "WorkflowStep",
@@ -83,12 +276,15 @@
                 "resources": [
                     "indicators"
                 ],
+                "__triggerLimit": true,
                 "inputVariables": [],
                 "step_variables": {
                     "input": {
+                        "params": [],
                         "records": "{{vars.input.records}}"
                     }
                 },
+                "triggerOnSource": true,
                 "displayConditions": {
                     "indicators": {
                         "sort": [],
@@ -101,6 +297,7 @@
                                 "value": "\/api\/3\/picklists\/5a5a7d42-be27-4903-858a-19909ebfa1eb",
                                 "_value": {
                                     "@id": "\/api\/3\/picklists\/5a5a7d42-be27-4903-858a-19909ebfa1eb",
+                                    "display": "Domain",
                                     "itemValue": "Domain"
                                 },
                                 "operator": "eq"
@@ -111,6 +308,7 @@
                                 "value": "\/api\/3\/picklists\/c0beeda4-2c7a-4214-b7e5-53ba1649539c",
                                 "_value": {
                                     "@id": "\/api\/3\/picklists\/c0beeda4-2c7a-4214-b7e5-53ba1649539c",
+                                    "display": "IP Address",
                                     "itemValue": "IP Address"
                                 },
                                 "operator": "eq"
@@ -121,7 +319,30 @@
                                 "value": "\/api\/3\/picklists\/353a37b4-3eeb-43ee-aac6-64806422cfec",
                                 "_value": {
                                     "@id": "\/api\/3\/picklists\/353a37b4-3eeb-43ee-aac6-64806422cfec",
+                                    "display": "URL",
                                     "itemValue": "URL"
+                                },
+                                "operator": "eq"
+                            },
+                            {
+                                "type": "object",
+                                "field": "typeofindicator",
+                                "value": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/0162241b-f5bf-4917-a150-00e920be47bd",
+                                    "display": "File",
+                                    "itemValue": "File"
+                                },
+                                "operator": "eq"
+                            },
+                            {
+                                "type": "object",
+                                "field": "typeofindicator",
+                                "value": "\/api\/3\/picklists\/1c4def41-b578-49a3-9063-8aa46f757c08",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/1c4def41-b578-49a3-9063-8aa46f757c08",
+                                    "display": "Port",
+                                    "itemValue": "Port"
                                 },
                                 "operator": "eq"
                             }
@@ -130,187 +351,145 @@
                 },
                 "executeButtonText": "Execute",
                 "noRecordExecution": false,
+                "showToasterMessage": {
+                    "visible": false,
+                    "messageVisible": true
+                },
+                "triggerOnReplicate": false,
                 "singleRecordExecution": true
             },
             "status": null,
-            "top": "30",
-            "left": "475",
+            "top": "350",
+            "left": "125",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+            "group": null,
             "uuid": "25792918-9847-4f57-b3fa-32362153c2f0"
         },
         {
             "@type": "WorkflowStep",
-            "name": "Add Indicator to Exclude List",
+            "name": "Update Excluded IOC List",
             "description": null,
             "arguments": {
                 "resource": {
-                    "indicatorStatus": {
-                        "id": 368,
-                        "@id": "\/api\/3\/picklists\/4218cb58-4de5-4eff-ad08-185d36ef9bab",
-                        "icon": null,
-                        "@type": "Picklist",
-                        "color": null,
-                        "display": "Excluded",
-                        "listName": "\/api\/3\/picklist_names\/e6639d57-94a9-432f-a46f-b2b530402077",
-                        "itemValue": "Excluded",
-                        "orderIndex": 2
-                    }
+                    "jSONValue": "{{vars.excluded_ioc_list | unique}}"
                 },
-                "_showJson": false,
                 "operation": "Append",
-                "collection": "{{vars.input.records[0]['@id']}}",
-                "collectionType": "\/api\/3\/indicators",
+                "collection": "{{vars.key_store_iri}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/keys",
                 "fieldOperation": {
                     "recordTags": "Append"
                 },
                 "step_variables": []
             },
             "status": null,
-            "top": "570",
-            "left": "475",
+            "top": "350",
+            "left": "1100",
             "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
-            "uuid": "93440c02-bafc-46a0-8c1b-3824dd5b366b"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Update Excluded IPs List",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "macro": "Excludelist_IPs",
-                    "value": "{{vars.ips}}"
-                },
-                "version": "3.0.3",
-                "connector": "cyops_utilities",
-                "operation": "updatemacro",
-                "operationTitle": "FSR: Update Global Variables",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "435",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "9f73189f-1ea5-4a7b-8ff7-d603afb5b0a0"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Update Excluded Domains List",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "macro": "Excludelist_Domains",
-                    "value": "{{vars.domains}}"
-                },
-                "version": "3.0.3",
-                "connector": "cyops_utilities",
-                "operation": "updatemacro",
-                "operationTitle": "FSR: Update Global Variables",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "435",
-            "left": "475",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "25f46bb0-40be-4330-ac30-ab967ffbf266"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Add IP to Excluded IP List",
-            "description": null,
-            "arguments": {
-                "ips": "{{globalVars.Excludelist_IPs + ',' + vars.input.records[0].value}}"
-            },
-            "status": null,
-            "top": "300",
-            "left": "125",
-            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
-            "uuid": "111677f9-21d8-4a8e-a98a-4643504faf65"
-        },
-        {
-            "@type": "WorkflowStep",
-            "name": "Update Excluded Urls",
-            "description": null,
-            "arguments": {
-                "params": {
-                    "macro": "Excludelist_URLs",
-                    "value": "{{vars.urls}}"
-                },
-                "version": "3.0.3",
-                "connector": "cyops_utilities",
-                "operation": "updatemacro",
-                "operationTitle": "FSR: Update Global Variables",
-                "step_variables": []
-            },
-            "status": null,
-            "top": "440",
-            "left": "827",
-            "stepType": "\/api\/3\/workflow_step_types\/0109f35d-090b-4a2b-bd8a-94cbc3508562",
-            "uuid": "daee674b-11f7-41a7-8082-cb8c81e73fea"
+            "group": null,
+            "uuid": "8deadff1-c6c9-4650-868e-1417a2b7e7aa"
         }
     ],
     "routes": [
         {
             "@type": "WorkflowRoute",
-            "name": "Update Whitelisted Domains -> Uodate Indicator as Whitelisted",
-            "targetStep": "\/api\/3\/workflow_steps\/93440c02-bafc-46a0-8c1b-3824dd5b366b",
-            "sourceStep": "\/api\/3\/workflow_steps\/25f46bb0-40be-4330-ac30-ab967ffbf266",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "f240b41f-0fa8-40fd-bb94-7edc10a5c8a9"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Add URL to Whitelisted URL List -> Update Whitelisted Urls",
-            "targetStep": "\/api\/3\/workflow_steps\/daee674b-11f7-41a7-8082-cb8c81e73fea",
-            "sourceStep": "\/api\/3\/workflow_steps\/fdd66082-5862-4927-85a0-c5e63470d3db",
-            "label": null,
-            "isExecuted": false,
-            "uuid": "527c1e5c-95fd-4d3f-aaf0-7776a708e11a"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Check Type of Indicator -> Add Domain to Whitelisted Domains List",
-            "targetStep": "\/api\/3\/workflow_steps\/1cf76ab3-ad50-4c3e-9f7e-26ddc10bc603",
-            "sourceStep": "\/api\/3\/workflow_steps\/c21436bf-178c-4bb7-a195-c8982731b083",
-            "label": "Domain",
-            "isExecuted": false,
-            "uuid": "0d3e836b-0ab8-4574-b814-2243e8c88843"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Check Type of Indicator -> Add URL to Whitelisted URL List",
-            "targetStep": "\/api\/3\/workflow_steps\/fdd66082-5862-4927-85a0-c5e63470d3db",
+            "name": "Check Type of Indicator -> Copy 1 of Get Excluded IP List",
+            "targetStep": "\/api\/3\/workflow_steps\/6612b6a6-a526-4171-942d-4d8dfa65f9c6",
             "sourceStep": "\/api\/3\/workflow_steps\/c21436bf-178c-4bb7-a195-c8982731b083",
             "label": "URL",
             "isExecuted": false,
-            "uuid": "d5a24c6a-88da-406d-ba92-e23ac12f73b6"
+            "group": null,
+            "uuid": "dd1f3c4f-f8c5-47d6-8603-0685abfb56ba"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Update Whitelisted Urls -> Uodate Indicator as Whitelisted",
-            "targetStep": "\/api\/3\/workflow_steps\/93440c02-bafc-46a0-8c1b-3824dd5b366b",
-            "sourceStep": "\/api\/3\/workflow_steps\/daee674b-11f7-41a7-8082-cb8c81e73fea",
-            "label": null,
+            "name": "Check Type of Indicator -> Get Excluded Domain List",
+            "targetStep": "\/api\/3\/workflow_steps\/6cdbdf4e-c58e-4e72-b9c8-ebe621e797d3",
+            "sourceStep": "\/api\/3\/workflow_steps\/c21436bf-178c-4bb7-a195-c8982731b083",
+            "label": "Domain",
             "isExecuted": false,
-            "uuid": "374c6c97-5216-4908-add2-20c865287df3"
+            "group": null,
+            "uuid": "c7a991cd-6424-4dcc-b147-b49aeaa3ae1c"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Add IP to Whitelisted IP List -> Update Whitelisted IPs",
-            "targetStep": "\/api\/3\/workflow_steps\/9f73189f-1ea5-4a7b-8ff7-d603afb5b0a0",
-            "sourceStep": "\/api\/3\/workflow_steps\/111677f9-21d8-4a8e-a98a-4643504faf65",
-            "label": null,
+            "name": "Check Type of Indicator -> Get Excluded Files List",
+            "targetStep": "\/api\/3\/workflow_steps\/c0b0151a-4d85-4ec1-b8ec-fd487b589252",
+            "sourceStep": "\/api\/3\/workflow_steps\/c21436bf-178c-4bb7-a195-c8982731b083",
+            "label": "File",
             "isExecuted": false,
-            "uuid": "111f6eb2-b014-4419-a229-0a5ab417ca99"
+            "group": null,
+            "uuid": "9dd89ec2-74da-4b43-aedc-6dae8cc545b0"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Update Whitelisted IPs -> Uodate Indicator as Whitelisted",
-            "targetStep": "\/api\/3\/workflow_steps\/93440c02-bafc-46a0-8c1b-3824dd5b366b",
-            "sourceStep": "\/api\/3\/workflow_steps\/9f73189f-1ea5-4a7b-8ff7-d603afb5b0a0",
+            "name": "Check Type of Indicator -> Get Excluded IP List",
+            "targetStep": "\/api\/3\/workflow_steps\/02ce9dd2-79c8-41ba-8546-35e777110ae0",
+            "sourceStep": "\/api\/3\/workflow_steps\/c21436bf-178c-4bb7-a195-c8982731b083",
+            "label": "IP Address",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "c6fe7915-a515-4acc-a126-8c563417a657"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Check Type of Indicator -> Get Excluded Ports List",
+            "targetStep": "\/api\/3\/workflow_steps\/fed3b120-7bc0-4f15-9e9d-44f5897575af",
+            "sourceStep": "\/api\/3\/workflow_steps\/c21436bf-178c-4bb7-a195-c8982731b083",
+            "label": "Port",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "6c65af69-bef9-4d40-90bc-239f8643243d"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Excluded Domain List -> Update Excluded IOC List",
+            "targetStep": "\/api\/3\/workflow_steps\/8deadff1-c6c9-4650-868e-1417a2b7e7aa",
+            "sourceStep": "\/api\/3\/workflow_steps\/6cdbdf4e-c58e-4e72-b9c8-ebe621e797d3",
             "label": null,
             "isExecuted": false,
-            "uuid": "a7057210-88f5-464d-8688-a61edd56fd3d"
+            "group": null,
+            "uuid": "de982df1-4edc-40df-a587-f27b7effbd64"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Excluded Files List -> Update Excluded IOC List",
+            "targetStep": "\/api\/3\/workflow_steps\/8deadff1-c6c9-4650-868e-1417a2b7e7aa",
+            "sourceStep": "\/api\/3\/workflow_steps\/c0b0151a-4d85-4ec1-b8ec-fd487b589252",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "eb982722-b8da-44b7-9f32-a510fe4d98ba"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Excluded IP List -> Update Excluded IP List",
+            "targetStep": "\/api\/3\/workflow_steps\/8deadff1-c6c9-4650-868e-1417a2b7e7aa",
+            "sourceStep": "\/api\/3\/workflow_steps\/02ce9dd2-79c8-41ba-8546-35e777110ae0",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "d0c79fd9-afd7-43cc-a9a4-8a11e7a2588b"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Excluded Ports List -> Update Excluded IOC List",
+            "targetStep": "\/api\/3\/workflow_steps\/8deadff1-c6c9-4650-868e-1417a2b7e7aa",
+            "sourceStep": "\/api\/3\/workflow_steps\/fed3b120-7bc0-4f15-9e9d-44f5897575af",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "6f49e186-52b7-414c-bab8-32aefacec07a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Excluded URL List -> Update Excluded IOC List",
+            "targetStep": "\/api\/3\/workflow_steps\/8deadff1-c6c9-4650-868e-1417a2b7e7aa",
+            "sourceStep": "\/api\/3\/workflow_steps\/6612b6a6-a526-4171-942d-4d8dfa65f9c6",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "4c792884-4ede-4568-865e-5b514a11d3fe"
         },
         {
             "@type": "WorkflowRoute",
@@ -319,27 +498,21 @@
             "sourceStep": "\/api\/3\/workflow_steps\/25792918-9847-4f57-b3fa-32362153c2f0",
             "label": null,
             "isExecuted": false,
+            "group": null,
             "uuid": "478faa80-6fd0-468a-a150-197bfcd8c28f"
         },
         {
             "@type": "WorkflowRoute",
-            "name": "Add Domain to Whitelisted Domains List -> Update Whitelisted Domains",
-            "targetStep": "\/api\/3\/workflow_steps\/25f46bb0-40be-4330-ac30-ab967ffbf266",
-            "sourceStep": "\/api\/3\/workflow_steps\/1cf76ab3-ad50-4c3e-9f7e-26ddc10bc603",
+            "name": "Update Excluded IP List -> Add Indicator to Exclude List",
+            "targetStep": "\/api\/3\/workflow_steps\/93440c02-bafc-46a0-8c1b-3824dd5b366b",
+            "sourceStep": "\/api\/3\/workflow_steps\/8deadff1-c6c9-4650-868e-1417a2b7e7aa",
             "label": null,
             "isExecuted": false,
-            "uuid": "27d73267-2e0a-4cff-a246-c1c9070c891a"
-        },
-        {
-            "@type": "WorkflowRoute",
-            "name": "Check Type of Indicator -> Add IP to Whitelisted IP List",
-            "targetStep": "\/api\/3\/workflow_steps\/111677f9-21d8-4a8e-a98a-4643504faf65",
-            "sourceStep": "\/api\/3\/workflow_steps\/c21436bf-178c-4bb7-a195-c8982731b083",
-            "label": "IP",
-            "isExecuted": false,
-            "uuid": "c5879b37-9311-48e4-95df-9819db29bc10"
+            "group": null,
+            "uuid": "9d479eb9-4fb5-468c-9c04-b401e55920cf"
         }
     ],
+    "groups": [],
     "priority": null,
     "uuid": "d3c2ddfd-a046-4737-bca7-90749483cc89",
     "owners": [],

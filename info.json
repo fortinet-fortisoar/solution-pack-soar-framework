@@ -1,20 +1,27 @@
 {
     "name": "sOARFramework",
-    "version": "2.3.0",
+    "version": "3.0.0",
     "type": "solutionpack",
     "local": true,
     "label": "SOAR Framework",
-    "dependencies": [],
+    "dependencies": [
+        {
+            "name": "platformUtilities",
+            "type": "solutionpack",
+            "label": "Platform Utilities",
+            "minVersion": null
+        }
+    ],
     "prerequisite": null,
     "publisher": "Fortinet",
     "certified": "true",
     "description": "The SOAR Framework Solution Pack helps users experience the power of FortiSOAR incident response.",
-    "help": "https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/2.3.0/README.md",
+    "help": "https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/3.0.0/README.md",
     "category": [],
     "supportInfo": "Fortinet Customer Support",
     "iconLarge": null,
-    "fsrMinCompatibility": "7.4.1",
-    "date": "2022-03-03T09:19:39+00:00",
+    "fsrMinCompatibility": "7.6.0",
+    "date": "2024-06-04T15:15:46+00:00",
     "contents": {
         "picklistNames": [
             {
@@ -123,9 +130,6 @@
                 "name": "Severity"
             },
             {
-                "name": "SIEMs"
-            },
-            {
                 "name": "SLAState"
             },
             {
@@ -169,10 +173,6 @@
                 "name": "Events",
                 "apiName": "events"
             },
-            "hunt": {
-                "name": "Hunts",
-                "apiName": "hunt"
-            },
             "incidents": {
                 "name": "Incidents",
                 "apiName": "incidents"
@@ -180,14 +180,6 @@
             "indicators": {
                 "name": "Indicators",
                 "apiName": "indicators"
-            },
-            "keys": {
-                "name": "Key Store",
-                "apiName": "keys"
-            },
-            "sla_template": {
-                "name": "SLA Templates",
-                "apiName": "sla_template"
             },
             "warrooms": {
                 "name": "War Rooms",
@@ -251,15 +243,6 @@
                     "form"
                 ]
             },
-            "hunt": {
-                "name": "Hunts",
-                "apiName": "hunt",
-                "views": [
-                    "list",
-                    "detail",
-                    "form"
-                ]
-            },
             "incidents": {
                 "name": "Incidents",
                 "apiName": "incidents",
@@ -278,24 +261,6 @@
                     "detail",
                     "form",
                     "settings"
-                ]
-            },
-            "keys": {
-                "name": "Key Store",
-                "apiName": "keys",
-                "views": [
-                    "list",
-                    "detail",
-                    "form"
-                ]
-            },
-            "sla_template": {
-                "name": "SLA Templates",
-                "apiName": "sla_template",
-                "views": [
-                    "list",
-                    "detail",
-                    "form"
                 ]
             },
             "warrooms": {
@@ -403,32 +368,8 @@
             {
                 "id": 9,
                 "name": "Indicator_Type_Map",
-                "value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"otherRecipients\": \"Email Address\",\"iPAddresses\": \"IP Address\",\"fileHashes\": \"FileHash-MD5\"}",
-                "default_value": "{ \"attachmentNames\":\"File\",\"commandLine\": \"Process\",\"computerName\":\"Host\",\"decodedCommandLine\":\"Process\",\"destinationIp\": \"IP Address\",\"destinationPort\":\"Port\",\"domain\":\"Domain\",\"dllLoaded\": \"Process\",\"emailFrom\":\"Email Address\",\"emailCc\":\"Email Address\",\"emailTo\":\"Email Address\",\"fileHash\": \"FileHash-MD5\",\"parentProcessCmdLine\": \"Process\",\"parentProcessName\": \"Process\",\"recipientEmailAddress\":\"Email Address\",\"registryKey\": \"Registry\",\"registryKeyValue\": \"Registry\",\"reporter\":\"Email Address\",\"returnPath\":\"Email Address\",\"senderDomain\":\"Domain\",\"senderEmailAddress\": \"Email Address\",\"services\": \"Process\",\"sourceIp\": \"IP Address\",\"sourcePort\":\"Port\",\"sourceProcess\": \"Process\",\"targetAsset\":\"Host\",\"targetProcess\": \"Process\",\"url\": \"URL\",\"userName\": \"User\",\"userDetails\": \"User\",\"urlFull\": \"URL\",\"otherRecipients\": \"Email Address\",\"iPAddresses\": \"IP Address\",\"fileHashes\": \"FileHash-MD5\"}"
-            },
-            {
-                "id": 10,
-                "name": "Reset_SLA",
-                "value": "true",
-                "default_value": "true"
-            },
-            {
-                "id": 11,
-                "name": "Excludelist_IPs",
-                "value": "8.8.8.8,10.1.1.2",
-                "default_value": "8.8.8.8,10.1.1.2"
-            },
-            {
-                "id": 12,
-                "name": "Excludelist_URLs",
-                "value": "https:\/\/www.google.com,https:\/\/mail.yahoo.com\/login.html,https:\/\/www.office.com\/",
-                "default_value": "https:\/\/www.google.com,https:\/\/mail.yahoo.com\/login.html,https:\/\/www.office.com\/"
-            },
-            {
-                "id": 13,
-                "name": "Excludelist_Domains",
-                "value": "google.com,yahoo.com,fortinet.net,gmail.com,outlook.com,microsoft.com,fortinet.com,twitter.com,facebook.com,linkedin.com,instagram.com,fortiguard.com,forticloud.com,w3.org",
-                "default_value": "google.com,yahoo.com,fortinet.net,gmail.com,outlook.com,microsoft.com,fortinet.com,twitter.com,facebook.com,linkedin.com,instagram.com,fortiguard.com,forticloud.com,w3.org"
+                "value": "{\n    \"attachmentNames\": \"File\", \n    \"commandLine\": \"Process\", \n    \"computerName\": \"Host\",\n    \"decodedCommandLine\": \"Process\",\n    \"destinationIp\": \"IP Address\", \n    \"destinationPort\": \"Port\",\n    \"domain\": \"Domain\",\n    \"dllLoaded\": \"Process\",\n    \"emailFrom\": \"Email Address\",\n    \"emailCc\": \"Email Address\",\n    \"emailTo\": \"Email Address\",\n    \"fileHash\": \"FileHash-MD5\",\n    \"parentProcessCmdLine\": \"Process\",\n    \"parentProcessName\": \"Process\",\n    \"recipientEmailAddress\": \"Email Address\",\n    \"registryKey\": \"Registry\",\n    \"registryKeyValue\": \"Registry\",\n    \"reporter\": \"Email Address\",\n    \"returnPath\": \"Email Address\",\n    \"senderDomain\": \"Domain\", \n    \"senderEmailAddress\": \"Email Address\", \n    \"services\": \"Process\", \n    \"sourceIp\": \"IP Address\",\n    \"sourcePort\": \"Port\",\n    \"sourceProcess\": \"Process\",\n    \"targetAsset\": \"Host\", \n    \"targetProcess\": \"Process\",\n    \"url\": \"URL\",\n    \"userName\": \"User\",\n    \"userDetails\": \"User\",\n    \"urlFull\": \"URL\",\n    \"otherRecipients\": \"Email Address\",\n    \"iPAddresses\": \"IP Address\",\n    \"fileHashes\": \"FileHash-MD5\",\n    \"dLLName\": \"Process\", \n    \"filehash\": \"FileHash-MD5\", \n    \"processName\": \"Process\", \n    \"destinationIP\": \"IP Address\", \n    \"sourceIP\": \"IP Address\", \n    \"receipientEmailAddress\": \"Email Address\" \n}",
+                "default_value": "{\n    \"attachmentNames\": \"File\", \n    \"commandLine\": \"Process\", \n    \"computerName\": \"Host\",\n    \"decodedCommandLine\": \"Process\",\n    \"destinationIp\": \"IP Address\", \n    \"destinationPort\": \"Port\",\n    \"domain\": \"Domain\",\n    \"dllLoaded\": \"Process\",\n    \"emailFrom\": \"Email Address\",\n    \"emailCc\": \"Email Address\",\n    \"emailTo\": \"Email Address\",\n    \"fileHash\": \"FileHash-MD5\",\n    \"parentProcessCmdLine\": \"Process\",\n    \"parentProcessName\": \"Process\",\n    \"recipientEmailAddress\": \"Email Address\",\n    \"registryKey\": \"Registry\",\n    \"registryKeyValue\": \"Registry\",\n    \"reporter\": \"Email Address\",\n    \"returnPath\": \"Email Address\",\n    \"senderDomain\": \"Domain\", \n    \"senderEmailAddress\": \"Email Address\", \n    \"services\": \"Process\", \n    \"sourceIp\": \"IP Address\",\n    \"sourcePort\": \"Port\",\n    \"sourceProcess\": \"Process\",\n    \"targetAsset\": \"Host\", \n    \"targetProcess\": \"Process\",\n    \"url\": \"URL\",\n    \"userName\": \"User\",\n    \"userDetails\": \"User\",\n    \"urlFull\": \"URL\",\n    \"otherRecipients\": \"Email Address\",\n    \"iPAddresses\": \"IP Address\",\n    \"fileHashes\": \"FileHash-MD5\",\n    \"dLLName\": \"Process\", \n    \"filehash\": \"FileHash-MD5\", \n    \"processName\": \"Process\", \n    \"destinationIP\": \"IP Address\", \n    \"sourceIP\": \"IP Address\", \n    \"receipientEmailAddress\": \"Email Address\" \n}"
             },
             {
                 "id": 15,
@@ -483,18 +424,6 @@
                 "name": "User_Enrichment_Playbooks_IRIs",
                 "value": "NoEnrichmentAvailable",
                 "default_value": "NoEnrichmentAvailable"
-            },
-            {
-                "id": 36,
-                "name": "Excludelist_Files",
-                "value": "",
-                "default_value": ""
-            },
-            {
-                "id": 37,
-                "name": "Excludelist_Ports",
-                "value": "",
-                "default_value": ""
             }
         ],
         "playbookBlocks": [
@@ -594,7 +523,8 @@
             "Alert - Notify Updates",
             "Alert - Notify Creation",
             "Incident - Notify Creation",
-            "Notify On Pending Internal Manual Input"
+            "Notify On Pending Internal Manual Input",
+            "Notify Failed Playbook Executions"
         ],
         "reports": [
             {
@@ -656,10 +586,6 @@
                 "apiName": "carbonblack-response"
             },
             {
-                "name": "Code Snippet",
-                "apiName": "code-snippet"
-            },
-            {
                 "name": "Exchange",
                 "apiName": "exchange"
             },
@@ -716,10 +642,6 @@
                 "apiName": "nmap-scanner"
             },
             {
-                "name": "SLA Calculator",
-                "apiName": "slacalculator"
-            },
-            {
                 "name": "URLScan.io",
                 "apiName": "urlscan-io"
             },
@@ -772,6 +694,18 @@
             {
                 "apiName": "fieldsOfInterest",
                 "name": "Fields Of Interest"
+            },
+            {
+                "apiName": "picklistAsPhases",
+                "name": "Picklist as Phases"
+            },
+            {
+                "apiName": "configureIndicatorExtraction",
+                "name": "Indicator Extraction Configuration"
+            },
+            {
+                "apiName": "setupGuide",
+                "name": "Setup Guide"
             }
         ],
         "recordSets": [
@@ -781,10 +715,13 @@
                 "count": 1
             },
             {
-                "name": "SLA Templates",
-                "apiName": "sla_template",
-                "count": 5
+                "name": "Key Store",
+                "apiName": "keys",
+                "count": 6
             }
+        ],
+        "preprocessingRules": [
+            "Enforcing File Attachments for File Indicators"
         ]
     }
 }

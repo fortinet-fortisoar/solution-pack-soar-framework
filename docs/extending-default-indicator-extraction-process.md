@@ -11,78 +11,91 @@ FortiSOAR has automated the indicator extraction process through sets of playboo
 
 E.g., the default playbook may not collect a field of interest, say “targeted employee email address”. This field of interest must be a part of the alert that we intend to target. To add a field to the alert, refer to the section [Extending Default Alert Schema](./extending-default-alert-schema.md).
 
-## Extending Default Alert Schema
+## Extending Default Alert and Incident Schema
 
 You can extend the indicator extraction by modifying `Indicator_Type_Map` global variable.
 
-Navigate to **Automation** > **Playbooks** > **03 - Enrich** > **Extract Indicator Playbook**.
+To access the `Indicator_Type_Map` global variable:
 
-> Refer to the playbooks section in this document to check the [playbook collection](./contents.md#playbook-collection) included with this Solution Pack.
+1. Navigate to **Automation** > **Playbooks** > **03 - Enrich** > **Extract Indicator Playbook**.
 
-Navigate to **Automation** > **Playbooks** and click any playbook collection. A list of included playbooks appears on the left. Click any playbook and go to **Tools** > **Global Variables**.
+    > Refer to the playbooks section in this document to check the [playbook collection](./contents.md#playbook-collection) included with this Solution Pack.
 
-![](./res/global-variables.png)
+2. Navigate to **Automation** > **Playbooks**.
 
-From the Global variables on the left, click the edit button on `Indicator_Type_Map` to edit it.
+3. Select a playbook collection. A list of included playbooks appears on the right.
 
-![](./res/indicator-type-map.png)
+4. Select a playbook and go to **Tools** > **Global Variables**.
 
-Following is the default JSON contained in **Field Value** of the `Indicator_Type_Map` global variable. The key-value pairs are in the format `<FieldAPIKey>:<FieldType>`
+5. Select the edit button ![](./res/icon-page-edit.svg) on `Indicator_Type_Map` to edit it.
 
-```JSON
-{
-    "attachmentNames": "File",
-    "commandLine": "Process",
-    "computerName": "Host",
-    "decodedCommandLine": "Process",
-    "destinationIp": "IP Address",
-    "destinationPort": "Port",
-    "domain": "Domain",
-    "dllLoaded": "Process",
-    "emailFrom": "Email Address",
-    "emailCc": "Email Address",
-    "emailTo": "Email Address",
-    "fileHash": "FileHash-MD5",
-    "parentProcessCmdLine": "Process",
-    "parentProcessName": "Process",
-    "recipientEmailAddress": "Email Address",
-    "registryKey": "Registry",
-    "registryKeyValue": "Registry",
-    "reporter": "Email Address",
-    "returnPath": "Email Address",
-    "senderDomain": "Domain",
-    "senderEmailAddress": "Email Address",
-    "services": "Process",
-    "sourceIp": "IP Address",
-    "sourcePort": "Port",
-    "sourceProcess": "Process",
-    "targetAsset": "Host",
-    "targetProcess": "Process",
-    "url": "URL",
-    "userName": "User",
-    "userDetails": "User",
-    "urlFull": "URL",
-    "otherRecipients": "Email Address"
-}
-```
+    ![](./res/indicator-type-map.png)
 
-When you [add a new field to the alert schema](./extending-default-alert-schema.md), you specify a **Field Type** and – based on your field name – get a **Field API Key** name. 
+    Following is the default JSON contained in **Field Value** of the `Indicator_Type_Map` global variable. The key-value pairs are in the format `<FieldAPIKey>:<FieldType>`
+
+    ```JSON
+    {
+        "attachmentNames": "File", 
+        "commandLine": "Process", 
+        "computerName": "Host",
+        "decodedCommandLine": "Process",
+        "destinationIp": "IP Address", 
+        "destinationPort": "Port",
+        "domain": "Domain",
+        "dllLoaded": "Process",
+        "emailFrom": "Email Address",
+        "emailCc": "Email Address",
+        "emailTo": "Email Address",
+        "fileHash": "FileHash-MD5",
+        "parentProcessCmdLine": "Process",
+        "parentProcessName": "Process",
+        "recipientEmailAddress": "Email Address",
+        "registryKey": "Registry",
+        "registryKeyValue": "Registry",
+        "reporter": "Email Address",
+        "returnPath": "Email Address",
+        "senderDomain": "Domain", 
+        "senderEmailAddress": "Email Address", 
+        "services": "Process", 
+        "sourceIp": "IP Address",
+        "sourcePort": "Port",
+        "sourceProcess": "Process",
+        "targetAsset": "Host", 
+        "targetProcess": "Process",
+        "url": "URL",
+        "userName": "User",
+        "userDetails": "User",
+        "urlFull": "URL",
+        "otherRecipients": "Email Address",
+        "iPAddresses": "IP Address",
+        "fileHashes": "FileHash-MD5",
+        "dLLName": "Process", 
+        "filehash": "FileHash-MD5", 
+        "processName": "Process", 
+        "destinationIP": "IP Address", 
+        "sourceIP": "IP Address", 
+        "receipientEmailAddress": "Email Address"
+    }
+    ```
+
+    When you add a new field to the [alert schema](./extending-default-alert-schema.md) or an [incident schema](./extending-default-incident-schema.md), you specify a **Field Type** and – based on your field name – get a **Field API Key** name. 
 
 As an example, let us add a field **Targeted Employee Email Address**, with a field API key `targetedEmployeeEmailAddress` and the **Field Type** as `Email Field`.
 
-Enter the Field API Key and the Field Type in JSON’s key-value pair format in the box labeled **Field Value**. Click **Submit** to save the changes and **Save Playbook** to publish them.
+1. Enter the Field API Key and the Field Type in JSON’s key-value pair format in the box labeled **Field Value**.
+2. Click **Submit** to save the changes and **Save Playbook** to publish them.
 
-> The key value pair for the JSON is `"targetedEmployeeEmailAddress": "Email Address"`.
+    > The key value pair for the JSON is `"targetedEmployeeEmailAddress": "Email Address"`.
 
 After adding the above key-value pair, the JSON you need to enter in the **Field Value** of `Indicator_Type_Map` is:
 
 ```JSON
 {
-    "attachmentNames": "File",
-    "commandLine": "Process",
+    "attachmentNames": "File", 
+    "commandLine": "Process", 
     "computerName": "Host",
     "decodedCommandLine": "Process",
-    "destinationIp": "IP Address",
+    "destinationIp": "IP Address", 
     "destinationPort": "Port",
     "domain": "Domain",
     "dllLoaded": "Process",
@@ -97,19 +110,27 @@ After adding the above key-value pair, the JSON you need to enter in the **Field
     "registryKeyValue": "Registry",
     "reporter": "Email Address",
     "returnPath": "Email Address",
-    "senderDomain": "Domain",
-    "senderEmailAddress": "Email Address",
-    "services": "Process",
+    "senderDomain": "Domain", 
+    "senderEmailAddress": "Email Address", 
+    "services": "Process", 
     "sourceIp": "IP Address",
     "sourcePort": "Port",
     "sourceProcess": "Process",
-    "targetAsset": "Host",
+    "targetAsset": "Host", 
     "targetProcess": "Process",
     "url": "URL",
     "userName": "User",
     "userDetails": "User",
     "urlFull": "URL",
     "otherRecipients": "Email Address",
+    "iPAddresses": "IP Address",
+    "fileHashes": "FileHash-MD5",
+    "dLLName": "Process", 
+    "filehash": "FileHash-MD5", 
+    "processName": "Process", 
+    "destinationIP": "IP Address", 
+    "sourceIP": "IP Address", 
+    "receipientEmailAddress": "Email Address",
     "targetedEmployeeEmailAddress": "Email Address"
 }
 ```
@@ -118,38 +139,30 @@ Now your playbook captures indicators corresponding to the **Targeted Employee E
 
 ## Excluding Extracted Indicators from Enrichment
 
-You can exclude certain extracted indicators from enrichment by adding them to an exclude list. This is done by adding the indicators being allowed to a global variable. Following are the global variables for each indicator type being allowed:
+You can exclude certain extracted indicators from enrichment by adding them to an exclude list. This is done by adding the indicators to the key store records within the **Key Store** module.
 
-1. `Excludelist_IPs`: Specify comma-separated **IP addresses** to exclude
+<table>
+    <th>NOTE</th>
+    <td>The <strong>Key Store</strong> module installs with the <a href="https://fortisoar.contenthub.fortinet.com//list.html?contentType=all&searchContent=platform%20utilities">Platform Utilities</a> solution pack.</td>
+</table>
 
-2. `Excludelist_URLs`: Specify comma-separated **URLs** to exclude
+Following keystore records are available for each indicator type:
 
-3. `Excludelist_Domains`: Specify comma-separated **Domains** to exclude
-
-4. `Excludelist_Files`: Specify comma-separated **File Names** or **File Extensions** to exclude
-
-5. `Excludelist_Ports`: Specify comma-separated **Ports** to exclude
+1. `sfsp-excludelist-cidr-ranges`: Specify a **CIDR Range** and press *Enter* or *Tab* on the keyboard to exclude.
+2. `sfsp-excludelist-ips`: Specify an **IP Address** and press *Enter* or *Tab* on the keyboard to exclude.
+3. `sfsp-excludelist-urls`: Specify a **URL** and press *Enter* or *Tab* on the keyboard to exclude.
+4. `sfsp-excludelist-domains`: Specify a **Domain** and press *Enter* or *Tab* on the keyboard to exclude.
+5. `sfsp-excludelist-files`: Specify a **File Name** and press *Enter* or *Tab* on the keyboard to exclude. `*` as a wildcard is supported. For example, `*.pdf` excludes all PDFs from being extracted as indicators
+6. `sfsp-excludelist-ports`: Specify a **Port** and press *Enter* or *Tab* on the keyboard to exclude.
 
 <table>
     <tr>
         <th>NOTE</th>
-        <td>For managing and modifying global variables, refer to the section <a href="https://docs.fortinet.com/document/fortisoar/7.2.0/playbooks-guide/488685/dynamic-values#Global_Variables" target="_blank"><strong>Global Variables</strong></a> of the <strong>Playbooks Guide</strong> in <strong>FortiSOAR documentation</strong>.</td>
+        <td>For managing and modifying key store records, refer to the <a href="https://github.com/fortinet-fortisoar/widget-indicator-extraction-configuration/blob/release/1.0.0/docs/usage.md#edit-configuration-settings">Indicator Extraction Configuration</a> widget settings.</td>
     </tr>
 </table>
 
-1. Click **Global Variables** from the **Tools** menu.
-
-    ![](./res/global-variables.png)
-
-2. Click the edit button ![](./res/icon-edit-page.svg) to edit a relevant exclude list. You can type **`exclude`** in the search bar (highlighted) to narrow-down the list of global variables.
-
-    ![](./res/excludelist_indicators.png)
-
-3. Enter comma-separated indicators to add in the **Field Value** of the selected global variable. Following image shows the `Excludelist_IPs` global variable and its contents.
-
-    ![](./res/excludelist_indicators_values.png)
-
-Following are the exclude list values out-of-the-box with the SOAR Framework solution pack:
+Following are the exclude list values out-of-the-box with the **Key Store** module:
 
 <table>
     <thead>
@@ -160,26 +173,30 @@ Following are the exclude list values out-of-the-box with the SOAR Framework sol
     </thead>
     <tbody>
         <tr>
-            <td><code>Excludelist_IPs</code></td>
+            <td><code>sfsp-excludelist-ips</code></td>
             <td><code>8.8.8.8, 10.1.1.2</code></td>
         </tr>
         <tr>
-            <td><code>Excludelist_URLs</code></td>
+            <td><code>sfsp-excludelist-urls</code></td>
             <td><code>https://www.google.com, https://mail.yahoo.com/login.html, https://www.office.com/</code></td>
         </tr>
         <tr>
-            <td><code>Excludelist_Domains</code></td>
+            <td><code>sfsp-excludelist-domains</code></td>
             <td><code>google.com, yahoo.com, fortinet.net, gmail.com, outlook.com, microsoft.com,</code><br/>
             <code>fortinet.com, twitter.com, facebook.com, linkedin.com, instagram.com, fortiguard.com,</code><br/>
             <code>forticloud.com, w3.org</code></td>
         </tr>
         <tr>
-            <td><code>Excludelist_Files</code><img src="./res/icon-new.svg" alt=""></td>
+            <td><code>sfsp-excludelist-files</code></td>
             <td>blank</td>
         </tr>
         <tr>
-            <td><code>Excludelist_Ports</code><img src="./res/icon-new.svg" alt=""></td>
+            <td><code>sfsp-excludelist-ports</code></td>
             <td>blank</td>
+        </tr>
+                <tr>
+            <td><code>sfsp-excludelist-cidr-ranges</code></td>
+            <td><code>10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16</code></td>
         </tr>
     </tbody>
 </table>
@@ -225,15 +242,17 @@ Here are 2 possible ways to work around this situation:
 
     Remove the following:
 
-    ```
+    ```jinja
     "{{vars.input.params.attachmentMetadata.metadata.filename.split("/")[-1] | regex_replace("[^A-Za-z0-9. /\-]", "") if "/tmp/" in vars.input.params.attachmentMetadata.metadata.filename else vars.input.params.attachmentMetadata.metadata.filename |regex_replace("[^A-Za-z0-9. /\-]", "")}}"
     ```
 
     Replace with the following:
 
-    ```
+    ```jinja
     "{{vars.input.params.attachmentMetadata.metadata.filename.split("/")[-1] | regex_replace("[^A-Za-z0-9. /\-_]", "") if "/tmp/" in vars.input.params.attachmentMetadata.metadata.filename else vars.input.params.attachmentMetadata.metadata.filename |regex_replace("[^A-Za-z0-9. /\-_]", "")}}"
     ```
+
+# Next Steps
 
 | [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
 |-----------------------------------------|-------------------------------------------|---------------------|---------------------------|

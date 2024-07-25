@@ -63,5 +63,7 @@ This enrichment process is triggered when an indicator is created. On creation, 
 | VirusTotal                                             |
 | Whois RDAP                                             |
 
+# Next Steps
+
 | [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
 |-----------------------------------------|-------------------------------------------|---------------------|---------------------------|

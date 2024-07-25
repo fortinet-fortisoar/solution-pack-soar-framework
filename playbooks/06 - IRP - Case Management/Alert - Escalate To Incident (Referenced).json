@@ -1,0 +1,568 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Alert - Escalate To Incident (Referenced)",
+    "aliasName": null,
+    "tag": null,
+    "description": "Creates a new incident with the given inputs and links the alert(s) to the newly created Incident.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [
+        "records"
+    ],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/3c3b049e-5ecb-464a-83f6-5af6a230c0ed",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/be92bba3-3b01-43c0-ae2d-933deb03b7da",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Escalate to Incident",
+            "description": null,
+            "arguments": {
+                "arguments": {
+                    "records": "{{vars.input.records}}",
+                    "severity": "{{vars.steps.Get_Escalate_Incident_Input.input.severity}}",
+                    "closeAlerts": "{{vars.steps.Get_Escalate_Incident_Input.input.closeAlerts}}",
+                    "closureNotes": "{{vars.steps.Get_Escalate_Incident_Input.input.closureNotes}}",
+                    "incidentLead": "{{vars.steps.Get_Escalate_Incident_Input.input.incidentLead}}",
+                    "incidentName": "{{vars.steps.Get_Escalate_Incident_Input.input.incidentName}}",
+                    "incidentType": "{{vars.steps.Get_Escalate_Incident_Input.input.incidentType}}",
+                    "closureReason": "{{vars.steps.Get_Escalate_Incident_Input.input.closureReason}}",
+                    "escalationReason": "{{vars.steps.Get_Escalate_Incident_Input.input.escalationReason}}"
+                },
+                "apply_async": false,
+                "step_variables": [],
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/6e4c8e24-8786-4eaf-9b7f-723d44a2cc6e"
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "36740dbc-6631-497f-97eb-9cab4c46a69c"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Escalate Incident Input",
+            "description": null,
+            "arguments": {
+                "type": "InputBased",
+                "input": {
+                    "schema": {
+                        "title": "Escalate",
+                        "description": "Provide inputs required to escalate an incident",
+                        "inputVariables": [
+                            {
+                                "name": "incidentName",
+                                "type": "string",
+                                "label": "Incident Name",
+                                "tooltip": "",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": false,
+                                "defaultValue": null,
+                                "_previousName": "",
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "severity",
+                                "type": "picklists",
+                                "label": "Severity",
+                                "title": "Picklist",
+                                "usable": true,
+                                "tooltip": "",
+                                "dataType": "picklist",
+                                "formType": "picklist",
+                                "required": true,
+                                "_expanded": false,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "dataSource": {
+                                    "model": "picklists",
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "field": "orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ],
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "listName__name",
+                                                "value": "Severity",
+                                                "operator": "eq"
+                                            }
+                                        ]
+                                    },
+                                    "displayConditions": {
+                                        "0d609b08-45e0-469f-8910-41145c0b7c03": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "40187287-89fc-4e9c-b717-e9443d57eedb": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "58d0753f-f7e4-403b-953c-b0f521eab759": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "7efa2220-39bb-44e4-961f-ac368776e3b0": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "b3c20a3a-ecfd-4adc-a225-0205968e6793": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        }
+                                    }
+                                },
+                                "searchable": false,
+                                "templateUrl": "app\/components\/form\/fields\/typeahead.html",
+                                "defaultValue": null,
+                                "_previousName": "sever",
+                                "playbookField": true,
+                                "displayTemplate": "%7B%7B%20itemValue%20%7D%7D",
+                                "lengthConstraint": false,
+                                "allowedEncryption": false,
+                                "allowedGridColumn": true,
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "incidentLead",
+                                "type": "people",
+                                "label": "Incident Lead",
+                                "title": "Lookup (One to Many or One to One)",
+                                "usable": true,
+                                "tooltip": "",
+                                "dataType": "lookup",
+                                "formType": "lookup",
+                                "required": true,
+                                "_expanded": false,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "dataSource": {
+                                    "model": "people"
+                                },
+                                "searchable": false,
+                                "templateUrl": "app\/components\/form\/fields\/typeahead.html",
+                                "defaultValue": null,
+                                "_previousName": "incidentLead",
+                                "playbookField": true,
+                                "displayTemplate": "%7B%7B%20firstname%20%7D%7D%20%7B%7B%20lastname%20%7D%7D",
+                                "lengthConstraint": false,
+                                "allowedEncryption": false,
+                                "allowedGridColumn": true,
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "escalationReason",
+                                "type": "string",
+                                "label": "Escalation Reason",
+                                "tooltip": "",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": false,
+                                "defaultValue": "Alert needs to be investigated.",
+                                "_previousName": "",
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "incidentType",
+                                "type": "picklists",
+                                "label": "Incident Type",
+                                "title": "Picklist",
+                                "usable": true,
+                                "tooltip": "",
+                                "dataType": "picklist",
+                                "formType": "picklist",
+                                "required": true,
+                                "_expanded": false,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "dataSource": {
+                                    "model": "picklists",
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "field": "orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ],
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "listName__name",
+                                                "value": "IncidentType",
+                                                "operator": "eq"
+                                            }
+                                        ]
+                                    },
+                                    "displayConditions": {
+                                        "4e8c71d0-8fba-4313-8b01-ab336cc1af2a": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "590f216a-a582-47b8-9d94-17a066ed234c": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "70321398-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "70321690-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "703217da-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "703218fc-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "70321a1e-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "70321e9c-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "70321ffa-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "703222e8-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "70322432-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "7032255e-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "836d97af-6022-42b4-8b0a-1c3cab73a7ea": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "8fea3472-6bd7-4bbf-a080-ca4e778617f8": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "9c50d999-f17f-40ac-8830-b3417893db70": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "bb741514-f699-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "bb7417b2-f699-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "f79c4b3c-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "f79c5316-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "f79c54d8-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "f79c5618-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "f79c5744-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "f79c585c-f69a-11e7-8c3f-9a214cf093ae": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        }
+                                    }
+                                },
+                                "searchable": false,
+                                "templateUrl": "app\/components\/form\/fields\/typeahead.html",
+                                "defaultValue": null,
+                                "_previousName": "",
+                                "playbookField": true,
+                                "displayTemplate": "%7B%7B%20itemValue%20%7D%7D",
+                                "lengthConstraint": false,
+                                "allowedEncryption": false,
+                                "allowedGridColumn": true,
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "closeAlerts",
+                                "type": "boolean",
+                                "label": "Close Alerts",
+                                "title": "Checkbox",
+                                "usable": true,
+                                "tooltip": "",
+                                "dataType": "checkbox",
+                                "formType": "checkbox",
+                                "required": false,
+                                "_expanded": false,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "searchable": true,
+                                "templateUrl": "app\/components\/form\/fields\/checkbox.html",
+                                "defaultValue": null,
+                                "_previousName": "closeAlert",
+                                "playbookField": true,
+                                "lengthConstraint": false,
+                                "allowedEncryption": false,
+                                "allowedGridColumn": true,
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false
+                            },
+                            {
+                                "name": "closureReason",
+                                "type": "picklists",
+                                "label": "Closure Reason",
+                                "title": "Picklist",
+                                "usable": true,
+                                "tooltip": "",
+                                "dataType": "picklist",
+                                "formType": "picklist",
+                                "required": true,
+                                "_expanded": false,
+                                "mmdUpdate": true,
+                                "collection": false,
+                                "dataSource": {
+                                    "model": "picklists",
+                                    "query": {
+                                        "sort": [
+                                            {
+                                                "field": "orderIndex",
+                                                "direction": "ASC"
+                                            }
+                                        ],
+                                        "logic": "AND",
+                                        "filters": [
+                                            {
+                                                "field": "listName__name",
+                                                "value": "Closure Reason",
+                                                "operator": "eq"
+                                            }
+                                        ]
+                                    },
+                                    "displayConditions": {
+                                        "2ab3e8e9-8cd9-4641-8400-a18a4e8a2da8": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "2b0112f6-4746-4dab-ada6-a8cd1e675572": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "672aef13-a684-422e-be6c-15e10ec49915": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "8590c81e-3307-4645-97f5-c3e1bec4e05a": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "8f8ce378-df65-4231-85e3-0b8f25a04379": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        },
+                                        "cc2d6b59-62de-4cb6-93a2-bcce4250009d": {
+                                            "conditions": null,
+                                            "visibility": "visible"
+                                        }
+                                    }
+                                },
+                                "searchable": false,
+                                "templateUrl": "app\/components\/form\/fields\/typeahead.html",
+                                "defaultValue": {
+                                    "id": 456,
+                                    "@id": "\/api\/3\/picklists\/cc2d6b59-62de-4cb6-93a2-bcce4250009d",
+                                    "icon": null,
+                                    "uuid": "cc2d6b59-62de-4cb6-93a2-bcce4250009d",
+                                    "@type": "Picklist",
+                                    "color": null,
+                                    "display": "Escalated to Incident",
+                                    "listName": "\/api\/3\/picklist_names\/4ebacea1-88cd-4ea8-9dcc-385bea42cc59",
+                                    "itemValue": "Escalated to Incident",
+                                    "importedBy": [],
+                                    "orderIndex": 1
+                                },
+                                "_previousName": "closureReason",
+                                "playbookField": true,
+                                "displayTemplate": "%7B%7B%20itemValue%20%7D%7D",
+                                "visibilityQuery": {
+                                    "sort": [],
+                                    "limit": 30,
+                                    "logic": "AND",
+                                    "filters": [
+                                        {
+                                            "type": "primitive",
+                                            "field": "closeAlerts",
+                                            "value": true,
+                                            "operator": "eq",
+                                            "_operator": "eq"
+                                        }
+                                    ]
+                                },
+                                "lengthConstraint": false,
+                                "allowedEncryption": false,
+                                "allowedGridColumn": true,
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false,
+                                "_addVisibilityConditions": true
+                            },
+                            {
+                                "name": "closureNotes",
+                                "type": "string",
+                                "label": "Closure Notes",
+                                "tooltip": "",
+                                "dataType": "text",
+                                "formType": "text",
+                                "required": true,
+                                "_expanded": false,
+                                "defaultValue": null,
+                                "_previousName": "closure",
+                                "visibilityQuery": {
+                                    "sort": [],
+                                    "limit": 30,
+                                    "logic": "AND",
+                                    "filters": [
+                                        {
+                                            "type": "primitive",
+                                            "field": "closeAlerts",
+                                            "value": true,
+                                            "operator": "eq",
+                                            "_operator": "eq"
+                                        }
+                                    ]
+                                },
+                                "jinjaExpressionView": true,
+                                "useRecordFieldDefault": false,
+                                "_addVisibilityConditions": true
+                            }
+                        ]
+                    }
+                },
+                "record": "",
+                "agent_id": null,
+                "resources": "alerts",
+                "is_approval": false,
+                "owner_detail": {
+                    "isAssigned": false,
+                    "emailRecipients": ""
+                },
+                "isRecordLinked": false,
+                "step_variables": [],
+                "response_mapping": {
+                    "options": [
+                        {
+                            "option": "Escalate",
+                            "primary": true,
+                            "step_iri": "\/api\/3\/workflow_steps\/36740dbc-6631-497f-97eb-9cab4c46a69c"
+                        }
+                    ],
+                    "duplicateOption": false,
+                    "customSuccessMessage": "Awaiting Playbook resumed successfully."
+                },
+                "email_notification": {
+                    "enabled": false,
+                    "smtpParameters": []
+                },
+                "customEmailExternal": false,
+                "inline_channel_list": [],
+                "external_channel_list": [],
+                "unauthenticated_input": false,
+                "external_email_subject": null,
+                "internal_email_subject": "A FortiSOAR playbook is requesting your input",
+                "custom_email_body_external": null,
+                "external_email_attachments": null
+            },
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/fc04082a-d7dc-4299-96fb-6837b1baa0fe",
+            "group": null,
+            "uuid": "66d6cc97-eb26-41c2-991b-7173e3c6992b"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "__triggerLimit": true,
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                },
+                "triggerOnSource": true,
+                "triggerOnReplicate": false
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "be92bba3-3b01-43c0-ae2d-933deb03b7da"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Escalate Incident Input -> Escalate to Incident",
+            "targetStep": "\/api\/3\/workflow_steps\/36740dbc-6631-497f-97eb-9cab4c46a69c",
+            "sourceStep": "\/api\/3\/workflow_steps\/66d6cc97-eb26-41c2-991b-7173e3c6992b",
+            "label": "Escalate",
+            "isExecuted": false,
+            "group": null,
+            "uuid": "039c7df6-033b-41b4-ad0a-6ebf1158f98a"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Get Escalate Incident Input",
+            "targetStep": "\/api\/3\/workflow_steps\/66d6cc97-eb26-41c2-991b-7173e3c6992b",
+            "sourceStep": "\/api\/3\/workflow_steps\/be92bba3-3b01-43c0-ae2d-933deb03b7da",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "d71b996e-08bc-491f-905e-ec841a51d757"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "4245b8c3-bf8b-420a-a9f0-6de550dc4411",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Referenced",
+        "system"
+    ]
+}

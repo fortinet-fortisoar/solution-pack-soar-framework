@@ -9,7 +9,17 @@
     "debug": false,
     "singleRecordExecution": false,
     "remoteExecutableFlag": false,
-    "parameters": [],
+    "parameters": [
+        "records",
+        "incidentName",
+        "severity",
+        "incidentLead",
+        "escalationReason",
+        "incidentType",
+        "closureReason",
+        "closeAlerts",
+        "closureNotes"
+    ],
     "synchronous": false,
     "collection": "\/api\/3\/workflow_collections\/3c3b049e-5ecb-464a-83f6-5af6a230c0ed",
     "versions": [],
@@ -20,7 +30,7 @@
             "name": "Configuration",
             "description": null,
             "arguments": {
-                "tenant_iri": "{% if vars.input.records[0].tenant %}{{vars.input.records | json_query('[].tenant.\"@id\"') | unique}}{% endif %}"
+                "tenant_iri": "{% if vars.input.records[0].tenant %}{{vars.input.records | json_query('[].tenant.\"@id\"') | unique}}{% elif vars.input.params.records[0].tenant %}{{vars.input.params.records | json_query('[].tenant.\"@id\"') | unique}}{% endif %}"
             },
             "status": null,
             "top": "165",
@@ -154,9 +164,12 @@
                 "arguments": {
                     "records": "{{vars.input.records}}",
                     "severity": "{{vars.input.params.severity}}",
+                    "closeAlerts": "{{vars.input.params.closeAlerts}}",
+                    "closureNotes": "{{vars.input.params.closureNotes}}",
                     "incidentLead": "{{vars.input.params.incidentLead}}",
                     "incidentName": "{{vars.input.params.incidentName}}",
                     "incidentType": "{{vars.input.params.incidentType}}",
+                    "closureReason": "{{vars.input.params.closureReason}}",
                     "incidentOwners": "{{vars.incident_lead_teams}}",
                     "sharedTenantIRI": "{{vars.tenant_iri | first}}",
                     "escalationReason": "{{vars.input.params.escalationReason}}"
@@ -202,6 +215,7 @@
                 "resources": [
                     "alerts"
                 ],
+                "__triggerLimit": true,
                 "inputVariables": [
                     {
                         "name": "incidentName",
@@ -211,10 +225,11 @@
                         "dataType": "text",
                         "formType": "text",
                         "required": true,
-                        "_expanded": true,
+                        "_expanded": false,
                         "_nameTouched": true,
                         "defaultValue": null,
                         "useModuleField": false,
+                        "jinjaExpressionView": true,
                         "useRecordFieldDefault": false
                     },
                     {
@@ -227,7 +242,7 @@
                         "dataType": "picklist",
                         "formType": "picklist",
                         "required": true,
-                        "_expanded": true,
+                        "_expanded": false,
                         "collection": false,
                         "dataSource": {
                             "model": "picklists",
@@ -277,6 +292,7 @@
                         "useModuleField": false,
                         "allowedEncryption": false,
                         "allowedGridColumn": true,
+                        "jinjaExpressionView": true,
                         "useRecordFieldDefault": false
                     },
                     {
@@ -289,7 +305,7 @@
                         "dataType": "lookup",
                         "formType": "lookup",
                         "required": true,
-                        "_expanded": true,
+                        "_expanded": false,
                         "collection": false,
                         "dataSource": {
                             "model": "people"
@@ -301,6 +317,7 @@
                         "displayTemplate": "{{ firstname }} {{ lastname }}",
                         "allowedEncryption": false,
                         "allowedGridColumn": true,
+                        "jinjaExpressionView": true,
                         "useRecordFieldDefault": false
                     },
                     {
@@ -311,9 +328,10 @@
                         "dataType": "text",
                         "formType": "textarea",
                         "required": true,
-                        "_expanded": true,
+                        "_expanded": false,
                         "defaultValue": "Alert needs to be investigated.",
                         "useModuleField": false,
+                        "jinjaExpressionView": true,
                         "useRecordFieldDefault": false
                     },
                     {
@@ -326,7 +344,7 @@
                         "dataType": "picklist",
                         "formType": "picklist",
                         "required": true,
-                        "_expanded": true,
+                        "_expanded": false,
                         "mmdUpdate": true,
                         "collection": false,
                         "dataSource": {
@@ -450,6 +468,31 @@
                         "lengthConstraint": false,
                         "allowedEncryption": false,
                         "allowedGridColumn": true,
+                        "jinjaExpressionView": true,
+                        "useRecordFieldDefault": false
+                    },
+                    {
+                        "name": "closeAlerts",
+                        "type": "boolean",
+                        "label": "Close Alerts",
+                        "title": "Checkbox",
+                        "usable": true,
+                        "tooltip": "Select this option to close all selected alerts upon incident escalation.",
+                        "dataType": "checkbox",
+                        "formType": "checkbox",
+                        "required": false,
+                        "_expanded": false,
+                        "mmdUpdate": true,
+                        "collection": false,
+                        "searchable": true,
+                        "templateUrl": "app\/components\/form\/fields\/checkbox.html",
+                        "defaultValue": null,
+                        "_previousName": "close",
+                        "playbookField": true,
+                        "lengthConstraint": false,
+                        "allowedEncryption": false,
+                        "allowedGridColumn": true,
+                        "jinjaExpressionView": true,
                         "useRecordFieldDefault": false
                     },
                     {
@@ -462,7 +505,7 @@
                         "dataType": "picklist",
                         "formType": "picklist",
                         "required": true,
-                        "_expanded": true,
+                        "_expanded": false,
                         "mmdUpdate": true,
                         "collection": false,
                         "dataSource": {
@@ -513,7 +556,7 @@
                         "searchable": false,
                         "templateUrl": "app\/components\/form\/fields\/typeahead.html",
                         "defaultValue": {
-                            "id": "369",
+                            "id": 458,
                             "@id": "\/api\/3\/picklists\/cc2d6b59-62de-4cb6-93a2-bcce4250009d",
                             "icon": null,
                             "uuid": "cc2d6b59-62de-4cb6-93a2-bcce4250009d",
@@ -527,40 +570,106 @@
                         },
                         "_previousName": "closureRe",
                         "displayTemplate": "%7B%7B%20itemValue%20%7D%7D",
+                        "visibilityQuery": {
+                            "sort": [],
+                            "limit": 30,
+                            "logic": "AND",
+                            "filters": [
+                                {
+                                    "type": "primitive",
+                                    "field": "closeAlerts",
+                                    "value": true,
+                                    "operator": "eq",
+                                    "_operator": "eq"
+                                }
+                            ]
+                        },
                         "lengthConstraint": false,
                         "allowedEncryption": false,
                         "allowedGridColumn": true,
-                        "useRecordFieldDefault": false
+                        "jinjaExpressionView": true,
+                        "useRecordFieldDefault": false,
+                        "_addVisibilityConditions": true
+                    },
+                    {
+                        "name": "closureNotes",
+                        "type": "string",
+                        "label": "Closure Notes",
+                        "tooltip": "",
+                        "dataType": "text",
+                        "formType": "text",
+                        "required": true,
+                        "_expanded": false,
+                        "defaultValue": null,
+                        "_previousName": "closureN",
+                        "visibilityQuery": {
+                            "sort": [],
+                            "limit": 30,
+                            "logic": "AND",
+                            "filters": [
+                                {
+                                    "type": "primitive",
+                                    "field": "closeAlerts",
+                                    "value": true,
+                                    "operator": "eq",
+                                    "_operator": "eq"
+                                }
+                            ]
+                        },
+                        "jinjaExpressionView": true,
+                        "useRecordFieldDefault": false,
+                        "_addVisibilityConditions": true
                     }
                 ],
                 "step_variables": {
                     "input": {
                         "params": {
-                            "severity": "{{vars.request.data[\"severity\"]}}",
-                            "incidentLead": "{{vars.request.data[\"incidentLead\"]}}",
-                            "incidentName": "{{vars.request.data[\"incidentName\"]}}",
-                            "incidentType": "{{vars.request.data[\"incidentType\"]}}",
-                            "closureReason": "{{vars.request.data[\"closureReason\"]}}",
-                            "escalationReason": "{{vars.request.data[\"escalationReason\"]}}"
+                            "records": "{{ vars.records }}",
+                            "severity": "{{ vars.severity }}",
+                            "closeAlerts": "{{ vars.closeAlerts }}",
+                            "closureNotes": "{{ vars.closureNotes }}",
+                            "incidentLead": "{{ vars.incidentLead }}",
+                            "incidentName": "{{ vars.incidentName }}",
+                            "incidentType": "{{ vars.incidentType }}",
+                            "closureReason": "{{ vars.closureReason }}",
+                            "escalationReason": "{{ vars.escalationReason }}"
                         },
                         "records": "{{vars.input.records}}"
                     }
                 },
                 "_promptexpanded": true,
+                "triggerOnSource": true,
                 "displayConditions": {
                     "alerts": {
                         "sort": [],
                         "limit": 30,
                         "logic": "AND",
-                        "filters": []
+                        "filters": [
+                            {
+                                "type": "object",
+                                "field": "escalatedtoincident",
+                                "value": "\/api\/3\/picklists\/2128a09c-153d-4db3-985d-de6be33deae5",
+                                "_value": {
+                                    "@id": "\/api\/3\/picklists\/2128a09c-153d-4db3-985d-de6be33deae5",
+                                    "display": "No",
+                                    "itemValue": "No"
+                                },
+                                "operator": "eq"
+                            }
+                        ]
                     }
                 },
                 "executeButtonText": "Escalate",
                 "noRecordExecution": false,
+                "showToasterMessage": {
+                    "visible": false,
+                    "messageVisible": true
+                },
+                "triggerOnReplicate": false,
                 "singleRecordExecution": false
             },
             "status": null,
-            "top": "30",
+            "top": "20",
             "left": "300",
             "stepType": "\/api\/3\/workflow_step_types\/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
             "group": null,
@@ -576,7 +685,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "4f6b19df-f664-4110-a278-89cb03cdc727"
+            "uuid": "8e045e77-3280-445f-a344-541efd9044a5"
         },
         {
             "@type": "WorkflowRoute",

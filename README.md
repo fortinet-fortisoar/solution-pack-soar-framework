@@ -1,9 +1,9 @@
 # Release Information
 
-- **Version**:  2.3.0
+- **Version**:  3.0.0
 - **Certified**: Yes 
 - **Publisher**: Fortinet 
-- **Compatible Version**: FortiSOAR v7.4.1 and later
+- **Compatible Version**: FortiSOAR v7.6.0 and later
 - [Release Notes](./release_notes.md)
 
 # Overview 
@@ -14,7 +14,7 @@ SFSP installs several modules such as alerts, incidents, and indicators along wi
 
 Some key benefits of SOAR Framework SP: 
 
-- Provides standardized modules for various operations in a SOC – e.g. alerts, incidents, indicators, campaigns, and hunts
+- Provides standardized modules for various operations in a SOC – e.g. alerts, incidents, indicators and campaigns
 - Helps establish and follow a standardized process through playbooks for indicator extraction, enrichment, and mitigation
 - Standardized dashboards and reports to help effectively monitor the setup. These dashboards and reports contain several key performance indicators(KPIs) such as Mean Time To Respond (MTTR).
 - Helps build various other solution packs on top of SFSP thereby extending the system in a standardized way for various use cases, through an included framework
@@ -70,7 +70,7 @@ The following diagram helps better understand the overall process and the subseq
 
 ## Additional Resources 
 
-- [Upgrade SOAR Framework to v2.1.0 and later](./docs/moving-to-sfsp-2-1-0.md)
+- [Upgrading SOAR Framework to the latest version](./docs/upgrading-sfsp-to-latest.md)
 
 - [Managing Team Ownable Settings](./docs/managing-team-ownable-settings.md)
 
@@ -89,7 +89,6 @@ The following diagram helps better understand the overall process and the subseq
 - [Setting up Communications Tracking for Custom Modules](./docs/setting-up-comms-module.md)
 
 - [Excluding Extracted Indicators from Enrichment](./docs/extending-default-indicator-extraction-process.md#excluding-extracted-indicators-from-enrichment)
-<!-- * [Setting up Default Hunt Playbooks](./docs/setting-up-default-hunt-playbook.md) -->
 
 ## Next Steps
 
