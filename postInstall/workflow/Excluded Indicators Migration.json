@@ -1,0 +1,214 @@
+{
+    "@type": "Workflow",
+    "triggerLimit": null,
+    "name": "Excluded Indicators Migration",
+    "aliasName": null,
+    "tag": null,
+    "description": "This playbook triggers after SOAR Framework deployment to migrate excluded indicators from global variables and legacy key store records to the new key store.",
+    "isActive": true,
+    "debug": false,
+    "singleRecordExecution": false,
+    "remoteExecutableFlag": false,
+    "parameters": [],
+    "synchronous": false,
+    "collection": "\/api\/3\/workflow_collections\/d4665980-9836-4181-9dc1-84dc61bfc696",
+    "versions": [],
+    "triggerStep": "\/api\/3\/workflow_steps\/9e687367-0a0e-4116-9f19-129e888863cc",
+    "steps": [
+        {
+            "@type": "WorkflowStep",
+            "name": "Compute Migration Values",
+            "description": null,
+            "arguments": {
+                "updatedMigrationIOCList": "{{ vars.steps.Get_Migration_Values |  items2dict(key_name='indicatorType', value_name='exclusionDetails') }}"
+            },
+            "status": null,
+            "top": "570",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "1338d048-5eef-4662-a83c-081eeaf28c09"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Configuration",
+            "description": null,
+            "arguments": [],
+            "status": null,
+            "top": "165",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/04d0cf46-b6a8-42c4-8683-60a7eaa69e8f",
+            "group": null,
+            "uuid": "df5abbe7-b1fc-485b-9a23-c451f7625471"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Exclusion Configuration",
+            "description": null,
+            "arguments": {
+                "query": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": [
+                        {
+                            "type": "primitive",
+                            "field": "key",
+                            "value": "sfsp-indicator-extraction-configuration",
+                            "operator": "eq",
+                            "_operator": "eq"
+                        }
+                    ],
+                    "__selectFields": [
+                        "jSONValue"
+                    ]
+                },
+                "module": "keys?$limit=30",
+                "checkboxFields": true,
+                "step_variables": {
+                    "exclusionConfiguration": "{{vars.steps.Get_Exclusion_Configuration[0].jSONValue}}"
+                }
+            },
+            "status": null,
+            "top": "300",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928770",
+            "group": null,
+            "uuid": "1e204671-5137-4fb3-8985-98070c2ce0b2"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Get Migration Values",
+            "description": null,
+            "arguments": {
+                "for_each": {
+                    "item": "{{vars.steps.Get_Exclusion_Configuration[0].jSONValue |  dict2items(key_name='indicatorType', value_name='exclusionDetails') }}",
+                    "parallel": false,
+                    "condition": "{{not vars.item.exclusionDetails.migratedFromGlobalVariable}}"
+                },
+                "arguments": {
+                    "exclusion_details": "{{vars.item}}"
+                },
+                "apply_async": false,
+                "step_variables": {
+                    "updatedMigrationIOCList": "{{vars.steps.Get_Migration_Values}}"
+                },
+                "pass_parent_env": false,
+                "pass_input_record": true,
+                "workflowReference": "\/api\/3\/workflows\/289228de-4857-43bb-a34d-94f26bf56725"
+            },
+            "status": null,
+            "top": "435",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/74932bdc-b8b6-4d24-88c4-1a4dfbc524f3",
+            "group": null,
+            "uuid": "8c832d71-7a88-44d1-84b5-2042489f4a37"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Start",
+            "description": null,
+            "arguments": {
+                "__triggerLimit": true,
+                "step_variables": {
+                    "input": {
+                        "params": []
+                    }
+                },
+                "triggerOnSource": true,
+                "triggerOnReplicate": false
+            },
+            "status": null,
+            "top": "30",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b348f017-9a94-471f-87f8-ce88b6a7ad62",
+            "group": null,
+            "uuid": "9e687367-0a0e-4116-9f19-129e888863cc"
+        },
+        {
+            "@type": "WorkflowStep",
+            "name": "Update Migrated Values",
+            "description": null,
+            "arguments": {
+                "resource": {
+                    "jSONValue": "{{vars.exclusionConfiguration | combine(vars.updatedMigrationIOCList)}}"
+                },
+                "operation": "Append",
+                "collection": "{{vars.steps.Get_Exclusion_Configuration[0]['@id']}}",
+                "__recommend": [],
+                "collectionType": "\/api\/3\/keys",
+                "fieldOperation": {
+                    "recordTags": "Append"
+                },
+                "step_variables": []
+            },
+            "status": null,
+            "top": "705",
+            "left": "125",
+            "stepType": "\/api\/3\/workflow_step_types\/b593663d-7d13-40ce-a3a3-96dece928722",
+            "group": null,
+            "uuid": "d9585d8b-1018-45e8-8df6-4705d1857805"
+        }
+    ],
+    "routes": [
+        {
+            "@type": "WorkflowRoute",
+            "name": "Compute Migration Values -> Update Migrated Values",
+            "targetStep": "\/api\/3\/workflow_steps\/d9585d8b-1018-45e8-8df6-4705d1857805",
+            "sourceStep": "\/api\/3\/workflow_steps\/1338d048-5eef-4662-a83c-081eeaf28c09",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "311f85b5-63c3-4434-b31b-4658caf67109"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Configuration -> Get Exclusion Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/1e204671-5137-4fb3-8985-98070c2ce0b2",
+            "sourceStep": "\/api\/3\/workflow_steps\/df5abbe7-b1fc-485b-9a23-c451f7625471",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "4ab5929c-0e0a-4e44-8be2-a9be17fac3f6"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Exclusion Configuration -> Get Migration Values",
+            "targetStep": "\/api\/3\/workflow_steps\/8c832d71-7a88-44d1-84b5-2042489f4a37",
+            "sourceStep": "\/api\/3\/workflow_steps\/1e204671-5137-4fb3-8985-98070c2ce0b2",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "ef8de1d9-4fdd-4ce9-85fd-d9f325c21d08"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Get Migration Values -> test",
+            "targetStep": "\/api\/3\/workflow_steps\/1338d048-5eef-4662-a83c-081eeaf28c09",
+            "sourceStep": "\/api\/3\/workflow_steps\/8c832d71-7a88-44d1-84b5-2042489f4a37",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "a3c7c2c9-cfd3-4a81-b299-ccb14b33b395"
+        },
+        {
+            "@type": "WorkflowRoute",
+            "name": "Start -> Configuration",
+            "targetStep": "\/api\/3\/workflow_steps\/df5abbe7-b1fc-485b-9a23-c451f7625471",
+            "sourceStep": "\/api\/3\/workflow_steps\/9e687367-0a0e-4116-9f19-129e888863cc",
+            "label": null,
+            "isExecuted": false,
+            "group": null,
+            "uuid": "f061924c-535e-45c0-a296-89bdf36fd987"
+        }
+    ],
+    "groups": [],
+    "priority": "\/api\/3\/picklists\/2b563c61-ae2c-41c0-a85a-c9709585e3f2",
+    "uuid": "936f4403-593d-4d5a-a5ad-b8d04b4cbd3c",
+    "owners": [],
+    "isPrivate": false,
+    "deletedAt": null,
+    "recordTags": [
+        "Referenced"
+    ]
+}
