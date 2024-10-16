@@ -1,136 +1,260 @@
 [
     {
         "@type": "Key",
-        "key": "sfsp-excludelist-cidr-ranges",
+        "key": "sfsp-indicator-extraction-configuration",
+        "value": "",
+        "jSONValue": {
+            "URL": {
+                "system": true,
+                "pattern": [
+                    "(?:https?|s?ftp):\\\/\\\/[^<>\\s\/$.?#].[^<>\\s,\\\"\\']*"
+                ],
+                "excludedIOCs": [
+                    "https:\/\/www.google.com",
+                    "https:\/\/mail.yahoo.com\/login.html",
+                    "https:\/\/www.office.com\/"
+                ],
+                "globalVariable": "Excludelist_URLs",
+                "applyIOCExtractionFilter": true,
+                "migratedFromGlobalVariable": true
+            },
+            "File": {
+                "system": true,
+                "pattern": [],
+                "excludedIOCs": [],
+                "globalVariable": "Excludelist_Files",
+                "applyIOCExtractionFilter": false,
+                "migratedFromGlobalVariable": true
+            },
+            "Port": {
+                "system": true,
+                "pattern": [
+                    "^(?:[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d{3}|65[0-4]\\d{2}|655[0-2]\\d|6553[0-5])$"
+                ],
+                "excludedIOCs": [],
+                "globalVariable": "Excludelist_Ports",
+                "applyIOCExtractionFilter": false,
+                "migratedFromGlobalVariable": true
+            },
+            "Domain": {
+                "system": true,
+                "pattern": [
+                    "\\b(([a-z0-9\\-]{2,}\\[?\\.\\]?)+(abogado|ac|academy|accountants|active|actor|ad|adult|ae|aero|af|ag|agency|ai|airforce|al|allfinanz|alsace|am|amsterdam|an|android|ao|aq|aquarelle|ar|archi|army|arpa|as|asia|associates|at|attorney|au|auction|audio|autos|aw|ax|axa|az|ba|band|bank|bar|barclaycard|barclays|bargains|bayern|bb|bd|be|beer|berlin|best|bf|bg|bh|bi|bid|bike|bingo|bio|biz|bj|black|blackfriday|bloomberg|blue|bm|bmw|bn|bnpparibas|bo|boo|boutique|br|brussels|bs|bt|budapest|build|builders|business|buzz|bv|bw|by|bz|bzh|ca|cal|camera|camp|cancerresearch|canon|capetown|capital|caravan|cards|care|career|careers|cartier|casa|cash|cat|catering|cc|cd|center|ceo|cern|cf|cg|ch|channel|chat|cheap|christmas|chrome|church|ci|citic|city|ck|cl|claims|cleaning|click|clinic|clothing|club|cm|cn|co|coach|codes|coffee|college|cologne|com|community|company|computer|condos|construction|consulting|contractors|cooking|cool|coop|country|cr|credit|creditcard|cricket|crs|cruises|cu|cuisinella|cv|cw|cx|cy|cymru|cz|dabur|dad|dance|dating|day|dclk|de|deals|degree|delivery|democrat|dental|dentist|desi|design|dev|diamonds|diet|digital|direct|directory|discount|dj|dk|dm|dnp|do|docs|domains|doosan|durban|dvag|dz|eat|ec|edu|education|ee|eg|email|emerck|energy|engineer|engineering|enterprises|equipment|er|es|esq|estate|et|eu|eurovision|eus|events|everbank|exchange|expert|exposed|fail|farm|fashion|feedback|fi|finance|financial|firmdale|fish|fishing|fit|fitness|fj|fk|flights|florist|flowers|flsmidth|fly|fm|fo|foo|forsale|foundation|fr|frl|frogans|fund|furniture|futbol|ga|gal|gallery|garden|gb|gbiz|gd|ge|gent|gf|gg|ggee|gh|gi|gift|gifts|gives|gl|glass|gle|global|globo|gm|gmail|gmo|gmx|gn|goog|google|gop|gov|gp|gq|gr|graphics|gratis|green|gripe|gs|gt|gu|guide|guitars|guru|gw|gy|hamburg|hangout|haus|healthcare|help|here|hermes|hiphop|hiv|hk|hm|hn|holdings|holiday|homes|horse|host|hosting|house|how|hr|ht|hu|ibm|id|ie|ifm|il|im|immo|immobilien|in|industries|info|ing|ink|institute|insure|int|international|investments|io|iq|ir|irish|is|it|iwc|jcb|je|jetzt|jm|jo|jobs|joburg|jp|juegos|kaufen|kddi|ke|kg|kh|ki|kim|kitchen|kiwi|km|kn|koeln|kp|kr|krd|kred|kw|ky|kyoto|kz|la|lacaixa|land|lat|latrobe|lawyer|lb|lc|lds|lease|legal|lgbt|li|lidl|life|lighting|limited|limo|link|lk|loans|local|london|lotte|lotto|lr|ls|lt|ltda|lu|luxe|luxury|lv|ly|ma|madrid|maison|management|mango|market|marketing|marriott|mc|md|me|media|meet|melbourne|meme|memorial|menu|mg|mh|miami|mil|mini|mk|ml|mm|mn|mo|mobi|moda|moe|monash|money|mormon|mortgage|moscow|motorcycles|mov|mp|mq|mr|ms|mt|mu|museum|mv|mw|mx|my|mz|na|nagoya|name|navy|nc|ne|net|network|neustar|new|nexus|nf|ng|ngo|nhk|ni|ninja|nl|no|np|nr|nra|nrw|ntt|nu|nyc|nz|okinawa|om|one|ong|onl|ooo|org|organic|osaka|otsuka|ovh|pa|paris|partners|parts|party|pe|pf|pg|ph|phd|pharmacy|photo|photography|photos|physio|pics|pictures|pink|pizza|pk|pl|place|plumbing|pm|pn|pohl|poker|porn|post|pr|praxi|press|pro|prod|productions|prof|properties|property|ps|pt|pub|pw|qa|qpon|quebec|re|realtor|recipes|red|rehab|reise|reisen|reit|ren|rentals|repair|report|republican|rest|restaurant|reviews|rich|rio|rip|ro|rocks|rodeo|rs|rsvp|ru|ruhr|rw|ryukyu|sa|saarland|sale|samsung|sarl|sb|sc|sca|scb|schmidt|schule|schwarz|science|scot|sd|se|services|sew|sexy|sg|sh|shiksha|shoes|shriram|si|singles|sj|sk|sky|sl|sm|sn|so|social|software|sohu|solar|solutions|soy|space|spiegel|sr|st|style|su|supplies|supply|support|surf|surgery|suzuki|sv|sx|sy|sydney|systems|sz|taipei|tatar|tattoo|tax|tc|td|technology|tel|temasek|tennis|tf|tg|th|tienda|tips|tires|tirol|tj|tk|tl|tm|tn|to|today|tokyo|tools|top|toshiba|town|toys|tp|tr|trade|training|travel|trust|tt|tui|tv|tw|tz|ua|ug|uk|university|uno|uol|us|uy|uz|va|vacations|vc|ve|vegas|ventures|versicherung|vet|vg|vi|viajes|video|villas|vision|vlaanderen|vn|vodka|vote|voting|voto|voyage|vu|wales|wang|watch|webcam|website|wed|wedding|wf|whoswho|wien|wiki|williamhill|wme|work|works|world|ws|wtc|wtf|xyz|yachts|yandex|ye|yoga|yokohama|youtube|yt|za|zm|zip|zone|zuerich|zw))\\b"
+                ],
+                "excludedIOCs": [
+                    "google.com",
+                    "yahoo.com",
+                    "fortinet.net",
+                    "gmail.com",
+                    "outlook.com",
+                    "microsoft.com",
+                    "fortinet.com",
+                    "twitter.com",
+                    "facebook.com",
+                    "linkedin.com",
+                    "instagram.com",
+                    "fortiguard.com",
+                    "forticloud.com",
+                    "w3.org"
+                ],
+                "globalVariable": "Excludelist_Domains",
+                "applyIOCExtractionFilter": true,
+                "migratedFromGlobalVariable": true
+            },
+            "File Hash": {
+                "system": true,
+                "pattern": [
+                    "\\b([a-f0-9]{32}|[A-F0-9]{32})\\b",
+                    "\\b([a-f0-9]{40}|[A-F0-9]{40})\\b",
+                    "\\b([a-f0-9]{64}|[A-F0-9]{64})\\b"
+                ],
+                "excludedIOCs": [],
+                "globalVariable": "NA",
+                "applyIOCExtractionFilter": true,
+                "migratedFromGlobalVariable": true
+            },
+            "CIDR Range": {
+                "system": true,
+                "pattern": [
+                    "^(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\/(?:3[0-2]|[1-2]?[0-9])$"
+                ],
+                "excludedIOCs": [
+                    "10.0.0.0\/8",
+                    "172.16.0.0\/12",
+                    "192.168.0.0\/16"
+                ],
+                "globalVariable": "NA",
+                "applyIOCExtractionFilter": false,
+                "migratedFromGlobalVariable": true
+            },
+            "IP Address": {
+                "system": true,
+                "pattern": [
+                    "\\b(?:[2][5][0-5]\\.|[2][0-4][0-9]\\.|[1][0-9]{2}\\.|[1-9][0-9]\\.|[0-9]\\.){3}(?:[2][5][0-5]|[2][0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])\\b",
+                    "(?:(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){6})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:::(?:(?:(?:[0-9a-fA-F]{1,4})):){5})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){4})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,1}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){3})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,2}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){2})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,3}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:[0-9a-fA-F]{1,4})):)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,4}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,5}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,6}(?:(?:[0-9a-fA-F]{1,4})))?::))))"
+                ],
+                "excludedIOCs": [
+                    "8.8.8.8",
+                    "10.1.1.2"
+                ],
+                "globalVariable": "Excludelist_IPs",
+                "applyIOCExtractionFilter": true,
+                "migratedFromGlobalVariable": true
+            },
+            "Indicator Type Mapping": {
+                "system": true,
+                "createFileIOCs": true,
+                "globalVariable": "Indicator_Type_Map",
+                "fieldTypeMapping": {
+                    "url": "URL",
+                    "domain": "Domain",
+                    "dLLName": "Process",
+                    "emailCc": "Email Address",
+                    "emailTo": "Email Address",
+                    "urlFull": "URL",
+                    "fileHash": "FileHash-MD5",
+                    "filehash": "FileHash-MD5",
+                    "reporter": "Email Address",
+                    "services": "Process",
+                    "sourceIP": "IP Address",
+                    "sourceIp": "IP Address",
+                    "userName": "User",
+                    "dllLoaded": "Process",
+                    "emailFrom": "Email Address",
+                    "fileHashes": "FileHash-MD5",
+                    "returnPath": "Email Address",
+                    "sourcePort": "Port",
+                    "commandLine": "Process",
+                    "iPAddresses": "IP Address",
+                    "processName": "Process",
+                    "registryKey": "Registry",
+                    "targetAsset": "Host",
+                    "userDetails": "User",
+                    "computerName": "Host",
+                    "senderDomain": "Domain",
+                    "destinationIP": "IP Address",
+                    "destinationIp": "IP Address",
+                    "sourceProcess": "Process",
+                    "targetProcess": "Process",
+                    "attachmentNames": "File",
+                    "destinationPort": "Port",
+                    "otherRecipients": "Email Address",
+                    "registryKeyValue": "Registry",
+                    "parentProcessName": "Process",
+                    "decodedCommandLine": "Process",
+                    "senderEmailAddress": "Email Address",
+                    "parentProcessCmdLine": "Process",
+                    "recipientEmailAddress": "Email Address",
+                    "receipientEmailAddress": "Email Address"
+                },
+                "addExcludedFileComment": false,
+                "applyIOCExtractionFilter": false,
+                "migratedFromGlobalVariable": true
+            }
+        },
+        "notes": "Contains excluded indicator list and indicator type mapping information",
+        "uuid": "955af050-a1e7-4b79-bda9-56c1ea8f79f3",
+        "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "createDate": 1727280231.142605,
+        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
+        "modifyDate": 1728907298.96862,
+        "tenant": "\/api\/3\/tenants\/b3a700f7-00be-4ef9-90c6-3c8fe6e1be63",
+        "conflict": false,
+        "tenantRecordId": 133,
+        "recordTags": [
+            "ExcludeListIOCs"
+        ]
+    },
+    {
+        "@type": "Key",
+        "key": "sfsp-indicator-regex-mapping",
         "value": null,
         "jSONValue": [
-            "10.0.0.0\/8",
-            "172.16.0.0\/12",
-            "192.168.0.0\/16"
+            {
+                "defang_regx": "(?:https?|hxxps?|hXXps?|s?ftp|fxp|fXp)(?::\\\/\\\/)[^<>\\s\/$.?#]+(?:\\[\\.\\]|\\.)[^<>\\s,\\\"\\']*",
+                "pattern_regx": "(?:https?|s?ftp):\\\/\\\/[^<>\\s\/$.?#].[^<>\\s,\\\"\\']*",
+                "indicator_type": "URL"
+            },
+            {
+                "defang_regx": "",
+                "pattern_regx": "\\b([a-f0-9]{32}|[A-F0-9]{32})\\b",
+                "indicator_type": "MD5"
+            },
+            {
+                "defang_regx": "\\b(([a-z0-9\\-]{2,}\\[?\\.\\]?)+(abogado|ac|academy|accountants|active|actor|ad|adult|ae|aero|af|ag|agency|ai|airforce|al|allfinanz|alsace|am|amsterdam|an|android|ao|aq|aquarelle|ar|archi|army|arpa|as|asia|associates|at|attorney|au|auction|audio|autos|aw|ax|axa|az|ba|band|bank|bar|barclaycard|barclays|bargains|bayern|bb|bd|be|beer|berlin|best|bf|bg|bh|bi|bid|bike|bingo|bio|biz|bj|black|blackfriday|bloomberg|blue|bm|bmw|bn|bnpparibas|bo|boo|boutique|br|brussels|bs|bt|budapest|build|builders|business|buzz|bv|bw|by|bz|bzh|ca|cal|camera|camp|cancerresearch|canon|capetown|capital|caravan|cards|care|career|careers|cartier|casa|cash|cat|catering|cc|cd|center|ceo|cern|cf|cg|ch|channel|chat|cheap|christmas|chrome|church|ci|citic|city|ck|cl|claims|cleaning|click|clinic|clothing|club|cm|cn|co|coach|codes|coffee|college|cologne|com|community|company|computer|condos|construction|consulting|contractors|cooking|cool|coop|country|cr|credit|creditcard|cricket|crs|cruises|cu|cuisinella|cv|cw|cx|cy|cymru|cz|dabur|dad|dance|dating|day|dclk|de|deals|degree|delivery|democrat|dental|dentist|desi|design|dev|diamonds|diet|digital|direct|directory|discount|dj|dk|dm|dnp|do|docs|domains|doosan|durban|dvag|dz|eat|ec|edu|education|ee|eg|email|emerck|energy|engineer|engineering|enterprises|equipment|er|es|esq|estate|et|eu|eurovision|eus|events|everbank|exchange|expert|exposed|fail|farm|fashion|feedback|fi|finance|financial|firmdale|fish|fishing|fit|fitness|fj|fk|flights|florist|flowers|flsmidth|fly|fm|fo|foo|forsale|foundation|fr|frl|frogans|fund|furniture|futbol|ga|gal|gallery|garden|gb|gbiz|gd|ge|gent|gf|gg|ggee|gh|gi|gift|gifts|gives|gl|glass|gle|global|globo|gm|gmail|gmo|gmx|gn|goog|google|gop|gov|gp|gq|gr|graphics|gratis|green|gripe|gs|gt|gu|guide|guitars|guru|gw|gy|hamburg|hangout|haus|healthcare|help|here|hermes|hiphop|hiv|hk|hm|hn|holdings|holiday|homes|horse|host|hosting|house|how|hr|ht|hu|ibm|id|ie|ifm|il|im|immo|immobilien|in|industries|info|ing|ink|institute|insure|int|international|investments|io|iq|ir|irish|is|it|iwc|jcb|je|jetzt|jm|jo|jobs|joburg|jp|juegos|kaufen|kddi|ke|kg|kh|ki|kim|kitchen|kiwi|km|kn|koeln|kp|kr|krd|kred|kw|ky|kyoto|kz|la|lacaixa|land|lat|latrobe|lawyer|lb|lc|lds|lease|legal|lgbt|li|lidl|life|lighting|limited|limo|link|lk|loans|local|london|lotte|lotto|lr|ls|lt|ltda|lu|luxe|luxury|lv|ly|ma|madrid|maison|management|mango|market|marketing|marriott|mc|md|me|media|meet|melbourne|meme|memorial|menu|mg|mh|miami|mil|mini|mk|ml|mm|mn|mo|mobi|moda|moe|monash|money|mormon|mortgage|moscow|motorcycles|mov|mp|mq|mr|ms|mt|mu|museum|mv|mw|mx|my|mz|na|nagoya|name|navy|nc|ne|net|network|neustar|new|nexus|nf|ng|ngo|nhk|ni|ninja|nl|no|np|nr|nra|nrw|ntt|nu|nyc|nz|okinawa|om|one|ong|onl|ooo|org|organic|osaka|otsuka|ovh|pa|paris|partners|parts|party|pe|pf|pg|ph|phd|pharmacy|photo|photography|photos|physio|pics|pictures|pink|pizza|pk|pl|place|plumbing|pm|pn|pohl|poker|porn|post|pr|praxi|press|pro|prod|productions|prof|properties|property|ps|pt|pub|pw|qa|qpon|quebec|re|realtor|recipes|red|rehab|reise|reisen|reit|ren|rentals|repair|report|republican|rest|restaurant|reviews|rich|rio|rip|ro|rocks|rodeo|rs|rsvp|ru|ruhr|rw|ryukyu|sa|saarland|sale|samsung|sarl|sb|sc|sca|scb|schmidt|schule|schwarz|science|scot|sd|se|services|sew|sexy|sg|sh|shiksha|shoes|shriram|si|singles|sj|sk|sky|sl|sm|sn|so|social|software|sohu|solar|solutions|soy|space|spiegel|sr|st|style|su|supplies|supply|support|surf|surgery|suzuki|sv|sx|sy|sydney|systems|sz|taipei|tatar|tattoo|tax|tc|td|technology|tel|temasek|tennis|tf|tg|th|tienda|tips|tires|tirol|tj|tk|tl|tm|tn|to|today|tokyo|tools|top|toshiba|town|toys|tp|tr|trade|training|travel|trust|tt|tui|tv|tw|tz|ua|ug|uk|university|uno|uol|us|uy|uz|va|vacations|vc|ve|vegas|ventures|versicherung|vet|vg|vi|viajes|video|villas|vision|vlaanderen|vn|vodka|vote|voting|voto|voyage|vu|wales|wang|watch|webcam|website|wed|wedding|wf|whoswho|wien|wiki|williamhill|wme|work|works|world|ws|wtc|wtf|xyz|yachts|yandex|ye|yoga|yokohama|youtube|yt|za|zm|zip|zone|zuerich|zw))\\b",
+                "pattern_regx": "\\b(([a-z0-9\\-]{2,}\\.)+(abogado|ac|academy|accountants|active|actor|ad|adult|ae|aero|af|ag|agency|ai|airforce|al|allfinanz|alsace|am|amsterdam|an|android|ao|aq|aquarelle|ar|archi|army|arpa|as|asia|associates|at|attorney|au|auction|audio|autos|aw|ax|axa|az|ba|band|bank|bar|barclaycard|barclays|bargains|bayern|bb|bd|be|beer|berlin|best|bf|bg|bh|bi|bid|bike|bingo|bio|biz|bj|black|blackfriday|bloomberg|blue|bm|bmw|bn|bnpparibas|bo|boo|boutique|br|brussels|bs|bt|budapest|build|builders|business|buzz|bv|bw|by|bz|bzh|ca|cal|camera|camp|cancerresearch|canon|capetown|capital|caravan|cards|care|career|careers|cartier|casa|cash|cat|catering|cc|cd|center|ceo|cern|cf|cg|ch|channel|chat|cheap|christmas|chrome|church|ci|citic|city|ck|cl|claims|cleaning|click|clinic|clothing|club|cm|cn|co|coach|codes|coffee|college|cologne|com|community|company|computer|condos|construction|consulting|contractors|cooking|cool|coop|country|cr|credit|creditcard|cricket|crs|cruises|cu|cuisinella|cv|cw|cx|cy|cymru|cz|dabur|dad|dance|dating|day|dclk|de|deals|degree|delivery|democrat|dental|dentist|desi|design|dev|diamonds|diet|digital|direct|directory|discount|dj|dk|dm|dnp|do|docs|domains|doosan|durban|dvag|dz|eat|ec|edu|education|ee|eg|email|emerck|energy|engineer|engineering|enterprises|equipment|er|es|esq|estate|et|eu|eurovision|eus|events|everbank|exchange|expert|exposed|fail|farm|fashion|feedback|fi|finance|financial|firmdale|fish|fishing|fit|fitness|fj|fk|flights|florist|flowers|flsmidth|fly|fm|fo|foo|forsale|foundation|fr|frl|frogans|fund|furniture|futbol|ga|gal|gallery|garden|gb|gbiz|gd|ge|gent|gf|gg|ggee|gh|gi|gift|gifts|gives|gl|glass|gle|global|globo|gm|gmail|gmo|gmx|gn|goog|google|gop|gov|gp|gq|gr|graphics|gratis|green|gripe|gs|gt|gu|guide|guitars|guru|gw|gy|hamburg|hangout|haus|healthcare|help|here|hermes|hiphop|hiv|hk|hm|hn|holdings|holiday|homes|horse|host|hosting|house|how|hr|ht|hu|ibm|id|ie|ifm|il|im|immo|immobilien|in|industries|info|ing|ink|institute|insure|int|international|investments|io|iq|ir|irish|is|it|iwc|jcb|je|jetzt|jm|jo|jobs|joburg|jp|juegos|kaufen|kddi|ke|kg|kh|ki|kim|kitchen|kiwi|km|kn|koeln|kp|kr|krd|kred|kw|ky|kyoto|kz|la|lacaixa|land|lat|latrobe|lawyer|lb|lc|lds|lease|legal|lgbt|li|lidl|life|lighting|limited|limo|link|lk|loans|local|london|lotte|lotto|lr|ls|lt|ltda|lu|luxe|luxury|lv|ly|ma|madrid|maison|management|mango|market|marketing|marriott|mc|md|me|media|meet|melbourne|meme|memorial|menu|mg|mh|miami|mil|mini|mk|ml|mm|mn|mo|mobi|moda|moe|monash|money|mormon|mortgage|moscow|motorcycles|mov|mp|mq|mr|ms|mt|mu|museum|mv|mw|mx|my|mz|na|nagoya|name|navy|nc|ne|net|network|neustar|new|nexus|nf|ng|ngo|nhk|ni|ninja|nl|no|np|nr|nra|nrw|ntt|nu|nyc|nz|okinawa|om|one|ong|onl|ooo|org|organic|osaka|otsuka|ovh|pa|paris|partners|parts|party|pe|pf|pg|ph|phd|pharmacy|photo|photography|photos|physio|pics|pictures|pink|pizza|pk|pl|place|plumbing|pm|pn|pohl|poker|porn|post|pr|praxi|press|pro|prod|productions|prof|properties|property|ps|pt|pub|pw|qa|qpon|quebec|re|realtor|recipes|red|rehab|reise|reisen|reit|ren|rentals|repair|report|republican|rest|restaurant|reviews|rich|rio|rip|ro|rocks|rodeo|rs|rsvp|ru|ruhr|rw|ryukyu|sa|saarland|sale|samsung|sarl|sb|sc|sca|scb|schmidt|schule|schwarz|science|scot|sd|se|services|sew|sexy|sg|sh|shiksha|shoes|shriram|si|singles|sj|sk|sky|sl|sm|sn|so|social|software|sohu|solar|solutions|soy|space|spiegel|sr|st|style|su|supplies|supply|support|surf|surgery|suzuki|sv|sx|sy|sydney|systems|sz|taipei|tatar|tattoo|tax|tc|td|technology|tel|temasek|tennis|tf|tg|th|tienda|tips|tires|tirol|tj|tk|tl|tm|tn|to|today|tokyo|tools|top|toshiba|town|toys|tp|tr|trade|training|travel|trust|tt|tui|tv|tw|tz|ua|ug|uk|university|uno|uol|us|uy|uz|va|vacations|vc|ve|vegas|ventures|versicherung|vet|vg|vi|viajes|video|villas|vision|vlaanderen|vn|vodka|vote|voting|voto|voyage|vu|wales|wang|watch|webcam|website|wed|wedding|wf|whoswho|wien|wiki|williamhill|wme|work|works|world|ws|wtc|wtf|xyz|yachts|yandex|ye|yoga|yokohama|youtube|yt|za|zm|zip|zone|zuerich|zw))\\b",
+                "indicator_type": "Host"
+            },
+            {
+                "defang_regx": "",
+                "pattern_regx": "",
+                "indicator_type": "Domain"
+            },
+            {
+                "defang_regx": "\\b(?:[2][5][0-5](?:\\[\\.\\]|\\.)|[2][0-4][0-9](?:\\[\\.\\]|\\.)|[1][0-9]{2}(?:\\[\\.\\]|\\.)|[1-9][0-9](?:\\[\\.\\]|\\.)|[0-9](?:\\[\\.\\]|\\.)){3}(?:[2][5][0-5]|[2][0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])\\b",
+                "pattern_regx": "\\b(?:[2][5][0-5]\\.|[2][0-4][0-9]\\.|[1][0-9]{2}\\.|[1-9][0-9]\\.|[0-9]\\.){3}(?:[2][5][0-5]|[2][0-4][0-9]|[1][0-9]{2}|[1-9][0-9]|[0-9])\\b",
+                "indicator_type": "IPv4"
+            },
+            {
+                "defang_regx": "",
+                "pattern_regx": "(?:(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){6})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:::(?:(?:(?:[0-9a-fA-F]{1,4})):){5})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){4})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,1}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){3})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,2}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:(?:[0-9a-fA-F]{1,4})):){2})(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,3}(?:(?:[0-9a-fA-F]{1,4})))?::(?:(?:[0-9a-fA-F]{1,4})):)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,4}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9]))\\.){3}(?:(?:25[0-5]|(?:[1-9]|1[0-9]|2[0-4])?[0-9])))))))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,5}(?:(?:[0-9a-fA-F]{1,4})))?::)(?:(?:[0-9a-fA-F]{1,4})))|(?:(?:(?:(?:(?:(?:[0-9a-fA-F]{1,4})):){0,6}(?:(?:[0-9a-fA-F]{1,4})))?::))))",
+                "indicator_type": "IPv6"
+            },
+            {
+                "defang_regx": "",
+                "pattern_regx": "[a-zA-Z0-9\\.\\-+_]+@[a-zA-Z0-9]+[a-zA-Z0-9\\.\\-+_]*\\.[a-zA-Z0-9]{1,4}",
+                "indicator_type": "Email"
+            },
+            {
+                "defang_regx": "",
+                "pattern_regx": "\\b([a-f0-9]{40}|[A-F0-9]{40})\\b",
+                "indicator_type": "SHA1"
+            },
+            {
+                "defang_regx": "",
+                "pattern_regx": "\\b([a-f0-9]{64}|[A-F0-9]{64})\\b",
+                "indicator_type": "SHA256"
+            },
+            {
+                "defang_regx": "",
+                "pattern_regx": "\\b(CVE\\-[0-9]{4}\\-[0-9]{4,6})\\b",
+                "indicator_type": "CVE"
+            },
+            {
+                "defang_regx": "",
+                "pattern_regx": "\\b((HKLM|HKCU)\\\\[\\\\A-Za-z0-9-_]+)\\b",
+                "indicator_type": "Registry"
+            },
+            {
+                "defang_regx": "",
+                "pattern_regx": "\\b([A-Za-z0-9-_\\.]+\\.(exe|dll|bat|sys|htm|html|js|jar|jpg|png|vb|scr|pif|chm|zip|rar|cab|pdf|doc|docx|ppt|pptx|xls|xlsx|swf|gif|tgz|json))\\b",
+                "indicator_type": "Filename"
+            },
+            {
+                "defang_regx": "",
+                "pattern_regx": "(?:<[^>]+>)|(?:\\b[A-Z]:\\\\[A-Za-z0-9-_\\.\\\\']+\\b|\\\/[A-Za-z0-9-_\\.\\\/\\\\]*)",
+                "indicator_type": "Filepath"
+            },
+            {
+                "defang_regx": "",
+                "pattern_regx": "^(?:[1-9]\\d{0,3}|[1-5]\\d{4}|6[0-4]\\d{3}|65[0-4]\\d{2}|655[0-2]\\d|6553[0-5])$",
+                "indicator_type": "Port"
+            },
+            {
+                "defang_regx": "",
+                "pattern_regx": "^(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\/(?:3[0-2]|[1-2]?[0-9])$",
+                "indicator_type": "CIDR Range"
+            }
         ],
-        "notes": "Enter the CIDR ranges that you want to exclude from enrichment.",
-        "uuid": "ed651d15-282c-4a3c-9776-4ddafcf9d4f0",
+        "notes": "Contains validation regex and defang regex for indicator types",
+        "uuid": "f8724f45-4873-48c5-b922-d91bb723d29b",
         "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "createDate": 1719573524.72596,
+        "createDate": 1726817135.237371,
         "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1719573528.571059,
+        "modifyDate": 1728907337.420278,
         "tenant": "\/api\/3\/tenants\/b3a700f7-00be-4ef9-90c6-3c8fe6e1be63",
         "conflict": false,
-        "tenantRecordId": 74,
-        "recordTags": [
-            "ExcludeListIOCs"
-        ]
-    },
-    {
-        "@type": "Key",
-        "key": "sfsp-excludelist-ips",
-        "value": null,
-        "jSONValue": [
-            "8.8.8.8",
-            "10.1.1.2"
-        ],
-        "notes": "Enter the ips that you want to exclude from enrichment.",
-        "uuid": "ef7e25e3-5058-486b-80c1-9bf9226f367b",
-        "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "createDate": 1719573524.840729,
-        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1719573528.570289,
-        "tenant": "\/api\/3\/tenants\/b3a700f7-00be-4ef9-90c6-3c8fe6e1be63",
-        "conflict": false,
-        "tenantRecordId": 78,
-        "recordTags": [
-            "ExcludeListIOCs"
-        ]
-    },
-    {
-        "@type": "Key",
-        "key": "sfsp-excludelist-files",
-        "value": null,
-        "jSONValue": "",
-        "notes": "Enter the files that you want to exclude from enrichment.",
-        "uuid": "8c34dcc2-b5ce-460e-8372-b1b6709460e4",
-        "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "createDate": 1719573524.835305,
-        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1719573528.572637,
-        "tenant": "\/api\/3\/tenants\/b3a700f7-00be-4ef9-90c6-3c8fe6e1be63",
-        "conflict": false,
-        "tenantRecordId": 77,
-        "recordTags": [
-            "ExcludeListIOCs"
-        ]
-    },
-    {
-        "@type": "Key",
-        "key": "sfsp-excludelist-urls",
-        "value": null,
-        "jSONValue": [
-            "https:\/\/www.google.com",
-            "https:\/\/mail.yahoo.com\/login.html",
-            "https:\/\/www.office.com\/"
-        ],
-        "notes": "Enter the urls that you want to exclude from enrichment.",
-        "uuid": "438cdd54-1ed3-4935-bd12-bf5fe233a7d2",
-        "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "createDate": 1719573524.813545,
-        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1719573528.577797,
-        "tenant": "\/api\/3\/tenants\/b3a700f7-00be-4ef9-90c6-3c8fe6e1be63",
-        "conflict": false,
-        "tenantRecordId": 75,
-        "recordTags": [
-            "ExcludeListIOCs"
-        ]
-    },
-    {
-        "@type": "Key",
-        "key": "sfsp-excludelist-domains",
-        "value": null,
-        "jSONValue": [
-            "google.com",
-            "yahoo.com",
-            "fortinet.net",
-            "gmail.com",
-            "outlook.com",
-            "microsoft.com",
-            "fortinet.com",
-            "twitter.com",
-            "facebook.com",
-            "linkedin.com",
-            "instagram.com",
-            "fortiguard.com",
-            "forticloud.com",
-            "w3.org"
-        ],
-        "notes": "Enter the domains that you want to exclude from enrichment.",
-        "uuid": "a7d9e8af-5912-4090-b9dd-ee686a0af6b4",
-        "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "createDate": 1719573524.815153,
-        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1719573528.580807,
-        "tenant": "\/api\/3\/tenants\/b3a700f7-00be-4ef9-90c6-3c8fe6e1be63",
-        "conflict": false,
-        "tenantRecordId": 76,
-        "recordTags": [
-            "ExcludeListIOCs"
-        ]
-    },
-    {
-        "@type": "Key",
-        "key": "sfsp-excludelist-ports",
-        "value": null,
-        "jSONValue": "",
-        "notes": "Enter the ports that you want to exclude from enrichment.",
-        "uuid": "fccb9763-d682-4662-be84-c724ce355941",
-        "createUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "createDate": 1719573524.921418,
-        "modifyUser": "\/api\/3\/people\/3451141c-bac6-467c-8d72-85e0fab569ce",
-        "modifyDate": 1719573528.695446,
-        "tenant": "\/api\/3\/tenants\/b3a700f7-00be-4ef9-90c6-3c8fe6e1be63",
-        "conflict": false,
-        "tenantRecordId": 79,
-        "recordTags": [
-            "ExcludeListIOCs"
-        ]
+        "tenantRecordId": 146,
+        "recordTags": []
     }
 ]
