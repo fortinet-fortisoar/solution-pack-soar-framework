@@ -1,4 +1,5 @@
 {
+    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Enrich Indicator (Type IP)",
@@ -54,7 +55,7 @@
                         {
                             "type": "primitive",
                             "field": "key",
-                            "value": "sfsp-excludelist-cidr-ranges",
+                            "value": "sfsp-indicator-extraction-configuration",
                             "operator": "eq",
                             "_operator": "eq"
                         }
@@ -163,10 +164,10 @@
             "description": null,
             "arguments": {
                 "params": {
-                    "cidr": "{{vars.steps.Get_CIDR_Range[0].jSONValue}}",
+                    "cidr": "{{vars.steps.Get_CIDR_Range[0].jSONValue['CIDR Range'].excludedIOCs}}",
                     "ip_address": "{{vars.input.params['indicator_value']}}"
                 },
-                "version": "3.3.0",
+                "version": "3.5.0",
                 "connector": "cyops_utilities",
                 "operation": "ip_cidr_check",
                 "operationTitle": "Utils: Is IP in CIDR",
@@ -286,7 +287,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "19cdfbad-d696-478d-b590-a46863c06b4f"
+            "uuid": "da38852a-2b53-44a0-a022-d4c704729f85"
         },
         {
             "@type": "WorkflowRoute",

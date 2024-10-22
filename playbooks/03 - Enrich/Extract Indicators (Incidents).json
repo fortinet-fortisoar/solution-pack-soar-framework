@@ -1,4 +1,5 @@
 {
+    "@context": "\/api\/3\/contexts\/Workflow",
     "@type": "Workflow",
     "triggerLimit": null,
     "name": "Extract Indicators (Incidents)",
@@ -49,20 +50,17 @@
         {
             "@type": "WorkflowStep",
             "name": "Configuration",
-            "description": "You can customize extraction by modifying indicator map in configuration step",
+            "description": "You can customize extraction by modifying the indicator map in \"Indicator Extraction Configuration Wizard\"",
             "arguments": {
                 "record_iri": "{{vars.input.params.recordMetaData['@id'] | ternary(vars.input.params.recordMetaData['@id'],vars.input.records[0]['@id'])}}",
                 "tenant_iri": "{% if vars.input.records[0].tenant %}{{vars.input.params.recordMetaData.tenant['@id'] | ternary(vars.input.params.recordMetaData.tenant['@id'],vars.input.records[0].tenant['@id'])}}{% endif %}",
                 "unified_iocs": "[]",
-                "excluded_ports": "{{(vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `sfsp-excludelist-ports`]\"))[0].jSONValue}}",
+                "excluded_ports": "{{vars.steps.Get_Exclude_IOCs_List[0].jSONValue.Port.excludedIOCs}}",
                 "record_metadata": "{{vars.input.params.recordMetaData | ternary(vars.input.params.recordMetaData,vars.input.records[0])}}",
-                "create_file_iocs": "true",
                 "record_field_iocs": "[]",
-                "excluded_file_iocs": "{{((vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `sfsp-excludelist-files`]\"))[0].jSONValue | replace(\"*\", \"\") | replace(\" \", \"\"))}}",
-                "indicator_type_map": "{{globalVars.Indicator_Type_Map}}",
-                "excluded_indicators": "{{(vars.steps.Get_Exclude_IOCs_List | json_query(\"[? key == `sfsp-excludelist-urls` || key == `sfsp-excludelist-domains` || key == `sfsp-excludelist-ips`].jSONValue\") | flatten(levels=1) | join(\",\") | lower).split(\",\")}}",
-                "record_owners_iri_list": "{{ vars.input.params.recordMetaData.owners | ternary((vars.input.params.recordMetaData.owners | json_query('[].\"@id\"')),vars.input.records[0].owners)}}",
-                "add_excluded_file_comment": "false"
+                "indicator_type_map": "{{vars.steps.Get_Exclude_IOCs_List[0].jSONValue['Indicator Type Mapping'].fieldTypeMapping}}",
+                "excluded_indicators": "{{ vars.steps.Get_Exclude_IOCs_List[0].jSONValue | dict2items(key_name='type', value_name='jSONValue') | json_query(\"[?jSONValue. applyIOCExtractionFilter].jSONValue.excludedIOCs\") | flatten(levels=1) | map('lower') | list | unique }}",
+                "record_owners_iri_list": "{{ vars.input.params.recordMetaData.owners | ternary((vars.input.params.recordMetaData.owners | json_query('[].\"@id\"')),vars.input.records[0].owners)}}"
             },
             "status": null,
             "top": "420",
@@ -187,9 +185,9 @@
                         {
                             "type": "primitive",
                             "field": "key",
-                            "value": "%sfsp-excludelist%",
-                            "operator": "like",
-                            "_operator": "like"
+                            "value": "sfsp-indicator-extraction-configuration",
+                            "operator": "eq",
+                            "_operator": "eq"
                         }
                     ],
                     "__selectFields": [
@@ -544,7 +542,7 @@
             "label": null,
             "isExecuted": false,
             "group": null,
-            "uuid": "e7171907-b3f1-4e1a-9cdb-4469c92d1521"
+            "uuid": "193607c8-66cf-4ec8-9545-c9cb76286938"
         },
         {
             "@type": "WorkflowRoute",
