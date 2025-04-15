@@ -15,4 +15,4 @@
 - **Preserve Customization Through Upgrades**: Previously, solution pack upgrades could overwrite user-modified SVTs, leading to frustrating rework. That’s no longer the case. SVTs provided by solution packs are now locked and non-editable, ensuring upgrade stability. Want to customize your views? Simply create your own SVT—your changes will remain intact and future-proof.
 
 Don’t miss out on these enhancements that make managing complex data views faster, easier, and more resilient.
-For implementation guidance, visit the Editing [System View Templates](<url for System View Templates docs - To be added>) section.
+For implementation guidance, visit the Editing [System View Templates]() section.
