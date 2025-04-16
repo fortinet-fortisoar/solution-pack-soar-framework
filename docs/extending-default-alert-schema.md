@@ -9,24 +9,34 @@ As part of the alert ingestion process, you may need to add additional fields. F
 
 1. Add a desired field to the **Alerts** module. For detailed instructions to achieve this objective, refer to [Modifying an existing module](https://docs.fortinet.com/document/fortisoar/7.0.2/administration-guide/97786/application-editor#Modifying_an_existing_module).
 
-    > As an example, let us add a field with **Field Title** as `Targeted Employee Email Address`, **Field API key** as `targetedEmployeeEmailAddress` and **Field Type** as `Email Field`.
+    > As an example, try adding a field with **Field Title** as `Targeted Employee Email Address`, **Field API key** as `targetedEmployeeEmailAddress` and **Field Type** as `Email Field`.
 
 2. Add the field in alert details.
-    <ol type="a">
-    <li>Log on to FortiSOAR using your credentials.</li>
-    <li>Click <strong>Incident Response</strong> > <strong>Alerts</strong> in the left-navigation to open the <strong>Alerts</strong> module in the list view.</li>
-    <li>Click an alert to open the detailed view.</li>
-    <li>Click the <strong>Edit Template</strong> icon on the top right.</li>
-    <img src="./res/edit-template-alert.png">
-    <li>Navigate to <strong>Fields Of Interest</strong> under <strong>Tabs</strong> > <strong>Alert Details</strong>. To know more about the fields of interest widget, refer to <a href="https://fortisoar.contenthub.fortinet.com//list.html?contentType=all&searchContent=fields%20of%20interest">Fields of Interest</a> widget on Content Hub.</li>
-    <li>Click the <strong>Edit</strong> icon <img src="./res/icon-page-edit.svg"> to edit it.</li>
-    <img src="./res/editable-form-group-alert.png">
-    <li>From the drop-down, select the field that you added &ndash; <code>Targeted Employee Email Address</code> &ndash; and click <strong>Add</strong>.</li>
-    <li>Click <strong>Save</strong> to have <code>Targeted Employee Email Address</code> appear in the <strong>Alerts Details</strong> section.</li>
-    </ol>
-4. Map this field appropriately in the **Data Ingestion** process. Refer to [Data Ingestion Wizard](https://docs.fortinet.com/document/fortisoar/7.2.0/connectors-guide/682058/data-ingestion#Data_Ingestion_Wizard) for details.
 
-5. To extract this field as an indicator, refer to [Extending Indicator Extraction Process](./extending-default-indicator-extraction-process.md).
+    1. Log on to FortiSOAR using your credentials.
+
+    2. Click **Incident Response** > **Alerts** in the left-navigation to open the **Alerts** module in a list view.
+
+    3. Select an alert to open the detailed view of the selected alert.
+
+    4. Click the Edit Template icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-edit-light.svg"><img src="./res/icon-edit-dark.svg"></picture> on the top right.
+        ![](./res/edit-template-alert.png)
+
+    5. Navigate to **Fields Of Interest** under **Tabs** > **Alert Details**. To know more about the fields of interest widget, refer to <a href="https://fortisoar.contenthub.fortinet.com//list.html?contentType=all&searchContent=fields%20of%20interest">Fields of Interest</a> widget on Content Hub.
+
+    6. Click the **Edit** icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-edit-light.svg"><img src="./res/icon-edit-dark.svg"></picture> to edit it.
+        ![](./res/editable-form-group-alert.png)
+
+    7. From the drop-down, select the field that you added &ndash; `Targeted Employee Email Address` &ndash; and click **Add**.
+
+    8. Click **Save as New Template** to save the template with a new name.
+
+    9. From the dropdown select the new template to see `Targeted Employee Email Address` in the **Alert Details** section.
+        ![](./res/select-template-detailed-view-alert.png)
+
+3. Map this field appropriately in the **Data Ingestion** process. Refer to [Data Ingestion Wizard](https://docs.fortinet.com/document/fortisoar/7.2.0/connectors-guide/682058/data-ingestion#Data_Ingestion_Wizard) for details.
+
+4. To extract this field as an indicator, refer to [Extending Indicator Extraction Process](./extending-default-indicator-extraction-process.md).
 
 # Default Alert Schema
 
