@@ -12,7 +12,9 @@ The following image shows the **Action - URL - Block (Indicator)** playbook
 ![](https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/release/1.1.0/docs/res/mitigation-playbook-stock.png)
 
 You can insert an additional step that uses Fortinet's FortiGate connector to block a URL &ndash; provided you have configured FortiGate connector.
->**TIP**: To configure and use the FortiGate connector to block a URL, refer to [Configuring Fortinet FortiGate](https://docs.fortinet.com/document/fortisoar/5.1.0/fortinet-fortigate/231/fortinet-fortigate-v5-1-0#Configuration_parameters)
+
+> [!TIP]
+> To configure and use the FortiGate connector to block a URL, refer to [Configuring Fortinet FortiGate](https://docs.fortinet.com/document/fortisoar/5.1.0/fortinet-fortigate/231/fortinet-fortigate-v5-1-0#Configuration_parameters)
 
 Following image shows the necessary configurations required for adding the **Block URL** step.
 

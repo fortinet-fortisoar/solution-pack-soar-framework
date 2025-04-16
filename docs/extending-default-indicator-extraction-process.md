@@ -20,7 +20,7 @@ For example, consider a custom field of interest *`Targeted Employee Email Addre
 
     ![Adding a custom field](./res/indicator-field-type-mapping.png)
 
-3. **Saving Changes**: Click Save & Continue to save and apply the changes.
+3. **Saving Changes**: Click **Save & Continue** to save and apply the changes.
 
     The keystore record automatically updates with the new information once the wizard completes. The following image shows the keystore record `sfsp-indicator-extraction-configuration` containing the custom field mapped to email address for the **Alert** module.
 

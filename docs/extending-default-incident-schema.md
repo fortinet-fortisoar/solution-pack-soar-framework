@@ -11,27 +11,40 @@ As part of the ingestion process, you may need to add additional fields. Followi
 
     > As an example, let us add a field with **Field Title** as `Targeted Employee Email Address`, **Field API key** as `targetedEmployeeEmailAddress` and **Field Type** as `Email Field`.
 
-2. Add the field in incident details.
-    <ol>
-        <li>Log on to FortiSOAR using your credentials.</li>
-        <li>Click <strong>Incident Response</strong> > <strong>Incidents</strong> in the left-navigation to open the <strong>Incidents</strong> module in the list view.</li>
-        <li>Click an incident to open the detailed view.</li>
-        <li>Click the <strong>Edit Template</strong> icon <img src="./res/icon-edit.svg"> on the top right.</li>
-        <img src="./res/edit-template-incident.png">
-        <li>Navigate to <strong>Editable Form Group: Type Details</strong> under <strong>Tabs</strong> > <strong>Incident Details</strong>.</li>
-        <li>Click the <strong>Edit</strong> icon <img src="./res/icon-page-edit.svg"> to edit it.</li>
-        <img src="./res/editable-form-group-incident.png">
-        <li>From the drop-down, select the field that you added &ndash; <code>Targeted Employee Email Address</code> &ndash; and click <strong>Add</strong>.</li>
-        <li>Click <strong>Save</strong> to have <code>Targeted Employee Email Address</code> appear in the <strong>Incidents Details</strong> section.</li>
-    </ol>
+2. Add the field in incident details:
+
+    1. Log on to FortiSOAR using your credentials.
+
+    2. Click **Incident Response** > **Incidents** in the left-navigation to open the **Incidents** in the left-navigation to open the **Incidents** module in the list view.
+
+    3. Click an incident to open the detailed view.
+
+    4. Click the **Edit Template** icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-edit-light.svg"><img src="./res/icon-edit-dark.svg"></picture> on the top right.
+        ![](./res/edit-template-incident.png)
+
+    5. Navigate to **Editable Form Group: Type Details** under **Tabs** > **Incident Details**.
+
+    6. Click the **Edit** icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-page-edit-light.svg"><img src="./res/icon-page-edit-dark.svg"></picture> to edit it.
+    ![](./res/editable-form-group-incident.png)
+
+    7. From the drop-down, select the field that you added &ndash; `Targeted Employee Email Address` &ndash; and click **Add**.
+
+    8. Click **Save as New Template** to save the template with a new name.
+
+    9. From the dropdown select the new template to see `Targeted Employee Email Address` in the **Incident Details** section.
+        ![](./res/select-template-detailed-view-incident.png)
+    8. Click <strong>Save</strong> to have <code>Targeted Employee Email Address</code> appear in the <strong>Incidents Details</strong> section.
 
 3. Set the new column &ndash; `Targeted Employee Email Address` &ndash; visible.
-    <ol type="a">
-    <li>Click the hamburger menu on the right.</li>
-    <li>Scroll down to locate <code>Targeted Employee Email Address</code> and select it to make it visible.</li>
-    <blockquote>All <strong>visible</strong> fields appear with a green check mark.</blockquote>
-    <li>The field &ndash; <code>Targeted Employee Email Address</code> &ndash; appears as one of the columns. You can drag and drop to rearrange it as per your preference.</li>
-    </ol>
+
+    1. Click the hamburger menu on the right.
+
+    2. Scroll down to locate `Targeted Employee Email Address` and select it to make it visible.
+
+    3. All visible fields appear with a green check mark.
+
+    4. The field &ndash; `Targeted Employee Email Address` &ndash; appears as one of the columns. You can drag and drop to rearrange it as per your preference.
+
 4. Map this field appropriately in the **Data Ingestion** process. Refer to [Data Ingestion Wizard](https://docs.fortinet.com/document/fortisoar/7.2.0/connectors-guide/682058/data-ingestion#Data_Ingestion_Wizard) for details.
 
 5. To extract this field as an indicator, refer to [extending indicator extraction process](./extending-default-indicator-extraction-process.md).

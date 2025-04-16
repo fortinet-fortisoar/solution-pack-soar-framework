@@ -44,7 +44,7 @@ The field is now linked to the module, however, we need to add a tab in the modu
 
     >**NOTE**: If there are no tasks listed in the **Tasks** module, you can create a sample task just so that you have a record to edit its System View Template.
 
-3. Click <img src="./res/icon-edit.svg" width="20" /> from the upper-right corner. Scroll down to find **Tabs**.
+3. Click <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-edit-light.svg"><img src="./res/icon-edit-dark.svg"></picture> from the upper-right corner. Scroll down to find **Tabs**.
 
     ![](./res/editing-records-svt.png)
 
@@ -56,7 +56,7 @@ The field is now linked to the module, however, we need to add a tab in the modu
 
     ![](./res/task-svt-choose-widget.png)
 
-6. Click <img src="./res/icon-edit-page.svg" width="20" /> to edit the **Relationships** widget and bring up the following interface.
+6. Click <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-page-edit-light.svg"><img src="./res/icon-page-edit-dark.svg"></picture> to edit the **Relationships** widget and bring up the following interface.
 
     ![](./res/edit-relationship-widget.png)
 
