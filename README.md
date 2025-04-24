@@ -1,9 +1,9 @@
 # Release Information
 
-- **Version**:  3.1.0
+- **Version**:  3.2.0
 - **Certified**: Yes 
 - **Publisher**: Fortinet 
-- **Compatible Version**: FortiSOAR v7.6.1 and later
+- **Compatible Version**: FortiSOAR v7.6.2 and later
 - [Release Notes](./release_notes.md)
 
 # Overview 
@@ -39,11 +39,14 @@ The following diagram helps better understand the overall process and the subseq
 
     2. **Create Alerts** – Alerts received from SIEM (or other sources) are converted into FortiSOAR alert records. The fields of interest such as Source IP is picked up from the source data to respective fields in FortiSOAR alert record.<br/><br/>For each newly created alert, FortiSOAR executes a playbook named **Extract Indicators**. This playbook creates **Indicator** records for the known fields of interest. For additional details, refer to [Extending Default Indicator Extraction Process](./docs/extending-default-indicator-extraction-process.md).
 
-3. **Execute Playbooks** – Multiple playbooks trigger to perform following automated tasks:
+2. **Execute Playbooks** – Multiple playbooks trigger to perform following automated tasks:
     1. **Case Management** - Case Management automates processes like adding users as case owners, tracking SLA and resolution timelines, using playbooks. It also contains playbooks that resolve an alert by taking appropriate action or marking it as an **incident** and escalating it.
     2. **Indicator Extraction & Enrichment** - After creating an indicator record, FortiSOAR triggers appropriate playbooks such as **Indicator (TypeDomain) – Get Reputation** to gather more context (a.k.a Enrichment) and to compute the reputation of the given indicator.   
     Enrichment happens using various Cyber Threat Intelligence(CTI) sources such as VirusTotal, FortiGuard, or URLVoid; and also from sources such as Active Directory® for user context enrichment. For additional details, refer to [Extending Default Indicator Enrichment Process](./docs/extending-default-indicator-enrichment-process.md) section.
-        >**NOTE**: After the completion of Indicator extraction and enrichment, the alert is ready for further investigation. This state is internally identified as `state=ready to investigate`. Here, some playbooks trigger as a response to specific type of alert. These are termed as **Use Case Playbooks**. The playbook collection named “**02 – Use Cases**” contains multiple such response playbooks. Alternatively, some Solution Packs(SP) deploy their respective response playbooks in a collection named as `02 - Use Case - <intent>`. For example **02- Use Case - Brute Force Attack** which contain playbooks for responding to Brute Force Attack alerts.
+
+        |NOTE|
+        |:---|
+        |After the completion of Indicator extraction and enrichment, the alert is ready for further investigation. This state is internally identified as `state=ready to investigate`. Here, some playbooks trigger as a response to specific type of alert. These are termed as **Use Case Playbooks**. The playbook collection named “**02 – Use Cases**” contains multiple such response playbooks. Alternatively, some Solution Packs(SP) deploy their respective response playbooks in a collection named as `02 - Use Case - <intent>`. For example **02- Use Case - Brute Force Attack** which contain playbooks for responding to Brute Force Attack alerts.|
 
     3. **Triage** - Triaging is identifying of the criticality of data and assets, the severity of the incident, deciding containment strategies, following the escalation matrix, and then acting on the defined isolation and blocking strategies.     
     Suppose there are multiple alerts received, signifying an incident &ndash; a threat actor is attempting to gain access to two computers (assets) in your network; one of the assets is an endpoint with sensitive data and the other is a decoy. In this case, while triaging, you assign higher priority to the endpoint with sensitive data.
@@ -54,12 +57,14 @@ The following diagram helps better understand the overall process and the subseq
 
     6. **Hunt** - Hunt playbooks search the presence of specified domains, files, or other indicators in the organization. For example, a given File &ndash; identified through filehash &ndash; present on any computer in the organization.
 
-4. **Update Alerts** - The intelligence gathered from indicator investigation is fed to the alert source (SIEM, EDR, or similar alert sources) to prevent similar threats in the future.<br/>
-    >**NOTE**: Marking an alert as **Closed** invokes a corresponding [close source alert](./docs/contents.md#06-irp-case-management) playbook. This playbook, by default, simply prompts you to close the alert at the source; however, you must modify that to use the respective product's connectors (such as FortiSIEM) to invoke the closure action. This way you can update the source systems to your desired state.
+3. **Update Alerts** - The intelligence gathered from indicator investigation is fed to the alert source (SIEM, EDR, or similar alert sources) to prevent similar threats in the future.<br/>
+    |NOTE|
+    |:---|
+    |Marking an alert as **Closed** invokes a corresponding [close source alert](./docs/contents.md#06-irp-case-management) playbook. This playbook, by default, simply prompts you to close the alert at the source; however, you must modify that to use the respective product's connectors (such as FortiSIEM) to invoke the closure action. This way you can update the source systems to your desired state.|
 
-5. **Escalate** - At the end of this cycle, the given alert is either marked as **False Positive** and **closed** or marked as **True Positive** and **Escalated into an Incident**. Note, the Escalation into an incident by default is a manual step (by clicking **Escalate** button), but the same can also be automated via invoking **Escalate to Incident Playbook** into the respective response playbooks.
+4. **Escalate** - At the end of this cycle, the given alert is either marked as **False Positive** and **closed** or marked as **True Positive** and **Escalated into an Incident**. Note, the Escalation into an incident by default is a manual step (by clicking **Escalate** button), but the same can also be automated via invoking **Escalate to Incident Playbook** into the respective response playbooks.
 
-6. **Crisis Management** - To avert a crisis it is customary, and an obvious course of action, to bring in all the stakeholders together to formulate the next plan of action. The **War Room** helps bring together everyone who can help solve the problem. For example, in case of an **Incident**, an organization may have to:
+5. **Crisis Management** - To avert a crisis it is customary, and an obvious course of action, to bring in all the stakeholders together to formulate the next plan of action. The **War Room** helps bring together everyone who can help solve the problem. For example, in case of an **Incident**, an organization may have to:
     - Issue a statement, for which they need their Legal team
     - Gauge the financial redressal required, for which presence of the Finance team is crucial
     - Rope in the Human Resources(HR) team, if employees are involved   
