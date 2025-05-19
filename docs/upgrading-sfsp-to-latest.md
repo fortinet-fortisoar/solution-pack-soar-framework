@@ -6,6 +6,22 @@
 > [!Note]
 > On a fresh install of FortiSOAR&trade;, `Tenant` is not a uniqueness constraint for any of the modules. However, when SOAR Framework Solution Pack is upgraded, `Tenant` is added as a uniqueness constraint in **_Alerts_**, **_Incidents_**, and **_Indicators_**.
 
+## Prerequisites
+
+Before upgrading to SOAR Framework v3.2.1 and later, you must
+
+- Upgrade to FortiSOAR `v7.6.2` or later
+
+- Install Platform Utilities solution pack `v1.0.1` and later
+
+Hence, we recommend that users perform the upgrade of their FortiSOAR instances in the following order to avoid upgrade issues:
+
+1. Upgrade to FortiSOAR v7.6.2.
+
+2. Install the **Platform Utilities** solution pack from [Content Hub](https://fortisoar.contenthub.fortinet.com//list.html?contentType=all&searchContent=platform%20utilities).
+
+3. Upgrade to the SOAR Framework solution pack v3.2.1.
+
 ## Moving from Global Variables to Key Store Record
 
 SOAR Framework `v3.1.0` and later uses the new keystore records instead of old keystore records and legacy global variables for indicator extraction, exclusion, and indicator type mapping.
