@@ -7,10 +7,13 @@
     </tr>
 </table>
 
-## Streamline System View Templates (SVTs)
+## Streamlined upgrade process
 
-- **Tailored Views for Maximum Clarity**: When working with modules that contain hundreds of fields, a single, all-encompassing view can hinder efficiency. The latest update introduces support for multiple SVTs, empowering users to design streamlined, purpose-built views. Whether you're monitoring alert types, analyzing data sources, or managing workflows, you can now surface only the most critical information—right when you need it.
+The upgrade process has been streamlined to remove any post install failures by populating the new **JSON Value** field in the *KeyStore* module with a default value.
 
-- **Preserve Customization Through Upgrades**: SVTs provided by solution packs are now locked and non-editable, ensuring upgrade stability. Want to customize your views? Simply create your own SVT—your changes will remain intact and future-proof.
-
-Don’t miss out on these enhancements that make managing complex data views faster, easier, and more resilient.
+<table>
+    <tr>
+        <th>Important</th>
+        <td>Refer to the <em>Prerequisites</em> section in <a href="https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/develop/docs/upgrading-sfsp-to-latest.md">Upgrading SOAR Framework to the latest version</a> document.</td>
+    </tr>
+</table>
