@@ -3,17 +3,10 @@
 <table>
     <tr>
         <th>Compatible Version</th>
-        <td>FortiSOAR v7.6.2 and later</td>
+        <td>FortiSOAR v7.6.4 and later</td>
     </tr>
 </table>
 
-## Streamlined upgrade process
+## Internationalization Support  
 
-The upgrade process has been streamlined to remove any post install failures by populating the new **JSON Value** field in the *KeyStore* module with a default value.
-
-<table>
-    <tr>
-        <th>Important</th>
-        <td>Refer to the <em>Prerequisites</em> section in <a href="https://github.com/fortinet-fortisoar/solution-pack-soar-framework/blob/develop/docs/upgrading-sfsp-to-latest.md">Upgrading SOAR Framework to the latest version</a> document.</td>
-    </tr>
-</table>
+SOAR Framework Solution Pack (SFSP) now supports **Traditional Chinese** and **French** across all modules, including alerts, incidents, and indicators. This enhancement enables analysts to work in their preferred language, improving usability and accessibility for global teams.  
