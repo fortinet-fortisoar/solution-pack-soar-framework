@@ -78,16 +78,16 @@ As an example, we explain how to configure communication tracking playbooks for 
 3. Click to open **Add Note for Communication Linked (Received)** playbook.
     1. Double-click to edit the **Configuration** step.
     2. Click **+ Add More** to add a new variable.
-    3. Specify the name of the variable. For example `taskIRI`. The corresponding Jinja expression is `{{vars.data.tasks[0][‘@id’]}}`.
+    3. Specify the name of the variable. For example `taskIRI`. The corresponding Jinja expression is `{{vars.data.tasks[0]['@id']}}`.
     4. Click **Save** to save the changes made to the step.
     5. Double-click to open the **Add Note** step.
     6. Under **Fields**, click the tab **Correlations**.
-    7. Add the task IRI to the **Task** field. The corresponding Jinja expression is `[“{{vars.taskIRI}}”]`.
+    7. Add the task IRI to the **Task** field. The corresponding Jinja expression is `["{{vars.taskIRI}}"]`.
     8. Click **Save** to save the changes made to the step.
 4. Click to open **Add Note for Communication Linked** playbook.
     1. Double-click to open the **Add Note** step.
     2. Under **Fields**, click the tab **Correlations**.
-    3. Add the task IRI to the **Task** field. The corresponding Jinja expression is `[“{{vars.data.tasks[0][‘@id’]}}”]`.
+    3. Add the task IRI to the **Task** field. The corresponding Jinja expression is `["{{vars.data.tasks[0]['@id']}}"]`.
     4. Click **Save** to save the changes made to the step.
 5. Create **Create Communication Record (Task)** Playbook.
     1. Click the checkbox to select **Create Communication Record (Alert)** playbook.

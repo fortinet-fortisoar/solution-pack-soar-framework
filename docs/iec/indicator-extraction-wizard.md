@@ -138,7 +138,7 @@ You can specify your own regex pattern to accommodate unique data patterns, excl
     [a-zA-Z0-9_\-]+\.[a-zA-Z0-9]{2,6}
     ```
 
-    Matches the file name, allowing alphanumeric characters, underscores, hyphens, literal periods before the file extension, and common file extensions with 2–6 characters, such as `.exe`, `.pdf`, `.jpeg`.
+    Matches the file name, allowing alphanumeric characters, underscores, hyphens, literal periods before the file extension, and common file extensions with 2-6 characters, such as `.exe`, `.pdf`, `.jpeg`.
 
 5. Click **![](../res/icon-check.svg) Submit**. The new indicator type is added at the end of the page.
 

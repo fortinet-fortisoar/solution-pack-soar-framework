@@ -33,7 +33,7 @@ The SOAR framework includes the following modules:
 | 5 | Communications | It helps users to communicate with external entities like tenant contacts, and other SOC teams, using email, instant messaging (IM), etc. from within an alert generated in FortiSOAR. For this purpose, it uses IMAP and Exchange connectors.                                                                                                                                                                                                                                                                                                                                 |
 | 6 | Events         | Events consist of records that contain machine-level information about activity that triggered a specific alert.                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | 7 | Incidents      | Incidents are confirmed alerts that negatively affect the confidentiality, integrity, and availability of an organization. Incidents represent a collection of information discovered during an Incident Response investigation. Incidents are triggered based on the suspicion or confirmation of a security breach.                                                                                                                                                                                                                                                          |
-| 8 | Indicators     | **Indicators of compromise** (IOCs) serve as evidence of probable intrusions on a host system or network. These artifacts help personnel at a Security Operations Center (SOC) to detect intrusion attempts or other malicious activities. IOCs help better analyze a particular malware’s techniques and behaviors and provide actionable threat intelligence to further improve an organization’s incident response strategies.<br/><br/>Some of this evidence of potential breach is found on event logs and timestamped entries in the system, applications, and services. |
+| 8 | Indicators     | **Indicators of compromise** (IOCs) serve as evidence of probable intrusions on a host system or network. These artifacts help personnel at a Security Operations Center (SOC) to detect intrusion attempts or other malicious activities. IOCs help better analyze a particular malware's techniques and behaviors and provide actionable threat intelligence to further improve an organization's incident response strategies.<br/><br/>Some of this evidence of potential breach is found on event logs and timestamped entries in the system, applications, and services. |
 | 9 | War Rooms      | War Rooms in FortiSOAR is a collaborative space that enables SOC teams to mitigate a critical cyber threat scenario or campaign. FortiSOAR makes it easy for analysts to quickly and easily provision a War Room that allows participation of all stakeholders to analyze and collaborate to quickly mitigate the threat and restore the services. For more information, see the War Rooms chapter.                                                                                                                                                                            |
 
 ## Rules
@@ -164,18 +164,18 @@ SOAR Framework includes following Reference Block(s)
 
 SOAR Framework includes the following playbook collections:
 
-- 01 – Drafts
+- 01 - Drafts
 - 02 - Use Cases
-- 03 – Enrich
-- 03 – Triage
-- 04 – Actions
-- 05 – Hunt
+- 03 - Enrich
+- 03 - Triage
+- 04 - Actions
+- 05 - Hunt
 - 06 - IRP - Case Management
 - 06 - IRP - Communications Tracking
-- 06 - IRP – Reporting
+- 06 - IRP - Reporting
 - 06 - IRP - War Room
 - 07 - Incident Response Plan
-- 08 – Utilities
+- 08 - Utilities
 
 ## Naming Convention
 
@@ -205,10 +205,10 @@ Playbooks in the *03-Enrich* collection help perform enrichment of data &ndash; 
 | 12 | Get Reputation After Specified Time                     | Re-enriches indicators after a specified time.                                                                                                           |
 | 13 | Get Unprocessed Indicators                              | Fetches the indicators for which enrichment has been failed and mark their `Enrichment Status` to Failed                                                 |
 | 14 | Indicator (Manual Trigger) - Get Latest Reputation      | Retrieves the reputation of indicators using configured threat intelligence tools. You can trigger this playbook by manually selecting the indicator(s). |
-| 15 | Indicator (Type Host) - Get Reputation                  | Retrieves the reputation of indicators of type ‘Host’ using configured threat intelligence tools.                                                        |
-| 16 | Indicator (Type Port) - Get Reputation                  | Retrieves the reputation of indicators of type ‘Port’ using configured threat intelligence tools.                                                        |
-| 17 | Indicator (Type Process) - Get Reputation               | Retrieves the reputation of indicators of type ‘Process’ using configured threat intelligence tools.                                                     |
-| 18 | Indicator (Type Registry) - Get Reputation              | Retrieves the reputation of indicators of type ‘Registry’ using configured threat intelligence tools.                                                    |
+| 15 | Indicator (Type Host) - Get Reputation                  | Retrieves the reputation of indicators of type ‘Host' using configured threat intelligence tools.                                                        |
+| 16 | Indicator (Type Port) - Get Reputation                  | Retrieves the reputation of indicators of type ‘Port' using configured threat intelligence tools.                                                        |
+| 17 | Indicator (Type Process) - Get Reputation               | Retrieves the reputation of indicators of type ‘Process' using configured threat intelligence tools.                                                     |
+| 18 | Indicator (Type Registry) - Get Reputation              | Retrieves the reputation of indicators of type ‘Registry' using configured threat intelligence tools.                                                    |
 | 19 | Reset Enrichment Global Variables                       | Reset the *pluggable* enrichment global variables                                                                                                        |
 | 20 | Retrieve Configured Enrichment Connectors               | Retrieve the configured enrichment connectors and return their playbook IRI's                                                                            |
 | 21 | Update/Initialize Indicator Enrichment Global Variables | Update enrichment playbooks list global variable based on indicator type defined as param tag                                                            |
@@ -231,7 +231,7 @@ Playbooks in the *03-Triage* collection perform actions such as sorting, systema
 | 6 | Flag Indicators Linked Across Multiple Alerts                                                        | Flags changes made in indicators that are linked to multiple alerts.                                                                                                                                                                                              |
 | 7 | Map Historical Alerts and escalate for malicious Indicators                                          | Creates a mapping for historical alerts and then escalates the alerts to incidents if malicious indicators are found in the historical alerts. If the incident already exists, then the information is updated into the incident; else a new incident is created. |
 | 8 | Prioritize Alerts With VIP Assets                                                                    | Raises the severity of the alert if it is associated with a supercritical asset.                                                                                                                                                                                  |
-| 9 | Update Alert Severity for malicious Indicators                                                       | Sets the severity of the alert to critical if its associated indicators are found to be ‘malicious’.                                                                                                                                                              |
+| 9 | Update Alert Severity for malicious Indicators                                                       | Sets the severity of the alert to critical if its associated indicators are found to be ‘malicious'.                                                                                                                                                              |
 
 ## Actions Playbook Collection
 
@@ -244,11 +244,11 @@ Playbooks in the *04-Actions* collection perform various operations such as bloc
 | #  | Playbook Name                                                                 | Description                                                                                                                                                                                                                                 |
 |----|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1  | Action - Domain - Block(Indicator)                                            | Blocks the indicators of type'Domain' on the firewall and marks the indicator as "Blocked" based on its Block status.                                                                                                                       |
-| 2  | Action - Domain - Block(Specified by User)                                    | Creates an indicator for the domain name specified by the user, blocks the domain on the firewall and also marks the status of the indicator 'Blocked’. The indicator is also linked to the record on which the playbook is triggered.      |
+| 2  | Action - Domain - Block(Specified by User)                                    | Creates an indicator for the domain name specified by the user, blocks the domain on the firewall and also marks the status of the indicator 'Blocked'. The indicator is also linked to the record on which the playbook is triggered.      |
 | 3  | Action - Domain - Unblock(Indicator)                                          | Unblocks the indicators of type'Domain' on the firewall and marks the indicator as "Unblocked" based on its block status.                                                                                                                   |
-| 4  | Action - Domain - Unblock(Specified by User)                                  | Creates indicator for the domain name specified by the user, unblocks the domain on the firewall, and also marks the status of the indicator as ‘Unblocked’. The indicator is also linked to the record on which the playbook is triggered. |
+| 4  | Action - Domain - Unblock(Specified by User)                                  | Creates indicator for the domain name specified by the user, unblocks the domain on the firewall, and also marks the status of the indicator as ‘Unblocked'. The indicator is also linked to the record on which the playbook is triggered. |
 | 5  | Action - Email Address - Block(Indicator)                                     | Blocks the indicators of type 'Email Address' on the firewall and marks the indicator as "Blocked" based on its block status.                                                                                                               |
-| 6  | Action - Email Address - Block(Specified by User)                             | Creates indicator for the email address specified by the user, blocks the email on the firewall and marks the status of the indicator as ‘Blocked’. The indicator is also linked to the record on which the playbook is triggered.          |
+| 6  | Action - Email Address - Block(Specified by User)                             | Creates indicator for the email address specified by the user, blocks the email on the firewall and marks the status of the indicator as ‘Blocked'. The indicator is also linked to the record on which the playbook is triggered.          |
 | 7  | Action - Email Address - Unblock(Indicator)                                   | Unblocks the indicators of type 'Email Address' on the firewall and marks the indicator as "Unblocked" based on its block status.                                                                                                           |
 | 8  | Action - Email Address - Unblock(Specified by User)                           | Creates indicators for the email address specified by the user, unblocks the email on the firewall, and also marks the status of the indicator as Unblocked. The indicator is also linked to the record on which the playbook is triggered. |
 | 9  | Action - File - Block (Indicator)                                             | Blocks the indicators of type'File' on the firewall and marks the indicator as "Blocked" based on its block status.                                                                                                                         |
@@ -383,7 +383,7 @@ This playbook collection has the following playbook
 | 9  | Set up WarRoom from Alerts                                         | Establishes a War Room based on the selected alert(s).                                                                                                          |
 | 10 | Set up WarRoom from Incidents                                      | Establishes a War Room based on the selected incident(s).                                                                                                       |
 | 11 | Set WarRoom Live and Notify Responders                             | Updates the war room status to "Live" and sends the email notification to the responders.                                                                       |
-| 12 | Update WarRoom Close Date                                          | Updates the ‘Close Date’ of the War Room record, when its status is marked as "Closed".                                                                         |
+| 12 | Update WarRoom Close Date                                          | Updates the ‘Close Date' of the War Room record, when its status is marked as "Closed".                                                                         |
 | 13 | Set up War Room from Incidents (Referenced)![](./res/icon-new.svg) | Establishes a War Room based on the selected incident(s)                                                                                                        |
 
 ## Incident Response Playbook Collection
@@ -394,7 +394,7 @@ This playbook collection has the following playbook
 
 | # | Playbook Name                                        | Description                                                                                                                |
 |---|------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| 1 | Incident Response Plan (Type - Malware)              | Investigates incidents of type ‘Malware’ and executes the different phases of incident response using CarbonBlackResponse. |
+| 1 | Incident Response Plan (Type - Malware)              | Investigates incidents of type ‘Malware' and executes the different phases of incident response using CarbonBlackResponse. |
 | 2 | Incident Response Plan (Type - NIST 800-61 -Generic) | Creates tasks for incident response and handling as per the guidelines provided in NIST 800-61.                            |
 | 3 | NIST 800-61 - Upfront Tasks                          | Creates tasks for incident response and handling as per the guidelines provided in NIST 800-61.                            |
 

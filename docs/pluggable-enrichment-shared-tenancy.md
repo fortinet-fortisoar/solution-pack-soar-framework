@@ -18,7 +18,7 @@ The following steps outline how to set up and configure *pluggable* enrichment f
 
 4. Assign the configuration name as `{{vars.input.params['alert_tenant_name']}}`.
 
-5. Edit the [*03 – Enrich > Enrich Indicators (Type All)*](#editing-indicator-enrichment-playbook) playbook.
+5. Edit the [*03 - Enrich > Enrich Indicators (Type All)*](#editing-indicator-enrichment-playbook) playbook.
 
 Following sections explain these steps with an example where threat intelligence platform is **VirusTotal** and indicator type is **URL**
 
@@ -40,11 +40,11 @@ Similar steps are required for each configured threat intelligence platform's co
 
 ## Editing Indicator Enrichment Playbook
 
-Following steps help edit the *03 – Enrich > Enrich Indicators (Type All)* playbook.
+Following steps help edit the *03 - Enrich > Enrich Indicators (Type All)* playbook.
 
 1. Edit the the *Configuration* step of the playbook.
 
-2. Create a variable `alertTenantName` to get the alert’s tenant name. Use the following Jinja expression:
+2. Create a variable `alertTenantName` to get the alert's tenant name. Use the following Jinja expression:
 
     ```jinja
     {% if vars.input.params['indicator_IRI'] %}{{ (((vars.input.params['indicator_IRI'] + "?$relationships=true&$export=true") | fromIRI).alerts[0] | fromIRI).tenant.name}}{% else %}{{ (((vars.input.records[0]['@id'] + "?$relationships=true&$export=true") | fromIRI).alerts[0] | fromIRI).tenant.name}}{% endif %}
