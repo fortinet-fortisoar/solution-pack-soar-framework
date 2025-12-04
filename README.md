@@ -74,6 +74,8 @@ The following diagram helps better understand the overall process and the subseq
 
 ## Additional Resources 
 
+- [Highly recommended solution packs](./docs/setup.md#highly-recommended-solution-packs)
+
 - [Upgrading SOAR Framework to the latest version](./docs/upgrading-sfsp-to-latest.md)
 
 - [Managing Team Ownable Settings](./docs/managing-team-ownable-settings.md)

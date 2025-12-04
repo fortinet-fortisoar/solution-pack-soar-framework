@@ -32,14 +32,11 @@ The SVT Module's views have been optimized to deliver faster load times and smoo
 - Removed the **Execute Playbooks** widget from SVTs and from the *Detailed View* of the following modules:
 
     - Alerts  
-
     - Assets  
-
     - Incidents  
-
     - Events  
 
-- Modules without required fields or default Add Views no longer show an Add View in SVT.
+- Modules that do not contain *required* fields, or *default Add Views* ('add a new record' form), no longer show an Add View in SVT.
 
 - Added the missing **Add View** for the **Campaign** module.
 
