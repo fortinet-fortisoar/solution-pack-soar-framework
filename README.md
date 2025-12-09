@@ -1,6 +1,6 @@
 # Release Information
 
-- **Version**:  3.3.0
+- **Version**:  3.4.0
 - **Certified**: Yes 
 - **Publisher**: Fortinet 
 - **Compatible Version**: FortiSOAR v7.6.4 and later
@@ -12,7 +12,7 @@ SOAR Framework Solution Pack (SFSP) lays the foundation to use the FortiSOAR pla
 
 SFSP installs several modules such as alerts, incidents, and indicators along with corresponding playbooks, dashboards, reports, and widgets to make it a comprehensive solution and provide a fully functional Incident Response Platform augmented by Automation and Threat Intelligence. 
 
-Some key benefits of SOAR Framework SP: 
+Some key benefits of SOAR Framework SP:
 
 - Provides standardized modules for various operations in a SOC - e.g. alerts, incidents, indicators and campaigns
 - Helps establish and follow a standardized process through playbooks for indicator extraction, enrichment, and mitigation

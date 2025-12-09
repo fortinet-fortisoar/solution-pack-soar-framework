@@ -11,7 +11,7 @@
 
 - The *On Create*, *On Update*, and *On Delete* playbooks now offer more control in MSSP environments.
 
-    Instead of running solely on the instance where a record is created, administrators can now choose to execute these playbooks on the master node, the tenant node, or both.
+    Alerts on master are enriched on the Master node; Tenant alerts on the Tenant.
 
 - Optimized *Created* and *Replicated* node executions (introduced in v7.4.2) to prevent execution conflicts.
 
@@ -23,7 +23,7 @@ This update gives MSSPs more operational consistency and simplifies cross-node a
 
 - Private IP addresses are now being successfully extracted from attachments, ensuring better visibility across diverse data sources.
 
-- The file content extraction engine has been upgraded to identify indicators even in previously unreadable formats&mdash;including **`.so`** and **`.docx`** files&mdash;improving the breadth and reliability of automated artifact analysis.
+<!-- - The file content extraction engine has been upgraded to identify indicators even in previously unreadable formats&mdash;including **`.so`** and **`.docx`** files&mdash;improving the breadth and reliability of automated artifact analysis. -->
 
 ### SVT Module Performance Improvements
 
@@ -43,19 +43,16 @@ The SVT Module's views have been optimized to deliver faster load times and smoo
 
 ### Playbook Enhancements
 
-- **03 - Triage > Map Historical Alerts and Escalate for Malicious Indicators**
-  Now properly creates an incident when multiple alerts are tied to the same indicator. Newly created alerts linked to that indicator are automatically associated with the same incident, streamlining case grouping and escalation logic.
-
-- **03 - Triage > Flag Indicators Linked Across Multiple Alerts**
-  Now automatically adds comments or flags to relevant alerts when malicious indicators appear across multiple alert records, helping analysts quickly understand cross-alert relationships
-
-- **Incident Creation for Multiple Linked Alerts** has now been enhanced to create incidents based on linked historical alerts. The playbook now:
+- **Incident Creation for Multiple Linked Alerts** has now been enhanced to create incidents when multiple alerts are tied to the same indicator. The playbook now:
 
     - Maps historical alerts
 
     - Escalates alerts to incidents when malicious indicators are detected
 
     - Updates existing incidents or creates new ones as required
+
+- **03 - Triage > Flag Indicators Linked Across Multiple Alerts**
+  Now automatically adds comments or flags to relevant alerts when malicious indicators appear across multiple alert records, helping analysts quickly understand cross-alert relationships
 
 ## Fixes
 
@@ -71,4 +68,4 @@ The SVT Module's views have been optimized to deliver faster load times and smoo
 
     Expired indicators now correctly show indicators' expiration status.
 
-- Removed the redundant step **Is Dedicated Tenant Record** from the playbook **03 - Enrich > Enrich Indicators (Type All)**.
+<!-- - Removed the redundant step **Is Dedicated Tenant Record** from the playbook **03 - Enrich > Enrich Indicators (Type All)**. -->
