@@ -3,24 +3,24 @@
 
 # Upgrading SOAR Framework v2.x.x to latest version
 
-> [!Note]
+> [!NOTE]
 > On a fresh install of FortiSOAR&trade;, `Tenant` is not a uniqueness constraint for any of the modules. However, when SOAR Framework Solution Pack is upgraded, `Tenant` is added as a uniqueness constraint in **_Alerts_**, **_Incidents_**, and **_Indicators_**.
 
 ## Prerequisites
 
 Before upgrading to SOAR Framework v3.2.1 and later, you must
 
-- Upgrade to FortiSOAR `v7.6.2` or later
+- Upgrade to FortiSOAR `v7.6.4` or later
 
 - Install Platform Utilities solution pack `v1.0.1` and later
 
 Hence, we recommend that users perform the upgrade of their FortiSOAR instances in the following order to avoid upgrade issues:
 
-1. Upgrade to FortiSOAR v7.6.2.
+1. Upgrade to FortiSOAR v7.6.4 or later.
 
 2. Install the **Platform Utilities** solution pack from [Content Hub](https://fortisoar.contenthub.fortinet.com//list.html?contentType=all&searchContent=platform%20utilities).
 
-3. Upgrade to the SOAR Framework solution pack v3.2.1.
+3. Upgrade to the SOAR Framework solution pack v3.2.1 or later.
 
 ## Moving from Global Variables to Key Store Record
 
@@ -39,7 +39,7 @@ Let us consider the playbook **Extract Indicators (Alerts)** as an example. We w
 
 2. Open the playbook **Extract Indicators (Alerts)**, under the collection *03 - Enrich*.
 
-> [!Note]
+> [!NOTE]
 > Your playbooks and the corresponding steps to be edited may be different.
 
 3. Edit the step that handles indicator extraction or exclusion. In this example, that step is **Get Exclude IOCs List**.
