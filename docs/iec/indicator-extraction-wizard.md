@@ -9,6 +9,13 @@ You can exclude indicators from the extraction process within your FortiSOAR env
 - Bulk upload indicators for exclusion
 - Add custom indicator types
 - Map alert and incident fields with various indicator types
+- Adding Comment to Excluded File Alerts
+- Skip Creating File Indicators
+
+>[!IMPORTANT]
+>Under **Resources** <picture><source media="(prefers-color-scheme: dark)" srcset="../res/icon-resources-light.svg"><source media="(prefers-color-scheme: light)" srcset="../res/icon-resources-dark.svg"><img alt="Fallback image description" src="../res/icon-resources-dark.svg"></picture> <picture><source media="(prefers-color-scheme: dark)" srcset="../res/icon-chevron-light.svg"><source media="(prefers-color-scheme: light)" srcset="../res/icon-chevron-dark.svg"><img alt="Fallback image description" src="../res/icon-chevron-dark.svg"></picture> **Key Store** <picture><source media="(prefers-color-scheme: dark)" srcset="../res/icon-key-store-light.svg"><source media="(prefers-color-scheme: light)" srcset="../res/icon-key-store-dark.svg"><img alt="Fallback image description" src="../res/icon-key-store-dark.svg"></picture> <picture><source media="(prefers-color-scheme: dark)" srcset="../res/icon-chevron-light.svg"><source media="(prefers-color-scheme: light)" srcset="../res/icon-chevron-dark.svg"><img alt="Fallback image description" src="../res/icon-chevron-dark.svg"></picture> `sfsp-indicator-extraction-configuration` key record, ensure that *for each* indicator type to exclude, the flag `applyIOCExtractionFilter` must be set to `true`.
+>
+>![](../res/iec/sfsp-iec-key-store-record.png)
 
 ## Launching the Configuration Wizard
 
