@@ -86,7 +86,9 @@ The following diagram helps better understand the overall process and the subseq
 
 - [Extending Default Indicator Extraction Process](./docs/extending-default-indicator-extraction-process.md)
 
-- [Excluding Extracted Indicators from Enrichment](./docs/extending-default-indicator-extraction-process.md#excluding-extracted-indicators-from-enrichment)
+    - [Extracting defanged indicators](./docs/extending-default-indicator-extraction-process.md#extracting-defanged-indicators)
+
+- [Excluding Indicators - Indicator Extraction Configuration Wizard](./docs/iec/indicator-extraction-wizard.md)
 
 - [Extending Default Indicator Enrichment Process](./docs/extending-default-indicator-enrichment-process.md)
 
@@ -95,8 +97,6 @@ The following diagram helps better understand the overall process and the subseq
 - [Setting up Default Mitigation Playbooks](./docs/setting-up-default-mitigation-playbook.md)
 
 - [Setting up Communications Tracking for Custom Modules](./docs/setting-up-comms-module.md)
-
-- [Indicator Extraction Wizard](./docs/iec/indicator-extraction-wizard.md)
 
 - [Setup Guide](./docs/setup-guide/setup-guide.md)
 
