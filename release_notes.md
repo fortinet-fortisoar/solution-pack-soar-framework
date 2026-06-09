@@ -1,71 +1,70 @@
 # What's New
 
-<table>
-    <tr>
-        <th>Compatible Version</th>
-        <td>FortiSOAR v7.6.4 and later</td>
-    </tr>
-</table>
+>[!Note]
+>*Compatible Version*: FortiSOAR v8.0.0 and later
 
-### MSSP Playbook Execution Flexibility
+## Enhancements
 
-- The *On Create*, *On Update*, and *On Delete* playbooks now offer more control in MSSP environments.
+### Renaming of Incident to Case
 
-    Alerts on master are enriched on the Master node; Tenant alerts on the Tenant.
+*Incident* has been renamed to **Case**. Now, alerts will be escalated as **Case** instead of as *Incidents*.
 
-- Optimized *Created* and *Replicated* node executions (introduced in v7.4.2) to prevent execution conflicts.
+### Identities Module
 
-- Resolved issues where the enrichment playbooks failed to run on either node in certain MSSP scenarios.
+A new **Identities** module has been created to act as a correlation layer for user-related information extracted from ingested data. A new tab *Identities* now appears on the details page of modules such as Alert or a *Case*, under the **Correlations** tab.
 
-This update gives MSSPs more operational consistency and simplifies cross-node automation strategies.
+### AI Integration
 
-### Expanded Indicator & File Content Extraction
+An **AI Investigation** tab in an alert's details page launches an investigation, analyzes alerts, and summarizes evidence to help reach a verdict faster.
 
-- Private IP addresses are now being successfully extracted from attachments, ensuring better visibility across diverse data sources.
+## Playbook Enhancements
 
-<!-- - The file content extraction engine has been upgraded to identify indicators even in previously unreadable formats&mdash;including **`.so`** and **`.docx`** files&mdash;improving the breadth and reliability of automated artifact analysis. -->
+- Updated the playbook **Enrich Indicators (Type All)** to enrich indicators of type `host`
 
-### SVT Module Performance Improvements
+- Updated the playbook **Indicator (Type Host) - Get Reputation** to search for an existing asset in TIPs like ServiceNow and add the asset details in the host's record
 
-The SVT Module's views have been optimized to deliver faster load times and smoother interaction, especially in high-volume environments. The following cover some enhancements that have been made:
+- Added the following playbooks in the collection **05 - Hunts** as part of the *Pluggable* hunt implementation
 
-- Removed the **Execute Playbooks** widget from SVTs and from the *Detailed View* of the following modules:
+  - Hunt (On Create) - Initiate IOC Hunt
 
-    - Alerts  
-    - Assets  
-    - Incidents  
-    - Events  
+  - Hunt Indicators (Type All)
 
-- Modules that do not contain *required* fields, or *default Add Views* ('add a new record' form), no longer show an Add View in SVT.
+  - Reset Hunt Global Variables
 
-- Added the missing **Add View** for the **Campaign** module.
+  - Indicator (Manual Trigger) - Initiate IOC Hunt
 
+## Miscellaneous
 
-### Playbook Enhancements
+- Added new dashboards &ndash; `System Health & Workflow Insights` and `System Overview`
 
-- **Incident Creation for Multiple Linked Alerts** has now been enhanced to create incidents when multiple alerts are tied to the same indicator. The playbook now:
+- New Color Code added for the picklists &ndash; *Alert Status* and *Incident Status*.
 
-    - Maps historical alerts
+- Roles and navigation changes have been decentralized to optimize performance. **SOAR Essentials** solution pack now manages roles and navigation for SOAR Framework.
 
-    - Escalates alerts to incidents when malicious indicators are detected
+- Color codes associated with picklists have been standardized across the user interface.
 
-    - Updates existing incidents or creates new ones as required
+- Alerts and Cases list view now includes summaries of alerts and cases in various stages of investigation.
 
-- **03 - Triage > Flag Indicators Linked Across Multiple Alerts**
-  Now automatically adds comments or flags to relevant alerts when malicious indicators appear across multiple alert records, helping analysts quickly understand cross-alert relationships
+- Updated the **SLA Countdown** widget configuration to support the new title setting, allowing the paused SLA title to appear in both alerts and the case detail view.
 
-## Fixes
+### Bug Fixes
 
-- Resolved issues where some playbooks failed after the *Code Snippet* connector began operating in safe mode by default.
+- Updated the connector name from *CarbonBlack Response* to **VMware Carbon Black EDR** in SOAR Framework solution pack playbooks.
 
-    The following playbooks' steps utilizing the Code Snippet connector steps have been replaced with steps **Jinja** or **Utilities connector** logic.
+- The manual input step has indicator IRI mapped to parameter and input record &ndash; whichever is available. Earlier, in the following playbooks, the manual input step required both the input record and input record IRI parameters to be mapped:
 
-    - *06 - IRP - Reporting > Export as CSV*
-    - *06 - IRP - Reporting > Get Paginated Records*
-    - *06 - IRP - Case Management > Ingest IOC from CSV File*
-
-- Earlier, expired indicators were incorrectly marked as *not expired* by the playbook **Indicator - Check Expiry Status** under the collection *06 - IRP - Case Management*.
-
-    Expired indicators now correctly show indicators' expiration status.
-
-<!-- - Removed the redundant step **Is Dedicated Tenant Record** from the playbook **03 - Enrich > Enrich Indicators (Type All)**. -->
+    - Action - Host - Block (Indicator)
+    - Action - Host - Unblock (Indicator)
+    - Action - Host - Isolate Host Action - URL - Unblock (Indicator)
+    - Action - URL - Block (Indicator)
+    - Action - Domain - Block (Indicator)
+    - Action - Domain - Unblock (Indicator)
+    - Action - IP Address - Unblock (Indicator)
+    - Action - IP Address - Block (Indicator)
+    - Action - IP Address - Block (FortiGate,FortiEDR)
+    - Action - File MD5- Unblock (Indicator)
+    - Action - File MD5 - Block (Indicator)
+    - Action - File - Unblock (Indicator)
+    - Action - File - Block (Indicator)
+    - Action - Email Address - Unblock (Indicator)
+    - Action - Email Address - Block (Indicator)

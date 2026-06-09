@@ -1,39 +1,39 @@
 | [Home](../README.md) |
 |----------------------|
 
-# Extending Default Incident Schema
+# Extending Default Case Schema
 
-By default, the **Incidents** module has a default incident schema that has provisions for well-known fields of interest. For example, fields such as **Source IP**, **Destination IP**, and **File hash** are already part of the [default schema](#default-incident-schema).
+By default, the **Cases** module has a default case schema that has provisions for well-known fields of interest. For example, fields such as **Source IP**, **Destination IP**, and **File hash** are already part of the [default schema](#default-case-schema).
 
 As part of the ingestion process, you may need to add additional fields. Following is a sample process to achieve this objective.
 
-1. Add a desired field to the **Incidents** module. For detailed instructions to achieve this objective, refer to [Modifying an existing module](https://docs.fortinet.com/document/fortisoar/7.5.0/administration-guide/97786#Modifying_an_existing_module) in the FortiSOAR Administration Guide.
+1. Add a desired field to the **Cases** module. For detailed instructions to achieve this objective, refer to [Modifying an existing module](https://docs.fortinet.com/document/fortisoar/7.5.0/administration-guide/97786#Modifying_an_existing_module) in the FortiSOAR Administration Guide.
 
     > As an example, let us add a field with **Field Title** as `Targeted Employee Email Address`, **Field API key** as `targetedEmployeeEmailAddress` and **Field Type** as `Email Field`.
 
-2. Add the field in incident details:
+2. Add the field in case details:
 
     1. Log on to FortiSOAR using your credentials.
 
-    2. Click **Incident Response** > **Incidents** in the left-navigation to open the **Incidents** in the left-navigation to open the **Incidents** module in the list view.
+    2. Click **Security Operations** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-incident-response-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-incident-response-dark.svg"><img alt="" src="./res/icon-incident-response-dark.svg"></picture> > **Cases** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-case-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-case-dark.svg"><img alt="" src="./res/icon-case-dark.svg"></picture> in the left-navigation to open the **Cases** module in the list view.
 
-    3. Click an incident to open the detailed view.
+    3. Click a case to open the detailed view.
 
     4. Click the **Edit Template** icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-edit-light.svg"><img src="./res/icon-edit-dark.svg"></picture> on the top right.
-        ![](./res/edit-template-incident.png)
+        ![](./res/edit-template-case.png)
 
-    5. Navigate to **Editable Form Group: Type Details** under **Tabs** > **Incident Details**.
+    5. Navigate to **Editable Form Group: Type Details** under **Tabs** > **Case Details**.
 
     6. Click the **Edit** icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-page-edit-light.svg"><img src="./res/icon-page-edit-dark.svg"></picture> to edit it.
-    ![](./res/editable-form-group-incident.png)
+    ![](./res/editable-form-group-case.png)
 
     7. From the drop-down, select the field that you added &ndash; `Targeted Employee Email Address` &ndash; and click **Add**.
 
     8. Click **Save as New Template** to save the template with a new name.
 
-    9. From the dropdown select the new template to see `Targeted Employee Email Address` in the **Incident Details** section.
-        ![](./res/select-template-detailed-view-incident.png)
-    8. Click <strong>Save</strong> to have <code>Targeted Employee Email Address</code> appear in the <strong>Incidents Details</strong> section.
+    9. From the dropdown select the new template to see `Targeted Employee Email Address` in the **Case Details** section.
+        ![](./res/select-template-detailed-view-case.png)
+    10. Click **Save** to have `Targeted Employee Email Address` appear in the **Cases Details** section.
 
 3. Set the new column &ndash; `Targeted Employee Email Address` &ndash; visible.
 
@@ -49,7 +49,7 @@ As part of the ingestion process, you may need to add additional fields. Followi
 
 5. To extract this field as an indicator, refer to [extending indicator extraction process](./extending-default-indicator-extraction-process.md).
 
-# Default Incident Schema
+# Default Case Schema
 
 | #  | Field Title                     | Field API Key  Name       | Type            |
 |----|---------------------------------|---------------------------|-----------------|
@@ -73,8 +73,8 @@ As part of the ingestion process, you may need to add additional fields. Followi
 | 18 | File Hash                       | `filehash`                | `string`        |
 | 19 | Identification Date             | `identificationDate`      | `integer`       |
 | 20 | Impact Assessments              | `impactAssessments`       | `string`        |
-| 21 | Incident Lead                   | `incidentLead`            | `people`        |
-| 22 | Incident Summary                | `incidentsummary`         | `string`        |
+| 21 | Case Lead                       | `incidentLead`            | `people`        |
+| 22 | Case Summary                    | `incidentsummary`         | `string`        |
 | 23 | Indicators                      | `indicators`              | `indicators`    |
 | 24 | Metrics                         | `metrics`                 | `string`        |
 | 25 | Next Steps                      | `nextsteps`               | `string`        |
@@ -122,7 +122,7 @@ As part of the ingestion process, you may need to add additional fields. Followi
 | 67 | Attachments                     | `attachments`             | `attachments`   |
 | 68 | Containment Date                | `containmentDate`         | `integer`       |
 | 69 | Containment Time (Minutes)      | `containmentTime`         | `integer`       |
-| 70 | Date of Incident                | `dateOfIncident`          | `integer`       |
+| 70 | Date of Case                    | `dateOfIncident`          | `integer`       |
 | 71 | Delivery Vector                 | `deliveryVector`          | `picklists`     |
 | 72 | Description                     | `description`             | `string`        |
 | 73 | Destination IP                  | `destinationIP`           | `string`        |
