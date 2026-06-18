@@ -4,7 +4,7 @@
 # Upgrading SOAR Framework v2.x.x to latest version
 
 > [!NOTE]
-> On a fresh install of FortiSOAR&trade;, `Tenant` is not a uniqueness constraint for any of the modules. However, when SOAR Framework Solution Pack is upgraded, `Tenant` is added as a uniqueness constraint in **_Alerts_**, **_Incidents_**, and **_Indicators_**.
+> On a fresh install of FortiSOAR&trade;, `Tenant` is not a uniqueness constraint for any of the modules. However, when SOAR Framework Solution Pack is upgraded, `Tenant` is added as a uniqueness constraint in **_Alerts_**, **_Cases_**, and **_Indicators_**.
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ SOAR Framework `v3.1.0` and later uses the new keystore records instead of old k
 
 There may be cases where user-modified playbooks are still reliant on the old keystore records or legacy global variables. This section helps users to edit their user-modified playbooks so as to use the new keystore record.
 
-> [!Important]
+> [!IMPORTANT]
 > Configuration changes made through the [*Indicator Extraction Configuration*](../docs/iec/indicator-extraction-wizard.md) wizard updates the key store record and not the Global Variables.
 
 ### Editing Extraction Playbooks - An Example

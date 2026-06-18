@@ -15,7 +15,7 @@ As part of the alert ingestion process, you may need to add additional fields. F
 
     1. Log on to FortiSOAR using your credentials.
 
-    2. Click **Incident Response** > **Alerts** in the left-navigation to open the **Alerts** module in a list view.
+    2. Click **Security Operations** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-incident-response-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-incident-response-dark.svg"><img alt="" src="./res/icon-incident-response-dark.svg"></picture> > **Alerts** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-alert-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-alert-dark.svg"><img alt="" src="./res/icon-alert-dark.svg"></picture> in the left-navigation to open the **Alerts** module in a list view.
 
     3. Select an alert to open the detailed view of the selected alert.
 
@@ -84,7 +84,7 @@ As part of the alert ingestion process, you may need to add additional fields. F
 | 40  | Domain                          | `domain`                | `string`        |
 | 41  | Epoch Time                      | `epochTime`             | `string`        |
 | 42  | Event Time                      | `eventTime`             | `string`        |
-| 43  | Incidents                       | `incidents`             | `incidents`     |
+| 43  | Cases                           | `incidents`             | `incidents`     |
 | 44  | Destination Port                | `destinationPort`       | `string`        |
 | 45  | Email Classification            | `emailClassification`   | `picklists`     |
 | 46  | Remaining Response SLA on Pause | `alertRemainingRespSLA` | `integer`       |
@@ -150,6 +150,13 @@ As part of the alert ingestion process, you may need to add additional fields. F
 | 106 | Email                           | `fileEmail`             | `string`        |
 | 107 | Technique ID                    | `mitreattackid`         | `string`        |
 | 108 | Technique                       | `mitreTechnique`        | `string`        |
+| 109 | Host Country                    | `hostCountry`           | `string`        |
+| 110 | Host IP Address                 | `hostIPAddress`         | `string`        |
+| 111 | Host MAC Address                | `hostMACAddress`        | `string`        |
+| 112 | Host Name                       | `hostName`              | `String`        |
+| 113 | Sub-Source                      | `subSource`             | `String`        |
+
+## Next Steps
 
 | [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
 |-----------------------------------------|-------------------------------------------|---------------------|---------------------------|
