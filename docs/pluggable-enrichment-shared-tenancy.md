@@ -5,8 +5,10 @@
 
 In shared tenancy each shared tenant has a different connector configuration. However, only the default connector configuration is used for the shared tenant record. This section helps configure *pluggable* enrichment support for shared tenancy. To know more about shared tenancy refer to the [Multi-Tenancy Support Guide](https://docs.fortinet.com/document/fortisoar/7.4.0/multi-tenancy-support-guide/744444/shared-tenancy-support) in FortiSOAR&trade; product documentation.
 
-|**NOTE**| When creating a connector configuration for a shared tenant, keep the configuration name as that of the tenant (FortiSOAR&trade; `v7.2.2` onwards). For example, if your tenant is `Tenant_1` the connector configuration name should be `Tenant_1`. |
-|-|-|
+>[!NOTE]
+>
+>When creating a connector configuration for a shared tenant, keep the configuration name as that of the tenant (FortiSOAR `v7.2.2` onwards). For example, if your tenant is `Tenant_1` the connector configuration name should be `Tenant_1`.
+>
 
 The following steps outline how to set up and configure *pluggable* enrichment for shared tenants.
 

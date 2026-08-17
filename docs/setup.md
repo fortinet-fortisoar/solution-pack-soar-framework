@@ -3,7 +3,7 @@
 
 # Installation
 
-**SOAR Framework** Solution Pack installs with Fortinet's FortiSOAR and hence does not require any prerequisites or separate installation instructions.
+**SOAR Framework** solution pack installs with Fortinet's FortiSOAR and hence does not require any prerequisites or separate installation instructions.
 
 ## Prerequisites
 
@@ -19,21 +19,37 @@ The **SOAR Framework Solution Pack** solution pack installs the following soluti
 
 To configure any connector, refer to [Configuring a connector](https://docs.fortinet.com/document/fortisoar/0.0.0/configuring-a-connector/1/configuring-a-connector).
 
-For detailed instructions on how to configure *each* connector refer to [FortiSOAR Connectors](https://docs.fortinet.com/fortisoar/connectors).
+For detailed instructions on how to configure *each* connector refer to [FortiSOAR Connectors](https://docs.fortinet.com/fortisoar/connectors) page.
+
+## Solution packs installed by default
+
+The following solution packs are now installed by default with FortiSOAR `v8.0.0`:
+
+- **Threat Intelligence Management (TIM)**: Enables ingestion, aggregation and normalization of threat-intel feeds, threat actors, IOCs, reports; facilitates correlation of threat data into alerts/cases.
+
+- **Vulnerability Management**: Allows integration of vulnerability scanner outputs and helps correlate CVEs with threat intel and assets — enabling risk-based asset & vulnerability management and proactive remediation.
+
+- **MITRE ATT&CK Enrichment Framework**: Integrates the MITRE ATT&CK knowledge base with FortiSOAR &ndash; enabling mapping of alerts/cases to ATT&CK tactics/techniques, supporting threat-hunting, enrichment, and structured adversary behavior modeling.
+
+- **FortiAI**: FortiAI is a cutting-edge **context-aware GenAI security assistant** that can:
+  
+  - Capture key observations, patterns, or recommendations generated during the investigation and response with *AI Insights*.
+  
+  - Help reach a verdict classifying the alert as Malicious, Benign, False Positive, Suspicious, or Inconclusive
+  
+  - Show investigation highlights, along with key findings and recommended next steps.
+
+- **SOC Simulator**: SOC Simulator solution pack contains utilities for demonstrating FortiSOAR capabilities around a variety of important SOC use cases without having to integrate with actual device endpoints.
 
 ## Highly Recommended Solution Packs
 
 The following is a list of solution packs that come highly recommended as they target some of the most complex and common use cases:
 
-- **Threat Intelligence Management (TIM)**: Enables ingestion, aggregation and normalization of threat-intel feeds, threat actors, IOCs, reports; facilitates correlation of threat data into alerts/incidents.
+- **SLA Management**: Calculates the time remaining before an alert breaches its defined SLA, or the time taken to meet the SLA.
 
 - **Outbreak Response Framework**: Used to investigate outbreak alerts (e.g. widespread malware, zero-day exploits, mass-exploitation campaigns) — helps SOC teams respond to large-scale outbreaks, enrich IOCs, perform threat hunting, and coordinate remediation.
 
-- **Vulnerability Management**: Allows integration of vulnerability scanner outputs and helps correlate CVEs with threat intel and assets — enabling risk-based asset & vulnerability management and proactive remediation.
-
 - **Continuous Delivery**: Helps manage FortiSOAR content (playbooks, connectors, modules) via source-control; supports change management, versioning, and safer deployments — especially useful in environments with multiple administrators or frequent updates.
-
-- **MITRE ATT&CK Enrichment Framework**: Integrates the MITRE ATT&CK knowledge base with FortiSOAR — enabling mapping of alerts/incidents to ATT&CK tactics/techniques, supporting threat-hunting, enrichment, and structured adversary behavior modeling.
 
 - **Phishing Email Response**: Provides playbooks and workflows to investigate suspicious emails (e.g. .eml/.msg or forwarded mails), extract IOCs (URLs, attachments, senders), analyze sender reputation/spoofing, and escalate — useful if phishing is a common threat vector.
 

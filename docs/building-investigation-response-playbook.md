@@ -1,5 +1,5 @@
 | [Home](../README.md) |
-|-----------------|
+|----------------------|
 
 # Building Investigation/Response Playbook
 
@@ -14,8 +14,6 @@ You can build specific playbooks that help you in investigation or respond to va
         >Indicator *Type* is *URL*  
         >*Status* is not *Blocked*.
 
-        ![](./res/playbook-manual-trigger-display-conditions.png)
-
         You can trigger a playbook, manually, based on a selected module without selecting a record in the specified module. E.g. a manual trigger to check for new alerts from a SIEM tool, can be run globally on the **Alerts** module.
 
     - **Automatic Trigger** - Intuitively, you may use a condition that triggers, after the indicators are extracted and alerts updated. SFSP includes playbooks that ensure indicator extraction.
@@ -24,20 +22,16 @@ You can build specific playbooks that help you in investigation or respond to va
         >*State* *is changed*     
         >*State* is *Indicator Extracted*
 
-        ![](./res/post-update-state-indicator-extracted.png)
-
 - Investigation/Response playbooks should typically be executed, once indicator extraction and enrichment is complete. Hence, a response playbook's trigger should be set to
 
     >On Update  
     >*State* is *Indicator Extracted*
-    
-    ![](./res/on-update-state-indicator-extracted.png)
 
     This step ensures that your investigation/response playbook is executed only after indicators are extracted and enriched.
 
-- SFSP includes an escalation playbook that escalates an alert to an incident. You may want to reference that playbook, in your response flow, instead of creating a new playbook that performs the same actions.
+- SFSP includes an escalation playbook that escalates an alert to a case. You may want to reference that playbook, in your response flow, instead of creating a new playbook that performs the same actions.
 
-    ![](./res/reference-playbook-escalate-to-incident.png)
+## Next Steps
 
 | [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
 |-----------------------------------------|-------------------------------------------|---------------------|---------------------------|

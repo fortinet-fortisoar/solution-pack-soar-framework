@@ -17,17 +17,13 @@ To view the FortiSOAR setup guide, you must be assigned a role with the followin
 4. `Read` permissions on the **Solution Pack** module
 
 >[!NOTE]
->Each underlying task may require additional permission.
+>Each underlying task may require additional permissions.
 
 ## Getting Started
 
-The Setup Guide icon is available immediately when an administrator logs into FortiSOAR.
+The Setup Guide icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-setup-guide-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-setup-guide-dark.svg"><img alt="" src="./res/icon-setup-guide-dark.svg"></picture> is available immediately when an administrator logs into FortiSOAR.
 
-![Setup Guide on logging into FSR](../res/setup-guide/setup-guide-launch-point.png)
-
-To view the details of the FortiSOAR Setup Guide, click the FortiSOAR **Setup Guide** icon ![](../res/setup-guide/icon-setup-guide.svg).
-
-![Quick Start view of the Setup guide](../res/setup-guide/setup-guide.png)
+To view the details of the FortiSOAR Setup Guide, click the FortiSOAR **Setup Guide** icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-setup-guide-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-setup-guide-dark.svg"><img alt="" src="./res/icon-setup-guide-dark.svg"></picture>.
 
 The FortiSOAR Setup Guide has two flavors.
 
@@ -35,10 +31,10 @@ The FortiSOAR Setup Guide has two flavors.
 
 - **Production**: Select Production to set up FortiSOAR with all the required settings for optimal functioning in a production environment. *Production* contains tasks that are dependent on the user and environment preferences.
 
-Here, we list the tasks under **Production** as it includes the tasks in **Quick Start**, too. Each task includes links to FortiSOAR&trade;'s documentation.
+Here, we list the tasks under **Production** as it includes the tasks in **Quick Start**, too. Each task includes links to FortiSOAR's documentation.
 
-> [!Note]
-> By default, FortiSOAR&trade; Setup Guide opens in the **Quick Start** mode that contains limited items to set up. To view the complete list of tasks, select **Production**.
+> [!NOTE]
+> By default, FortiSOAR Setup Guide opens in the **Quick Start** mode that contains limited items to set up. To view the complete list of tasks, select **Production**.
 
 ### Production Mode
 
@@ -46,7 +42,7 @@ The **Production** option has 4 major sections:
 
 - **Deploy**: For tasks related to setting up the server with appropriate hardware configurations, network and security tunings, data protection, etc. The 'Deploy' section also provides information about the 'FortiSOAR Trial License,' which is easy to activate and can be used in development environments without incurring additional licensing costs. For more information about the 'Trial License', see the Licensing FortiSOAR chapter in the "Deployment Guide."
 
-- **Streamline**: For tasks related to setting up the incident response platform, which is augmented with automation of common tasks such as enrichment and mitigation.
+- **Streamline**: For tasks related to setting up the case response platform, which is augmented with automation of common tasks such as enrichment and mitigation.
 
 - **Accelerate**: For tasks related to accelerating your response time by leveraging various pre-defined playbooks to respond to specific types of threats, and installing solution packs targeted towards management of specific SOAR scenarios, such as Threat Intel management, Vulnerability Management, etc.
 
@@ -56,9 +52,7 @@ For each task you have three options:
 
 - **Mark as Done**: Click this button to mark the task as done, once you complete it.
 
-    ![](../res/setup-guide/setup-guide-done.png)
-
-    - Click **Mark as Done** to display that task with a green circular check ![icon green check](../res/setup-guide/icon-mark-as-done.svg). A **Reset Task Options** button appears in its place.
+    - Click **Mark as Done** to display that task with a green circular check ![icon green check](./res/icon-mark-as-done.svg). A **Reset Task Options** button appears in its place.
 
     - Click **Reset Task Options** button to bring back the options, in case you clicked **Marked as Done** in error.
 
@@ -70,14 +64,12 @@ For each task you have three options:
 
 - **Not Applicable**: Select this button if a task does not apply to your FortiSOAR environment.
 
-    ![](../res/setup-guide/setup-guide-na.png)
-
-    - Click **Not Applicable** to display that task with a struck-out, circular check ![icon not applicable](../res/setup-guide/icon-not-applicable.svg). A **Reset Task Options** button appears in its place.
+    - Click **Not Applicable** to display that task with a struck-out, circular check <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-not-applicable-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-not-applicable-dark.svg"><img alt="" src="./res/icon-not-applicable-dark.svg"></picture>. A **Reset Task Options** button appears in its place.
 
     - Click **Reset Task Options** button to bring back the options, in case you clicked **Not Applicable** in error.
 
 >[!TIP]
-> For more information, refer to the [**Getting Started guide**](https://docs.fortinet.com/document/fortisoar/7.6.1/getting-started/231699/overview) in the FortiSOAR product documentation.
+> For more information, refer to the [**Getting Started guide**](https://docs.fortinet.com/document/fortisoar/8.0.0/getting-started/231699/overview) in the FortiSOAR product documentation.
 
 # Next Steps
 

@@ -14,18 +14,28 @@ SOAR Framework Solution Pack provides standardized modules for various operation
 4. Campaigns
 5. Communication
 6. Events
-7. Incidents
+7. Cases
 8. Indicators
 9. War Rooms
 
-> [!Note]
-> On a fresh install of FortiSOAR&trade;, `Tenant` is not a uniqueness constraint for any of the modules. However, when SOAR Framework Solution Pack is upgraded, `Tenant` is added as a uniqueness constraint in `Alerts`, `Incidents`, `Indicators`, and `SLA Templates`.
+> [!NOTE]
+> On a fresh install of FortiSOAR&trade;, `Tenant` is not a uniqueness constraint for any of the modules. However, when SOAR Framework Solution Pack is upgraded, `Tenant` is added as a uniqueness constraint in `Alerts`, `Cases`, `Indicators`, and `SLA Templates`.
 
-## Standardized Process
+## Standardized Process for Working with Alerts
 
 SOAR Framework Solution Pack establishes a standard process through playbooks for indicator extraction, enrichment, and mitigation.
 
-### Validate Indicator Extraction
+### Creating Alerts
+
+> [!TIP]
+>
+> To manage SLA and view an SLA timer on an alert's detail view, install the [SLA Management](https://fortisoar.contenthub.fortinet.com//list.html?contentType=solutionpack&searchContent=Sla%20management) solution pack, **_before_** triggering alert ingestion or creation.
+
+## Standardized Process for Working with Indicators
+
+SOAR Framework Solution Pack establishes a standard process through playbooks for indicator extraction, enrichment, and mitigation.
+
+### Validating Indicator Extraction
 
 Here we use known suspicious or malicious indicators and perform some simple steps to establish that indicators are being extracted.
 
@@ -37,7 +47,7 @@ Here we use known suspicious or malicious indicators and perform some simple ste
 
 An indicator of type *IP Address* and value `2.58.56.16` is created and linked to this alert.
 
-### Validate Indicator Enrichment
+### Validating Indicator Enrichment
 
 Here we use the same IP address and perform some simple steps to establish that indicators are being enriched &ndash; we have the indicator's reputation.
 
@@ -49,7 +59,7 @@ Here we use the same IP address and perform some simple steps to establish that 
 1. Indicator reputation is now **Malicious**.
 2. The **Reputation** is established and is neither *Empty* nor *TBD*.
 
-### Validate Indicator Mitigation
+### Validating Indicator Mitigation
 
 Here we use the same IP address &ndash; with its newfound reputation &ndash; and perform some simple steps to establish that the "threat" has been mitigated by successfully blocking the IP address.
 
