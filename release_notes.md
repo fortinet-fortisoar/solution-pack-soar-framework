@@ -3,7 +3,7 @@
 <table>
     <tr>
         <th>Compatible Version</th>
-        <td>FortiSOAR v7.6.5 and later</td>
+        <td>FortiSOAR v7.6.6 and later</td>
     </tr>
 </table>
 
