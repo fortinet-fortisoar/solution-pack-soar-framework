@@ -58,8 +58,8 @@ The following fields are available when creating an identity record:
 
 | Field                   | Description                                                                    |
 | ----------------------- | ------------------------------------------------------------------------------ |
-| User ID                 | Unique identifier for the identity record. Used for mapping and deduplication. |
-| User Name               | Username associated with the identity.                                         |
+| User ID                 | Unique identifier for the identity record.                                     |
+| User Name               | Username associated with the identity.  | Used for mapping and deduplication.  |                
 | Risk Score              | Numeric risk score received from FortiAnalyzer or FortiSIEM telemetry.         |
 | Identity Risk           | Risk classification derived from ingested risk telemetry.                      |
 | Importance              | Importance value received from FortiAnalyzer telemetry.                        |
