@@ -15,16 +15,16 @@ As part of the ingestion process, you may need to add additional fields. Followi
 
     1. Log on to FortiSOAR using your credentials.
 
-    2. Click **Security Operations** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-incident-response-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-incident-response-dark.svg"><img alt="" src="./res/icon-incident-response-dark.svg"></picture> > **Cases** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-case-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-case-dark.svg"><img alt="" src="./res/icon-case-dark.svg"></picture> in the left-navigation to open the **Cases** module in the list view.
+    2. Click **Security Operations** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-incident-response-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-incident-response-dark.svg"><img alt="Security Operations icon" src="./res/icon-incident-response-dark.svg"></picture> > **Cases** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-case-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-case-dark.svg"><img alt="Cases icon" src="./res/icon-case-dark.svg"></picture> in the left-navigation to open the **Cases** module in the list view.
 
     3. Click a case to open the detailed view.
 
-    4. Click the **Edit Template** icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-edit-light.svg"><img src="./res/icon-edit-dark.svg"></picture> on the top right.
+    4. Click the **Edit Template** icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-edit-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-edit-dark.svg"><img alt="Edit icon" src="./res/icon-edit-dark.svg"></picture> on the top right.
         ![](./res/edit-template-case.png)
 
     5. Navigate to **Editable Form Group: Type Details** under **Tabs** > **Case Details**.
 
-    6. Click the **Edit** icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-page-edit-light.svg"><img src="./res/icon-page-edit-dark.svg"></picture> to edit it.
+    6. Click the **Edit** icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-page-edit-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-page-edit-dark.svg"><img alt="Edit icon" src="./res/icon-page-edit-dark.svg"></picture> to edit it.
     ![](./res/editable-form-group-case.png)
 
     7. From the drop-down, select the field that you added &ndash; `Targeted Employee Email Address` &ndash; and click **Add**.
