@@ -1,9 +1,9 @@
 # Release Information
 
-- **Version**:  4.0.0
+- **Version**:  4.1.0
 - **Certified**: Yes 
 - **Publisher**: Fortinet 
-- **Compatible Version**: FortiSOAR v8.0.0 and later
+- **Compatible Version**: FortiSOAR v8.0.1 and later
 - [Release Notes](./release_notes.md)
 
 # Overview 

@@ -24,7 +24,7 @@ To track any communication related to modules, you need to add the **Communicati
 2. Open the module editor by clicking **Settings** and in the *Application Editor* section, click **Modules**. This displays the **Modules** page.
 3. Select a module from Alerts, Cases, Indicators, or Tasks. For the purposes of this documentation, we have chosen **Tasks**.
 4. Select **Fields Editor** tab.
-5. Click <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-add-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-add-dark.svg"><img alt="" src="./res/icon-add-dark.svg"></picture> to add a field. The following interface appears:
+5. Click <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-add-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-add-dark.svg"><img alt="Add icon" src="./res/icon-add-dark.svg"></picture> to add a field. The following interface appears:
 
     ![](./res/adding-comms-field.png)
 
@@ -39,7 +39,7 @@ To track any communication related to modules, you need to add the **Communicati
 
 The field is now linked to the module, however, we need to add a tab in the module's &mdash; *Tasks* in our case &mdash; System View Template. The System View Template that we need to edit is that of a record, and not the module.
 
-1. Select **Security Operations** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-orchestration-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-orchestration-dark.svg"><img alt="" src="./res/icon-orchestration-dark.svg"></picture> > **Tasks** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-tasks-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-tasks-dark.svg"><img alt="" src="./res/icon-tasks-dark.svg"></picture>.
+1. Select **Security Operations** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-orchestration-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-orchestration-dark.svg"><img alt="Orchestration icon" src="./res/icon-orchestration-dark.svg"></picture> > **Tasks** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-tasks-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-tasks-dark.svg"><img alt="Tasks icon" src="./res/icon-tasks-dark.svg"></picture>.
 2. Click to open a task.
 
 >[!NOTE]
@@ -47,19 +47,19 @@ The field is now linked to the module, however, we need to add a tab in the modu
 >If there are no tasks listed in the **Tasks** module, you can create a sample task just so that you have a record to edit its System View Template.
 >
 
-3. Click <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-edit-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-edit-dark.svg"><img alt="" src="./res/icon-edit-dark.svg"></picture> from the upper-right corner. Scroll down to find **Tabs**.
+3. Click <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-edit-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-edit-dark.svg"><img alt="Edit icon" src="./res/icon-edit-dark.svg"></picture> from the upper-right corner. Scroll down to find **Tabs**.
 
     ![](./res/editing-records-svt.png)
 
-4. Click the button **<picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-add-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-add-dark.svg"><img alt="" src="./res/icon-add-dark.svg"></picture> New Tab** and enter a name for the tab and choose an icon. We have used *External Communications* as the tab name. Click <img src="./res/button-green-check.svg" width="20" /> to save the tab's name. Choose an icon from the drop-down.
+4. Click the button **<picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-add-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-add-dark.svg"><img alt="Add icon" src="./res/icon-add-dark.svg"></picture> New Tab** and enter a name for the tab and choose an icon. We have used *External Communications* as the tab name. Click <img alt="Green check button" src="./res/button-green-check.svg" width="20" /> to save the tab's name. Choose an icon from the drop-down.
 
     ![](./res/task-svt-choose-name-icon.png)
 
-5. Click **<picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-add-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-add-dark.svg"><img alt="" src="./res/icon-add-dark.svg"></picture> Add Widget** under the tab and choose **Relationships** under the **Related Record Listing** section.
+5. Click **<picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-add-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-add-dark.svg"><img alt="Add icon" src="./res/icon-add-dark.svg"></picture> Add Widget** under the tab and choose **Relationships** under the **Related Record Listing** section.
 
     ![](./res/task-svt-choose-widget.png)
 
-6. Click <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-page-edit-light.svg"><img src="./res/icon-page-edit-dark.svg"></picture> to edit the **Relationships** widget and bring up the following interface.
+6. Click <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-page-edit-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-page-edit-dark.svg"><img alt="Edit icon" src="./res/icon-page-edit-dark.svg"></picture> to edit the **Relationships** widget and bring up the following interface.
 
     ![](./res/edit-relationship-widget.png)
 
@@ -80,7 +80,7 @@ The sample Tasks record that you created now has a new tab **External Communicat
 As an example, we explain how to configure communication tracking playbooks for the **Tasks** module.
 
 
-1. Navigate to **Security Operations** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-orchestration-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-orchestration-dark.svg"><img alt="" src="./res/icon-orchestration-dark.svg"></picture> > **Playbooks** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-playbooks-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-playbooks-dark.svg"><img alt="" src="./res/icon-playbooks-dark.svg"></picture>.
+1. Navigate to **Security Operations** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-orchestration-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-orchestration-dark.svg"><img alt="Orchestration icon" src="./res/icon-orchestration-dark.svg"></picture> > **Playbooks** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-playbooks-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-playbooks-dark.svg"><img alt="Playbooks icon" src="./res/icon-playbooks-dark.svg"></picture>.
 
 2. Click to open **06 - IRP - Communications Tracking** playbook collection.
 
