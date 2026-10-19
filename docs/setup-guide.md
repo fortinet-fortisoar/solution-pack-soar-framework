@@ -21,9 +21,9 @@ To view the FortiSOAR setup guide, you must be assigned a role with the followin
 
 ## Getting Started
 
-The Setup Guide icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-setup-guide-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-setup-guide-dark.svg"><img alt="" src="./res/icon-setup-guide-dark.svg"></picture> is available immediately when an administrator logs into FortiSOAR.
+The Setup Guide icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-setup-guide-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-setup-guide-dark.svg"><img alt="Setup Guide icon" src="./res/icon-setup-guide-dark.svg"></picture> is available immediately when an administrator logs into FortiSOAR.
 
-To view the details of the FortiSOAR Setup Guide, click the FortiSOAR **Setup Guide** icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-setup-guide-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-setup-guide-dark.svg"><img alt="" src="./res/icon-setup-guide-dark.svg"></picture>.
+To view the details of the FortiSOAR Setup Guide, click the FortiSOAR **Setup Guide** icon <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-setup-guide-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-setup-guide-dark.svg"><img alt="Setup Guide icon" src="./res/icon-setup-guide-dark.svg"></picture>.
 
 The FortiSOAR Setup Guide has two flavors.
 
@@ -64,7 +64,7 @@ For each task you have three options:
 
 - **Not Applicable**: Select this button if a task does not apply to your FortiSOAR environment.
 
-    - Click **Not Applicable** to display that task with a struck-out, circular check <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-not-applicable-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-not-applicable-dark.svg"><img alt="" src="./res/icon-not-applicable-dark.svg"></picture>. A **Reset Task Options** button appears in its place.
+    - Click **Not Applicable** to display that task with a struck-out, circular check <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-not-applicable-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-not-applicable-dark.svg"><img alt="Not Applicable icon" src="./res/icon-not-applicable-dark.svg"></picture>. A **Reset Task Options** button appears in its place.
 
     - Click **Reset Task Options** button to bring back the options, in case you clicked **Not Applicable** in error.
 

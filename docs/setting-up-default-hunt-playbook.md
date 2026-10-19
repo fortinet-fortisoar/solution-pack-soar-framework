@@ -53,7 +53,7 @@ Upon triggering, the playbook **Hunt Indicators (Type All)** executes and puts t
 
 Hunt can be triggered manually on an indicator record by
 
-1. Select the indicator and click <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-playbooks-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-playbooks-dark.svg"><img alt="Fallback image description" src="./res/icon-playbooks-dark.svg"></picture> **Execute** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-chevron-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-chevron-dark.svg"><img alt="Fallback image description" src="./res/icon-chevron-dark.svg"></picture> **Hunt Indicators** *05 - Hunt*
+1. Select the indicator and click <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-playbooks-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-playbooks-dark.svg"><img alt="Playbooks icon" src="./res/icon-playbooks-dark.svg"></picture> **Execute** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-chevron-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-chevron-dark.svg"><img alt=">" src="./res/icon-chevron-dark.svg"></picture> **Hunt Indicators** *05 - Hunt*
 
 2. This action executes the playbook **Indicator (Manual Trigger) - Initiate IOC Hunt**
 
@@ -69,7 +69,7 @@ Hunt can be triggered manually on an indicator record by
 
    - **Total Event Count**: Total events found when hunt query ran on the SIEM platform
 
-A Hunt record is created under <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-threat-intel-management-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-threat-intel-management-dark.svg"><img alt="Fallback image description" src="./res/icon-threat-intel-management-dark.svg"></picture> **Threat Intelligence** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-chevron-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-chevron-dark.svg"><img alt="Fallback image description" src="./res/icon-chevron-dark.svg"></picture> <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-space-shuttle-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-space-shuttle-dark.svg"><img alt="Fallback image description" src="./res/icon-space-shuttle-dark.svg"></picture> **Hunts**.
+A Hunt record is created under <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-threat-intel-management-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-threat-intel-management-dark.svg"><img alt="Threat Intelligence icon" src="./res/icon-threat-intel-management-dark.svg"></picture> **Threat Intelligence** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-chevron-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-chevron-dark.svg"><img alt=">" src="./res/icon-chevron-dark.svg"></picture> <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-space-shuttle-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-space-shuttle-dark.svg"><img alt="Hunts icon" src="./res/icon-space-shuttle-dark.svg"></picture> **Hunts**.
 
 The Hunt Summary is stored in the *Source Data* tab of that hunt record's detailed view.
 
@@ -106,6 +106,7 @@ For example, the key `splunk`, within the **Key Store** record `pluggable-IOCs-h
    - `Domain_Hunt`
    - `Email_Hunt`
    - `FileHash_Hunt`
+   - `File_Hunt`
    - `Host_Hunt`
    - `IP_Hunt`
    - `Process_Hunt`

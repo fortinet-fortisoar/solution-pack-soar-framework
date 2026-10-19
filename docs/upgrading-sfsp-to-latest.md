@@ -1,76 +1,110 @@
 | [Home](../README.md) |
 |----------------------|
 
-# Upgrading SOAR Framework v2.x.x to latest version
+# Upgrading SOAR Framework to the latest version
 
-> [!NOTE]
-> On a fresh install of FortiSOAR&trade;, `Tenant` is not a uniqueness constraint for any of the modules. However, when SOAR Framework Solution Pack is upgraded, `Tenant` is added as a uniqueness constraint in **_Alerts_**, **_Cases_**, and **_Indicators_**.
+This page describes the prerequisites and post-upgrade changes for the SOAR Framework solution pack.
+
+> [!Note]
+> On a fresh install of FortiSOAR, `Tenant` is not a uniqueness constraint for any module. When the SOAR Framework solution pack is upgraded, `Tenant` is added as a uniqueness constraint in **Alerts**, **Cases**, **Indicators**, and **Identities**.
 
 ## Prerequisites
 
-Before upgrading to SOAR Framework v3.2.1 and later, you must
+Before you upgrade to SOAR Framework v4.1.0, complete the following:
 
-- Upgrade to FortiSOAR `v7.6.4` or later
+- Upgrade to FortiSOAR v8.0.1 or later.
+- Install the Platform Utilities solution pack v1.0.1 or later.
 
-- Install Platform Utilities solution pack `v1.0.1` and later
+To avoid upgrade issues, upgrade in the following order:
 
-Hence, we recommend that users perform the upgrade of their FortiSOAR instances in the following order to avoid upgrade issues:
+1. Upgrade to FortiSOAR v8.0.1 or later.
+2. Install the **Platform Utilities** solution pack from [Content Hub](https://fortisoar.contenthub.fortinet.com/list.html?contentType=all&searchContent=platform%20utilities).
+3. Upgrade to the SOAR Framework solution pack v4.1.0.
 
-1. Upgrade to FortiSOAR v7.6.4 or later.
+## Moving from global variables to the key store record
 
-2. Install the **Platform Utilities** solution pack from [Content Hub](https://fortisoar.contenthub.fortinet.com//list.html?contentType=all&searchContent=platform%20utilities).
+SOAR Framework v3.1.0 and later uses key store records, instead of legacy global variables and earlier key store records, for indicator extraction, exclusion, and indicator type mapping.
 
-3. Upgrade to the SOAR Framework solution pack v3.2.1 or later.
+User-modified playbooks may still rely on the earlier key store records or legacy global variables. Edit them to use the new key store record.
 
-## Moving from Global Variables to Key Store Record
+> [!Important]
+> Changes made through the [Indicator Extraction Configuration](./iec/indicator-extraction-wizard.md) wizard update the key store record, not the global variables.
 
-SOAR Framework `v3.1.0` and later uses the new keystore records instead of old keystore records and legacy global variables for indicator extraction, exclusion, and indicator type mapping.
+### Editing an extraction playbook
 
-There may be cases where user-modified playbooks are still reliant on the old keystore records or legacy global variables. This section helps users to edit their user-modified playbooks so as to use the new keystore record.
+The following example edits the **Extract Indicators (Alerts)** playbook to use the new key store record.
 
-> [!IMPORTANT]
-> Configuration changes made through the [*Indicator Extraction Configuration*](../docs/iec/indicator-extraction-wizard.md) wizard updates the key store record and not the Global Variables.
+1. Navigate to **<picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-automation-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-automation-dark.svg"><img alt="Automation icon" src="./res/icon-automation-dark.svg"></picture> Automation** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-chevron-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-chevron-dark.svg"><img alt=">" src="./res/icon-chevron-dark.svg"></picture> **<picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-playbooks-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-playbooks-dark.svg"><img alt="Playbooks icon" src="./res/icon-playbooks-dark.svg"></picture> Playbooks**.
+2. Open the **Extract Indicators (Alerts)** playbook in the **03 - Enrich** collection.
 
-### Editing Extraction Playbooks - An Example
+> [!Note]
+> Your playbooks and the steps to edit may differ.
 
-Let us consider the playbook **Extract Indicators (Alerts)** as an example. We will edit this playbook to refer to the new keystore record.
+3. Edit the step that handles indicator extraction or exclusion. In this example, the step is **Get Exclude IOCs List**.
 
-1. Navigate to **Automation** ![automation icon](./res/icon-automation.svg) ![next](./res/icon-chevron-right.svg) **Playbooks** ![playbook icon](./res/icon-playbooks.svg).
+    In the step's **Build Search Query**, set **Key** to **Equals** `sfsp-indicator-extraction-configuration`, as shown in the following image:
 
-2. Open the playbook **Extract Indicators (Alerts)**, under the collection *03 - Enrich*.
+    ![Editing the Get Exclude IOCs List step](./res/editing-find-record-step.png)
 
-> [!NOTE]
-> Your playbooks and the corresponding steps to be edited may be different.
+4. Make similar changes in other playbooks, as applicable.
 
-3. Edit the step that handles indicator extraction or exclusion. In this example, that step is **Get Exclude IOCs List**.
+## Retrieving the exclusion list
 
-    The *Build Search Query* for this step is shown in the following image:
+Expressions that retrieve exclusion lists now read from the key store record instead of global variables.
 
-    ![Editing Get Exclude IOC list](./res/editing-find-record-step.png)
-
-    **Key** *Equals*`sfsp-indicator-extraction-configuration`
-
-4. Similar changes may be required in other playbooks, as applicable.
-
-## Retrieving Exclusion List
-
-Earlier, the following expression helped retrieve excluded list of **IP addresses** using global variables:
+Earlier, the following expression retrieved the exclusion list for **IP Address** indicators from global variables. Similar expressions retrieved exclusion lists for other indicator types.
 
 ```jinja
-    {{globalVars.ExcludeList_IPs}}
+{{globalVars.ExcludeList_IPs}}
 ```
 
-Similar expressions retrieved exclude list for other indicator types.
-
-Now, the following expression helps retrieve excluded list of **IP addresses** using the new keystore record:
+Use the following expression to retrieve the same list from the key store record:
 
 ```jinja
-    {{keystore(key_name="sfsp-indicator-extraction-configuration").jSONValue["IP Address"]}}
+{{keystore(key_name="sfsp-indicator-extraction-configuration").jSONValue["IP Address"]}}
 ```
 
-![Retrieving excluded IPs using the new keystore](./res/retrieve-excluded-IP.png)
+![Retrieving excluded IP addresses using the key store record](./res/retrieve-excluded-IP.png)
 
-# Next Steps
+## Updating the URL extraction regex
+
+SOAR Framework v4.1.0 fixes an issue where URL indicator extraction retains a backslash at the end of a URL. New installations include the corrected regex. However, an upgrade keeps your existing key store values, so update the following keys manually.
+
+> [!Important]
+> Back up all keys and regex patterns before you change their values.
+
+### Updating the indicator regex mapping
+
+To update the URL entry in the regex mapping key, do the following:
+
+1. Navigate to **<picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-resources-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-resources-dark.svg"><img alt="Resources icon" src="./res/icon-resources-dark.svg"></picture> Resources** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-chevron-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-chevron-dark.svg"><img alt=">" src="./res/icon-chevron-dark.svg"></picture> **<picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-key-store-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-key-store-dark.svg"><img alt="Key Store icon" src="./res/icon-key-store-dark.svg"></picture> Key Store**.
+2. Open the `sfsp-indicator-regex-mapping` key.
+3. In **JSON Value**, find the first entry, where `indicator_type` is `URL`.
+4. Replace the existing `defang_regx` and `pattern_regx` lines in that entry with the following lines:
+
+    ```json
+    "defang_regx": "(?:https?|hxxps?|hXXps?|s?ftp|fxp|fXp)(?::\\/\\/)[^<>\\s/$.?#]+(?:\\[\\.\\]|\\.)[^\\\\<>\\s,\\\"\\']*",
+    "pattern_regx": "(?:https?|s?ftp):\\/\\/[^<>\\s/$.?#].[^\\\\<>\\s,\\\"\\']*",
+    ```
+
+5. Save your changes.
+
+### Updating the indicator extraction configuration
+
+To update the URL pattern in the extraction configuration key, do the following:
+
+1. Navigate to **<picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-resources-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-resources-dark.svg"><img alt="Resources icon" src="./res/icon-resources-dark.svg"></picture> Resources** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-chevron-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-chevron-dark.svg"><img alt=">" src="./res/icon-chevron-dark.svg"></picture> **<picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-key-store-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-key-store-dark.svg"><img alt="Key Store icon" src="./res/icon-key-store-dark.svg"></picture> Key Store**.
+2. Open the `sfsp-indicator-extraction-configuration` key.
+3. In **JSON Value**, find the `URL` key.
+4. Replace its value, including the square brackets, with the following array. Leave any comma after the array unchanged.
+
+    ```json
+    ["(?:https?|s?ftp):\\/\\/[^<>\\s/$.?#].[^\\\\<>\\s,\\\"\\']*"]
+    ```
+
+5. Save your changes.
+
+## Next Steps
 
 | [Installation](./setup.md#installation) | [Configuration](./setup.md#configuration) | [Usage](./usage.md) | [Contents](./contents.md) |
 |-----------------------------------------|-------------------------------------------|---------------------|---------------------------|

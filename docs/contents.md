@@ -93,12 +93,12 @@ SOAR Framework has the following widgets:
 
 A Dashboard is the default landing page, and users' home page, that users see when they log into FortiSOAR. Dashboard, at a glance, shows them the critical tasks on which they need to work. SOAR Framework includes the following dashboards:
 
-| Dashboards  | Description                                                                                                               |
-|-------------|---------------------------------------------------------------------------------------------------------------------------|
-| Analyst     | This dashboard displays alerts segregated by severity, type, priority, and criticality among other things.                |
-| Overview    | This dashboard displays total alerts received, escalation ratio, time saved, and closure reasons among many other things. |
-| ROI Summary | This dashboard displays total alerts resolved, last 30 days' escalation ratio, and ROI among many other things.           |
-| SOC Admin   | This dashboard displays recent case, alerts, and assigned tasks                                                       |
+| Dashboards          | Description                                                                                                               |
+|---------------------|---------------------------------------------------------------------------------------------------------------------------|
+| SOC Analyst         | This dashboard displays alerts segregated by severity, type, priority, and criticality among other things.                |
+| SOC Operations KPIs | This dashboard displays total alerts received, escalation ratio, time saved, and closure reasons among many other things. |
+| SOC ROI Summary     | This dashboard displays total alerts resolved, last 30 days' escalation ratio, and ROI among many other things.           |
+| SOC Admin           | This dashboard displays recent case, alerts, and assigned tasks                                                           |
 
 ## Reports
 

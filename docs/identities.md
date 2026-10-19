@@ -39,37 +39,37 @@ A typical identity workflow in FortiSOAR consists of the following stages:
 
 Identity records can be created manually from the Identities module. Automated identity creation workflows can be implemented through custom playbooks.
 
-Click **Resources** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-resources-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-resources-dark.svg"><img alt="" src="./res/icon-resources-dark.svg"></picture> > **Identities** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-identities-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-identities-dark.svg"><img alt="" src="./res/icon-identities-dark.svg"></picture> in the left-navigation to open the **Identities** module in the list view.
+Click **Resources** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-resources-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-resources-dark.svg"><img alt="Resources icon" src="./res/icon-resources-dark.svg"></picture> > **Identities** <picture><source media="(prefers-color-scheme: dark)" srcset="./res/icon-identities-light.svg"><source media="(prefers-color-scheme: light)" srcset="./res/icon-identities-dark.svg"><img alt="Identities icon" src="./res/icon-identities-dark.svg"></picture> in the left-navigation to open the **Identities** module in the list view.
 
 The following fields are available when creating an identity record:
 
-| Field      | Description                                                                                                         |
-| ---------- | ------------------------------------------------------------------------------------------------------------------- |
-| Title      | Job title or designation associated with the identity.                                                              |
-| User Name  | Username associated with the identity.                                                                              |
-| User ID![mandatory](./res/icon-asterisk.svg)    | Unique identifier for the identity record. Used as the primary key for mapping and deduplication.                   |
-| First Name | First name associated with the identity.                                                                            |
-| Last Name  | Last name associated with the identity.                                                                             |
-| First Seen | Timestamp indicating when the identity was first observed. Automatically updated from ingested telemetry.           |
-| Last Seen  | Timestamp indicating the most recent observation of the identity. Automatically updated from ingested telemetry.    |
-| Risk Score | Numeric risk score associated with the identity. Risk scores are sourced from FortiAnalyzer or FortiSIEM telemetry. |
+| Field                                        | Description                                                                                                                              |
+|----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| Title                                        | Job title or designation associated with the identity.                                                                                   |
+| User Name                                    | Username associated with the identity. Unique identifier for the identity record. Used as the primary key for mapping and deduplication. |
+| User ID![mandatory](./res/icon-asterisk.svg) | User ID associated with the identity.                                                                                                    |
+| First Name                                   | First name associated with the identity.                                                                                                 |
+| Last Name                                    | Last name associated with the identity.                                                                                                  |
+| First Seen                                   | Timestamp indicating when the identity was first observed. Automatically updated from ingested telemetry.                                |
+| Last Seen                                    | Timestamp indicating the most recent observation of the identity. Automatically updated from ingested telemetry.                         |
+| Risk Score                                   | Numeric risk score associated with the identity. Risk scores are sourced from FortiAnalyzer or FortiSIEM telemetry.                      |
 
 ## Identity Fields Reference
 
-| Field                   | Description                                                                    |
-| ----------------------- | ------------------------------------------------------------------------------ |
-| User ID                 | Unique identifier for the identity record. Used for mapping and deduplication. |
-| User Name               | Username associated with the identity.                                         |
-| Risk Score              | Numeric risk score received from FortiAnalyzer or FortiSIEM telemetry.         |
-| Identity Risk           | Risk classification derived from ingested risk telemetry.                      |
-| Importance              | Importance value received from FortiAnalyzer telemetry.                        |
-| VPN IP                  | Last known VPN IP associated with the identity.                                |
-| Source Data             | Network or source context received from FortiAnalyzer or FortiSIEM telemetry.  |
-| FortiAnalyzer Source ID | Event source identifier associated with FortiAnalyzer telemetry.               |
-| FortiSIEM Source ID     | Event source identifier associated with FortiSIEM telemetry.                   |
-| User Group              | Group-related information associated with the identity record.                 |
-| First Seen              | Timestamp indicating when the identity was first observed.                     |
-| Last Seen               | Timestamp indicating the most recent observation of the identity.              |
+| Field                   | Description                                                                       |
+|-------------------------|-----------------------------------------------------------------------------------|
+| User ID                 | Used for mapping and deduplication.                                               |
+| User Name               | Unique identifier for the identity record. Username associated with the identity. |
+| Risk Score              | Numeric risk score received from FortiAnalyzer or FortiSIEM telemetry.            |
+| Identity Risk           | Risk classification derived from ingested risk telemetry.                         |
+| Importance              | Importance value received from FortiAnalyzer telemetry.                           |
+| VPN IP                  | Last known VPN IP associated with the identity.                                   |
+| Source Data             | Network or source context received from FortiAnalyzer or FortiSIEM telemetry.     |
+| FortiAnalyzer Source ID | Event source identifier associated with FortiAnalyzer telemetry.                  |
+| FortiSIEM Source ID     | Event source identifier associated with FortiSIEM telemetry.                      |
+| User Group              | Group-related information associated with the identity record.                    |
+| First Seen              | Timestamp indicating when the identity was first observed.                        |
+| Last Seen               | Timestamp indicating the most recent observation of the identity.                 |
 
 ## Identity Correlations
 

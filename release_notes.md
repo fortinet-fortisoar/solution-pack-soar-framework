@@ -1,70 +1,53 @@
-# What's New
+| [Home](./README.md) |
+|---------------------|
 
->[!Note]
->*Compatible Version*: FortiSOAR v8.0.0 and later
+# Release notes
 
-## Enhancements
+The following table lists the FortiSOAR versions compatible with this release.
 
-### Renaming of Incident to Case
+| Compatible Version         |
+|----------------------------|
+| FortiSOAR v8.0.1 and later |
 
-*Incident* has been renamed to **Case**. Now, alerts will be escalated as **Case** instead of as *Incidents*.
+## What's new
 
-### Identities Module
+This release includes the following enhancements.
 
-A new **Identities** module has been created to act as a correlation layer for user-related information extracted from ingested data. A new tab *Identities* now appears on the details page of modules such as Alert or a *Case*, under the **Correlations** tab.
+### Renamed dashboards
 
-### AI Integration
+The following dashboards are renamed.
 
-An **AI Investigation** tab in an alert's details page launches an investigation, analyzes alerts, and summarizes evidence to help reach a verdict faster.
+| Previous Name | Updated Name        |
+|---------------|---------------------|
+| Overview      | SOC Operations KPIs |
+| Analyst       | SOC Analysts        |
+| ROI Summary   | SOC ROI Summary     |
 
-## Playbook Enhancements
+### Reports in system time zone
 
-- Updated the playbook **Enrich Indicators (Type All)** to enrich indicators of type `host`
+The following reports now show timings in the system time zone:
 
-- Updated the playbook **Indicator (Type Host) - Get Reputation** to search for an existing asset in TIPs like ServiceNow and add the asset details in the host's record
+- Case Summary Report
+- Overdue Alerts Activities
+- Overdue Cases Activities
+- Unhandled Activities
+- War Room Summary Report
+- Weekly Alert Report
+- Weekly Case Report
+- Weekly IOC Report
 
-- Added the following playbooks in the collection **05 - Hunts** as part of the *Pluggable* hunt implementation
+### Filename indicator support in hunt playbooks
 
-  - Hunt (On Create) - Initiate IOC Hunt
+The following playbooks in the `05 - Hunt` collection now support the **Filename** indicator type:
 
-  - Hunt Indicators (Type All)
+- Hunt (On Create) - Initiate IOC Hunt
+- Hunt Indicators (Type All)
+- Indicator (Manual Trigger) - Initiate IOC Hunt
 
-  - Reset Hunt Global Variables
+## Fixed issues
 
-  - Indicator (Manual Trigger) - Initiate IOC Hunt
+This release fixes the following issue.
 
-## Miscellaneous
+### URL extraction retains a trailing backslash
 
-- Added new dashboards &ndash; `System Health & Workflow Insights` and `System Overview`
-
-- New Color Code added for the picklists &ndash; *Alert Status* and *Incident Status*.
-
-- Roles and navigation changes have been decentralized to optimize performance. **SOAR Essentials** solution pack now manages roles and navigation for SOAR Framework.
-
-- Color codes associated with picklists have been standardized across the user interface.
-
-- Alerts and Cases list view now includes summaries of alerts and cases in various stages of investigation.
-
-- Updated the **SLA Countdown** widget configuration to support the new title setting, allowing the paused SLA title to appear in both alerts and the case detail view.
-
-### Bug Fixes
-
-- Updated the connector name from *CarbonBlack Response* to **VMware Carbon Black EDR** in SOAR Framework solution pack playbooks.
-
-- The manual input step has indicator IRI mapped to parameter and input record &ndash; whichever is available. Earlier, in the following playbooks, the manual input step required both the input record and input record IRI parameters to be mapped:
-
-    - Action - Host - Block (Indicator)
-    - Action - Host - Unblock (Indicator)
-    - Action - Host - Isolate Host Action - URL - Unblock (Indicator)
-    - Action - URL - Block (Indicator)
-    - Action - Domain - Block (Indicator)
-    - Action - Domain - Unblock (Indicator)
-    - Action - IP Address - Unblock (Indicator)
-    - Action - IP Address - Block (Indicator)
-    - Action - IP Address - Block (FortiGate,FortiEDR)
-    - Action - File MD5- Unblock (Indicator)
-    - Action - File MD5 - Block (Indicator)
-    - Action - File - Unblock (Indicator)
-    - Action - File - Block (Indicator)
-    - Action - Email Address - Unblock (Indicator)
-    - Action - Email Address - Block (Indicator)
+URL indicator extraction no longer retains a backslash at the end of a URL. Fresh installs of v4.1.0 include the corrected regex. If you upgrade from an earlier version, or use FortiSOAR 8.0.0 with an earlier SOAR Framework version, update the regex manually. For more information, see [Updating the URL extraction regex](./docs/upgrading-sfsp-to-latest.md#updating-the-url-extraction-regex).
